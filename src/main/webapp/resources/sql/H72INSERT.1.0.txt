@@ -1,0 +1,64 @@
+
+--공지사항
+INSERT INTO NOTICE VALUES (SEQ_NOTICE_NO.NEXTVAL , '72HOURS가 문을 열었습니다.', '안녕하세요. 72HOURS 입니다! 최선을 다하겠습니다.', SYSDATE);
+INSERT INTO NOTICE VALUES (SEQ_NOTICE_NO.NEXTVAL , '72HOURS에 오신걸 환영합니다.', '안녕하세요. 72HOURS 입니다! 방문에 감사드립니다. 최선을 다하겠습니다.', SYSDATE);
+INSERT INTO NOTICE VALUES (SEQ_NOTICE_NO.NEXTVAL , '배송비에 대해 알려드립니다.', '안녕하세요. 72HOURS 입니다! 10만원 이상 구매시 무료배송이며, 10만원 미만시 2500원씩입니다. 감사합니다.', SYSDATE);
+INSERT INTO NOTICE VALUES (SEQ_NOTICE_NO.NEXTVAL , '내가 만드는 나만의 생존가방 DIY를 시작합니다.', '안녕하세요. 72HOURS 입니다! DIY KIT를 시작하였습니다. 많은 이용 부탁드립니다. 감사합니다.', SYSDATE);
+
+
+--유저
+INSERT INTO USERS VALUES (	 'ADMIN',	'ADMIN',  'ADMIN', 	 'ADMIN',	  '99/11/01', 	 'ADMIN@NAVER.COM', 	 '010-1234-1234', 	 '12345',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 0 );
+INSERT INTO USERS VALUES (	 'USER01',	'SILVER',  'PASS01', 	 '닉네임1',	  '99/11/01', 	 'ABC@NAVER.COM', 	 '010-1234-1234', 	 '12345',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 0 );
+INSERT INTO USERS VALUES (	 'USER02',	'SILVER',  'PASS02',	 '닉네임2',	  '99/11/02',	 'ABC@NAVER.COM', 	 '010-1234-1235',	 '12346',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 1 );
+INSERT INTO USERS VALUES (	 'USER03',	'SILVER',  'PASS03',	 '닉네임3',	  '99/11/03',	 'ABC@NAVER.COM', 	 '010-1234-1236',	 '12347',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 2 );
+INSERT INTO USERS VALUES (	 'USER04',	'SILVER',  'PASS04',	 '닉네임4',	  '99/11/04',	 'ABC@NAVER.COM', 	 '010-1234-1237',	 '12348',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 3 );
+INSERT INTO USERS VALUES (	 'USER05',	'SILVER',  'PASS05',	 '닉네임5',	  '99/11/05',	 'ABC@NAVER.COM', 	 '010-1234-1238',	 '12349',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 4 );
+INSERT INTO USERS VALUES (	 'USER06',	'SILVER',  'PASS06',	 '닉네임6',	  '99/11/06',	 'ABC@NAVER.COM', 	 '010-1234-1239',	 '12350',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 5 );
+INSERT INTO USERS VALUES (	 'USER07',	'SILVER',  'PASS07',	 '닉네임7',	  '99/11/07',	 'ABC@NAVER.COM', 	 '010-1234-1240',	 '12351',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 6 );
+INSERT INTO USERS VALUES (	 'USER08',	'SILVER',  'PASS08',	 '닉네임8',	  '99/11/08',	 'ABC@NAVER.COM', 	 '010-1234-1241',	 '12352',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 7 );
+INSERT INTO USERS VALUES (	 'USER09',	'SILVER',  'PASS09',	 '닉네임9',	  '99/11/09',	 'ABC@NAVER.COM', 	 '010-1234-1242',	 '12353',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 8 );
+INSERT INTO USERS VALUES (	 'USER10',	'SILVER',  'PASS10',	 '닉네임10',	  '99/11/10',	 'ABC@NAVER.COM', 	 '010-1234-1243',	 '12354',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 9 );
+INSERT INTO USERS VALUES (	 'USER11',	'SILVER',  'PASS11',	 '닉네임11',	  '99/11/11',	 'ABC@NAVER.COM', 	 '010-1234-1244',	 '12355',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 10 );
+INSERT INTO USERS VALUES (	 'USER12',	'SILVER',  'PASS12',	 '닉네임12',	  '99/11/12',	 'ABC@NAVER.COM', 	 '010-1234-1245',	 '12356',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 11 );
+INSERT INTO USERS VALUES (	 'USER13',	'SILVER',  'PASS13',	 '닉네임13',	  '99/11/13',	 'ABC@NAVER.COM', 	 '010-1234-1246',	 '12357',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 12 );
+INSERT INTO USERS VALUES (	 'USER14',	'SILVER',  'PASS14',	 '닉네임14',	  '99/11/14',	 'ABC@NAVER.COM', 	 '010-1234-1247',	 '12358',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 13 );
+INSERT INTO USERS VALUES (	 'USER15',	'SILVER',  'PASS15',	 '닉네임15',	  '99/11/15',	 'ABC@NAVER.COM', 	 '010-1234-1248',	 '12359',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 14 );
+INSERT INTO USERS VALUES (	 'USER16',	'SILVER',  'PASS16',	 '닉네임16',	  '99/11/16',	 'ABC@NAVER.COM', 	 '010-1234-1249',	 '12360',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 15 );
+INSERT INTO USERS VALUES (	 'USER17',	'SILVER',  'PASS17',	 '닉네임17',	  '99/11/17',	 'ABC@NAVER.COM', 	 '010-1234-1250',	 '12361',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 16 );
+INSERT INTO USERS VALUES (	 'USER18',	'SILVER',  'PASS18',	 '닉네임18',	  '99/11/18',	 'ABC@NAVER.COM', 	 '010-1234-1251',	 '12362',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 17 );
+INSERT INTO USERS VALUES (	 'USER19',	'SILVER',  'PASS19',	 '닉네임19',	  '99/11/19',	 'ABC@NAVER.COM', 	 '010-1234-1252',	 '12363',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 18 );
+INSERT INTO USERS VALUES (	 'USER20',	'SILVER',  'PASS20',	 '닉네임20',	  '99/11/20',	 'ABC@NAVER.COM', 	 '010-1234-1253',	 '12364',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 19 );
+INSERT INTO USERS VALUES (	 'USER21',	'SILVER',  'PASS21',	 '닉네임21',	  '99/11/21',	 'ABC@NAVER.COM', 	 '010-1234-1254',	 '12365',	 '서울시',	 '성북구' 	 , 20,	 SYSDATE , 20 );
+INSERT INTO USERS VALUES (	 'USER22',	'SILVER',  'PASS22',	 '닉네임22',	  '99/11/22',	 'ABC@NAVER.COM', 	 '010-1234-1255',	 '12366',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 21 );
+INSERT INTO USERS VALUES (	 'USER23',	'SILVER',  'PASS23',	 '닉네임23',	  '99/11/23',	 'ABC@NAVER.COM', 	 '010-1234-1256',	 '12367',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 22 );
+INSERT INTO USERS VALUES (	 'USER24',	'SILVER',  'PASS24',	 '닉네임24',	  '99/11/24',	 'ABC@NAVER.COM', 	 '010-1234-1257',	 '12368',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 23 );
+INSERT INTO USERS VALUES (	 'USER25',	'SILVER',  'PASS25',	 '닉네임25',	  '99/11/25',	 'ABC@NAVER.COM', 	 '010-1234-1258',	 '12369',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 24 );
+INSERT INTO USERS VALUES (	 'USER26',	'SILVER',  'PASS26',	 '닉네임26',	  '99/11/26',	 'ABC@NAVER.COM', 	 '010-1234-1259',	 '12370',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 25 );
+INSERT INTO USERS VALUES (	 'USER27',	'SILVER',  'PASS27',	 '닉네임27',	  '99/11/27',	 'ABC@NAVER.COM', 	 '010-1234-1260',	 '12371',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 26 );
+INSERT INTO USERS VALUES (	 'USER28',	'SILVER',  'PASS28',	 '닉네임28',	  '99/11/28',	 'ABC@NAVER.COM', 	 '010-1234-1261',	 '12372',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 27 );
+INSERT INTO USERS VALUES (	 'USER29',	'SILVER',  'PASS29',	 '닉네임29',	  '99/11/29',	 'ABC@NAVER.COM', 	 '010-1234-1262',	 '12373',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 28 );
+INSERT INTO USERS VALUES (	 'USER30',	'SILVER',  'PASS30',	 '닉네임30',	  '99/11/30',	 'ABC@NAVER.COM', 	 '010-1234-1263',	 '12374',	 '서울시',	 '성북구' 	 , 0, 	 SYSDATE , 29 );
+
+
+
+--공장
+INSERT INTO PROVIDER VALUES('P0001', '(주)신짱물류', '신짱구', '010-1234-1234', '031-3333-1234', '인천광역시 중구 운서동 2850-7', NULL);
+INSERT INTO PROVIDER VALUES('P0002', '(주)잘나가공장', NULL, NULL, '031-3333-1234', '남양주 남양동 653-11', NULL);
+INSERT INTO PROVIDER VALUES('P0003', '(주)좋아상사', '김사사', '010-1234-1234', '031-3333-1234', '인천광역시 중구 운동동 333-4', NULL);
+INSERT INTO PROVIDER VALUES('P0004', '(주)질좋은나라', '이나라', '010-1234-1234', '031-3333-1234', '인천광역시 중구 사상동 38', NULL);
+INSERT INTO PROVIDER VALUES('P0005', '(주)좋아좋아', '이조은', '010-1234-1234', '031-3333-1234', '인천광역시 중구 운서동 134', NULL);
+INSERT INTO PROVIDER VALUES('P0006', '(주)다팔아',  NULL, NULL, '031-3333-1234', '서울 강남구 역삼동 57', NULL);
+INSERT INTO PROVIDER VALUES('P0007', '(주)품절품절', '오품절', '010-1234-1234', '031-3333-1234', '부산 해운대구 해운동 46', NULL);
+INSERT INTO PROVIDER VALUES('P0008', '(주)김철수', '김출수', '010-1234-1234', '031-3333-1234', '서울 중구 을지로 46', '질좋음');
+INSERT INTO PROVIDER VALUES('P0009', '(주)떡잎마을', '김떡잎', '010-1234-1234', '031-3333-1234', '전주광역시 전주 333-33', NULL);
+INSERT INTO PROVIDER VALUES('P0010', '(주)훈이', '이훈이', '010-1234-1234', '031-3333-1234', '의정부시 의정구 56', NULL);
+
+
+--상품
+--상품이름 코드+0001~0050까지 사용가능 // 상품분류 BAG, TOOL 이면 앞의 3글자만(TOO) // 상품명 // 원가 //가장 낮은 판매가 // 메인이미지경로// 1번설명경로// 2번설명 경로// 비고사항(NULL가능)
+INSERT INTO ITEM_DETAIL_BAG VALUES( 'BAG0001', 'BAG','SELL', '블랙야크(BLACKYAK)앵글23', 91000, 77350, '/images/BAG0001MAIN', '/images/BAG0001_01', '/images/BAG0001_02', '비고사항없음');
+--옵션내역(옵션수만큼 INSERT 필요) : 디테일아이디 + 옵션코드 // 공장코드(P0001~P0010) // 디테일아이디 // 옵션포함 이름// 매입가 //원가 // 판매가(옵션가) // 재고
+INSERT INTO ITEM_BAG VALUES('BAG0001BK', 'P0001', 'BAG0001', '블랙', 55900, 91000, 77350, 32);
+INSERT INTO ITEM_BAG VALUES('BAG0001BE', 'P0001', 'BAG0001', '베이지', 52300, 91000, 77350, 12);
+
+

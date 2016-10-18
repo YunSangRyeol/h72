@@ -1,0 +1,129 @@
+@CHARSET "UTF-8";
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0 auto;
+	padding: 0;
+	border:none;
+}
+
+#main_content_wrap {
+	width: 100%;
+	height: 100%;
+}
+
+.main_contents {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+
+
+.main_contents .main_banner2>img, .main_banner3>img, .main_banner4>img,
+	.main_banner5>img {
+	border: none;
+	vertical-align: top;
+}
+
+.main_banner2 {
+	margin-left: 15px;
+}
+
+.main_banner2, .main_banner4 {
+	float: left;
+	width: 408px;
+	height: 552px;
+	margin-bottom: 10px;
+}
+
+.main_banner3 {
+	float: left;
+	width: 422px;
+	height: 552px;
+	margin: 6px;
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+
+.main_banner5 {
+	margin-bottom: 70px;
+}
+
+.main_banner2 a:hover, .main_banner3 a:hover, .main_banner4 a:hover,
+	.main_banner5 a:hover {
+	opacity: 0.7;
+}
+
+.main_mySlides {
+	display: none
+}
+
+/* Slideshow container */
+.main_slideshow-container {
+	position: relative;
+	margin: auto;
+}
+
+/* Number text (1/3 etc) */
+.main_numbertext {
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	/* 	position: absolute;
+	top: 0; */
+}
+.dot {
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active {
+	background-color: #717171;
+}
+
+/* Fading animation */
+
+
+.fade img {
+	width: 1250px;
+	height: 732px;
+	margin-top: 65px;
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
+}
+
+@
+-webkit-keyframes fade {
+	from {opacity: .4
+}
+
+to {
+	opacity: 1
+}
+
+}
+@
+keyframes fade {
+	from {opacity: .4
+}
+
+to {
+	opacity: 1
+}
+
+
+/* Next & previous buttons */
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+	.text {
+		
+	}
+}
