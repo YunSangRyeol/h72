@@ -18,22 +18,22 @@ public class CartController {
 		return "order/shopping_cart";
 	}
 	
-	@RequestMapping(value = "order/shopping_cart", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertCart", method = RequestMethod.GET)
 	public String insertCart(Model model) {
 		
-		return "order/shopping_cart";
+		return null;
 	}
 	
-	@RequestMapping(value = "order/shopping_cart", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateCart", method = RequestMethod.GET)
 	public String updateCart(Model model) {
 		
-		return "order/shopping_cart";
+		return null;
 	}
 	
-	@RequestMapping(value = "order/shopping_cart", method = RequestMethod.GET)
+	@RequestMapping(value = "/deletCart", method = RequestMethod.GET)
 	public String deletCart(Model model) {
 		
-		return "order/shopping_cart";
+		return null;
 	}
 	
 	

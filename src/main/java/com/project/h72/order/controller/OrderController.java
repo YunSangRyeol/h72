@@ -8,20 +8,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class OrderController {
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/orderview", method = RequestMethod.GET)
 	public String orderListView(Model model) {
 		
 		return null;
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/orderdetail", method = RequestMethod.GET)
 	public String orderDeitailView(Model model) {
 		
 		return null;
 	}
 	
+	
+	@RequestMapping(value = "/searchOrder", method = RequestMethod.GET)
+	public String searchOrder(Model model) {
+		
+		return null;
+	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/reorder", method = RequestMethod.GET)
 	public String searchReorder(Model model) {
 		
 		return null;
