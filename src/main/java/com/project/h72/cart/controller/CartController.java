@@ -13,11 +13,31 @@ public class CartController {
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
 	@RequestMapping(value = "order/shopping_cart", method = RequestMethod.GET)
-	public String shopping_cart(Model model) {
-		
-		String test = "test가 잘되는건가???????";
-		model.addAttribute("test", test );
+	public String cartView(Model model) {
 		
 		return "order/shopping_cart";
 	}
+	
+	@RequestMapping(value = "order/shopping_cart", method = RequestMethod.GET)
+	public String insertCart(Model model) {
+		
+		return "order/shopping_cart";
+	}
+	
+	@RequestMapping(value = "order/shopping_cart", method = RequestMethod.GET)
+	public String updateCart(Model model) {
+		
+		return "order/shopping_cart";
+	}
+	
+	@RequestMapping(value = "order/shopping_cart", method = RequestMethod.GET)
+	public String deletCart(Model model) {
+		
+		return "order/shopping_cart";
+	}
+	
+	
+	
+	
+	
 }
