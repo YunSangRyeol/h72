@@ -1,0 +1,608 @@
+/***************** common **********************/
+@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
+body{
+	/* font-family: "Noto Sans KR", sans-serif; */
+	font-size:9pt;
+}
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, img {
+    margin: 0;
+    padding: 0;
+}
+
+user agent stylesheet
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+Inherited from body#main
+body, code {
+    font-size: 11px;
+    color: #000;
+}
+
+img, fieldset {
+    border: none;
+    vertical-align: top;
+}
+
+t-normalpaging ol {
+    margin: 0 17px 0 20px;
+}
+/***************** sunny_top **********************/
+#sunny_top{
+	background:white;
+}
+
+/***************** sunny_wrap **********************/
+#sunny_wrap {
+    margin: 0;
+    padding: 0;
+    background:white;
+    margin-top:20px;
+}
+
+/*******titleArea**********/
+.titleArea h2 {
+    font-family: 'Helvetica',sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 40px;
+}
+/***************** sunny_header **********************/
+#sunny_header{
+	width:100%;
+	background:white;
+}
+.line1{
+	/* height:20px; */
+}
+/***************** kitDiy_nav **********************/
+#kitDiy_nav{
+	
+}
+/***************** kitDiy_selectWrap **********************/
+#sunny_wrap .fixed{
+	width:100%;
+	height:auto;
+	position:fixed;
+	top:0px;
+	z-index:200;
+	background:white;
+	
+}
+#kitDiy_selectWrap{
+	width:1250px;
+	height:100%;
+	margin:0 auto;
+}
+/***************** kitDiy_title **********************/
+#kitDiy_Title{
+	background:#fbfafa;
+}
+
+#kitDiy_Title li{
+	color: black;
+	font-size: 10pt;
+    display: inline-block;
+    margin:10px;
+    font-weight:bold;
+    vertical-align: middle;
+    
+}
+#kitDiy_Title li:first-child{
+	width:90%;
+}
+#kitDiy_Title li:second-child{
+	width:10%;
+}
+
+/***************** kitDiy_product **********************/
+#kitDiy_product{
+	width: 73%; 
+	height: 95%;
+	float:left;
+}
+#select_product1{
+	width : 100%;
+	height:20%;
+   
+}
+#select_product2{
+	width : 100%;
+	height:20%;
+	/* opacity: 0.4; */
+}
+#select_product3{
+	width : 100%;
+	height:20%;
+	/* opacity: 0.6; */
+}
+#select_product4{
+	width : 100%;
+	height:20%;
+	/* opacity: 0.8; */
+}
+#select_product5{
+	width : 100%;
+	height:20%;
+	/* opacity: 1; */
+}
+#kitDiy_product ul:first-child li{
+	color: black;
+	font-size: 10pt;
+    display: inline-block;
+    margin:10px;
+    font-weight:bold;
+    vertical-align: middle;
+    
+}
+#kitDiy_product ul:first-child li:first-child{
+	width:5%;
+}
+#kitDiy_product ul:first-child li:nth-child(2){
+	width:13%;
+}
+#kitDiy_product ul:first-child li:nth-child(3){
+	width:10%;
+}
+#kitDiy_product ul:first-child li:nth-child(4){
+	width:15%;
+}
+#kitDiy_product ul:first-child li:nth-child(5){
+	width:15%;
+}
+#kitDiy_product ul:first-child li:nth-child(6){
+	width:13%;
+}
+#kitDiy_product ul:first-child li:nth-child(7){
+	width:3%;
+	text-align:left;
+	cursor:pointer;
+	color:red;
+	font-weight:900;	
+}
+#kitDiy_product ul:first-child li:nth-child(8){
+	width:3%;
+	text-align:right;
+	cursor:pointer;
+	font-weight:bold;
+	font-size:12pt;	
+	margin-left:32px;
+}
+#kitDiy_product ul:first-child li:nth-child(9){
+	display:none;
+	width:0%;
+}
+#kitDiy_product ul:first-child li:first-child img{
+	width:23px;
+	hieght:20px;
+}
+
+/***************** product stock css ************/
+#kitDiy_product .select_input{
+	width:40px;
+	text-align:center;
+	border:0px;
+}
+/* input[type=number]::-webkit-inner-spin-button {
+    opacity: 1
+} */
+/***************** submenu button css ************/
+#kitDiy_product .subMenu{
+	display:none;
+}
+
+/*****************menu after select************/
+#kitDiy_product .selected ul:first-child{
+	background: #FF9999;
+		
+	
+}
+#kitDiy_product .selected ul:first-child li{
+	color:white;
+	
+}
+.kitDiy_productList{
+	border-bottom: solid #ddd;
+    border-width: 1px;
+}
+#kitDiy_product .selected ul:first-child .select_input{
+	width:40px;
+	text-align:center;
+	border:0px;
+	color:white;
+	background:#FF9999;	
+}
+
+/*****************submenu css ************/
+.kitDiy_subList{
+	background:#e9e9e9;
+	
+}
+.kitDiy_subList li{
+	color: black;
+	font-size: 10pt;
+    display: inline-block;
+    margin:10px;
+    font-weight:bold;
+    vertical-align: middle;
+	text-align:left;
+	
+}
+.kitDiy_subList li:first-child{
+	margin-left:80px;
+	width:26%;
+}
+.kitDiy_subList li:nth-child(2){
+	width:15.5%;
+}
+.kitDiy_subList li:nth-child(3){
+	width:15.2%;
+}
+.kitDiy_subList li:nth-child(4){
+	width:21%;
+}
+.kitDiy_subList li:nth-child(5){
+	width:1%;
+	cursor:pointer;
+	color:red;
+}
+.kitDiy_subList li:nth-child(6){
+	width:0%;
+	display:none;
+}
+.kitDiy_subList .select_input{
+	background:#e9e9e9;
+}
+
+/***************** kitDiy_imageNbutton **********************/ 
+#kitDiy_imageNbutton{
+	width:24%;
+	height:95%;
+	float:left;
+	margin-left:20px;
+}
+/***************** kitDiy_img **********************/
+
+#kitDiy_image{
+	width:100%;
+	height:175px;
+	
+}
+#select_tab1Image img{
+	z-index:10;
+	width:160px;
+	height:160px;
+	margin: -8px 0 0 50px;
+	position:absolute;
+	opacity:0.3;
+}
+
+#select_tab2Image img{
+	z-index:9;
+	width:160px;
+	height:160px;
+	margin: -8px 0 0 50px;
+	position:absolute;
+	opacity:0.3;
+	
+}
+#select_tab3Image img{
+	z-index:8;
+	width:160px;
+	height:160px;
+	margin: -8px 0 0 50px;
+	position:absolute;
+	opacity:0.3;
+	
+}
+#select_tab4Image img{
+	z-index:7;
+	width:160px;
+	height:160px;
+	margin: -8px 0 0 50px;
+	position:absolute;
+	opacity:0.3;
+	
+}
+#select_tab5Image img{
+	z-index:6;
+	width:160px;
+	height:160px;
+	margin: -8px 0 0 50px;
+	position:absolute;
+	opacity:0.3;
+	
+}
+/***************** kitDiy_button **********************/
+#kitDiy_button{
+	width:100%;
+	height:40px;
+	
+}
+#select_button1{
+	float:left;
+	cursor:pointer;
+}
+#select_button1 img{
+	width:130px;
+	height:45px;
+	background: url('../image/btn_buy.png');
+	background-size: 130px 45px;
+}
+#select_button1 img:hover {
+	width:130px;
+	height:45px;
+	background: url('../image/btn_buy_h.png');
+	background-size: 130px 45px;
+}
+#select_button2{
+	float:left;
+	margin-left: 10px;
+	cursor:pointer;
+}
+#select_button2 img{
+	width:130px;
+	height:45px;
+	background-image: url('../image/btn_cart.png');
+	background-size: 130px 45px;
+}
+#select_button2 img:hover {
+	width:130px;
+	height:45px;
+	background-image: url('../image/btn_cart_h.png');
+	background-size: 130px 45px;
+}
+
+/***************** kitDiy_level **********************/
+#kitDiy_level{
+	width:100%;
+	height:10px;
+	float:left;
+	margin-top:10px;
+	
+}
+
+#select_tab1{
+	width:20%;
+	height:100%;
+	float:left;
+	background:#e9e9e9;
+	
+}
+#select_tab2{
+	width:20%;
+	height:100%;
+	float:left;
+	background:#e9e9e9;
+}
+#select_tab3{
+	width:20%;
+	height:100%;
+	float:left;
+	background:#e9e9e9;
+}
+#select_tab4{
+	width:20%;
+	height:100%;
+	float:left;
+	background:#e9e9e9;
+}
+#select_tab5{
+	width:20%;
+	height:100%;
+	float:left;
+	background:#e9e9e9;
+}
+
+/***************** sunny_contents **********************/	
+#sunny_contents{
+	margin-top:300px;
+}
+/***************** sunny_in **********************/
+#sunny_in {
+	width:1250px;
+    margin:0px auto;
+}
+
+/***************** tabs **********************/
+#sunny_in #kitdiy_tabs{
+	list-style-type:none; 
+	cursor:pointer;
+}
+
+#sunny_in #kitdiy_tabs li{
+    background: #fbfbfb;
+    color: black;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 40px;
+    display: inline-block;
+    width:19.9%;
+    margin-left:-5px;
+	
+}
+#sunny_in #kitdiy_tabs li:first-child{
+	color:white;
+  	margin-left:0px;
+	background:black;
+}
+
+
+/***************** List ui **********************/
+.tab2{
+	display:none;
+}
+.tab3{
+	display:none;
+}
+.tab4{
+	display:none;
+}
+.tab5{
+	display:none;
+}
+
+.xans-product-listnormal ul.prdList {
+    display: table;
+    width: 100%;
+    min-width: 756px;
+    font-size: 0;
+    line-height: 0;
+}
+/***************** List li **********************/
+.xans-product-listnormal ul.prdList li.item {
+    display: inline-block;
+    margin: 10px 0;
+    color: #757575;
+    vertical-align: top;
+}
+li {
+    list-style: none;
+}
+user agent stylesheet
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.xans-product-listnormal ul.prdList li.item {
+    display: inline-block;
+    margin: 10px 0;
+    color: #757575;
+    vertical-align: top;
+}
+.xans-product-listnormal ul.column5 li.item {
+    width: 238px;
+    margin-right: 15px;
+}
+
+/***************** paging **********************/
+.xans-product-normalpaging {
+    margin: 10px 0;
+    padding: 16px 0 17px;
+    text-align: center;
+    font-family: 'Helvetica',sans-serif;
+    letter-spacing: 1px;
+    line-height: 11px;
+}
+.xans-product-normalpaging {
+    margin: 10px 0;
+    padding: 16px 0 17px;
+    text-align: center;
+    font-family: 'Helvetica',sans-serif;
+    letter-spacing: 1px;
+    line-height: 11px;
+}
+
+.xans-product-normalpaging img {
+    padding: 1px 0 0 0;
+}
+.xans-product-normalpaging p {
+    margin-right: -3px;
+}	
+
+.xans-product-normalpaging p, .xans-product-normalpaging ol, .xans-product-normalpaging li {
+    display: inline;
+}
+.xans-product-normalpaging ol {
+    margin: 0 17px 0 20px;
+}
+
+.xans-product-normalpaging li {
+    margin: 0 4px;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.xans-product-normalpaging li a.this {
+    font-weight: bold;
+    color: #1066be;
+    transition: color 0.3s;
+}
+
+body, code {
+    font-size: 11px;
+    color: #000;
+}
+.xans-product-normalpaging li {
+    margin: 0 4px;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    text-decoration: none;
+    cursor: auto;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+/***************** checkBox Image **********************/
+
+input[type=checkbox] {  
+    display: none;  
+}
+
+input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 13px;
+}
+
+input[type=checkbox]+ label:before {     
+
+    content: "";  
+    display: inline-block;  
+    width: 20px;  
+    height: 20px;  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom : 1px;
+    background-image: url("../image/unchecked.png") ;
+    background-size:20px 20px; 
+    background-repeat : no-repeat;
+    background-position : left;
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "";  /* 체크모양 */
+    font-size: 18px; 
+    font-weight:800; 
+    color: #fff;  
+    text-align: center;  
+    line-height: 18px;  
+     background-image: url("../image/checked.png") ;
+    background-size:20px 20px; 
+    background-repeat : no-repeat;
+
+} 
+/***************** kitDiy_select **********************/
+
+#kitDiy_select{
+	font-family: "Noto Sans KR", sans-serif;
+	width:190px;
+	position:relative;
+	left:0px;
+	top:-6px;
+	border:0px;
+	border-bottom:2px solid #FF9999;
+	/* background:#fbfbfb; */
+	font-size:9pt;
+}
