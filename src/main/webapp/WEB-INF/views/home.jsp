@@ -98,24 +98,48 @@
 			</script>
 
 			<div class="main_banner2">
-				<a href="#"><img src="/h72/resources/image/clothes.jpg"></a><a
-					href="#" target="_blank"><img
-					src="/h72/resources/image/food.jpg" style="margin-top: 6px;"></a>
+				<a href="#">
+					<div id="main_banner_clothes">
+						<span id="main_label_title">PROTECT</span><br>
+						<span id="main_label_contents">영하 10℃ 에서도 체온 유지 가능</span>
+					</div>
+				</a>
+				<a href="#" target="_blank">
+					<div id="main_banner_food">
+						<span id="main_label_title">FOOD</span><br>
+						<span id="main_label_contents">간단 조리가 가능한 비상식량 모음</span>
+					</div>
+				</a>
 			</div>
-			<div class="main_banner3">
-				<a href="#"><img src="/h72/resources/image/backpack.jpg"></a>
-			</div>
+			<a href="#">
+				<div class="main_banner3">
+					<span id="main_label_title2">BAG</span><br>
+					<span id="main_label_contents2">생존배낭 사이즈별 대량 입고</span>
+				</div>
+			</a>
 			<div class="main_banner4">
-				<a href="#"><img src="/h72/resources/image/equip.jpg"></a> <a
-					href="#"><img src="/h72/resources/image/etc.jpg"
-					style="margin-top: 6px;"></a>
+				<a href="#">
+					<div id="main_banner_tool">
+						<span id="main_label_title">TOOL</span><br>
+						<span id="main_label_contents">최대 밝기 2000루멘 휴대용 라이트 판매중</span>
+					</div>
+				</a>
+				<a href="#">
+					<div id="main_banner_etc">
+						<span id="main_label_title">ETC</span><br>
+						<span id="main_label_contents">응급처치 세트 외 기타용품 모음집</span>
+					</div>
+				</a>
 			</div>
-			<div class="main_banner5">
-				<a href="#"><img src="/h72/resources/image/kit.jpg"></a>
-
+			<a href="#">
+				<div class="main_banner5">
+					<span id="main_label_title2">KIT</span><br>
+					<span id="main_label_contents2">응급처치 세트 외 기타용품 모음집</span>
+				</div>
+			</a>
+			
 			</div>
 		</div>
-		<hr color="#d9d9d9" size="1">
 		<jsp:include page="main_footer.jsp" flush="false" />
 	</div>
 </body>

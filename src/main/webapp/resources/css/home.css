@@ -1,11 +1,13 @@
 @CHARSET "UTF-8";
 
+@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
+
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
 	img {
 	margin: 0 auto;
 	padding: 0;
-	border:none;
+	border: none;
 }
 
 #main_content_wrap {
@@ -18,16 +20,40 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 	margin: 0 auto;
 }
 
-
-
-.main_contents .main_banner2>img, .main_banner3>img, .main_banner4>img,
-	.main_banner5>img {
-	border: none;
-	vertical-align: top;
-}
-
 .main_banner2 {
 	margin-left: 15px;
+}
+
+#main_banner_clothes {
+	width: 408px;
+	height: 273px;
+	background: url('/h72/resources/image/clothes.jpg');
+}
+
+#main_banner_food {
+	margin-top: 6px;
+	width: 408px;
+	height: 273px;
+	background: url('/h72/resources/image/food.jpg');
+	width: 408px;
+}
+
+#main_banner_tool {
+	width: 408px;
+	height: 273px;
+	background: url('/h72/resources/image/tool.jpg');
+}
+
+#main_banner_etc {
+	margin-top: 6px;
+	width: 408px;
+	height: 273px;
+	background: url('/h72/resources/image/etc.jpg');
+}
+
+a #main_banner_clothes:hover, a #main_banner_food:hover, a #main_banner_tool:hover,
+	a #main_banner_etc:hover, a .main_banner3:hover, a .main_banner5:hover {
+	opacity:0.7;
 }
 
 .main_banner2, .main_banner4 {
@@ -44,15 +70,36 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 	margin: 6px;
 	margin-bottom: 10px;
 	margin-top: 0px;
+	background: url('/h72/resources/image/backpack.jpg');
 }
 
 .main_banner5 {
+	margin-left: 15px;
+	width: 1250px;
+	height: 552px;
+	float: left;
 	margin-bottom: 70px;
+	background: url('/h72/resources/image/kit.jpg');
 }
 
-.main_banner2 a:hover, .main_banner3 a:hover, .main_banner4 a:hover,
-	.main_banner5 a:hover {
-	opacity: 0.7;
+.main_contents a {
+	text-decoration: none;
+	color: white;
+}
+
+.main_contents #main_label_title, #main_label_title2 {
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 30pt;
+}
+
+.main_contents #main_label_title2, #main_label_contents2 {
+	position: relative;
+	top: 240px;
+}
+
+.main_contents #main_label_title, #main_label_contents {
+	position: relative;
+	top: 95px;
 }
 
 .main_mySlides {
@@ -73,25 +120,25 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 	/* 	position: absolute;
 	top: 0; */
 }
+
 .dot {
-  height: 13px;
-  width: 13px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+	height: 13px;
+	width: 13px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
 }
+
 .active {
 	background-color: #717171;
 }
 
 /* Fading animation */
-
-
 .fade img {
 	width: 1250px;
-	height: 732px;
+	height: 552px;
 	margin-top: 65px;
 	-webkit-animation-name: fade;
 	-webkit-animation-duration: 1.5s;
@@ -117,7 +164,6 @@ keyframes fade {
 to {
 	opacity: 1
 }
-
 
 /* Next & previous buttons */
 
