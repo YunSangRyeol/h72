@@ -21,7 +21,7 @@
 					<ul>
 						<li><a href="#" class="main_log">LOGIN</a></li>
 						<li><a href="#">JOIN</a></li>
-						<li><a href="#">CART</a></li>
+						<li><a href="order/shopping_cart">CART</a></li>
 						<li><a href="#">ORDER</a></li>
 					</ul>
 				</div>
