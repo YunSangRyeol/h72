@@ -20,7 +20,7 @@
 				<div class="main_right">
 					<ul>
 						<li><a href="#" class="main_log">LOGIN</a></li>
-						<li><a href="member/memberJoin">JOIN</a></li>
+						<li><a href="<c:url value="member/memberJoin" />">JOIN</a></li>
 						<li><a href="order/shopping_cart">CART</a></li>
 						<li><a href="#">ORDER</a></li>
 					</ul>

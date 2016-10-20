@@ -1,0 +1,184 @@
+@CHARSET "UTF-8";
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0 auto;
+	padding: 0;
+	border: none;
+}
+
+@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
+
+body, code {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 12px;
+	color: #000;
+}
+
+a {
+	text-decoration: none;
+}
+
+.main_line2 .main_cate #main_cateIdx1 {
+	margin-left: -95px;
+}
+
+#mjoin_content_wrap {
+	width: 100%;
+	height: 100%;
+}
+
+#mjoin_contents {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+/* shopping cart, order, order list, order detail title */
+.mjoin_titleArea h2 {
+	padding-top: 124px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 20px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 40px;
+}
+
+.mjoin_titleArea #mjoin_benefit {
+	border: 1px solid #e6e6e6;
+	box-shadow: 3px -3px 3px #ddd;
+	margin-bottom: 50px;
+}
+
+.mjoin_form {
+	text-align: left;
+	width: 1250px;
+}
+
+.mjoin_form h3 {
+	margin-left: 10px;
+}
+
+.mjoin_form .mjoin_required {
+	text-align: right;
+}
+
+#mjoin_red {
+	color: red;
+}
+
+.boardWrite {
+	table-layout: fixed;
+	border: 1px solid #e7e7e7;
+	line-height: 180%;
+	font-size: 11px;
+}
+
+.boardWrite table {
+	font-family: "돋움", Dotum;
+	width: 100%;
+	border: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.boardWrite table tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+.boardWrite table tbody tr {
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+}
+
+.boardWrite table tbody th {
+	width: 130px;
+	padding: 10px 0 8px 20px;
+	border-top: 1px solid #e7e7e7;
+	border-right: 1px solid #e7e7e7;
+	background-color: #fbfafa;
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle;
+}
+
+.boardWrite img {
+	vertical-align: middle;
+}
+
+.boardWrite table tbody td {
+	width: auto;
+	padding: 10px 0 8px 10px;
+	border-top: 1px solid #e7e7e7;
+}
+
+.boardWrite input {
+	height: 14px;
+	padding: 4px;
+	border: 1px solid #e7e7e7;
+	color: #202020;
+	font-size: 12px;
+}
+
+.boardWrite #postnum {
+	width: 50px;
+	text-align: center;
+	margin-right: 5px;
+}
+
+.boardWrite #address, .boardWrite #addressDetail {
+	width: 280px;
+	margin: 5px 0 0;
+}
+
+.boardWrite #phone1 {
+	height: 24px; border : 1px solid #d5d5d5;
+	font-size: 100%;
+	font-family: "돋움", Dotum;
+	color: #353535;
+	vertical-align: middle;
+	border: 1px solid #d5d5d5;
+}
+
+.boardWrite #phone2, .boardWrite #phone3 {
+	width: 50px;
+	margin: 0 4px;
+}
+
+.boardWrite #email3 {
+	height: 24px;
+	margin: 0 4px 0 4px;
+	border: 1px solid #d5d5d5;
+	font-size: 100%;
+	font-family: "돋움", Dotum;
+	color: #353535;
+	vertical-align: middle;
+}
+.agreeArea {
+    padding: 20px 20px 15px 20px;
+    border: 1px solid #e7e7e7;
+    color: #747474;
+    font-size: 11px;
+    line-height: 20px;
+    background: #fbfafa;
+}
+.agreeArea .agree {
+    overflow: auto;
+    height: 110px;
+    padding: 20px;
+    border: 1px solid #e7e7e7;
+    background: #fff;
+}
+.agreeArea .agree p {
+	    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    padding: 0 0 17px;
+}

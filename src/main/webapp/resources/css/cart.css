@@ -17,6 +17,10 @@ body, code {
     font-size: 12px;
     color: #000;
 }
+.main_line2 .main_cate #main_cateIdx1 {
+	margin-left: -95px;
+}
+
 
 
 #content_wrap {
@@ -30,7 +34,7 @@ body, code {
 }
 
 #order_contents {
-    width: 1250px;
+    width: 1280px;
     margin: 0 auto;
 }
 
