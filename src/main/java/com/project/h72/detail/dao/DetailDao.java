@@ -1,4 +1,4 @@
-package com.project.h72.detail.model.dao;
+package com.project.h72.detail.dao;
 
 import org.springframework.stereotype.Repository;
 

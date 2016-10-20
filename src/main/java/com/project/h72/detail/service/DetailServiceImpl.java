@@ -1,4 +1,4 @@
-package com.project.h72.detail.model.service;
+package com.project.h72.detail.service;
 
 import org.springframework.stereotype.Service;
 
