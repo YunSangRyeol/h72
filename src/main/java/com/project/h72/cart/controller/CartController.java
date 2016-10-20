@@ -18,11 +18,7 @@ public class CartController {
 		return "order/shopping_cart";
 	}
 	
-	@RequestMapping(value = "/insertCart", method = RequestMethod.GET)
-	public String insertCart(Model model) {
-		
-		return null;
-	}
+
 	
 	@RequestMapping(value = "/updateCart", method = RequestMethod.GET)
 	public String updateCart(Model model) {
