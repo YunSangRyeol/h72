@@ -25,15 +25,7 @@ public String qna_list(Locale locale, Model model) {
 	
 	return "qna_list";
 }
-@RequestMapping(value = "/qna_error", method = RequestMethod.GET)
-public String qna_error(Locale locale, Model model) {
-	logger.info("Welcome home! The client locale is {}.", locale);
 
-	
-	model.addAttribute("serverTime" );
-	
-	return "qna_error";
-}
 @RequestMapping(value = "/qna_detail", method = RequestMethod.GET)
 public String qna_detail(Locale locale, Model model) {
 	logger.info("Welcome home! The client locale is {}.", locale);

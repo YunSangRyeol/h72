@@ -26,19 +26,6 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		return "notice_list";
 	}
 
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/notice_error", method = RequestMethod.GET)
-	public String notice_error(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		
-		model.addAttribute("serverTime" );
-		
-		return "notice_error";
-	}
 
 	
 	/**
