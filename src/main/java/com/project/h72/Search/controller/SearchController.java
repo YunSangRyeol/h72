@@ -16,20 +16,64 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class SearchController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "search", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(value = "/bag", method = RequestMethod.GET)
+	public String bagList(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		
-		model.addAttribute("serverTime" );
-		
+		model.addAttribute("serverTime");
+
 		return null;
 	}
-	
+
+	@RequestMapping(value = "/protect", method = RequestMethod.GET)
+	public String protectList(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		model.addAttribute("serverTime");
+
+		return null;
+	}
+
+	@RequestMapping(value = "/food", method = RequestMethod.GET)
+	public String foodList(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		model.addAttribute("serverTime");
+
+		return null;
+	}
+
+	@RequestMapping(value = "/tool", method = RequestMethod.GET)
+	public String toolList(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		model.addAttribute("serverTime");
+
+		return null;
+	}
+
+	@RequestMapping(value = "/etc", method = RequestMethod.GET)
+	public String etcList(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		model.addAttribute("serverTime");
+
+		return null;
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String searchList(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		model.addAttribute("serverTime");
+
+		return null;
+	}
+
 }

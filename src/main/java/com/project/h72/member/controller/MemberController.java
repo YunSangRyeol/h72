@@ -16,20 +16,71 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class MemberController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "member", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		
-		model.addAttribute("serverTime" );
-		
-		return null;
+	@RequestMapping(value = "member/loginPage", method = RequestMethod.GET)
+	public String loginPage(Locale locale, Model model) {
+/*		단순 페이지 이동	*/		
+		return "member/loginPage";
 	}
-	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Locale locale, Model model) {
+
+		return "home";
+	}
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(Locale locale, Model model) {
+
+		return "home";
+	}
+	@RequestMapping(value = "member/memberJoin", method = RequestMethod.GET)
+	public String mJoinPage(Locale locale, Model model) {
+		/*		단순 페이지 이동	*/		
+		return "member/memberJoin";
+	}
+	@RequestMapping(value = "/mJoin", method = RequestMethod.GET)
+	public String mJoin(Locale locale, Model model) {
+
+		return "home";
+	}
+
+	@RequestMapping(value = "member/memberUpdate", method = RequestMethod.GET)
+	public String mUpdatePage(Locale locale, Model model) {
+		/*		단순 페이지 이동	*/		
+		return "member/memberUpdate";
+	}
+	@RequestMapping(value = "/mUpdate", method = RequestMethod.GET)
+	public String mUpdate(Locale locale, Model model) {
+
+		return "home";
+	}
+
+	@RequestMapping(value = "/mDelete", method = RequestMethod.GET)
+	public String mDelete(Locale locale, Model model) {
+
+		return "home";
+	}
+
+	@RequestMapping(value = "member/memberSearch", method = RequestMethod.GET)
+	public String mSearchPage(Locale locale, Model model) {
+			/*단순 페이지 이동*/
+		return "member/memberSearch";
+	}
+
+	@RequestMapping(value = "member/idFindResult", method = RequestMethod.GET)
+	public String idFindResult(Locale locale, Model model) {
+
+		return "member/idFindResult";
+	}
+
+	@RequestMapping(value = "member/pwdFindResult", method = RequestMethod.GET)
+	public String pwdFindResult(Locale locale, Model model) {
+
+		return "member/pwdFindResult";
+	}
+
 }

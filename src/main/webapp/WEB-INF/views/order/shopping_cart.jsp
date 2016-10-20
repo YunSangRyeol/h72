@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="/h72/resources/css/cart.css" type="text/css" rel="stylesheet">
+
 <title>Shopping_cart</title>
 </head>
 <body id="main">
