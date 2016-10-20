@@ -1,4 +1,4 @@
-package com.project.h72.board.service;
+package com.project.h72.qna.service;
 
 public interface QnAService {
 

@@ -1,4 +1,4 @@
-package com.project.h72.board.controller;
+package com.project.h72.notice.controller;
 
 import java.util.Locale;
 

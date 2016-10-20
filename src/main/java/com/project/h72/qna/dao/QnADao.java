@@ -1,4 +1,4 @@
-package com.project.h72.board.dao;
+package com.project.h72.qna.dao;
 
 public class QnADao {
 
