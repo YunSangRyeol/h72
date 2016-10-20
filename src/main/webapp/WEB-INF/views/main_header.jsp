@@ -37,7 +37,7 @@
 						<li id="main_cateIdx3"><a href="#"><span>FOOD</span></a></li>
 						<li id="main_cateIdx4" style="width:130px;"><a href="#" ><span>EQUIPMENT</span></a></li>
 						<li id="main_cateIdx5" style="margin-left:28px;"><a href="#"><span>ETC</span></a></li>
-						<li id="main_cateIdx6"  style="width:105px;"><a href="#"><span>KIT</span></a></li>
+						<li id="main_cateIdx6"  style="width:105px;"><a href="kitDiy/kitDiyView"><span>KIT</span></a></li>
 					</ul>
 				</div>
 				<div class="main_search" style="margin-left: 30px;">

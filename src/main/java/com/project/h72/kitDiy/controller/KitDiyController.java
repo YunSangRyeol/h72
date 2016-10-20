@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class KitDiyController {
 
-	@RequestMapping(value = "/kitDiy/kitDiyView", method = RequestMethod.GET)
+	@RequestMapping(value = "kitDiy/kitDiyView", method = RequestMethod.GET)
 	public String kitDiyView(Locale locale, Model model) {
 		
 		return "detail/kitDiy";

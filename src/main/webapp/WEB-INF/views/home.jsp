@@ -131,7 +131,7 @@
 					</div>
 				</a>
 			</div>
-			<a href="#">
+			<a href="kitDiy/kitDiyView">
 				<div class="main_banner5">
 					<span id="main_label_title2">KIT</span><br>
 					<span id="main_label_contents2">응급처치 세트 외 기타용품 모음집</span>
