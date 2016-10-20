@@ -2,16 +2,17 @@ package com.project.h72.kitDiy.controller;
 
 import java.util.Locale;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+@Controller
 public class KitDiyController {
 
-	@RequestMapping(value = "/kitDiyView", method = RequestMethod.GET)
+	@RequestMapping(value = "/kitDiy/kitDiyView", method = RequestMethod.GET)
 	public String kitDiyView(Locale locale, Model model) {
 		
-		return "kityDiy";
+		return "detail/kitDiy";
 	}
 	
 	@RequestMapping(value = "/kitDiyOrder", method = RequestMethod.GET)

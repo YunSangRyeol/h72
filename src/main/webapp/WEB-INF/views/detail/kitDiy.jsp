@@ -11,11 +11,11 @@
 <meta http-equiv="Expires" content="0">
 <meta http-equiv="Pragma" content="no-cache">
 <!--PG크로스브라우징필수내용 끝-->
-<link rel="stylesheet" href="../css/kitdiy.css">
-<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="../js/tabs.js"></script>
-<script type="text/javascript" src="../js/kitDiy.Checkbox.js"></script>
-<script type="text/javascript" src="../js/kitDiy.menu.js"></script>
+<link rel="stylesheet" href="/h72/resources/css/kitdiy.css">
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="/h72/resources/js/tabs.js"></script>
+<script type="text/javascript" src="/h72/resources/js/kitDiy.Checkbox.js"></script>
+<script type="text/javascript" src="/h72/resources/js/kitDiy.menu.js"></script>
 <title>kitDiy</title>
 <meta name="path_role" content="PRODUCT_LIST">
 <meta name="description" content="10대, 20대 여성의류 쇼핑몰, 데일리 케쥬얼룩, 티셔츠, 니트, 원피스 등 판매. 코디 제공.">
@@ -55,7 +55,7 @@ $(document).ready(function(){
 					<% for(int menuNum=1;  menuNum<6; menuNum++){%>
 						<div id="select_product<%=menuNum %>" class="kitDiy_productList" >
 							<ul id="kitDiy_mainList<%=menuNum %>">
-								<li><img src="../image/icon<%=menuNum %>.png"/></li>
+								<li><img src="/h72/resources/image/icon<%=menuNum %>.png"/></li>
 								<li>-</li>
 								<li></li> 
 								<li>-</li>
@@ -70,11 +70,11 @@ $(document).ready(function(){
 					</div>
 					<div id="kitDiy_imageNbutton">
 						<div id="kitDiy_image">
-							<div id="select_tab1Image" style=""><img src="../image/backpack.png"/></div>
-							<div id="select_tab2Image" style=""><img src="../image/blanket.png" /></div>
-							<div id="select_tab3Image" style=""><img src="../image/food.png" /></div>
-							<div id="select_tab4Image" style=""><img src="../image/electronic.png" /></div>
-							<div id="select_tab5Image" style=""><img src="../image/etc.png" /></div>
+							<div id="select_tab1Image" style=""><img src="/h72/resources/image/backpack.png"/></div>
+							<div id="select_tab2Image" style=""><img src="/h72/resources/image/blanket.png" /></div>
+							<div id="select_tab3Image" style=""><img src="/h72/resources/image/food.png" /></div>
+							<div id="select_tab4Image" style=""><img src="/h72/resources/image/electronic.png" /></div>
+							<div id="select_tab5Image" style=""><img src="/h72/resources/image/etc.png" /></div>
 						</div>
 						<div id="kitDiy_button">
 							<div id="select_button1"><img src="" /></div>
@@ -131,7 +131,7 @@ $(document).ready(function(){
 										  <option value="product_option3">product_option3</option>
 										</select>
 										<a href="" name="anchorBoxName_8879" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
-											<img src="../image/content_0<%=j %>.jpg" class="thumb" style="width: 238px;"></a>
+											<img src="/h72/resources/image/content_0<%=j %>.jpg" class="thumb" style="width: 238px;"></a>
 										<p class="name"></p>
 										<p style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin: 20px 0px;">
 											<a href="#">x
@@ -154,7 +154,7 @@ $(document).ready(function(){
 					</div>
 					<div class="xans-element- xans-product xans-product-normalpaging">
 						<p>
-							<a href="#none"><img src="../image/btn_page_prev.png" alt="이전 페이지"></a>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
 						</p>
 						<ol>
 							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
@@ -162,7 +162,7 @@ $(document).ready(function(){
 						</ol>
 						<p>
 							<a href="#none"><img
-								src="../image/btn_page_next.png" alt="다음 페이지"></a>
+								src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
 						</p>
 					</div>
 				</div>
