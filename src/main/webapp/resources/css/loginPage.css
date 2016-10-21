@@ -1,0 +1,180 @@
+@CHARSET "UTF-8";
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0 auto;
+	padding: 0;
+	border: none;
+}
+
+@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
+
+body, code {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 12px;
+	color: #000;
+}
+
+a {
+	text-decoration: none;
+}
+
+.main_line2 .main_cate #main_cateIdx1 {
+	margin-left: -95px;
+}
+
+#login_content_wrap {
+	width: 100%;
+	height: 100%;
+}
+
+#login_contents {
+	width: 1250px;
+	margin: 0 auto;
+}
+
+/* shopping cart, order, order list, order detail title */
+.login_titleArea h2 {
+	padding-top: 124px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 20px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 40px;
+}
+
+.inner {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+.login_inputArea {
+	float: left;
+	width: 47%;
+	height: 350px;
+	margin-left: 30px;
+	border: 1px solid #ddd;
+	border-right: 0;
+	font-size: 12px;
+	background: #fff;
+	text-algin: center;
+	border: 1px solid #ddd;
+}
+
+.login_bannerArea {
+	/* 	position:absolute;
+	left:970px; */
+	float: left;
+	width: 47%;
+	height: 350px;
+	border: 1px solid #ddd;
+	background: url("/h72/resources/image/tool.jpg");
+	margin-bottom: 50px;
+}
+
+.login_inputArea label {
+	display: block;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #ddd;
+	float: left;
+	position: relative;
+	left: 76px;
+	top: 5px;
+	float: left;
+}
+
+.login_inputArea .loginBtn, .mjoinBtn {
+	display: inline-block;
+	width: 100px;
+	height: 70px;
+	background: #000;
+	text-align: center;
+	color: #fff;
+	line-height: 70px;
+}
+
+.login_inputArea .loginBtn {
+	position: relative;
+	top: -32px;
+	left: 50px;
+}
+
+.login_inputArea .mjoinBtn {
+	position: relative;
+	top: -60px;
+	left: 70px;
+}
+
+.login_inputArea .loginBtn a, .mjoinBtn a {
+	color: #fff;
+	width: 100px;
+	height: 70px;
+}
+
+.login_inputArea .loginBtn:hover, .mjoinBtn:hover {
+	opacity: 0.7;
+	transition: 0.3s ease-out;
+}
+
+.login_inputArea .login_inputData {
+	border: 1px solid #ddd;
+	width: 180px;
+	height: 30px;
+	margin: 5px 0 0 -190px;
+}
+
+.login_inputArea .login_inputData#userpass {
+	position: relative;
+	top: -15px;
+	left: 51px;
+}
+
+.login_inputArea .security {
+	position: relative;
+	right: 180px;
+	padding: 0 0 0 5px;
+	margin: 10px 0;
+	color: #757575;
+	padding: 0 0 0 5px;
+}
+
+.login_inputArea ul {
+	overflow: hidden;
+	list-style: none;
+	padding: 8px 0px 25px 160px;
+	margin: 0 0 20px 0;
+	border-bottom: 1px dotted #e7e7e7;
+}
+
+.login_inputArea li {
+	float: left;
+	padding: 0 3px 0 3px;
+}
+
+.login_inputArea li a {
+	color: #2e2e2e;
+}
+
+.login_inputArea li a:hover {
+	text-decoration: underline;
+}
+
+.login_mjoinArea span {
+	display: block;
+	margin: 5px 0 0 -150px;
+}
+
+.login_benefit {
+	background: url("/h72/resources/image/member_benefit.jpg");
+	width: 1130px;
+	height: 135px;
+	border: 1px solid #e6e6e6;
+	box-shadow: 3px -3px 3px #ddd;
+	margin-bottom: 50px;
+	margin-left: 24px;
+}

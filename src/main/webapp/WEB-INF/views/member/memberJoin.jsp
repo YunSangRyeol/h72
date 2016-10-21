@@ -31,7 +31,7 @@
 				<p class="mjoin_required">
 					<span id="mjoin_red">*</span> 필수입력사항
 				</p>
-				<div class="boardWrite">
+				<div class="mjoin_boardWrite">
 					<table border="1" summary="">
 						<tbody>
 							<tr>
@@ -171,8 +171,8 @@
 				<br>
 				<h3>이용약관 동의</h3>
 				<br>
-				<div class="agreeArea">
-					<div class="agree">
+				<div class="mjoin_agreeArea">
+					<div class="mjoin_agree">
 						<p>
 							제1조(목적)<br>이 약관은 '(주)살아남조'(전자상거래 사업자)가 운영하는 h72(이하 “몰”이라
 							한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리, 의무 및
@@ -442,7 +442,7 @@
 						</p>
 						부 칙(시행일) 이 약관은 2011 년&nbsp;8&nbsp;월 일부터 시행합니다.
 					</div>
-					<p class="check">
+					<p class="mjoin_check">
 						<span>이용약관에 동의하십니까?</span> <input id="agree_service_check0"
 							name="agree_service_check[]" fw-filter="/1/" fw-label="이용약관 동의"
 							fw-msg="이용약관에 동의 하세요" value="1" type="checkbox"><label
@@ -453,8 +453,8 @@
 				<h3>개인정보 수집 및 이용 동의</h3>
 				<br>
 
-				<div class="agreeArea">
-					<div class="agree">
+				<div class="mjoin_agreeArea">
+					<div class="mjoin_agree">
 						<p>
 							■ 수집하는 개인정보 항목 <br> <br>회사는 회원가입, 상담, 서비스 신청 등등을 위해 아래와
 							같은 개인정보를 수집하고 있습니다. <br> <br>ο 수집항목 : 이름 , 생년월일 , 성별 ,
@@ -470,7 +470,7 @@
 							수집 및 이용목적이 달성된 후에는 예외 없이 해당 정보를 지체 없이 파기합니다.
 						</p>
 					</div>
-					<p class="check">
+					<p class="mjoin_check">
 						<span>개인정보 수집 및 이용에 동의하십니까?</span> <input
 							id="agree_privacy_check0" name="agree_privacy_check[]"
 							fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침"
@@ -478,7 +478,7 @@
 							for="agree_privacy_check0">동의함</label>
 					</p>
 				</div>
-				<div class="btnArea">
+				<div class="mjoin_btnArea">
 					<a href="#none" onclick="memberJoinAction()">회원가입</a>
 				</div>
 			</div>

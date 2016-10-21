@@ -54,6 +54,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 a #main_banner_clothes:hover, a #main_banner_food:hover, a #main_banner_tool:hover,
 	a #main_banner_etc:hover, a .main_banner3:hover, a .main_banner5:hover {
 	opacity:0.7;
+	transition:0.3s;
 }
 
 .main_banner2, .main_banner4 {

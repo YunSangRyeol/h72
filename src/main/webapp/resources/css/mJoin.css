@@ -69,14 +69,14 @@ a {
 	color: red;
 }
 
-.boardWrite {
+.mjoin_boardWrite {
 	table-layout: fixed;
 	border: 1px solid #e7e7e7;
 	line-height: 180%;
 	font-size: 11px;
 }
 
-.boardWrite table {
+.mjoin_boardWrite table {
 	font-family: "돋움", Dotum;
 	width: 100%;
 	border: 0;
@@ -84,19 +84,19 @@ a {
 	border-collapse: collapse;
 }
 
-.boardWrite table tbody {
+.mjoin_boardWrite table tbody {
 	display: table-row-group;
 	vertical-align: middle;
 	border-color: inherit;
 }
 
-.boardWrite table tbody tr {
+.mjoin_boardWrite table tbody tr {
 	display: table-row;
 	vertical-align: inherit;
 	border-color: inherit;
 }
 
-.boardWrite table tbody th {
+.mjoin_boardWrite table tbody th {
 	width: 130px;
 	padding: 10px 0 8px 20px;
 	border-top: 1px solid #e7e7e7;
@@ -107,17 +107,17 @@ a {
 	vertical-align: middle;
 }
 
-.boardWrite img {
+.mjoin_boardWrite img {
 	vertical-align: middle;
 }
 
-.boardWrite table tbody td {
+.mjoin_boardWrite table tbody td {
 	width: auto;
 	padding: 10px 0 8px 10px;
 	border-top: 1px solid #e7e7e7;
 }
 
-.boardWrite input {
+.mjoin_boardWrite input {
 	height: 14px;
 	padding: 4px;
 	border: 1px solid #e7e7e7;
@@ -125,25 +125,25 @@ a {
 	font-size: 12px;
 }
 
-.boardWrite #postnum {
+.mjoin_boardWrite #postnum {
 	width: 50px;
 	text-align: center;
 	margin-right: 5px;
 }
 
-.boardWrite #postFindBtn {
+.mjoin_boardWrite #postFindBtn {
 	height: 27px;
 	vertical-align: middle;
 	text-align: center;
 	margin: 0 0 5px 0;
 }
 
-.boardWrite #address, .boardWrite #addressDetail {
+.mjoin_boardWrite #address, .mjoin_boardWrite #addressDetail {
 	width: 280px;
 	margin: 5px 0 0;
 }
 
-.boardWrite #phone1 {
+.mjoin_boardWrite #phone1 {
 	height: 24px;
 	border: 1px solid #d5d5d5;
 	font-size: 100%;
@@ -153,12 +153,12 @@ a {
 	border: 1px solid #d5d5d5;
 }
 
-.boardWrite #phone2, .boardWrite #phone3 {
+.mjoin_boardWrite #phone2, .mjoin_boardWrite #phone3 {
 	width: 50px;
 	margin: 0 4px;
 }
 
-.boardWrite #email3 {
+.mjoin_boardWrite #email3 {
 	height: 24px;
 	margin: 0 4px 0 4px;
 	border: 1px solid #d5d5d5;
@@ -168,7 +168,7 @@ a {
 	vertical-align: middle;
 }
 
-.agreeArea {
+.mjoin_agreeArea {
 	padding: 20px 20px 15px 20px;
 	border: 1px solid #e7e7e7;
 	color: #747474;
@@ -177,7 +177,7 @@ a {
 	background: #fbfafa;
 }
 
-.agreeArea .agree {
+.mjoin_agreeArea .mjoin_agree {
 	overflow: auto;
 	height: 110px;
 	padding: 20px;
@@ -185,7 +185,7 @@ a {
 	background: #fff;
 }
 
-.agreeArea .agree p {
+.mjoin_agreeArea .mjoin_agree p {
 	display: block;
 	-webkit-margin-before: 1em;
 	-webkit-margin-after: 1em;
@@ -194,7 +194,7 @@ a {
 	padding: 0 0 17px;
 }
 
-.agreeArea .check {
+.mjoin_agreeArea .mjoin_check {
 	padding: 7px 0 0 0;
 	color: #202020;
 	font-size: 11px;
@@ -206,7 +206,7 @@ a {
 	font-family: "돋움", Dotum;
 }
 
-.agreeArea .check #agree_service_check0, #agree_privacy_check0 {
+.mjoin_agreeArea .mjoin_check #agree_service_check0, #agree_privacy_check0 {
 	width: 14px;
 	height: 14px;
 	margin: 0 3px 0 3px;
@@ -217,7 +217,7 @@ a {
 	vertical-align: middle;
 }
 
-.btnArea {
+.mjoin_btnArea {
 	margin-top: 10px;
 	margin-bottom: 70px;
 	background: #000;
@@ -228,7 +228,7 @@ a {
 	text-align:center;
 }
 
-.btnArea a {
+.mjoin_btnArea a {
 	display:block;
 	width:100px;
 	height:50px;
