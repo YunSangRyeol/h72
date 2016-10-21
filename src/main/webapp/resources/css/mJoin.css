@@ -131,13 +131,21 @@ a {
 	margin-right: 5px;
 }
 
+.boardWrite #postFindBtn {
+	height: 27px;
+	vertical-align: middle;
+	text-align: center;
+	margin: 0 0 5px 0;
+}
+
 .boardWrite #address, .boardWrite #addressDetail {
 	width: 280px;
 	margin: 5px 0 0;
 }
 
 .boardWrite #phone1 {
-	height: 24px; border : 1px solid #d5d5d5;
+	height: 24px;
+	border: 1px solid #d5d5d5;
 	font-size: 100%;
 	font-family: "돋움", Dotum;
 	color: #353535;
@@ -159,26 +167,72 @@ a {
 	color: #353535;
 	vertical-align: middle;
 }
+
 .agreeArea {
-    padding: 20px 20px 15px 20px;
-    border: 1px solid #e7e7e7;
-    color: #747474;
-    font-size: 11px;
-    line-height: 20px;
-    background: #fbfafa;
+	padding: 20px 20px 15px 20px;
+	border: 1px solid #e7e7e7;
+	color: #747474;
+	font-size: 11px;
+	line-height: 20px;
+	background: #fbfafa;
 }
+
 .agreeArea .agree {
-    overflow: auto;
-    height: 110px;
-    padding: 20px;
-    border: 1px solid #e7e7e7;
-    background: #fff;
+	overflow: auto;
+	height: 110px;
+	padding: 20px;
+	border: 1px solid #e7e7e7;
+	background: #fff;
 }
+
 .agreeArea .agree p {
-	    display: block;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    padding: 0 0 17px;
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	padding: 0 0 17px;
+}
+
+.agreeArea .check {
+	padding: 7px 0 0 0;
+	color: #202020;
+	font-size: 11px;
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	font-family: "돋움", Dotum;
+}
+
+.agreeArea .check #agree_service_check0, #agree_privacy_check0 {
+	width: 14px;
+	height: 14px;
+	margin: 0 3px 0 3px;
+	padding: 0;
+	border: 0;
+	color: #202020;
+	font-size: 11px;
+	vertical-align: middle;
+}
+
+.btnArea {
+	margin-top: 10px;
+	margin-bottom: 70px;
+	background: #000;
+	border: none;
+	width: 100px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+}
+
+.btnArea a {
+	display:block;
+	width:100px;
+	height:50px;
+	font-size: 13px;
+	color: #fff;
+	font-weight: none;
 }
