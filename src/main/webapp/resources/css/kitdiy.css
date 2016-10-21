@@ -1,50 +1,44 @@
 /***************** common **********************/
+@CHARSET "UTF-8";
+
 @import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
-body{
-	/* font-family: "Noto Sans KR", sans-serif; */
-	font-size:9pt;
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0 auto;
+	padding: 0;
+	border: none;
 }
 
-html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, img {
-    margin: 0;
-    padding: 0;
-}
-
-user agent stylesheet
-ul, menu, dir {
-    display: block;
-    list-style-type: disc;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 40px;
-}
 Inherited from body#main
 body, code {
     font-size: 11px;
     color: #000;
 }
 
-img, fieldset {
-    border: none;
-    vertical-align: top;
-}
-
-t-normalpaging ol {
-    margin: 0 17px 0 20px;
-}
-/***************** sunny_top **********************/
-#sunny_top{
+/***************** kitDiy_top **********************/
+#kitDiy_top{
 	background:white;
+	height:120px;
+}
+#kitDiy_top #main_header .main_left a img{
+	width:238px;
+}
+#kitDiy_top #main_header .main_line2{
+	width:100%;
+	position: absolute;
+}
+#kitDiy_top #main_header .main_line2 .main_board li ul{
+	top:38px;
 }
 
-/***************** sunny_wrap **********************/
-#sunny_wrap {
+/***************** kitDiy_wrap **********************/
+#kitDiy_wrap {
     margin: 0;
     padding: 0;
     background:white;
-    margin-top:20px;
+    margin-top:0px;
 }
 
 /*******titleArea**********/
@@ -57,8 +51,8 @@ t-normalpaging ol {
     text-transform: uppercase;
     padding-bottom: 40px;
 }
-/***************** sunny_header **********************/
-#sunny_header{
+/***************** kitDiy_header **********************/
+#kitDiy_header{
 	width:100%;
 	background:white;
 }
@@ -70,13 +64,17 @@ t-normalpaging ol {
 	
 }
 /***************** kitDiy_selectWrap **********************/
-#sunny_wrap .fixed{
-	width:100%;
-	height:auto;
+#kitDiy_wrap .fixed{
+	width:1235px;
+	height:40px;
 	position:fixed;
-	top:0px;
 	z-index:200;
+	top:75px;
 	background:white;
+	display:block;
+	line-height:50px;
+	vertical-align: middle;
+	border:8px solid #FF9999;
 	
 }
 #kitDiy_selectWrap{
@@ -168,14 +166,15 @@ t-normalpaging ol {
 	text-align:left;
 	cursor:pointer;
 	color:red;
-	font-weight:900;	
+	font-weight:900;
+		
 }
 #kitDiy_product ul:first-child li:nth-child(8){
 	width:3%;
 	text-align:right;
 	cursor:pointer;
 	font-weight:bold;
-	font-size:12pt;	
+	font-size:8pt;	
 	margin-left:32px;
 }
 #kitDiy_product ul:first-child li:nth-child(9){
@@ -196,6 +195,11 @@ t-normalpaging ol {
 /* input[type=number]::-webkit-inner-spin-button {
     opacity: 1
 } */
+/***************** submenu checkboxClear css ************/
+#kitDiy_product ul:first-child .checkboxClear{
+	display:none;
+}
+
 /***************** submenu button css ************/
 #kitDiy_product .subMenu{
 	display:none;
@@ -403,24 +407,82 @@ t-normalpaging ol {
 	float:left;
 	background:#e9e9e9;
 }
+/***************** kitDiy_minuMenu **********************/
+#kitDiy_minuMenu{
+	width:100%;
+	margin-top:10px;
+	float:left;
+	vertical-align: middle;
+	font-size:9pt;
+	display:none;
+	background:white;
+	
+}
+#kitDiy_minuMenu span:first-of-type{
+	position: relative;
+    bottom: 7px;
+    left: 6px;
+	
+}
+#kitDiy_minuMenu span:nth-child(3){
+	position: relative;
+    bottom: 7px;
+    left:60px;
+	
+}
+#select_minuMenu1{
+	width:20%;
+	height:100%;
+	float:left;
+	/* background:#e9e9e9; */
+	
+}
 
-/***************** sunny_contents **********************/	
-#sunny_contents{
+#select_minuMenu2{
+	width:20%;
+	height:100%;
+	float:left;
+	/* background:#e9e9e9; */
+}
+#select_minuMenu3{
+	width:20%;
+	height:100%;
+	float:left;
+	/* background:#e9e9e9; */
+}
+#select_minuMenu4{
+	width:20%;
+	height:100%;
+	float:left;
+	/* background:#e9e9e9; */
+}
+#select_minuMenu5{
+	width:20%;
+	height:100%;
+	float:left;
+	/* background:#e9e9e9; */
+}
+#kitDiy_minuMenu div img{
+	width:23px;
+	hieght:20px;
+}
+/***************** kitDiy_contents **********************/	
+#kitDiy_contents{
 	margin-top:300px;
 }
-/***************** sunny_in **********************/
-#sunny_in {
+/***************** kitDiy_in **********************/
+#kitDiy_in {
 	width:1250px;
     margin:0px auto;
 }
 
 /***************** tabs **********************/
-#sunny_in #kitdiy_tabs{
+#kitDiy_in #kitdiy_tabs{
 	list-style-type:none; 
 	cursor:pointer;
 }
 
-#sunny_in #kitdiy_tabs li{
+#kitDiy_in #kitdiy_tabs li{
     background: #fbfbfb;
     color: black;
     text-align: center;
@@ -433,7 +495,7 @@ t-normalpaging ol {
     margin-left:-5px;
 	
 }
-#sunny_in #kitdiy_tabs li:first-child{
+#kitDiy_in #kitdiy_tabs li:first-child{
 	color:white;
   	margin-left:0px;
 	background:black;
@@ -468,11 +530,11 @@ t-normalpaging ol {
     color: #757575;
     vertical-align: top;
 }
-li {
+.kitDiy_wrap li {
     list-style: none;
 }
 user agent stylesheet
-li {
+.kitDiy_wrap li {
     display: list-item;
     text-align: -webkit-match-parent;
 }
@@ -531,32 +593,28 @@ li {
     transition: color 0.3s;
 }
 
-body, code {
-    font-size: 11px;
-    color: #000;
-}
 .xans-product-normalpaging li {
     margin: 0 4px;
     font-size: 11px;
     font-weight: normal;
 }
 
-a:-webkit-any-link {
+.kitDiy_wrap a:-webkit-any-link {
     color: -webkit-link;
     text-decoration: none;
     cursor: auto;
 }
-a {
+.kitDiy_wrap a {
     text-decoration: none;
     color: #000;
 }
 /***************** checkBox Image **********************/
 
-input[type=checkbox] {  
+.kitDiy_wrap input[type=checkbox] {  
     display: none;  
 }
 
-input[type=checkbox] + label{
+.kitDiy_wrap input[type=checkbox] + label{
     display: inline-block;  
     cursor: pointer;  
     position: relative;  
@@ -565,7 +623,7 @@ input[type=checkbox] + label{
     font-size: 13px;
 }
 
-input[type=checkbox]+ label:before {     
+.kitDiy_wrap input[type=checkbox]+ label:before {     
 
     content: "";  
     display: inline-block;  
@@ -580,9 +638,9 @@ input[type=checkbox]+ label:before {
     background-repeat : no-repeat;
     background-position : left;
 }
-input[type=checkbox]:checked + label:before { 
+.kitDiy_wrap input[type=checkbox]:checked + label:before { 
 
-    content: "";  /* 체크모양 */
+    content: "";  /* üũ��� */
     font-size: 18px; 
     font-weight:800; 
     color: #fff;  
