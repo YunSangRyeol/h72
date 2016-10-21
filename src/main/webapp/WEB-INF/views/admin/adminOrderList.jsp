@@ -3,56 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<style>
-table {
-	width: 100%;
-	border: 0;
-	border-spacing: 0;
-	border-collapse: collapse;
-}
-
-ul.tab {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-
-/* Float the list items side by side */
-ul.tab li {float: left;}
-
-/* Style the links inside the list items */
-ul.tab li a {
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-/* Change background color of links on hover */
-ul.tab li a:hover {
-    background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-ul.tab li a:focus, .active {
-    background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-}
-</style>
 <script>
+	document.getElementById("defaultOpen").click();
+	
 	function openTab(evt, tabname) {
 		var i, tabcontent, tablinks;
 		tabcontent = document.getElementsByClassName("tabcontent");
@@ -62,23 +15,33 @@ ul.tab li a:focus, .active {
 		tablinks = document.getElementsByClassName("tablinks");
 		for (i = 0; i < tablinks.length; i++) {
 			tablinks[i].className = tablinks[i].className
-					.replace(" active", "");
+					.replace("active", "");
 		}
 		document.getElementById(tabname).style.display = "block";
 		evt.currentTarget.className += " active";
 	}
+	
+</script>
+<script type="text/javascript">
 
-	// Get the element with id="defaultOpen" and click on it
-	document.getElementById("defaultOpen").click();
+	
 </script>
 <head>
 <meta charset="UTF-8">
+<link href="/h72/resources/css/admin.css" type="text/css" rel="stylesheet">
 <title>admin page</title>
 </head>
 <body>
+	<div id="content_wrap">
+		<jsp:include page="/WEB-INF/views/main_header.jsp"/>
+	</div>
+	
+	<div id="admin_order_contents_wrap">
+	<div id="admin_order_contents">
 
 	<fieldset>
-	<legend>검색기간설정</legend>
+	<legend><input type="radio" name="searchHow" value="date">기간으로 검색 <input type="radio" name="searchHow" value="user"> 회원으로 검색 </legend>
+	<div id="searchDate">
         <span>
             <a href="#none" class="btnNormal" days="00"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1_on.gif" alt="오늘"></a>
             <a href="#none" class="btnNormal" days="07"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2_on.gif" alt="1주일"></a>
@@ -90,12 +53,16 @@ ul.tab li a:focus, .active {
         <button type="button" class="ui-datepicker-trigger">
         <img src="http://img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button> ~ <input type="" id="history_end_date" name="history_end_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2016-10-18" type="text"><button type="button" class="ui-datepicker-trigger">
         <img src="http://img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button>        <input alt="조회" id="order_search_btn" type="image" src="http://img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif">   
+    </div><!-- searchDate -->    
+    <div id="searchID">
+		<form action="/easyStudy/searchuserid" method="post">
+			<input type="text" name="userid" size="30"> &nbsp; <input
+				type="submit" value="검색" class="mypage_userM_searchBtn">
+		</form>
+	</div>
     </fieldset>
     
-    <fieldset>
-    <legend>회원으로 검색</legend>
-    	<input type="text" id="serchid" name="searchid"><input type="submit" value="검색">
-    </fieldset>
+   
 
 	<div id="admin_admin_title">주문 내역</div>
 	<br>
@@ -115,6 +82,7 @@ ul.tab li a:focus, .active {
 	</ul>
 
 	<div id="all" class="tabcontent">
+		<div id="totalPrice">총 금액 : </div>
 		<table border="1" summary="">
 			<thead>
 				<tr>
@@ -127,7 +95,7 @@ ul.tab li a:focus, .active {
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">수량</th>
 					<th scope="col" class="price">상품구매금액</th>
-					<th scope="col" class="thumb">주문자</th>
+					<th scope="col" class="who">주문자</th>
 					<th scopt="col" class="how">주문 방법</th>
 					<th scope="col" class="state">주문처리상태</th>
 				</tr>
@@ -142,15 +110,60 @@ ul.tab li a:focus, .active {
 
 					<td class="price"><strong>23,900원</strong>
 						<div class="displaynone"></div></td>
-					<td class="thumb"><a>user01</a></td>
+					<td class="who"><a>user01</a></td>
 					<td class="how">무통장</td>
 					<td class="state">
-						<p>결제완료</p>
+						<select id="stateMo">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select><input type="button" value="변경">
 					</td>
+					
+				</tr>
+								<tr class="xans-record-">
+					<td><input type="checkbox"></td>
+					<td class="number ">2016/10/17 <a href=""><p>[20161017-0001735]</p></a></td>
+
+					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
+					<td class="quantity">1</td>
+
+					<td class="price"><strong>23,900원</strong>
+						<div class="displaynone"></div></td>
+					<td class="who"><a>user01</a></td>
+					<td class="how">무통장</td>
+					<td class="state">
+						<select id="stateMo">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select><input type="button" value="변경">
+					</td>
+					
+				</tr>
+								<tr class="xans-record-">
+					<td><input type="checkbox"></td>
+					<td class="number ">2016/10/17 <a href=""><p>[20161017-0001735]</p></a></td>
+
+					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
+					<td class="quantity">1</td>
+
+					<td class="price"><strong>23,900원</strong>
+						<div class="displaynone"></div></td>
+					<td class="who"><a>user01</a></td>
+					<td class="how">무통장</td>
+					<td class="state">
+						<select id="stateMo">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select><input type="button" value="변경">
+					</td>
+					
 				</tr>
 			</tbody>
 		</table>
-		<br><br><br>
+		
 		<div id="modifyBtn">
 			선택한 주문건을 
 			<select id="modifyWhat">
@@ -190,7 +203,9 @@ ul.tab li a:focus, .active {
 
 
 
-
-
+	</div>
+	</div>
+	
+	
 </body>
 </html>
