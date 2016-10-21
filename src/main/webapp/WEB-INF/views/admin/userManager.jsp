@@ -19,53 +19,44 @@ $(function() {
 							.is(":checked")) ? "show" : "hide"]();
 				});
 	});
-	$(function() {
-		//전체선택 체크박스 클릭
-		$("#allCheck")
-				.click(
-						function() {
-							if ($("#allCheck").prop("checked")) {
-								$(
-										"table.mypage_userManager input[type=checkbox]")
-										.prop("checked", true);
 
-							} else {
-								$(
-										"table.mypage_userManager input[type=checkbox]")
-										.prop("checked", false);
-							}
-							$("table.mypage_userManager input[type=checkbox]")
-									.change();
-						})
-	})
-	//체크박스 선택시 tr 색 변경
-	$(function() {
-		$("table.mypage_userManager input[type=checkbox]").change(function() {
-			if ($(this).is(":checked")) {
-				$(this).closest("tr").find("td").each(function() {
-					$(this).css("background", "#e0e0e0");
-				});
-			} else {
-				$(this).closest("tr").find("td").each(function() {
-					$(this).css("background", "white");
-				});
-			}
-		
-		} );
-	});
-
-</script>
-				<script type="text/javascript">
-					//모두삭제 실행전 조건 확인 밑 확인창
-					function checkAlldel(){
-						if(confirm("체크된 회원 모두를 정리하시겠습니까?")){
-							mypage_alldelete_form.submit();
-						}else{
-							return;
-						}
-					}
 </script>
 <body>
+
+
+
+				<div id="mypage_usersearch">
+					<div  id="searchhow">
+						<select class="searchhow_select">
+							<option value="searchid" selected> &nbsp; I &nbsp;D  </option>
+							<option value="searchnick">닉네임</option>
+							<option value="searchdate">가입일</option>
+						</select>
+					 	&nbsp; 
+					</div> 
+					
+					<div id="searchID">
+						<form action="/easyStudy/searchuserid" method="post">
+							<input type="text" name="userid" size="30"> &nbsp; <input
+								type="submit" value="검색" class="mypage_userM_searchBtn">
+						</form>
+					</div>
+
+					<div id="searchNickname" style="display: none">
+						<form action="/easyStudy/searchnickname" method="post">
+							<input type="text" name="nickname" size="30"> &nbsp; <input
+								type="submit" value="검색" class="mypage_userM_searchBtn">
+						</form>
+					</div>
+
+					<div id="searchDate" style="display: none">
+						<form action="/easyStudy/searchenroll_date" method="post">
+							<input type="date" name="start"> ~ <input type="date"
+								name="end"> &nbsp; <input type="submit" value="검색"
+								class="mypage_userM_searchBtn">
+						</form>
+					</div>
+				</div>
 
 
 </body>

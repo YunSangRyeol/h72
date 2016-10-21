@@ -2,6 +2,15 @@
 
 @import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
 
+body {
+    min-width: 1200px;
+}
+
+body, code {
+    font-family: 'Noto Sans KR' ,sans-serif;
+    font-size: 12px;
+    color: #000;
+}
 
 #content_wrap {
 	width: 100%;
@@ -12,11 +21,93 @@
     padding-top: 124px;
 }
 
+#admin_order_contents {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+/*타이틀*/
+.admin_order_titleArea h2 {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 40px;
+}
+
+/*검색 필드*/
+
+#admin_order_search{
+	 width: 100%;	 
+	 border: 1px solid #ccc;
+	 padding: 20px 0px 20px 0px;
+}
+
+#admin_order_search div{
+	display: inline-block;
+}
+
+#adminSearchhow{
+	padding-left: 30px;
+	padding-right: 10px;
+}
+
+
+.selectOption{
+	position: relative;
+    width: 80px;
+    height: 30px;
+    border: 1px solid #E9DDDD;
+    font-size: 13px;
+}
+
+.searchInput{
+	position: relative;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #E9DDDD;
+    font-size: 13px;
+}
+
+.searchDateInput{
+	position: relative;
+    width: 150px;
+    height: 30px;
+    border: 1px solid #E9DDDD;
+    font-size: 13px;
+}
+
+.datebtn{
+	padding: 7px 7px 7px 7px;
+    background: #a2a2a2;
+    border: 1px solid #a2a2a2;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    background: #a2a2a2;
+    border: 1px solid #a2a2a2;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#totalPrice{
+	font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-align: right;
+    padding: 20px 300px 20px 0px;
+}
+
 table {
 	width: 100%;
 	border: 0;
 	border-spacing: 0;
 	border-collapse: collapse;
+	text-align:center;
 }
 
 ul.tab {
@@ -28,10 +119,11 @@ ul.tab {
     background-color: #f1f1f1;
 }
 
+
 /* Float the list items side by side */
 ul.tab li {float: left;}
 
-/* Style the links inside the list items */
+/*탭 버튼 */
 ul.tab li a {
     display: inline-block;
     color: black;
@@ -42,20 +134,58 @@ ul.tab li a {
     font-size: 17px;
 }
 
-/* Change background color of links on hover */
+/*탭 배경 */
 ul.tab li a:hover {
     background-color: #ddd;
 }
 
-/* Create an active/current tablink class */
+/*현재 탭*/
 ul.tab li a:focus, .active {
     background-color: #ccc;
 }
 
-/* Style the tab content */
+/*탭내용*/
 .tabcontent {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+}
+
+.tabcontent #modifyBtn {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-align: center;
+    padding-top:40px;
+    padding-bottom: 40px;
+}
+
+.admin_btn_min {
+	padding: 7px 5px 7px 5px;
+    background: #000;
+    border: 1px solid #000;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    background: #000;
+    border: 1px solid #000;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.admin_btn {
+	padding: 10px 12px 12px 10px;
+    background: #000;
+    border: 1px solid #000;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    background: #000;
+    border: 1px solid #000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
 }

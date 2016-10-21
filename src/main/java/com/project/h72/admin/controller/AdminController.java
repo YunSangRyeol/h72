@@ -20,5 +20,10 @@ public class AdminController {
 		return "admin/adminOrderList";
 	}
 	
+	@RequestMapping(value = "admin/user", method = RequestMethod.GET)
+	public String adminUserManager(Locale locale, Model model) {
+		
+		return "admin/userManager";
+	}
 	
 }
