@@ -10,12 +10,7 @@
 	rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-        }
-    }).open();
+
 </script>
 </head>
 <body id="mjoin">
@@ -120,10 +115,10 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postnum').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('adress').value = fullAddr;
+                document.getElementById('address').value = fullAddr;
 
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('adressDetail').focus();
+                document.getElementById('addressDetail').focus();
             }
         }).open();
     }
