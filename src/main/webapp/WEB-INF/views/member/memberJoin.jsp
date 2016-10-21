@@ -8,7 +8,15 @@
 <title>MemberJoin</title>
 <link href="/h72/resources/css/mJoin.css" type="text/css"
 	rel="stylesheet">
-
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+</script>
 </head>
 <body id="mjoin">
 	<div id="mjoin_content_wrap">
@@ -46,8 +54,8 @@
 									userpass""
 									fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
 									fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16"
-									0="disabled" value="" type="password"> (영문 대소문자/숫자/특수문자
-									중 2가지 이상 조합, 10자~16자)</td>
+									0="disabled" value="" type="password"> (영문
+									대소문자/숫자/특수문자, 10~16자)</td>
 							</tr>
 							<tr>
 								<th scope="row">비밀번호 확인 <span id="mjoin_red">*</span></th>
@@ -56,21 +64,70 @@
 									fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
 									0="disabled" value="" type="password"></td>
 							</tr>
-
+							<tr>
+								<th scope="row">닉네임 <span id="mjoin_red">*</span></th>
+								<td><input id="nickName" name="nickName"
+									fw-filter="isFill&amp;isFill&amp;isMin[2]&amp;isMax[10]&amp;isIdentity"
+									fw-label="닉네임" fw-msg="" class="inputTypeText" value=""
+									type="text"> (한글/영문/숫자 2~10자, 특수문자 불가능)</td>
+							</tr>
+							<tr class="">
+								<th scope="row">생년월일 <span id="mjoin_red">*</span></th>
+								<td><input id="birthDate" name="birthDate"
+									fw-filter="isFill" fw-label="생년월일" fw-msg=""
+									class="inputTypeText" type="date"></span></td>
+							</tr>
 							<tr>
 								<th scope="row">주소 <span id="mjoin_red">*</span></th>
-								<td><input id="postnum" name="postnum"
-									fw-filter="isLengthRange[1][14]" fw-label="우편번호" fw-msg=""
-									class="inputTypeText" readonly="readonly" maxlength="5"
-									value="" type="text"><a href="#none" onclick="#"
-									id="postBtn"
-									style="padding: 4px 12px 6px 12px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">우편번호</a><br>
-									<input id="address" name="address" fw-filter="isFill"
-									fw-label="주소" fw-msg="" class="inputTypeText"
-									readonly="readonly" value="" type="text"> 기본주소<br>
-									<input id="addressDetail" name="addressDetail" fw-filter=""
-									fw-label="주소" fw-msg="" class="inputTypeText" value=""
-									type="text"> 나머지주소</td>
+								<td><input type="text" id="postnum" placeholder="우편번호">
+									<input type="button" id="postFindBtn"
+									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+									<input type="text" id="address" placeholder="주소" readonly><br>
+									<input type="text" id="addressDetail" placeholder="상세주소">
+									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+									<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
+
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postnum').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('adress').value = fullAddr;
+
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById('adressDetail').focus();
+            }
+        }).open();
+    }
+</script></td>
 							</tr>
 
 							<tr>
@@ -117,7 +174,8 @@
 					</table>
 				</div>
 				<br>
-				<h3>이용약관 동의</h3><br>
+				<h3>이용약관 동의</h3>
+				<br>
 				<div class="agreeArea">
 					<div class="agree">
 						<p>
@@ -326,9 +384,9 @@
 						<p>
 							⑤이용자는 언제든지 “몰”이 가지고 있는 자신의 개인정보에 대해 열람 및 오류정정을 요구할 수 있으며 “몰”은 이에
 							대해 지체없이 필요한 조치를 취할 의무를 집니다. 이용자가 오류의 정정을 요구한 경우에는 “몰”은 그 오류를 정정할
-							때까지 당해 개인정보를 이용하지 않습니다.<br>
-							<br>⑥ “몰”은 개인정보 보호를 위하여 관리자를 한정하여 그 수를 최소화하며 신용카드, 은행계좌 등을
-							포함한 이용자의 개인정보의 분실, 도난, 유출, 변조 등으로 인한 이용자의 손해에 대하여 모든 책임을 집니다.
+							때까지 당해 개인정보를 이용하지 않습니다.<br> <br>⑥ “몰”은 개인정보 보호를 위하여
+							관리자를 한정하여 그 수를 최소화하며 신용카드, 은행계좌 등을 포함한 이용자의 개인정보의 분실, 도난, 유출, 변조
+							등으로 인한 이용자의 손해에 대하여 모든 책임을 집니다.
 						</p>
 						<p>⑦ “몰” 또는 그로부터 개인정보를 제공받은 제3자는 개인정보의 수집목적 또는 제공받은 목적을 달성한
 							때에는 당해 개인정보를 지체없이 파기합니다.</p>
@@ -395,6 +453,38 @@
 							fw-msg="이용약관에 동의 하세요" value="1" type="checkbox"><label
 							for="agree_service_check0">동의함</label>
 					</p>
+				</div>
+				<br>
+				<h3>개인정보 수집 및 이용 동의</h3>
+				<br>
+
+				<div class="agreeArea">
+					<div class="agree">
+						<p>
+							■ 수집하는 개인정보 항목 <br> <br>회사는 회원가입, 상담, 서비스 신청 등등을 위해 아래와
+							같은 개인정보를 수집하고 있습니다. <br> <br>ο 수집항목 : 이름 , 생년월일 , 성별 ,
+							로그인ID , 비밀번호 , 비밀번호 질문과 답변 , 자택 전화번호 , 자택 주소 , 휴대전화번호 , 이메일 , 직업
+							, 회사명 , 부서 , 직책 , 회사전화번호 , 취미 , 결혼여부 , 기념일 , 법정대리인정보 , 서비스 이용기록 ,
+							접속 로그 , 접속 IP 정보 , 결제기록<br>ο 개인정보 수집방법 : 홈페이지(회원가입) , 서면양식 <br>
+							<br>■ 개인정보의 수집 및 이용목적 <br> <br>회사는 수집한 개인정보를 다음의
+							목적을 위해 활용합니다. <br> <br>ο 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른
+							요금정산 콘텐츠 제공 , 구매 및 요금 결제 , 물품배송 또는 청구지 등 발송<br>ο 회원 관리<br>회원제
+							서비스 이용에 따른 본인확인 , 개인 식별 , 연령확인 , 만14세 미만 아동 개인정보 수집 시 법정 대리인 동의여부
+							확인 , 고지사항 전달 ο 마케팅 및 광고에 활용<br>접속 빈도 파악 또는 회원의 서비스 이용에 대한 통계
+							<br> <br>■ 개인정보의 보유 및 이용기간 <br> <br>회사는 개인정보
+							수집 및 이용목적이 달성된 후에는 예외 없이 해당 정보를 지체 없이 파기합니다.
+						</p>
+					</div>
+					<p class="check">
+						<span>개인정보 수집 및 이용에 동의하십니까?</span> <input
+							id="agree_privacy_check0" name="agree_privacy_check[]"
+							fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침"
+							fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox"><label
+							for="agree_privacy_check0">동의함</label>
+					</p>
+				</div>
+				<div class="btnArea">
+					<a href="#none" onclick="memberJoinAction()">회원가입</a>
 				</div>
 			</div>
 		</div>
