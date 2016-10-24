@@ -10,6 +10,10 @@ th, td {
     vertical-align: top;
 }
 
+.main_line2 .main_cate #main_cateIdx1 {
+    margin-left: 0px;
+}
+
 /* 멤버해택 내역 */
 .xans-order-dcinfo {
     position: relative;
