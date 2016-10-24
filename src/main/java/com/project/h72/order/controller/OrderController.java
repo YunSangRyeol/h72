@@ -8,6 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class OrderController {
 	
+	@RequestMapping(value = "order/order", method = RequestMethod.GET)
+	public String orderForm(Model model) {
+		
+		return "order/order";
+	}
+	
+	
 	@RequestMapping(value = "/orderview", method = RequestMethod.GET)
 	public String orderListView(Model model) {
 		
