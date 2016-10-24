@@ -14,13 +14,11 @@
 <!--PG크로스브라우징필수내용 끝-->
 <link rel="stylesheet" href="/h72/resources/css/kitdiy.css">
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="/h72/resources/js/tabs.js"></script>
+<script type="text/javascript" src="/h72/resources/js/kitDiy.tabs.js"></script>
 <script type="text/javascript" src="/h72/resources/js/kitDiy.Checkbox.js"></script>
 <script type="text/javascript" src="/h72/resources/js/kitDiy.menu.js"></script>
 <script type="text/javascript" src="/h72/resources/js/kitDiy.scroll.js"></script>
 <title>72hours::국내 최대 재난대비 용품샵</title>
-<meta name="path_role" content="PRODUCT_LIST">
-<meta name="description" content="10대, 20대 여성의류 쇼핑몰, 데일리 케쥬얼룩, 티셔츠, 니트, 원피스 등 판매. 코디 제공.">
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -53,7 +51,10 @@ $(document).ready(function(){
 								<li><img src="/h72/resources/image/icon<%=menuNum %>.png"/></li>
 								<li>-</li>
 								<li></li> 
-								<li>-</li>
+								<li>
+									<select name="" class="kitDiy_subSelect">
+									</select>
+								</li>
 								<li><input type="text" name="product_stock" value="-" class="select_input"> 개</li>
 								<li>-</li>
 								<li><span class="checkboxClear">X</span></li>
@@ -123,11 +124,10 @@ $(document).ready(function(){
 										<%-- <input type="hidden" name="product_option" value="product_option<%=i %>"> --%>
 										<input type="hidden" name="product_price" value="product_price<%=i %>">
 										<input type="checkbox" name="tab<%=j %>" id="<%=tabList %>" class="check_box"/><label for="<%=tabList %>"></label>
-										<select name="product_option" id="kitDiy_select">
-										  <option selected>옵션 선택</option>
-										  <option value="product_option1">product_option1</option>
-										  <option value="product_option2">product_option2</option>
-										  <option value="product_option3">product_option3</option>
+										<select name="product_option" class="kitDiy_select">
+										  <option value="product_option1">option1</option>
+										  <option value="product_option2">option2</option>
+										  <option value="product_option3">option3</option>
 										</select>
 										<a href="" name="anchorBoxName_8879" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
 											<img src="/h72/resources/image/content_0<%=j %>.jpg" class="thumb" style="width: 238px;"></a>
