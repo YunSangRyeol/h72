@@ -19,10 +19,10 @@
 				</div>
 				<div class="main_right">
 					<ul>
-						<li><a href="<c:url value="member/loginPage" />">LOGIN</a></li>
-						<li><a href="<c:url value="member/memberJoin" />">JOIN</a></li>
-						<li><a href="order/shopping_cart">CART</a></li>
-						<li><a href="#">ORDER</a></li>
+						<li><a href="<c:url value="/member/loginPage" />">LOGIN</a></li>
+						<li><a href="<c:url value="/member/memberJoin" />">JOIN</a></li>
+						<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
+						<li><a href="<c:url value="/order/order"/>">ORDER</a></li>
 					</ul>
 				</div>
 			</div>

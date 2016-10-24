@@ -29,12 +29,12 @@ body {
 }
 
 #main_header .main_line1 .main_left {
-	width: 7%;
+	width: 87.5px;
 	float: left;
 }
 
 #main_header .main_line1 .main_left img {
-	height: 85%;
+	height: 38px;
 	margin-top: 3px;
 	border: none;
 }
