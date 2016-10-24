@@ -10,7 +10,7 @@
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <title>Admin Order List</title>
 <script type="text/javascript">
-	//탭 변경
+	//탭 변경	
 	function openTab(evt, tabname) {
 		var i, tabcontent, tablinks;
 		tabcontent = document.getElementsByClassName("tabcontent");
@@ -64,15 +64,47 @@
 		} );
 	});
 
+ 	//날짜 선택 버튼시 inputd의 날짜 변경
+ 	$(function(){
+ 		var tDay = new Date();
+ 		var bMonth = tDay.getMonth();
+ 		var tMonth = tDay.getMonth()+1;
+ 		var tDate = tDay.getDate();
+ 		
+ 		document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 3);	
+		document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;	
+ 		
+ 		$('#todateBtn').click(
+			function(){
+				document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ tDate;	
+				document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;		
+			});
+ 		$('#thirdBtn').click(
+ 				function(){
+ 					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 3);	
+ 					document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;		
+ 				});
+ 		$('#sevenBtn').click(
+ 				function(){
+ 					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 7);	
+ 					document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;		
+ 				});
+ 		$('#monthBtn').click(
+ 				function(){
+ 					document.getElementById("startDate").value = tDay.getFullYear()+"-"+bMonth+"-"+tDate;	
+ 					document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;		
+ 				});
+ 	});
+ 	
 </script>
 </head>
 <body>
-	<div id="content_wrap">
+	<div class="content_wrap">
 		<jsp:include page="/WEB-INF/views/main_header.jsp"/>
 	</div>
 	
-	<div id="admin_order_contents_wrap">
-	<div id="admin_order_contents">
+	<div class="admin_contents_wrap">
+	<div class="admin_contents">
 	
 	<div class="admin_order_titleArea">
     			<h2>Admin Order List</h2> 
@@ -87,12 +119,12 @@
 	</div>
 	<div id="searchDate">
 		<form>
-		<input type="button" value="당일" class="datebtn">
-		<input type="button" value="3일" class="datebtn">
-		<input type="button" value="7일" class="datebtn">
-		<input type="button" value="1개월" class="datebtn">
+		<input type="button" value="당일" class="datebtn" id="todateBtn">
+		<input type="button" value="3일" class="datebtn" id="thirdBtn">
+		<input type="button" value="7일" class="datebtn" id="sevenBtn">
+		<input type="button" value="1달" class="datebtn" id="monthBtn">
 		&nbsp;&nbsp;
-		<input type="date" name="start" class="searchDateInput"> ~ <input type="date" name="end" class="searchDateInput">
+		<input type="date" name="start" id="startDate" class="searchDateInput"> &nbsp; ~ &nbsp; <input type="date" name="end" id="endDate" class="searchDateInput">
 		 &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div><!-- searchDate -->    
@@ -102,7 +134,7 @@
 		</form>
 	</div>
     </div>
-  <ul>
+  <ul id="admin_order_detail">
     <li>기본적으로 최근 3일간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
     <li>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
   </ul>  
@@ -120,7 +152,7 @@
 		<li><a href="javascript:void(0)" class="tablinks"
 			onclick="openTab(event, 'move')">배송중</a></li>
 		<li><a href="javascript:void(0)" class="tablinks"
-			onclick="openTab(event, 'back')">반품내역</a></li>
+			onclick="openTab(event, 'back')">취소/교환/반품</a></li>
 	</ul>
 
 	<div id="all" class="tabcontent" style="display:block">
@@ -208,8 +240,211 @@
 	</div><!-- tab -->
 	
 	<div id="back" class="tabcontent">
-		<h3>Tokyo</h3>
-		<p>Tokyo is the capital of Japan.</p>
+		<h3>취소내역</h3>
+				<table id="orderList" border="1" summary="">
+			<thead>
+				<tr>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
+					<th scope="col" class="product">상품정보</th>
+					<th scope="col" class="quantity">총 수량</th>
+					<th scope="col" class="price">상품구매금액</th>
+					<th scope="col" class="who">주문자</th>
+					<th scopt="col" class="how">주문 방법</th>
+					<th scope="col" class="state">주문처리상태</th>
+				</tr>
+			</thead>
+			<tbody class="">
+				<tr class="xans-record-">
+					<td><input type="checkbox"></td>
+					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a> </p></td>
+
+					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
+					<td class="quantity">1</td>
+
+					<td class="price"><strong>23,900원</strong>
+						<div class="displaynone"></div></td>
+					<td class="who"><a>user01</a></td>
+					<td class="how">무통장</td>
+					<td class="state">
+						<select id="stateMo" class="selectOption">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					</td>
+				</tr>
+				
+				<tr class="xans-record-">
+					<td><input type="checkbox"></td>
+					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a></p></td>
+
+					<td class="product">베이직 모직 백팩 [옵션: 그레이] 외 5개 </td>
+					<td class="quantity">6</td>
+
+					<td class="price"><strong>23,900원</strong>
+						<div class="displaynone"></div></td>
+					<td class="who"><a>user01</a></td>
+					<td class="how">무통장</td>
+					<td class="state">
+						<select id="stateMo" class="selectOption">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					</td>					
+				</tr>
+			</tbody>
+		</table>
+		<div id="totalPrice"> 총 금액 : </div>
+		<div id="modifyBtn">
+			선택한 주문건을 
+			<select id="modifyWhat" class="selectOption">
+				<option id="">결제완료</option>
+				<option id="">배송중</option>
+				<option id="">주문접수</option>
+			</select>
+			로 변경합니다. &nbsp;
+			<input type="submit" class="admin_btn" value="변경하기">
+		</div>
+		<hr>
+		
+		<h3>교환내역</h3>
+				<table id="orderList" border="1" summary="">
+			<thead>
+				<tr>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
+					<th scope="col" class="product">상품정보</th>
+					<th scope="col" class="quantity">총 수량</th>
+					<th scope="col" class="price">상품구매금액</th>
+					<th scope="col" class="who">주문자</th>
+					<th scopt="col" class="how">주문 방법</th>
+					<th scope="col" class="state">주문처리상태</th>
+				</tr>
+			</thead>
+			<tbody class="">
+				<tr class="xans-record-">
+					<td><input type="checkbox"></td>
+					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a> </p></td>
+
+					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
+					<td class="quantity">1</td>
+
+					<td class="price"><strong>23,900원</strong>
+						<div class="displaynone"></div></td>
+					<td class="who"><a>user01</a></td>
+					<td class="how">무통장</td>
+					<td class="state">
+						<select id="stateMo" class="selectOption">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					</td>
+				</tr>
+				
+				<tr class="xans-record-">
+					<td><input type="checkbox"></td>
+					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a></p></td>
+
+					<td class="product">베이직 모직 백팩 [옵션: 그레이] 외 5개 </td>
+					<td class="quantity">6</td>
+
+					<td class="price"><strong>23,900원</strong>
+						<div class="displaynone"></div></td>
+					<td class="who"><a>user01</a></td>
+					<td class="how">무통장</td>
+					<td class="state">
+						<select id="stateMo" class="selectOption">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					</td>					
+				</tr>
+			</tbody>
+		</table>
+		<div id="totalPrice"> 총 금액 : </div>
+		<div id="modifyBtn">
+			선택한 주문건을 
+			<select id="modifyWhat" class="selectOption">
+				<option id="">결제완료</option>
+				<option id="">배송중</option>
+				<option id="">주문접수</option>
+			</select>
+			로 변경합니다. &nbsp;
+			<input type="submit" class="admin_btn" value="변경하기">
+		</div>
+		<hr>
+		
+		<h3>반품내역</h3>
+				<table id="orderList" border="1" summary="">
+			<thead>
+				<tr>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
+					<th scope="col" class="product">상품정보</th>
+					<th scope="col" class="quantity">총 수량</th>
+					<th scope="col" class="price">상품구매금액</th>
+					<th scope="col" class="who">주문자</th>
+					<th scopt="col" class="how">주문 방법</th>
+					<th scope="col" class="state">주문처리상태</th>
+				</tr>
+			</thead>
+			<tbody class="">
+				<tr class="xans-record-">
+					<td><input type="checkbox"></td>
+					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a> </p></td>
+
+					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
+					<td class="quantity">1</td>
+
+					<td class="price"><strong>23,900원</strong>
+						<div class="displaynone"></div></td>
+					<td class="who"><a>user01</a></td>
+					<td class="how">무통장</td>
+					<td class="state">
+						<select id="stateMo" class="selectOption">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					</td>
+				</tr>
+				
+				<tr class="xans-record-">
+					<td><input type="checkbox"></td>
+					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a></p></td>
+
+					<td class="product">베이직 모직 백팩 [옵션: 그레이] 외 5개 </td>
+					<td class="quantity">6</td>
+
+					<td class="price"><strong>23,900원</strong>
+						<div class="displaynone"></div></td>
+					<td class="who"><a>user01</a></td>
+					<td class="how">무통장</td>
+					<td class="state">
+						<select id="stateMo" class="selectOption">
+							<option id="">결제완료</option>
+							<option id="">배송중</option>
+							<option id="">주문접수</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					</td>					
+				</tr>
+			</tbody>
+		</table>
+		<div id="totalPrice"> 총 금액 : </div>
+		<div id="modifyBtn">
+			선택한 주문건을 
+			<select id="modifyWhat" class="selectOption">
+				<option id="">결제완료</option>
+				<option id="">배송중</option>
+				<option id="">주문접수</option>
+			</select>
+			로 변경합니다. &nbsp;
+			<input type="submit" class="admin_btn" value="변경하기">
+		</div>
 	</div><!-- tab -->
 
 	</div><!-- all tab -->
@@ -219,9 +454,13 @@
 
 
 
-	</div>
-	</div>
+	</div><!-- admin_order_contents_wrap -->
+	</div><!-- admin_order_contents -->
 	
+	
+	<div class="footer">			
+		<jsp:include page="../main_footer.jsp" flush="false" />
+	</div>
 	
 </body>
 </html>
