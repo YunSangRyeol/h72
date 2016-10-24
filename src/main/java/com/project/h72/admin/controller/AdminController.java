@@ -17,13 +17,19 @@ public class AdminController {
 	@RequestMapping(value = "admin/order", method = RequestMethod.GET)
 	public String adminOrderView(Locale locale, Model model) {
 		
-		return "admin/adminOrderList";
+		return "admin/salesChart";
 	}
 	
 	@RequestMapping(value = "admin/user", method = RequestMethod.GET)
 	public String adminUserManager(Locale locale, Model model) {
 		
 		return "admin/userManager";
+	}
+	
+	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	public String adminSalesChart(Locale locale, Model model) {
+		
+		return "admin/salesChart";
 	}
 	
 }

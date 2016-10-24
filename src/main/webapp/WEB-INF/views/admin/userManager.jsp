@@ -31,6 +31,7 @@
 				function(){
 					$('#searchDate')[($("option[value='date']").is(":checked")) ? "show" : "hide"]();
 					$('#searchID')[($("option[value='user']").is(":checked")) ? "show" : "hide"]();
+					$('#searchName')[($("option[value='name']").is(":checked")) ? "show" : "hide"]();
 				});
 	}); 
  	
@@ -63,7 +64,7 @@
 		} );
 	});
 
- 	//날짜 선택 버튼시 inputd의 날짜 변경
+ 	//날짜 값 최초입력
  	$(function(){
  		var tDay = new Date();
  		var tMonth = tDay.getMonth()+1;
@@ -79,8 +80,6 @@
 <body>
 	<div class="content_wrap">
 		<jsp:include page="/WEB-INF/views/main_header.jsp"/>
-	</div>
-
 
 	<div class="admin_contents_wrap">
 	<div class="admin_contents">
@@ -92,21 +91,27 @@
 	<div id="admin_order_search">
 	<div id="adminSearchhow">
 	<select class="selectOption">
-		<option value="date" selected>가입일자</option>
-		<option value="user">주 문 자</option>
+		<option value="user" selected> I D </option>
+		<option value="name">회원이름</option>
+		<option value="date">가입일자</option>
 	</select>
 	</div>
-	<div id="searchDate">
+	<div id="searchDate"  style="display:none;">
 		<form>
 		<input type="date" name="start" id="startDate" class="searchDateInput"> ~ <input type="date" name="end" id="endDate" class="searchDateInput">
 		 &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div><!-- searchDate -->    
-    <div id="searchID" style="display:none;">
+    <div id="searchID">
 		<form>
 			<input type="text" name="userid" size="30" class="searchInput"> &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div>
+    <div id="searchName" style="display:none;">
+		<form>
+			<input type="text" name="username" size="30" class="searchInput"> &nbsp; <input type="submit" value="검색" class="admin_btn_min">
+		</form>
+	</div>	
     </div>
       <ul id="admin_order_detail">
 	    <li>회원ID를 클릭하시면 회원정보를 모두 확인할수 있습니다. 회원 삭제는 해당창에서 삭제가능합니다.</li>
@@ -116,13 +121,13 @@
 	<div id="usersTop">
 	 	<div id="orderbyDiv">
 	 		<ul class="orderby">
-	 			<li>ID정렬 오름차순</li>
-	 			<li>이름 오름차순</li>
-	 			<li>가입일 오름차순</li>
+	 			<li> ID정렬</li> &nbsp; ||  &nbsp; 
+	 			<li> 이름 </li> &nbsp; ||  &nbsp; 
+	 			<li> 가입일 </li>
 	 		</ul>
 	 	</div>
-	 	<div id="selectNum">
-		 	<select>
+	 	<div id="selectNumdDiv">
+		 	<select id="selectNum">
 				<option> 10명 </option>
 				<option> 30명 </option>
 				<option> 50명 </option>
@@ -182,13 +187,17 @@
     	</div>
   
 
-	</div><!-- admin_order_contents_wrap -->
+	</div><!-- admin_order_contents_wrap -->	
 	</div><!-- admin_order_contents -->
-	
 	
 	<div class="footer" >			
 		<jsp:include page="../main_footer.jsp" flush="false" />
 	</div>
+	</div><!-- content_wrap -->
+	
+	
+	
+	
 	
 	
 </body>

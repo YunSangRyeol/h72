@@ -71,7 +71,7 @@
  		var tMonth = tDay.getMonth()+1;
  		var tDate = tDay.getDate();
  		
- 		document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 3);	
+ 		document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ tDate;	
 		document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;	
  		
  		$('#todateBtn').click(
@@ -82,17 +82,14 @@
  		$('#thirdBtn').click(
  				function(){
  					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 3);	
- 					document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;		
  				});
  		$('#sevenBtn').click(
  				function(){
  					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 7);	
- 					document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;		
  				});
  		$('#monthBtn').click(
  				function(){
- 					document.getElementById("startDate").value = tDay.getFullYear()+"-"+bMonth+"-"+tDate;	
- 					document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;		
+ 					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 14);	
  				});
  	});
  	
@@ -122,7 +119,7 @@
 		<input type="button" value="당일" class="datebtn" id="todateBtn">
 		<input type="button" value="3일" class="datebtn" id="thirdBtn">
 		<input type="button" value="7일" class="datebtn" id="sevenBtn">
-		<input type="button" value="1달" class="datebtn" id="monthBtn">
+		<input type="button" value="14일" class="datebtn" id="monthBtn">
 		&nbsp;&nbsp;
 		<input type="date" name="start" id="startDate" class="searchDateInput"> &nbsp; ~ &nbsp; <input type="date" name="end" id="endDate" class="searchDateInput">
 		 &nbsp; <input type="submit" value="검색" class="admin_btn_min">
@@ -406,7 +403,7 @@
 					<td class="how">무통장</td>
 					<td class="state">
 						<select id="stateMo" class="selectOption">
-							<option id="">결제완료</option>
+							<option id="" >결제완료</option>
 							<option id="">배송중</option>
 							<option id="">주문접수</option> 
 						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
@@ -438,9 +435,9 @@
 		<div id="modifyBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" class="selectOption">
-				<option id="">결제완료</option>
-				<option id="">배송중</option>
-				<option id="">주문접수</option>
+				<option class="nn" id="">결제완료</option>
+				<option class="nn" id="">배송중</option>
+				<option class="nn" id="">주문접수</option>
 			</select>
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">

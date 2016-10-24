@@ -157,10 +157,10 @@ ul.tab li a:focus, .active {
 }
 
 #back h3{
-	text-align: center;
+	text-align: left;
 	font-size: 20px;
-	padding-top: 50px;
-	padding-bottom: 20px;
+	padding-bottom: 50px;
+	padding-left: 100px;
 	
 }
 
@@ -212,6 +212,7 @@ ul.tab li a:focus, .active {
 
 ul.orderby li{
 	display: inline;
+	font-size: 13px;
 }
 
 #admin_page_list{
@@ -224,14 +225,21 @@ ul.pages li{
 	display: inline;
 }
 
+#selectNum{
+	height: 30px;
+}
+
+#selectNumdDiv{
+	padding-left: 20px;
+}
+
 .footer{
 	padding-top:70px;
 }
 
-
-
-
-
+#orderList thead{
+	background-color: #ccc;
+}
 
 
 
