@@ -1,8 +1,14 @@
+@CHARSET "UTF-8";
+
+@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
+
+
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
 	img {
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
+	border: none;
 }
 
 @import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
@@ -17,10 +23,10 @@ body, code {
     font-size: 12px;
     color: #000;
 }
-.main_line2 .main_cate #main_cateIdx1 {
-	margin-left: -95px;
-}
 
+.main_line2 .main_cate #main_cateIdx1 {
+	margin-left: -87px;
+}
 
 
 #content_wrap {
@@ -34,7 +40,7 @@ body, code {
 }
 
 #order_contents {
-    width: 1280px;
+    width: 1250px;
     margin: 0 auto;
 }
 
@@ -108,3 +114,277 @@ a {
     position: absolute;
     right: 0;
 }
+
+
+/* 장바구니에상품리스트 */
+
+
+input, select, textarea {
+    font-size: 100%;
+    font-family: "돋움",Dotum;
+    color: #353535;
+    vertical-align: middle;
+}
+
+th, td {
+    border: 0;
+    vertical-align: top;
+}
+
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tfoot {
+    display: table-footer-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.xans-order-basketpackage .boardList {
+    table-layout: fixed;
+    margin: 0 0 1px;
+    border: 1px solid #e7e7e7;
+    color: #353535;
+    line-height: 1.5;
+    font-size: 11px;
+}
+
+.xans-order-basketpackage .boardList th {
+    padding: 11px 0 9px;
+    border-left: 1px solid #e7e7e7;
+    font-weight: normal;
+    background: #fbfafa;
+}
+
+.xans-order-basketpackage .boardList td {
+    padding: 8px 0 5px;
+    border-top: 1px solid #e7e7e7;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+
+.xans-order-basketpackage .boardList .chk {
+    width: 27px;
+}
+
+.xans-order-basketpackage .boardList th:first-child {
+    border-left: 0;
+}
+
+.xans-order-basketpackage .boardList .thumb {
+    width: 92px;
+}
+
+.xans-order-basketpackage .boardList td.thumb img {
+    width: 80px;
+}
+
+.xans-order-basketpackage .boardList .product {
+    width: auto;
+    font-family: 'Lato',sans-serif;
+}
+
+.xans-order-basketpackage .boardList td.product {
+    padding-left: 10px;
+    text-align: left;
+}
+
+.xans-order-basketpackage .boardList .price {
+    width: 95px;
+    font-family: 'Lato',sans-serif;
+}
+
+.xans-order-basketpackage .boardList .quantity {
+    width: 60px;
+}
+
+.xans-order-basketpackage .boardList span.quantity {
+    position: relative;
+    display: inline-block;
+    width: 27px;
+    margin: 0 1px 4px 0;
+    padding: 0 21px 0 0;
+    border: 1px solid #d4d8d9;
+    border-radius: 2px;
+}
+
+.xans-order-basketpackage .boardList span.quantity input {
+    width: 22px;
+    height: 23px;
+    padding: 0 0 0 5px;
+    border: 0;
+    line-height: 23px;
+}
+.xans-order-basketpackage .boardList span.quantity .QuantityUp {
+    position: absolute;
+    left: 27px;
+    top: 0;
+}
+.xans-order-basketpackage .boardList span.quantity .QuantityDown {
+    position: absolute;
+    left: 27px;
+    bottom: 0;
+}
+
+.xans-order-basketpackage .boardList .mileage {
+    width: 85px;
+}
+
+.xans-order-basketpackage .boardList .delivery {
+    width: 90px;
+}
+.xans-order-basketpackage .boardList td.mileage, .xans-order-basketpackage .boardList td.delivery {
+    color: #757575;
+}
+
+.xans-order-basketpackage .boardList .charge {
+    width: 70px;
+}
+
+.xans-order-basketpackage .boardList .total {
+    width: 90px;
+    font-family: 'Lato',sans-serif;
+}
+
+.xans-order-basketpackage .boardList .button {
+    width: 106px;
+}
+
+.xans-order-basketpackage .boardList tfoot td {
+    padding: 15px 10px 17px;
+    background: #fbfafa;
+    text-align: right;
+}
+
+.xans-order-basketpackage .boardList tfoot td .type {
+    float: left;
+    margin: 6px 0 0;
+    font-weight: normal;
+}
+
+.xans-order-basketpackage .boardList tfoot td .total {
+    margin: 0 0 0 15px;
+    color: #000;
+    font-family: 'Lato',sans-serif;
+}
+
+.xans-order-basketpackage .boardList tfoot td .total span {
+    font-size: 17px;
+}
+
+
+
+.xans-order-basketpackage .boardList td.product div.option, .xans-order-basketpackage .boardList td.product ul.option > li {
+    margin: 9px 0 0;
+    color: #757575;
+    line-height: 16px;
+}
+
+/* 상품리스트 - 총 금액 */
+
+.xans-order-basketpackage .xans-order-totalsummary {
+    border: 1px solid #e7e7e7;
+    color: #353535;
+    line-height: 1.5;
+    font-size: 11px;
+}
+
+
+.xans-order-basketpackage .xans-order-totalsummary th {
+    height: 39px;
+    border-left: 1px solid #e9e9e9;
+    line-height: 39px;
+    background: #fbfafa;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary td {
+    height: 58px;
+    border-top: 1px solid #e9e9e9;
+    border-left: 1px solid #e7e7e7;
+    line-height: 58px;
+    text-align: center;
+    font-size: 23px;
+    font-family: 'Lato',sans-serif;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary td .box {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary td strong {
+    font-weight: 400;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary td.total {
+    color: #000;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary th:first-child, .xans-order-basketpackage .xans-order-totalsummary td:first-child {
+    border-left: 0;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary .price {
+    width: 33%;
+}
+
+.xans-order-basketpackage .xans-order-totalsummary .option {
+    width: 34%;
+}
+
+
+.xans-order-basketpackage .xans-order-totalsummary .total {
+    width: 33%;
+}
+
+/* 상품리스트 - 선택상품 제어 버튼 */
+strong, b {
+    font-weight: bold;
+}
+
+.xans-order-basketpackage .xans-order-selectorder {
+    margin: 20px 0 80px;
+    text-align: right;
+    font-size: 11px;
+}
+
+.xans-order-basketpackage .xans-order-selectorder span.left {
+    float: left;
+}
+
+.xans-order-basketpackage .xans-order-selectorder .ctrlTxt {
+    margin: 0 6px 0 10px;
+    color: #353535;
+    line-height: 24px;
+}
+
+
+/* 상품리스트 - 총 주문 금액 */
+.xans-order-basketpackage .xans-order-totalsummary {
+    border: 1px solid #e7e7e7;
+    color: #353535;
+    line-height: 1.5;
+    font-size: 11px;
+}
+
+
+
+

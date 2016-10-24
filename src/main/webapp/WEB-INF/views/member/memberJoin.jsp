@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-
+	
 </script>
 </head>
 <body id="mjoin">
@@ -31,7 +31,7 @@
 				<p class="mjoin_required">
 					<span id="mjoin_red">*</span> 필수입력사항
 				</p>
-				<div class="boardWrite">
+				<div class="mjoin_boardWrite">
 					<table border="1" summary="">
 						<tbody>
 							<tr>
@@ -39,7 +39,7 @@
 								<td><input id="userid" name="userid"
 									fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity"
 									fw-label="아이디" fw-msg="" class="inputTypeText" value=""
-									type="text"> <a href="#none" title="새창 열기" onclick="#"
+									type="text"> <a href="#none" title="새창 열기"
 									style="padding: 4px 12px 6px 12px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">아이디중복확인</a>
 									(영문소문자/숫자, 4~16자)</td>
 							</tr>
@@ -60,7 +60,7 @@
 									0="disabled" value="" type="password"></td>
 							</tr>
 							<tr>
-								<th scope="row">닉네임 <span id="mjoin_red">*</span></th>
+								<th scope="row">이름 <span id="mjoin_red">*</span></th>
 								<td><input id="nickName" name="nickName"
 									fw-filter="isFill&amp;isFill&amp;isMin[2]&amp;isMax[10]&amp;isIdentity"
 									fw-label="닉네임" fw-msg="" class="inputTypeText" value=""
@@ -81,48 +81,60 @@
 									<input type="text" id="addressDetail" placeholder="상세주소">
 									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 									<script>
-    function sample6_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+										function sample6_execDaumPostcode() {
+											new daum.Postcode(
+													{
+														oncomplete : function(
+																data) {
+															// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddr = ''; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
+															// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+															// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+															var fullAddr = ''; // 최종 주소 변수
+															var extraAddr = ''; // 조합형 주소 변수
 
-                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    fullAddr = data.roadAddress;
+															// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+															if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+																fullAddr = data.roadAddress;
 
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    fullAddr = data.jibunAddress;
-                }
+															} else { // 사용자가 지번 주소를 선택했을 경우(J)
+																fullAddr = data.jibunAddress;
+															}
 
-                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-                if(data.userSelectedType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있을 경우 추가한다.
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-                }
+															// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+															if (data.userSelectedType === 'R') {
+																//법정동명이 있을 경우 추가한다.
+																if (data.bname !== '') {
+																	extraAddr += data.bname;
+																}
+																// 건물명이 있을 경우 추가한다.
+																if (data.buildingName !== '') {
+																	extraAddr += (extraAddr !== '' ? ', '
+																			+ data.buildingName
+																			: data.buildingName);
+																}
+																// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+																fullAddr += (extraAddr !== '' ? ' ('
+																		+ extraAddr
+																		+ ')'
+																		: '');
+															}
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postnum').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('address').value = fullAddr;
+															// 우편번호와 주소 정보를 해당 필드에 넣는다.
+															document
+																	.getElementById('postnum').value = data.zonecode; //5자리 새우편번호 사용
+															document
+																	.getElementById('address').value = fullAddr;
 
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('addressDetail').focus();
-            }
-        }).open();
-    }
-</script></td>
+															// 커서를 상세주소 필드로 이동한다.
+															document
+																	.getElementById(
+																			'addressDetail')
+																	.focus();
+														}
+													}).open();
+										}
+									</script></td>
 							</tr>
 
 							<tr>
@@ -171,8 +183,8 @@
 				<br>
 				<h3>이용약관 동의</h3>
 				<br>
-				<div class="agreeArea">
-					<div class="agree">
+				<div class="mjoin_agreeArea">
+					<div class="mjoin_agree">
 						<p>
 							제1조(목적)<br>이 약관은 '(주)살아남조'(전자상거래 사업자)가 운영하는 h72(이하 “몰”이라
 							한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리, 의무 및
@@ -442,7 +454,7 @@
 						</p>
 						부 칙(시행일) 이 약관은 2011 년&nbsp;8&nbsp;월 일부터 시행합니다.
 					</div>
-					<p class="check">
+					<p class="mjoin_check">
 						<span>이용약관에 동의하십니까?</span> <input id="agree_service_check0"
 							name="agree_service_check[]" fw-filter="/1/" fw-label="이용약관 동의"
 							fw-msg="이용약관에 동의 하세요" value="1" type="checkbox"><label
@@ -453,8 +465,8 @@
 				<h3>개인정보 수집 및 이용 동의</h3>
 				<br>
 
-				<div class="agreeArea">
-					<div class="agree">
+				<div class="mjoin_agreeArea">
+					<div class="mjoin_agree">
 						<p>
 							■ 수집하는 개인정보 항목 <br> <br>회사는 회원가입, 상담, 서비스 신청 등등을 위해 아래와
 							같은 개인정보를 수집하고 있습니다. <br> <br>ο 수집항목 : 이름 , 생년월일 , 성별 ,
@@ -470,7 +482,7 @@
 							수집 및 이용목적이 달성된 후에는 예외 없이 해당 정보를 지체 없이 파기합니다.
 						</p>
 					</div>
-					<p class="check">
+					<p class="mjoin_check">
 						<span>개인정보 수집 및 이용에 동의하십니까?</span> <input
 							id="agree_privacy_check0" name="agree_privacy_check[]"
 							fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침"
@@ -478,7 +490,7 @@
 							for="agree_privacy_check0">동의함</label>
 					</p>
 				</div>
-				<div class="btnArea">
+				<div class="mjoin_btnArea">
 					<a href="#none" onclick="memberJoinAction()">회원가입</a>
 				</div>
 			</div>
