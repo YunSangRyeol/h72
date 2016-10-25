@@ -26,10 +26,16 @@ public class AdminController {
 		return "admin/userManager";
 	}
 	
-	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/chart", method = RequestMethod.GET)
 	public String adminSalesChart(Locale locale, Model model) {
 		
 		return "admin/salesChart";
+	}
+	
+	@RequestMapping(value = "member/update", method = RequestMethod.GET)
+	public String memberUpdate(Locale locale, Model model) {
+		
+		return "member/memberUpdate";
 	}
 	
 }

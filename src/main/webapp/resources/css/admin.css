@@ -2,14 +2,18 @@
 
 @import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
 
-body {
-    min-width: 1200px;
-}
-
-body, code {
-    font-family: 'Noto Sans KR' ,sans-serif;
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0 auto;
+	padding: 0;
+	font-family: 'Noto Sans KR' ,sans-serif;
     font-size: 12px;
     color: #000;
+}
+
+body {
+    min-width: 1200px;
 }
 
 .content_wrap {
@@ -95,6 +99,8 @@ body, code {
 }
 
 #admin_order_detail{
+	padding-top: 5px;
+	padding-left: 30px;
 	text-align:left;
 }
 #totalPrice{
@@ -204,6 +210,7 @@ ul.tab li a:focus, .active {
 #usersTop{
 	text-align: right;
 	padding-right: 30px;
+	padding-bottom: 10px;
 }
 
 #usersTop div{
