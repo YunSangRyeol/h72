@@ -9,6 +9,7 @@
 <link href="/h72/resources/css/admin.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <script src="/h72/resources/js/jquery.battatech.excelexport.js"></script>
+<script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
 <title>Sales Chart</title>
 <script type="text/javascript">
 	//탭 변경	
@@ -37,6 +38,34 @@
  		document.getElementById("nowDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ tDate;
  	});
  	
+ // Create a YUI sandbox on your page.
+ 	YUI().use('node', 'event', function (Y) {
+ 	    // The Node and Event modules are loaded and ready to use.
+ 	    // Your code goes here!
+ 	});
+ 
+ 	YUI().use('node', function (Y) {
+ 	    // Access DOM nodes.
+ 	    var oneElementById     = Y.one('#foo'),
+ 	        oneElementByName   = Y.one('body'),
+ 	        allElementsByClass = Y.all('.bar');
+
+ 	    // Create DOM nodes.
+ 	    var contentNode = Y.Node.create('<div>'),
+ 	        listNode    = Y.Node.create('<ul>'),
+ 	        footerNode  = Y.Node.create('<footer>');
+
+ 	    contentNode.setHTML('<p>Node makes it easy to add content.</p>');
+ 	    listNode.insert('<li>Buy milk</li>');
+ 	    footerNode.prepend('<h2>Footer Content</h2>');
+
+ 	    // Manipulate DOM nodes.
+ 	    Y.all('.important').addClass('highlight');
+
+ 	    Y.one('#close-button').on('click', function () {
+ 	        contentNode.hide();
+ 	    });
+ 	});
 </script>
 </head>
 <body>

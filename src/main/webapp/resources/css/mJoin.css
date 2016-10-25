@@ -236,3 +236,11 @@ a {
 	color: #fff;
 	font-weight: none;
 }
+#mupdate_btnArea{
+	margin-top: 30px;
+	text-align: center;
+}
+
+#mupdate_btnArea div{
+	display: inline-block;
+}

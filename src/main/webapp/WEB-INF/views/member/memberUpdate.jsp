@@ -175,13 +175,15 @@
 						</tbody>
 					</table>
 				</div>
+				<div id="mupdate_btnArea">
 				<div class="mjoin_btnArea">
 					<a href="#none" onclick="">변경하기</a>
 				</div>
+				 &nbsp;  &nbsp;  &nbsp; 
 				<div class="mjoin_btnArea">
 					<a href="#none" onclick="memberJoinAction()">탈퇴하기</a>
 				</div>
-			</div>
+				</div>
 			</form>
 		</div>
 		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
