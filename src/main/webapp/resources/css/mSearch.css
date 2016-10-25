@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0 auto;
+	padding: 0;
+	border: none;
+}
+
+@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
+
+body, code {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 12px;
+	color: #000;
+}
+
+a {
+	text-decoration: none;
+}
+
+#mSearch_content_wrap {
+	width: 100%;
+	height: 100%;
+}
+
+#mSearch_contents {
+	width: 1250px;
+	margin: 0 auto;
+}
+
+/* shopping cart, order, order list, order detail title */
+.mSearch_titleArea h2 {
+	padding-top: 124px; font-family : "Noto Sans KR", sans-serif;
+	font-size: 20px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 40px;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+.mSearch_input {
+	border: 1px solid #e6e6e6;
+	padding: 30px 10px 30px 10px;
+	width: 1250px;
+}
+
+.mSearch_input p {
+	margin: 7px 0 0;
+	font-size: 8pt;
+	font-family: "돋움", Dotum;
+	color: #353535;
+	vertical-align: middle;
+	display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.mSearch_input strong {
+	text-align:left;
+	display: inline-block;
+	margin: 0 0 5px;
+	padding: 0 0 0 10px;
+	width: 110px;
+	font-weight: normal;
+	background:
+		url(http://img.echosting.cafe24.com/skin/base_ko_KR/member/ico_login2.gif)
+		no-repeat 0 4px;
+}
+
+.mSearch_input input {
+	width: 170px;
+	height: 18px;
+	padding: 2px 2px 2px 3px;
+	border: 1px solid #d9d9d9;
+	color: #202020;
+}
+.mSearch_button{
+	margin: 20px 0 20px 0;
+    text-align: center;
+}
+.mSearch_button a{
+    padding: 7px 22px 7px 22px;
+    background: #000;
+    border: 1px solid #000;
+    color: #fff;
+    font-size: 11px;
+
+}

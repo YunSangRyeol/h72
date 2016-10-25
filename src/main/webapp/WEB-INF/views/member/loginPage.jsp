@@ -33,9 +33,10 @@
 								alt="보안접속"> 보안접속
 						</p>
 						<ul>
-							<li><a href="#"><strong>아이디</strong>찾기</a></li>
+							<li><a href="idFindPage"><strong>아이디 </strong>찾기</a></li>
 							<li>/</li>
-							<li><a href="#"><strong>패스워드</strong>찾기</a></li>
+							<li><a href="pwdFindPage"><strong>비밀번호 </strong>찾기</a></li>
+
 						</ul>
 						<br>
 						<div class="login_mjoinArea">

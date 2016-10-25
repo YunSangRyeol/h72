@@ -4,6 +4,7 @@
 body{
 	font-family: "Noto Sans KR", sans-serif;
 	font-size:9pt;
+	text-align: left;
 }
 
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, img {
@@ -24,7 +25,7 @@ ul, menu, dir {
 }
 Inherited from body#main
 body, code {
-    font-family: ÎèãÏõÄ,'Doutm',sans-serif;
+    font-family: µ∏øÚ,'Doutm',sans-serif;
     font-size: 11px;
     color: #000;
 }
@@ -40,13 +41,30 @@ t-normalpaging ol {
 li{
 	 list-style-type: none;
 }
-/*******#sunny_wrap**********/
-#sunny_wrap{
-	margin-top:20px;
+/*******productEnroll_top**********/
+#productEnroll_top{
+}
+#productEnroll_top #main_header .main_left a img{
+	width:238px;
+}
+#productEnroll_top #main_header .main_line2{
+	width:100%;
+	position: absolute;
+}
+#productEnroll_top #main_header .main_line2 .main_board li ul{
+	top:38px;
+}
+#productEnroll_top #main_header .main_line2 .main_board .main_title{
+	margin-top:10px;
+}
+/*******#productEnroll_wrap**********/
+#productEnroll_wrap{
+	position:relative;
+	top:140px;
 }
 
-/*******sunny_in**********/
-#sunny_in {
+/*******productEnroll_in**********/
+#productEnroll_in {
 	width:1250px;
 	margin: 0 auto;
 }
@@ -87,7 +105,13 @@ li{
 	padding:0px 20px;
 	background: #fbfafa;
 	border-right:1px solid #e7e7e7;
+	vertical-align: middle;
 }
+#productEnroll_table tr:nth-child(3){
+	height:auto;
+	vertical-align: top;
+}
+
 #productEnroll_table td{
 	border-top:1px solid #e7e7e7;
 	
@@ -160,7 +184,8 @@ li{
 	border:0px;
 	height:20px;
 	margin-top:0px;
-	border:solid 1px darkgray;
+	border:solid 1px lightgray;
+	
 }
  /*************textarea_text************/
 #productEnroll .textarea_text{
@@ -169,6 +194,7 @@ li{
 #productEnroll .textareaBoxWrap{
 	margin:5px;
 	padding: 0px 6px;
+	text-align:left;
 	
 }
 #productEnroll .textareaBoxWrap .textareaBox{
@@ -194,23 +220,87 @@ li{
     font-size:7pt;
     border-radius:3px;
  }
+/*************productEnroll_explanation************/
+ #productEnroll_explanation{
+ 	position : relative;
+ 	top:-7px;
+ 	left:-60px;
+ 	height:20px;
+ }
+  #productEnroll_explanation p{
+ 	color:red;
+ 	display:none;
+ }
+ 
+ /*************productEnroll_priceBtnWrap************/
+ #productEnroll_priceBtnWrap{
+ 	float:left;
+ 	width:60px;
+ 	height:60px;
+ 	
+ }
+  #productEnroll_priceBtnWrap input[type=button]{
+ 	margin:5px 0 0 10px;
+ 	width:30px;
+ 	height:30px;
+ 	background:white;
+ 	border:2px solid #FF9999;
+ 	color:red;
+ 	border-radius:5px;
+ 	cursor:pointer;
+ }
  /*************productEnroll_price************/
  #productEnroll .productEnroll_price{
  	margin:5px;
-	width:100px;
+	width:550px;
 	height:40px;
 	padding: 0px 6px;
+	float:left;
 	
  }
+ 
+ #productEnroll .productEnroll_price ul{
+	 display:table-row;
+ }
  #productEnroll .productEnroll_price li{
-	float:left;
+	display: table-cell;
+    list-style-type: none;
+    vertical-align: middle;
+    
  }
- #productEnroll .productEnroll_price li:nth-child(2){
-    margin-left: 110px;
- 	position: absolute;
+ 
+ #productEnroll .productEnroll_price li:nth-child(6){
+	margin-left:10px;   
+    position: relative;
+    right: -10px;
+    cursor:pointer;
+    color:red;
+    font-size:3pt;
  }
+  #productEnroll .productEnroll_price li:nth-child(6) span{
+ 	border:2px solid #FF9999;
+ 	padding: 0px 6.5px 3px 6.5px;
+ 	border-radius:10px;
+ 	/* background:#FF9999; */
+ 	font-size:7pt;
+ }
+ 
  #productEnroll .productEnroll_price input{
+  	width:90px;
+ 	height:20px;
+ 	margin-left:20px;
  	text-align:right;
+ 	border:1px solid lightgray;
+ 	
+ }
+  #productEnroll #productEnroll_option{
+ 	margin-left:5px;
+ 	text-align:center;
+ }
+ #productEnroll #productEnroll_optionId{
+ 	width:20px;
+ 	margin:0 10px 0 5px;
+ 	text-align:center;
  }
  /*************productEnroll_stock************/
  #productEnroll .productEnroll_stock{
@@ -222,12 +312,14 @@ li{
 	float:left;
  }
  #productEnroll .productEnroll_stock li:nth-child(2){
-    margin-left: 110px;
+    margin-left: 70px;
  	position: absolute;
  }
   #productEnroll .productEnroll_stock input{
- 	width:100px;
+ 	width:60px;
  	text-align:right;
+ 	border:1px solid lightgray;
+ 	height:20px;
  }
 
  #productEnroll .productEnroll_time{
@@ -269,6 +361,7 @@ li{
     vertical-align: middle;
 	font-size:15pt;
     border-radius:8px;
+   	cursor:pointer;
 	
 }
 
@@ -304,10 +397,12 @@ li{
     background: white;
     vertical-align: baseline; 
     float:right;
+   	text-align:left;
     
 }
 #productEnroll #thumnailArea img{
    	margin-left:20px;
+   	
     
 }
 
@@ -320,7 +415,7 @@ li{
   	width: 100px;
     height: 40px;
     padding: 0;
-    margin: 10px auto;
+    margin: 80px auto;
    
 }
 #productEnroll #productEnroll_enrollBtn{
@@ -370,7 +465,7 @@ input[type=radio]+ label:before {
 }
 input[type=radio]:checked + label:before { 
 
-    content: "";  /* Ï≤¥ÌÅ¨Î™®Ïñë */
+    content: "";  /* √º≈©∏æÁ */
     font-size: 18px; 
     font-weight:800; 
     color: #fff;  
@@ -381,3 +476,8 @@ input[type=radio]:checked + label:before {
     background-repeat : no-repeat;
 
 } 
+
+#productEnroll_footer{
+	margin-top: 250px;
+	
+}
