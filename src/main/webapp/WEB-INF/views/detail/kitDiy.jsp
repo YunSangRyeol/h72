@@ -34,6 +34,7 @@ $(document).ready(function(){
 		<div class="titleArea">
 		    <h2>KIT DIY</h2> 
 		</div>
+		
 		<div id="kitDiy_header" >
 			<div class="line1">
 			</div>
@@ -44,39 +45,41 @@ $(document).ready(function(){
 				<div id="kitDiy_selectWrap">
 					<div id="kitDiy_Title">
 					</div>
-					<div id="kitDiy_product" >
-					<% for(int menuNum=1;  menuNum<6; menuNum++){%>
-						<div id="select_product<%=menuNum %>" class="kitDiy_productList" >
-							<ul id="kitDiy_mainList<%=menuNum %>">
-								<li><img src="/h72/resources/image/icon<%=menuNum %>.png"/></li>
-								<li>-</li>
-								<li></li> 
-								<li>
-									<select name="" class="kitDiy_subSelect">
-									</select>
-								</li>
-								<li><input type="text" name="product_stock" value="-" class="select_input"> 개</li>
-								<li>-</li>
-								<li><span class="checkboxClear">X</span></li>
-								<li><span class="subMenu" >∨</span></li>
-								<li class="product_code"></li>
-							</ul>
+					<div id="kitDiy_menuAndPicture">
+						<div id="kitDiy_product" >
+						<% for(int menuNum=1;  menuNum<6; menuNum++){%>
+							<div id="select_product<%=menuNum %>" class="kitDiy_productList" >
+								<ul id="kitDiy_mainList<%=menuNum %>">
+									<li><img src="/h72/resources/image/icon<%=menuNum %>.png"/></li>
+									<li>-</li>
+									<li></li> 
+									<li>
+										<select name="" class="kitDiy_subSelect">
+										</select>
+									</li>
+									<li><input type="text" name="product_stock" value="-" class="select_input"> 개</li>
+									<li>-</li>
+									<li><span class="checkboxClear">X</span></li>
+									<li><span class="subMenu" >∨</span></li>
+									<li class="product_code"></li>
+								</ul>
+							</div>
+						<%} %>
 						</div>
-					<%} %>
+						<div id="kitDiy_imageAndbutton">
+							<div id="kitDiy_image">
+								<div id="select_tab1Image" style=""><img src="/h72/resources/image/backpack.png"/></div>
+								<div id="select_tab2Image" style=""><img src="/h72/resources/image/blanket.png" /></div>
+								<div id="select_tab3Image" style=""><img src="/h72/resources/image/food.png" /></div>
+								<div id="select_tab4Image" style=""><img src="/h72/resources/image/electronic.png" /></div>
+								<div id="select_tab5Image" style=""><img src="/h72/resources/image/etc.png" /></div> 
+							</div>
+							<div id="kitDiy_button">
+								<div id="select_button1">BUY IT NOW<br>구매하기</div>
+								<div id="select_button2">ADD TO CART<br>장바구니</div>
+							</div>
+						</div>	
 					</div>
-					<div id="kitDiy_imageNbutton">
-						<div id="kitDiy_image">
-							<div id="select_tab1Image" style=""><img src="/h72/resources/image/backpack.png"/></div>
-							<div id="select_tab2Image" style=""><img src="/h72/resources/image/blanket.png" /></div>
-							<div id="select_tab3Image" style=""><img src="/h72/resources/image/food.png" /></div>
-							<div id="select_tab4Image" style=""><img src="/h72/resources/image/electronic.png" /></div>
-							<div id="select_tab5Image" style=""><img src="/h72/resources/image/etc.png" /></div>
-						</div>
-						<div id="kitDiy_button">
-							<div id="select_button1"><img src="" /></div>
-							<div id="select_button2"><img src="" /></div>
-						</div>
-					</div>	
 					<div id="kitDiy_level">
 					<% for(int i=1; i<6; i++){ %>
 						<div id="select_tab<%= i%>"></div>
@@ -96,16 +99,14 @@ $(document).ready(function(){
 		<div id="kitDiy_contents">
 		<!-- 리스트 부분 시작 -->
 			<div id="kitDiy_in">
-				<div class="xans-element- xans-product xans-product-menupackage ">
-					<div class="xans-element- xans-product xans-product-headcategory title ">
-						<ul id="kitdiy_tabs" class="tabs">
-							<li>배낭</li>
-							<li>방한</li>
-							<li>식료</li>
-							<li>도구</li>
-							<li>기타</li>
-						</ul>
-					</div>
+				<div class="">
+					<ul id="kitdiy_tabs" class="tabs">
+						<li>배낭</li>
+						<li>방한</li>
+						<li>식료</li>
+						<li>도구</li>
+						<li>기타</li>
+					</ul>
 				</div>
 
 				<!-- 일반상품 -->

@@ -351,9 +351,10 @@ li{
 
 /*************productEnroll_photo************/
 #productEnroll #productEnroll_photo{
+    float:left;
     width: 74px;
     height: 74px;
-    margin-right: 20px;
+    margin: 5px;
     border: 0px solid #e6e6e6;
     color: black;
     background: aliceblue;
@@ -390,25 +391,55 @@ li{
     margin: 0em 0em 0em 0em;
     font: 13.3333px Arial;
     float:left;
+   
 }
 #productEnroll #thumnailArea{
-    width: 500px;
+    width: 330px;
     height: 74px;
-    background: white;
+    background: aliceblue;
     vertical-align: baseline; 
-    float:right;
+    float:left;
    	text-align:left;
+   	margin:5px;
+   	border-radius:8px;
     
 }
 #productEnroll #thumnailArea img{
    	margin-left:20px;
-   	
-    
+   	margin-top:3px;
+   	border-radius:8px;
 }
 
 #productEnroll #itemPhoto{
 	margin: 5px 0 5px 12px;
 }
+
+#thumnailWrap1{
+	float:left;
+	margin-left:50px;
+}
+#thumnailWrap2{
+	float:left;
+	margin-left:40px;
+}
+#thumnailArea{
+	float:left;
+}
+#thumnailArea span{
+	float: right;
+	weight:2px;
+	font-weight:900;
+	color:red;
+	cursor:pointer;
+	display:none;
+}
+#thumnailExplane{
+	float:left;
+	width:130px;
+	margin:8px;
+	color:red;
+}
+
 /*************productEnroll_enrollBtnWrap************/
 #productEnroll #productEnroll_enrollBtnWrap{
 	border: none;

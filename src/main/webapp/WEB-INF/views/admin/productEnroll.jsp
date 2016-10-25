@@ -18,7 +18,7 @@
 <script type="text/javascript" src="/h72/resources/js/productEnroll.option.js"></script>
 <title>72hours::국내 최대 재난대비 용품샵</title>
 <script>
- 
+
 $(document).ready(function(){
 	
 });
@@ -179,11 +179,12 @@ $(document).ready(function(){
 											<input type="file" multiple name="reviewPhoto1" id="upBtn1" class="file_input_hidden" /> 
 											<input type="file" multiple name="reviewPhoto2" id="upBtn2" class="file_input_hidden" style="display:none" /> 
 										    <div id="thumnailArea">
-										       <img id="thumnail1" name="thumanail" />
-										       <img id="thumnail2" name="thumanail" />
+										    	<div id="thumnailWrap1"><img id="thumnail1" name="thumanail" /><span class="productEnroll_thumDelete" >X</span></div>
+										    	<div id="thumnailWrap2"><img id="thumnail2" name="thumanail" /><span class="productEnroll_thumDelete">X</span></div>
 										    </div>
 										</div>
 									</div>
+								    <div id="thumnailExplane"><span>*첫번째 이미지는 Title로 사용될 이미지 입니다.</span></div>
 								</td>
 							</tr>
 						</table>
