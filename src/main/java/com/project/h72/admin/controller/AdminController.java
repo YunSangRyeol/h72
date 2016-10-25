@@ -17,7 +17,7 @@ public class AdminController {
 	@RequestMapping(value = "admin/order", method = RequestMethod.GET)
 	public String adminOrderView(Locale locale, Model model) {
 		
-		return "admin/salesChart";
+		return "admin/adminOrderList";
 	}
 	
 	@RequestMapping(value = "admin/user", method = RequestMethod.GET)

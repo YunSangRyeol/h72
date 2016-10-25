@@ -8,8 +8,30 @@
 <meta charset="UTF-8">
 <link href="/h72/resources/css/admin.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+<script src="/h72/resources/js/jquery.battatech.excelexport.js"></script>
 <title>Admin Order List</title>
 <script type="text/javascript">
+	//excel파일 다운로드
+	$(document).ready(function () {
+	    $("#btnExport").click(function () {
+	        $("#orderList").battatech_excelexport({
+	            containerid: "orderList"
+	           , datatype: 'table'
+	        });
+	        $(this).attr('download', 'sample.xls').attr('href', uri);
+	    });
+	});
+	
+	//위치에 따른 옵션바 생성/제거
+	$(window).scroll(function(){
+		if($(document).scrollTop()<=500){
+			$("#optionBtn").addClass("fixed");
+		}else if($(document).scrollTop()>410){
+			$("#optionBtn").removeClass("fixed");
+	 	}
+		
+	});
+
 	//탭 변경	
 	function openTab(evt, tabname) {
 		var i, tabcontent, tablinks;
@@ -153,7 +175,9 @@
 	</ul>
 
 	<div id="all" class="tabcontent" style="display:block">
-		<table id="orderList" border="1" summary="">
+    <input type="button" id="btnExport" value="Export To Excel" />
+    <br />
+    <table id="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
@@ -219,11 +243,58 @@
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">
 		</div>
+		<div id="optionBtn">
+			선택한 주문건을 
+			<select id="modifyWhat" class="selectOption">
+				<option id="">결제완료</option>
+				<option id="">배송중</option>
+				<option id="">주문접수</option>
+			</select>
+			로 변경합니다. &nbsp;
+			<input type="submit" class="admin_btn" value="변경하기">
+		</div>
 	</div><!-- tab -->
 
 	<div id="order" class="tabcontent">
-		<h3>Paris</h3>
-		<p>Paris is the capital of France.</p>
+		    <input type="button" id="btnExport" value="Export To Excel" />
+    <br />
+    <table id="myTable" cellspacing='0' cellpadding='0'>
+
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Employee</th>
+                <th>Company</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SE</td>
+                <td>Karthik</td>
+                <td>Microsoft</td>
+                <td>Delivery</td>
+            </tr>
+            <tr>
+                <td>SE</td>
+                <td>Karthik</td>
+                <td>Microsoft</td>
+                <td>Delivery</td>
+            </tr>
+            <tr>
+                <td>SE</td>
+                <td>Karthik</td>
+                <td>Microsoft</td>
+                <td>Delivery</td>
+            </tr>
+            <tr>
+                <td>SE</td>
+                <td>Karthik</td>
+                <td>Microsoft</td>
+                <td>Delivery</td>
+            </tr>
+        </tbody>
+    </table>
 	</div><!-- tab -->
 
 	<div id="payed" class="tabcontent">
@@ -238,7 +309,7 @@
 	
 	<div id="back" class="tabcontent">
 		<h3>취소내역</h3>
-				<table id="orderList" border="1" summary="">
+				<table id="tblExport" border="1" summary="">
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
@@ -373,6 +444,7 @@
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">
 		</div>
+
 		<hr>
 		
 		<h3>반품내역</h3>

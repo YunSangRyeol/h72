@@ -18,11 +18,10 @@
 		<jsp:include page="/WEB-INF/views/main_header.jsp" flush="false" />
 		<div class="mjoin_contents" align="center">
 			<div class="mjoin_titleArea">
-				<h2>Member Join</h2>
-				<img id="mjoin_benefit"
-					src="/h72/resources/image/member_benefit.jpg">
+				<h2>Member Update</h2>
 			</div>
 			<div class="mjoin_form">
+			<form id="" action="">
 				<h3>기본정보</h3>
 				<p class="mjoin_required">
 					<span id="mjoin_red">*</span> 필수입력사항
@@ -31,13 +30,13 @@
 					<table border="1" summary="">
 						<tbody>
 							<tr>
-								<th scope="row">아이디 <span id="mjoin_red">*</span></th>
-								<td><input id="userid" name="userid"
-									fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity"
-									fw-label="아이디" fw-msg="" class="inputTypeText" value=""
-									type="text"> <a href="#none" title="새창 열기"
-									style="padding: 4px 12px 6px 12px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">아이디중복확인</a>
-									(영문소문자/숫자, 4~16자)</td>
+								<th scope="row">기존 비밀번호 <span id="mjoin_red">*</span></th>
+								<td><input id="userpass" name=""
+									userpass""
+									fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
+									fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16"
+									0="disabled" value="" type="password"> (영문
+									대소문자/숫자/특수문자, 10~16자)</td>
 							</tr>
 							<tr>
 								<th scope="row">비밀번호 <span id="mjoin_red">*</span></th>
@@ -176,8 +175,14 @@
 						</tbody>
 					</table>
 				</div>
-
+				<div class="mjoin_btnArea">
+					<a href="#none" onclick="">변경하기</a>
+				</div>
+				<div class="mjoin_btnArea">
+					<a href="#none" onclick="memberJoinAction()">탈퇴하기</a>
+				</div>
 			</div>
+			</form>
 		</div>
 		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
 	</div>
