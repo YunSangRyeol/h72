@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <html>
 <head>
 <title>72hours::국내 최대 재난대비 용품샵</title>
@@ -131,7 +130,7 @@
 					</div>
 				</a>
 			</div>
-			<a href="kitDiy/kitDiyView">
+			<a href="<c:url value="/kitDiy/kitDiyView"/>">
 				<div class="main_banner5">
 					<span id="main_label_title2">KIT</span><br>
 					<span id="main_label_contents2">응급처치 세트 외 기타용품 모음집</span>

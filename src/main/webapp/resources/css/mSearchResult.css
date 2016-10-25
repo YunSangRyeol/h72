@@ -1,0 +1,74 @@
+@CHARSET "UTF-8";
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0 auto;
+	padding: 0;
+	border: none;
+}
+
+@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
+
+body, code {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 12px;
+	color: #000;
+}
+
+a {
+	text-decoration: none;
+}
+
+#mSearch_result_content_wrap {
+	width: 100%;
+	height: 100%;
+}
+
+#mSearch_result_contents {
+	width: 1250px;
+	margin: 0 auto;
+}
+
+/* shopping cart, order, order list, order detail title */
+.mSearch_result_titleArea h2 {
+	padding-top: 124px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 20px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 40px;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+.mSearch_result_info {
+	overflow: hidden;
+}
+
+.mSearch_result_info ul {
+	font-size: 11pt;
+	color: #000;
+}
+
+.mSearch_result_info li {
+	margin: 0 0 4px;
+}
+
+.mSearch_result_info li label {
+	display: inline-block;
+	margin: 0 0 5px 10px;
+}
+
+.mSearch_result_info input {
+	font-size: 100%;
+	font-family: "돋움", Dotum;
+	
+	color: #353535;
+	vertical-align: middle;
+}
+.mSearch_result_button{
+	margin-top:30px;
+	height:120px;
+}

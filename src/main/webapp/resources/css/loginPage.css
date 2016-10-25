@@ -108,9 +108,11 @@ a {
 	position: relative;
 	top: -60px;
 	left: 70px;
+	
 }
 
 .login_inputArea .loginBtn a, .mjoinBtn a {
+	display:inline-block;
 	color: #fff;
 	width: 100px;
 	height: 70px;
@@ -141,6 +143,11 @@ a {
 	margin: 10px 0;
 	color: #757575;
 	padding: 0 0 0 5px;
+}
+
+.login_inputArea .login_subArea {
+	position: relative;
+	top: -20px;
 }
 
 .login_inputArea ul {

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +17,19 @@
 			<div class="login_titleArea">
 				<h2>MEMBERSHIP LOGIN</h2>
 			</div>
+			
 			<div class="inner">
 				<div class="login_inputArea">
-					<form id="login_form" name="" action="/exec/front/Member/login/"
-						method="post" enctype="multipart/form-data">
+					<form id="login_form" name="" action="../login.do">
 						<br> <br> <label>ID</label> <input type="text"
 							class="login_inputData" id="userid" name="userid"><br>
 						<label>PW</label><input type="password" class="login_inputData"
 							id="userpass" name="userpass">
-							<a href="#"><span class="loginBtn">LOGIN</span></a>
+							<input type="submit" class="loginBtn" value="로그인"/>
+							<!-- <a href="#"><span class="loginBtn">LOGIN</span></a> -->
+												</form>
+							
+						<div class="login_subArea">
 						<p class="security">
 							<img
 								src="http://img.echosting.cafe24.com/design/skin/default/member/ico_access.gif"
@@ -44,10 +47,9 @@
 								회원만의 <br>특별한 혜택을 받으실 수 있습니다.
 							</span>
 							<div class="mjoinBtn">
-								<a href="#">회원가입</a>
+								<a href="memberJoin">회원가입</a>
 							</div>
-						</div>
-					</form>
+						</div></div>
 
 				</div>
 				<div class="login_bannerArea"></div>
@@ -56,7 +58,6 @@
 			</div>
 			<div class="login_benefit"></div>
 			</div>
-			 
 
 		</div>
 		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />

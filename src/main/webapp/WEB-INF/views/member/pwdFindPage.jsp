@@ -28,7 +28,7 @@
 						type="text">
 				</p>
 				<p id="mSearch_email_view" class="email" style="display: block;">
-					<strong>이메일로 찾기</strong> <input id="email" name="email"
+					<strong>이메일</strong> <input id="email" name="email"
 						fw-filter="isEmail" fw-label="이메일" fw-msg="" class="lostInput"
 						value="" type="text">
 				</p><br>

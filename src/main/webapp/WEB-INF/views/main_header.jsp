@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>main_header</title>
 <link href="/h72/resources/css/main_header.css" type="text/css"
 	rel="stylesheet">
-
 </head>
 <body>
 	<div id="main_header">
@@ -19,8 +17,14 @@
 				</div>
 				<div class="main_right">
 					<ul>
-						<li><a href="<c:url value="/member/loginPage" />">LOGIN</a></li>
-						<li><a href="<c:url value="/member/memberJoin" />">JOIN</a></li>
+						<c:if test="${loginUser eq null }">
+							<li><a href="<c:url value="/member/loginPage" />">LOGIN</a></li>
+							<li><a href="<c:url value="/member/memberJoin" />">JOIN</a></li>
+						</c:if>
+						<c:if test="${!(loginUser eq null) }">
+							<li style="color:#fff;"><strong> ${loginUser.nickname }</strong> 님</li>
+							<li><a href="<c:url value="logout.do" />">LOGOUT</a></li>
+						</c:if>
 						<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
 						<li><a href="<c:url value="/order/order"/>">ORDER</a></li>
 					</ul>
@@ -32,12 +36,13 @@
 				<div class="main_cate">
 					<ul>
 						<li id="main_cateIdx1"><a href="#"><span>BAG</span></a></li>
-						<li id="main_cateIdx2" style="width:150px;"><a href="#"><span>PROTECT
-								GOODS</span></a></li>
+						<li id="main_cateIdx2" style="width: 150px;"><a href="#"><span>PROTECT
+									GOODS</span></a></li>
 						<li id="main_cateIdx3"><a href="#"><span>FOOD</span></a></li>
-						<li id="main_cateIdx4" style="width:130px;"><a href="#" ><span>EQUIPMENT</span></a></li>
-						<li id="main_cateIdx5" style="margin-left:28px;"><a href="#"><span>ETC</span></a></li>
-						<li id="main_cateIdx6"  style="width:105px;"><a href="kitDiy/kitDiyView"><span>KIT</span></a></li>
+						<li id="main_cateIdx4" style="width: 130px;"><a href="#"><span>EQUIPMENT</span></a></li>
+						<li id="main_cateIdx5" style="margin-left: 28px;"><a href="#"><span>ETC</span></a></li>
+						<li id="main_cateIdx6" style="width: 105px;"><a
+							href="<c:url value="/kitDiy/kitDiyView"/>"><span>KIT</span></a></li>
 					</ul>
 				</div>
 				<div class="main_search" style="margin-left: 30px;">

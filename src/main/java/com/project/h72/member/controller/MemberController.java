@@ -4,18 +4,27 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.project.h72.member.service.MemberService;
+import com.project.h72.member.vo.Member;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class MemberController {
+	@Autowired
+	private MemberService memberService;
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
@@ -24,24 +33,36 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "member/loginPage", method = RequestMethod.GET)
 	public String loginPage(Locale locale, Model model) {
-/*		단순 페이지 이동	*/		
+		/* 단순 페이지 이동 */
 		return "member/loginPage";
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
+
+	@RequestMapping(value = "/login.do")
+	public String login(@RequestParam("userid") String id, 
+			@RequestParam("userpass") String pass, HttpSession session)
+			throws Exception {
+		System.out.println(id + " @@ " + pass);
+		Member login = memberService.getUserInfo(new Member(id, pass));
+		if (login != null) {
+			session.setAttribute("loginUser", login);
+			System.out.println(login+"!@#!@#@!#!@#@!#!@#@!#@!#@!#@!#@!#@!#@!#");
+		}
+		return "home";
+	}
+
+	@RequestMapping(value = "/logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginUser");
 
 		return "home";
 	}
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Locale locale, Model model) {
 
-		return "home";
-	}
 	@RequestMapping(value = "member/memberJoin", method = RequestMethod.GET)
 	public String mJoinPage(Locale locale, Model model) {
-		/*		단순 페이지 이동	*/		
+		/* 단순 페이지 이동 */
 		return "member/memberJoin";
 	}
+
 	@RequestMapping(value = "/mJoin", method = RequestMethod.GET)
 	public String mJoin(Locale locale, Model model) {
 
@@ -50,9 +71,10 @@ public class MemberController {
 
 	@RequestMapping(value = "member/memberUpdate", method = RequestMethod.GET)
 	public String mUpdatePage(Locale locale, Model model) {
-		/*		단순 페이지 이동	*/		
+		/* 단순 페이지 이동 */
 		return "member/memberUpdate";
 	}
+
 	@RequestMapping(value = "/mUpdate", method = RequestMethod.GET)
 	public String mUpdate(Locale locale, Model model) {
 
@@ -67,12 +89,13 @@ public class MemberController {
 
 	@RequestMapping(value = "member/idFindPage", method = RequestMethod.GET)
 	public String mSearchID(Locale locale, Model model) {
-			/*단순 페이지 이동*/
+		/* 단순 페이지 이동 */
 		return "member/idFindPage";
 	}
+
 	@RequestMapping(value = "member/pwdFindPage", method = RequestMethod.GET)
 	public String mSearchPW(Locale locale, Model model) {
-			/*단순 페이지 이동*/
+		/* 단순 페이지 이동 */
 		return "member/pwdFindPage";
 	}
 
