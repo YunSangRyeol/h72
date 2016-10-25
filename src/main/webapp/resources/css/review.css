@@ -1,0 +1,908 @@
+@CHARSET "UTF-8";
+
+
+
+/* content */
+body.reviews.index #content, body.products.reviews #content, 
+body.reviews.photos #content, body.reviews.photo_review_popup #content, 
+body.my.reviews #content, body.my.photo_reviews #content, 
+body.users.reviews #content {
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+/* widget new-review first  */
+body {
+    font-family: '돋움', Dotum, Helvetica, 'Apple SD Gothic Neo', Sans-serif;
+    font-size: 12px;
+    background-color: transparent;
+}
+body.reviews.index #content, body.products.reviews #content, 
+body.reviews.photos #content, body.reviews.photo_review_popup 
+#content, body.my.reviews #content, body.my.photo_reviews #content, 
+body.users.reviews #content {
+    margin: 0 auto;
+    font-size: 12px;
+}
+div {
+    display: block;
+}
+body, div, ul, li, h1, h2, h3, h4, h5, h6, form, 
+fieldset, input, textarea, button, p, th, td {
+    margin: 0;
+    padding: 0;
+}
+.widget {
+    padding: 44px 0;
+}
+.widget:first-child, .widget.first {
+    padding-top: 0;
+}
+body.products.reviews .widget.new-review, #review-edit-form .widget.new-review {
+    padding: 0 35px 40px 35px;
+}
+body.products.reviews .widget.new-review, #review-edit-form .widget.new-review {
+    padding: 44px 0;
+}
+
+
+/* widget-heading */
+.widget .widget-heading {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dadada;
+    font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.new-review.widget .widget-heading, .new-review.widget .widget-body {
+    position: relative;
+    border-bottom: 0;
+}
+.new-review.widget .widget-heading {
+    line-height: 20px;
+    height: 32px;
+    margin-bottom: 3px;
+}
+.new-review.widget .widget-heading {
+    display: none;
+}
+
+/* widget-title */
+.widget .widget-heading .widget-title {
+    font-size: 12px;
+    float: left;
+}
+
+strong, b {
+    font-weight: bold;
+}
+strong {
+    color: #333333;
+}
+.widget .widget-heading .widget-title strong, .widget .widget-heading .widget-title .strong {
+    font-weight: bold;
+}
+.new-review.widget .divider {
+    margin: 0 8px;
+    color: #7d7d7d;
+}
+.widget .widget-heading .widget-title .divider {
+    margin: 0 8px;
+    color: #7d7d7d;
+}
+.widget .widget-heading .widget-title .weak {
+    color: #8f8f8f;
+}
+
+
+/* widget-body */
+.widget .widget-body {
+    border-bottom: 1px solid #dadada;
+}
+.widget .widget-body {
+    border-bottom: 0;
+}
+.new-review.widget .widget-heading, .new-review.widget .widget-body {
+    position: relative;
+    border-bottom: 0;
+}
+
+/* form */
+#data {
+    display: none;
+}
+#form-new-product-review {
+    position: relative;
+    padding-bottom: 1px;
+}
+textarea, input {
+    outline: 0;
+}
+button, input {
+    border: 0;
+}
+.limit-count-container {
+    position: relative;
+}
+#form-new-product-review .message-field {
+    font-size: 0;
+    height: auto;
+    margin-bottom: 8px;
+    padding: 15px 13px;
+    border: 1px solid #dadada;
+    -webkit-transition: padding-top 0.3s ease;
+    -moz-transition: padding-top 0.3s ease;
+    -o-transition: padding-top 0.3s ease;
+    transition: padding-top 0.3s ease;
+}
+input, textarea, keygen, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+}
+textarea {
+    -webkit-appearance: textarea;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    flex-direction: column;
+    resize: auto;
+    cursor: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-width: 1px;
+    border-style: solid;
+    border-color: initial;
+    border-image: initial;
+    padding: 2px;
+}
+textarea {
+    font-family: monospace;
+    border-color: rgb(169, 169, 169);
+}
+body, div, ul, li, h1, 
+h2, h3, h4, h5, h6, form, fieldset, input, 
+textarea, button, p, th, td {
+    margin: 0;
+    padding: 0;
+}
+textarea {
+    resize: none;
+    border: 0;
+}
+textarea, input {
+    outline: 0;
+}
+#form-new-product-review textarea {
+    min-height: 100px;
+    height: auto;
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0px;
+    border: 0;
+    width: 100%;
+    outline: transparent;
+    resize: none;
+    overflow: hidden;
+}
+.limit-count-container .limit-counter {
+    position: absolute;
+    bottom: 5px;
+    right: 7px;
+    font-size: 12px;
+    color: #626262;
+}
+
+.review-input-photos {
+    width: 368px;
+    height: 81px;
+}
+body.products.reviews .review-input-photos, #review-edit-form .review-input-photos {
+    margin-left: -15px;
+}
+body.products.reviews form.new_review .review-input-photos, #review-edit-form form.new_review .review-input-photos {
+    display: none;
+}
+
+.review-input-photos .review-photos {
+    display: inline-block;
+    width: 58px;
+    height: 58px;
+    margin-left: 1px;
+    cursor: pointer;
+}
+.review-input-photos .input-button {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+body.products.reviews .image-fields-container, #review-edit-form .image-fields-container {
+    width: 430px;
+    height: 75px;
+    padding: 0px;
+}
+li {
+    list-style-type: none;
+}
+body.products.reviews .image-fields-container .image-field, #review-edit-form .image-fields-container .image-field {
+    width: 75px;
+    height: 75px;
+    position: relative;
+    float: left;
+    padding: 0 5px 10px 5px;
+}
+body.products.reviews .image-fields-container .wrap, #review-edit-form .image-fields-container .wrap {
+    position: relative;
+    background: #c8c8c8;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+}
+body.products.reviews .image-fields-container img.size-support, #review-edit-form .image-fields-container img.size-support {
+    width: 100%;
+    height: auto;
+    min-width: 50px;
+}
+.input-image-container {
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Nanum Gothic';
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+body.products.reviews 
+.image-fields-container .input-image-container, 
+#review-edit-form .image-fields-container .input-image-container {
+    position: absolute;
+    top: 50%;
+    margin-top: -37px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+.input-file {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 !important;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    font-size: 200px;
+    direction: ltr;
+}
+body.products.reviews .image-fields-container .input-file, #review-edit-form .image-fields-container .input-file {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 !important;
+    margin: 0;
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    font-size: 200px;
+    direction: ltr;
+}
+
+body.products.reviews .image-fields-container .preview-container, #review-edit-form .image-fields-container .preview-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 75px;
+    height: 75px;
+    font-size: 0;
+    background: white;
+    text-align: center;
+}
+
+/* remove */
+.image_field__remove_preview {
+    font-size: 13px;
+}
+body.products.reviews .image-fields-container .remove-preview, #review-edit-form .image-fields-container .remove-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    background: black;
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    opacity: 0.4;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+body.products.reviews .image-fields-container .remove-preview div, #review-edit-form .image-fields-container .remove-preview div {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    margin-top: -8px;
+}
+
+/* 사진추가 */
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+li {
+    list-style-type: none;
+}
+body.products.reviews .image-fields-container .image-field, #review-edit-form .image-fields-container .image-field {
+    width: 75px;
+    height: 75px;
+    position: relative;
+    float: left;
+    padding: 0 5px 10px 5px;
+}
+body.products.reviews .image-fields-container .wrap, #review-edit-form .image-fields-container .wrap {
+    position: relative;
+    background: #c8c8c8;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+}
+body.products.reviews .image-fields-container img.size-support, #review-edit-form .image-fields-container img.size-support {
+    width: 100%;
+    height: auto;
+    min-width: 50px;
+}
+.inline {
+    display: inline-block;
+}
+
+.sprites-sprite, .sprites-camera, .sprites-category, .sprites-check, .sprites-checked, .sprites-circle-close-button-black, .sprites-circle-close-button, .sprites-close-button-black, .sprites-close-cross, .sprites-fa-bookmark, .sprites-fa-camera, .sprites-fa-check-circle-o, .sprites-fa-comment, .sprites-fa-heart-liked, .sprites-fa-heart, .sprites-fa-no-comment, .sprites-fa-times-circle, .sprites-icon-camera-black, .sprites-icon-camera, .sprites-icon-drop-down-s, .sprites-icon-drop-down, .sprites-icon-file, .sprites-navigator-left, .sprites-navigator-right, .sprites-product-gallery-drop-down, .sprites-search, .sprites-tokenized-input-clear, .sprites-tokenized-input-remove, .fa-check-circle-o, .fa-times-circle, .fa-bookmark, .fa-camera, .fa-comment, .no-comment .fa-comment {
+    background: url(//assets.cre.ma/latte/assets/10world-co-kr/pc/sprites-s4609f131b4.png) no-repeat;
+}
+.sprites-icon-camera-black {
+    background-position: 0 -195px;
+    height: 27px;
+    width: 38px;
+}
+#form-new-product-review .add-image-container .sprites-icon-camera-black {
+    position: absolute;
+    left: 5px;
+    top: 3px;
+}
+
+.sprites-icon-camera {
+    background-position: 0 -261px;
+    height: 26px;
+    width: 37px;
+}
+
+body.products.reviews .image-fields-container .sprites-icon-camera, #review-edit-form .image-fields-container .sprites-icon-camera {
+    margin-top: 17px;
+    margin-bottom: 2px;
+}
+
+body.products.reviews .image-fields-container .input-file, #review-edit-form .image-fields-container .input-file {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 !important;
+    margin: 0;
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    font-size: 200px;
+    direction: ltr;
+}
+body.products.reviews .image-fields-container .preview-container, #review-edit-form .image-fields-container .preview-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 75px;
+    height: 75px;
+    font-size: 0;
+    background: white;
+    text-align: center;
+}
+
+/* input-area-container */
+#form-new-product-review .input-area-container {
+    position: relative;
+    height: 35px;
+    font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#form-new-product-review .add-image-container {
+    position: absolute;
+    left: 0;
+}
+#form-new-product-review .add-image-container {
+    position: absolute;
+    left: 0;
+    width: 114px;
+    height: 33px;
+    border: 1px solid #dadada;
+    margin-right: 5px;
+    text-align: center;
+}
+#form-new-product-review .add-image-container {
+    width: 214px;
+}
+.review_form__add_first_photo {
+    text-align: left;
+}
+.new-review.widget .description {
+    color: #8f8f8f;
+}
+#form-new-product-review .add-image-container .description {
+    position: absolute;
+    color: #8f8f8f;
+    top: 10px;
+    left: 49px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80px;
+    font-weight: bold;
+    font-size: 12px;
+}
+#form-new-product-review .add-image-container .description {
+    left: 59px;
+}
+#form-new-product-review .field-box-container {
+    margin: 0px 444px 0 130px;
+}
+#form-new-product-review .field-box-container {
+    margin: 0px 444px 0 230px;
+}
+.select2-container {
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    vertical-align: middle;
+}
+.select2-container.select-rating {
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+}
+body.products.reviews .select2-container#s2id_review_score, #review-edit-form .select2-container#s2id_review_score {
+    border: 1px solid #dadada;
+    font-size: 12px;
+    display: block;
+    padding: 4px 10px;
+    height: 25px;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: auto;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.select2-container .select2-choice {
+    display: block;
+    height: 26px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    white-space: nowrap;
+    line-height: 26px;
+    color: #444;
+    text-decoration: none;
+    border-radius: 0;
+    background-clip: padding-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: none;
+    box-shadow: none;
+}
+.select2-container .select2-choice>.select2-chosen {
+    margin-right: 0;
+}
+.select2-container .select2-choice>.select2-chosen {
+    margin-right: 26px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+span.star {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    font-size: 0;
+}
+span.star, span.camera, .sprite_comment {
+    background-image: url(http://assets2.cre.ma/p/10world-co-kr/brand_settings/00/00/00/00/01/sprite/582cbe9cb5adad16.png);
+}
+.select2-container .select2-choice>.select2-chosen .item .text {
+    margin-left: 10px;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: auto;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.select2-search-choice-close {
+    display: block;
+    width: 12px;
+    height: 13px;
+    position: absolute;
+    right: 3px;
+    top: 4px;
+    font-size: 1px;
+    outline: none;
+}
+.select2-container .select2-choice abbr {
+    display: none;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 24px;
+    top: 8px;
+    font-size: 1px;
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+}
+.select2-container .select2-choice .select2-arrow {
+    display: none;
+}
+strong, b {
+    font-weight: bold;
+}
+.select2-container .select2-choice .select2-arrow b {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.sprites-icon-drop-down {
+    background-position: 0 -480px;
+    height: 8px;
+    width: 15px;
+}
+.select2-container .select2-choice .sprites-icon-drop-down {
+    position: absolute;
+    top: 9px;
+    right: 0;
+}
+.select2-offscreen, .select2-offscreen:focus {
+    clip: rect(0 0 0 0) !important;
+    width: 1px !important;
+    height: 1px !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    outline: 0 !important;
+    left: 0px !important;
+    top: 0px !important;
+    display: none;
+}
+.select2-drop {
+    width: 100%;
+    margin-top: -1px;
+    position: absolute;
+    z-index: 9999;
+    top: 100%;
+    background: #fff;
+    color: #000;
+    border: 1px solid #aaa;
+    border-top: 0;
+}
+.select2-display-none {
+    display: none;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+button, input[type=submit] {
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+#form-new-product-review button.submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 133px;
+    height: 35px;
+    background: black;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+.fa {
+    display: inline-block;
+}
+.fa-check-circle-o {
+    background-position: 0 -337px;
+    height: 23px;
+    width: 23px;
+}
+#form-new-product-review button.submit .title .fa {
+    vertical-align: middle;
+    font-size: 26px;
+    padding-right: 14px;
+}
+.review_form__post_review_label {
+    vertical-align: middle;
+}
+.hidden {
+    display: none;
+}
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+input[type="hidden" i] {
+    display: none;
+}
+input[type="hidden" i], input[type="image" i], input[type="file" i] {
+    -webkit-appearance: initial;
+    background-color: initial;
+    padding: initial;
+    border: initial;
+}
+
+
+/* review pagination list */
+body.products.reviews .widget.widget-reviews, #review-edit-form .widget.widget-reviews {
+    padding-top: 38px;
+}
+.products_reviews_header {
+    font-size: 16px;
+}
+.products_reviews_header__upper {
+    font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+}
+.products_reviews_header .sort-type {
+    color: #949494;
+    font-size: 13px;
+    letter-spacing: -1px;
+}
+.products_reviews_header .sort-type.selected {
+    color: #333333;
+    font-size: 16px;
+}
+.review-sort-type-column {
+    padding: 0 13px;
+    font-size: 13px;
+}
+
+/* 추천순 css */
+/* 평점순 css */
+
+.products_reviews_header__separator {
+    height: 1px;
+    background: #dadada;
+    margin: 10px 0;
+}
+
+.widget .widget-body {
+    border-bottom: 1px solid #dadada;
+}
+
+.widget .widget-body {
+    border-bottom: 0;
+}
+.page {
+    -webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
+}
+ul.reviews {
+    margin-bottom: 14px;
+}
+body.products.reviews ul.reviews, body.products.reviews ul.header, #review-edit-form ul.reviews, #review-edit-form ul.header {
+    width: 100%;
+    border-spacing: 0;
+    position: relative;
+    font-family: 'Oswald',sans-serif;
+    font-weight: normal;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #333;
+}
+body.products.reviews ul.reviews, body.products.reviews ul.header, #review-edit-form ul.reviews, #review-edit-form ul.header {
+    ont-family: '돋움', Dotum, Helvetica, 'Apple SD Gothic Neo', Sans-serif;
+}
+li.review {
+    position: relative;
+    border-top: 1px solid #dadada;
+    padding-top: 30px;
+    padding-bottom: 8px;
+}
+li.review:first-child {
+    border-top: none;
+}
+body.products.reviews ul.reviews li.review, 
+body.products.reviews ul.header li.review, 
+#review-edit-form ul.reviews li.review, 
+#review-edit-form ul.header li.review {
+    line-height: 43px;
+    color: #434343;
+    border-top: 0;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 0 !important;
+}
+ body.products.reviews ul.reviews li.review, 
+ body.products.reviews ul.header li.review, 
+ #review-edit-form ul.reviews li.review, 
+ #review-edit-form ul.header li.review {
+    /* line-height: 15px; */
+    margin-top: 25px;
+    font-family: '돋움',Dotum,AppleGothic,sans-serif;
+    font-size: 11px;
+} 
+ .product_review__info_container {
+    float: right;
+	/* margin-bottom: 30px; */
+    min-width: 205px;
+    font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+ 
+.product_review__info_container {
+    font-family: '돋움',Dotum,AppleGothic,sans-serif;
+}
+.product_review__info_container li {
+    border-top: 1px solid #dadada;
+    padding: 7px 5px;
+}
+.product_review__info_container li:first-child {
+    padding-top: 0;
+    border-top: none;
+}
+li .title {
+    color: #a8a8a8;
+}
+.product_review__info_container li div {
+    line-height: 18px;
+}
+body.products.reviews ul.reviews li.review .title, body.products.reviews ul.header li.review .title, #review-edit-form ul.reviews li.review .title, #review-edit-form ul.header li.review .title {
+    text-align: left;
+}
+li .value {
+    color: #333333;
+    font-weight: bold;
+}
+.product_review__info_container li div {
+    line-height: 18px;
+}
+.panel {
+    padding: 44px 0;
+}
+li.review .l-contents {
+    padding: 0 10px 0 0;
+    margin-right: 250px;
+}
+.panel .panel-heading, .panel .panel-body {
+    border-bottom: 1px solid #dadada;
+}
+.panel .no-border {
+    border: 0;
+}
+
+li.review .l-contents .score {
+    color: #a4a4a4;
+}
+
+/* 리뷰내용 */
+li.review .l-contents .review-content {
+    position: relative;
+    width: 100%;
+}
+li.review .l-contents .review-content .review-content-inner {
+    width: 100%;
+}
+li.review .l-contents .review-content .review-content-collapsed {
+    display: block;
+}
+li.review .l-contents .panel-header, li.review .l-contents .panel-body, 
+li.review .l-contents .panel-footer {
+    padding-bottom: 20px;
+    padding-top: 13px;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 리뷰 expanded */
+li.review .l-contents .review-content .review-content-expanded {
+    display: none;
+}
+body.products.reviews ul.reviews .review-content-expanded, 
+body.products.reviews ul.header .review-content-expanded, 
+#review-edit-form ul.reviews .review-content-expanded, 
+#review-edit-form ul.header .review-content-expanded {
+    border-top: 1px solid #e4e4e4;
+    display: none;
+    padding: 52px 52px 42px 52px !important;
+}
+expanded {
+    padding: 0 !important;
+    border-top: 0;
+}
+.review-options {
+    font-size: 12px;
+    border: 1px solid #dadada;
+    padding: 15px;
+    margin-bottom: 18px;
+    margin-right: 30px;
+    max-width: 800px;
+}
+.review-contents-style {
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+
+
+
+
+
+
+
+
+

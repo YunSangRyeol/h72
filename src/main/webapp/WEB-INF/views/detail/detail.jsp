@@ -5,13 +5,47 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/h72/resources/css/detail.css" />
+<!-- <script type="text/javascript">
+function ResizeFrame(name)
+{
+  // IFRAME 내부의 body 개체
+  var fBody  = document.frames(name).document.body;
+  alert(fBody);
+  // IFRAME 개체
+  var fName  = document.all(name);
+
+  // IFRAME 내부의 body개체의 넓이를 계산하여 IFRAME의 넓이를 설정해 준다.
+  fName.style.width 
+    = fBody.scrollWidth + (fBody.offsetWidth - fBody.clientWidth);
+  // IFRAME 내부의 body개체의 높이를 계산하여 IFRAME의 높이를 설정해 준다.
+  fName.style.height 
+    = fBody.scrollHeight + (fBody.offsetHeight - fBody.clientHeight);
+
+  // 만약 IFRAME의 크기 설정에 실패 하였다면 기본크기로 설정한다.
+  if (Frame_name.style.height == "0px" || Frame_name.style.width == "0px")
+  {
+    fName.style.width = "700px";     //기본 iframe 너비
+    fName.style.height = "300px";    //기본 iframe 높이
+  }
+}
+</script> -->
+<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+</script>
 <title>Insert title here</title>
 </head>
 
 
 <body id="main">
 <div id="detail_top">
-    <li><a href="#" id="scrollup" style="display: none;">TOP</a></li>
+    <!-- <li><a href="#" id="scrollup" style="display: none;">TOP</a></li> -->
+    
+    
+    <jsp:include page='../main_header.jsp' flush="false" />
+    
+ 
 </div>  
 
 <!-- START -->
@@ -177,11 +211,11 @@
         	<!-- 상세정보 내역 -->
         <div class="infoArea">   
         
-        <h3>2016ver. 데일리 MTM<span class="bookmark mouse_on"> 
+        <h3 class="resize">2016ver. 데일리 MTM<span class="bookmark mouse_on"> 
             <div id="cssmenu1">
             <ul>
 			<li class="has-sub" style="padding:3px 10px 3px 10px; float:right; font-size:11px;">
-				<a href="http://10world.co.kr/board/free/read.html?no=559012&amp;board_no=1"><img src="/web/upload/sunny/image/icon_detailtop1.png" style="margin:-1px 5px 0 0;">회원등급별혜택보기</a>
+				<a href="http://10world.co.kr/board/free/read.html?no=559012&amp;board_no=1"><img src="/h72/resources/image/icon_detailtop1.png" style="margin:-1px 5px 0 0;">회원등급별혜택보기</a>
             	<ul>
 				<li><a href=""><span class="title">MEMBER</span>구매금액의 <span class="blue">1%</span> 적립</a></li> 
                 <li><a href=""><span class="title">FRIEND</span>구매금액의 <span class="blue">2%</span> 적립,<span class="red">2%</span> 할인</a></li> 
@@ -195,21 +229,27 @@
 			</div>    
 			
 			        
-            <a href="javascript:BookMarkNow();" style="font-size:11px; padding:2px 10px 3px 10px; float:right; cursor:pointer; margin-right:0px;"><img src="/web/upload/sunny/image/icon_detailtop2.png" style="margin:-1px 5px 0 0;"><span style="color:#4da1bd; font-size:11px;">즐겨찾기추가</span></a></span>
+            <!-- <a href="javascript:BookMarkNow();" style="font-size:11px; padding:2px 10px 3px 10px; float:right; cursor:pointer; margin-right:0px;"><img src="/web/upload/sunny/image/icon_detailtop2.png" style="margin:-1px 5px 0 0;"><span style="color:#4da1bd; font-size:11px;">즐겨찾기추가</span></a></span> -->
         </h3>      
         
         <p class="displaynone">() 해외배송 가능</p> 
         <table border="1" summary="">
 			<caption>2016ver. 데일리 MTM 기본 정보</caption>
             <tbody>
+            <tr class="custom0">
+				<th scope="row">소비자가</th>
+                    <td>
+                        <strong id="product_custom" class="" style="font-size:12px; font-weight:400;"><span style="text-decoration:line-through;">0원</span></strong> 
+                    </td>
+                </tr>
 			<tr class="">
-				<th scope="row">판매가</th>
+				<th scope="row" class="resize">판매가</th>
                 <td class="td-color2 mem_lv_wrap">
                 	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;">9,900원</strong>
                     <a href="#none" class="displaynone" sms_restock_login_display="1" name="btn_restock" id="btn_restock" onclick="alert('');"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_sms.gif" alt="재입고 알림 SMS"></a>   
                 </td>
             </tr>
-			<tr class="">
+			<tr class="resize">
 				<th scope="row">적립금</th>
                 <td class="td-color1">
                 	<ul class="mileage">
@@ -248,10 +288,10 @@
 			</tbody>
 			
 			<tbody>
-			<tr>
+			<tr class="resize">
 				<th scope="row">수량</th>
 	            <td>
-	                <span class="quantity"><input id="quantity" name="quantity_name" style="" value="0" type="text"><img src="/web/upload/sunny/images/btn_quantity_up.png" alt="up" class="QuantityUp"><img src="/web/upload/sunny/images/btn_quantity_down.png" alt="down" class="QuantityDown"></span> 
+	                <span class="quantity"><input id="quantity" name="quantity_name" style="" value="0" type="text"><img src="/h72/resources/image/btn_quantity_up.png" alt="up" class="QuantityUp"><img src="/h72/resources/image/btn_quantity_down.png" alt="down" class="QuantityDown"></span> 
 	            </td>
             </tr>
 			<tr class="displaynone">
@@ -301,9 +341,9 @@
             <!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
             <div class="xans-element- xans-product xans-product-action ">
             	<div class="btnArea" style="width:500px;">
-                    <a href="#none" class="first " onclick="product_submit(1, '/exec/front/order/basket/', this)"><img src="/web/upload/sunny/image/btn_buy.png" onmouseover="this.src='/web/upload/sunny/image/btn_buy_h.png'" onmouseout="this.src='/web/upload/sunny/image/btn_buy.png'" style="float:left;"></a>
-                    <a id="cartBtn" href="#none" class="" onclick="product_submit(2, '/exec/front/order/basket/', this)"><img src="/web/upload/sunny/image/btn_cart.png" onmouseover="this.src='/web/upload/sunny/image/btn_cart_h.png'" onmouseout="this.src='/web/upload/sunny/image/btn_cart.png'" style="float:left;"></a>
-                    <a id="wishBtn" href="#none" onclick="add_wishlist_nologin('/member/login.html');" class=""><img src="/web/upload/sunny/image/btn_wish.png" onmouseover="this.src='/web/upload/sunny/image/btn_wish_h.png'" onmouseout="this.src='/web/upload/sunny/image/btn_wish.png'" style="float:left;"></a>
+                    <a href="#none" class="first " onclick="product_submit(1, '/exec/front/order/basket/', this)"><img src="/h72/resources/image/btn_buy.png" onmouseover="this.src='/h72/resources/image/btn_buy_h.png'" onmouseout="this.src='/h72/resources/image/btn_buy.png'" style="float:left;"></a>
+                    <a id="cartBtn" href="#none" class="" onclick="product_submit(2, '/exec/front/order/basket/', this)"><img src="/h72/resources/image/btn_cart.png" onmouseover="this.src='/h72/resources/image/btn_cart_h.png'" onmouseout="this.src='/h72/resources/image/btn_cart.png'" style="float:left;"></a>
+                    
                     <span class="displaynone">SOLD OUT</span>
                 </div>
                 
@@ -409,9 +449,9 @@
 			            주문자명과 입금자명이 다를시에는 고객센터나 게시판으로 연락주시길 바랍니다.<br>
 			            주문서 작성 후 <strong>4일이내</strong>에 입금확인이 되지 않을 경우 자동으로 주문서가 취소됩니다.<br><br><br><h4>교환반품안내</h4>
 			            상품구매 전 색상 및 사이즈를 꼭 확인해 주시고 구매 부탁드립니다.<br>
-			            교환 및 반품은 상품을 수령 후 <strong>7일이내</strong> 10대월드로 보내주셔야 합니다.<br>
+			            교환 및 반품은 상품을 수령 후 <strong>7일이내</strong> h72로 보내주셔야 합니다.<br>
 			            상품 수령 후 <strong>3일이내</strong>에 교환 및 반품을 진행해 주시길 바랍니다.<br>
-			            상품하자 및 10대월드의 실수로 인한 교환은 10대월드에서 배송비를 부담해서 교환처리 해드립니다.<br>
+			            상품하자 및 h72의 실수로 인한 교환은 h72에서 배송비를 부담해서 교환처리 해드립니다.<br>
 			            단, 동일상품/동일옵션의 상품으로 교환이 아닌 경우 변심으로 간주되어 배송비는 고객님께서 부담하셔야 합니다.<br>
 			            반품 및 교환 상품이 소비자의 책임으로 훼손 또는 변경된 상품으로 판명 될 경우 전자상거래법 및 소비자 보호에 관한 법률에 의해<br>
 			            손해배상을 청구할 수 있습니다.<br><br><br><h4>교환 및 반품이 불가능한 경우</h4>
@@ -419,24 +459,24 @@
 			            교환 및 반품양식을 위반한 경우<br>
 			            택, 라벨을 제거한 경우<br>
 			            교환/반품 불가를 표시한 상품<br>
-			            10대월드에 도착한 상품의 가치가 훼손된 경우<br><br><br><h4>배송안내</h4>
+			            h72에 도착한 상품의 가치가 훼손된 경우<br><br><br><h4>배송안내</h4>
 			            제주도를 포함한 전국 지역 배송요금은 <strong>2,500원</strong>입니다.<br>
-			            10대월드의 <strong>기본 배송일은 1-5일</strong> 까지 입니다.<br>
+			            h72의 <strong>기본 배송일은 1-5일</strong> 까지 입니다.<br>
 			            공장의 생산지연, 거래처의 입고지연 등 물량확보 및 리오더기간으로 인해 상품의 배송이 지연되는 경우 공지 또는 개별연락 드립니다.<br><br><br><h4>A/S관련 및 품질보증기준</h4>
 			            상품의 불량, 또는 원단불량, 치수의 부정확 부당표시 및 소재부적합으로 인한 세탁사고로 인한 부분은 <strong>검수 → 수리 → 교환 → 반품</strong>의 순서로 처리해 드리며,<br>
 			            고객님의 변심에 의한 교환 및 반품은 제품 구입 후 <strong>7일이내</strong>로서 제품에 손상이 없는 경우 처리해 드립니다.<br>
-			            # 10대월드 <strong>Customer Service 1688-8441</strong><br>
+			            # h72 <strong>Customer Service 1688-8441</strong><br>
 			            품질보증기준에 관하여, 전자상거래 등에서의 소비자 보호에 관한 법률로 규정되어 있는 소비자 청약철회 기능범위에 해당하는 경우<br>
 			            교환/반품처리 해드리고 있습니다.<br>
 			            교환 및 반품기준은 구입가격 기준을 원칙으로 하며, 좀 더 자세한 내용은 고객센터의 배송/반품/교환/게시판의 공지사항 안내를 참고해 주세요.<br><br><br><h4>TIP</h4>
-			            이상 10대월드의 운영방침입니다.<br>
+			            이상 h72의 운영방침입니다.<br>
 			            추가 문의사항 및 불편사항이 있으신 경우 고객센터 또는 게시판을 통해 문의해 주시길 부탁드리며,<br>
-			            언제나 고객님의 입장에서 생각하고 행동할 수 있도록 노력하는 10대월드가 되도록 하겠습니다. 즐거운 쇼핑되세요!<br>
+			            언제나 고객님의 입장에서 생각하고 행동할 수 있도록 노력하는 h72가 되도록 하겠습니다. 즐거운 쇼핑되세요!<br>
 			</div>
 	    </div>
 	</div>
 	
-	<div class="xans-element- xans-prddetail ">
+<!-- 	<div class="xans-element- xans-prddetail ">
 		<div class="conttext" style="text-align:center;">
 	        <h3 style="font-family:'Helvetica', sans-serif;">MODEL SIZE</h3> 
 	        <img src="/web/upload/sunny/images/img_modelsize.png" style="padding:5px 0 40px;">
@@ -448,13 +488,19 @@
 	        <img src="/web/upload/sunny/images/topimage_reviewevent_160222.png" style="padding-top:15px;" usemap="#Map" border="0">
 	                &nbsp;<map name="Map"><area shape="rect" coords="398,52,773,488" href="http://www.10world.co.kr/board/product/list.html?board_no=4" target="_blank" onfocus="this.blur();"></map>
 		</div>
-	</div>
+	</div> -->
+
+
 
 	<!-- 상품사용후기 -->
 	<div id="prdReview"> 
 	        <!-- crema.me / 상품 리뷰 / 스크립트를 수정할 경우 연락주세요 (support@crema.me) -->
 	       	<div class="crema-product-reviews crema-applied" >
-	       		<iframe id="" src="" width="100%" scrolling="no" allowtransparency="true" frameborder="0" name="" style="visibility: visible; height: 4380px;"></iframe>
+	       		<!-- <iframe src="http://localhost:8888/h72/detail/selectReview" width="100%" scrolling="no" allowtransparency="true" frameborder="0" name="" style="visibility: visible; height: 4380px;"></iframe> -->
+	       		<iframe name="reviewBoard" src='http://localhost:8888/h72/detail/selectReview' framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0 onload='resizeIframe(this)'>
+	       		<!-- onload="ResizeFrame('reviewBoard');" -->
+	       		</iframe>
+
 	       	</div>
 	        
 	        <div class="board crema-hide crema-applied" style="display: none;">
@@ -579,12 +625,13 @@
 
 	<div style="clear:both;"></div>    
 	    
-	<div id="detail_copy"> 
+<!-- 	<div id="detail_copy"> 
 	    <img src="/web/upload/sunny/image/footer_copyright.png" usemap="#Map3" border="0">
 	    &nbsp;<map name="Map3" id="Map3"><area shape="rect" coords="361,5,452,16" href="http://sunnysideweb.com" target="_blank" onfocus="this.blur();"></map></div>
 	
-	</div>
-	    
+	</div> -->
+	
+<jsp:include page='../main_footer.jsp' flush="false" />
 <!-- END --> 
     
     
@@ -648,7 +695,11 @@ _tcts_m('13829','BIZMP');
 <!-- CMC script -->
 <div id="tgg_common_bottom_script" style="display:none;">
 	<!-- WIDERPLANET HOME SCRIPT START 2016.8.24 -->
-	<div id="wp_tg_cts" style="display:none;"><iframe width="1px" height="1px" src="http://astg.widerplanet.com/delivery/wpc.php?ti=27554&amp;v=1&amp;device=web&amp;ver=2_0_mall&amp;ty=Item&amp;i1=2921&amp;t1=2016ver.%20%EB%8D%B0%EC%9D%BC%EB%A6%AC%20MTM&amp;p1=9900&amp;charset=UTF-8&amp;tc=1476148814098&amp;ref=http%3A%2F%2F10world.co.kr%2F&amp;loc=http%3A%2F%2F10world.co.kr%2Fproduct%2Fdetail.html%3Fproduct_no%3D2921%26cate_no%3D1%26display_group%3D11" title="tgtracking" style="display: none;"></iframe></div>
+	<div id="wp_tg_cts" style="display:none;">
+		<!-- <iframe width="1px" height="1px" src="http://astg.widerplanet.com/delivery/wpc.php?ti=27554&amp;v=1&amp;device=web&amp;ver=2_0_mall&amp;ty=Item&amp;i1=2921&amp;t1=2016ver.%20%EB%8D%B0%EC%9D%BC%EB%A6%AC%20MTM&amp;p1=9900&amp;charset=UTF-8&amp;tc=1476148814098&amp;ref=http%3A%2F%2F10world.co.kr%2F&amp;loc=http%3A%2F%2F10world.co.kr%2Fproduct%2Fdetail.html%3Fproduct_no%3D2921%26cate_no%3D1%26display_group%3D11" title="tgtracking" style="display: none;">
+		</iframe> -->
+	</div>
+	
 	<script type="text/javascript">
 	var wp_conf = 'ti=27554&v=1&device=web';
 	</script>
@@ -726,9 +777,13 @@ _tcts_m('13829','BIZMP');
 		$('.xans-srlite-display > .srlite-remote').hide();
 		});
 	</script>
-	<iframe src="/exec/front/Eclog/main/?product_no=2921&amp;cate_no=1&amp;isplay_group=11&amp;rloc=http%3A//10world.co.kr/product/detail.html%3Fproduct_no%3D2921%26cate_no%3D1%26display_group%3D11&amp;rref=http%3A//10world.co.kr/&amp;udim=1600*900&amp;rserv=eclog2-066.cafe24.com&amp;cid=CID49a94a3e21d5d4b92f5ab5572b7d3f70" id="log_realtime" style="display: none;"></iframe><script src="http://eclog2-066.cafe24.com/weblog_ubp.html?uid=jjukbbang1&amp;udim=1600*900&amp;uref=http://10world.co.kr/&amp;uname=jjukbbang1&amp;url=http://10world.co.kr/product/detail.html?product_no=2921&amp;cate_no=1&amp;display_group=11&amp;r_ref=http://10world.co.kr/&amp;t=1476148814168"></script><script type="text/javascript" src="http://eclog2-066.cafe24.com/weblog.js?uid=jjukbbang1&amp;uname=jjukbbang1&amp;r_ref=http://10world.co.kr/&amp;t=1476148814168" id="log_script"></script><div id="modalBackpanel"></div><div id="modalContainer">
-    <iframe id="modalContent" scroll="0" scrolling="no" frameborder="0"></iframe>
-</div>
+	<!-- <iframe src="/exec/front/Eclog/main/?product_no=2921&amp;cate_no=1&amp;isplay_group=11&amp;rloc=http%3A//10world.co.kr/product/detail.html%3Fproduct_no%3D2921%26cate_no%3D1%26display_group%3D11&amp;rref=http%3A//10world.co.kr/&amp;udim=1600*900&amp;rserv=eclog2-066.cafe24.com&amp;cid=CID49a94a3e21d5d4b92f5ab5572b7d3f70" id="log_realtime" style="display: none;"></iframe> -->
+	
+	<script src="http://eclog2-066.cafe24.com/weblog_ubp.html?uid=jjukbbang1&amp;udim=1600*900&amp;uref=http://10world.co.kr/&amp;uname=jjukbbang1&amp;url=http://10world.co.kr/product/detail.html?product_no=2921&amp;cate_no=1&amp;display_group=11&amp;r_ref=http://10world.co.kr/&amp;t=1476148814168"></script><script type="text/javascript" src="http://eclog2-066.cafe24.com/weblog.js?uid=jjukbbang1&amp;uname=jjukbbang1&amp;r_ref=http://10world.co.kr/&amp;t=1476148814168" id="log_script"></script>
+	<div id="modalBackpanel"></div>
+	<div id="modalContainer">
+	    <!-- <iframe id="modalContent" scroll="0" scrolling="no" frameborder="0"></iframe> -->
+	</div>
 
 
 
