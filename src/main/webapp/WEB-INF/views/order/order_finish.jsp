@@ -37,11 +37,9 @@ padding-bottom: 30px;
 span.total_payment {
     font-size: 14px;
 }
-
 .main_line2 .main_cate #main_cateIdx1 {
     margin-left: 0px;
 }
-
 
 </style>
 </head>

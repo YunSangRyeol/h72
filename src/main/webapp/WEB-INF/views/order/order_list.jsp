@@ -165,8 +165,11 @@ function openTab(evt, tabname) {
 								<td rowspan="2" class="number ">2016-10-23
 									<p>
 										<a
-											href="detail.html?order_id=20161023-0000828&amp;page=1&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25"
-											class="line">[20161023-0000828]</a>
+											href="<c:url value="/order/order_detail"/>"
+											class="line">[20161023-0000828]</a><br>
+										<!-- <a href="#none" class="displaynone" onclick="OrderHistory.orderCancel('20161023-0000828')">
+										<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_order_cancel.gif" alt="주문취소"></a>	 -->
+										<p class="order_cancle">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p>
 									</p>
 								</td>
 								<td class="thumb"><a
@@ -180,7 +183,7 @@ function openTab(evt, tabname) {
 								<td class="quantity">2</td>
 								<td class="price"><strong>41,800원</strong></td>
 								<td class="state">
-									<p>입금전취소</p>
+									<p>입금전</p>
 								</td>
 								<td class="service">
 									<p class="">-</p>
@@ -240,7 +243,7 @@ function openTab(evt, tabname) {
 								<td rowspan="2" class="number ">2016-10-23
 									<p>
 										<a
-											href="detail.html?order_id=20161023-0000828&amp;page=1&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25"
+											href="<c:url value="/order/order_detail"/>"
 											class="line">[20161023-0000828]</a>
 									</p>
 								</td>
@@ -255,7 +258,7 @@ function openTab(evt, tabname) {
 								<td class="quantity">2</td>
 								<td class="price"><strong>41,800원</strong></td>
 								<td class="state">
-									<p>입금전취소</p>
+									<p>입금전</p>
 								</td>
 								<td class="service">
 									<p class="">-</p>
