@@ -3,19 +3,19 @@ package com.project.h72.member.vo;
 import java.sql.Date;
 
 public class Member {
-	private String userId;
-	private String levelCode;
-	private String userPass;
-	private String nickName;
-	private Date birthDate;
+	private String userid;
+	private String levelcode;
+	private String userpass;
+	private String nickname;
+	private Date birthdate;
 	private String eamil;
 	private String phone;
-	private String postNum;
+	private String postnum;
 	private String address;
-	private String addressDetail;
+	private String addressdetail;
 	private int point;
-	private Date enrollDate;
-	private int totalPrice;
+	private Date enrolldate;
+	private int totalprice;
 
 	public Member() {
 		super();
@@ -24,108 +24,108 @@ public class Member {
 	// 로그인
 	public Member(String userid, String userpass) {
 		super();
-		this.userId = userid;
-		this.userPass = userpass;
+		this.userid = userid;
+		this.userpass = userpass;
 	}
 
 	// 아이디찾기
 	public Member(String nickname, Date birthdate) {
 		super();
-		this.nickName = nickname;
-		this.birthDate = birthdate;
+		this.nickname = nickname;
+		this.birthdate = birthdate;
 	}
 	// 비밀번호 찾기
 
 	public Member(String userid, String nickname, String eamil) {
 		super();
-		this.userId = userid;
-		this.nickName = nickname;
+		this.userid = userid;
+		this.nickname = nickname;
 		this.eamil = eamil;
 	}
 
 	// 개인정보 변경
 	public Member(String userpass, String eamil, String phone, String postnum, String address, String addressDetail) {
 		super();
-		this.userPass = userpass;
+		this.userpass = userpass;
 		this.eamil = eamil;
 		this.phone = phone;
-		this.postNum = postnum;
+		this.postnum = postnum;
 		this.address = address;
-		this.addressDetail = addressDetail;
+		this.addressdetail = addressDetail;
 	}
 
 	// 회원가입
 	public Member(String userid, String userpass, String nickname, Date birthdate, String eamil, String phone,
 			String postnum, String address, String addressDetail) {
 		super();
-		this.userId = userid;
-		this.userPass = userpass;
-		this.nickName = nickname;
-		this.birthDate = birthdate;
+		this.userid = userid;
+		this.userpass = userpass;
+		this.nickname = nickname;
+		this.birthdate = birthdate;
 		this.eamil = eamil;
 		this.phone = phone;
-		this.postNum = postnum;
+		this.postnum = postnum;
 		this.address = address;
-		this.addressDetail = addressDetail;
+		this.addressdetail = addressDetail;
 	}
 
 	public Member(String userid, String levelcode, String userpass, String nickname, Date birthdate, String eamil,
 			String phone, String postnum, String address, String addressDetail, int point, Date enrollDate,
 			int totalprice) {
 		super();
-		this.userId = userid;
-		this.levelCode = levelcode;
-		this.userPass = userpass;
-		this.nickName = nickname;
-		this.birthDate = birthdate;
+		this.userid = userid;
+		this.levelcode = levelcode;
+		this.userpass = userpass;
+		this.nickname = nickname;
+		this.birthdate = birthdate;
 		this.eamil = eamil;
 		this.phone = phone;
-		this.postNum = postnum;
+		this.postnum = postnum;
 		this.address = address;
-		this.addressDetail = addressDetail;
+		this.addressdetail = addressDetail;
 		this.point = point;
-		this.enrollDate = enrollDate;
-		this.totalPrice = totalprice;
+		this.enrolldate = enrollDate;
+		this.totalprice = totalprice;
 	}
 
 	public String getUserid() {
-		return userId;
+		return userid;
 	}
 
 	public void setUserid(String userid) {
-		this.userId = userid;
+		this.userid = userid;
 	}
 
 	public String getLevelcode() {
-		return levelCode;
+		return levelcode;
 	}
 
 	public void setLevelcode(String levelcode) {
-		this.levelCode = levelcode;
+		this.levelcode = levelcode;
 	}
 
 	public String getUserpass() {
-		return userPass;
+		return userpass;
 	}
 
 	public void setUserpass(String userpass) {
-		this.userPass = userpass;
+		this.userpass = userpass;
 	}
 
 	public String getNickname() {
-		return nickName;
+		return nickname;
 	}
 
 	public void setNickname(String nickname) {
-		this.nickName = nickname;
+		this.nickname = nickname;
 	}
 
 	public Date getBirthdate() {
-		return birthDate;
+		return birthdate;
 	}
 
 	public void setBirthdate(Date birthdate) {
-		this.birthDate = birthdate;
+		this.birthdate = birthdate;
 	}
 
 	public String getEamil() {
@@ -145,11 +145,11 @@ public class Member {
 	}
 
 	public String getPostnum() {
-		return postNum;
+		return postnum;
 	}
 
 	public void setPostnum(String postnum) {
-		this.postNum = postnum;
+		this.postnum = postnum;
 	}
 
 	public String getAddress() {
@@ -161,11 +161,11 @@ public class Member {
 	}
 
 	public String getAddressDetail() {
-		return addressDetail;
+		return addressdetail;
 	}
 
 	public void setAddressDetail(String addressDetail) {
-		this.addressDetail = addressDetail;
+		this.addressdetail = addressDetail;
 	}
 
 	public int getPoint() {
@@ -177,26 +177,26 @@ public class Member {
 	}
 
 	public Date getEnrollDate() {
-		return enrollDate;
+		return enrolldate;
 	}
 
 	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
+		this.enrolldate = enrollDate;
 	}
 
 	public int getTotalprice() {
-		return totalPrice;
+		return totalprice;
 	}
 
 	public void setTotalprice(int totalprice) {
-		this.totalPrice = totalprice;
+		this.totalprice = totalprice;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [userid=" + userId + ", levelcode=" + levelCode + ", userpass=" + userPass + ", nickname="
-				+ nickName + ", birthdate=" + birthDate + ", eamil=" + eamil + ", phone=" + phone + ", postnum="
-				+ postNum + ", address=" + address + ", addressDetail=" + addressDetail + ", point=" + point
-				+ ", enrollDate=" + enrollDate + ", totalprice=" + totalPrice + "]";
+		return "Member [userid=" + userid + ", levelcode=" + levelcode + ", userpass=" + userpass + ", nickname="
+				+ nickname + ", birthdate=" + birthdate + ", eamil=" + eamil + ", phone=" + phone + ", postnum="
+				+ postnum + ", address=" + address + ", addressDetail=" + addressdetail + ", point=" + point
+				+ ", enrollDate=" + enrolldate + ", totalprice=" + totalprice + "]";
 	}
 }

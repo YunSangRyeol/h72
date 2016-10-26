@@ -6,6 +6,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 	margin: 0 auto;
 	padding: 0;
 	border: none;
+	
 }
 
 @import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
@@ -55,6 +56,7 @@ a {
 .mjoin_form {
 	text-align: left;
 	width: 1250px;
+	
 }
 
 .mjoin_form h3 {
@@ -218,6 +220,9 @@ a {
 }
 
 .mjoin_btnArea {
+	font-size: 13px;
+	color: #fff;
+	font-weight: none;
 	margin-top: 10px;
 	margin-bottom: 70px;
 	background: #000;
@@ -228,14 +233,6 @@ a {
 	text-align:center;
 }
 
-.mjoin_btnArea a {
-	display:block;
-	width:100px;
-	height:50px;
-	font-size: 13px;
-	color: #fff;
-	font-weight: none;
-}
 #mupdate_btnArea{
 	margin-top: 30px;
 	text-align: center;
