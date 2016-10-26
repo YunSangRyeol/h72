@@ -26,7 +26,7 @@
 							<li><a href="<c:url value="logout.do" />">LOGOUT</a></li>
 						</c:if>
 						<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
-						<li><a href="<c:url value="/order/order"/>">ORDER</a></li>
+						<li><a href="<c:url value="/order/order_list"/>">ORDER</a></li>
 					</ul>
 				</div>
 			</div>
