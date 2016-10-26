@@ -1,7 +1,6 @@
 package com.project.h72.admin.controller;
 
 import java.util.Locale;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -36,6 +35,12 @@ public class AdminController {
 	public String memberUpdate(Locale locale, Model model) {
 		
 		return "member/memberUpdate";
+	}
+	
+	@RequestMapping(value = "chart", method = RequestMethod.GET)
+	public String admin(Locale locale, Model model) {
+		
+		return "admin/salesChart";
 	}
 	
 }
