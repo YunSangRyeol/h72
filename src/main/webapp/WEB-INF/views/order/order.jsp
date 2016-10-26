@@ -12,6 +12,11 @@
 	rel="stylesheet">
 
 <title>Order</title>
+<style>
+.main_line2 .main_cate #main_cateIdx1 {
+    margin-left: 0px;
+}
+</style>
 <script>
 $(document).ready(function(){
 	

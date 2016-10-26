@@ -193,8 +193,9 @@ tr {
     width: 92px;
 }
 
-.xans-order-basketpackage .boardList td.thumb img {
+.xans-order-basketpackage .boardList td.thumb .itemImg {
     width: 80px;
+ 
 }
 
 .xans-order-basketpackage .boardList .product {
@@ -374,7 +375,6 @@ strong, b {
     margin: 0 6px 0 10px;
     color: #353535;
     line-height: 24px;
-}
 
 
 /* 상품리스트 - 총 주문 금액 */

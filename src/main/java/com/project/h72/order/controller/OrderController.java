@@ -14,11 +14,17 @@ public class OrderController {
 		return "order/order";
 	}
 	
+	@RequestMapping(value = "order/order_finish", method = RequestMethod.GET)
+	public String orderFinishForm(Model model) {
+		
+		return "order/order_finish";
+	}
 	
-	@RequestMapping(value = "/orderview", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "order/order_list", method = RequestMethod.GET)
 	public String orderListView(Model model) {
 		
-		return null;
+		return "order/order_list";
 	}
 	
 	@RequestMapping(value = "/orderdetail", method = RequestMethod.GET)
