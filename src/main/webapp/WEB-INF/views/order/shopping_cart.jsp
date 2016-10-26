@@ -85,14 +85,16 @@
 										id="quantity_id_0" name="quantity_name_0" size="2" value="1"
 										type="text"><a href="javascript:;"
 										onclick="Basket.addQuantityShortcut('quantity_id_0', 0);"><img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_up.gif"
+											src="/h72/resources/image/btn_quantity_up.gif"
 											alt="증가" class="QuantityUp"></a><a href="javascript:;"
 										onclick="Basket.outQuantityShortcut('quantity_id_0', 0);"><img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_down.gif"
+											src="/h72/resources/image/btn_quantity_down.gif"
 											alt="감소" class="QuantityDown"></a></span> <a href="javascript:;"
-									onclick="Basket.modifyQuantity()"><img
+									onclick="Basket.modifyQuantity()"><!-- <img
 										src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_modify.gif"
-										alt="변경"></a></td>
+										alt="변경"> -->
+										<span class="QuantityModify">변경</span>
+										</a></td>
 								<td class="mileage">-</td>
 								<td class="delivery">기본배송
 									<div class="displaynone">(해외배송가능)</div>

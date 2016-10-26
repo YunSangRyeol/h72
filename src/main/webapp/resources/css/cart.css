@@ -11,8 +11,6 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 	border: none;
 }
 
-@import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
-
 
 body {
     min-width: 1200px;
@@ -121,7 +119,6 @@ a {
 
 input, select, textarea {
     font-size: 100%;
-    font-family: "돋움",Dotum;
     color: #353535;
     vertical-align: middle;
 }
@@ -200,7 +197,6 @@ tr {
 
 .xans-order-basketpackage .boardList .product {
     width: auto;
-    font-family: 'Lato',sans-serif;
 }
 
 .xans-order-basketpackage .boardList td.product {
@@ -210,7 +206,6 @@ tr {
 
 .xans-order-basketpackage .boardList .price {
     width: 95px;
-    font-family: 'Lato',sans-serif;
 }
 
 .xans-order-basketpackage .boardList .quantity {
@@ -221,11 +216,14 @@ tr {
     position: relative;
     display: inline-block;
     width: 27px;
-    margin: 0 1px 4px 0;
+    margin: 0 1px 6px 0;
     padding: 0 21px 0 0;
     border: 1px solid #d4d8d9;
     border-radius: 2px;
 }
+
+
+
 
 .xans-order-basketpackage .boardList span.quantity input {
     width: 22px;
@@ -245,6 +243,15 @@ tr {
     bottom: 0;
 }
 
+.xans-order-basketpackage .boardList .QuantityModify{
+	    color: #353535;
+    background-color: #fff;
+    padding: 2px 14px;
+    border: 1px solid #d1d6d6;
+    border-radius: 3px;
+    margin-top: 14px;
+}
+
 .xans-order-basketpackage .boardList .mileage {
     width: 85px;
 }
@@ -262,7 +269,6 @@ tr {
 
 .xans-order-basketpackage .boardList .total {
     width: 90px;
-    font-family: 'Lato',sans-serif;
 }
 
 .xans-order-basketpackage .boardList .button {
@@ -284,7 +290,6 @@ tr {
 .xans-order-basketpackage .boardList tfoot td .total {
     margin: 0 0 0 15px;
     color: #000;
-    font-family: 'Lato',sans-serif;
 }
 
 .xans-order-basketpackage .boardList tfoot td .total span {
@@ -296,7 +301,8 @@ tr {
 .xans-order-basketpackage .boardList td.product div.option, .xans-order-basketpackage .boardList td.product ul.option > li {
     margin: 9px 0 0;
     color: #757575;
-    line-height: 16px;
+    line-height: 10px;
+    list-style: none;
 }
 
 /* 상품리스트 - 총 금액 */
@@ -323,7 +329,6 @@ tr {
     line-height: 58px;
     text-align: center;
     font-size: 23px;
-    font-family: 'Lato',sans-serif;
 }
 
 .xans-order-basketpackage .xans-order-totalsummary td .box {
