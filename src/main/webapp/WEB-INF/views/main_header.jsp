@@ -70,8 +70,8 @@
 							src="/h72/resources/image/topmenu_board_title.png" alt="게시판"
 							class="main_title"> &nbsp;
 							<ul>
-								<li><a href="<c:url value="/boader/notice_list"/>">Q&A</a></li>
-								<li><a href="<c:url value="/boader/qna_list"/>">공지사항</a></li>
+								<li><a href="<c:url value="/boader/notice_list"/>">공지사항</a></li>
+								<li><a href="<c:url value="/boader/qna_list"/>">Q&A</a></li>
 								<li><a href="#">생존키트란?</a></li>
 							</ul></li>
 					</ul>

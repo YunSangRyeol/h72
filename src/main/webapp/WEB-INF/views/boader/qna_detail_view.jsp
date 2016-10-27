@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus¢ç">
+  <meta name="Generator" content="EditPlusÂ®">
   <meta name="Author" content="">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
@@ -12,18 +13,21 @@
   <link href="css/notice.css" rel="stylesheet">
  </head>
  <body>
+ 	<div class="content_wrap">
+		<jsp:include page="/WEB-INF/views/main_header.jsp" />
+	</div><br><br><br>
   <div id="sunny_in">
     
 <div class="xans-element- xans-board xans-board-readpackage-1002 xans-board-readpackage xans-board-1002 "><div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 "><div class="title">
             <h2 style="font-family:'Helvetica', sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase;"><span style="font-family:'Helvetica', sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase;">NOTICE</span>
 <br> 
 
-<a href="/board/free/list.html?board_no=1" class="active">°øÁö»çÇ×</a>
+<a href="/board/free/list.html?board_no=1" class="active">ê³µì§€ì‚¬í•­</a>
 <a href="/board/product/list.html?board_no=6">Q&amp;A</a>
 
         </div>
 </div>
-<!-- ±Û ³»¿ë-->
+<!-- ê¸€ ë‚´ìš©-->
 <form id="BoardDelForm" name="" action="/exec/front/Board/del/1" method="post" enctype="multipart/form-data">
 <input id="no" name="no" value="620208" type="hidden">
 <input id="bulletin_no" name="bulletin_no" value="403413" type="hidden">
@@ -38,21 +42,21 @@
         -->
 <div class="boardView ">
             <table border="1" summary="">
-<caption>°Ô½ÃÆÇ »ó¼¼</caption>
+<caption>ê²Œì‹œíŒ ìƒì„¸</caption>
             <tbody>
 <tr>
-<th scope="row">Á¦¸ñ</th>
-                    <td>2016 Ãß¼®¿¬ÈÞ ÈÞ¹«¾È³»</td>
+<th scope="row">ì œëª©</th>
+                    <td>2016 ì¶”ì„ì—°íœ´ íœ´ë¬´ì•ˆë‚´</td>
                 </tr>
 <tr>
-<th scope="row">ÀÛ¼ºÀÚ</th>
+<th scope="row">ìž‘ì„±ìž</th>
                     <td><img src="/web/upload/sunny/images/icon_10world.png"> <span class="displaynone">(ip:)</span> </td>
                 </tr>
 <tr class="etcArea">
 <td colspan="2">
                         <ul>
 <li class="date ">
-                                <strong class="th">ÀÛ¼ºÀÏ</strong> <span class="td">2016-09-09</span>
+                                <strong class="th">ìž‘ì„±ì¼</strong> <span class="td">2016-09-09</span>
                             </li>
                            
                         </ul>
@@ -61,60 +65,60 @@
 
 <tr class="view">
 <td colspan="2">
-                        <div class="detail" style="text-align:left; line-height:1.8; padding:40px;"><p align="center"><strong><ins><br></ins></strong></p><p align="center"><strong><ins><br></ins></strong></p><p align="center"><strong><ins>Ãß¼®¿¬ÈÞ ÈÞ¹«¾È³»</ins></strong></p><p align="center"><br></p><strong><p align="center"><br></p></strong><p align="center">2016³â 9¿ù 14¿ù(¼ö) - 16ÀÏ(±Ý)Àº Ãß¼® ¿¬ÈÞ±â°£ÀÔ´Ï´Ù</p><p align="center">&nbsp;</p><p align="center">¿¬ÈÞ±â°£µ¿¾È Ä¿¸ÕÀ¯´ÏÅ©ÀÇ »óÇ°ÁÖ¹® ¹× ÀÔ±ÝÈ®ÀÎÀº Á¤»óÀûÀ¸·Î Ã³¸®µÇ³ª<br>°í°´»ó´ã ¹× ¹è¼ÛÀº 19ÀÏºÎÅÍ Á¤»óÀûÀ¸·Î ÁøÇàµË´Ï´Ù</p><p align="center"><br></p><p align="center">¿¬ÈÞ Àü ¸¶Áö¸· »óÇ° Ãâ°íÀÏÀº 9¿ù 12ÀÏ(¿ù)ÀÌ¸ç<br>¿¬ÈÞ Àü/ÈÄ·Î Àü»óÇ° ÁÖ¹®ÆøÁÖ°¡ ¿¹»óµÇ¿À´Ï<br>¿øÈ°ÇÑ »óÇ°¼ö·ÉÀ» ¿øÇÏ½Ã´Â °í°´´Ô²²¼­´Â<br>¹Ì¸® ¿©À¯ÀÖ´Â ÁÖ¹®, ÀÔ°íÁö¿¬ °Ô½ÃÆÇ È®ÀÎÀ» ºÎÅ¹µå¸³´Ï´Ù</p><p align="center"><br></p><p align="center">°¨»çÇÕ´Ï´Ù!</p><p align="center"><br></p><p align="center"><br></p><p><br></p></div>
+                        <div class="detail" style="text-align:left; line-height:1.8; padding:40px;"><p align="center"><strong><ins><br></ins></strong></p><p align="center"><strong><ins><br></ins></strong></p><p align="center"><strong><ins>ì¶”ì„ì—°íœ´ íœ´ë¬´ì•ˆë‚´</ins></strong></p><p align="center"><br></p><strong><p align="center"><br></p></strong><p align="center">2016ë…„ 9ì›” 14ì›”(ìˆ˜) - 16ì¼(ê¸ˆ)ì€ ì¶”ì„ ì—°íœ´ê¸°ê°„ìž…ë‹ˆë‹¤</p><p align="center">&nbsp;</p><p align="center">ì—°íœ´ê¸°ê°„ë™ì•ˆ ì»¤ë¨¼ìœ ë‹ˆí¬ì˜ ìƒí’ˆì£¼ë¬¸ ë° ìž…ê¸ˆí™•ì¸ì€ ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë˜ë‚˜<br>ê³ ê°ìƒë‹´ ë° ë°°ì†¡ì€ 19ì¼ë¶€í„° ì •ìƒì ìœ¼ë¡œ ì§„í–‰ë©ë‹ˆë‹¤</p><p align="center"><br></p><p align="center">ì—°íœ´ ì „ ë§ˆì§€ë§‰ ìƒí’ˆ ì¶œê³ ì¼ì€ 9ì›” 12ì¼(ì›”)ì´ë©°<br>ì—°íœ´ ì „/í›„ë¡œ ì „ìƒí’ˆ ì£¼ë¬¸í­ì£¼ê°€ ì˜ˆìƒë˜ì˜¤ë‹ˆ<br>ì›í™œí•œ ìƒí’ˆìˆ˜ë ¹ì„ ì›í•˜ì‹œëŠ” ê³ ê°ë‹˜ê»˜ì„œëŠ”<br>ë¯¸ë¦¬ ì—¬ìœ ìžˆëŠ” ì£¼ë¬¸, ìž…ê³ ì§€ì—° ê²Œì‹œíŒ í™•ì¸ì„ ë¶€íƒë“œë¦½ë‹ˆë‹¤</p><p align="center"><br></p><p align="center">ê°ì‚¬í•©ë‹ˆë‹¤!</p><p align="center"><br></p><p align="center"><br></p><p><br></p></div>
                     </td>
                 </tr>
 <tr class="displaynone">
-<th scope="row">ºñ¹Ð¹øÈ£</th>
-                    <td><input id="password" name="password" fw-filter="" fw-label="ºñ¹Ð¹øÈ£" fw-msg="" onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }" value="" type="password"> <span class="info"> <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/ico_warning.gif" alt=""> ¼öÁ¤ ¹× »èÁ¦ÇÏ·Á¸é ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.</span>
+<th scope="row">ë¹„ë°€ë²ˆí˜¸</th>
+                    <td><input id="password" name="password" fw-filter="" fw-label="ë¹„ë°€ë²ˆí˜¸" fw-msg="" onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }" value="" type="password"> <span class="info"> <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/ico_warning.gif" alt=""> ìˆ˜ì • ë° ì‚­ì œí•˜ë ¤ë©´ ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”.</span>
 </td>
                 </tr>
 </tbody>
 </table>
 </div>
 <div class="btnArea ">
-            <span class="left"><a href="/board/free/list.html?board_act=list&amp;board_no=1" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">¸ñ·Ï</a></span>
-            <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','1');" class="displaynone" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">»èÁ¦</a>
-            <a href="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1" class="displaynone" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">¼öÁ¤</a>
-            <a href="/board/free/reply.html" class="displaynone" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">´äº¯</a>
+            <span class="left"><a href="/board/free/list.html?board_act=list&amp;board_no=1" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">ëª©ë¡</a></span>
+            <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','1');" class="displaynone" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">ì‚­ì œ</a>
+            <a href="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1" class="displaynone" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">ìˆ˜ì •</a>
+            <a href="/board/free/reply.html" class="displaynone" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">ë‹µë³€</a>
         </div>
 </div>
 </form></div>
 
-<div class="xans-element- xans-board xans-board-commentpackage-1002 xans-board-commentpackage xans-board-1002 "><!-- ÄÚ¸àÆ® ¸®½ºÆ® -->
-<!-- ÄÚ¸àÆ® ÆäÀÌÂ¡ -->
-<!-- ´ñ±Û ¼öÁ¤ -->
+<div class="xans-element- xans-board xans-board-commentpackage-1002 xans-board-commentpackage xans-board-1002 "><!-- ì½”ë©˜íŠ¸ ë¦¬ìŠ¤íŠ¸ -->
+<!-- ì½”ë©˜íŠ¸ íŽ˜ì´ì§• -->
+<!-- ëŒ“ê¸€ ìˆ˜ì • -->
 <form id="commentForm" name="" action="/exec/front/Board/CommentUpdate/1" method="post" enctype="multipart/form-data" style="display: none;">
 <input id="board_no" name="board_no" value="1" type="hidden">
 <input id="no" name="no" value="620208" type="hidden">
 <input id="comment_no" name="comment_no" value="" type="hidden">
 <input id="member_id" name="member_id" value="" type="hidden"><div class="xans-element- xans-board xans-board-commentform-1002 xans-board-commentform xans-board-1002 "><fieldset>
-<legend>´ñ±Û ¼öÁ¤</legend>
-            <p>password <input id="comment_password" name="comment_password" fw-filter="isFill" fw-label="´ñ±Ûºñ¹Ð¹øÈ£" fw-msg="" value="" type="password"> <span class="secret displaynone"><label> ºñ¹Ð´ñ±Û</label></span></p>
+<legend>ëŒ“ê¸€ ìˆ˜ì •</legend>
+            <p>password <input id="comment_password" name="comment_password" fw-filter="isFill" fw-label="ëŒ“ê¸€ë¹„ë°€ë²ˆí˜¸" fw-msg="" value="" type="password"> <span class="secret displaynone"><label> ë¹„ë°€ëŒ“ê¸€</label></span></p>
             <div class="view">
-                <textarea id="comment_modify" name="comment_modify" fw-filter="isFill" fw-label="´ñ±Û³»¿ë" fw-msg=""></textarea>                <span class="submit">
-                    <a href="#none" onclick="BOARD_COMMENT.comment_update_ok('commentForm');" style="display:inline-block; padding:17px 27px 17px 27px; background:#fff; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">¼öÁ¤</a>
-                    <a href="#none" onclick="BOARD_COMMENT.comment_cancel_ok('commentForm');" style="display:inline-block; padding:17px 27px 17px 27px; background:#fff; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">Ãë¼Ò</a>
+                <textarea id="comment_modify" name="comment_modify" fw-filter="isFill" fw-label="ëŒ“ê¸€ë‚´ìš©" fw-msg=""></textarea>                <span class="submit">
+                    <a href="#none" onclick="BOARD_COMMENT.comment_update_ok('commentForm');" style="display:inline-block; padding:17px 27px 17px 27px; background:#fff; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">ìˆ˜ì •</a>
+                    <a href="#none" onclick="BOARD_COMMENT.comment_cancel_ok('commentForm');" style="display:inline-block; padding:17px 27px 17px 27px; background:#fff; border:1px solid #e7e7e7; color:#000; letter-spacing:1px; font-size:11px;">ì·¨ì†Œ</a>
                 </span>
             </div>
             <p class="displaynone"> /  byte</p>
         </fieldset>
 </div>
-</form><!-- ºñ¹Ð±Û È®ÀÎ -->
+</form><!-- ë¹„ë°€ê¸€ í™•ì¸ -->
 <form id="commentSecretForm" name="" action="/exec/front/Board/CommentSecret/1" method="post" enctype="multipart/form-data" style="display: none;">
 <input id="board_no" name="board_no" value="1" type="hidden">
 <input id="comment_no" name="comment_no" value="" type="hidden">
-<input id="pass_check" name="pass_check" value="F" type="hidden"><div class="xans-element- xans-board xans-board-commentformsecret-1002 xans-board-commentformsecret xans-board-1002 "><p>ºñ¹Ð¹øÈ£ : <input id="secure_password" name="secure_password" fw-filter="isFill" fw-label="´ñ±Ûºñ¹Ð¹øÈ£" fw-msg="" value="" type="password">            <a href="#none" onclick="BOARD_COMMENT.show_secret_comment('commentSecretForm');"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_ico_submit.gif" alt="È®ÀÎ"></a>
-            <a href="#none" onclick="BOARD_COMMENT.hide_secret_comment_form('commentSecretForm');"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_ico_cancel.gif" alt="Ãë¼Ò"></a>
+<input id="pass_check" name="pass_check" value="F" type="hidden"><div class="xans-element- xans-board xans-board-commentformsecret-1002 xans-board-commentformsecret xans-board-1002 "><p>ë¹„ë°€ë²ˆí˜¸ : <input id="secure_password" name="secure_password" fw-filter="isFill" fw-label="ëŒ“ê¸€ë¹„ë°€ë²ˆí˜¸" fw-msg="" value="" type="password">            <a href="#none" onclick="BOARD_COMMENT.show_secret_comment('commentSecretForm');"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_ico_submit.gif" alt="í™•ì¸"></a>
+            <a href="#none" onclick="BOARD_COMMENT.hide_secret_comment_form('commentSecretForm');"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_ico_cancel.gif" alt="ì·¨ì†Œ"></a>
         </p>
 </div>
-</form><!-- ´ñ±Û ¾²±â -->
+</form><!-- ëŒ“ê¸€ ì“°ê¸° -->
 
-<!-- ´ñ±ÛÀÇ ´ñ±Û ¾²±â -->
+<!-- ëŒ“ê¸€ì˜ ëŒ“ê¸€ ì“°ê¸° -->
 </div>
  
-<!-- °ü¸®ÀÚ Àü¿ë ¸Þ´º -->
-<!-- //°ü¸®ÀÚ Àü¿ë ¸Þ´º -->
+<!-- ê´€ë¦¬ìž ì „ìš© ë©”ë‰´ -->
+<!-- //ê´€ë¦¬ìž ì „ìš© ë©”ë‰´ -->
 
     </div>
  </body>

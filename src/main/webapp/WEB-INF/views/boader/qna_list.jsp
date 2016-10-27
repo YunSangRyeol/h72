@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,9 @@
 <link href="/h72/resources/css/notice.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+	<div class="content_wrap">
+		<jsp:include page="/WEB-INF/views/main_header.jsp" />
+	</div><br><br><br>
 <div id="sunny_in">
     
 <div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 "><div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 "><div class="title">
