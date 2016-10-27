@@ -3,8 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/h72/resources/css/detail.css" />
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <!-- <script type="text/javascript">
 function ResizeFrame(name)
 {
@@ -30,6 +32,8 @@ function ResizeFrame(name)
 }
 </script> -->
 <script>
+
+  // iframe 높이 자동맞춤
   function resizeIframe(obj) {
     obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
   }
@@ -52,87 +56,7 @@ function ResizeFrame(name)
     
     
 <div id="detail_wrap">
-	<!-- 
-	<div id="sunny_header">
-    	<div class="line1">
-      		<div id="sunny_in">
-        		<div class="left"><a href="/"><img src="/web/upload/sunny/image/logo.png"></a></div>
-        		<div class="right"> 
-          			<div class="xans-element- xans-layout xans-layout-statelogoff beforelogin ">
-          			<ul>
-					<li><a href="/link/bookmark.html" target="_blank" onclick="winPop(this.href); return false;"><img src="/web/upload/sunny/image/topmenu_bookmark.png"></a></li>
-                	<li><a href="/product/recent_view_product.html"><img src="/web/upload/sunny/image/topmenu_todayview.png"></a></li>
-	                <li><a href="/member/login.html" class="log"><img src="/web/upload/sunny/image/topmenu_login.png"></a></li>
-	                <li><a href="/member/join.html"><img src="/web/upload/sunny/image/topmenu_join.png"></a></li>
-	                <li><a href="/order/basket.html"><img src="/web/upload/sunny/image/topmenu_cart1.png"><span style="color:#fff; font-size:10px; font-faily:'Helvetica', sans-serif; font-size:10px;" class="xans-element- xans-layout xans-layout-orderbasketcount "> 0</span>
-					<img src="/web/upload/sunny/image/topmenu_cart2.png"></a></li>
-                	<li><a href="/myshop/order/list.html"><img src="/web/upload/sunny/image/topmenu_order.png"></a></li>
-            		</ul>
-					</div>
-				</div>
-      		</div>  
-    	</div>
-    	<div class="line2">
-      		<div id="sunny_in">
-        		<div class="cate">
-            	<ul>
-            	<li><a href="/product/list_best.html?cate_no=173"><img src="/web/upload/sunny/image/cate1.png" onmouseover="this.src='/web/upload/sunny/image/cate1_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate1.png'"></a></li>
-                <li><a href="/product/list_new.html?cate_no=169"><img src="/web/upload/sunny/image/cate2.png" onmouseover="this.src='/web/upload/sunny/image/cate2_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate2.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=246"><img src="/web/upload/sunny/image/cate3.png" onmouseover="this.src='/web/upload/sunny/image/cate3_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate3.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=26"><img src="/web/upload/sunny/image/cate4.png" onmouseover="this.src='/web/upload/sunny/image/cate4_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate4.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=25"><img src="/web/upload/sunny/image/cate5.png" onmouseover="this.src='/web/upload/sunny/image/cate5_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate5.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=104"><img src="/web/upload/sunny/image/cate6.png" onmouseover="this.src='/web/upload/sunny/image/cate6_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate6.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=27"><img src="/web/upload/sunny/image/cate7.png" onmouseover="this.src='/web/upload/sunny/image/cate7_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate7.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=92"><img src="/web/upload/sunny/image/cate8.png" onmouseover="this.src='/web/upload/sunny/image/cate8_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate8.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=28"><img src="/web/upload/sunny/image/cate9.png" onmouseover="this.src='/web/upload/sunny/image/cate9_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate9.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=29"><img src="/web/upload/sunny/image/cate10.png" onmouseover="this.src='/web/upload/sunny/image/cate10_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate10.png'"></a></li>
-                <li><a href="/product/list.html?cate_no=32"><img src="/web/upload/sunny/image/cate11.png" onmouseover="this.src='/web/upload/sunny/image/cate11_h.png'" onmouseout="this.src='/web/upload/sunny/image/cate11.png'"></a></li>
-            	</ul>
-            	</div>
-            	
-            	
-        		<div class="search" style="margin-left:30px;">
-            	<form id="searchBarForm" name="" action="/product/search.html" method="get" enctype="multipart/form-data">
-				<input id="banner_action" name="banner_action" value="" type="hidden">
-					<div class="xans-element- xans-layout xans-layout-searchheader ">
-	 -->
-					<!--
-		                $product_page=/product/detail.html
-		                $category_page=/product/list.html
-		            -->
-	 <!-- 
-					<fieldset>
-					<legend>검색</legend>
-	                <input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text"><img src="/web/upload/sunny/image/topmenu_search.png" alt="검색" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;" style="float:right; margin-right:5px; cursor:pointer;">
-	                &nbsp;</fieldset>
-					</div>
-				</form>            
-        		</div>
-        		
-        		
-		        <div class="board">
-				<ul>
-				<li class="has-sub"><img src="/web/upload/sunny/image/topmenu_board_title.png" alt="게시판" class="title">
-				    &nbsp;
-					<ul><li style="padding-top:10px;"><a href="/board/product/list.html?board_no=6"><img src="/web/upload/sunny/image/topmenu_board01.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board01_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board01.png'"></a></li>
-						<li><a href="/board/product/list.html?board_no=4"><img src="/web/upload/sunny/image/topmenu_board02.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board02_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board02.png'"></a></li>
-						<li><a href="/board/product/list.html?board_no=16"><img src="/web/upload/sunny/image/topmenu_board03.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board03_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board03.png'"></a></li>
-						<li><a href="/board/gallery/list.html?board_no=35"><img src="/web/upload/sunny/image/topmenu_board04.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board04_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board04.png'"></a></li>
-						<li style="border-top:1px solid #e7e7e7; margin-top:10px; padding-top:10px;"><a href="/board/free/list.html?board_no=1"><img src="/web/upload/sunny/image/topmenu_board05.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board05_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board05.png'"></a></li>
-						<li><a href="/board/free/list.html?board_no=3"><img src="/web/upload/sunny/image/topmenu_board06.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board06_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board06.png'"></a></li>
-						<li><a href="/board/free/list.html?board_no=29"><img src="/web/upload/sunny/image/topmenu_board07.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board07_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board07.png'"></a></li>
-						<li style="border-top:1px solid #e7e7e7; margin-top:10px; padding-top:10px;"><a href="/attend/stamp.html"><img src="/web/upload/sunny/image/topmenu_board08.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board08_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board08.png'"></a></li>
-						<li><a href="https://www.instagram.com/10world_shop/" target="_blank"><img src="/web/upload/sunny/image/topmenu_board09.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board09_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board09.png'"></a></li>
-						<li><a href="https://www.facebook.com/10worldcokr" target="_blank"><img src="/web/upload/sunny/image/topmenu_board10.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board10_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board10.png'"></a></li>
-						<li class="last" style="padding-bottom:10px;"><a href="https://story.kakao.com/ch/10world" target="_blank"><img src="/web/upload/sunny/image/topmenu_board11.png" onmouseover="this.src='/web/upload/sunny/image/topmenu_board11_h.png'" onmouseout="this.src='/web/upload/sunny/image/topmenu_board11.png'"></a></li>
-					</ul>
-				</li>  
-				</ul>
-				</div>
-      		</div>  
-   		</div> 
-	</div>
-	 -->
+
 
     
 	<div id="detail_contents">
@@ -160,7 +84,7 @@ function ResizeFrame(name)
         	<!-- 이미지 영역 -->
         			<div class="xans-element- xans-product xans-product-image imgArea ">
         				<div class="keyImg"> 
-                		<img src="http://10world.co.kr/web/product/medium/201610/2921_shop1_357825.jpg" alt="" class=" ">
+                		<img src="/h72/resources/image/protect/PRO0015MAIN.jpg" alt="" class=" ">
                			&nbsp;
                		
             <!-- LOGGER SCRIPT FOR SETTING ENVIRONMENT V.27 :  / FILL THE VALUE TO SET. -->
@@ -217,23 +141,30 @@ function ResizeFrame(name)
 			<li class="has-sub" style="padding:3px 10px 3px 10px; float:right; font-size:11px;">
 				<a href="http://10world.co.kr/board/free/read.html?no=559012&amp;board_no=1"><img src="/h72/resources/image/icon_detailtop1.png" style="margin:-1px 5px 0 0;">회원등급별혜택보기</a>
             	<ul>
-				<li><a href=""><span class="title">MEMBER</span>구매금액의 <span class="blue">1%</span> 적립</a></li> 
-                <li><a href=""><span class="title">FRIEND</span>구매금액의 <span class="blue">2%</span> 적립,<span class="red">2%</span> 할인</a></li> 
-                <li><a href=""><span class="title">MANIA</span>구매금액의 <span class="blue">3%</span> 적립, <span class="red">3%</span> 할인</a></li> 
-                <li><a href=""><span class="title">FAMILY</span>구매금액의 <span class="blue">4%</span> 적립, <span class="red">4%</span> 할인</a></li>
-                <li><a href=""><span class="title">VIP</span>구매금액의 <span class="blue">5%</span> 적립, <span class="red">5%</span> 할인</a></li>
-                <li class="last"><a href=""><span class="title">VVIP</span>구매금액의 <span class="blue">7%</span> 적립, <span class="red">7%</span> 할인</a></li>
+                <li><a href=""><span class="title">SILVER</span>구매금액의 <span class="blue">3%</span> 적립</a></li> 
+                <li><a href=""><span class="title">GOLD</span>구매금액의 <span class="blue">5%</span> 적립</a></li>
+                <li class="last"><a href=""><span class="title">DIAMOND</span>구매금액의 <span class="red">10%</span> 적립</a></li>
                 </ul>
 			</li> 
             </ul>
-			</div>    
+			</div>
+			<script>
+			$(document).ready(function(){
+				//.has-sub ul li ul
+				$("#cssmenu1 ul li").hover(function(){
+						$("#cssmenu1 > ul > li > ul").css({'left':'0px', 'opacity':'1'});
+				},function(){
+						$("#cssmenu1 > ul > li > ul").css({'left':'-9999px', 'opacity':'0'});
+				});
+			});
+			</script>    
 			
 			        
             <!-- <a href="javascript:BookMarkNow();" style="font-size:11px; padding:2px 10px 3px 10px; float:right; cursor:pointer; margin-right:0px;"><img src="/web/upload/sunny/image/icon_detailtop2.png" style="margin:-1px 5px 0 0;"><span style="color:#4da1bd; font-size:11px;">즐겨찾기추가</span></a></span> -->
         </h3>      
         
         <p class="displaynone">() 해외배송 가능</p> 
-        <table border="1" summary="">
+        <table id="pdInfo" border="1" summary="">
 			<caption>2016ver. 데일리 MTM 기본 정보</caption>
             <tbody>
             <tr class="custom0">
@@ -242,10 +173,11 @@ function ResizeFrame(name)
                         <strong id="product_custom" class="" style="font-size:12px; font-weight:400;"><span style="text-decoration:line-through;">0원</span></strong> 
                     </td>
                 </tr>
-			<tr class="">
+			<tr class="price">
 				<th scope="row" class="resize">판매가</th>
+				
                 <td class="td-color2 mem_lv_wrap">
-                	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;">9,900원</strong>
+                	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;">9,900원</strong><label style="display: none">9900</label>
                     <a href="#none" class="displaynone" sms_restock_login_display="1" name="btn_restock" id="btn_restock" onclick="alert('');"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_sms.gif" alt="재입고 알림 SMS"></a>   
                 </td>
             </tr>
@@ -266,7 +198,7 @@ function ResizeFrame(name)
 						<img src="" alt="실시간 계좌 이체시 적립금"> 0 원 <span class="displaynone">( %)</span>
 					</li>
                     <li class="displaynone">
-						<img src="/web/upload/icon_201403181204001600.gif" alt="적립금 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
+						<img src="/h72/resources/image/icon_201403181204001600.gif" alt="적립금 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
 					</li>
                     <li class="displaynone">
 						<img src="" alt="휴대폰 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
@@ -288,12 +220,6 @@ function ResizeFrame(name)
 			</tbody>
 			
 			<tbody>
-			<tr class="resize">
-				<th scope="row">수량</th>
-	            <td>
-	                <span class="quantity"><input id="quantity" name="quantity_name" style="" value="0" type="text"><img src="/h72/resources/image/btn_quantity_up.png" alt="up" class="QuantityUp"><img src="/h72/resources/image/btn_quantity_down.png" alt="down" class="QuantityDown"></span> 
-	            </td>
-            </tr>
 			<tr class="displaynone">
 				<th scope="row">구매tip</th>
                 <td style="line-height:20px;"></td>
@@ -302,11 +228,11 @@ function ResizeFrame(name)
 			
 			<tbody class="xans-element- xans-product xans-product-option xans-record-">
 			<tr class="xans-element- xans-product xans-product-option xans-record-">
-				<th>색상선택</th>
+				<th>옵션선택</th>
 				<td>
 					<select option_product_no="2921" option_select_element="ec-option-select-finder" option_sort_no="1" option_type="T" item_listing_type="S" option_title="색상선택" product_option_area="product_option_2921_0" name="option1" id="product_option_id1" class="ProductOption0" option_style="select" required="true">
-						<option value="*" selected="selected">- [필수] 옵션을 선택해 주세요 -</option>
-						<option value="**">-------------------</option>
+						<option disabled value="*" selected="selected">- [필수] 옵션을 선택해 주세요 -</option>
+						<option disabled value="**">-------------------</option>
 						<option value="화이트" link_image="">화이트</option>
 						<option value="크림" link_image="">크림</option>
 						<option value="베이비핑크" link_image="">베이비핑크</option>
@@ -317,11 +243,225 @@ function ResizeFrame(name)
 						<option value="브라운" link_image="">브라운</option>
 						<option value="네이비" link_image="">네이비</option>
 					</select>
+					
+					
+					
+					
 				</td>
 			</tr>
 			</tbody>
 		</table>
 		
+			<!-- 옵션 -->
+			<div id="option_mini" class="option_mini ui_optSelWrapper position_top_ex" style="display:none" >
+    		<!-- 기본옵션 선택한 정보 : 1 -->
+				<ul>
+				    <li id="option_mini" data-amount="1" data-addprc="-3000" data-price="9900">
+				        <em>2016ver. 데일리 MTM / </em>
+				        <div class="plusminus_wrap">
+				            <input id="quantity" type="text" name="prdcAmount" data-prdstckno="6145046693" class="text" title="수량설정" value="1" readonly>
+				            <button type="button" class="numbtn_minus"><span class="hide">수량감소</span></button>
+				            <button type="button" class="numbtn_plus"><span class="hide">수량증가</span></button>
+				        </div>
+				        <div class="sel_price">
+				            <p class="pc"><strong>9900</strong>원</p>
+				            <button type="button" class="btn_cc_ex" ><span class="hide">취소</span></button>
+				        </div>
+				    </li>
+				</ul>
+			</div>
+			
+			<div class="prdc_total" name="divPrdcTotalPrcArea" style="display: none">
+			    <!-- [16-08-19 hhj] 수정 -->
+			    <!-- 쿠폰 -->
+			    <!-- 가격 -->
+			    <div class="total_price">
+			        <strong class="txt_tt">총 합계금액(수량)</strong><!-- [16-08-29 ckh] strong 태그로 수정 -->
+			        <span class="total_pr"><strong class="ui_total_price" name="totalPriceArea">9,900</strong>원(<span class="ui_total_count">1</span>개)</span>
+			    </div>
+			    <!-- //[16-08-19 hhj] 수정 -->
+			</div>
+			
+            <script>
+            $(document).ready(function(){
+            	//var quantity = $("tbody>tr>td>span>input[name=quantity_name]").val();
+            	//alert(quantity);
+            	var price = Number($("#span_product_price_text").next().text());
+            	//var symbol = "plus";
+            	var totalprice = 0;
+            	var totalcount = 0;
+            	//var quantity = 1;
+            	console.log(typeof(price));
+            	var remain = 100//재고량 - quantity
+            	/*
+            	function remaincal(quantity){
+            		remain = remain - quantity
+            	}
+            	*/
+            	
+            	//옵션 '+' 클릭
+            	$(document).on("click", ".numbtn_plus", function(){
+            		symbol = "plus";
+            		var papaid = $(this).parent().parent().parent().parent().attr("id");//클릭시 해당하는 버튼의 부모 div 아이디
+            		var inputtext = $(this).prev().prev().attr("id");//클릭시 input text의 수량 아이디 --> quantity
+            		var quantity = $("#"+inputtext).val();//input 태그의 value 수량 값
+            		var pc = $(this).parent().next().children().attr("class")//클릭시 해당되는 버튼요소로부터 선택된 옵션의 가격 글자 
+            		quantity = priceCal(quantity, symbol, inputtext, pc);
+            		console.log(quantity);
+            	});
+            	//옵션 '-' 클릭
+           		$(document).on("click", ".numbtn_minus", function(){
+            		var symbol = "minus";
+            		var papaid = $(this).parent().parent().parent().parent().attr("id");//클릭시 해당하는 버튼의 부모 div 아이디
+            		var inputtext = $(this).prev().attr("id");//클릭시 input text의 수량 아이디 --> quantity
+            		var quantity = Number($("#"+inputtext).val());//input 태그의 value 수량 값
+            		var pc = $(this).parent().next().children().first().attr("class")//클릭시 해당되는 버튼요소로부터 선택된 옵션의 가격 글자 
+            		quantity = priceCal(quantity, symbol, inputtext, pc);
+            		console.log(quantity);
+            	});
+            	
+           		//옵션 +,- 금액합계
+            	function priceCal(quantity, symbol, inputtext, pc){
+            		if(symbol == "plus"){
+	            		quantity++;
+	            		$("#"+inputtext).val(quantity);//선택된 옵션에 수량 변경
+	            		console.log(totalprice);
+	            		//totalprice += (price * quantity);//전체 가격
+	            		totalprice += price;//전체 가격
+	            		//$("#span_product_price_text").text(price * quantity + "원");//상품정보 가격
+	            		$("."+pc).children().first().text(numberWithCommas(price * quantity));//선택된 옵션에 가격 변경
+	            		totalcal ( quantity - ( quantity - 1 ) );
+            		}else if(symbol == "minus"){
+            			if((quantity-1) < 1){
+            				alert("1개 이상 선택해주세요");
+            			}else{
+	            			$("#" + inputtext).val(quantity - 1);
+	            			totalprice -= (price * (quantity - (quantity - 1)));
+	            			//$("#span_product_price_text").text(totalprice + "원");
+	            			$("." + pc).children().first().text(numberWithCommas(price * (quantity - 1)));
+	            			totalcal( - (quantity - (quantity - 1)));
+	            			quantity--;
+            			}
+            		}
+            		//totalcal ( quantity - ( quantity - 1 ) );
+            		return quantity;
+            	}
+            	
+           		//총금액 합계
+            	function totalcal(quantity){
+            		//totalprice = totalprice1; //총합계
+            		remain -= quantity; //재고량
+            		totalcount += quantity;//주문수량
+            		$(".ui_total_price").text(numberWithCommas(totalprice));
+            		$(".ui_total_count").text(totalcount);
+            		
+            		console.log("remain : " + remain);
+            	}
+            	
+            	//////////////////////////////////////////////////////////////////////////////
+            	var opnum = 1;
+				var op = null;
+				var remainop = null;
+				var remainindex = null;
+				var temp = null;
+				
+				//옵션 선택시
+				$("#product_option_id1").change(function(){
+					// 옵션선택 시 총 금액 div show()
+					$(".prdc_total").show();
+					
+					console.log("opnum: " + opnum);
+					op = $(this).val();
+					console.log("op: " + op);
+					console.log("op.length: " + op.length);
+					console.log("remainop_before: " + remainop);
+					
+					//옵션선택 시 동일한 옵션이 선택되어있으면 alert(), 없으면 옵션div 추가
+					for(var i = 1; i < opnum+1; i++){
+						remainop = $("#option_mini_wrap" + i + " > ul > #option_mini > em").text();
+						console.log("remainop_after: " + remainop);
+						remainindex = remainop.indexOf(op);
+						console.log("remainindex: " + remainindex);
+						if(remainindex > 0){temp = "exist"; break;}
+						if(remainindex == -1) temp = "no-exist";
+					}
+					console.log("temp: " + temp);
+					if(temp == "exist"){
+						alert("이미 선택되어있습니다.");
+						//opnum--;
+					}else if(temp == "no-exist"){
+						$("#option_mini").after(
+								"<div id='option_mini_wrap" + opnum + "' class='option_mini ui_optSelWrapper position_top'>"
+								+"<ul><li id='option_mini' data-amount='1' data-price='9900'>"
+								+"		<em>2016ver. 데일리 MTM / " + op + "</em>"
+								+"		<div class='plusminus_wrap'>"
+								+"			<input id='quantity" + opnum + "' type='text' name='prdcAmount' class='text' title='수량설정' value='1' readonly>"
+								+"			<button type='button' class='numbtn_minus'><span class='hide'>수량감소</span></button>"
+								+"			<button type='button' class='numbtn_plus'><span class='hide'>수량증가</span></button>"
+								+"		</div>"
+								+"		<div class='sel_price'>"
+								+"			<p class='pc" + opnum + "'><strong>9,900</strong>원</p>"
+								+"	        <button type='button' class='btn_cc' id='btn_cc"+opnum+"'><span class='hide'>취소</span></button>"
+								+"		</div>"
+								+"</li></ul></div>"
+						);
+						console.log(totalprice);
+						var addprice = Number(uncomma($(".pc"+opnum).children().first().text()));
+						var addcount = Number($("#quantity" + opnum).val());
+						totalprice += addprice;
+						totalcal(addcount);
+						console.log(totalprice);
+						
+						opnum++;
+						//totalcal 추가해줘야함 1개씩 여러 종류가 선택만 되도...
+					}
+					console.log("opnum: " + opnum);
+					console.log("-----------------------");
+					
+				});
+				
+				// 취소 btn 클릭시 선택된 옵션 삭제
+				$(document).on("click", ".btn_cc", function(){
+					var papaid = $(this).parent().parent().parent().parent().attr("id");
+					
+            		$(this).parent().parent().parent().parent().remove();
+            		console.log("delete click after opnum: " + opnum);
+            		//opnum--;
+            		//옵션선택 삭제 시 남아있는 옵션이 없을 시 총합계 div invisible 
+            		var leg = $(".option_mini.ui_optSelWrapper.position_top");
+            		if(leg.length == 0){//배열로 갖고와서 해당하는 div가 남아있으면 남아있는 갯수를 반환
+            			$(".prdc_total").css("display", "none");
+            			var price = Number($("#span_product_price_text").next().text());
+            			$(".ui_total_price").text(numberWithCommas(price));
+            		}
+            		//total금액이 product금액과 같으면if(opnum )
+            		
+            		//취소버튼 눌렀을 때 totalprice에서 취소되는 상품가격만큼 뺴주는 작업
+            		var price = Number(uncomma($(this).prev().children().first().text()));
+            		var quantity = Number($(this).prev().parent().siblings().eq(1).children().first().val());//input 태그의 value 수량 값
+            		totalprice -= price;
+            		
+            		totalcal(-quantity);
+            		
+            		
+            		console.log(totalprice);
+            		console.log(totalcount);
+            		//$(".ui_total_price").text(price);
+           		});
+            });
+            
+           
+            //콤마 찍기
+            function numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            
+          	//콤마풀기
+            function uncomma(str) {
+                str = String(str);
+                return str.replace(/[^\d]+/g, '');
+            }
+            </script>
 		
 		<div id="zoom_wrap"></div>
  
@@ -389,8 +529,8 @@ function ResizeFrame(name)
 	<div id="prdDetail"> 
 		<div class="cont"> 
 			<center>
-
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_d_160824_0.jpg"></p>
+			
+			<p><img src="/h72/resources/image/protect/PRO0015_01.jpg"></p>
 			
 			<!-- <p><img src="http://10world.co.kr/web/upload/151111/12t_160818_01.jpg"></p>
 			
@@ -721,12 +861,34 @@ _tcts_m('13829','BIZMP');
 		var aSoldoutDisplay = {"2921":"\ud488\uc808"};
 		var aReserveStockMessage = {"show_stock_message":"F","Q":"[\uc7ac\uace0 : [:\uc218\ub7c9:]\uac1c][\ub2f9\uc77c\ubc1c\uc1a1]","R":"[\uc7ac\uace0 : [:\uc218\ub7c9:]\uac1c][\uc608\uc57d\uc8fc\ubb38]","N":"","stock_message_replace_name":"[:\uc218\ub7c9:]"};
 		var SHOP_CURRENCY_INFO = {"1":{"aShopCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"aShopSubCurrencyInfo":null,"aBaseCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"fExchangeRate":1,"fExchangeSubRate":null,"aFrontCurrencyFormat":{"head":"","tail":"\uc6d0"},"aFrontSubCurrencyFormat":{"head":"","tail":""}}};
-		var mileage_val = '100';var mileage_generate_calc = '100';
-		var basket_type = 'A0000';var product_name = '2016ver. 데일리 MTM';var product_max_type = 'F';var has_option = 'T';var mileage_icon = '/web/upload/icon_201403181204001600.gif';var mileage_icon_alt = '적립금';var price_unit_head = '';var price_unit_tail = '원';var option_push_button = 'F';var product_image_tiny = '201610/2921_shop1_311132.gif';var is_adult_product = 'F';var is_individual_buy = 'F';var is_soldout_icon = 'F';var link_product_detail = '/product/2016ver-데일리-mtm/2921/display/11/';
-		var product_min = '1';var order_limit_type = 'O';
+		var mileage_val = '100';
+		var mileage_generate_calc = '100';
+		var basket_type = 'A0000';
+		var product_name = '2016ver. 데일리 MTM';
+		var product_max_type = 'F';
+		var has_option = 'T';
+		var mileage_icon = '/web/upload/icon_201403181204001600.gif';var mileage_icon_alt = '적립금';
+		var price_unit_head = '';
+		var price_unit_tail = '원';
+		var option_push_button = 'F';
+		var product_image_tiny = '201610/2921_shop1_311132.gif';
+		var is_adult_product = 'F';
+		var is_individual_buy = 'F';
+		var is_soldout_icon = 'F';
+		var link_product_detail = '/product/2016ver-데일리-mtm/2921/display/11/';
+		var product_min = '1';
+		var order_limit_type = 'O';
 		var product_max = '-1';
-		var buy_unit_type = 'O';var buy_unit = '1';
-		var product_price = '9900';var product_price_content = '';var is_selling_price = 'O';var product_price_mobile = '9900';var mobile_dc_price = '';var isMobileDcStatus = 'F';var product_price_ref = '';var currency_disp_type = 'P';
+		var buy_unit_type = 'O';
+		var buy_unit = '1';
+		var product_price = '9900';
+		var product_price_content = '';
+		var is_selling_price = 'O';
+		var product_price_mobile = '9900';
+		var mobile_dc_price = '';
+		var isMobileDcStatus = 'F';
+		var product_price_ref = '';
+		var currency_disp_type = 'P';
 		var delvtype = 'A';
 		$.data(document,'SameImage','F');
 		var _iPrdtPriceOrg = 9000;
