@@ -10,6 +10,7 @@
 	<!-- vo 클래스 등록 -->
 	<typeAliases>
 		<typeAlias type="com.project.h72.member.vo.Member"  alias="Member" />
+		<typeAlias type="com.project.h72.ProductEnroll.vo.Product"  alias="ProductEnroll" />
 	</typeAliases>	
 	
 	
