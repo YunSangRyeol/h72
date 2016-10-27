@@ -25,7 +25,7 @@
 							class="login_inputData" id="userid" name="userid"><br>
 						<label>PW</label><input type="password" class="login_inputData"
 							id="userpass" name="userpass">
-							<input type="submit" class="loginBtn" value="로그인" style="cursor:pointer;"> 
+							<input type="submit" class="loginBtn" value="로그인"/>
 							<!-- <a href="#"><span class="loginBtn">LOGIN</span></a> -->
 												</form>
 							

@@ -70,7 +70,7 @@
 								<th scope="row">생년월일 <span id="mjoin_red">*</span></th>
 								<td><input id="birthdate" name="birthdate"
 									fw-filter="isFill" fw-label="생년월일" fw-msg=""
-									class="inputTypeText" type="date"></span>&nbsp;ex)2016-10-27</td>
+									class="inputTypeText" type="date"></span></td>
 							</tr>
 							<tr>
 								<th scope="row">주소 <span id="mjoin_red">*</span></th>
@@ -136,7 +136,7 @@
 								<td>
 								<input id="phone" name="phone" maxlength="13"
 									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
-									fw-msg="" value="" type="text">&nbsp;(-)하이픈 포함하고 입력
+									fw-msg="" value="" type="text">&nbsp;(-)하이픈 제외하고 입력
 								<!-- <select id="phone1" name="phone1"
 									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
 									fw-msg="">
@@ -160,7 +160,7 @@
 									id="email2" name="email2" fw-filter="isFill" fw-label="이메일"
 									fw-alone="N" fw-msg="" readonly="readonly" value="" type="text"><select
 									id="email3" fw-filter="isFill" fw-label="이메일" fw-alone="N"
-									fw-msg="">
+									fw-msg=""> -->
 										<option value="" selected="selected">- 이메일 선택 -</option>
 										<option value="naver.com">naver.com</option>
 										<option value="daum.net">daum.net</option>
@@ -172,7 +172,7 @@
 										<option value="dreamwiz.com">dreamwiz.com</option>
 										<option value="gmail.com">gmail.com</option>
 										<option value="etc">직접입력</option>
-								</select> --></td>
+								</select></td>
 							</tr>
 
 						</tbody>
@@ -488,7 +488,7 @@
 							for="agree_privacy_check0">동의함</label>
 					</p>
 				</div><div align="center">
-				<input type="submit" class="mjoin_btnArea" value="회원가입" style="cursor:pointer;"></div>
+				<input type="submit" class="mjoin_btnArea" value="회원가입"></div>
 				<!-- <div class="mjoin_btnArea">
 					<a href="#none" onclick="memberJoinAction()">회원가입</a>
 				</div> -->

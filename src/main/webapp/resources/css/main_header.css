@@ -251,13 +251,3 @@ body {
 	right: 30px;
 	z-index: 9999;
 }
-
-.main_searchBtn {
-	background: url("/h72/resources/image/topmenu_search.png") no-repeat;
-	float: right;
-	margin-right: 5px;
-	cursor: pointer;
-	width: 20px;
-	height: 20px;
-	margin-top:9px;
-}

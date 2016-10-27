@@ -6,6 +6,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 	margin: 0 auto;
 	padding: 0;
 	border: none;
+	
 }
 
 @import url( "http://fonts.googleapis.com/earlyaccess/notosanskr.css" );
@@ -55,6 +56,7 @@ a {
 .mjoin_form {
 	text-align: left;
 	width: 1250px;
+	
 }
 
 .mjoin_form h3 {
@@ -206,8 +208,7 @@ a {
 	font-family: "돋움", Dotum;
 }
 
-.mjoin_agreeArea .mjoin_check #agree_service_check0,
-	#agree_privacy_check0 {
+.mjoin_agreeArea .mjoin_check #agree_service_check0, #agree_privacy_check0 {
 	width: 14px;
 	height: 14px;
 	margin: 0 3px 0 3px;
@@ -227,18 +228,16 @@ a {
 	background: #000;
 	border: none;
 	width: 100px;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	cursor: pointer;
+	height:50px;
+	line-height:50px;
+	text-align:center;
 }
 
-
-#mupdate_btnArea {
+#mupdate_btnArea{
 	margin-top: 30px;
 	text-align: center;
 }
 
-#mupdate_btnArea div {
+#mupdate_btnArea div{
 	display: inline-block;
 }

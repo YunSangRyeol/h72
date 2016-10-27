@@ -28,7 +28,7 @@ public class SearchController {
 
 		model.addAttribute("serverTime");
 
-		return "search/searchPage";
+		return null;
 	}
 
 	@RequestMapping(value = "/protect", method = RequestMethod.GET)
@@ -37,7 +37,7 @@ public class SearchController {
 
 		model.addAttribute("serverTime");
 
-		return "search/searchPage";
+		return null;
 	}
 
 	@RequestMapping(value = "/food", method = RequestMethod.GET)
@@ -46,7 +46,7 @@ public class SearchController {
 
 		model.addAttribute("serverTime");
 
-		return "search/searchPage";
+		return null;
 	}
 
 	@RequestMapping(value = "/tool", method = RequestMethod.GET)
@@ -55,7 +55,7 @@ public class SearchController {
 
 		model.addAttribute("serverTime");
 
-		return "search/searchPage";
+		return null;
 	}
 
 	@RequestMapping(value = "/etc", method = RequestMethod.GET)
@@ -64,7 +64,7 @@ public class SearchController {
 
 		model.addAttribute("serverTime");
 
-		return "search/searchPage";
+		return null;
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -73,7 +73,7 @@ public class SearchController {
 
 		model.addAttribute("serverTime");
 
-		return "search/searchPage";
+		return null;
 	}
 
 }
