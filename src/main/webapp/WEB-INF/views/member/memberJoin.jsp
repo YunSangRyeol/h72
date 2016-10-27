@@ -61,7 +61,7 @@
 							</tr>
 							<tr>
 								<th scope="row">이름 <span id="mjoin_red">*</span></th>
-								<td><input id="nickname" name="nickname"
+								<td><input id="name" name="name"
 									fw-filter="isFill&amp;isFill&amp;isMin[2]&amp;isMax[10]&amp;isIdentity"
 									fw-label="닉네임" fw-msg="" class="inputTypeText" value=""
 									type="text"> (한글/영문/숫자 2~10자, 특수문자 불가능)</td>
@@ -156,11 +156,11 @@
 							<tr>
 								<th scope="row">이메일 <span id="mjoin_red">*</span></th>
 								<td><input id="email" name="email" fw-filter="isFill"
-									fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text">@<input
+									fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"><!-- @<input
 									id="email2" name="email2" fw-filter="isFill" fw-label="이메일"
 									fw-alone="N" fw-msg="" readonly="readonly" value="" type="text"><select
 									id="email3" fw-filter="isFill" fw-label="이메일" fw-alone="N"
-									fw-msg="">
+									fw-msg=""> -->
 										<option value="" selected="selected">- 이메일 선택 -</option>
 										<option value="naver.com">naver.com</option>
 										<option value="daum.net">daum.net</option>

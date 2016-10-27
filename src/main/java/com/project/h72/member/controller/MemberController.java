@@ -65,15 +65,15 @@ public class MemberController {
 
 	@RequestMapping(value = "/mJoin.do", method = RequestMethod.GET)
 	public String mJoin(@RequestParam("userid") String id, @RequestParam("userpass") String pass,
-			@RequestParam("userpass_confirm") String pass_confirm, @RequestParam("nickname") String nickname,
+			@RequestParam("userpass_confirm") String pass_confirm, @RequestParam("name") String name,
 			@RequestParam("birthdate") Date birthdate, @RequestParam("postnum") String postnum,
 			@RequestParam("address") String address, @RequestParam("addressdetail") String addressDetail,
 			@RequestParam("phone") String phone, @RequestParam("email") String email, HttpSession session) {
 		int mJoin = 0;
-		System.out.println(id + ", " + pass + ", " + nickname + ", " + birthdate + ", " + email + ", " + phone + ", "
+		System.out.println(id + ", " + pass + ", " + name + ", " + birthdate + ", " + email + ", " + phone + ", "
 				+ postnum + ", " + address + ", " + addressDetail);
 			mJoin = memberService.insertMember(
-					new Member(id, pass, nickname, birthdate, email, phone, postnum, address, addressDetail));
+					new Member(id, pass, name, birthdate, email, phone, postnum, address, addressDetail));
 			System.out.println(mJoin + "@@@@Controller");
 
 		return "home";

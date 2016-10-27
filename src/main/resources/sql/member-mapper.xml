@@ -7,7 +7,7 @@
 	<resultMap id="memberResultMap" type="Member">
 		<id property="userid" column="user_id" />
 		<result property="userpass" column="user_pass" />
-		<result property="nickname" column="nickname" />
+		<result property="name" column="name" />
 		<result property="birthdate" column="birthdate" />
 		<result property="email" column="email" />
 		<result property="phone" column="phone" />
@@ -25,7 +25,7 @@
 
 	<insert id="insertMember" parameterType="Member" >
 		insert into H72.USERS values
-		(#{userid}, default, #{userpass}, #{nickname}, #{birthdate}, #{email},
+		(#{userid}, default, #{userpass}, #{name}, #{birthdate}, #{email},
 		#{phone}, #{postnum}, #{address}, #{addressdetail},
 		default, sysdate, default)
 	</insert>

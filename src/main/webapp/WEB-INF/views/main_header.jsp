@@ -22,7 +22,7 @@
 							<li><a href="<c:url value="/member/memberJoin" />">JOIN</a></li>
 						</c:if>
 						<c:if test="${!(loginUser eq null) }">
-							<li style="color:#fff;"><strong> ${loginUser.nickname }</strong> 님</li>
+							<li style="color:#fff;"><strong> ${loginUser.name }</strong> 님</li>
 							<li><a href="<c:url value="logout.do" />">LOGOUT</a></li>
 						</c:if>
 						<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>

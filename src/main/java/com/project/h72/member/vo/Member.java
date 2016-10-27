@@ -6,9 +6,9 @@ public class Member {
 	private String userid;
 	private String levelcode;
 	private String userpass;
-	private String nickname;
+	private String name;
 	private Date birthdate;
-	private String eamil;
+	private String email;
 	private String phone;
 	private String postnum;
 	private String address;
@@ -29,25 +29,25 @@ public class Member {
 	}
 
 	// 아이디찾기
-	public Member(String nickname, Date birthdate) {
+	public Member(String name, Date birthdate) {
 		super();
-		this.nickname = nickname;
+		this.name = name;
 		this.birthdate = birthdate;
 	}
 	// 비밀번호 찾기
 
-	public Member(String userid, String nickname, String eamil) {
+	public Member(String userid, String name, String email) {
 		super();
 		this.userid = userid;
-		this.nickname = nickname;
-		this.eamil = eamil;
+		this.name = name;
+		this.email = email;
 	}
 
 	// 개인정보 변경
-	public Member(String userpass, String eamil, String phone, String postnum, String address, String addressDetail) {
+	public Member(String userpass, String email, String phone, String postnum, String address, String addressDetail) {
 		super();
 		this.userpass = userpass;
-		this.eamil = eamil;
+		this.email = email;
 		this.phone = phone;
 		this.postnum = postnum;
 		this.address = address;
@@ -55,30 +55,30 @@ public class Member {
 	}
 
 	// 회원가입
-	public Member(String userid, String userpass, String nickname, Date birthdate, String eamil, String phone,
+	public Member(String userid, String userpass, String name, Date birthdate, String email, String phone,
 			String postnum, String address, String addressDetail) {
 		super();
 		this.userid = userid;
 		this.userpass = userpass;
-		this.nickname = nickname;
+		this.name = name;
 		this.birthdate = birthdate;
-		this.eamil = eamil;
+		this.email = email;
 		this.phone = phone;
 		this.postnum = postnum;
 		this.address = address;
 		this.addressdetail = addressDetail;
 	}
 
-	public Member(String userid, String levelcode, String userpass, String nickname, Date birthdate, String eamil,
+	public Member(String userid, String levelcode, String userpass, String name, Date birthdate, String email,
 			String phone, String postnum, String address, String addressDetail, int point, Date enrollDate,
 			int totalprice) {
 		super();
 		this.userid = userid;
 		this.levelcode = levelcode;
 		this.userpass = userpass;
-		this.nickname = nickname;
+		this.name = name;
 		this.birthdate = birthdate;
-		this.eamil = eamil;
+		this.email = email;
 		this.phone = phone;
 		this.postnum = postnum;
 		this.address = address;
@@ -112,12 +112,12 @@ public class Member {
 		this.userpass = userpass;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getName() {
+		return name;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Date getBirthdate() {
@@ -128,12 +128,12 @@ public class Member {
 		this.birthdate = birthdate;
 	}
 
-	public String getEamil() {
-		return eamil;
+	public String getemail() {
+		return email;
 	}
 
-	public void setEamil(String eamil) {
-		this.eamil = eamil;
+	public void setemail(String email) {
+		this.email = email;
 	}
 
 	public String getPhone() {
@@ -194,8 +194,8 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [userid=" + userid + ", levelcode=" + levelcode + ", userpass=" + userpass + ", nickname="
-				+ nickname + ", birthdate=" + birthdate + ", eamil=" + eamil + ", phone=" + phone + ", postnum="
+		return "Member [userid=" + userid + ", levelcode=" + levelcode + ", userpass=" + userpass + ", name="
+				+ name + ", birthdate=" + birthdate + ", email=" + email + ", phone=" + phone + ", postnum="
 				+ postnum + ", address=" + address + ", addressDetail=" + addressdetail + ", point=" + point
 				+ ", enrollDate=" + enrolldate + ", totalprice=" + totalprice + "]";
 	}
