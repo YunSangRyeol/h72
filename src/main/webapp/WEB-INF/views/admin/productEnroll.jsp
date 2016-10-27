@@ -41,16 +41,16 @@ $(document).ready(function(){
 		<div id="productEnroll_contents">
 			<div id="productEnroll_in">
 				<div class="titleArea">
-				    <h2>PRODUCT  ENROLL</h2> 
+				    <h2>PRODUCT ENROLL</h2> 
 				</div>
 				<div id="productEnroll">
-					<form action="" method="post" enctype="multipart/form-data">
+					<form action="productEnrollInsert" method="post" enctype="multipart/form-data">
 						<table id="productEnroll_table">
 							<tr>
 								<td><p>상 품 명</p></td>
 								<td>
 									<div class="inputBox3Wrap" id="">
-										<input type="text" placeholder="" id="" name="productName" class="inputBox3">
+										<input type="text" placeholder="" id="itemName" name="itemName" class="inputBox3" >
 									</div>
 								</td>
 							</tr>
@@ -59,7 +59,7 @@ $(document).ready(function(){
 								<td><p>거래 업체</p></td>
 								<td>
 									<div class="inputBox3Wrap" id="productEnroll_cate">
-										<input type="text" placeholder="" id="" name="productCompany" class="inputBox3">
+										<input type="text" placeholder="" id="" name="providerCode" class="inputBox3">
 									</div>
 								</td>
 							</tr>
@@ -77,29 +77,29 @@ $(document).ready(function(){
 									<div class="productEnroll_price" id="productEnroll_priceInputWrap">
 										<ul>
 											<li>
-												<input type="text" id="productEnroll_option" name="" placeholder="옵션명" 
-												class="" onchange="getNumber(this);" onkeyup=""/>
+												<input type="text" id="productEnroll_option" name="itemOptionName" placeholder="옵션명" 
+												class="" onchange="" onkeyup=""/>
 											</li>
 											<li>
-												<input type="text" id="productEnroll_optionId" name="" placeholder="ID" 
+												<input type="text" id="productEnroll_optionId" name="itemOptionId" placeholder="ID" 
 												class="" onfocus="OptionExplanationOpen()" onfocusout="OptionExplanationclose()"/>
 												|
 											</li>
 											<li>
-												<input type="text" id="" name="" 
+												<input type="text" id="" name="cost" 
 												min="0" max="1000000000" step="1000" placeholder="매입가" 
 												class="" onchange="getNumber(this);" onkeyup="getNumber(this);"/>
 												원
 											</li>
 											
 											<li>
-												<input type="text" id="" name="" 
+												<input type="text" id="" name="price" 
 												min="0" max="1000000000" step="1000" placeholder="판매가" 
 												class="" onchange="getNumber(this);" onkeyup="getNumber(this);"/>
 												원												
 											</li>
 											<li>
-												<input type="text" id="" name="" 
+												<input type="text" id="" name="sailPrice" 
 												min="0" max="1000000000" step="1000" placeholder="할인가" 
 												class="" onchange="getNumber(this);" onkeyup="getNumber(this);"/>
 												원
@@ -114,7 +114,7 @@ $(document).ready(function(){
 									<div class="productEnroll_stock" id="">
 										<ul>
 											<li>
-												<input type="number" placeholder="" id="" name="" class=""
+												<input type="number" placeholder="" id="" name="stock" class=""
 												  min="0" max="500" step="1" value="1">
 										  	</li>
 											<li>개</li>	
@@ -126,7 +126,7 @@ $(document).ready(function(){
 								<td><p>분 류</p></td>
 								<td>
 									<script>
-										$(document).ready(function() {
+									 	$(document).ready(function() {
 											$("input[name=productEnroll_category]").change(function() {
 												$("input[name=productEnroll_category]").each(function(i) {
 												   if (this.checked) {
@@ -136,7 +136,7 @@ $(document).ready(function(){
 												   }
 												});
 											});
-										});
+										}); 
 									</script>
 									<div class="" id="productEnroll_servie">
 									<ul>
@@ -176,8 +176,8 @@ $(document).ready(function(){
 											<button type="button" id="productEnroll_photo" class="" tabindex="-1">
 												+
 											</button>
-											<input type="file" multiple name="reviewPhoto1" id="upBtn1" class="file_input_hidden" /> 
-											<input type="file" multiple name="reviewPhoto2" id="upBtn2" class="file_input_hidden" style="display:none" /> 
+											<input type="file" multiple name="img1" id="upBtn1" class="file_input_hidden" /> 
+											<input type="file" multiple name="img2" id="upBtn2" class="file_input_hidden" style="display:none" /> 
 										    <div id="thumnailArea">
 										    	<div id="thumnailWrap1"><img id="thumnail1" name="thumanail" /><span class="productEnroll_thumDelete" >X</span></div>
 										    	<div id="thumnailWrap2"><img id="thumnail2" name="thumanail" /><span class="productEnroll_thumDelete">X</span></div>

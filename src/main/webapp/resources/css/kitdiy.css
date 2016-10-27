@@ -77,6 +77,7 @@ body, code {
 	vertical-align: middle;
 	border:8px solid #FF9999;
 	
+	
 }
 #kitDiy_selectWrap{
 	width:1250px;
@@ -401,6 +402,9 @@ body, code {
 	display:none;
 	background:white;
 	
+	 -webkit-animation: display-none-transition 1s both;
+ 	 animation: display-none-transition 1s both;
+	
 }
 #kitDiy_minuMenu span:first-of-type{
 	position: relative;
@@ -448,6 +452,16 @@ body, code {
 #kitDiy_minuMenu div img{
 	width:23px;
 	hieght:20px;
+}
+@-webkit-keyframes display-none-transition {
+  0% {
+    opacity: 0.5;
+  }
+}
+@keyframes display-none-transition {
+  0% {
+    opacity: 0.5;
+  }
 }
 /***************** kitDiy_contents **********************/	
 #kitDiy_contents{

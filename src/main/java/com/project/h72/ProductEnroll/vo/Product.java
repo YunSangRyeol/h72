@@ -1,6 +1,7 @@
 package com.project.h72.ProductEnroll.vo;
 
-public class Product{
+@SuppressWarnings("serial")
+public class Product implements java.io.Serializable{
 	private String categoryCode;
 	private String providerCode;
 	private String itemDetailId;
@@ -22,52 +23,8 @@ public class Product{
 	private String stock;
 	
 	public Product() {}
-
-	public Product(String categoryCode, String providerCode, String itemDetailId, String itemId, String categoryName,
-			String itemStatus, String itemName, String minPrice, String minSailPrice, String mainImg,
-			String detailImg01, String detailImg02, String etc, String itemOptionName, String cost, String price,
-			String sailPrice, String stock) {
-		super();
-		this.categoryCode = categoryCode;
-		this.providerCode = providerCode;
-		this.itemDetailId = itemDetailId;
-		this.itemId = itemId;
-		this.categoryName = categoryName;
-		this.itemStatus = itemStatus;
-		this.itemName = itemName;
-		this.minPrice = minPrice;
-		this.minSailPrice = minSailPrice;
-		this.mainImg = mainImg;
-		this.detailImg01 = detailImg01;
-		this.detailImg02 = detailImg02;
-		this.etc = etc;
-		this.itemOptionName = itemOptionName;
-		this.cost = cost;
-		this.price = price;
-		this.sailPrice = sailPrice;
-		this.stock = stock;
-	}
 	
-	public Product(String categoryName, String itemStatus, String itemName, String minPrice, String minSailPrice,
-			String mainImg, String detailImg01, String detailImg02, String etc, String itemOptionName, String cost,
-			String price, String sailPrice, String stock) {
-		super();
-		this.categoryName = categoryName;
-		this.itemStatus = itemStatus;
-		this.itemName = itemName;
-		this.minPrice = minPrice;
-		this.minSailPrice = minSailPrice;
-		this.mainImg = mainImg;
-		this.detailImg01 = detailImg01;
-		this.detailImg02 = detailImg02;
-		this.etc = etc;
-		this.itemOptionName = itemOptionName;
-		this.cost = cost;
-		this.price = price;
-		this.sailPrice = sailPrice;
-		this.stock = stock;
-	}
-
+	
 	public String getCategoryCode() {
 		return categoryCode;
 	}
