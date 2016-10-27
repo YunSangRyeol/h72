@@ -1,7 +1,7 @@
 package com.project.h72.member.controller;
 
 import java.text.DateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -38,14 +38,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/login.do")
-	public String login(@RequestParam("userid") String id, 
-			@RequestParam("userpass") String pass, HttpSession session)
+	public String login(@RequestParam("userid") String id, @RequestParam("userpass") String pass, HttpSession session)
 			throws Exception {
 		System.out.println(id + " @@ " + pass);
 		Member login = memberService.getUserInfo(new Member(id, pass));
 		if (login != null) {
 			session.setAttribute("loginUser", login);
-			System.out.println(login+"!@#!@#@!#!@#@!#!@#@!#@!#@!#@!#@!#@!#@!#");
+			System.out.println(login + "!@#!@#@!#!@#@!#!@#@!#@!#@!#@!#@!#@!#@!#");
 		}
 		return "home";
 	}
@@ -55,6 +54,7 @@ public class MemberController {
 		session.removeAttribute("loginUser");
 
 		return "home";
+
 	}
 
 	@RequestMapping(value = "member/memberJoin", method = RequestMethod.GET)
@@ -63,8 +63,18 @@ public class MemberController {
 		return "member/memberJoin";
 	}
 
-	@RequestMapping(value = "/mJoin", method = RequestMethod.GET)
-	public String mJoin(Locale locale, Model model) {
+	@RequestMapping(value = "/mJoin.do", method = RequestMethod.GET)
+	public String mJoin(@RequestParam("userid") String id, @RequestParam("userpass") String pass,
+			@RequestParam("userpass_confirm") String pass_confirm, @RequestParam("name") String name,
+			@RequestParam("birthdate") Date birthdate, @RequestParam("postnum") String postnum,
+			@RequestParam("address") String address, @RequestParam("addressdetail") String addressDetail,
+			@RequestParam("phone") String phone, @RequestParam("email") String email, HttpSession session) {
+		int mJoin = 0;
+		System.out.println(id + ", " + pass + ", " + name + ", " + birthdate + ", " + email + ", " + phone + ", "
+				+ postnum + ", " + address + ", " + addressDetail);
+			mJoin = memberService.insertMember(
+					new Member(id, pass, name, birthdate, email, phone, postnum, address, addressDetail));
+			System.out.println(mJoin + "@@@@Controller");
 
 		return "home";
 	}

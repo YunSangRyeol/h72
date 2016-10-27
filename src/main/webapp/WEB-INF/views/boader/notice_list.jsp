@@ -17,6 +17,11 @@
 <a href="">Q&amp;A</a>
 
         </div>
+
+		<c:if test="${loginUser.id == 'admin' }">
+							<a href="new" type="button" class="btn btn-primary btn-block"
+								style="margin-bottom: 20px">공지사항 등록</a>
+						</c:if>
 </div>
 <div class="boardSort">
                 <span class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
@@ -47,7 +52,7 @@
                 $login_page_url = /member/login.html
                 $deny_access_url = /index.html
             --><tr style="background-color:#FFFFFF; color:#000000;" class="xans-record-">
-<td><span style="color:#ef4141; font-family:'Lato', sans-serif; font-weight:700; font-size:12px;">!</span>
+<td>2
 </td>
 
                 <td class="subject">
@@ -55,11 +60,11 @@
                 </td>
                 <td><img src="/web/upload/sunny/images/icon_10world.png"></td>
                 <td class="txtLess ">2015-07-28</td>
-                <td class="txtLess displaynone">10758</td>
+               
 
             </tr>
 <tr style="background-color:#FFFFFF; color:#000000;" class="xans-record-">
-<td><span style="color:#ef4141; font-family:'Lato', sans-serif; font-weight:700; font-size:12px;">!</span>
+<td>1
 </td>
 
                 <td class="subject">
@@ -67,7 +72,7 @@
                 </td>
                 <td><img src="/web/upload/sunny/images/icon_10world.png"></td>
                 <td class="txtLess ">2014-07-03</td>
-                <td class="txtLess displaynone">4567</td>
+                
 
             </tr>
 </tbody>
@@ -82,7 +87,7 @@
                 </td>
                 <td><img src="/web/upload/sunny/images/icon_10world.png"></td>
                 <td class="txtLess ">2016-09-30</td>
-                <td class="txtLess displaynone">62</td>
+               
 
             </tr>
 

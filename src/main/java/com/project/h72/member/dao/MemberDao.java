@@ -18,4 +18,9 @@ public Member getMemberInfo(Member login) throws Exception{
 	return sqlSession.selectOne(NAMESPACE + "getUserInfo", login);
 }
 
+public int insertMember(Member member) {
+	// TODO Auto-generated method stub
+	return sqlSession.insert(NAMESPACE+"insertMember", member);
+}
+
 }

@@ -89,7 +89,7 @@
 	</style>
 
     
-    <script type="text/javascript" async="" src="//stats.g.doubleclick.net/dc.js"></script>
+    <!-- <script type="text/javascript" async="" src="//stats.g.doubleclick.net/dc.js"></script> -->
     <script>
       function fimg(id, w, h) {
         var img = document.getElementById(id);
@@ -206,7 +206,7 @@
         </div>
 	  </button>    
 </div>
-    <script type="text/x-jquery-tmpl" class="new-image-field">
+<script type="text/x-jquery-tmpl" class="new-image-field">
 <li class="image-field">
   <div class="wrap">
     <img class="size-support" src="//assets2.cre.ma/m/widgets/transparent.png" alt="Transparent" />

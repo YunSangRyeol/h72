@@ -31,6 +31,7 @@
 				<p class="mjoin_required">
 					<span id="mjoin_red">*</span> 필수입력사항
 				</p>
+				<form action="../mJoin.do" class="mJoinForm">
 				<div class="mjoin_boardWrite">
 					<table border="1" summary="">
 						<tbody>
@@ -45,8 +46,7 @@
 							</tr>
 							<tr>
 								<th scope="row">비밀번호 <span id="mjoin_red">*</span></th>
-								<td><input id="userpass" name=""
-									userpass""
+								<td><input id="userpass" name="userpass"
 									fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
 									fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16"
 									0="disabled" value="" type="password"> (영문
@@ -61,85 +61,83 @@
 							</tr>
 							<tr>
 								<th scope="row">이름 <span id="mjoin_red">*</span></th>
-								<td><input id="nickName" name="nickName"
+								<td><input id="name" name="name"
 									fw-filter="isFill&amp;isFill&amp;isMin[2]&amp;isMax[10]&amp;isIdentity"
 									fw-label="닉네임" fw-msg="" class="inputTypeText" value=""
 									type="text"> (한글/영문/숫자 2~10자, 특수문자 불가능)</td>
 							</tr>
 							<tr class="">
 								<th scope="row">생년월일 <span id="mjoin_red">*</span></th>
-								<td><input id="birthDate" name="birthDate"
+								<td><input id="birthdate" name="birthdate"
 									fw-filter="isFill" fw-label="생년월일" fw-msg=""
 									class="inputTypeText" type="date"></span></td>
 							</tr>
 							<tr>
 								<th scope="row">주소 <span id="mjoin_red">*</span></th>
-								<td><input type="text" id="postnum" placeholder="우편번호">
+								<td><input type="text" id="postnum" name="postnum" placeholder="우편번호">
 									<input type="button" id="postFindBtn"
-									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-									<input type="text" id="address" placeholder="주소" readonly><br>
-									<input type="text" id="addressDetail" placeholder="상세주소">
-									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+									onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+									<input type="text" id="address" name="address" placeholder="주소" readonly><br>
+									<input type="text" id="addressdetail" name="addressdetail" placeholder="상세주소">
 									<script>
-										function sample6_execDaumPostcode() {
-											new daum.Postcode(
-													{
-														oncomplete : function(
-																data) {
-															// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+									 function sample4_execDaumPostcode() {
+									        new daum.Postcode({
+									            oncomplete: function(data) {
+									                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-															// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-															// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-															var fullAddr = ''; // 최종 주소 변수
-															var extraAddr = ''; // 조합형 주소 변수
+									                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+									                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+									                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+									                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
 
-															// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-															if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-																fullAddr = data.roadAddress;
+									                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+									                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+									                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+									                    extraRoadAddr += data.bname;
+									                }
+									                // 건물명이 있고, 공동주택일 경우 추가한다.
+									                if(data.buildingName !== '' && data.apartment === 'Y'){
+									                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+									                }
+									                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+									                if(extraRoadAddr !== ''){
+									                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+									                }
+									                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+									                if(fullRoadAddr !== ''){
+									                    fullRoadAddr += extraRoadAddr;
+									                }
 
-															} else { // 사용자가 지번 주소를 선택했을 경우(J)
-																fullAddr = data.jibunAddress;
-															}
+									                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+									                document.getElementById('postnum').value = data.zonecode; //5자리 새우편번호 사용
+									                document.getElementById('address').value = fullRoadAddr;
 
-															// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-															if (data.userSelectedType === 'R') {
-																//법정동명이 있을 경우 추가한다.
-																if (data.bname !== '') {
-																	extraAddr += data.bname;
-																}
-																// 건물명이 있을 경우 추가한다.
-																if (data.buildingName !== '') {
-																	extraAddr += (extraAddr !== '' ? ', '
-																			+ data.buildingName
-																			: data.buildingName);
-																}
-																// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-																fullAddr += (extraAddr !== '' ? ' ('
-																		+ extraAddr
-																		+ ')'
-																		: '');
-															}
+									                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+									                if(data.autoRoadAddress) {
+									                    //예상되는 도로명 주소에 조합형 주소를 추가한다.
+									                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+									                    document.getElementById('address').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
 
-															// 우편번호와 주소 정보를 해당 필드에 넣는다.
-															document
-																	.getElementById('postnum').value = data.zonecode; //5자리 새우편번호 사용
-															document
-																	.getElementById('address').value = fullAddr;
+									                } else if(data.autoJibunAddress) {
+									                    var expJibunAddr = data.autoJibunAddress;
+									                    document.getElementById('address').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
 
-															// 커서를 상세주소 필드로 이동한다.
-															document
-																	.getElementById(
-																			'addressDetail')
-																	.focus();
-														}
-													}).open();
-										}
+									                } else {
+									                    document.getElementById('address').innerHTML = '';
+									                }
+									            }
+									        }).open();
+									    }
 									</script></td>
 							</tr>
 
 							<tr>
 								<th scope="row">휴대전화 <span id="mjoin_red">*</span></th>
-								<td><select id="phone1" name="phone[]"
+								<td>
+								<input id="phone" name="phone" maxlength="13"
+									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
+									fw-msg="" value="" type="text">&nbsp;(-)하이픈 제외하고 입력
+								<!-- <select id="phone1" name="phone1"
 									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
 									fw-msg="">
 										<option value="010">010</option>
@@ -148,21 +146,21 @@
 										<option value="017">017</option>
 										<option value="018">018</option>
 										<option value="019">019</option>
-								</select>-<input id="phone2" name="phone[]" maxlength="4"
+								</select>-<input id="phone2" name="phone2" maxlength="4"
 									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
 									fw-msg="" value="" type="text">-<input id="phone3"
-									name="phone[]" maxlength="4" fw-filter="isNumber&amp;isFill"
-									fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text"></td>
+									name="phone3" maxlength="4" fw-filter="isNumber&amp;isFill"
+									fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text"> --></td>
 							</tr>
 
 							<tr>
 								<th scope="row">이메일 <span id="mjoin_red">*</span></th>
-								<td><input id="email1" name="email1" fw-filter="isFill"
-									fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text">@<input
+								<td><input id="email" name="email" fw-filter="isFill"
+									fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"><!-- @<input
 									id="email2" name="email2" fw-filter="isFill" fw-label="이메일"
 									fw-alone="N" fw-msg="" readonly="readonly" value="" type="text"><select
 									id="email3" fw-filter="isFill" fw-label="이메일" fw-alone="N"
-									fw-msg="">
+									fw-msg=""> -->
 										<option value="" selected="selected">- 이메일 선택 -</option>
 										<option value="naver.com">naver.com</option>
 										<option value="daum.net">daum.net</option>
@@ -489,10 +487,12 @@
 							fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox"><label
 							for="agree_privacy_check0">동의함</label>
 					</p>
-				</div>
-				<div class="mjoin_btnArea">
+				</div><div align="center">
+				<input type="submit" class="mjoin_btnArea" value="회원가입"></div>
+				<!-- <div class="mjoin_btnArea">
 					<a href="#none" onclick="memberJoinAction()">회원가입</a>
-				</div>
+				</div> -->
+				</form>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
