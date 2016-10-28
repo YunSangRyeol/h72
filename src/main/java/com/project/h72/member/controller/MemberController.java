@@ -97,13 +97,13 @@ public class MemberController {
 		return "home";
 	}
 
-	@RequestMapping(value = "member/idFindPage", method = RequestMethod.POST)
+	@RequestMapping(value = "member/idFindPage", method = RequestMethod.GET)
 	public String mSearchID(Locale locale, Model model) {
 		/* 단순 페이지 이동 */
 		return "member/idFindPage";
 	}
 
-	@RequestMapping(value = "member/pwdFindPage", method = RequestMethod.POST)
+	@RequestMapping(value = "member/pwdFindPage", method = RequestMethod.GET)
 	public String mSearchPW(Locale locale, Model model) {
 		/* 단순 페이지 이동 */
 		return "member/pwdFindPage";

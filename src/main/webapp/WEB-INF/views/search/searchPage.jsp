@@ -17,7 +17,28 @@
 
 		<div class="searchList_contents" align="center">
 			<div class="searchList_titleArea">
-				<h2>${listTitle }</h2>
+				<c:choose>
+					<c:when test="${listTitle == 'BAG'}">
+						<h2>${listTitle }</h2>
+					</c:when>
+					<c:when test="${listTitle == 'PROTECT'}">
+						<h2>${listTitle }</h2>
+					</c:when>
+					<c:when test="${listTitle == 'FOOD'}">
+						<h2>${listTitle }</h2>
+					</c:when>
+					<c:when test="${listTitle == 'TOOL'}">
+						<h2>${listTitle }</h2>
+					</c:when>
+					<c:when test="${listTitle == 'ETC'}">
+						<h2>${listTitle }</h2>
+					</c:when>
+					<c:otherwise>
+						<h2>[${listTitle }] 검색결과</h2>
+					</c:otherwise>
+				</c:choose>
+				<%-- <c:if test="${listTitle != 'BAG' }"><h2>${listTitle }</h2></c:if> --%>
+				
 			</div>
 
 			<div class="searchList_productList">
