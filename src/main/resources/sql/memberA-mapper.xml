@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberAMapper">
+
+	<resultMap id="memberResultMap" type="Member">
+		<result property="userid" column="USER_ID" />
+		<result property="levelcode" column="LEVEL_CODE" />
+		<result property="name" column="NAME" />
+		<result property="birthdate" column="BIRTHDATE" />
+		<result property="email" column="EMAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="postnum" column="POST_NUM" />
+		<result property="address" column="ADDRESS" />
+		<result property="addressdetail" column="ADDRESS_DETAIL" />
+		<result property="point" column="POINT" />
+		<result property="enrolldate" column="ENROLLDATE" />
+		<result property="totalprice" column="TOTAL_PRICE" />
+	</resultMap>
+
+	<select id="getMemberList" resultType="member">
+		SELECT * FROM H72.USERS
+	</select>
+
+	<!--
+	private String userid;
+	private String levelcode;
+	private String userpass;
+	private String name;
+	private Date birthdate;
+	private String email;
+	private String phone;
+	private String postnum;
+	private String address;
+	private String addressdetail;
+	private int point;
+	private Date enrolldate;
+	private int totalprice;
+	 USER_ID
+	LEVEL_CODE
+	USER_PASS
+	NICKNAME
+	BIRTHDATE
+	EMAIL
+	PHONE
+	POST_NUM
+	ADRRESS
+	ADRRESS_DATAIL
+	POINT
+	ENROLLDATE
+	TOTAL_PRICE -->
+</mapper>
