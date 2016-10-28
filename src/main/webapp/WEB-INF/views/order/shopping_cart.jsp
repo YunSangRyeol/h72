@@ -17,7 +17,6 @@
 	<div id="content_wrap">
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
 
-
 		<div id="order_contents_wrap">
 			<div id="order_contents">
 				<div class="order_titleArea">
@@ -63,24 +62,24 @@
 									</tr>
 								</tfoot>
 								<tbody class="xans-element- xans-order xans-order-list">
+									<c:forEach items="${clist}" var="cart">
 									<tr class="xans-record-">
 										<td><input type="checkbox" id="basket_chk_id_0"
 											name="basket_product_normal_type_normal"></td>
-										<td class="thumb"><a href="#"><div class="itemImg"></div></a></td>
-										<td class="product"><a href="#"><strong>재난
-													무선 라디오</strong> </a>
+										<td class="thumb"><a href="#"><div class="itemImg"><img src="/h72/resources${cart.mainImg }"/></div></a></td>
+										<td class="product"><a href="#"><strong>${cart.itemFullName}</strong> </a>
 											<ul
 												class="xans-element- xans-order xans-order-optionall option">
-												<li class="xans-record-">[옵션: ]</li>
+												<li class="xans-record-">[옵션:${cart.itemOptionName } ]</li>
 											</ul></td>
 										<td class="price">
 											<div class="">
-												<strong>13,500원</strong>
+												<strong>${cart.cost }</strong>
 											</div>
 										</td>
 										<td class="quantity">
 										<span class="quantity">
-										<input id="quantity_id_0" name="quantity_name_0" size="2" value="1" type="text">
+										<input id="quantity_id_0" name="quantity_name_0" size="2" value="${cart.quantity}" type="text">
 										<a href="javascript:;" onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">
 										<img src="/h72/resources/image/btn_quantity_up.gif" alt="증가" class="QuantityUp"></a>
 										<a href="javascript:;" onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">
@@ -99,7 +98,7 @@
 												2,500원<br>
 											</p>조건
 										</td>
-										<td class="total"><strong>13,500원</strong>
+										<td class="total"><strong>${cart.cost+2500}</strong>
 											<div class="displaynone"></div></td>
 										<td class="button"><a href="javascript:;"
 											onclick="Basket.orderBasketItem(0);"
@@ -109,6 +108,7 @@
 											style="padding: 3px 7px 3px 7px; line-height: 25px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">삭제하기</a>
 										</td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 
