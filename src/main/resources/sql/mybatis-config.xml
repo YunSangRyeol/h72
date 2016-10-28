@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="com.project.h72.member.vo.Member"  alias="Member" />
 		<typeAlias type="com.project.h72.ProductEnroll.vo.Product"  alias="ProductEnroll" />
+		<typeAlias type="com.project.h72.cart.vo.Cart" alias="Cart" />
 	</typeAliases>	
 	
 	

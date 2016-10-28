@@ -1,5 +1,9 @@
 package com.project.h72.cart.service;
 
-public interface CartService {
+import java.util.List;
 
+import com.project.h72.cart.vo.Cart;
+
+public interface CartService {
+	List<Cart> getCartList(String userid) throws Exception;
 }

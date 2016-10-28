@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cartMapper">
+	<resultMap id="cartResulMap" type="Cart">
+		<id property="userid" column ="user_id"/>
+		<!-- <result property="cartid" column="cart_id"/>
+		<result property="itemid" column="item_id"/>
+		<result property="itemFullName" column="item_full_name"/>
+		<result property="itemDetailid" column="item_detail_id"/>
+		<result property="mainImg" column="main_img"/>
+		<result property="quantity" column="quantity"/>
+		<result property="cost" column="cost"/>
+		<result property="message" column="message"/>
+		<result property="kitYN" column="kit_yn"/>
+		<result property="enrollDate" column="enroll_date"/>
+		<result property="itemOptionName" column="item_option_name"/> -->
+	</resultMap>
+	
+	<select id="getCartList" parameterType="String" resultType="Cart">
+	SELECT C.CART_ID, C.ITEM_ID, C.USER_ID, C.ITEM_FULL_NAME, C.ITEM_DETAIL_ID, C.MAIN_IMG, C.QUANTITY, C.COST, C.MESSAGE, C.KIT_YN, C.ENROLL_DATE, V.ITEM_OPTION_NAME
+	FROM CART C, ITEM_ALL_VIEW V 
+	WHERE C.ITEM_ID = V.ITEM_ID
+	AND USER_ID = #{userid}
+	</select>
+	
+
+
+</mapper>

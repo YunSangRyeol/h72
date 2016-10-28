@@ -392,4 +392,55 @@ strong, b {
 
 
 
+/* 이용안내 */
+
+.help {
+    margin: 40px 0 0;
+    border: 1px solid #e7e7e7;
+    line-height: 18px;
+    font-size: 11px;
+    text-align:left;
+}
+
+.help h3 {
+    padding: 9px 0 6px 10px;
+    border-bottom: 1px solid #e7e7e7;
+    color: #949494;
+    font-size: 12px;
+    background: #fff;
+    font-weight: 500;
+}
+
+.help .content {
+    padding: 20px 30px 30px 30px;
+}
+
+.help .content h4 {
+    margin: 22px 0 -10px;
+    color: #a2a2a2;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.help .content h4:first-child {
+    margin-top: 13px;
+}
+
+.help .content ul {
+    margin: 15px 0 0 0px;
+}
+
+.help .content li {
+    color: #a2a2a2;
+    list-style: none;
+
+}
+
+.help .content li span.num {
+    color: #a2a2a2;
+    font-size: 13px;
+    padding-right: 4px;
+    font-weight: bold;
+	}
+
 
