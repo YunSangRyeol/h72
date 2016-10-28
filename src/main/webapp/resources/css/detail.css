@@ -423,6 +423,7 @@ iframe[Attributes Style] {
 .option_mini ul {
     float: left;
     width: 100%;
+    padding-left: 0;
 }
 .option_mini li {
     float: left;

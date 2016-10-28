@@ -637,9 +637,10 @@ function ResizeFrame(name)
 	        <!-- crema.me / 상품 리뷰 / 스크립트를 수정할 경우 연락주세요 (support@crema.me) -->
 	       	<div class="crema-product-reviews crema-applied" >
 	       		<!-- <iframe src="http://localhost:8888/h72/detail/selectReview" width="100%" scrolling="no" allowtransparency="true" frameborder="0" name="" style="visibility: visible; height: 4380px;"></iframe> -->
-	       		<iframe name="reviewBoard" src='http://localhost:8888/h72/detail/selectReview' framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0 onload='resizeIframe(this)'>
+	       		<jsp:include page="review.jsp" flush="false" />
+	       		<!-- <iframe name="reviewBoard" src='http://localhost:8888/h72/detail/selectReview' framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0 onload='resizeIframe(this)'>
+	       		</iframe> -->
 	       		<!-- onload="ResizeFrame('reviewBoard');" -->
-	       		</iframe>
 
 	       	</div>
 	        

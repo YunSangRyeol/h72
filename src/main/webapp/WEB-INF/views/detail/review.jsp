@@ -15,6 +15,7 @@
     <![endif]-->
     <!-- <link rel="stylesheet" media="all" href="http://assets2.cre.ma/latte/assets/10world-co-kr/pc/application-1f60e77d3e2264c404a4f00d7dc3b2d2.css"> -->
     <link rel="stylesheet" href="/h72/resources/css/review.css" />
+    <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
     <style type="text/css">
 	span.star, span.camera, .sprite_comment {
 	  background-image: url(http://assets2.cre.ma/p/10world-co-kr/brand_settings/00/00/00/00/01/sprite/582cbe9cb5adad16.png);
@@ -136,19 +137,58 @@
       				<div class="review-input-photos">
 				        <div class="input-button review-photos">
 				          <ul class="image-fields-container" data-max-images-count="4" data-images-count="0" data-limit-images-count-warning="사진은 최대 %{max_count}개까지 선택할 수 있으므로 선택한 사진 중 %{count}개만 첨부합니다" data-max-images-count-warning="리뷰 사진은 최대 4장까지 첨부가능합니다.">
+				          
 				    		<li class="image-field">
+				    		
 				  				<div class="wrap">
-				    				<img class="size-support" src="//assets2.cre.ma/m/widgets/transparent.png" alt="Transparent">
-				    					<div class="input-image-container on-list">
+				    				<!-- <img class="size-support" src="//assets2.cre.ma/m/widgets/transparent.png" alt="Transparent">
+			    					<div class="input-image-container on-list">
 				      					<span class="sprites-icon-camera inline"></span>
 				      					<div class="add-image-caption">사진추가</div>
-				    					</div>
-				        				<input type="file" name="review[images][]" class="input-file" accept="image/*" multiple="multiple" data-upload-image-url="http://widgets2.cre.ma/10world.co.kr/preview_images/upload?secure_username=MTB3b3JsZC5jby5rci9kbGZremhkMQ%3D%3D">
-				
-								      	<div class="preview-container hidden">
-								          <img class="preview" alt="preview">
-								          <div class="image_field__remove_preview remove-preview hoverable"><div class="remove">삭제</div></div>
-										</div>  
+				    				</div> -->
+				        				<!-- <input type="file" name="review[images][]" class="input-file" accept="image/*" multiple="multiple" data-upload-image-url="http://widgets2.cre.ma/10world.co.kr/preview_images/upload?secure_username=MTB3b3JsZC5jby5rci9kbGZremhkMQ%3D%3D"> -->
+				        			<input type="file" name="reviewPhoto1" id="upBtn1" class="input-file hidden" accept="image/*" multiple="multiple" />
+			        				<input type="file" name="reviewPhoto2" id="upBtn2" class="input-file hidden" accept="image/*" multiple="multiple" />
+			        				<input type="file" name="reviewPhoto3" id="upBtn3" class="input-file hidden" accept="image/*" multiple="multiple" />
+			        				<input type="file" name="reviewPhoto4" id="upBtn4" class="input-file hidden" accept="image/*" multiple="multiple" />
+			        				<input type="file" name="reviewPhoto5" id="upBtn5" class="input-file hidden" accept="image/*" multiple="multiple" />
+			        				
+			        				
+								      	<div class="preview-container ">
+								          <div class="hidden preview_div_1">
+								          	<img class="preview" id="preview1" alt="preview" >
+								          	<div class="image_field__remove_preview remove-preview hoverable"><div class="remove">삭제</div></div>
+								          </div>
+								          
+								          <div class="hidden preview_div_2">
+								          	<img class="preview" id="preview2" alt="preview" >
+								          	<div class="image_field__remove_preview remove-preview hoverable"><div class="remove">삭제</div></div>
+								          </div>
+								          
+								          <div class="hidden preview_div_3">
+									          <img class="preview" id="preview3" alt="preview" >
+									      	  <div class="image_field__remove_preview remove-preview hoverable"><div class="remove">삭제</div></div>
+									      </div>
+									      
+									      <div class="hidden preview_div_4">
+									          <img class="preview" id="preview4" alt="preview" >
+									          <div class="image_field__remove_preview remove-preview hoverable"><div class="remove">삭제</div></div>
+									      </div>
+									      
+									      <div class="hidden preview_div_5">
+									          <img class="preview" id="preview5" alt="preview" >
+									          <div class="image_field__remove_preview remove-preview hoverable"><div class="remove">삭제</div></div>
+									      </div>
+									      
+									      <div class="image-inline-photo-add" style="display: none">
+									      	  <img class="size-support hidden" src="//assets2.cre.ma/m/widgets/transparent.png" alt="Transparent">
+					    					  <div class="input-image-container on-list">
+						      					<span class="sprites-icon-camera inline"></span>
+						      					<div class="add-image-caption">사진추가</div>
+						    				  </div>
+									      </div>
+										</div> 
+										
 								</div>
 							</li>
 						  </ul>
@@ -160,41 +200,354 @@
         <span class="sprites-icon-camera-black inline"></span>
         <div class="description review_form__add_first_photo" data-org-text="+ 사진추가">+ 사진추가</div>
       </div>
+      <script>
+      $(document).ready(function(){
+    	  $(".remove-preview.hoverable").mouseenter(function(){
+    		  $(this).css("opacity", "0.8");
+    	  });
+    	  $(".remove-preview.hoverable").mouseleave(function(){
+    		  $(this).css("opacity", "0.4");
+    	  });
+    	  
+    	  
+      });
+      </script>
       
-      <!-- <div class="field-box-container">
-        <div class="field-box">
-          <div class="select2-container select-rating" id="s2id_review_score">
-	          <a href="javascript:void(0)" onclick="return false;" class="select2-choice" tabindex="-1">   
-	          <div class="select2-chosen">
-		          <div class="item">
-			          <span class="star"></span>
-			          <span class="star"></span>
-			          <span class="star"></span>
-			          <span class="star"></span><span class="star"></span>
-			          <span class="text">아주 좋아요</span>
-		          </div>
-	          </div>
-	          <abbr class="select2-search-choice-close"></abbr>   
-	          <span class="select2-arrow"><b></b></span>
-	          <span class="sprites-icon-drop-down"></span>
-	          </a>
-	          <input class="select2-focusser select2-offscreen" type="text" id="s2id_autogen4">
-	          <div class="select2-drop select2-display-none">   
-				  <div class="select2-search select2-search-hidden select2-offscreen">       
-		          	<input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input">   
-		          </div>   
-		          <ul class="select2-results"></ul>
-	          </div>
-          </div>
-          <select class="select-rating select2-offscreen" name="review[score]" id="review_score" tabindex="-1">
-          	<option selected="selected" value="5">아주 좋아요</option>
-			<option value="4">맘에 들어요</option>
-			<option value="3">보통이에요</option>
-			<option value="2">그냥 그래요</option>
-			<option value="1">별로에요</option>
-		  </select>
-        </div>
-      </div> -->
+      <script>
+      $(document).ready(function(){
+	   // 리뷰쓰기 사진 올리기 버튼
+      var n = 1;
+	  var num = 1;
+      	console.log("ok");
+      	console.log(n);
+      	
+      	//사진올리기 버튼 클릭
+		$(document).on("click", ".field-box.add-image-container, .image-inline-photo-add", function(){
+      		//e.preventDefault();
+      		if(n < 6){
+      			//버튼(input type=file)클릭 강제 이벤트
+      			$("#upBtn" + n).click();         
+      			$("input:file").val().toLowerCase();
+      		}else{
+      			alert("사진은 최대 5장까지만 업로드할 수 있습니다.")
+      		}
+      		
+      	});
+		
+      	//input file 선택했을 때
+		$(".input-file").change(function(){
+		//$("#upBtn"+n).change(function() {
+			$(".image-inline-photo-add").css("display", "block");
+			var ext = $("#upBtn" + n).val().split(".").pop();
+			//console.log(ext);
+			ext = ext.toLowerCase();
+			
+			if(ext.length > 0){
+				if($.inArray(ext,['gif','png','jpg','jpeg']) == -1) { 
+					alert("gif,png,jpg 파일만 업로드 할수 있습니다.");
+					this.value = "";
+					return false;  
+				} else {
+					readURL(this);	
+					if(num != 6){	
+						/* $(this).hide(); */	
+						$(this).css("display", "none");
+					}
+			 		
+					var thum = $(".preview_div_" + n).attr("class");
+					thum = thum.replace( /\s/, ".");
+					$("." + thum).css("display", "block");//숨겨진 섬네일 show
+					
+				}
+			}
+			
+			n++;
+			
+		 });
+		
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var thumnailId = "preview"+ num;
+					console.log(thumnailId);
+					$('#'+thumnailId).css("width","74px");
+					$('#'+thumnailId).css("height","74px");
+					$('#'+thumnailId).attr("src", e.target.result);
+					num++;
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		
+		//사진 삭제 눌렀을 때
+		$( document ).on( "click", ".remove-preview.hoverable", function(){
+		  
+		  //선택한 사진의 번호
+  		  var this_preview_class = $( this ).parent().attr( "class" );//클릭한 섬네일 div
+  		  this_preview_class = this_preview_class.replace( /\s/, "." );//공백 '.' 치환 
+  		  var preview_num = this_preview_class.substring( this_preview_class.length - 1);
+  		  
+  		  
+		  n--;// 6 -> 5
+		  num--;// 6 -> 5
+		  
+  		  //alert( "선택된 사진 class(from parent)  : " + this_preview_class + "\n선택된 사진 번호 : " + preview_num + "\nn: " + n +"\nnum: " + num + "\n총 사진갯수 : " + num);
+		  
+		  
+		 if(num == 5){
+			  //사진 5장 선택됐을 때
+	  		  if(preview_num == 5){//5번 사진 삭제시
+	  		  	//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	    		var preview_src_5 = $( "#preview" + num ).attr( "src" );
+	    		$( "#preview" + num ).attr( "src", null );
+	    			
+	    		//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+	    		var preview_src_parent_5 = $( "#preview" + num ).parent().attr( "class" );
+	    		preview_src_parent_5 = preview_src_parent_5.replace( /\s/, ".");
+	    		$( "." + preview_src_parent_5 ).css( "display", "none" );
+	  		  }
+			  
+	  		  if(preview_num == 4){//4번 사진 삭제시( 4 <- 5 )
+	  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	  			var preview_src_5 = $( "#preview" + num ).attr( "src" );
+	  			$( "#preview" + num ).attr( "src", "" );
+	  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+	  			var preview_src_parent_5 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_5 ).css( "display", "none" );
+	  			//3. 5번사진 src 4번 사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
+	  		  }
+	  		  
+	  		  if(preview_num == 3){//3번 사진 삭제시( 3 <- 4 <- 5 )
+	  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	  			var preview_src_4 = $( "#preview" + ( num - 1 ) ).attr( "src" );
+	  			var preview_src_5 = $( "#preview" + num ).attr( "src" );
+	  			
+	  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+	  			var preview_src_parent_5 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_5 ).css( "display", "none" );
+	  			
+	  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+				$( "#preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
+	  		  }
+	  		  
+	  		  if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 <- 4 <- 5 )
+	  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	  			var preview_src_3 = $( "#preview" + ( num - 2 ) ).attr( "src" );
+	  			var preview_src_4 = $( "#preview" + ( num - 1 ) ).attr( "src" );
+	  			var preview_src_5 = $( "#preview" + num ).attr( "src" );
+	  			
+	  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+	  			var preview_src_parent_5 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_5 ).css( "display", "none" );
+	  			
+	  			
+	  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+				$( "#preview" + ( num - 3 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
+				$( "#preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
+	  		  }
+	  		  
+	  		  if(preview_num == 1){//2번 사진 삭제시( 1 <- 2 <- 3 <- 4 <- 5 )
+	  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	  			var preview_src_2 = $( "#preview" + ( num - 3 ) ).attr( "src" );
+	  			var preview_src_3 = $( "#preview" + ( num - 2 ) ).attr( "src" );
+	  			var preview_src_4 = $( "#preview" + ( num - 1 ) ).attr( "src" );
+	  			var preview_src_5 = $( "#preview" + num ).attr( "src" );
+	  			
+	  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+	  			var preview_src_parent_5 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_5 ).css( "display", "none" );
+	  			
+	  			
+	  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+				$( "#preview" + ( num - 4 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기		  
+				$( "#preview" + ( num - 3 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
+				$( "#preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
+	  		  }
+		 }
+		 if(num == 4){//사진 4장 선택됐을 때
+	  		  if(preview_num == 4){//4번 사진 삭제시
+	    		//1. 4번사진 부모 class값 가져오고 display: none
+	    		var preview_src_parent_4 = $( "#preview" + num ).parent().attr( "class" );
+	    		preview_src_parent_4 = preview_src_parent_4.replace( /\s/, ".");
+	    		$( "." + preview_src_parent_4 ).css( "display", "none" );
+	  		  }
+			  
+	  		  if(preview_num == 3){//3번 사진 삭제시( 3 <- 4 )
+	  			//1. 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
+	  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+	  			var preview_src_4 = $( "#preview" + num ).attr( "src" );
+	  			var preview_src_parent_4 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_4 ).css( "display", "none" );
+	  			//3. 4번사진 src 3번 사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//5번사진 src --> 4번사진 src 넣기		  
+	  		  }
+	  		  
+	  		  if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 <- 4 )
+	  			//1. 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	  			var preview_src_3 = $( "#preview" + ( num - 1 ) ).attr( "src" );
+	  			var preview_src_4 = $( "#preview" + num ).attr( "src" );
+	  			
+	  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+	  			var preview_src_parent_4 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_4 ).css( "display", "none" );
+	  			
+	  			//3. 3번사진 src 2번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+				$( "#preview" + ( num - 2 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기		  
+	  		  }
+	  		  
+	  		  if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 <- 3 <- 4 )
+	  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	  			var preview_src_2 = $( "#preview" + ( num - 2 ) ).attr( "src" );
+	  			var preview_src_3 = $( "#preview" + ( num - 1 ) ).attr( "src" );
+	  			var preview_src_4 = $( "#preview" + num ).attr( "src" );
+	  			
+	  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+	  			var preview_src_parent_4 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_4 ).css( "display", "none" );
+	  			
+	  			
+	  			//3. 2번사진 src 1번 사진 src으로 넣기 / 3번사진 src 2번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+				$( "#preview" + ( num - 3 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기
+				$( "#preview" + ( num - 2 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기		  
+	  		  }
+		 }
+  		 if(num == 3){//사진 3장 선택됐을 때
+  			  if(preview_num == 3){//3번 사진 삭제시
+	    		//1. 3번사진 부모 class값 가져오고 display: none
+	    		var preview_src_parent_3 = $( "#preview" + num ).parent().attr( "class" );
+	    		preview_src_parent_3 = preview_src_parent_3.replace( /\s/, ".");
+	    		$( "." + preview_src_parent_3 ).css( "display", "none" );
+	  		  }
+			  
+	  		  if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 )
+	  			//1. 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
+	  			//2. 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+	  			var preview_src_3 = $( "#preview" + num ).attr( "src" );
+	  			var preview_src_parent_3 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_3 = preview_src_parent_3.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_3 ).css( "display", "none" );
+	  			//3. 3번사진 src 2번 사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기		  
+	  		  }
+	  		  
+	  		  if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 <- 3 )
+	  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	  			var preview_src_2 = $( "#preview" + ( num - 1 ) ).attr( "src" );
+	  			var preview_src_3 = $( "#preview" + num ).attr( "src" );
+	  			
+	  			//2. 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+	  			var preview_src_parent_3 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_3 = preview_src_parent_3.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_3 ).css( "display", "none" );
+	  			
+	  			//3. 2번사진 src 1번 사진 src으로 넣기 / 3번사진 src 2번 사진 src으로 넣기
+				$( "#preview" + ( num - 2 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기		  
+	  		  }
+  		 }
+  		 
+  		 if(num == 2){//사진 2장 선택했을 때
+  			  if(preview_num == 2){//2번 사진 삭제시
+	    		//1. 2번사진 부모 class값 가져오고 display: none
+	    		var preview_src_parent_2 = $( "#preview" + num ).parent().attr( "class" );
+	    		preview_src_parent_2 = preview_src_parent_2.replace( /\s/, ".");
+	    		$( "." + preview_src_parent_2 ).css( "display", "none" );
+	  		  }
+			  
+	  		  if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 )
+	  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
+	  			//2. 2번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+	  			var preview_src_2 = $( "#preview" + num ).attr( "src" );
+	  			var preview_src_parent_2 = $( "#preview" + num ).parent().attr( "class" );
+	  			preview_src_parent_2 = preview_src_parent_2.replace( /\s/, ".");
+	  			$( "." + preview_src_parent_2 ).css( "display", "none" );
+	  			//3. 2번사진 src 1번 사진 src 넣기
+				$( "#preview" + ( num - 1 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기		  
+	  		  }
+  		 }
+  		 if(num == 1){
+  			if(preview_num == 1){//1번 사진 삭제시
+	    		//1. 1번사진 부모 class값 가져오고 display: none
+	    		var preview_src_parent_1 = $( "#preview" + num ).parent().attr( "class" );
+	    		preview_src_parent_1 = preview_src_parent_1.replace( /\s/, ".");
+	    		$( "." + preview_src_parent_1 ).css( "display", "none" );
+	  		  }
+  		 }
+  	  	});
+      }); 
+		
+      </script>
+      <!------------------------------------------------------------------------------------------------------------------------------------------------------------>
+<%-- 							<form action="radd?storeId=<%=s.getStoreId()%>&nickname=<%= nickname %>" method="post" enctype="multipart/form-data" style="margin:0;" > --%>
+
+								<div class="body first">
+									<ul class="list">
+										<li class="item text">
+											<script>
+											if($("input[name=star-input]").is(":checked")){
+												$("#review_text_state").css("background", "green");
+											}
+											</script>
+										</li>
+										<!-- <li id="itemPhoto" class="item photo">
+											<div class="name">
+												사진 올리기
+											</div>
+											<div class="detail">
+												<button id="review_photo_upload" class="border_radius medium" tabindex="-1">
+													+
+												</button>
+												<input type="file" multiple name="reviewPhoto1" id="upBtn1" class="file_input_hidden" /> 
+												<input type="file" multiple name="reviewPhoto2" id="upBtn2" class="file_input_hidden" style="display:none" /> 
+												<input type="file" multiple name="reviewPhoto3" id="upBtn3" class="file_input_hidden" style="display:none" />
+												<input type="file" multiple name="reviewPhoto4" id="upBtn4" class="file_input_hidden" style="display:none" />
+												<input type="file" multiple name="reviewPhoto5" id="upBtn5" class="file_input_hidden" style="display:none" />
+											    <div id="thumnailArea">
+											       <img id="thumnail1" name="thumanail" />
+											       <img id="thumnail2" name="thumanail" />
+											       <img id="thumnail3" name="thumanail" />
+											       <img id="thumnail4" name="thumanail" />
+											       <img id="thumnail5" name="thumanail" />
+											    </div>
+												<ul id="review_photo_list">
+												</ul>
+											</div>
+										</li> 
+									</ul>
+									
+									
+								</div>
+					
+								<div class="body review write" id="review_add">
+									<button type="submit" class="border_radius soft" id="AA">
+										리뷰 올리기
+									</button>
+								</div>
+								<div class="body review write" id="review_modify">
+									<button type="button" class="border_radius soft" id="modifyGo">
+										리뷰 수정하기
+									</button>
+								</div>
+								-->
+								
+<!-- 							</form> -->
+
+      <!------------------------------------------------------------------------------------------------------------------------------------------------------------>
+      
       <input type="hidden" value="9001" name="review[product_id]" id="review_product_id">
       <input type="hidden" value="24" name="review[review_source]" id="review_review_source">
       <input type="hidden" name="review[sub_order_id]" id="review_sub_order_id">
@@ -203,28 +556,11 @@
         <div class="title">
           <span class="fa fa-check-circle-o"></span>
           <span class="review_form__post_review_label">리뷰 등록하기</span>
+          <!-- <script>$(".review_form__post_review_label").hover(function(){});</script> -->
         </div>
 	  </button>    
 </div>
-<script type="text/x-jquery-tmpl" class="new-image-field">
-<li class="image-field">
-  <div class="wrap">
-    <img class="size-support" src="//assets2.cre.ma/m/widgets/transparent.png" alt="Transparent" />
-    <div class="input-image-container on-list">
-      <span class="sprites-icon-camera inline"></span>
-      <div class="add-image-caption">사진추가</div>
-    </div>
-      <input type="file" name="review[images][]" class="input-file" accept="image/*" multiple="multiple" data-upload-image-url="http://widgets2.cre.ma/10world.co.kr/preview_images/upload?secure_username=MTB3b3JsZC5jby5rci9kbGZremhkMQ%3D%3D" />
-      <div class="preview-container hidden">
-        <img class="preview" alt="preview">
-        <div class="image_field__remove_preview remove-preview hoverable">
-          <div>삭제</div>
-        </div>
-      </div>
-  </div>
-</li>
-    </script>
-				</form>
+</form>
 				
 	<script>
 	//<![CDATA[
@@ -233,7 +569,8 @@
 	</script>
 				</div>
 
-      <form id="upload-image" class="hidden" data-type="json" enctype="multipart/form-data" action="/10world.co.kr/preview_images/upload?secure_username=MTB3b3JsZC5jby5rci9kbGZremhkMQ%3D%3D" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
+      <form id="upload-image" class="hidden" data-type="json" enctype="multipart/form-data" action="/10world.co.kr/preview_images/upload?secure_username=MTB3b3JsZC5jby5rci9kbGZremhkMQ%3D%3D" accept-charset="UTF-8" data-remote="true" method="post">
+      <input name="utf8" type="hidden" value="✓">
   <div class="fields_container"></div>
 </form>
 			</div>
@@ -269,14 +606,14 @@
   				<div class="products_reviews_header__separator"></div>
   				
 			</div>
-
+			
 			<div>
 				<div class="widget-body product_reviews_list__body">
   
 					<div class="page">
 						<ul class="reviews reviews-product">
 
-						<% for(int i = 0; i < 3; i++){ %>
+						<%-- <% for(int i = 0; i < 3; i++){ %> --%>
 <!-- ///////////////////////////////////리뷰 폼 시작///////////////////////////////////// -->
 							<li class="review product-review product_review__container " data-expand-url="/10world.co.kr/reviews/97795/expand?widget_id=2" id="review_97795">
 								<div class="product_review__info_container">
@@ -312,7 +649,7 @@
 								</div>
 							</li>
 <!-- ///////////////////////////////////리뷰 폼 끝///////////////////////////////////// -->
-						<% } %>
+						<%-- <% } %> --%>
 <!-- ///////////////////////////////////리뷰 폼 시작///////////////////////////////////// -->
 <!-- ///////////////////////////////////리뷰 폼 끝///////////////////////////////////// -->
 
@@ -329,7 +666,8 @@
 	
 	</div>
 	
-    <script src="http://assets2.cre.ma/latte/assets/10world-co-kr/pc/application-cd4d246ae420a7dcd98cdc699064dc36.js"></script>
+	<!-- 기능 스크립트 -->
+<!--     <script src="http://assets2.cre.ma/latte/assets/10world-co-kr/pc/application-cd4d246ae420a7dcd98cdc699064dc36.js"></script> -->
     <!--[if IE 7]>
       <script src="//assets2.cre.ma/m/widgets/javascripts/ie7.js"></script>
     <![endif]-->

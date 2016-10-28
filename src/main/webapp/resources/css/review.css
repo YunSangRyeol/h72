@@ -211,7 +211,8 @@ body.products.reviews .review-input-photos, #review-edit-form .review-input-phot
     margin-left: -15px;
 }
 body.products.reviews form.new_review .review-input-photos, #review-edit-form form.new_review .review-input-photos {
-    display: none;
+    /* display: none; */
+    
 }
 
 .review-input-photos .review-photos {
@@ -219,7 +220,7 @@ body.products.reviews form.new_review .review-input-photos, #review-edit-form fo
     width: 58px;
     height: 58px;
     margin-left: 1px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 .review-input-photos .input-button {
     position: relative;
@@ -233,34 +234,54 @@ ul, menu, dir {
     -webkit-margin-after: 1em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
-    -webkit-padding-start: 40px;
+    /* -webkit-padding-start: 40px; */
 }
-body.products.reviews .image-fields-container, #review-edit-form .image-fields-container {
-    width: 430px;
+
+/* thumnail image */
+body.products.reviews .image-fields-container, 
+#review-edit-form .image-fields-container {
+    width: 700px;/******************************/
     height: 75px;
     padding: 0px;
+    background: white;
+    
 }
 li {
     list-style-type: none;
 }
-body.products.reviews .image-fields-container .image-field, #review-edit-form .image-fields-container .image-field {
+body.products.reviews .image-fields-container .image-field, 
+#review-edit-form .image-fields-container .image-field {
     width: 75px;
     height: 75px;
     position: relative;
     float: left;
     padding: 0 5px 10px 5px;
 }
-body.products.reviews .image-fields-container .wrap, #review-edit-form .image-fields-container .wrap {
+body.products.reviews .image-fields-container .wrap, 
+#review-edit-form .image-fields-container .wrap {
     position: relative;
     background: #c8c8c8;
-    overflow: hidden;
+    overflow: visible;
     width: 75px;
     height: 75px;
 }
-body.products.reviews .image-fields-container img.size-support, #review-edit-form .image-fields-container img.size-support {
+.image-inline-photo-add{
+	position: relative;
+    background: #c8c8c8;
+    overflow: visible;
+    width: 75px;
+    height: 75px;
+    margin: 0 5px;
+    display: block;
+    cursor: pointer;
+}
+body.products.reviews .image-fields-container img.size-support, 
+#review-edit-form .image-fields-container img.size-support {
     width: 100%;
     height: auto;
     min-width: 50px;
+    position: absolute;
+    z-index: 1000;
 }
 .input-image-container {
     position: absolute;
@@ -301,7 +322,8 @@ body.products.reviews
     font-size: 200px;
     direction: ltr;
 }
-body.products.reviews .image-fields-container .input-file, #review-edit-form .image-fields-container .input-file {
+body.products.reviews .image-fields-container .input-file, 
+#review-edit-form .image-fields-container .input-file {
     position: absolute;
     top: 0;
     right: 0;
@@ -314,26 +336,25 @@ body.products.reviews .image-fields-container .input-file, #review-edit-form .im
     direction: ltr;
 }
 
-body.products.reviews .image-fields-container .preview-container, #review-edit-form .image-fields-container .preview-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 75px;
-    height: 75px;
-    font-size: 0;
-    background: white;
-    text-align: center;
+.preview{
+	padding: 0 5px 10px 5px;
 }
 
-/* remove */
+
+/* thumnail image remove */
 .image_field__remove_preview {
     font-size: 13px;
 }
-body.products.reviews .image-fields-container .remove-preview, #review-edit-form .image-fields-container .remove-preview {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+.opaciy_modify {
+	opacity: 0.8;
+}
+/* 삭제 div */
+body.products.reviews .image-fields-container .remove-preview, 
+#review-edit-form .image-fields-container .remove-preview {
+    position: relative;
+    top: -84px;
+    left: 5px;
+    width: 88%;
     height: 100%;
     color: white;
     font-size: 13px;
@@ -346,8 +367,12 @@ body.products.reviews .image-fields-container .remove-preview, #review-edit-form
     -moz-transition: opacity 0.3s;
     -o-transition: opacity 0.3s;
     transition: opacity 0.3s;
+    
 }
-body.products.reviews .image-fields-container .remove-preview div, #review-edit-form .image-fields-container .remove-preview div {
+
+/* 삭제 div 내 글씨 */
+body.products.reviews .image-fields-container .remove-preview div, 
+#review-edit-form .image-fields-container .remove-preview div {
     position: absolute;
     text-align: center;
     top: 50%;
@@ -364,21 +389,17 @@ li {
 li {
     list-style-type: none;
 }
-body.products.reviews .image-fields-container .image-field, #review-edit-form .image-fields-container .image-field {
+body.products.reviews .image-fields-container .image-field, 
+#review-edit-form .image-fields-container .image-field {
     width: 75px;
     height: 75px;
     position: relative;
     float: left;
     padding: 0 5px 10px 5px;
 }
-body.products.reviews .image-fields-container .wrap, #review-edit-form .image-fields-container .wrap {
-    position: relative;
-    background: #c8c8c8;
-    overflow: hidden;
-    width: 75px;
-    height: 75px;
-}
-body.products.reviews .image-fields-container img.size-support, #review-edit-form .image-fields-container img.size-support {
+
+body.products.reviews .image-fields-container img.size-support, 
+#review-edit-form .image-fields-container img.size-support {
     width: 100%;
     height: auto;
     min-width: 50px;
@@ -387,7 +408,18 @@ body.products.reviews .image-fields-container img.size-support, #review-edit-for
     display: inline-block;
 }
 
-.sprites-sprite, .sprites-camera, .sprites-category, .sprites-check, .sprites-checked, .sprites-circle-close-button-black, .sprites-circle-close-button, .sprites-close-button-black, .sprites-close-cross, .sprites-fa-bookmark, .sprites-fa-camera, .sprites-fa-check-circle-o, .sprites-fa-comment, .sprites-fa-heart-liked, .sprites-fa-heart, .sprites-fa-no-comment, .sprites-fa-times-circle, .sprites-icon-camera-black, .sprites-icon-camera, .sprites-icon-drop-down-s, .sprites-icon-drop-down, .sprites-icon-file, .sprites-navigator-left, .sprites-navigator-right, .sprites-product-gallery-drop-down, .sprites-search, .sprites-tokenized-input-clear, .sprites-tokenized-input-remove, .fa-check-circle-o, .fa-times-circle, .fa-bookmark, .fa-camera, .fa-comment, .no-comment .fa-comment {
+.sprites-sprite, .sprites-camera, .sprites-category, 
+.sprites-check, .sprites-checked, .sprites-circle-close-button-black, 
+.sprites-circle-close-button, .sprites-close-button-black, 
+.sprites-close-cross, .sprites-fa-bookmark, .sprites-fa-camera, 
+.sprites-fa-check-circle-o, .sprites-fa-comment, .sprites-fa-heart-liked, 
+.sprites-fa-heart, .sprites-fa-no-comment, .sprites-fa-times-circle, 
+.sprites-icon-camera-black, .sprites-icon-camera, .sprites-icon-drop-down-s, 
+.sprites-icon-drop-down, .sprites-icon-file, .sprites-navigator-left, 
+.sprites-navigator-right, .sprites-product-gallery-drop-down, .sprites-search, 
+.sprites-tokenized-input-clear, .sprites-tokenized-input-remove, 
+.fa-check-circle-o, .fa-times-circle, .fa-bookmark, .fa-camera, 
+.fa-comment, .no-comment .fa-comment {
     background: url(//assets.cre.ma/latte/assets/10world-co-kr/pc/sprites-s4609f131b4.png) no-repeat;
 }
 .sprites-icon-camera-black {
@@ -407,12 +439,14 @@ body.products.reviews .image-fields-container img.size-support, #review-edit-for
     width: 37px;
 }
 
-body.products.reviews .image-fields-container .sprites-icon-camera, #review-edit-form .image-fields-container .sprites-icon-camera {
+body.products.reviews .image-fields-container .sprites-icon-camera, 
+#review-edit-form .image-fields-container .sprites-icon-camera {
     margin-top: 17px;
     margin-bottom: 2px;
 }
 
-body.products.reviews .image-fields-container .input-file, #review-edit-form .image-fields-container .input-file {
+body.products.reviews .image-fields-container .input-file, 
+#review-edit-form .image-fields-container .input-file {
     position: absolute;
     top: 0;
     right: 0;
@@ -424,15 +458,19 @@ body.products.reviews .image-fields-container .input-file, #review-edit-form .im
     font-size: 200px;
     direction: ltr;
 }
-body.products.reviews .image-fields-container .preview-container, #review-edit-form .image-fields-container .preview-container {
-    position: absolute;
+
+/* thumnail image */
+body.products.reviews .image-fields-container .preview-container, 
+#review-edit-form .image-fields-container .preview-container {
+    /* position: absolute;
     top: 0;
-    left: 0;
-    width: 75px;
+    left: 0; */
+    width: 540px;
     height: 75px;
     font-size: 0;
     background: white;
     text-align: center;
+    display: inline-flex;
 }
 
 /* input-area-container */
@@ -509,7 +547,7 @@ a:-webkit-any-link {
 }
 a {
     text-decoration: none;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 .select2-container .select2-choice {
     display: block;
@@ -553,15 +591,6 @@ span.star, span.camera, .sprite_comment {
 }
 .select2-container .select2-choice>.select2-chosen .item .text {
     margin-left: 10px;
-}
-a:-webkit-any-link {
-    color: -webkit-link;
-    text-decoration: underline;
-    cursor: auto;
-}
-a {
-    text-decoration: none;
-    cursor: pointer;
 }
 .select2-search-choice-close {
     display: block;
@@ -864,10 +893,6 @@ li.review .l-contents .panel-footer {
     padding-bottom: 20px;
     padding-top: 13px;
 }
-a {
-    text-decoration: none;
-    cursor: pointer;
-}
 
 /* 리뷰 expanded */
 li.review .l-contents .review-content .review-content-expanded {
@@ -898,7 +923,21 @@ expanded {
     word-wrap: break-word;
 }
 
-
+/* 리뷰작성 내용  div */
+.limit-count-container {
+    position: relative;
+}
+#form-new-product-review .message-field {
+    font-size: 0;
+    height: auto;
+    margin-bottom: 8px;
+    padding: 15px 13px;
+    border: 1px solid #dadada;
+    -webkit-transition: padding-top 0.3s ease;
+    -moz-transition: padding-top 0.3s ease;
+    -o-transition: padding-top 0.3s ease;
+    transition: padding-top 0.3s ease;
+}
 
 
 
