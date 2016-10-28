@@ -31,15 +31,21 @@ public class CartController {
 	public String cartView(HttpSession session,  Model model) throws Exception {
 		Member login = (Member) session.getAttribute("loginUser");
 		if(!(login==null)){
-		String userid = login.getUserid();
-		System.out.println("cartcontroller:"+userid+"============================================================");
-		List<Cart> clist = cs.getCartList(userid);
-		System.out.println("cartcontroller"+clist+"==========================================================");
-		System.out.println("cartcontroller : "+clist.get(0).getItemOptionName());
-		model.addAttribute("clist", clist);
+			String userid = login.getUserid();
+			System.out.println("cartcontroller:"+userid+"============================================================");
+			List<Cart> clist = cs.getCartList(userid);
+			System.out.println("cartcontroller"+clist+"==========================================================");
+			if(clist.isEmpty()){
+				clist = null;
+			}
+			
+			model.addAttribute("clist", clist);
+			
+			
 		}else{
 			
 		}
+		
 		
 		return "order/shopping_cart";
 	}
