@@ -18,7 +18,7 @@
 		<jsp:include page="/WEB-INF/views/main_header.jsp" flush="false" />
 		<div class="mjoin_contents" align="center">
 			<div class="mjoin_titleArea">
-				<h2>Member Update</h2>
+				<h2>My Info</h2>
 			</div>
 			<div class="mjoin_form">
 			<form id="" action="">

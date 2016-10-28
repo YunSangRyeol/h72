@@ -23,7 +23,9 @@
 						</c:if>
 						<c:if test="${!(loginUser eq null) }">
 							<li style="color:#fff;"><strong> ${loginUser.name }</strong> 님</li>
-							<li><a href="<c:url value="logout.do" />">LOGOUT</a></li>
+							<li><a href="<c:url value="/logout.do" />">LOGOUT</a></li>
+							<li><a href="<c:url value="/member/memberUpdate" />">MyInfo</a></li>
+							
 						</c:if>
 						<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
 						<li><a href="<c:url value="/order/order_list"/>">ORDER</a></li>

@@ -12,6 +12,6 @@
 </head>
 
 <body class="footer_body">
-<img style="border-top:solid 1px #e6e6e6;" alt="copyright" src="/h72/resources/image/footer.jpg">
+<img style="border-top:solid 1px #e6e6e6; margin-top:70px;" alt="copyright" src="/h72/resources/image/footer.jpg">
 </body>
 </html>
