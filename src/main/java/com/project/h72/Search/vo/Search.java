@@ -1,108 +1,107 @@
 package com.project.h72.Search.vo;
 
 public class Search {
-	private String itemId;
-	private String providerCode;
-	private String itemDetailCode;
-	private String itemOptionName;
-	private int cost;
-	private int price;
-	private int sailPrice;
-	private int stock;
-
+	private String itemDetailId;
+	private String categoryCode;
+	private String itemStatus;
+	private String itemName;
+	private int minPrice;
+	private int minSailPrice;
+	private String mainImg;
+	private String detailImg1;
+	private String detailImg2;
+	private String etc;
+	
 	public Search() {
 		super();
 	}
-	//조회결과 상품정보
-	public Search(String itemOptionName, int price, int sailPrice) {
+	public Search(String itemName, int minPrice, int minSailPrice, String mainImg) {
 		super();
-		this.itemOptionName = itemOptionName;
-		this.price = price;
-		this.sailPrice = sailPrice;
+		this.itemName = itemName;
+		this.minPrice = minPrice;
+		this.minSailPrice = minSailPrice;
+		this.mainImg = mainImg;
 	}
-
-	public Search(String itemId, String providerCode, String itemDetailCode, String itemOptionName, int cost, int price,
-			int sailPrice, int stock) {
+	public Search(String itemDetailId, String categoryCode, String itemStatus, String itemName, int minPrice,
+			int minSailPrice, String mainImg, String detailImg1, String detailImg2, String etc) {
 		super();
-		this.itemId = itemId;
-		this.providerCode = providerCode;
-		this.itemDetailCode = itemDetailCode;
-		this.itemOptionName = itemOptionName;
-		this.cost = cost;
-		this.price = price;
-		this.sailPrice = sailPrice;
-		this.stock = stock;
+		this.itemDetailId = itemDetailId;
+		this.categoryCode = categoryCode;
+		this.itemStatus = itemStatus;
+		this.itemName = itemName;
+		this.minPrice = minPrice;
+		this.minSailPrice = minSailPrice;
+		this.mainImg = mainImg;
+		this.detailImg1 = detailImg1;
+		this.detailImg2 = detailImg2;
+		this.etc = etc;
 	}
-
-	public String getItemId() {
-		return itemId;
+	public String getItemDetailId() {
+		return itemDetailId;
 	}
-
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
+	public void setItemDetailId(String itemDetailId) {
+		this.itemDetailId = itemDetailId;
 	}
-
-	public String getProviderCode() {
-		return providerCode;
+	public String getCategoryCode() {
+		return categoryCode;
 	}
-
-	public void setProviderCode(String providerCode) {
-		this.providerCode = providerCode;
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
 	}
-
-	public String getItemDetailCode() {
-		return itemDetailCode;
+	public String getItemStatus() {
+		return itemStatus;
 	}
-
-	public void setItemDetailCode(String itemDetailCode) {
-		this.itemDetailCode = itemDetailCode;
+	public void setItemStatus(String itemStatus) {
+		this.itemStatus = itemStatus;
 	}
-
-	public String getItemOptionName() {
-		return itemOptionName;
+	public String getItemName() {
+		return itemName;
 	}
-
-	public void setItemOptionName(String itemOptionName) {
-		this.itemOptionName = itemOptionName;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
-
-	public int getCost() {
-		return cost;
+	public int getMinPrice() {
+		return minPrice;
 	}
-
-	public void setCost(int cost) {
-		this.cost = cost;
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
 	}
-
-	public int getPrice() {
-		return price;
+	public int getMinSailPrice() {
+		return minSailPrice;
 	}
-
-	public void setPrice(int price) {
-		this.price = price;
+	public void setMinSailPrice(int minSailPrice) {
+		this.minSailPrice = minSailPrice;
 	}
-
-	public int getSailPrice() {
-		return sailPrice;
+	public String getMainImg() {
+		return mainImg;
 	}
-
-	public void setSailPrice(int sailPrice) {
-		this.sailPrice = sailPrice;
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
 	}
-
-	public int getStock() {
-		return stock;
+	public String getDetailImg1() {
+		return detailImg1;
 	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setDetailImg1(String detailImg1) {
+		this.detailImg1 = detailImg1;
 	}
-
+	public String getDetailImg2() {
+		return detailImg2;
+	}
+	public void setDetailImg2(String detailImg2) {
+		this.detailImg2 = detailImg2;
+	}
+	public String getEtc() {
+		return etc;
+	}
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
 	@Override
 	public String toString() {
-		return "Search [itemId=" + itemId + ", providerCode=" + providerCode + ", itemDetailCode=" + itemDetailCode
-				+ ", itemOptionName=" + itemOptionName + ", cost=" + cost + ", price=" + price + ", sailPrice="
-				+ sailPrice + ", stock=" + stock + "]";
+		return "Search [itemDetailId=" + itemDetailId + ", categoryCode=" + categoryCode + ", itemStatus=" + itemStatus
+				+ ", itemName=" + itemName + ", minPrice=" + minPrice + ", minSailPrice=" + minSailPrice + ", mainImg="
+				+ mainImg + ", detailImg1=" + detailImg1 + ", detailImg2=" + detailImg2 + ", etc=" + etc + "]";
 	}
-
+	
+	
 }

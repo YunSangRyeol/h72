@@ -97,33 +97,33 @@
 			</script>
 
 			<div class="main_banner2">
-				<a href="#">
+				<a href="<c:url value="/protect"/>">
 					<div id="main_banner_clothes">
 						<span id="main_label_title">PROTECT</span><br>
 						<span id="main_label_contents">영하 10℃ 에서도 체온 유지 가능</span>
 					</div>
 				</a>
-				<a href="#" target="_blank">
+				<a href="<c:url value="/food"/>" >
 					<div id="main_banner_food">
 						<span id="main_label_title">FOOD</span><br>
 						<span id="main_label_contents">간단 조리가 가능한 비상식량 모음</span>
 					</div>
 				</a>
 			</div>
-			<a href="#">
+			<a href="<c:url value="/bag"/>">
 				<div class="main_banner3">
 					<span id="main_label_title2">BAG</span><br>
 					<span id="main_label_contents2">생존배낭 사이즈별 대량 입고</span>
 				</div>
 			</a>
 			<div class="main_banner4">
-				<a href="#">
+				<a href="<c:url value="/tool"/>">
 					<div id="main_banner_tool">
 						<span id="main_label_title">TOOL</span><br>
 						<span id="main_label_contents">최대 밝기 2000루멘 휴대용 라이트 판매중</span>
 					</div>
 				</a>
-				<a href="#">
+				<a href="<c:url value="/etc"/>">
 					<div id="main_banner_etc">
 						<span id="main_label_title">ETC</span><br>
 						<span id="main_label_contents">응급처치 세트 외 기타용품 모음집</span>

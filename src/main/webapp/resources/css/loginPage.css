@@ -89,6 +89,7 @@ a {
 }
 
 .login_inputArea .loginBtn, .mjoinBtn {
+	cursor:pointer;
 	display: inline-block;
 	width: 100px;
 	height: 70px;
@@ -112,6 +113,7 @@ a {
 }
 
 .login_inputArea .loginBtn a, .mjoinBtn a {
+	
 	display:inline-block;
 	color: #fff;
 	width: 100px;

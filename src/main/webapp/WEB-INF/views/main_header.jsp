@@ -49,7 +49,7 @@
 					<form id="main_searchBarForm" action="<c:url value="/search" />">
 							<input id="main_keyword" name="keyword" fw-filter=""
 								fw-label="검색어" fw-msg="" class="main_inputTypeText"
-								onmousedown="SEARCH_BANNER.clickSearchForm(this)" value=""
+								 value=""
 								type="text" placeholder=" Search">
 								<input type="submit" class="main_searchBtn" value=" " style="cursor:pointer;"><!-- <img
 								src="/h72/resources/image/topmenu_search.png" alt="검색"

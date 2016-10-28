@@ -37,7 +37,7 @@ public class MemberController {
 		return "member/loginPage";
 	}
 
-	@RequestMapping(value = "/login.do")
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(@RequestParam("userid") String id, @RequestParam("userpass") String pass, HttpSession session)
 			throws Exception {
 		System.out.println(id + " @@ " + pass);
@@ -63,7 +63,7 @@ public class MemberController {
 		return "member/memberJoin";
 	}
 
-	@RequestMapping(value = "/mJoin.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mJoin.do", method = RequestMethod.POST)
 	public String mJoin(@RequestParam("userid") String id, @RequestParam("userpass") String pass,
 			@RequestParam("userpass_confirm") String pass_confirm, @RequestParam("name") String name,
 			@RequestParam("birthdate") Date birthdate, @RequestParam("postnum") String postnum,
@@ -85,37 +85,37 @@ public class MemberController {
 		return "member/memberUpdate";
 	}
 
-	@RequestMapping(value = "/mUpdate", method = RequestMethod.GET)
+	@RequestMapping(value = "/mUpdate", method = RequestMethod.POST)
 	public String mUpdate(Locale locale, Model model) {
 
 		return "home";
 	}
 
-	@RequestMapping(value = "/mDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/mDelete", method = RequestMethod.POST)
 	public String mDelete(Locale locale, Model model) {
 
 		return "home";
 	}
 
-	@RequestMapping(value = "member/idFindPage", method = RequestMethod.GET)
+	@RequestMapping(value = "member/idFindPage", method = RequestMethod.POST)
 	public String mSearchID(Locale locale, Model model) {
 		/* 단순 페이지 이동 */
 		return "member/idFindPage";
 	}
 
-	@RequestMapping(value = "member/pwdFindPage", method = RequestMethod.GET)
+	@RequestMapping(value = "member/pwdFindPage", method = RequestMethod.POST)
 	public String mSearchPW(Locale locale, Model model) {
 		/* 단순 페이지 이동 */
 		return "member/pwdFindPage";
 	}
 
-	@RequestMapping(value = "member/idFindResult", method = RequestMethod.GET)
+	@RequestMapping(value = "member/idFindResult", method = RequestMethod.POST)
 	public String idFindResult(Locale locale, Model model) {
 
 		return "member/idFindResult";
 	}
 
-	@RequestMapping(value = "member/pwdFindResult", method = RequestMethod.GET)
+	@RequestMapping(value = "member/pwdFindResult", method = RequestMethod.POST)
 	public String pwdFindResult(Locale locale, Model model) {
 
 		return "member/pwdFindResult";
