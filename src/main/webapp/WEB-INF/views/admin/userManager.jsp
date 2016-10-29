@@ -97,18 +97,18 @@
 	</select>
 	</div>
 	<div id="searchDate"  style="display:none;">
-		<form>
+		<form form id="searchDateForm" method="post" action="/h72/adminSDate.do">
 		<input type="date" name="start" id="startDate" class="searchDateInput"> ~ <input type="date" name="end" id="endDate" class="searchDateInput">
 		 &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div><!-- searchDate -->    
     <div id="searchID">
-		<form>
+		<form id="searchIdForm" method="post" action="/h72/adminSID.do">
 			<input type="text" name="userid" size="30" class="searchInput"> &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div>
     <div id="searchName" style="display:none;">
-		<form>
+		<form id="searchNameForm" method="post" action="/h72/adminSName.do">
 			<input type="text" name="username" size="30" class="searchInput"> &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div>	
@@ -121,9 +121,10 @@
 	<div id="usersTop">
 	 	<div id="orderbyDiv">
 	 		<ul class="orderby">
-	 			<li> ID정렬</li> &nbsp; ||  &nbsp; 
-	 			<li> 이름 </li> &nbsp; ||  &nbsp; 
-	 			<li> 가입일 </li>
+	 			<li><a href="<c:url value="/admin/users?orderby=user_id" />">I D</a></li> &nbsp; ||  &nbsp; 
+	 			<li><a href="<c:url value="/admin/users?orderby=NAME" />">이름</a></li> &nbsp; ||  &nbsp; 
+	 			<li><a href="<c:url value="/admin/users?orderby=ENROLLDATE" />">가입일</a></li> &nbsp; ||  &nbsp; 
+	 			<li><a href="<c:url value="/admin/users?orderby=TOTAL_PRICE" />">구매금액</a></li>
 	 		</ul>
 	 	</div>
 	 	<div id="selectNumdDiv">
@@ -140,39 +141,32 @@
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
-					<th scope="col" class="grade">회원 등급</th>
-					<th scope="col" class="number"><p>회원 ID</p></th>
-					<th scope="col" class="product">이름</th>
-					<th scope="col" class="quantity">생년월일</th>
+					<th scope="col" class="levelcode">회원 등급</th>
+					<th scope="col" class="userid"><p>회원 ID</p></th>
+					<th scope="col" class="name">이름</th>
+					<th scope="col" class="birthdate">생년월일</th>
 					
 					<th scope="col" class="how">가입일자</th>
-					<th scope="col" class="price">총 구매액</th>
+					<th scope="col" class="totalprice">총 구매액</th>
 				</tr>
-			</thead>
+			</thead>		
 			<tbody class="">
+			<c:if test="${!(list eq null) }">
+						
+				<c:forEach var="list" items="${list}" >
 				<tr class="xans-record-">
 					<td><input type="checkbox"></td>
-					<td class="grade">sliver</td>
-					<td class="number"><p><strong> USER01 </strong></p></td>
+					<td class="levelcode">${list.levelcode }</td>
+					<td class="userid"><p><strong> ${list.userid } </strong></p></td>
 					
-					<td class="product">나회원</td>
-					<td class="quantity">901010</td>
-					<td class="how">2010-10-10</td>
-					<td class="price"><a href="">123,200 원</a></td>
+					<td class="name">${list.name }</td>
+					<td class="birthdate">${list.birthdate }</td>
+					<td class="enrollDate">${list.enrollDate }</td>
+					<td class="totalprice"><a href="">${list.totalprice }</a></td>
 				</tr>
-				
-				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
-					<td class="grade">sliver</td>
-					<td class="number"><p><strong> USER01 </strong></p></td>
-
-					<td class="product">나회원</td>
-					<td class="quantity">901010</td>
-					
-					<td class="how">2010-10-10</td>
-					<td class="price"><a href="">123,200 원</a></td>
-				</tr>
-			</tbody>
+				</c:forEach>			
+			</c:if>
+			</tbody>	
 		</table>
 
 		<div id="admin_page_list">

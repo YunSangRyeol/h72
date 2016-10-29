@@ -20,7 +20,19 @@
 	</resultMap>
 
 	<select id="getMemberList" resultType="member">
-		SELECT * FROM H72.USERS
+		SELECT * FROM USERS WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' 
+	</select>
+
+	<select id="adminSearchId" parameterType="String" resultType="member">
+		SELECT * FROM USERS WHERE USER_ID LIKE '%' || #{id} || '%'
+	</select>
+	
+	<select id="adminSearchName" parameterType="String" resultType="member">
+		SELECT * FROM USERS WHERE NAME LIKE '%' || #{name} || '%'
+	</select>
+	
+	<select id="adminSearchDate" parameterType="Map" resultType="member">
+		SELECT * FROM USERS WHERE ENROLLDATE between TO_DATE(#{start})  and TO_DATE(#{end})+1
 	</select>
 
 	<!--

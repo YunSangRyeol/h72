@@ -1,5 +1,6 @@
 package com.project.h72.admin.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.h72.admin.service.AdminService;
 import com.project.h72.member.vo.Member;
@@ -20,28 +22,56 @@ public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-	@RequestMapping(value = "admin/order", method = RequestMethod.GET)
-	public String adminOrderView(Locale locale, Model model) {
-		
-		return "admin/adminOrderList";
-	}
 	
-	@RequestMapping(value="adminM.do", method = RequestMethod.GET)
-	public String adminMemberManager(Locale locale, Model model){
-		System.out.println("컨트롤러 실행");
+	//회원관리 페이지 
+	@RequestMapping(value="admin/users", method = RequestMethod.GET)
+	public String adminMemberManager(Model model){
 		
 		List<Member> list = adminService.getMemberList();
+		model.addAttribute("list", list );
+		
+		return "admin/userManager";
+	}
+	
+	//회원관리 - ID검색
+	@RequestMapping(value="adminSID.do", method = RequestMethod.POST)
+	public String adminSearchId(@RequestParam("userid") String id, Model model){
+		
+		List<Member> list = adminService.adminSearchId(id);
 		
 		model.addAttribute("list", list );
 		
 		return "admin/userManager";
 	}
 	
-/*	@RequestMapping(value = "admin/user", method = RequestMethod.GET)
-	public String adminUserManager(Locale locale, Model model) {
+	//회원관리 - 이름검색
+	@RequestMapping(value="adminSName.do", method = RequestMethod.POST)
+	public String adminSearchName(@RequestParam("username") String name, Model model){
+		
+		List<Member> list = adminService.adminSearchName(name);
+		
+		model.addAttribute("list", list );
 		
 		return "admin/userManager";
-	}*/
+	}
+	
+	//회원관리 - 날짜검색
+	@RequestMapping(value="adminSDate.do", method = RequestMethod.POST)
+	public String adminSearchDate(@RequestParam("start") Date start, @RequestParam("end") Date end, Model model){
+		
+		List<Member> list = adminService.adminSearchDate(start, end);
+		
+		model.addAttribute("list", list );
+		
+		return "admin/userManager";
+	}
+	
+
+	@RequestMapping(value = "admin/order", method = RequestMethod.GET)
+	public String adminOrderView(Locale locale, Model model) {
+		
+		return "admin/adminOrderList";
+	}
 	
 	@RequestMapping(value = "admin/chart", method = RequestMethod.GET)
 	public String adminSalesChart(Locale locale, Model model) {
@@ -55,10 +85,5 @@ public class AdminController {
 		return "member/memberUpdate";
 	}
 	
-	@RequestMapping(value = "chart", method = RequestMethod.GET)
-	public String admin(Locale locale, Model model) {
-		
-		return "admin/salesChart";
-	}
 	
 }
