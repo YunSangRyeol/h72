@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.h72.admin.dao.AdminDao;
 import com.project.h72.member.vo.Member;
+import com.project.h72.order.vo.Order;
 
 @Service
 public interface AdminService {
@@ -17,6 +18,8 @@ public interface AdminService {
 	List<Member> adminSearchName(String name);
 
 	List<Member> adminSearchDate(Date start, Date end);
+
+	List<Order> getOrderList();
 
 
 }

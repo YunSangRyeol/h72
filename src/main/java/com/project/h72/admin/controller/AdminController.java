@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.h72.admin.service.AdminService;
 import com.project.h72.member.vo.Member;
+import com.project.h72.order.vo.Order;
 
 @Controller
 public class AdminController {
@@ -66,12 +67,21 @@ public class AdminController {
 		return "admin/userManager";
 	}
 	
-
-	@RequestMapping(value = "admin/order", method = RequestMethod.GET)
-	public String adminOrderView(Locale locale, Model model) {
+	//주문내역 페이지 
+	@RequestMapping(value="admin/order", method = RequestMethod.GET)
+	public String adminOrderView(Model model){
+		
+		List<Order> list = adminService.getOrderList();
+		model.addAttribute("list", list );
 		
 		return "admin/adminOrderList";
 	}
+	
+/*	@RequestMapping(value = "admin/order", method = RequestMethod.GET)
+	public String adminOrderView(Locale locale, Model model) {
+		
+		return "admin/adminOrderList";
+	}*/
 	
 	@RequestMapping(value = "admin/chart", method = RequestMethod.GET)
 	public String adminSalesChart(Locale locale, Model model) {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.h72.admin.dao.AdminDao;
 import com.project.h72.member.vo.Member;
+import com.project.h72.order.vo.Order;
 
 @Service
 public class AdminServiceImp implements AdminService{
@@ -29,5 +30,10 @@ public class AdminServiceImp implements AdminService{
 
 	public List<Member> adminSearchDate(Date start, Date end){
 		return dao.adminSearchDate(start, end);
+	}
+	
+	public List<Order> getOrderList(){
+		return dao.getOrderList();
+		
 	}
 }

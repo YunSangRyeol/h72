@@ -88,6 +88,14 @@ public class Member {
 		this.totalprice = totalprice;
 	}
 
+	public Date getEnrolldate() {
+		return enrolldate;
+	}
+
+	public void setEnrolldate(Date enrolldate) {
+		this.enrolldate = enrolldate;
+	}
+
 	public String getUserid() {
 		return userid;
 	}

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.h72.member.vo.Member;
+import com.project.h72.order.vo.Order;
 
 @Repository
 public class AdminDao {
@@ -19,6 +20,7 @@ public class AdminDao {
 	@Autowired
 	private SqlSession sqlSession;
 
+	//Member
 	public List<Member> getMemberList() {		
 		return sqlSession.selectList(NAMESPACE + "getMemberList");
 	}
@@ -37,6 +39,11 @@ public class AdminDao {
 		dates.put( "end", end );
 		
 		return sqlSession.selectList(NAMESPACE + "adminSearchDate", dates);
+	}
+
+	//Order
+	public List<Order> getOrderList() {
+		return sqlSession.selectList(NAMESPACE + "getOrderList");
 	}
 
 }
