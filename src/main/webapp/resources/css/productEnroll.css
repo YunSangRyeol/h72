@@ -132,8 +132,44 @@ li{
 #productEnroll_titleImage{
 	width:100%;
 }
+/*******productEnroll_providerInfo*****/
+#productEnroll_providerInfoWrap{
+	width:343px;
+	height:80px;
+	/* border:1px solid lightgray; */
+	margin:10px;
+	padding-left:15px;
+	text-align:left;
+	background: #fbfafa;
+    border-radius:8px;
+}
 
+#productEnroll_providerInfoWrap li{
+	height:17px;	
+}
+#productEnroll_providerInfoWrap li span {
+	display:inline-block;
+}
 
+#productEnroll_providerInfoWrap li span:first-child{
+	width:35px;
+	margin-right:30px;
+	text-align:right;	
+	color:darkgray;
+	font-size:7pt;	
+}
+#productEnroll_providerInfoWrap li span:nth-child(2){
+	width:250px;
+	margin-right:10px;
+	padding-left:10px;
+	font-size:9pt;	
+}
+#productEnroll_providerInfoWrap ul{
+	display: none;
+}
+#productEnroll_providerInfoWrap ul:first-child{
+	display: block;
+}
 /******* Button Area*****/
 #productEnroll_btnAera{
 	margin-top:20px;
@@ -180,7 +216,6 @@ li{
 	height:30px;
 	padding: 0px 5px;
 	
-	
 }
 
 #productEnroll table tr td .inputBox3{ 	
@@ -189,8 +224,6 @@ li{
 	height:20px;
 	margin-top:0px;
 	border:solid 1px lightgray;
-	
-	
 }
  /*************textarea_text************/
 #productEnroll .textarea_text{
@@ -256,7 +289,7 @@ li{
  }
  /*************productEnroll_price************/
  #productEnroll .productEnroll_price{
- 	margin:5px;
+ /* 	margin-top:5px; */
 	width:550px;
 	height:40px;
 	padding: 0px 6px;
@@ -273,8 +306,10 @@ li{
     vertical-align: middle;
     
  }
- 
- #productEnroll .productEnroll_price li:nth-child(6){
+ #productEnroll .productEnroll_price li:nth-child(6) input{
+	width:40px;
+ }
+ #productEnroll .productEnroll_price li:nth-child(7){
 	margin-left:10px;   
     position: relative;
     right: -10px;
@@ -282,7 +317,7 @@ li{
     color:red;
     font-size:3pt;
  }
-  #productEnroll .productEnroll_price li:nth-child(6) span{
+  #productEnroll .productEnroll_price li:nth-child(7) span{
  	border:2px solid #FF9999;
  	padding: 0px 6.5px 3px 6.5px;
  	border-radius:10px;
@@ -291,7 +326,7 @@ li{
  }
  
  #productEnroll .productEnroll_price input{
-  	width:90px;
+  	width:70px;
  	height:20px;
  	margin-left:20px;
  	text-align:right;
@@ -300,6 +335,7 @@ li{
  }
   #productEnroll #productEnroll_option{
  	margin-left:5px;
+ 	width:70px;
  	text-align:center;
  }
  #productEnroll #productEnroll_optionId{
@@ -308,23 +344,21 @@ li{
  	text-align:center;
  }
  /*************productEnroll_stock************/
- #productEnroll .productEnroll_stock{
- 	margin:5px;
-	height:40px;
-	padding: 0px 6px;
- }
- #productEnroll .productEnroll_stock li{
+/*  #productEnroll #productEnroll_stock{
+	width:40px;
+ } */
+/*  #productEnroll .productEnroll_stock li{
 	float:left;
- }
- #productEnroll .productEnroll_stock li:nth-child(2){
+ } */
+/*  #productEnroll .productEnroll_stock li:nth-child(2){
     margin-left: 50px;
  	position: absolute;
- }
+ } */
   #productEnroll .productEnroll_stock input{
- 	width:40px;
+ /* 	width:40px;
  	text-align:right;
  	border:1px solid lightgray;
- 	height:20px;
+ 	height:20px; */
  }
 
  #productEnroll .productEnroll_time{
@@ -341,10 +375,8 @@ li{
     background-position: 0 1px;
     color: #c91b3c;
 }
-#productEnroll #productEnroll_cate li{
-	list-style-type:none;
-	float:left;
-	margin-left: 20px;
+#productEnroll #providerCode select{
+	font-size:9pt;
 	
 }
 #productEnroll #productEnroll_loca li{

@@ -6,7 +6,7 @@
 
 	<select id="productProviderSelect" resultType="ProductProvider">
 		SELECT *
-		FROM  H72.PROVIDER;
+		FROM  H72.PROVIDER
 	</select>
 
 	<select id="productEnrollCount" parameterType="String" resultType="int">

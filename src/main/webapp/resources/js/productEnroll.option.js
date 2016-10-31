@@ -31,6 +31,15 @@ $(document).ready(function(){
 	
 	
 	
+	/*상점 정보 변경*/
+	$("#productEnroll_provider").change(function(){
+		var index = $("#productEnroll_provider option").index($("#productEnroll_provider option:selected"))+1;
+		$("#productEnroll_providerInfoWrap ul").css("display","none");
+		var providerInfoId = "#productEnroll_providerInfoWrap ul:nth-child("+index+")";
+		$(providerInfoId).css("display","block");
+		
+	});
+	
 	
 
 });

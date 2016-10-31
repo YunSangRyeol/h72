@@ -54,12 +54,25 @@ $(document).ready(function(){
 									</div>
 								</td>
 							</tr>
-
 							<tr>
 								<td><p>거래 업체</p></td>
 								<td>
-									<div class="inputBox3Wrap" id="productEnroll_cate">
-										<input type="text" placeholder="" id="" name="providerCode" class="inputBox3">
+									<div class="inputBox3Wrap" id="providerCode">
+										<select id="productEnroll_provider" name="providerCode" class="inputBox3">
+										    <c:forEach var="provider" items="${provider}">
+											    <option value="${provider.providerCode}">${provider.providerName }</option>
+										    </c:forEach>
+										</select>
+									</div>
+									<div id="productEnroll_providerInfoWrap">
+									 <c:forEach var="provider" items="${provider}" varStatus="status">
+										<ul id="productEnroll_providerInfo${status.count}">
+											<li><span>상점명</span><span>${provider.providerName }</span></li>
+											<li><span>Phone</span><span>${provider.pPhone}</span></li>
+											<li><span>Tell</span><span>${provider.pTell }</span></li>
+											<li><span>주 소</span><span>${provider.pAderess }</span></li>
+										</ul>
+										</c:forEach>
 									</div>
 								</td>
 							</tr>
@@ -86,38 +99,29 @@ $(document).ready(function(){
 												|
 											</li>
 											<li>
-												<input type="text" id="" name="cost" 
+												<input type="text" id="cost" name="cost" 
 												min="0" max="1000000000" step="1000" placeholder="매입가" 
 												class="" onchange="getNumber(this);" onkeyup="getNumber(this);"/>
 												원
 											</li>
 											
 											<li>
-												<input type="text" id="" name="price" 
+												<input type="text" id="price" name="price" 
 												min="0" max="1000000000" step="1000" placeholder="판매가" 
 												class="" onchange="getNumber(this);" onkeyup="getNumber(this);"/>
 												원												
 											</li>
 											<li>
-												<input type="text" id="" name="sailPrice" 
+												<input type="text" id="sailPrice" name="sailPrice" 
 												min="0" max="1000000000" step="1000" placeholder="할인가" 
 												class="" onchange="getNumber(this);" onkeyup="getNumber(this);"/>
 												원
 											</li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td><p>재고 수량</p></td>
-								<td>
-									<div class="productEnroll_stock" id="">
-										<ul>
 											<li>
 												<input type="number" placeholder="" id="" name="stock" class=""
 												  min="0" max="500" step="1" value="1">
+										  		개
 										  	</li>
-											<li>개</li>	
 										</ul>
 									</div>
 								</td>
@@ -125,38 +129,17 @@ $(document).ready(function(){
 							<tr>
 								<td><p>분 류</p></td>
 								<td>
-									<script>
-									 	$(document).ready(function() {
-											$("input[name=productEnroll_category]").change(function() {
-												$("input[name=productEnroll_category]").each(function(i) {
-												   if (this.checked) {
-													   $("input[name=productEnroll_categoryValue]").eq(i).val("Y");
-												   }else{
-													   $("input[name=productEnroll_categoryValue]").eq(i).val("N");
-												   }
-												});
-											});
-										}); 
-									</script>
 									<div class="" id="productEnroll_servie">
 									<ul>
-										<li><input type="radio" name="productEnroll_category" id="productEnroll_cate1"><label for="productEnroll_cate1">배낭</label></li>
-										<li><input type="radio" name="productEnroll_category" id="productEnroll_cate2"><label for="productEnroll_cate2">방한</label></li>   
-										<li><input type="radio" name="productEnroll_category" id="productEnroll_cate3"><label for="productEnroll_cate3">식료</label></li>  
-										<li><input type="radio" name="productEnroll_category" id="productEnroll_cate4"><label for="productEnroll_cate4">도구</label></li>  
-										<li><input type="radio" name="productEnroll_category" id="productEnroll_cate5"><label for="productEnroll_cate5">기타</label></li>  
+										<li><input type="radio" name="categoryCode" id="productEnroll_cate1" value="BAG" checked><label for="productEnroll_cate1">배낭</label></li>
+										<li><input type="radio" name="categoryCode" id="productEnroll_cate2" value="PROTECT"><label for="productEnroll_cate2">방한</label></li>   
+										<li><input type="radio" name="categoryCode" id="productEnroll_cate3" value="FOOD"><label for="productEnroll_cate3">식료</label></li>  
+										<li><input type="radio" name="categoryCode" id="productEnroll_cate4" value="TOOL"><label for="productEnroll_cate4">도구</label></li>  
+										<li><input type="radio" name="categoryCode" id="productEnroll_cate5" value="ETC"><label for="productEnroll_cate5">기타</label></li>  
 									</ul>
-									
-									<input type="hidden" name="productEnroll_categoryValue" >
-									<input type="hidden" name="productEnroll_categoryValue" >
-									<input type="hidden" name="productEnroll_categoryValue" >
-									<input type="hidden" name="productEnroll_categoryValue" >
-									<input type="hidden" name="productEnroll_categoryValue" >
-									
 									</div>
 								</td>
 							</tr>
-							
 							<tr>
 								<td><p class="textarea_text">비 고</p></td>
 								<td>
@@ -172,24 +155,24 @@ $(document).ready(function(){
 								<td>첨부파일</td>
 								<td id="farea">
 									<div id="itemPhoto" class="item photo">
-										<div class="">
 											<button type="button" id="productEnroll_photo" class="" tabindex="-1">
 												+
 											</button>
-											<input type="file" multiple name="img1" id="upBtn1" class="file_input_hidden" /> 
-											<input type="file" multiple name="img2" id="upBtn2" class="file_input_hidden" style="display:none" /> 
+											<div class="fileWrap">
+												<input type="file" multiple name="img1" id="upBtn1" class="file_input_hidden" /> 
+												<input type="file" multiple name="img2" id="upBtn2" class="file_input_hidden" style="display:none" /> 
+											</div>
 										    <div id="thumnailArea">
 										    	<div id="thumnailWrap1"><img id="thumnail1" name="thumanail" /><span class="productEnroll_thumDelete" >X</span></div>
 										    	<div id="thumnailWrap2"><img id="thumnail2" name="thumanail" /><span class="productEnroll_thumDelete">X</span></div>
 										    </div>
-										</div>
 									</div>
 								    <div id="thumnailExplane"><span>*첫번째 이미지는 Title로 사용될 이미지 입니다.</span></div>
 								</td>
 							</tr>
 						</table>
 						<div id="productEnroll_enrollBtnWrap">
-							<input type="submit" value="등록하기" id="productEnroll_enrollBtn">
+							<input type="button" value="등록하기" id="productEnroll_enrollBtn">
 						</div>
 					</form>
 					</div>
