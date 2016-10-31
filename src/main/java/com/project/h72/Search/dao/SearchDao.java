@@ -15,7 +15,7 @@ public class SearchDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<Search> getBagList() {
+	public List<Search> getBagList() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getBagList");
 	}

@@ -10,12 +10,14 @@ import com.project.h72.Search.vo.Search;
 @Service
 public class SearchServiceImp implements SearchService {
 	@Autowired
-	SearchDao dao;
+	private SearchDao dao;
 
 
 	@Override
 	public List<Search> getBagList() throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("서비스넘어왔다");
+
 		return dao.getBagList();
 	}
 }

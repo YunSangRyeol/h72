@@ -21,8 +21,6 @@ import com.project.h72.member.vo.Member;
 
 @Controller
 public class CartController {
-	
-	@Autowired
 	private CartService cs;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);

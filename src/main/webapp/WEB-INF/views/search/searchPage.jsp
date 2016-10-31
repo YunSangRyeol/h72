@@ -57,7 +57,7 @@
 							<div class="box">
 								<a href="#" name="anchorBoxName_8025"><img
 									src="/h72/resources${list.mainImg }" alt="" class="thumb"
-									style="width: 238px;"></a>
+									style="width: 238px; height:300px;"></a>
 								<p class="name"></p>
 								<p
 									style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
@@ -67,7 +67,7 @@
 									style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
 									<span
 										style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
-									${list.minPrice}
+									\ ${list.minPrice}
 								</p>
 
 
