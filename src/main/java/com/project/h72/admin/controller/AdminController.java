@@ -72,6 +72,9 @@ public class AdminController {
 	public String adminOrderView(Model model){
 		
 		List<Order> list = adminService.getOrderList();
+		
+		System.out.println(list);
+		
 		model.addAttribute("list", list );
 		
 		return "admin/adminOrderList";

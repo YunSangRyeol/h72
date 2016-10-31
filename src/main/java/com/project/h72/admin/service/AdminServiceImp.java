@@ -33,7 +33,6 @@ public class AdminServiceImp implements AdminService{
 	}
 	
 	public List<Order> getOrderList(){
-		return dao.getOrderList();
-		
+		return dao.getOrderList();		
 	}
 }

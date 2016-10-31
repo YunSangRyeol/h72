@@ -37,6 +37,7 @@
 		<result property="deliveryMessage" column="DELIVERY_MESSAGE" />
 		<result property="orderStatus" column="ORDER_STATUS" />
 		<result property="orderChange" column="ORDER_CHANGE" />
+		<result property="enrollDate" column="ENROLL_DATE" />
 	</resultMap>
 	
 	<!-- Member -->
@@ -57,5 +58,7 @@
 	</select>
 
 	<!-- Order -->
-	<select id="getOrderList" ></select>
+	<select id="getOrderList" resultType="order">
+		SELECT * FROM PURCHASED_ORDER_LIST
+	</select>
 </mapper>

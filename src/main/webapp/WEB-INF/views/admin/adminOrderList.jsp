@@ -191,17 +191,17 @@
 				</tr>
 			</thead>
 			<tbody class="">
+				<c:forEach var="list" items="${list}" >
 				<tr class="xans-record-">
 					<td><input type="checkbox"></td>
-					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a> </p></td>
+					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 
-					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
-					<td class="quantity">1</td>
-
-					<td class="price"><strong>23,900원</strong>
+					<td class="product">${list.orderContents }</td>
+					<td class="quantity"></td>
+					<td class="price"><strong>${list.totalPrice }</strong>
 						<div class="displaynone"></div></td>
-					<td class="who"><a>user01</a></td>
-					<td class="how">무통장</td>
+					<td class="who"><a>${list.userId }</a></td>
+					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
 						<select id="stateMo" class="selectOption">
 							<option id="">결제완료</option>
@@ -210,26 +210,7 @@
 						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
 					</td>
 				</tr>
-				
-				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
-					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a></p></td>
-
-					<td class="product">베이직 모직 백팩 [옵션: 그레이] 외 5개 </td>
-					<td class="quantity">6</td>
-
-					<td class="price"><strong>23,900원</strong>
-						<div class="displaynone"></div></td>
-					<td class="who"><a>user01</a></td>
-					<td class="how">무통장</td>
-					<td class="state">
-						<select id="stateMo" class="selectOption">
-							<option id="">결제완료</option>
-							<option id="">배송중</option>
-							<option id="">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
-					</td>					
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<div id="totalPrice"> 총 금액 : </div>

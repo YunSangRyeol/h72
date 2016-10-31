@@ -1,5 +1,7 @@
 package com.project.h72.order.vo;
 
+import java.sql.Date;
+
 public class Order {
 	private String orderNo;
 	private String userId;
@@ -18,14 +20,16 @@ public class Order {
 	private String deliveryMessage;
 	private String orderStatus;
 	private String orderChange;
+	private Date enrollDate;
 	
 	public Order() {
 		super();
 	}
-
+	
 	public Order(String orderNo, String userId, String mainImg, String orderContents, int price, int totalPrice,
 			String paymentMethod, int paymentPoint, int savingPoint, int deliveryPee, String phone, String postNum,
-			String address, String addressDetail, String deliveryMessage, String orderStatus, String orderChange) {
+			String address, String addressDetail, String deliveryMessage, String orderStatus, String orderChange,
+			Date enrollDate) {
 		super();
 		this.orderNo = orderNo;
 		this.userId = userId;
@@ -44,7 +48,10 @@ public class Order {
 		this.deliveryMessage = deliveryMessage;
 		this.orderStatus = orderStatus;
 		this.orderChange = orderChange;
+		this.enrollDate = enrollDate;
 	}
+
+	
 
 	public String getOrderNo() {
 		return orderNo;
@@ -181,13 +188,21 @@ public class Order {
 	public void setOrderChange(String orderChange) {
 		this.orderChange = orderChange;
 	}
-	
+
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
 	@Override
 	public String toString(){
 		return this.orderNo + ", " + this.userId + ", " + this.mainImg + ", " + this.orderContents  + ", " + this.price
 				 + ", " + this.totalPrice + ", " + this.paymentMethod + ", " + this.paymentPoint + ", " + this.savingPoint
 				 + ", " + this.deliveryPee + ", " + this.phone + ", " + this.postNum + ", " + this.address + ", " + this.addressDetail
-				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange;
+				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange + ", " + this.enrollDate;
 	}
 	
 }

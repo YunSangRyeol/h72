@@ -13,7 +13,7 @@
 		<typeAlias type="com.project.h72.ProductEnroll.vo.Product"  alias="ProductEnroll" />
 		<typeAlias type="com.project.h72.cart.vo.Cart" alias="Cart" />
 		<typeAlias type="com.project.h72.Search.vo.Search" alias="Search" />
-		
+		<typeAlias type="com.project.h72.order.vo.Order" alias="Order" />
 	</typeAliases>	
 	
 	
