@@ -11,7 +11,7 @@
 </head>
 <body>
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
-	<br><br><br><br><br><br>
+	<br><br><br>
 	
 	<img src = "/h72/resources/image/kit1.jpg"><p>
 	<img src = "/h72/resources/image/kit2.jpg"><p>
