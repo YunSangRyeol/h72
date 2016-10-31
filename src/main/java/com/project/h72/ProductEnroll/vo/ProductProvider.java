@@ -1,7 +1,7 @@
 package com.project.h72.ProductEnroll.vo;
 
 @SuppressWarnings("serial")
-public class PrdouctProvider implements java.io.Serializable{
+public class ProductProvider implements java.io.Serializable{
 	private String providerCode;
 	private String providerName;
 	private String pStepname;
@@ -11,7 +11,7 @@ public class PrdouctProvider implements java.io.Serializable{
 	private String etc;
 	
 	
-	public PrdouctProvider() {}
+	public ProductProvider() {}
 
 
 	public String getProviderCode() {

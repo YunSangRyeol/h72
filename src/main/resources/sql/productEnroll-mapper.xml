@@ -4,12 +4,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="productEnrollMapper">
 
+	<select id="productProviderSelect" resultType="ProductProvider">
+		SELECT *
+		FROM  H72.PROVIDER;
+	</select>
+
 	<select id="productEnrollCount" parameterType="String" resultType="int">
 		SELECT COUNT(DISTINCT ITEM_DETAIL_ID) 
 		FROM ITEM_DETAIL_VIEW
 		WHERE CATEGORY_CODE LIKE #{categoryCode} || '%'
 	</select>
-
 
 	<insert id="productEnrollDetailInsert" parameterType="ProductEnroll" >
           <!--   <choose>
