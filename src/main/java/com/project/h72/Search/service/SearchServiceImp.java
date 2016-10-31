@@ -8,6 +8,14 @@ import org.springframework.stereotype.Service;
 import com.project.h72.Search.dao.SearchDao;
 import com.project.h72.Search.vo.Search;
 @Service
-public interface SearchService {
-	List<Search> getBagList() throws Exception;
+public class SearchServiceImp implements SearchService {
+	@Autowired
+	SearchDao dao;
+
+
+	@Override
+	public List<Search> getBagList() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getBagList();
+	}
 }
