@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="productEnrollMapper">
+
+	<select id="productEnrollCount" parameterType="String" resultType="int">
+		SELECT COUNT(DISTINCT ITEM_DETAIL_ID) 
+		FROM ITEM_DETAIL_VIEW
+		WHERE CATEGORY_CODE LIKE #{categoryCode} || '%'
+	</select>
+
+
+	<insert id="productEnrollDetailInsert" parameterType="ProductEnroll" >
+          <!--   <choose>
+                <when test="categoryCode == BAG "> -->
+                   	insert into H72.ITEM_DETAIL_BAG VALUES
+					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
+					#{itemName}, #{minPrice}, #{minSailPrice},
+					#{mainImg}, #{detailImg01}, #{detailImg02} , #{etc}
+					)
+               <!--  </when>
+                
+                <when test="categoryCode == PROTECT ">
+                   	insert into H72.ITEM_DETAIL_PROTECT VALUES
+					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
+					#{itemName}, #{minPrice}, #{minSailPrice},
+					#{mainImg}, #{detailImg01}, #{detailImg02}, #{etc}
+					)
+                </when>
+                <when test="categoryCode == FOOD  ">
+                   	insert into H72.ITEM_DETAIL_FOOD VALUES
+					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
+					#{itemName}, #{minPrice}, #{minSailPrice},
+					#{mainImg}, #{detailImg01}, #{detailImg02}, #{etc}
+					)
+                </when>
+             	<when test="categoryCode == TOOL  ">
+                   	insert into H72.ITEM_DETAIL_TOOL VALUES
+					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
+					#{itemName}, #{minPrice}, #{minSailPrice},
+					#{mainImg}, #{detailImg01}, #{detailImg02}, #{etc}
+					)
+                </when>
+                 <when test="categoryCode == ETC  ">
+                   	insert into H72.ITEM_DETAIL_ETC VALUES
+					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
+					#{itemName}, #{minPrice}, #{minSailPrice},
+					#{mainImg}, #{detailImg01}, #{detailImg02}, #{etc}
+					)
+                </when>
+                
+                <otherwise>
+                    
+                </otherwise>
+                
+            </choose> -->
+		
+	</insert>
+	
+	<insert id="productEnrollInsert" parameterType="ProductItem">
+		INSERT INTO H72.ITEM_BAG VALUES
+			(#{itemId}, #{providerCode}, 
+			#{itemDetailId}, #{itemOptionName}, 
+			#{cost}, #{price},
+			#{sailPrice}, #{stock})
+	</insert>
+</mapper>

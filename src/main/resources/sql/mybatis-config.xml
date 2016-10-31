@@ -15,6 +15,7 @@
 		<typeAlias type="com.project.h72.Search.vo.Search" alias="Search" />
 		<typeAlias type="com.project.h72.order.vo.Order" alias="Order" />
 		<typeAlias type="com.project.h72.ProductEnroll.vo.ProductItem" alias="ProductItem" />
+		<typeAlias type="com.project.h72.ProductEnroll.vo.PrdouctProvider" alias="PrdouctProvider" />
 	</typeAliases>	
 	
 	
