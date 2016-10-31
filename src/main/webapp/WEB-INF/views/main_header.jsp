@@ -57,7 +57,7 @@
 							<ul>
 								<li><a href="<c:url value="/boader/notice_list"/>">공지사항</a></li>
 								<li><a href="<c:url value="/boader/qna_list"/>">Q&A</a></li>
-								<li><a href="#">생존키트란?</a></li>
+								<li><a href="<c:url value="/boader/life_kit_detail"/>">생존키트란?</a></li>
 							</ul></li>
 					</ul>
 				</div>

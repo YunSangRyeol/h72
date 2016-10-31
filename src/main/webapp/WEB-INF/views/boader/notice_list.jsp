@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,9 @@
 	rel="stylesheet">
 </head>
 <body>
-	<div class="content_wrap">
+
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
-	</div><br><br><br>
+	<br><br><br>
 	<div id="sunny_in">
 
 
@@ -48,7 +49,7 @@
 						<col style="width: 135px;" class="displaynone">
 						<col style="width: auto;">
 						<col style="width: 100px;">
-						<col style="width: 100px;" class="">
+						<col style="width: 100px;" class="">s
 						<col style="width: 100px;" class="displaynone">
 						<col style="width: 100px;" class="displaynone">
 						<col style="width: 100px;" class="displaynone">
@@ -61,17 +62,39 @@
 							<th scope="col">제목</th>
 							<th scope="col">작성자</th>
 							<th scope="col" class="">작성일</th>
-							<th scope="col" class="displaynone">조회</th>
 
 						</tr>
 					</thead>
-					<tbody
-						class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 notice">
-						<!--
+					<tbody>
+					         <c:choose> 
+<%--                 <c:when test="${fn:length(list) > 0}"> 
+                    <c:forEach items="${list }" var="row"> 
+                        <tr> 
+                            <td>${row.IDX }</td> 
+                            <td class="title"> 
+                                <a href="#this" name="title">${row.No }</a> 
+                                <input type="hidden" id="IDX" value="${row.Title }"> 
+                            </td> 
+                            <td>${row.Writer }</td> 
+                            <td>${row.Date }</td> 
+                        </tr> 
+                    </c:forEach> 
+                </c:when>  --%>
+                <c:otherwise> 
+                    <tr> 
+                        <td colspan="4">조회된 결과가 없습니다.</td> 
+                    </tr> 
+                </c:otherwise> 
+            </c:choose> 
+					
+					
+					
+<!-- 						class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 notice">
+						
                 $count = 20
                 $login_page_url = /member/login.html
                 $deny_access_url = /index.html
-            -->
+           
 						<tr style="background-color: #FFFFFF; color: #000000;"
 							class="xans-record-">
 							<td>2</td>
@@ -97,7 +120,7 @@
 							<td class="txtLess ">2014-07-03</td>
 
 
-						</tr>
+						</tr> -->
 					</tbody>
 					<tbody
 						class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002">
@@ -146,7 +169,7 @@
 					class="other">2</a></li>
 				<li class="xans-record-"><a href="?board_no=1&amp;page=3"
 					class="other">3</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=4"
+<!-- 				<li class="xans-record-"><a href="?board_no=1&amp;page=4"
 					class="other">4</a></li>
 				<li class="xans-record-"><a href="?board_no=1&amp;page=5"
 					class="other">5</a></li>
@@ -159,7 +182,7 @@
 				<li class="xans-record-"><a href="?board_no=1&amp;page=9"
 					class="other">9</a></li>
 				<li class="xans-record-"><a href="?board_no=1&amp;page=10"
-					class="other">10</a></li>
+					class="other">10</a></li> -->
 			</ol>
 			<p>
 				<a href="?board_no=1&amp;page=2"><img
