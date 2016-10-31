@@ -116,7 +116,7 @@ body {
 
 #main_cateIdx4 a:hover:before {
 	color: red;
-	content: "　장비/도구　";
+	content: "장비/도구";
 }
 
 #main_cateIdx5 a:hover:before {
@@ -136,8 +136,8 @@ body {
 }
 
 #main_header .main_line2 .main_search {
-	margin-left: 15px;
-	float: left;
+	margin-right: 30px;
+	float: right;
 	height: 38px;
 	width: 200px;
 	line-height: 34px;

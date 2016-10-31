@@ -27,7 +27,7 @@ $(document).ready(function(){
 </head>
 <body id="main" class="kitDiy_wrap">
 	<div id="kitDiy_top">
-		<jsp:include page="../main_header.jsp" flush="false" />
+		<jsp:include page="/WEB-INF/views/main_header.jsp" flush="false" />
 	</div>
 	<!-- START -->
 	<div id="kitDiy_wrap" >

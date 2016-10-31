@@ -22,10 +22,11 @@
 							<li><a href="<c:url value="/member/memberJoin" />">JOIN</a></li>
 						</c:if>
 						<c:if test="${!(loginUser eq null) }">
-							<li style="color:#fff;"><strong> ${loginUser.name }</strong> 님</li>
+							<li style="color: #fff;"><strong> ${loginUser.name }</strong>
+								님</li>
 							<li><a href="<c:url value="/logout.do" />">LOGOUT</a></li>
 							<li><a href="<c:url value="/member/memberUpdate" />">MyInfo</a></li>
-							
+
 						</c:if>
 						<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
 						<li><a href="<c:url value="/order/order_list"/>">ORDER</a></li>
@@ -37,28 +38,16 @@
 			<div id="main_line_in">
 				<div class="main_cate">
 					<ul>
-							<li id="main_cateIdx1"><a href="<c:url value="/bag" />"><span>BAG</span></a></li>
-						<li id="main_cateIdx2" style="width: 150px;"><a href="<c:url value="/protect" />"><span>PROTECT
-									GOODS</span></a></li>
+						<li id="main_cateIdx1"><a href="<c:url value="/bag" />"><span>BAG</span></a></li>
+						<li id="main_cateIdx2" style="width: 150px;"><a
+							href="<c:url value="/protect" />"><span>PROTECT GOODS</span></a></li>
 						<li id="main_cateIdx3"><a href="<c:url value="/food" />"><span>FOOD</span></a></li>
-						<li id="main_cateIdx4" style="width: 130px;"><a href="<c:url value="/tool" />"><span>TOOL</span></a></li>
-						<li id="main_cateIdx5" style="margin-left: 28px;"><a href="<c:url value="/etc" />"><span>ETC</span></a></li>
+						<li id="main_cateIdx4" style="width: 100px;"><a
+							href="<c:url value="/tool" />"><span>TOOL</span></a></li>
+						<li id="main_cateIdx5"><a href="<c:url value="/etc" />"><span>ETC</span></a></li>
 						<li id="main_cateIdx6" style="width: 105px;"><a
 							href="<c:url value="/kitDiy/kitDiyView"/>"><span>KIT</span></a></li>
 					</ul>
-				</div>
-				<div class="main_search" style="margin-left: 30px;">
-					<form id="main_searchBarForm" action="<c:url value="/search" />">
-							<input id="main_keyword" name="keyword" fw-filter=""
-								fw-label="검색어" fw-msg="" class="main_inputTypeText"
-								 value=""
-								type="text" placeholder=" Search">
-								<input type="submit" class="main_searchBtn" value=" " style="cursor:pointer;"><!-- <img
-								src="/h72/resources/image/topmenu_search.png" alt="검색"
-								onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"
-								style="float: right; margin-right: 5px; cursor: pointer;"> -->
-							&nbsp;
-					</form>
 				</div>
 				<div class="main_board">
 					<ul>
@@ -71,6 +60,20 @@
 								<li><a href="#">생존키트란?</a></li>
 							</ul></li>
 					</ul>
+				</div>
+
+				<div class="main_search">
+					<form id="main_searchBarForm" action="<c:url value="/search" />">
+						<input id="main_keyword" name="keyword" fw-filter=""
+							fw-label="검색어" fw-msg="" class="main_inputTypeText" value=""
+							type="text" placeholder=" Search"> <input type="submit"
+							class="main_searchBtn" value=" " style="cursor: pointer;">
+						<!-- <img
+								src="/h72/resources/image/topmenu_search.png" alt="검색"
+								onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"
+								style="float: right; margin-right: 5px; cursor: pointer;"> -->
+						&nbsp;
+					</form>
 				</div>
 			</div>
 		</div>
