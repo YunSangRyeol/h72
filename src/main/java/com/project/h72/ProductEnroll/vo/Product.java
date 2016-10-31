@@ -3,25 +3,26 @@ package com.project.h72.ProductEnroll.vo;
 @SuppressWarnings("serial")
 public class Product implements java.io.Serializable{
 	private String categoryCode;
-	private String providerCode;
-	private String itemDetailId;
-	private String itemId;
-
-	private String categoryName;
 	private String itemStatus;
 	private String itemName;
-	private String minPrice;
-	private String minSailPrice;
+	private int minPrice;
+	private int minSailPrice;
 	private String mainImg;
 	private String detailImg01;
 	private String detailImg02;
 	private String etc;
-	private String itemOptionName;
-	private String cost;
-	private String price;
-	private String sailPrice;
-	private String stock;
 	
+	private String[] itemId = new String[40];
+	private String providerCode;
+	private String itemDetailId;
+	private String[] itemOptionName = new String[40];
+	private int[] cost = new int[40];
+	private int[] price = new int[40];
+	private int[] sailPrice = new int[40];
+	private int stock[] = new int[40];
+
+	
+	private String categoryName;
 	public Product() {}
 	
 	
@@ -49,13 +50,16 @@ public class Product implements java.io.Serializable{
 		this.itemDetailId = itemDetailId;
 	}
 
-	public String getItemId() {
+
+	public String[] getItemId() {
 		return itemId;
 	}
 
-	public void setItemId(String itemId) {
+
+	public void setItemId(String[] itemId) {
 		this.itemId = itemId;
 	}
+
 
 	public String getCategoryName() {
 		return categoryName;
@@ -81,21 +85,27 @@ public class Product implements java.io.Serializable{
 		this.itemName = itemName;
 	}
 
-	public String getMinPrice() {
+
+
+	public int getMinPrice() {
 		return minPrice;
 	}
 
-	public void setMinPrice(String minPrice) {
+
+	public void setMinPrice(int minPrice) {
 		this.minPrice = minPrice;
 	}
 
-	public String getMinSailPrice() {
+
+	public int getMinSailPrice() {
 		return minSailPrice;
 	}
 
-	public void setMinSailPrice(String minSailPrice) {
+
+	public void setMinSailPrice(int minSailPrice) {
 		this.minSailPrice = minSailPrice;
 	}
+
 
 	public String getMainImg() {
 		return mainImg;
@@ -129,45 +139,55 @@ public class Product implements java.io.Serializable{
 		this.etc = etc;
 	}
 
-	public String getItemOptionName() {
+
+	public String[] getItemOptionName() {
 		return itemOptionName;
 	}
 
-	public void setItemOptionName(String itemOptionName) {
+
+	public void setItemOptionName(String[] itemOptionName) {
 		this.itemOptionName = itemOptionName;
 	}
 
-	public String getCost() {
+	public int[] getCost() {
 		return cost;
 	}
 
-	public void setCost(String cost) {
+
+	public void setCost(int[] cost) {
 		this.cost = cost;
 	}
 
-	public String getPrice() {
+
+	public int[] getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+
+	public void setPrice(int[] price) {
 		this.price = price;
 	}
 
-	public String getSailPrice() {
+
+	public int[] getSailPrice() {
 		return sailPrice;
 	}
 
-	public void setSailPrice(String sailPrice) {
+
+	public void setSailPrice(int[] sailPrice) {
 		this.sailPrice = sailPrice;
 	}
 
-	public String getStock() {
+
+	public int[] getStock() {
 		return stock;
 	}
 
-	public void setStock(String stock) {
+
+	public void setStock(int[] stock) {
 		this.stock = stock;
 	}
+
 
 	@Override
 	public String toString() {
