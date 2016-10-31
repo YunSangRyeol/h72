@@ -19,6 +19,27 @@
 		<result property="totalprice" column="TOTAL_PRICE" />
 	</resultMap>
 
+	<resultMap id="orderResultMap" type="Order">
+		<result property="orderNo" column="ORDER_NO" />
+		<result property="userId" column="USER_ID" />
+		<result property="mainImg" column="MAIN_IMG" />
+		<result property="orderContents" column="ORDER_CONTENTS" />
+		<result property="price" column="PRICE" />
+		<result property="totalPrice" column="TOTAL_PRICE" />
+		<result property="paymentMethod" column="PAYMENT_METHOD" />
+		<result property="paymentPoint" column="PYMNET_POINT" />
+		<result property="savingPoint" column="SAVING_POINT" />
+		<result property="deliveryPee" column="DELEVERY_PEE" />
+		<result property="phone" column="PHONE" />
+		<result property="postNum" column="POST_NUM" />
+		<result property="address" column="ADDRESS" />
+		<result property="addressDetail" column="ADDRESS_DETAIL" />
+		<result property="deliveryMessage" column="DELIVERY_MESSAGE" />
+		<result property="orderStatus" column="ORDER_STATUS" />
+		<result property="orderChange" column="ORDER_CHANGE" />
+	</resultMap>
+	
+	<!-- Member -->
 	<select id="getMemberList" resultType="member">
 		SELECT * FROM USERS WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' 
 	</select>
@@ -35,31 +56,6 @@
 		SELECT * FROM USERS WHERE ENROLLDATE between TO_DATE(#{start})  and TO_DATE(#{end})+1
 	</select>
 
-	<!--
-	private String userid;
-	private String levelcode;
-	private String userpass;
-	private String name;
-	private Date birthdate;
-	private String email;
-	private String phone;
-	private String postnum;
-	private String address;
-	private String addressdetail;
-	private int point;
-	private Date enrolldate;
-	private int totalprice;
-	 USER_ID
-	LEVEL_CODE
-	USER_PASS
-	NICKNAME
-	BIRTHDATE
-	EMAIL
-	PHONE
-	POST_NUM
-	ADRRESS
-	ADRRESS_DATAIL
-	POINT
-	ENROLLDATE
-	TOTAL_PRICE -->
+	<!-- Order -->
+	<select id="getOrderList" ></select>
 </mapper>
