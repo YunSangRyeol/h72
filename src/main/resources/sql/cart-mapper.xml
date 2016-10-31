@@ -25,6 +25,13 @@
 	AND USER_ID = #{userid}
 	</select>
 	
+	<update id="updateQuantity" parameterType="java.util.HashMap">
+		UPDATE cart
+		SET
+			QUANTITY = #{quantity}
+		WHERE ITEM_ID = #{itemid}
+	</update>
+	
 
 
 </mapper>

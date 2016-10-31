@@ -18,4 +18,9 @@ public class CartServiceImp implements CartService{
 		return cDao.getCartList(userid);
 	}
 
+	@Override
+	public int updateQuantity(String itemid, int quantity){
+		return cDao.updateQuantity(itemid, quantity);
+	}
+
 }
