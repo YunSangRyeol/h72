@@ -9,8 +9,67 @@
 
 <link href="/h72/resources/css/cart.css" type="text/css"
 	rel="stylesheet">
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>	
 <title>Shopping_cart</title>
+<script>
+//전체선택 체크박스 클릭
+	$(function() {		
+	$("#allCheck").click(
+		function() {
+			if ($("#allCheck").prop("checked")) {
+				$(".xans-record- input[type=checkbox]").prop("checked", true);
+			} else {
+				$(".xans-record- input[type=checkbox]").prop("checked", false);
+			}
+			$(".xans-record- input[type=checkbox]").change();		
+	});
 
+	
+	
+});
+
+function addQuantityShortcut(id, index){
+	var quantity = $("#"+id).val();
+	var result=0;
+	console.log(quantity);
+	result = parseInt(quantity)+1;
+	console.log(result);
+	$("#"+id).val(result);
+	
+	
+}
+
+function outQuantityShortcut(id, index){
+	var quantity = $("#"+id).val();
+	var result=0;
+	console.log(quantity);
+	if(quantity > 1){
+		result = parseInt(quantity)-1;
+		console.log(result);
+		$("#"+id).val(result);
+	}
+}
+
+
+function modifyQuantity(index){
+	
+	$('#quantity_'+index).submit();
+	
+	/* $.post("/h72/updateQuantity", {itemId : itemid, quantity : quantity }
+		); */
+	
+	/* $.ajax({
+		type:"post",
+		url: "/h72/updateQuantity",
+		data :{"itemId":itemid, "quantity":quantity},
+		success : function(data){
+			$(".total strong")
+			
+		}
+		
+	}); */
+}
+</script>
 </head>
 <body id="main">
 
@@ -41,8 +100,7 @@
 								class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
 								<thead>
 									<tr>
-										<th scope="col" class="chk"><input type="checkbox"
-											onclick="Basket.setCheckBasketList('basket_product_normal_type_normal', this);"></th>
+										<th scope="col" class="chk"><input type="checkbox" id="allCheck"></th>
 										<th scope="col" class="thumb">이미지</th>
 										<th scope="col" class="product">상품정보</th>
 										<th scope="col" class="price">판매가</th>
@@ -56,17 +114,23 @@
 								</thead>
 								<tfoot>
 									<tr>
-										<td colspan="10"><strong class="type">[기본배송]</strong>
-											상품구매금액 <strong>13,500</strong> + 배송비 2,500 = 합계 : <strong
-											class="total"><span>16,000</span>원</strong> </td>
+										<td colspan="10">
+											<c:forEach items="${clist}" var="cart">
+											<c:set var="result" value="${(cart.quantity*cart.cost)+result}" />
+											</c:forEach>
+											<strong class="type">[기본배송]</strong>
+											상품구매금액 <strong>${result}</strong> + 배송비 2,500 = 합계 : <strong
+											class="total"><span>${result+2500}</span>원</strong> 
+											
+											</td>
 									</tr>
 								</tfoot>
 								<tbody class="xans-element- xans-order xans-order-list">
-									<c:forEach items="${clist}" var="cart">
+				
+									<c:forEach items="${clist}" var="cart" varStatus="cnt">
 									<tr class="xans-record-">
-										<td><input type="checkbox" id="basket_chk_id_0"
-											name="basket_product_normal_type_normal"></td>
-										<td class="thumb"><a href="#"><div class="itemImg"><img src="/h72/resources${cart.mainImg }"/></div></a></td>
+										<td><input type="checkbox" id="basket_chk"></td>
+										<td class="thumb"><a href="#"><img src="/h72/resources${cart.mainImg }" class="itemImg"/></a></td>
 										<td class="product"><a href="#"><strong>${cart.itemFullName}</strong> </a>
 											<ul
 												class="xans-element- xans-order xans-order-optionall option">
@@ -78,17 +142,19 @@
 											</div>
 										</td>
 										<td class="quantity">
+										<form action="../updateQuantity" method="post" id="quantity_${cnt.count}">
+										<input type="hidden" value="${cart.itemid }" name="itemId"/>
 										<span class="quantity">
-										<input id="quantity_id_0" name="quantity_name_0" size="2" value="${cart.quantity}" type="text">
-										<a href="javascript:;" onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">
+										<input id="quantity_id_${cnt.count}" name="quantity_id_0" size="2" value="${cart.quantity}" type="text"/>
+										<a href="javascript:;" onclick="addQuantityShortcut('quantity_id_${cnt.count}',${cnt.count});">
 										<img src="/h72/resources/image/btn_quantity_up.gif" alt="증가" class="QuantityUp"></a>
-										<a href="javascript:;" onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">
+										<a href="javascript:;" onclick="outQuantityShortcut('quantity_id_${cnt.count}',${cnt.count});">
 										<img src="/h72/resources/image/btn_quantity_down.gif" alt="감소" class="QuantityDown"></a>
-										</span> <a href="javascript:;" onclick="Basket.modifyQuantity()">
-												<!-- <img
-										src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_modify.gif"
-										alt="변경"> --> <span class="QuantityModify">변경</span>
-										</a></td>
+										</span> <a href="javascript:;" onclick="modifyQuantity(${cnt.count});">
+												<span class="QuantityModify">변경</span>
+										</a>
+										</form>
+										</td>
 										<td class="mileage">-</td>
 										<td class="delivery">기본배송
 											<div class="displaynone">(해외배송가능)</div>
@@ -98,7 +164,7 @@
 												2,500원<br>
 											</p>조건
 										</td>
-										<td class="total"><strong>${cart.cost+2500}</strong>
+										<td class="total"><strong>${cart.cost*cart.quantity+2500}</strong>
 											<div class="displaynone"></div></td>
 										<td class="button"><a href="javascript:;"
 											onclick="Basket.orderBasketItem(0);"
@@ -135,14 +201,14 @@
 									<tbody>
 										<tr>
 											<td class="price"><div class="box">
-													<strong>27,000</strong>원 <span class="tail displaynone"></span>
+													<strong>${result}</strong>원 <span class="tail displaynone"></span>
 												</div></td>
 											<td class="option"><div class="box">
 													<strong> + </strong><strong>2,500</strong>원 <span
 														class="tail displaynone"></span>
 												</div></td>
 											<td class="total"><div class="box">
-													<strong> = </strong><strong>29,500</strong>원 <span
+													<strong> = </strong><strong>${result+2500}</strong>원 <span
 														class="tail displaynone"></span>
 												</div></td>
 										</tr>

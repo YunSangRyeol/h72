@@ -21,6 +21,8 @@ import com.project.h72.member.vo.Member;
 
 @Controller
 public class CartController {
+	
+	@Autowired
 	private CartService cs;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
@@ -30,15 +32,12 @@ public class CartController {
 		Member login = (Member) session.getAttribute("loginUser");
 		if(!(login==null)){
 			String userid = login.getUserid();
-			System.out.println("cartcontroller:"+userid+"============================================================");
 			List<Cart> clist = cs.getCartList(userid);
-			System.out.println("cartcontroller"+clist+"==========================================================");
-			if(clist.isEmpty()){
+			if(clist.isEmpty()||clist==null){
 				clist = null;
 			}
 			
 			model.addAttribute("clist", clist);
-			
 			
 		}else{
 			
@@ -47,8 +46,19 @@ public class CartController {
 		
 		return "order/shopping_cart";
 	}
-	
+		
 
+	@RequestMapping(value = "/updateQuantity", method = RequestMethod.POST)
+	public String updateQuantity(@RequestParam("itemId") String itemid, @RequestParam("quantity_id_0") String quantity, HttpSession session) {
+	
+		System.out.println("cartcontroller:"+itemid+"============================================================");
+		System.out.println("cartcontroller:"+quantity+"============================================================");
+		
+		int result = cs.updateQuantity(itemid, Integer.parseInt(quantity));
+		
+		return "order/shopping_cart";
+	}
+	
 	
 	@RequestMapping(value = "/updateCart", method = RequestMethod.GET)
 	public String updateCart(Model model) {
