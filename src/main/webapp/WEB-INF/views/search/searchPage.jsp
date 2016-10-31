@@ -38,52 +38,51 @@
 					</c:otherwise>
 				</c:choose>
 				<%-- <c:if test="${listTitle != 'BAG' }"><h2>${listTitle }</h2></c:if> --%>
-				
+
 			</div>
 
 			<div class="searchList_productList">
 				<ul class="prdList column5">
-					<%
+					<%-- <%
 						for (int i = 0; i < 3; i++) {
 					%>
 					<%
 						for (int j = 0; j < 4; j++) {
 					%>
+ --%>
+					<c:forEach items="${bagList}" var="list">
 
-					<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
-						class="item xans-record-">
-						<div class="box">
-							<a href="#" name="anchorBoxName_8025"><img
-								src="http://10world.co.kr/web/product/tiny/201610/8025_shop1_670334.jpg"
-								alt="" class="thumb" style="width: 238px;"></a>
-							<p class="name"></p>
-							<p
-								style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
-								<a href="#"><span style="font-size: 11px; color: #000000;">노멀
-										싱글 코트 (누빔)</span></a>
-							</p>
-							<p class="price"
-								style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
-								<span
-									style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
-								29500
-							</p>
-							<p class="desc"
-								style="text-align: left; padding: 0; margin: 0; color: #666;">
-								<font color="dc0014"><b>데일리로 착용하기 좋은 베이직 모직코트!</b></font><br>
-								도톰한 누빔안감으로 따뜻하고 포근하게
-							</p>
+						<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
+							class="item xans-record-">
+							<div class="box">
+								<a href="#" name="anchorBoxName_8025"><img
+									src="/h72/resources${list.mainImg }" alt="" class="thumb"
+									style="width: 238px;"></a>
+								<p class="name"></p>
+								<p
+									style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
+									<a href="#"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+								</p>
+								<p class="price"
+									style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
+									<span
+										style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
+									${list.minPrice}
+								</p>
 
 
-						</div>
-					</li>
-					<%
+
+							</div>
+						</li>
+					</c:forEach>
+					<%-- 	<%
 						}
 					%>
-					<br>
-					<%
+						<br>
+						<%
 						}
-					%>
+					%> --%>
+					
 				</ul>
 			</div>
 			<div class="searchList_paging">

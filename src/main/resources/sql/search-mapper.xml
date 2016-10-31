@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="searchMapper">
 
-	<!-- <resultMap id="memberResultMap" type="Member">
+	<!-- <resultMap id="SearchResultMap" type="Search">
 		<id property="userid" column="user_id" />
 		<result property="userpass" column="user_pass" />
 		<result property="name" column="name" />
@@ -16,12 +16,11 @@
 		<result property="adressdetail" column="address_detail" />
 
 	</resultMap> -->
-<!-- 
-	<select id="getCateBag" parameterType="search" resultType="search">
-		SELECT ITEM_NAME, MIN_PRICE, MIN_SAIL_PRICE, MAIN_IMG FROM
-		H72.ITEM_DETAIL_BAG
-	</select>
 
+	<select id="getBagList" parameterType="Search" resultType="Search">
+		SELECT * FROM H72.ITEM_DETAIL_BAG
+	</select>
+<!-- 
 	<select id="getCateProtect" parameterType="search" resultType="search">
 		SELECT ITEM_NAME, MIN_PRICE, MIN_SAIL_PRICE, MAIN_IMG FROM
 		H72.ITEM_DETAIL_PROTECT
