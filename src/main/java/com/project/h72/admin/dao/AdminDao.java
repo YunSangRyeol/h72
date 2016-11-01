@@ -60,4 +60,25 @@ public class AdminDao {
 		return result;
 	}
 
+	public int updateStatusOne(String orderNo, String selectStatusOne) {
+				
+		Map<String, String> noNstatus = new HashMap<String, String>();
+		noNstatus.put( "orderNo", orderNo);
+		noNstatus.put( "status", selectStatusOne);
+		
+		return sqlSession.update(NAMESPACE +"updateOrderStatus", noNstatus);
+	}
+
+	public List<Order> orderASearchDate(Date start, Date end) {
+		Map<String, Date> dates = new HashMap<String, Date>();
+		dates.put( "start", start);
+		dates.put( "end", end );
+		
+		return sqlSession.selectList(NAMESPACE + "orderASearchDate", dates);
+	}
+
+	public List<Order> orderASearchUserID(String id) {
+		return sqlSession.selectList(NAMESPACE + "orderASearchUserID", id);
+	}
+
 }

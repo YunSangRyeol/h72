@@ -23,5 +23,11 @@ public interface AdminService {
 
 	int updateOrderStatus(String[] orderNos, String selectStatus);
 
+	int updateStatusOne(String orderNo, String selectStatusOne);
+
+	List<Order> orderASearchDate(Date start, Date end);
+
+	List<Order> orderASearchUserID(String id);
+
 
 }

@@ -77,9 +77,17 @@
 	<select id="getOrderList" resultType="order">
 		SELECT * FROM ORDER_LIST
 	</select>
+	
 	<update id="updateOrderStatus" parameterType="Map">
 		UPDATE ORDER_LIST SET ORDER_STATUS = #{status} WHERE ORDER_NO = #{orderNo}
 	</update>
 
+	<select id="orderASearchDate" parameterType="Map" resultType="order">
+		SELECT * FROM ORDER_LIST WHERE ENROLL_DATE between TO_DATE(#{start})  and TO_DATE(#{end})+1
+	</select>
+	
+	<select id="orderASearchUserID" parameterType="String" resultType="order">
+		SELECT * FROM ORDER_LIST WHERE USER_ID = #{id} 
+	</select>
 	
 </mapper>

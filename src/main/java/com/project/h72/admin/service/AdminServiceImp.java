@@ -40,5 +40,20 @@ public class AdminServiceImp implements AdminService{
 	public int updateOrderStatus(String[] orderNos, String selectStatus) {
 		return dao.updateOrderStatus(orderNos, selectStatus);
 	}
+
+	
+	public int updateStatusOne(String orderNo, String selectStatusOne) {
+		return dao.updateStatusOne(orderNo, selectStatusOne);
+	}
+
+	@Override
+	public List<Order> orderASearchDate(Date start, Date end) {
+		return dao.orderASearchDate(start, end);
+	}
+
+	@Override
+	public List<Order> orderASearchUserID(String id) {
+		return dao.orderASearchUserID(id);
+	}
 	
 }

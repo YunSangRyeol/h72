@@ -1,16 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>MemberJoin</title>
+<title>Member Info</title>
 <link href="/h72/resources/css/mJoin.css" type="text/css"
 	rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+	//email 주소 변경시 eamil2 값 변경
+	$(function(){
+		$('#emailSelect').change(function(){
+			$('#email2').val( $('#emailSelect').val());
+		});
 	
+	//기본 비밀번호 확인
+		var myPwdCheck= false;
+	$("#userpass").blur(function(){
+		var myPassword = $("#userpass").val();
+		var myPasswordCheck = "${loginUser.userpass }";
+		if(myPassword.length !=0){
+			if(myPassword != myPasswordCheck){
+				$('#nowPwLabel').show();
+			}else{
+				$('#nowPwLabel').hide();
+				myPwdCheck = true;
+			}
+		}
+	});	
+		
+	//새 비밀번호 유효성 검사	
+	var newPwd= false;
+	$("#userpassNew").blur(function(){
+		var myPassword = $("#userpassNew").val();				
+		if(myPassword.length !=0){
+			if((myPassword.length > 0 && myPassword.length < 10)){
+				$('#newPwLabel').show();
+			}else{
+				$('#newPwLabel').hide();
+				newPwd = true;
+			}
+		}
+	});
+	
+	//새 비밀번호 확인
+	var newPwdCheck= false;
+	$("#userpass_confirm").blur(function(){
+		var newPassword = $("#userpassNew").val();
+		var newPasswordCheck = $('#userpass_confirm').val();
+		if(newPasswordCheck.length !=0){
+			if(newPasswordCheck != newPassword){
+				$('#newPwLabelOK').show();
+			}else{
+				$('#newPwLabelOK').hide();
+				newPwdCheck = true;
+			}
+		}
+	});	
+	
+	//submit 작동 확인
+	$('#updateMember').click(function(){
+		if (!myPwdCheck) {
+			alert("비밀 번호가 일치하지 않습니다.");
+			modifyForm.mypage_loginUserPwd.focus();
+		} else if(!newPwd){
+			alert("변경할 비밀번호를 입력해주세요");
+			modifyForm.userpassNew.focus();
+		} else if(!newPwdCheck){
+			alert("새로운 비밀번호가 일치하지 않습니다.");
+			modifyForm.userpass_confirm.focus();
+		} else{
+			modifyForm.submit();
+		}
+	});
+	
+	});//document.ready 
 </script>
 </head>
 <body id="mjoin">
@@ -18,10 +86,10 @@
 		<jsp:include page="/WEB-INF/views/main_header.jsp" flush="false" />
 		<div class="mjoin_contents" align="center">
 			<div class="mjoin_titleArea">
-				<h2>My Info</h2>
+				<h2>My Information</h2>
 			</div>
 			<div class="mjoin_form">
-			<form id="" action="">
+			<form id="modifyForm" action="/h72/updateMember.do">
 				<h3>기본정보</h3>
 				<p class="mjoin_required">
 					<span id="mjoin_red">*</span> 필수입력사항
@@ -31,49 +99,27 @@
 						<tbody>
 							<tr>
 								<th scope="row">기존 비밀번호 <span id="mjoin_red">*</span></th>
-								<td><input id="userpass" name=""
-									userpass""
-									fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
-									fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16"
-									0="disabled" value="" type="password"> (영문
-									대소문자/숫자/특수문자, 10~16자)</td>
+								<td><input id="userpass"  maxlength="16" type="password"> 
+								<label id="nowPwLabel" style="color:red; display:none;">비밀번호가 일치하지 않습니다.</label></td>
 							</tr>
 							<tr>
-								<th scope="row">비밀번호 <span id="mjoin_red">*</span></th>
-								<td><input id="userpass" name=""
-									userpass""
-									fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
-									fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16"
-									0="disabled" value="" type="password"> (영문
-									대소문자/숫자/특수문자, 10~16자)</td>
+								<th scope="row">새로운 비밀번호 <span id="mjoin_red">*</span></th>
+								<td><input id="userpassNew" maxlength="16" type="password"> 
+								<label id="newPwLabel" style="color:red; display:none;">사용불가</label>(영문 대소문자/숫자/특수문자, 10~16자)</td>
 							</tr>
 							<tr>
-								<th scope="row">비밀번호 확인 <span id="mjoin_red">*</span></th>
-								<td><input id="userpass_confirm" name="userpass_confirm"
-									fw-filter="isFill&amp;isMatch[passwd]" fw-label="비밀번호 확인"
-									fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
-									0="disabled" value="" type="password"></td>
-							</tr>
-							<tr>
-								<th scope="row">이름 <span id="mjoin_red">*</span></th>
-								<td><input id="nickName" name="nickName"
-									fw-filter="isFill&amp;isFill&amp;isMin[2]&amp;isMax[10]&amp;isIdentity"
-									fw-label="닉네임" fw-msg="" class="inputTypeText" value=""
-									type="text"> (한글/영문/숫자 2~10자, 특수문자 불가능)</td>
-							</tr>
-							<tr class="">
-								<th scope="row">생년월일 <span id="mjoin_red">*</span></th>
-								<td><input id="birthDate" name="birthDate"
-									fw-filter="isFill" fw-label="생년월일" fw-msg=""
-									class="inputTypeText" type="date"></span></td>
+								<th scope="row">새로운 비밀번호 확인 <span id="mjoin_red">*</span></th>
+								<td><input id="userpass_confirm" name="userpass_confirm" maxlength="16"
+									 type="password">
+									<label id="newPwLabelOK" style="color:red; display:none;">비밀번호가 일치하지 않습니다.</label></td>
 							</tr>
 							<tr>
 								<th scope="row">주소 <span id="mjoin_red">*</span></th>
-								<td><input type="text" id="postnum" placeholder="우편번호">
+								<td><input type="text" id="postnum" placeholder="우편번호" value="${loginUser.postnum }">
 									<input type="button" id="postFindBtn"
 									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-									<input type="text" id="address" placeholder="주소" readonly><br>
-									<input type="text" id="addressDetail" placeholder="상세주소">
+									<input type="text" id="address" placeholder="주소" value="${loginUser.address }" readonly><br>
+									<input type="text" id="addressDetail" placeholder="상세주소" value="${loginUser.addressDetail }">
 									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 									<script>
 										function sample6_execDaumPostcode() {
@@ -133,10 +179,15 @@
 							</tr>
 
 							<tr>
+							<c:set var="tempPhone" value="${loginUser.phone }"/>
+							<c:set var="phoneF" value="${fn:substring(tempPhone, 0, tempPhone.indexOf('-'))}" />
+							<c:set var="phoneM" value="${fn:substring(tempPhone, tempPhone.indexOf('-')+1, tempPhone.lastIndexOf('-'))}" />
+							<c:set var="phoneL" value="${fn:substring(tempPhone, tempPhone.lastIndexOf('-')+1, tempPhone.length()) }" />
 								<th scope="row">휴대전화 <span id="mjoin_red">*</span></th>
 								<td><select id="phone1" name="phone[]"
 									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
-									fw-msg="">
+									fw-msg="" >
+										<option>${phoneF }</option>
 										<option value="010">010</option>
 										<option value="011">011</option>
 										<option value="016">016</option>
@@ -145,19 +196,21 @@
 										<option value="019">019</option>
 								</select>-<input id="phone2" name="phone[]" maxlength="4"
 									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
-									fw-msg="" value="" type="text">-<input id="phone3"
+									fw-msg="" value="${phoneM }" type="text">-<input id="phone3"
 									name="phone[]" maxlength="4" fw-filter="isNumber&amp;isFill"
-									fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text"></td>
+									fw-label="휴대전화" fw-alone="N" fw-msg="" type="text" value="${phoneL }"></td>
 							</tr>
 
 							<tr>
+							<c:set var="tempEmail" value="${loginUser.email }"/>
+							<c:set var="emailFront" value="${fn:substring(tempEmail, 0, tempEmail.indexOf('@'))}" />
+							<c:set var="emailBack" value="${fn:substring(tempEmail, tempEmail.indexOf('@')+1, tempEmail.length() )}" />
 								<th scope="row">이메일 <span id="mjoin_red">*</span></th>
 								<td><input id="email1" name="email1" fw-filter="isFill"
-									fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text">@<input
+									fw-label="이메일" fw-alone="N" fw-msg="" value="${emailFront }" type="text">@<input
 									id="email2" name="email2" fw-filter="isFill" fw-label="이메일"
-									fw-alone="N" fw-msg="" readonly="readonly" value="" type="text"><select
-									id="email3" fw-filter="isFill" fw-label="이메일" fw-alone="N"
-									fw-msg="">
+									fw-alone="N" fw-msg="" readonly="readonly" value="${emailBack }" type="text">
+									<select name="email3" id="emailSelect" fw-filter="isFill" fw-label="이메일" fw-alone="N" fw-msg="">
 										<option value="" selected="selected">- 이메일 선택 -</option>
 										<option value="naver.com">naver.com</option>
 										<option value="daum.net">daum.net</option>
@@ -176,13 +229,9 @@
 					</table>
 				</div>
 				<div id="mupdate_btnArea">
-				<div class="mjoin_btnArea">
-					<a href="#none" onclick="">변경하기</a>
-				</div>
+				<input type="button" id="updateMember" value="변경하기">
 				 &nbsp;  &nbsp;  &nbsp; 
-				<div class="mjoin_btnArea">
-					<a href="#none" onclick="memberJoinAction()">탈퇴하기</a>
-				</div>
+				<input type="button" id="deleteMember" value="탈퇴하기">
 				</div>
 			</form>
 		</div>

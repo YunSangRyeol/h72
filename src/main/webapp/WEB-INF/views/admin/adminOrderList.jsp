@@ -22,7 +22,7 @@
 	    });
 	});
 	
-	//위치에 따른 옵션바 생성/제거
+/* 	//위치에 따른 옵션바 생성/제거
 	$(window).scroll(function(){
 		if($(document).scrollTop()<=500){
 			$("#optionBtn").addClass("fixed");
@@ -30,7 +30,7 @@
 			$("#optionBtn").removeClass("fixed");
 	 	}
 		
-	});
+	}); */
 
 	//탭 변경	
 	function openTab(evt, tabname) {
@@ -117,7 +117,10 @@
  	
  		
  	function updateStatusOne(orderNo){
-		location.href="/h72/updateStatusOne?orderNo="+orderNo;
+ 		var status = $('[name=selectStatusOne]').val();
+ 		
+ 		alert("orderNo" + orderNo);
+		//location.href="/h72/updateStatusOne?orderNo="+orderNo"&status="+status;
 	}
  	//
  	
@@ -137,13 +140,13 @@
 
 	<div id="admin_order_search">
 	<div id="adminSearchhow">
-	<select class="selectOption">
+	<select class="selectOption" >
 		<option value="date" selected>주문일자</option>
 		<option value="user">주 문 자</option>
 	</select>
 	</div>
 	<div id="searchDate">
-		<form>
+		<form id="searchDateForm" method="post" action="/h72/orderASearchDate.do">
 		<input type="button" value="당일" class="datebtn" id="todateBtn">
 		<input type="button" value="3일" class="datebtn" id="thirdBtn">
 		<input type="button" value="7일" class="datebtn" id="sevenBtn">
@@ -153,8 +156,8 @@
 		 &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div><!-- searchDate -->    
-    <div id="searchID" style="display:none;">
-		<form>
+    <div id="searchID"  style="display:none;">
+		<form method="post" action="/h72/orderASearchUserID.do">
 			<input type="text" name="userid" size="30" class="searchInput"> &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div>
@@ -219,8 +222,7 @@
 						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" onclick="updateStatusOne(${list.orderNo })" value="변경">
 					</td>
 				</tr>				
-				</c:forEach>
-				
+				</c:forEach>				
 			</tbody>
 		</table>
 		<div id="totalPrice"> 총 금액 : ${result} 원</div>
