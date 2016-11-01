@@ -196,8 +196,8 @@
 					<td><input type="checkbox"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 
-					<td class="product">${list.orderContents }</td>
-					<td class="quantity"></td>
+					<td class="product">${list.itemName } [옵션 : ${list.itemOptionName }]] 외 ${list.totalQuantity } </td>
+					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
 						<div class="displaynone"></div></td>
 					<td class="who"><a>${list.userId }</a></td>

@@ -41,7 +41,8 @@
 		<result property="enrollDate" column="ENROLL_DATE" />
 	</resultMap>
 
-		<resultMap id="orderNo" type="ORDER_NO">
+	<resultMap id="orderContentsResultMap" type="OrderContents">
+		<result property="orderNo" column="ORDER_NO" />
 		<result property="itmeId" column="ITEM_ID" />
 		<result property="itemName" column="ITEM_NAME" />
 		<result property="itemOptionName" column="ITEM_OPTION_NAME" />
