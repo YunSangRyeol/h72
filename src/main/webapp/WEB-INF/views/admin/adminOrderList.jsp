@@ -115,6 +115,12 @@
  				});
  	});
  	
+ 		
+ 	function updateStatusOne(orderNo){
+		location.href="/h72/updateStatusOne?orderNo="+orderNo;
+	}
+ 	//
+ 	
 </script>
 </head>
 <body>
@@ -177,6 +183,7 @@
 	<div id="all" class="tabcontent" style="display:block">
     <input type="button" id="btnExport" value="Export To Excel" />
     <br />
+    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
     <table id="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
@@ -184,56 +191,50 @@
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
-					<th scope="col" class="price">상품구매금액</th>
+					<th scope="col" class="price">상품구매금액(원)</th>
 					<th scope="col" class="who">주문자</th>
 					<th scopt="col" class="how">주문 방법</th>
 					<th scope="col" class="state">주문처리상태</th>
 				</tr>
-			</thead>
-			<tbody class="">
-				<c:forEach var="list" items="${list}" >
+			</thead>			
+			<tbody class="">				
+				<c:forEach var="list" items="${list}" >				
 				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 
-					<td class="product">${list.itemName } [옵션 : ${list.itemOptionName }]] 외 ${list.totalQuantity } </td>
+					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
+					<c:set var="result" value="${(list.totalQuantity*list.totalPrice)+result}" />
 						<div class="displaynone"></div></td>
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
 						<select id="stateMo" class="selectOption">
-							<option id="">결제완료</option>
-							<option id="">배송중</option>
-							<option id="">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+							<option>${list.orderStatus }</option>
+							<option name="selectStatusOne" value="결제완료">결제완료</option>
+							<option name="selectStatusOne" value="배송중">배송중</option>
+							<option name="selectStatusOne" value="주문접수">주문접수</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" onclick="updateStatusOne(${list.orderNo })" value="변경">
 					</td>
-				</tr>
+				</tr>				
 				</c:forEach>
+				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : </div>
-		<div id="modifyBtn">
-			선택한 주문건을 
-			<select id="modifyWhat" class="selectOption">
-				<option id="">결제완료</option>
-				<option id="">배송중</option>
-				<option id="">주문접수</option>
-			</select>
-			로 변경합니다. &nbsp;
-			<input type="submit" class="admin_btn" value="변경하기">
-		</div>
+		<div id="totalPrice"> 총 금액 : ${result} 원</div>
 		<div id="optionBtn">
 			선택한 주문건을 
-			<select id="modifyWhat" class="selectOption">
-				<option id="">결제완료</option>
-				<option id="">배송중</option>
-				<option id="">주문접수</option>
+			<select id="modifyWhat" name="selectStatus" class="selectOption">
+				<option name="selectStatus" value="결제완료" >결제완료</option>
+				<option name="selectStatus" value="배송중" >배송중</option>
+				<option name="selectStatus" value="주문접수" >주문접수</option>
 			</select>
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">
 		</div>
+		</form>
 	</div><!-- tab -->
 
 	<div id="order" class="tabcontent">

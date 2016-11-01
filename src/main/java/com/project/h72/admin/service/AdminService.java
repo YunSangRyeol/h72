@@ -21,5 +21,7 @@ public interface AdminService {
 
 	List<Order> getOrderList();
 
+	int updateOrderStatus(String[] orderNos, String selectStatus);
+
 
 }

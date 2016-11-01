@@ -80,6 +80,29 @@ public class AdminController {
 		return "admin/adminOrderList";
 	}
 	
+	@RequestMapping(value="updateOrderStatus.do", method = RequestMethod.GET)
+	public String updateOrderStatus(@RequestParam("changeList") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
+		
+		System.out.println(selectStatus);
+		int result = adminService.updateOrderStatus(orderNos, selectStatus);
+		
+		if(result == orderNos.length){
+			return  null;
+		}
+		
+		return null;
+		
+	}
+	
+	
+	@RequestMapping(value="updateStatusOne", method = RequestMethod.GET)
+	public String updateStatusOne(@RequestParam("orderNo") String orderNo, Model model){
+		System.out.println("orrderNo" + orderNo);
+		return null;
+	}
+
+	
+	
 /*	@RequestMapping(value = "admin/order", method = RequestMethod.GET)
 	public String adminOrderView(Locale locale, Model model) {
 		

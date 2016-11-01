@@ -46,4 +46,18 @@ public class AdminDao {
 		return sqlSession.selectList(NAMESPACE + "getOrderList");
 	}
 
+	public int updateOrderStatus(String[] orderNos, String selectStatus) {		
+		int result = 0;
+		
+		for(int i = 0; i <orderNos.length; i++){
+			Map<String, String> noNstatus = new HashMap<String, String>();
+			noNstatus.put( "orderNo", orderNos[i]);
+			noNstatus.put( "status", selectStatus );
+			
+			result += sqlSession.update(NAMESPACE +"updateOrderStatus", noNstatus);
+		}
+		
+		return result;
+	}
+
 }

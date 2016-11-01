@@ -32,7 +32,13 @@ public class AdminServiceImp implements AdminService{
 		return dao.adminSearchDate(start, end);
 	}
 	
+	//orderList
 	public List<Order> getOrderList(){
 		return dao.getOrderList();		
 	}
+	
+	public int updateOrderStatus(String[] orderNos, String selectStatus) {
+		return dao.updateOrderStatus(orderNos, selectStatus);
+	}
+	
 }
