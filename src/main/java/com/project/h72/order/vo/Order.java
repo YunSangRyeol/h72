@@ -5,13 +5,14 @@ import java.sql.Date;
 public class Order {
 	private String orderNo;
 	private String userId;
-	private String mainImg;
-	private String orderContents;
-	private int price;
+	private String mainImgN1;
+	private String itemName;
+	private String itemOptionName;
+	private int totalQuantity;
 	private int totalPrice;
 	private String paymentMethod;
 	private int paymentPoint;
-	private int savingPoint;
+	private int totalSavingPoint;
 	private int deliveryPee;
 	private String phone;
 	private String postNum;
@@ -22,24 +23,27 @@ public class Order {
 	private String orderChange;
 	private Date enrollDate;
 	
+	
 	public Order() {
 		super();
 	}
-	
-	public Order(String orderNo, String userId, String mainImg, String orderContents, int price, int totalPrice,
-			String paymentMethod, int paymentPoint, int savingPoint, int deliveryPee, String phone, String postNum,
-			String address, String addressDetail, String deliveryMessage, String orderStatus, String orderChange,
-			Date enrollDate) {
+
+
+	public Order(String orderNo, String userId, String mainImgN1, String itemName, String itemOptionName,
+			int totalQuantity, int totalPrice, String paymentMethod, int paymentPoint, int totalSavingPoint,
+			int deliveryPee, String phone, String postNum, String address, String addressDetail, String deliveryMessage,
+			String orderStatus, String orderChange, Date enrollDate) {
 		super();
 		this.orderNo = orderNo;
 		this.userId = userId;
-		this.mainImg = mainImg;
-		this.orderContents = orderContents;
-		this.price = price;
+		this.mainImgN1 = mainImgN1;
+		this.itemName = itemName;
+		this.itemOptionName = itemOptionName;
+		this.totalQuantity = totalQuantity;
 		this.totalPrice = totalPrice;
 		this.paymentMethod = paymentMethod;
 		this.paymentPoint = paymentPoint;
-		this.savingPoint = savingPoint;
+		this.totalSavingPoint = totalSavingPoint;
 		this.deliveryPee = deliveryPee;
 		this.phone = phone;
 		this.postNum = postNum;
@@ -51,7 +55,9 @@ public class Order {
 		this.enrollDate = enrollDate;
 	}
 
-	
+
+
+
 
 	public String getOrderNo() {
 		return orderNo;
@@ -69,28 +75,41 @@ public class Order {
 		this.userId = userId;
 	}
 
-	public String getMainImg() {
-		return mainImg;
+	public String getMainImgN1() {
+		return mainImgN1;
 	}
 
-	public void setMainImg(String mainImg) {
-		this.mainImg = mainImg;
+	public void setMainImgN1(String mainImgN1) {
+		this.mainImgN1 = mainImgN1;
 	}
 
-	public String getOrderContents() {
-		return orderContents;
+	
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setOrderContents(String orderContents) {
-		this.orderContents = orderContents;
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
-	public int getPrice() {
-		return price;
+
+	public String getItemOptionName() {
+		return itemOptionName;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+
+	public void setItemOptionName(String itemOptionName) {
+		this.itemOptionName = itemOptionName;
+	}
+
+
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
 	}
 
 	public int getTotalPrice() {
@@ -117,12 +136,12 @@ public class Order {
 		this.paymentPoint = paymentPoint;
 	}
 
-	public int getSavingPoint() {
-		return savingPoint;
+	public int getTotalSavingPoint() {
+		return totalSavingPoint;
 	}
 
-	public void setSavingPoint(int savingPoint) {
-		this.savingPoint = savingPoint;
+	public void setTotalSavingPoint(int totalSavingPoint) {
+		this.totalSavingPoint = totalSavingPoint;
 	}
 
 	public int getDeliveryPee() {
@@ -199,8 +218,8 @@ public class Order {
 
 	@Override
 	public String toString(){
-		return this.orderNo + ", " + this.userId + ", " + this.mainImg + ", " + this.orderContents  + ", " + this.price
-				 + ", " + this.totalPrice + ", " + this.paymentMethod + ", " + this.paymentPoint + ", " + this.savingPoint
+		return this.orderNo + ", " + this.userId + ", " + this.mainImgN1 + ", " + this.itemName + ", " + this.itemOptionName  + ", " + this.totalQuantity
+				 + ", " + this.totalPrice + ", " + this.paymentMethod + ", " + this.paymentPoint + ", " + this.totalSavingPoint
 				 + ", " + this.deliveryPee + ", " + this.phone + ", " + this.postNum + ", " + this.address + ", " + this.addressDetail
 				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange + ", " + this.enrollDate;
 	}

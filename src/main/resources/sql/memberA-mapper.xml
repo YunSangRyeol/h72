@@ -22,13 +22,14 @@
 	<resultMap id="orderResultMap" type="Order">
 		<result property="orderNo" column="ORDER_NO" />
 		<result property="userId" column="USER_ID" />
-		<result property="mainImg" column="MAIN_IMG" />
-		<result property="orderContents" column="ORDER_CONTENTS" />
-		<result property="price" column="PRICE" />
+		<result property="mainImgN1" column="MAIN_IMG_N1" />
+		<result property="itemNameN1" column="ITEM__NAME_N1" />
+		<result property="itemOptionNameN1" column="ITEM_OPTION_NAME_N1" />
+		<result property="totalQuantity" column="TOTAL_QUANTITY" />
 		<result property="totalPrice" column="TOTAL_PRICE" />
 		<result property="paymentMethod" column="PAYMENT_METHOD" />
 		<result property="paymentPoint" column="PYMNET_POINT" />
-		<result property="savingPoint" column="SAVING_POINT" />
+		<result property="totalSavingPoint" column="TOTAL_SAVING_POINT" />
 		<result property="deliveryPee" column="DELEVERY_PEE" />
 		<result property="phone" column="PHONE" />
 		<result property="postNum" column="POST_NUM" />
@@ -39,7 +40,21 @@
 		<result property="orderChange" column="ORDER_CHANGE" />
 		<result property="enrollDate" column="ENROLL_DATE" />
 	</resultMap>
-	
+
+		<resultMap id="orderNo" type="ORDER_NO">
+		<result property="itmeId" column="ITEM_ID" />
+		<result property="itemName" column="ITEM_NAME" />
+		<result property="itemOptionName" column="ITEM_OPTION_NAME" />
+		<result property="itemDetailID" column="ITEM_DETAIL_ID" />
+		<result property="mainImg" column="MAIN_IMG" />
+		<result property="quantity" column="QUANTITY" />
+		<result property="savingPoint" column="SAVING_POINT" />
+		<result property="cost" column="COST" />
+		<result property="message" column="MESSAGE" />
+		<result property="kitYN" column="KIT_YN" />
+	</resultMap>
+
+
 	<!-- Member -->
 	<select id="getMemberList" resultType="member">
 		SELECT * FROM USERS WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' 
