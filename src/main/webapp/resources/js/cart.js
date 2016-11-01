@@ -68,6 +68,11 @@ function modifyQuantity(index){
 
 
 
+
+//item삭제
+function deleteBasketItem(index){
+}
+
 //선택삭제  
 function deleteBasket(){
 		var checkId = $(".xans-record- input[type=checkbox]:checked").val();
@@ -78,12 +83,9 @@ function deleteBasket(){
 	
 }
 
-//item삭제
-function deleteBasketItem(index){
-	
-}
-
 // 장바구니 비우기
 function emptyBasket(){
+	if(confirm("장바구니를 비우시겠습니까?")){
+	location.href="/h72/emptyBasket";}
 	
 }

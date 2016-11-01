@@ -36,6 +36,7 @@
 					</c:if>
 					
 					<!-- 일반상품 -->
+					<form action="/h72/order.do" method="post">
 					<c:if test="${!(clist eq null)}">
 						<div class="orderListArea">
 							<!-- 일반상품  -->
@@ -72,12 +73,12 @@
 				
 									<c:forEach items="${clist}" var="cart" varStatus="cnt">
 									<tr class="xans-record-">
-										<td><input type="checkbox" id="basket_chk_${cnt.count}" value="${cart.cartid}"></td>
+										<td><input type="checkbox" name="basketItem_chk" value="${cart.cartid}"></td>
 										<td class="thumb"><a href="#"><img src="/h72/resources${cart.mainImg }" class="itemImg"/></a></td>
 										<td class="product"><a href="#"><strong>${cart.itemFullName}</strong> </a>
 											<ul
 												class="xans-element- xans-order xans-order-optionall option">
-												<li class="xans-record-">[옵션:${cart.itemOptionName } ]</li>
+												<li class="xans-record-">[옵션: ${cart.itemOptionName } ]</li>
 											</ul></td>
 										<td class="price">
 											<div class="">
@@ -127,7 +128,7 @@
 								<span class="left"> <strong class="ctrlTxt">선택상품을</strong>
 									<a href="#none" onclick="deleteBasket()"
 									style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">삭제하기</a>
-								</span> <a href="#none" onclick="emptyBasket()"
+								</span> <a href="#none" onclick="emptyBasket();"
 									style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">장바구니비우기</a>
 							</div>
 
@@ -178,7 +179,7 @@
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">쇼핑계속하기</a>
 						</span>
 					</div>
-
+					</form>
 
 					<!-- 이용안내 -->
 					<div class="xans-element- xans-order xans-order-basketguide help ">

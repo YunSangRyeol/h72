@@ -28,5 +28,12 @@ public class CartDao {
 		
 		return sqlSession.update(NAMESPACE+"updateQuantity", paramMap);
 	}
+	
+	public int deleteEmptyBasket(String userid) {
+		int result =0;
+		result =sqlSession.delete(NAMESPACE +"deleteEmptyBasket", userid);
+		System.out.println("Dao:"+result+"====================================================");
+		return result;
+	}
 
 }
