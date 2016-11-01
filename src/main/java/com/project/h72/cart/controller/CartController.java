@@ -75,6 +75,61 @@ public class CartController {
 	}
 	
 	
+	@RequestMapping(value = "/emptyBasket", method = RequestMethod.GET)
+	public String emptyBasket(HttpSession session, Model model) throws Exception {
+		
+		Member login = (Member) session.getAttribute("loginUser");
+		String userid = login.getUserid();
+		int result = cs.deleteEmptyBasket(userid);
+		
+		if(result>0){
+			if(!(login==null)){
+				
+				List<Cart> clist = cs.getCartList(userid);
+				if(clist.isEmpty()||clist==null){
+					clist = null;
+				}
+				
+				model.addAttribute("clist", clist);
+				
+			}
+			
+		}
+		
+		
+		return "order/shopping_cart";
+	}
+	
+	
+	@RequestMapping(value = "/deleteBasketChk", method = RequestMethod.POST)
+	public String deleteBasketChk(@RequestParam("cartId") String[] cartid, HttpSession session, Model model) throws Exception {
+		
+		for(int i=0; i<cartid.length; i++){
+			System.out.println("cart id :" +cartid[i]);
+		}
+		
+		/*Member login = (Member) session.getAttribute("loginUser");
+		String userid = login.getUserid();
+		int result = cs.deleteEmptyBasket(userid);
+		
+		if(result>0){
+			if(!(login==null)){
+				
+				List<Cart> clist = cs.getCartList(userid);
+				if(clist.isEmpty()||clist==null){
+					clist = null;
+				}
+				
+				model.addAttribute("clist", clist);
+				
+			}
+			
+		}*/
+		
+		
+		return "order/shopping_cart";
+	}
+	
 	@RequestMapping(value = "/updateCart", method = RequestMethod.GET)
 	public String updateCart(Model model) {
 		

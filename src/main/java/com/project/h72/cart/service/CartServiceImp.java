@@ -23,4 +23,9 @@ public class CartServiceImp implements CartService{
 		return cDao.updateQuantity(itemid, quantity);
 	}
 
+	@Override
+	public int deleteEmptyBasket(String userid) {
+		return cDao.deleteEmptyBasket(userid);
+	}
+
 }

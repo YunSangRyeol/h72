@@ -68,22 +68,45 @@ function modifyQuantity(index){
 
 
 
-//선택삭제  
-function deleteBasket(){
-		var checkId = $(".xans-record- input[type=checkbox]:checked").val();
-		for(var i=0; i<checkId.lenght; i++){
-			console.log(checkId[i]);
-		}
-		//location.href=""
-	
-}
 
 //item삭제
 function deleteBasketItem(index){
+}
+
+//선택삭제  
+function deleteBasketChk(){
+	
+	 $('input[name=basketItem_chk]').each(function() {
+
+	     if($(".xans-record- input[name=basketItem_chk]").is(":checked")){ //값 비교
+
+	    	 var checkId = $(this).val();
+				for(var i=0; i<checkId.length; i++){
+					console.log(checkId[i]);
+				}
+	      }
+
+	 });
+	
+	
+		
+		
+		$.ajax({
+			type:"post",
+			url: "/h72/deleteBasketChk",
+			data :{"cartId":checkId},
+			success : function(data){
+				alert(data);
+				
+			}
+			
+		}); 
 	
 }
 
 // 장바구니 비우기
 function emptyBasket(){
+	if(confirm("장바구니를 비우시겠습니까?")){
+	location.href="/h72/emptyBasket";}
 	
 }

@@ -8,4 +8,6 @@ public interface CartService {
 	List<Cart> getCartList(String userid) throws Exception;
 
 	int updateQuantity(String itemid, int quantity);
+
+	int deleteEmptyBasket(String userid);
 }
