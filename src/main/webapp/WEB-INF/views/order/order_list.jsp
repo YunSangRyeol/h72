@@ -30,53 +30,65 @@ function openTab(evt, tabname) {
 }
 
 
+// 날짜포맷 지정하는 함수
+function dateToYYYYMMDD(date)
+{
+    function pad(num) {
+        num = num + '';
+        return num.length < 2 ? '0' + num : num;
+    }
+    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
+}
+
+
 //날짜 선택 버튼시 inputd의 날짜 변경
 	$(function(){
-		var tDay = new Date();
-		var bMonth = tDay.getMonth();
-		var tMonth = tDay.getMonth()+1;
-		var tDate = tDay.getDate();
-		var year, month, day;
 		
-		month= tMonth-3
-		if (month < 10) { month = '0' + month;
-			
-		document.getElementById("startDate").value = tDay.getFullYear()+"-"+month+"-"+ tDate;	
-		document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;	
-		 }
+		var currDate = new Date(); // 현재 날짜
+		var startDate = new Date(new Date().setMonth(new Date().getMonth()-3)); // 한달전 날짜
+		
+		// YYYY-MM-DD로 형식변환
+		var prevMon = dateToYYYYMMDD(startDate);
+		var currMon = dateToYYYYMMDD(currDate);
+		
+		document.getElementById("startDate").value = prevMon;
+		document.getElementById("endDate").value = currMon;
+		
 		
 		$('a[days=00]').click(
 		function(){
-			
-			document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ tDate;	
+			document.getElementById("startDate").value = dateToYYYYMMDD(currDate);	
 		});
+		
+		
 		$('a[days=07]').click(
 				function(){
-					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 7);	
+					var preSeven = new Date(new Date().setDate(new Date().getDate()-7));
+					document.getElementById("startDate").value = dateToYYYYMMDD(preSeven);	
 						
 				});
+		
 		$('a[days=30]').click(
 				function(){
-					month= tMonth-1
-					if (month < 10) { month = '0' + month;
-					document.getElementById("startDate").value = tDay.getFullYear()+"-"+month+"-"+ (tDate - 7);
-					}
+					var preOneMonth = new Date(new Date().setMonth(new Date().getMonth()-1));
+					document.getElementById("startDate").value = dateToYYYYMMDD(preOneMonth);	
 				});
 		$('a[days=90]').click(
 				function(){
-					month= tMonth-3
-					if (month < 10) { month = '0' + month;
-					document.getElementById("startDate").value = tDay.getFullYear()+"-"+month+"-"+tDate;
-					}
+					var preThreeMonth = new Date(new Date().setMonth(new Date().getMonth()-3));
+					document.getElementById("startDate").value = dateToYYYYMMDD(preThreeMonth);	
+					
 				});
 		$('a[days=180]').click(
 				function(){
-					month= tMonth-6
-					if (month < 10) { month = '0' + month;
-					document.getElementById("startDate").value = tDay.getFullYear()+"-"+month+"-"+tDate;
-					}
-				});
+					var preSixMonth = new Date(new Date().setMonth(new Date().getMonth()-6));
+					document.getElementById("startDate").value = dateToYYYYMMDD(preSixMonth);	
+					
+				}); 
 	});
+	
+
+	
 
 </script>
 </head>

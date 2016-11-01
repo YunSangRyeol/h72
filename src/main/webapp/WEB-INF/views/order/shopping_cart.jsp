@@ -126,7 +126,7 @@
 							<!-- 선택상품 제어 버튼 -->
 							<div class="xans-element- xans-order xans-order-selectorder ">
 								<span class="left"> <strong class="ctrlTxt">선택상품을</strong>
-									<a href="#none" onclick="deleteBasket()"
+									<a href="#none" onclick="deleteBasketChk()"
 									style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">삭제하기</a>
 								</span> <a href="#none" onclick="emptyBasket();"
 									style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">장바구니비우기</a>
