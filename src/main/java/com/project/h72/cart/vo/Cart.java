@@ -15,23 +15,35 @@ public class Cart {
 	private char KitYN;
 	private Date enrollDate;
 	private String itemOptionName;
-	/*CART_id Ä«Æ® ¾ÆÀÌµð
-	ITEM_id »óÇ° ¾ÆÀÌµð
-	USER_id À¯Àú ¾ÆÀÌµð
-	ITEM_FULL_NAME »óÇ° ÀüÃ¼ ÀÌ¸§
-	ITEM_DETAIL_id »óÇ° ¼³¸í ¾ÆÀÌµð
-	MAIN_IMG ½æ³×ÀÏ
-	QUANTITY »óÇ° °¹¼ö
-	COST »óÇ° °¡°Ý
-	MESSAGE ±¸¸Å½Ã ¿äÃ»»çÇ×
-	KIT_YN KIT ¿©ºÎ
-	ENROLL_DATE µî·Ï ³¯Â¥*/
+	/*CART_id Ä«Æ® ï¿½ï¿½ï¿½Ìµï¿½
+	ITEM_id ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½
+	USER_id ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	ITEM_FULL_NAME ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ ï¿½Ì¸ï¿½
+	ITEM_DETAIL_id ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	MAIN_IMG ï¿½ï¿½ï¿½ï¿½ï¿½
+	QUANTITY ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
+	COST ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
+	MESSAGE ï¿½ï¿½ï¿½Å½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½
+	KIT_YN KIT ï¿½ï¿½ï¿½ï¿½
+	ENROLL_DATE ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥*/
 	
 	public Cart(){
 		super();
 	}
-	
-	
+
+	public Cart(String userid, String itemFullName, String itemDetailid, String mainImg, int quantity,
+			int cost, String message, char kitYN, String itemOptionName) {
+		super();
+		this.userid = userid;
+		this.itemFullName = itemFullName;
+		this.itemDetailid = itemDetailid;
+		this.mainImg = mainImg;
+		this.quantity = quantity;
+		this.cost = cost;
+		this.message = message;
+		this.KitYN = kitYN;
+		this.itemOptionName = itemOptionName;
+	}
 
 	public Cart(String cartid, String itemid, String userid, String itemFullName, String itemDetailid, String mainImg,
 			int quantity, int cost, String message, char kitYN, Date enrollDate,String itemOptionName) {

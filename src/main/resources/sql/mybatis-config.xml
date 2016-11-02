@@ -19,6 +19,8 @@
 		<typeAlias type="com.project.h72.ProductEnroll.vo.ProductProvider" alias="ProductProvider" />
 		<typeAlias type="com.project.h72.kitDiy.vo.KitDiy" alias="KitDiy" />
 		<typeAlias type="com.project.h72.notice.vo.Notice" alias="Notice" />
+		<typeAlias type="com.project.h72.detail.vo.DetailVO" alias="DetailVO" />
+		<typeAlias type="com.project.h72.detail.vo.DetailDIVO" alias="DetailDIVO" />
 	</typeAliases>	
 	
 	

@@ -210,7 +210,8 @@ table {
 .xans-product-detail .infoArea table {
     border: 0;
     font-size: 11px;
-    margin-top: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #e5e5e5;
 }
 caption {
     display: table-caption;
@@ -593,6 +594,107 @@ div.prdc_total .total_price .total_pr strong {
 
 
 /* //sunny_footer */
+
+/* 장바구니 담기 div */
+title {
+	display: none;
+}
+
+meta {
+	display: none;
+}
+
+.xans-product-basketadd {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    width: 450px;
+    margin: -175px 0 0 -225px;
+    font-size: 11px;
+}
+
+.xans-product-basketadd h1 {
+    height: 35px;
+    padding: 0 35px 0 19px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 35px;
+    background: #1066be;
+}
+
+.xans-product-basketadd > .content {
+    padding: 185px 20px 65px;
+    border-right: 1px solid #1066be;
+    border-left: 1px solid #1066be;
+    text-align: center;
+    background: #fff url(/h72/resources/image/img_addcart.png) no-repeat 50% 68px;
+}
+
+p {
+	display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.xans-product-basketadd .btnArea {
+    padding: 20px;
+    border: 1px solid #1066be;
+    border-top: 1px solid #1066be;
+    text-align: center;
+    background: #fff;
+}
+
+.xans-product-basketadd .close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+img, fieldset {
+    border: none;
+    vertical-align: top;
+}
+
+.xans-product-basketadd .close img {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

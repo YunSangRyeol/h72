@@ -106,7 +106,7 @@
   	</head>
   	
   	
-<body class="chrome chrome-53 windows_os products reviews ko-KR" lang="ko-KR" data-controller="products" data-action="reviews" data-username="null" data-login-alert="로그인이 필요한 서비스입니다. 로그인 하시겠습니까?" data-brand-code="10world.co.kr" data-mall-login-url="http://www.10world.co.kr/member/login.html" data-gaq-account="UA-45818307-7" data-iframe-id="crema-product-reviews-1"  data-scroll-to="null" data-scroll-top="null" data-loader-url="//assets2.cre.ma/m/widgets/loader.gif" data-target-id="null" data-has-message-handler="true" data-shop-builder="cafe24" data-rails-env="production" data-popup-height="null" data-fixed-top-menu-height="0" data-no-popstate="false">
+<body id="reviewBody" class="chrome chrome-53 windows_os products reviews ko-KR" lang="ko-KR" data-controller="products" data-action="reviews" data-username="null" data-login-alert="로그인이 필요한 서비스입니다. 로그인 하시겠습니까?" data-brand-code="10world.co.kr" data-mall-login-url="http://www.10world.co.kr/member/login.html" data-gaq-account="UA-45818307-7" data-iframe-id="crema-product-reviews-1"  data-scroll-to="null" data-scroll-top="null" data-loader-url="//assets2.cre.ma/m/widgets/loader.gif" data-target-id="null" data-has-message-handler="true" data-shop-builder="cafe24" data-rails-env="production" data-popup-height="null" data-fixed-top-menu-height="0" data-no-popstate="false">
     
     <div id="i18n" style="display: none" data-close="닫기" data-error-403="접근 권한이 없습니다." data-error-404="요청하신 페이지를 찾을 수 없습니다." data-error-422="요청이 거부되었습니다." data-error-etc="요청을 처리하던 중 오류가 발생했습니다. 조속히 해결하겠습니다." data-image-field-cant-add-photo-without-file-input="파일 선택창이 없어 사진을 추가할 수 없습니다." data-image-field-cant-add-photo-without-file-reader="파일 미리 보기가 지원되는 브라우저가 아니어서 사진을 추가할 수 없습니다." data-image-field-cant-add-photo-without-file="선택된 파일이 없어 사진을 추가할 수 없습니다." data-image-field-cant-add-photo-with-file-type="선택된 파일이 이미지 형식이 아닙니다. (선택된 형식:%{file_type})" data-image-field-cant-add-photo-with-file-name="이미지 형식의 파일만 첨부할 수 있습니다. (선택된 파일명:%{file_name})" data-image-size-too-large="첨부한 이미지 파일이 너무 큽니다. 더 작은 이미지를 첨부해주세요." data-app-restrict-image-upload="파일 업로드를 하려면 모바일 기본브라우저에서 쇼핑몰 모바일웹(%{url})으로 접속해주세요." data-review-already-posted="이미 리뷰를 작성한 상품입니다." data-review-already-largest-image="현재 이미지가 원본 크기입니다." data-require-update-app="원활한 사진첨부를 위해서 앱 업데이트가 필요합니다. 업데이트 하시겠습니까?" data-social-media-already-sharing="공유 중입니다. 잠시 후 다시 시도해주세요." data-social-media-share-failed="공유에 실패했습니다. 잠시 후 다시 시도해주세요." data-social-media-share-success="공유했습니다. 창을 닫아 주세요." data-social-media-sharing="공유중 .." data-social-media-twitter-message-length="트위터 공유는 %{length}자 이내로 작성해 주세요"></div>
 
@@ -147,12 +147,13 @@
 				      					<div class="add-image-caption">사진추가</div>
 				    				</div> -->
 				        				<!-- <input type="file" name="review[images][]" class="input-file" accept="image/*" multiple="multiple" data-upload-image-url="http://widgets2.cre.ma/10world.co.kr/preview_images/upload?secure_username=MTB3b3JsZC5jby5rci9kbGZremhkMQ%3D%3D"> -->
+				        			<div class="fileWrap">
 				        			<input type="file" name="reviewPhoto1" id="upBtn1" class="input-file hidden" accept="image/*" multiple="multiple" />
 			        				<input type="file" name="reviewPhoto2" id="upBtn2" class="input-file hidden" accept="image/*" multiple="multiple" />
 			        				<input type="file" name="reviewPhoto3" id="upBtn3" class="input-file hidden" accept="image/*" multiple="multiple" />
 			        				<input type="file" name="reviewPhoto4" id="upBtn4" class="input-file hidden" accept="image/*" multiple="multiple" />
 			        				<input type="file" name="reviewPhoto5" id="upBtn5" class="input-file hidden" accept="image/*" multiple="multiple" />
-			        				
+			        				</div>
 			        				
 								      	<div class="preview-container ">
 								          <div class="hidden preview_div_1">
@@ -215,6 +216,7 @@
       
       <script>
       $(document).ready(function(){
+   	  
 	   // 리뷰쓰기 사진 올리기 버튼
       var n = 1;
 	  var num = 1;
@@ -485,8 +487,10 @@
 	    		var preview_src_parent_1 = $( "#preview" + num ).parent().attr( "class" );
 	    		preview_src_parent_1 = preview_src_parent_1.replace( /\s/, ".");
 	    		$( "." + preview_src_parent_1 ).css( "display", "none" );
+	    		$( "#preview" + num ).attr( "src", "" );
 	  		  }
   		 }
+  		 
   	  	});
       }); 
 		

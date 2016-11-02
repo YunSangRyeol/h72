@@ -227,7 +227,7 @@ body.products.reviews form.new_review .review-input-photos, #review-edit-form fo
     margin-top: 10px;
     margin-left: 10px;
 }
-ul, menu, dir {
+#reviewBody ul, #reviewBody menu, #reviewBody dir {
     display: block;
     list-style-type: disc;
     -webkit-margin-before: 1em;
