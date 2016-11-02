@@ -1,8 +1,10 @@
 package com.project.h72.admin.controller;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,11 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.h72.admin.service.AdminService;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Controller
 public class AdminController {
@@ -27,17 +32,47 @@ public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-	//멤버회원정보변경
+	//멤버회원정보 페이지
 	@RequestMapping(value="member/memberUpdate", method = RequestMethod.GET)
 	public String memberUpdate(HttpSession session, Model model){
 		
-		Member loginUser = (Member) session.getAttribute("loginUser");
-		System.out.println(loginUser);
+		Member user = (Member) session.getAttribute("loginUser");		
+		Member loginUser = adminService.memberUPage(user.getUserid());
+		
+		session.setAttribute("loginUser", loginUser);
 		model.addAttribute("loginUser", loginUser);
 		
-		return "member/memberUpdate";
-		
+		return "member/memberUpdate";		
 	}
+	
+	//정보변경
+	@RequestMapping(value="mModify.do", method = RequestMethod.POST)
+	public String memberModify(HttpSession session, @RequestParam("userpassNew") String userpwd, @RequestParam("postnum") String postnum,
+			@RequestParam("address") String address, @RequestParam("addressDetail") String addressDetail,
+			@RequestParam("phone1") String phone1, @RequestParam("phone2") String phone2, @RequestParam("phone3") String phone3,
+			@RequestParam("email1") String email1, @RequestParam("email2") String email2){
+			
+		Member login = (Member) session.getAttribute("loginUser");
+		Map<String, String> newInfo = new HashMap<String, String>();
+			newInfo.put( "userid", login.getUserid() );
+			newInfo.put( "userpwd", userpwd );
+			newInfo.put( "postnum", postnum );
+			newInfo.put( "address", address );
+			newInfo.put( "addressDetail", addressDetail );
+			newInfo.put( "phone", phone1 + "-" + phone2 + "-" + phone3 );
+			newInfo.put( "email", email1 + "@" + email2 );
+			
+			System.out.println(newInfo);
+			
+		int result = adminService.memberModify(newInfo);
+		
+		if(result == 0){
+			return null;
+		}		
+		
+		return "redirect:/member/memberUpdate";
+	}
+	
 	
 	//회원관리 페이지 
 	@RequestMapping(value="admin/users", method = RequestMethod.GET)
@@ -112,13 +147,14 @@ public class AdminController {
 	}
 	
 	//주문페이지 개별 변경
-	@RequestMapping(value="/updateStatusOne", method = RequestMethod.GET)
-	public String updateStatusOne(@RequestParam("orderNo") String orderNo, @RequestParam("selectStatusOne") String selectStatusOne, Model model){
-		System.out.println("orrderNo" + orderNo);
+	@RequestMapping(value="/updateStatusOne.do", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> updateStatusOne(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status){
 		
-		int result = adminService.updateStatusOne(orderNo, selectStatusOne);
+		int result= adminService.updateStatusOne(orderNo, status);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", result);
 		
-		return "redirect:/admin/order";
+		return map;
 	}
 
 	//주문페이지 날짜 검색

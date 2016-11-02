@@ -2,6 +2,8 @@ package com.project.h72.admin.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.h72.admin.dao.AdminDao;
@@ -28,6 +30,10 @@ public interface AdminService {
 	List<Order> orderASearchDate(Date start, Date end);
 
 	List<Order> orderASearchUserID(String id);
+
+	int memberModify(Map<String, String> newInfo);
+
+	Member memberUPage(String userid);
 
 
 }

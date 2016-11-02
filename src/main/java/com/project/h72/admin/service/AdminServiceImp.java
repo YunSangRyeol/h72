@@ -2,6 +2,7 @@ package com.project.h72.admin.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,16 @@ public class AdminServiceImp implements AdminService{
 	@Override
 	public List<Order> orderASearchUserID(String id) {
 		return dao.orderASearchUserID(id);
+	}
+
+	@Override
+	public int memberModify(Map<String, String> newInfo) {
+		return dao.memberModify(newInfo);
+	}
+
+	@Override
+	public Member memberUPage(String userid) {
+		return dao.memberUPage(userid);
 	}
 	
 }

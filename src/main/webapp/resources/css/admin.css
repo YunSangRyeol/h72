@@ -77,11 +77,11 @@ body {
 }
 
 .searchDateInput{
-	position: relative;
     width: 150px;
     height: 30px;
     border: 1px solid #E9DDDD;
     font-size: 13px;
+    text-align: center;
 }
 
 .datebtn{
@@ -132,6 +132,39 @@ ul.tab {
 
 /* Float the list items side by side */
 ul.tab li {float: left;}
+
+/*날짜 변경 버튼*/
+#searchDate span.day_field {
+    margin: 0 5px 0 5px;
+}
+
+#searchDate .day_field .orderhis_day {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px 0px 0px 5px;
+    padding: 6px 9px;
+    font-size: 11px;
+    background-color: #495164;
+}
+
+#searchDate .day_field .orderhis_day2 {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    /* border-radius: 5px 0px 0px 5px; */
+    padding: 6px 9px;
+    font-size: 11px;
+    background-color: #495164;
+
+}
+
+#searchDate .day_field .orderhis_day3 {
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0px 5px 5px 0px;
+    padding: 6px 9px;
+    font-size: 11px;
+    background-color: #495164;
+}
 
 /*탭 버튼 */
 ul.tab li a {

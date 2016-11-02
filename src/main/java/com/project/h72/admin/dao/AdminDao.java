@@ -81,4 +81,12 @@ public class AdminDao {
 		return sqlSession.selectList(NAMESPACE + "orderASearchUserID", id);
 	}
 
+	public int memberModify(Map<String, String> newInfo) {
+		return sqlSession.update(NAMESPACE + "memberModify", newInfo);
+	}
+
+	public Member memberUPage(String userid) {
+		return sqlSession.selectOne(NAMESPACE + "memberUPage", userid);
+	}
+
 }

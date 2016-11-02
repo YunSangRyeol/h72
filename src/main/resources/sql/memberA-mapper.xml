@@ -55,6 +55,15 @@
 		<result property="kitYN" column="KIT_YN" />
 	</resultMap>
 
+	<!-- MemberUpdate -->
+	<select id="memberUPage" parameterType="String" resultType="member">
+		SELECT * FROM USERS WHERE USER_ID = #{userid}
+	</select>	
+	
+	<update id="memberModify" parameterType="Map">
+		UPDATE USERS SET USER_PASS = #{userpwd}, POST_NUM = #{postnum}, ADDRESS = #{address}, ADDRESS_DETAIL = #{addressDetail}, PHONE = #{phone}, email= #{email}  WHERE USER_ID = #{userid}
+	</update>
+	
 
 	<!-- Member -->
 	<select id="getMemberList" resultType="member">
@@ -72,6 +81,8 @@
 	<select id="adminSearchDate" parameterType="Map" resultType="member">
 		SELECT * FROM USERS WHERE ENROLLDATE between TO_DATE(#{start})  and TO_DATE(#{end})+1
 	</select>
+
+
 
 	<!-- Order -->
 	<select id="getOrderList" resultType="order">

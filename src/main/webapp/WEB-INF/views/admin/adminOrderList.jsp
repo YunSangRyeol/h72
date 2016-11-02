@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <link href="/h72/resources/css/admin.css" type="text/css" rel="stylesheet">
@@ -87,43 +86,74 @@
 	});
 
  	//날짜 선택 버튼시 inputd의 날짜 변경
- 	$(function(){
- 		var tDay = new Date();
- 		var bMonth = tDay.getMonth();
- 		var tMonth = tDay.getMonth()+1;
- 		var tDate = tDay.getDate();
- 		
- 		document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ tDate;	
-		document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;	
- 		
- 		$('#todateBtn').click(
-			function(){
-				document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ tDate;	
-				document.getElementById("endDate").value = tDay.getFullYear()+"-"+tMonth+"-"+tDate;		
-			});
- 		$('#thirdBtn').click(
- 				function(){
- 					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 3);	
- 				});
- 		$('#sevenBtn').click(
- 				function(){
- 					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 7);	
- 				});
- 		$('#monthBtn').click(
- 				function(){
- 					document.getElementById("startDate").value = tDay.getFullYear()+"-"+tMonth+"-"+ (tDate - 14);	
- 				});
- 	});
  	
- 		
+// 날짜포맷 지정하는 함수
+function dateToYYYYMMDD(date)
+{
+    function pad(num) {
+        num = num + '';
+        return num.length < 2 ? '0' + num : num;
+    }
+    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
+}
+
+
+//날짜 선택 버튼시 inputd의 날짜 변경
+	$(function(){		
+		var currDate = new Date(); // 현재 날짜
+		var startDate = new Date(new Date().setMonth(new Date().getDate()-3)); // 한달전 날짜
+		
+		// YYYY-MM-DD로 형식변환
+		var prevMon = dateToYYYYMMDD(startDate);
+		var currMon = dateToYYYYMMDD(currDate);		
+		document.getElementById("startDate").value = prevMon;
+		document.getElementById("endDate").value = currMon;
+				
+		$('a[days=00]').click(
+		function(){
+			document.getElementById("startDate").value = dateToYYYYMMDD(currDate);	
+		});		
+		$('a[days=03]').click(
+				function(){
+					var preOneMonth = new Date(new Date().setMonth(new Date().getDate()-3));
+					document.getElementById("startDate").value = dateToYYYYMMDD(preOneMonth);	
+				});
+		$('a[days=07]').click(
+				function(){
+					var preSeven = new Date(new Date().setDate(new Date().getDate()-7));
+					document.getElementById("startDate").value = dateToYYYYMMDD(preSeven);							
+				});		
+		
+		$('a[days=14]').click(
+				function(){
+					var preThreeMonth = new Date(new Date().setMonth(new Date().getDate()-14));
+					document.getElementById("startDate").value = dateToYYYYMMDD(preThreeMonth);						
+				});
+	});
+ 	
+ 	//개별 버튼 변경
  	function updateStatusOne(orderNo){
- 		var status = $('[name=selectStatusOne]').val();
- 		
- 		alert("orderNo" + orderNo);
-		//location.href="/h72/updateStatusOne?orderNo="+orderNo"&status="+status;
+ 		var status = $("[name=selectStatusOne] option:selected").val();
+ 		//에이작스
+			$.ajax({
+				type:'POST',
+				url: "/h72/updateStatusOne.do",
+				data :{"orderNo":orderNo, "status":status},
+				success: function(data) {
+					alert(data.result);
+					if(data.result > 0){
+						alert("예!");			
+					}
+				},
+				error: function(data) {
+					alert("에러");
+					alert(date);
+				}			
+			});
+		 
+		
 	}
- 	//
- 	
+ 	 	
 </script>
 </head>
 <body>
@@ -147,11 +177,12 @@
 	</div>
 	<div id="searchDate">
 		<form id="searchDateForm" method="post" action="/h72/orderASearchDate.do">
-		<input type="button" value="당일" class="datebtn" id="todateBtn">
-		<input type="button" value="3일" class="datebtn" id="thirdBtn">
-		<input type="button" value="7일" class="datebtn" id="sevenBtn">
-		<input type="button" value="14일" class="datebtn" id="monthBtn">
-		&nbsp;&nbsp;
+		<span class="day_field"> 
+			<a href="#none" class="btnNormal" days="00"><span class="orderhis_day">오늘</span></a> 
+			<a href="#none" class="btnNormal" days="03"><span class="orderhis_day2">3일</span></a> 
+			<a href="#none" class="btnNormal" days="07"><span class="orderhis_day2">1주</span></a>
+			<a href="#none" class="btnNormal" days="14"><span class="orderhis_day3">2주</span></a>
+		</span> 
 		<input type="date" name="start" id="startDate" class="searchDateInput"> &nbsp; ~ &nbsp; <input type="date" name="end" id="endDate" class="searchDateInput">
 		 &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
@@ -214,12 +245,16 @@
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="stateMo" class="selectOption">
-							<option>${list.orderStatus }</option>
-							<option name="selectStatusOne" value="결제완료">결제완료</option>
-							<option name="selectStatusOne" value="배송중">배송중</option>
-							<option name="selectStatusOne" value="주문접수">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" onclick="updateStatusOne(${list.orderNo })" value="변경">
+						<select id="state${list.orderNo }" name="selectStatusOne" class="selectOption">
+							<option value="결제완료">결제완료</option>
+							<option value="배송중">배송중</option>
+							<option value="주문접수">주문접수</option> 
+				<script>
+				$(function(){
+					$('#state${list.orderNo }').val('${list.orderStatus}').prop("selected", true);
+				});
+				</script>
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne('${list.orderNo }')" value="변경">
 					</td>
 				</tr>				
 				</c:forEach>				
@@ -240,45 +275,63 @@
 	</div><!-- tab -->
 
 	<div id="order" class="tabcontent">
-		    <input type="button" id="btnExport" value="Export To Excel" />
+    <input type="button" id="btnExport" value="Export To Excel" />
     <br />
-    <table id="myTable" cellspacing='0' cellpadding='0'>
+    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <table id="orderList" cellspacing='0' cellpadding='0'>
+			<thead>
+				<tr>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
+					<th scope="col" class="product">상품정보</th>
+					<th scope="col" class="quantity">총 수량</th>
+					<th scope="col" class="price">상품구매금액(원)</th>
+					<th scope="col" class="who">주문자</th>
+					<th scopt="col" class="how">주문 방법</th>
+					<th scope="col" class="state">주문처리상태</th>
+				</tr>
+			</thead>			
+			<tbody class="">				
+				<c:forEach var="list" items="${list}" >				
+				<tr class="xans-record-">
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Employee</th>
-                <th>Company</th>
-                <th>Department</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>SE</td>
-                <td>Karthik</td>
-                <td>Microsoft</td>
-                <td>Delivery</td>
-            </tr>
-            <tr>
-                <td>SE</td>
-                <td>Karthik</td>
-                <td>Microsoft</td>
-                <td>Delivery</td>
-            </tr>
-            <tr>
-                <td>SE</td>
-                <td>Karthik</td>
-                <td>Microsoft</td>
-                <td>Delivery</td>
-            </tr>
-            <tr>
-                <td>SE</td>
-                <td>Karthik</td>
-                <td>Microsoft</td>
-                <td>Delivery</td>
-            </tr>
-        </tbody>
-    </table>
+					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
+					<td class="quantity">${list.totalQuantity }</td>
+					<td class="price"><strong>${list.totalPrice }</strong>
+					<c:set var="result" value="${(list.totalQuantity*list.totalPrice)+result}" />
+						<div class="displaynone"></div></td>
+					<td class="who"><a>${list.userId }</a></td>
+					<td class="how">${list.paymentMethod }</td>
+					<td class="state">
+						<select id="state${list.orderNo }" name="selectStatusOne" class="selectOption">
+							<option value="결제완료">결제완료</option>
+							<option value="배송중">배송중</option>
+							<option value="주문접수">주문접수</option> 
+				<script>
+				$(function(){
+					$('#state${list.orderNo }').val('${list.orderStatus}').prop("selected", true);
+				});
+				</script>
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne('${list.orderNo }')" value="변경">
+					</td>
+				</tr>				
+				</c:forEach>				
+			</tbody>
+		</table>
+		<div id="totalPrice"> 총 금액 : ${result} 원</div>
+		<div id="optionBtn">
+			선택한 주문건을 
+			<select id="modifyWhat" name="selectStatus" class="selectOption">
+				<option name="selectStatus" value="결제완료" >결제완료</option>
+				<option name="selectStatus" value="배송중" >배송중</option>
+				<option name="selectStatus" value="주문접수" >주문접수</option>
+			</select>
+			로 변경합니다. &nbsp;
+			<input type="submit" class="admin_btn" value="변경하기">
+		</div>
+		</form>
 	</div><!-- tab -->
 
 	<div id="payed" class="tabcontent">
