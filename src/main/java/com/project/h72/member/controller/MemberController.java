@@ -2,6 +2,7 @@ package com.project.h72.member.controller;
 
 import java.text.DateFormat;
 import java.sql.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.h72.cart.vo.Cart;
 import com.project.h72.member.service.MemberService;
 import com.project.h72.member.vo.Member;
 
@@ -42,6 +44,7 @@ public class MemberController {
 			throws Exception {
 		System.out.println(id + " @@ " + pass);
 		Member login = memberService.getUserInfo(new Member(id, pass));
+		System.out.println(login);
 		if (login != null) {
 			session.setAttribute("loginUser", login);
 			System.out.println(login + "!@#!@#@!#!@#@!#!@#@!#@!#@!#@!#@!#@!#@!#");
@@ -79,11 +82,11 @@ public class MemberController {
 		return "home";
 	}
 
-	@RequestMapping(value = "member/memberUpdate", method = RequestMethod.GET)
+/*	@RequestMapping(value = "member/memberUpdate", method = RequestMethod.GET)
 	public String mUpdatePage(Locale locale, Model model) {
-		/* 단순 페이지 이동 */
+		 단순 페이지 이동 
 		return "member/memberUpdate";
-	}
+	}*/
 
 	@RequestMapping(value = "/mUpdate", method = RequestMethod.POST)
 	public String mUpdate(Locale locale, Model model) {
@@ -120,5 +123,7 @@ public class MemberController {
 
 		return "member/pwdFindResult";
 	}
+	
+
 
 }

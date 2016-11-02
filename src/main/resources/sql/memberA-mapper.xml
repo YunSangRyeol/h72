@@ -23,7 +23,7 @@
 		<result property="orderNo" column="ORDER_NO" />
 		<result property="userId" column="USER_ID" />
 		<result property="mainImgN1" column="MAIN_IMG_N1" />
-		<result property="itemNameN1" column="ITEM__NAME_N1" />
+		<result property="itemNameN1" column="ITEM_NAME_N1" />
 		<result property="itemOptionNameN1" column="ITEM_OPTION_NAME_N1" />
 		<result property="totalQuantity" column="TOTAL_QUANTITY" />
 		<result property="totalPrice" column="TOTAL_PRICE" />
@@ -75,6 +75,19 @@
 
 	<!-- Order -->
 	<select id="getOrderList" resultType="order">
-		SELECT * FROM PURCHASED_ORDER_LIST
+		SELECT * FROM ORDER_LIST
 	</select>
+	
+	<update id="updateOrderStatus" parameterType="Map">
+		UPDATE ORDER_LIST SET ORDER_STATUS = #{status} WHERE ORDER_NO = #{orderNo}
+	</update>
+
+	<select id="orderASearchDate" parameterType="Map" resultType="order">
+		SELECT * FROM ORDER_LIST WHERE ENROLL_DATE between TO_DATE(#{start})  and TO_DATE(#{end})+1
+	</select>
+	
+	<select id="orderASearchUserID" parameterType="String" resultType="order">
+		SELECT * FROM ORDER_LIST WHERE USER_ID = #{id} 
+	</select>
+	
 </mapper>

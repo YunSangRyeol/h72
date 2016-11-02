@@ -6,8 +6,8 @@ public class Order {
 	private String orderNo;
 	private String userId;
 	private String mainImgN1;
-	private String itemName;
-	private String itemOptionName;
+	private String itemNameN1;
+	private String itemOptionNameN1;
 	private int totalQuantity;
 	private int totalPrice;
 	private String paymentMethod;
@@ -29,7 +29,7 @@ public class Order {
 	}
 
 
-	public Order(String orderNo, String userId, String mainImgN1, String itemName, String itemOptionName,
+	public Order(String orderNo, String userId, String mainImgN1, String itemNameN1, String itemOptionNameN1,
 			int totalQuantity, int totalPrice, String paymentMethod, int paymentPoint, int totalSavingPoint,
 			int deliveryPee, String phone, String postNum, String address, String addressDetail, String deliveryMessage,
 			String orderStatus, String orderChange, Date enrollDate) {
@@ -37,8 +37,8 @@ public class Order {
 		this.orderNo = orderNo;
 		this.userId = userId;
 		this.mainImgN1 = mainImgN1;
-		this.itemName = itemName;
-		this.itemOptionName = itemOptionName;
+		this.itemNameN1 = itemNameN1;
+		this.itemOptionNameN1 = itemOptionNameN1;
 		this.totalQuantity = totalQuantity;
 		this.totalPrice = totalPrice;
 		this.paymentMethod = paymentMethod;
@@ -84,23 +84,23 @@ public class Order {
 	}
 
 	
-	public String getItemName() {
-		return itemName;
+	public String getItemNameN1() {
+		return itemNameN1;
 	}
 
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setItemNameN1(String itemNameN1) {
+		this.itemNameN1 = itemNameN1;
 	}
 
 
-	public String getItemOptionName() {
-		return itemOptionName;
+	public String getItemOptionNameN1() {
+		return itemOptionNameN1;
 	}
 
 
-	public void setItemOptionName(String itemOptionName) {
-		this.itemOptionName = itemOptionName;
+	public void setItemOptionNameN1(String itemOptionNameN1) {
+		this.itemOptionNameN1 = itemOptionNameN1;
 	}
 
 
@@ -218,7 +218,7 @@ public class Order {
 
 	@Override
 	public String toString(){
-		return this.orderNo + ", " + this.userId + ", " + this.mainImgN1 + ", " + this.itemName + ", " + this.itemOptionName  + ", " + this.totalQuantity
+		return this.orderNo + ", " + this.userId + ", " + this.mainImgN1 + ", " + this.itemNameN1 + ", " + this.itemOptionNameN1  + ", " + this.totalQuantity
 				 + ", " + this.totalPrice + ", " + this.paymentMethod + ", " + this.paymentPoint + ", " + this.totalSavingPoint
 				 + ", " + this.deliveryPee + ", " + this.phone + ", " + this.postNum + ", " + this.address + ", " + this.addressDetail
 				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange + ", " + this.enrollDate;

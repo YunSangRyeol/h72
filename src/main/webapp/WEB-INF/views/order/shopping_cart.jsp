@@ -9,67 +9,10 @@
 
 <link href="/h72/resources/css/cart.css" type="text/css"
 	rel="stylesheet">
-<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>	
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="/h72/resources/js/cart.js"></script>		
 <title>Shopping_cart</title>
-<script>
-//전체선택 체크박스 클릭
-	$(function() {		
-	$("#allCheck").click(
-		function() {
-			if ($("#allCheck").prop("checked")) {
-				$(".xans-record- input[type=checkbox]").prop("checked", true);
-			} else {
-				$(".xans-record- input[type=checkbox]").prop("checked", false);
-			}
-			$(".xans-record- input[type=checkbox]").change();		
-	});
 
-	
-	
-});
-
-function addQuantityShortcut(id, index){
-	var quantity = $("#"+id).val();
-	var result=0;
-	console.log(quantity);
-	result = parseInt(quantity)+1;
-	console.log(result);
-	$("#"+id).val(result);
-	
-	
-}
-
-function outQuantityShortcut(id, index){
-	var quantity = $("#"+id).val();
-	var result=0;
-	console.log(quantity);
-	if(quantity > 1){
-		result = parseInt(quantity)-1;
-		console.log(result);
-		$("#"+id).val(result);
-	}
-}
-
-
-function modifyQuantity(index){
-	
-	$('#quantity_'+index).submit();
-	
-	/* $.post("/h72/updateQuantity", {itemId : itemid, quantity : quantity }
-		); */
-	
-	/* $.ajax({
-		type:"post",
-		url: "/h72/updateQuantity",
-		data :{"itemId":itemid, "quantity":quantity},
-		success : function(data){
-			$(".total strong")
-			
-		}
-		
-	}); */
-}
-</script>
 </head>
 <body id="main">
 
@@ -93,6 +36,7 @@ function modifyQuantity(index){
 					</c:if>
 					
 					<!-- 일반상품 -->
+					<form action="/h72/order.do" method="post">
 					<c:if test="${!(clist eq null)}">
 						<div class="orderListArea">
 							<!-- 일반상품  -->
@@ -129,12 +73,12 @@ function modifyQuantity(index){
 				
 									<c:forEach items="${clist}" var="cart" varStatus="cnt">
 									<tr class="xans-record-">
-										<td><input type="checkbox" id="basket_chk"></td>
+										<td><input type="checkbox" name="basketItem_chk" value="${cart.cartid}"></td>
 										<td class="thumb"><a href="#"><img src="/h72/resources${cart.mainImg }" class="itemImg"/></a></td>
 										<td class="product"><a href="#"><strong>${cart.itemFullName}</strong> </a>
 											<ul
 												class="xans-element- xans-order xans-order-optionall option">
-												<li class="xans-record-">[옵션:${cart.itemOptionName } ]</li>
+												<li class="xans-record-">[옵션: ${cart.itemOptionName } ]</li>
 											</ul></td>
 										<td class="price">
 											<div class="">
@@ -142,9 +86,11 @@ function modifyQuantity(index){
 											</div>
 										</td>
 										<td class="quantity">
-										<form action="../updateQuantity" method="post" id="quantity_${cnt.count}">
-										<input type="hidden" value="${cart.itemid }" name="itemId"/>
+										<!-- <form action="/h72/updateQuantity" method="get" id="quantity_${cnt.count}">
+											<input type="hidden" value="${cart.itemid }" name="itemId"/>
+										 -->
 										<span class="quantity">
+										<input type="hidden" value="${cart.itemid }" id="item_id_${cnt.count }" name="itemId"/>
 										<input id="quantity_id_${cnt.count}" name="quantity_id_0" size="2" value="${cart.quantity}" type="text"/>
 										<a href="javascript:;" onclick="addQuantityShortcut('quantity_id_${cnt.count}',${cnt.count});">
 										<img src="/h72/resources/image/btn_quantity_up.gif" alt="증가" class="QuantityUp"></a>
@@ -153,7 +99,7 @@ function modifyQuantity(index){
 										</span> <a href="javascript:;" onclick="modifyQuantity(${cnt.count});">
 												<span class="QuantityModify">변경</span>
 										</a>
-										</form>
+										<!--</form>  -->
 										</td>
 										<td class="mileage">-</td>
 										<td class="delivery">기본배송
@@ -164,14 +110,13 @@ function modifyQuantity(index){
 												2,500원<br>
 											</p>조건
 										</td>
-										<td class="total"><strong>${cart.cost*cart.quantity+2500}</strong>
-											<div class="displaynone"></div></td>
+										<td class="total"><strong>${cart.cost*cart.quantity+2500}</strong></td>
 										<td class="button"><a href="javascript:;"
-											onclick="Basket.orderBasketItem(0);"
-											style="padding: 3px 7px 3px 7px; line-height: 25px; background: #000; border: 1px solid #000; color: #fff; font-size: 11px;">주문하기</a><br>
+											onclick="orderBasketItem(${cnt.count});"
+											style="padding: 2px 7px 2px 7px; line-height: 0px; background: #000; border: 1px solid #000; color: #fff; font-size: 11px;">주문하기</a><br>
 											<br> <a href="javascript:;"
-											onclick="Basket.deleteBasketItem(0);"
-											style="padding: 3px 7px 3px 7px; line-height: 25px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">삭제하기</a>
+											onclick="deleteBasketItem(${cnt.count});"
+											style="padding: 2px 7px 2px 7px; line-height: 0px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">삭제하기</a>
 										</td>
 									</tr>
 									</c:forEach>
@@ -181,9 +126,9 @@ function modifyQuantity(index){
 							<!-- 선택상품 제어 버튼 -->
 							<div class="xans-element- xans-order xans-order-selectorder ">
 								<span class="left"> <strong class="ctrlTxt">선택상품을</strong>
-									<a href="#none" onclick="Basket.deleteBasket()"
+									<a href="#none" onclick="deleteBasketChk()"
 									style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">삭제하기</a>
-								</span> <a href="#none" onclick="Basket.emptyBasket()"
+								</span> <a href="#none" onclick="emptyBasket();"
 									style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">장바구니비우기</a>
 							</div>
 
@@ -230,11 +175,11 @@ function modifyQuantity(index){
 						<a href="#none" onclick="Basket.orderSelectBasket(this)"
 							link-order="/order/orderform.html?basket_type=all_buy"
 							link-login="/member/login.html" class="order_select_btn">선택상품주문</a><span
-							class="right"> <a href="/"
+							class="right"><a href="/h72"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">쇼핑계속하기</a>
 						</span>
 					</div>
-
+					</form>
 
 					<!-- 이용안내 -->
 					<div class="xans-element- xans-order xans-order-basketguide help ">

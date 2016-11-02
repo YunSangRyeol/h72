@@ -19,10 +19,10 @@
 	</resultMap>
 	
 	<select id="getCartList" parameterType="String" resultType="Cart">
-	SELECT C.CART_ID, C.ITEM_ID, C.USER_ID, C.ITEM_FULL_NAME, C.ITEM_DETAIL_ID, C.MAIN_IMG, C.QUANTITY, C.COST, C.MESSAGE, C.KIT_YN, C.ENROLL_DATE, V.ITEM_OPTION_NAME
-	FROM CART C, ITEM_ALL_VIEW V 
-	WHERE C.ITEM_ID = V.ITEM_ID
-	AND USER_ID = #{userid}
+	SELECT C.CART_ID, C.ITEM_ID, C.USER_ID, C.ITEM_FULL_NAME, C.ITEM_DETAIL_ID, C.MAIN_IMG, C.QUANTITY, C.COST, C.MESSAGE, C.KIT_YN, C.ENROLL_DATE, A.ITEM_OPTION_NAME
+	FROM CART C, ITEM_ALL_VIEW A
+	WHERE C.ITEM_ID = A.ITEM_ID
+	AND USER_ID =  #{userid}
 	</select>
 	
 	<update id="updateQuantity" parameterType="java.util.HashMap">
@@ -32,6 +32,11 @@
 		WHERE ITEM_ID = #{itemid}
 	</update>
 	
+	
+	<delete id="deleteEmptyBasket" parameterType="String">
+ 		DELETE FROM CART
+		WHERE  USER_ID= #{userid}
+ 	</delete>
 
 
 </mapper>

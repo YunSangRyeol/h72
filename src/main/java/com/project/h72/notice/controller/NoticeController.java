@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import com.project.h72.HomeController;
+import com.project.h72.admin.service.AdminService;
+import com.project.h72.member.vo.Member;
+import com.project.h72.notice.service.NoticeService;
+import com.project.h72.notice.vo.Notice;
 @Controller
 public class NoticeController {
+	@Autowired
+	private NoticeService noticeService;
 private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -24,6 +31,10 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 
 		
 		model.addAttribute("serverTime" );*/
+		List<Notice> list = noticeService.getNoticeList();
+		System.out.println(list);
+		model.addAttribute("list", list );
+		
 		
 		return "boader/notice_list";
 	}

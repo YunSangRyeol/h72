@@ -48,17 +48,87 @@ public class CartController {
 	}
 		
 
-	@RequestMapping(value = "/updateQuantity", method = RequestMethod.POST)
-	public String updateQuantity(@RequestParam("itemId") String itemid, @RequestParam("quantity_id_0") String quantity, HttpSession session) {
-	
-		System.out.println("cartcontroller:"+itemid+"============================================================");
-		System.out.println("cartcontroller:"+quantity+"============================================================");
+	@RequestMapping(value = "/updateQuantity", method = RequestMethod.GET)
+	public String updateQuantity(@RequestParam("itemId") String itemid, @RequestParam("quantity") String quantity, HttpSession session,Model model) throws Exception {
 		
 		int result = cs.updateQuantity(itemid, Integer.parseInt(quantity));
+		
+		if(result>0){
+			Member login = (Member) session.getAttribute("loginUser");
+			if(!(login==null)){
+				String userid = login.getUserid();
+				List<Cart> clist = cs.getCartList(userid);
+				if(clist.isEmpty()||clist==null){
+					clist = null;
+				}
+				
+				model.addAttribute("clist", clist);
+				
+			}else{
+				
+			}
+			
+		}
+		
 		
 		return "order/shopping_cart";
 	}
 	
+	
+	@RequestMapping(value = "/emptyBasket", method = RequestMethod.GET)
+	public String emptyBasket(HttpSession session, Model model) throws Exception {
+		
+		Member login = (Member) session.getAttribute("loginUser");
+		String userid = login.getUserid();
+		int result = cs.deleteEmptyBasket(userid);
+		
+		if(result>0){
+			if(!(login==null)){
+				
+				List<Cart> clist = cs.getCartList(userid);
+				if(clist.isEmpty()||clist==null){
+					clist = null;
+				}
+				
+				model.addAttribute("clist", clist);
+				
+			}
+			
+		}
+		
+		
+		return "order/shopping_cart";
+	}
+	
+	
+	@RequestMapping(value = "/deleteBasketChk", method = RequestMethod.POST)
+	public String deleteBasketChk(@RequestParam("cartId") String[] cartid, HttpSession session, Model model) throws Exception {
+		
+		for(int i=0; i<cartid.length; i++){
+			System.out.println("cart id :" +cartid[i]);
+		}
+		
+		/*Member login = (Member) session.getAttribute("loginUser");
+		String userid = login.getUserid();
+		int result = cs.deleteEmptyBasket(userid);
+		
+		if(result>0){
+			if(!(login==null)){
+				
+				List<Cart> clist = cs.getCartList(userid);
+				if(clist.isEmpty()||clist==null){
+					clist = null;
+				}
+				
+				model.addAttribute("clist", clist);
+				
+			}
+			
+		}*/
+		
+		
+		return "order/shopping_cart";
+	}
 	
 	@RequestMapping(value = "/updateCart", method = RequestMethod.GET)
 	public String updateCart(Model model) {
