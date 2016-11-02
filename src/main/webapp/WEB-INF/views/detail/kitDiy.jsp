@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -51,7 +52,7 @@ $(document).ready(function(){
 							<div id="select_product<%=menuNum %>" class="kitDiy_productList" >
 								<ul id="kitDiy_mainList<%=menuNum %>">
 									<li><img src="/h72/resources/image/icon<%=menuNum %>.png"/></li>
-									<li>-</li>
+									<li name="">-</li>
 									<li></li> 
 									<li>
 										<select name="" class="kitDiy_subSelect">
@@ -95,7 +96,11 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
-
+		
+		<%-- <c:forEach var="item" items="${itemAllView }" varStatus="i">
+		
+			${item.itemId}
+		</c:forEach> --%>
 		<div id="kitDiy_contents">
 		<!-- 리스트 부분 시작 -->
 			<div id="kitDiy_in">
@@ -108,48 +113,45 @@ $(document).ready(function(){
 						<li>기타</li>
 					</ul>
 				</div>
-
-				<!-- 일반상품 -->
-				<%  for(int j=1; j< 6; j++){  %>
-				<div style="width: 1270px; padding-top:10px;"
-					class="xans-element- xans-product xans-product-normalpackage tab<%=j%>">
+				<%-- <c:forEach begin="1" end="5" var="j" step="1"> --%>
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab1">
 					<div class="xans-element- xans-product xans-product-listnormal ">
 						<ul class="prdList column5">
-						
-							<% for(int i=0; i< 30; i++){ 
-								String tabList = "tab"+j+"_"+i;
-							%>
-								<li id="product_<%=j%>_<%=i%>" style="margin-bottom: 20px;" class="item xans-record-">
-									<div class="box">
-										<input type="hidden" name="product_name" value="product_name<%=i %>">
-										<%-- <input type="hidden" name="product_option" value="product_option<%=i %>"> --%>
-										<input type="hidden" name="product_price" value="product_price<%=i %>">
-										<input type="checkbox" name="tab<%=j %>" id="<%=tabList %>" class="check_box"/><label for="<%=tabList %>"></label>
-										<select name="product_option" class="kitDiy_select">
-										  <option value="product_option1">option1</option>
-										  <option value="product_option2">option2</option>
-										  <option value="product_option3">option3</option>
-										</select>
-										<a href="" name="anchorBoxName_8879" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
-											<img src="/h72/resources/image/content_0<%=j %>.jpg" class="thumb" style="width: 238px;"></a>
-										<p class="name"></p>
-										<p style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin: 20px 0px;">
-											<a href="#">x
-											<span style="font-size: 11px; color: #000000;" >버튼 라운드 가디건</span></a>
-										</p>
-										<p class="price" style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
-											<span style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
-											19500
-										</p>
-										<p class="desc"	style="text-align: left; padding: 0; margin: 0;">
-											아방한 핏이 매력적인 가디건<br> 도톰한 두께감과 유니크한 컬러감
-										</p>
-										<p style="padding-top: 10px; text-align: left;">
-										</p>
-								
-									</div>
-								</li>
-								<%} %>
+							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
+						<%-- 	<c:forEach begin="${startLength}" end="${endLength}" var="i" step="1" varStatus="status"> --%>
+							<c:set var="tabList" value="tab1_${i.index}"></c:set>
+							<c:if test="${item.categoryCode eq 'BAG' }">
+							<li id="${item.itemDetailId}" style="margin-bottom: 50px;" class="item xans-record-">
+								<div class="box">
+									<input type="hidden" name="product_name" value="${item.itemName}">
+									<%-- <input type="hidden" name="product_option" value="product_option${i.index }"> --%>
+									<input type="hidden" name="product_price" value="${item.minPrice}">
+									<input type="checkbox" name="tab1" id="${tabList}" class="check_box"/><label for="${tabList}"></label>
+									<select name="product_option" class="kitDiy_select">
+									<c:forEach var="itemAll" items="${itemAllView}">
+									<c:if test="${item.itemDetailId eq itemAll.itemDetailId}">
+									  <option value="${itemAll.itemId }">${itemAll.itemFullName }</option>
+									</c:if>
+									</c:forEach> 
+									</select>
+									<a id="kitDiy_imgWrap" href="" name="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+										<img src="/h72/resources${item.mainImg}"></a>
+									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>
+									<p id="thumbItemLine"></p>
+									<p id="thumbItemMinPrice">
+										<span>${item.minPrice}</span>
+										${item.minSailPrice}
+										
+									</p>
+									<p class="desc"	style="text-align: left; padding: 0; margin: 0;">
+									</p>
+									<p style="padding-top: 10px; text-align: left;">
+									</p>
+							
+								</div>
+							</li>
+							</c:if>
+							</c:forEach>
 						</ul>
 					</div>
 					<div class="xans-element- xans-product xans-product-normalpaging">
@@ -161,21 +163,232 @@ $(document).ready(function(){
 								class="this">1</a></li>
 						</ol>
 						<p>
-							<a href="#none"><img
-								src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
 						</p>
 					</div>
 				</div>
-				<%} %>
-			</div>
+				
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab2">
+					<div class="xans-element- xans-product xans-product-listnormal ">
+						<ul class="prdList column5">
+							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
+						<%-- 	<c:forEach begin="${startLength}" end="${endLength}" var="i" step="1" varStatus="status"> --%>
+							<c:set var="tabList" value="tab2_${i.index}"></c:set>
+							<c:if test="${item.categoryCode eq 'PROT' }">
+							<li id="${item.itemDetailId}" style="margin-bottom: 20px;" class="item xans-record-">
+								<div class="box">
+									<input type="hidden" name="product_name" value="${item.itemName}">
+									<%-- <input type="hidden" name="product_option" value="product_option${i.index }"> --%>
+									<input type="hidden" name="product_price" value="${item.minPrice}">
+									<input type="checkbox" name="tab2" id="${tabList}" class="check_box"/><label for="${tabList}"></label>
+									<select name="product_option" class="kitDiy_select">
+									<c:forEach var="itemAll" items="${itemAllView}">
+									<c:if test="${item.itemDetailId eq itemAll.itemDetailId}">
+									  <option value="${itemAll.itemId }">${itemAll.itemFullName }</option>
+									</c:if>
+									</c:forEach> 
+									</select>
+									<a id="kitDiy_imgWrap" href="" name="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+										<img src="/h72/resources${item.mainImg}"></a>
+									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>
+									<p id="thumbItemLine"></p>
+									<p id="thumbItemMinPrice">
+										<span>${item.minPrice}</span>
+										${item.minSailPrice}
+										
+									</p>
+									<p class="desc"	style="text-align: left; padding: 0; margin: 0;">
+									</p>
+									<p style="padding-top: 10px; text-align: left;">
+									</p>
+							
+								</div>
+							</li>
+							</c:if>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
+					</div>
+				</div>
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab3">
+					<div class="xans-element- xans-product xans-product-listnormal ">
+						<ul class="prdList column5">
+							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
+						<%-- 	<c:forEach begin="${startLength}" end="${endLength}" var="i" step="1" varStatus="status"> --%>
+							<c:set var="tabList" value="tab3_${i.index}"></c:set>
+							<c:if test="${item.categoryCode eq 'FOOD' }">
+							<li id="${item.itemDetailId}" style="margin-bottom: 20px;" class="item xans-record-">
+								<div class="box">
+									<input type="hidden" name="product_name" value="${item.itemName}">
+									<%-- <input type="hidden" name="product_option" value="product_option${i.index }"> --%>
+									<input type="hidden" name="product_price" value="${item.minPrice}">
+									<input type="checkbox" name="tab3" id="${tabList}" class="check_box"/><label for="${tabList}"></label>
+									<select name="product_option" class="kitDiy_select">
+									<c:forEach var="itemAll" items="${itemAllView}">
+									<c:if test="${item.itemDetailId eq itemAll.itemDetailId}">
+									  <option value="${itemAll.itemId }">${itemAll.itemFullName }</option>
+									</c:if>
+									</c:forEach> 
+									</select>
+									<a id="kitDiy_imgWrap" href="" name="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+										<img src="/h72/resources${item.mainImg}"></a>
+									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>
+									<p id="thumbItemLine"></p>
+									<p id="thumbItemMinPrice">
+										<span>${item.minPrice}</span>
+										${item.minSailPrice}
+										
+									</p>
+									<p class="desc"	style="text-align: left; padding: 0; margin: 0;">
+									</p>
+									<p style="padding-top: 10px; text-align: left;">
+									</p>
+							
+								</div>
+							</li>
+							</c:if>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
+					</div>
+				</div>
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab4">
+					<div class="xans-element- xans-product xans-product-listnormal ">
+						<ul class="prdList column5">
+							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
+						<%-- 	<c:forEach begin="${startLength}" end="${endLength}" var="i" step="1" varStatus="status"> --%>
+							<c:set var="tabList" value="tab4_${i.index}"></c:set>
+							<c:if test="${item.categoryCode eq 'TOOL' }">
+							<li id="${item.itemDetailId}" style="margin-bottom: 20px;" class="item xans-record-">
+								<div class="box">
+									<input type="hidden" name="product_name" value="${item.itemName}">
+									<%-- <input type="hidden" name="product_option" value="product_option${i.index }"> --%>
+									<input type="hidden" name="product_price" value="${item.minPrice}">
+									<input type="checkbox" name="tab4" id="${tabList}" class="check_box"/><label for="${tabList}"></label>
+									<select name="product_option" class="kitDiy_select">
+									<c:forEach var="itemAll" items="${itemAllView}">
+									<c:if test="${item.itemDetailId eq itemAll.itemDetailId}">
+									  <option value="${itemAll.itemId }">${itemAll.itemFullName }</option>
+									</c:if>
+									</c:forEach> 
+									</select>
+									<a id="kitDiy_imgWrap" href="" name="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+										<img src="/h72/resources${item.mainImg}"></a>
+									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>
+									<p id="thumbItemLine"></p>
+									<p id="thumbItemMinPrice">
+										<span>${item.minPrice}</span>
+										${item.minSailPrice}
+										
+									</p>
+									<p class="desc"	style="text-align: left; padding: 0; margin: 0;">
+									</p>
+									<p style="padding-top: 10px; text-align: left;">
+									</p>
+							
+								</div>
+							</li>
+							</c:if>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
+					</div>
+				</div>
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab5">
+					<div class="xans-element- xans-product xans-product-listnormal ">
+						<ul class="prdList column5">
+							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
+						<%-- 	<c:forEach begin="${startLength}" end="${endLength}" var="i" step="1" varStatus="status"> --%>
+							<c:set var="tabList" value="tab5_${i.index}"></c:set>
+							<c:if test="${item.categoryCode eq 'ETC' }">
+							<li id="${item.itemDetailId}" style="margin-bottom: 20px;" class="item xans-record-">
+								<div class="box">
+									<input type="hidden" name="product_name" value="${item.itemName}">
+									<%-- <input type="hidden" name="product_option" value="product_option${i.index }"> --%>
+									<input type="hidden" name="product_price" value="${item.minPrice}">
+									<input type="checkbox" name="tab5" id="${tabList}" class="check_box"/><label for="${tabList}"></label>
+									<select name="product_option" class="kitDiy_select">
+									<c:forEach var="itemAll" items="${itemAllView}">
+									<c:if test="${item.itemDetailId eq itemAll.itemDetailId}">
+									  <option value="${itemAll.itemId }">${itemAll.itemFullName }</option>
+									</c:if>
+									</c:forEach> 
+									</select>
+									<a id="kitDiy_imgWrap" href="" name="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+										<img src="/h72/resources${item.mainImg}"></a>
+									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>
+									<p id="thumbItemLine"></p>
+									<p id="thumbItemMinPrice">
+										<span>${item.minPrice}</span>
+										${item.minSailPrice}
+										
+									</p>
+									<p class="desc"	style="text-align: left; padding: 0; margin: 0;">
+									</p>
+									<p style="padding-top: 10px; text-align: left;">
+									</p>
+							
+								</div>
+							</li>
+							</c:if>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
+					</div>
+				</div>
+				
 			<!-- 리스트 부분 끝 -->
+			</div>
 		</div>
-		
 		<div id="kitDiy_footer">
 			
 		<jsp:include page="../main_footer.jsp" flush="false" />
 		</div>
-	</div>
+	</div>	
 	<!-- END -->
 	<!-- External Script End -->
 

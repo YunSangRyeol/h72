@@ -38,7 +38,7 @@
 								+'<li>Product Name</li>'
 								+'<li><select name="" class="kitDiy_subSelect"></select></li>'
 								+'<li><input type="text" value="1" class="select_input"> 개</li>'
-								+'<li>120000 원</li>'
+								+'<li></li>'
 								+'<li class="checkboxClear">X</li>'
 								+'<li class="product_code"></li>'
 							+'</ul>';
@@ -50,9 +50,9 @@
 			/*check 박스  정보 메인메뉴에 보내기 위한 변수 */
 			var product_code = $(this).closest("li").attr('id');
 			var product_name = "#"+product_code+" [name='product_name']";
-			var product_option = "#"+product_code+" [name='product_option']";
+			/*var product_option = "#"+product_code+" [name='product_option']";*/
+			var product_option = "#"+product_code+" .kitDiy_select";
 			var product_price = "#"+product_code+" [name='product_price']";
-			
 			/*메인 메뉴 변수*/
 			var select_productId= "#select_product"+ checkboxName.substring(3,4)
 			+" ul:nth-child("+checkboxLength+")"; 
@@ -80,7 +80,7 @@
 				/*상품코드 메뉴에 추가*/
 				$(select_productId+" li:nth-child(6)").text(product_code);
 				/*상품이름 메뉴에 추가*/
-				$(select_productId+" li:nth-child(1)").text($(product_name).val());
+				$(select_productId+" li:nth-child(1)").text($(product_name).val().substr(0,20));
 				/*상품옵셥 메뉴에 추가*/
 				/*$(select_productId+" li:nth-child(2) .kitDiy_subSelect").text($(product_option).val());*/
 				/*상품가격 메뉴에 추가*/
@@ -89,7 +89,7 @@
 				$(select_productId+" .select_input").val(1);
 			
 				/*상품옵셥 메뉴에 추가*/
-				$(select_productId+" li:nth-child(2) .kitDiy_subSelect").append($(".kitDiy_select").html());
+				$(select_productId+" li:nth-child(2) .kitDiy_subSelect").append($(product_option).html());
 				$(select_productId+" li:nth-child(2) .kitDiy_subSelect").val($(product_option).val());
 				
 			/*체크된 checkBox가 1개 이상일 경우 */
@@ -103,7 +103,7 @@
 				/*상품코드 메뉴에 추가*/
 				$(select_productId+" li:nth-child(9)").text(product_code);
 				/*상품이름 메뉴에 추가*/
-				$(select_productId+" li:nth-child(2)").text($(product_name).val());
+				$(select_productId+" li:nth-child(2)").text($(product_name).val().substr(0,20));
 				/*상품옵셥 메뉴에 추가
 				$(select_productId+" li:nth-child(4)").text($(product_option).val());*/
 				/*상품가격 메뉴에 추가*/
@@ -111,7 +111,7 @@
 				/*상품수량 메뉴에 추가*/
 				$(select_productId+" .select_input").val(1);
 				/*상품옵셥 메뉴에 추가*/
-				$(select_productId+" li:nth-child(4) .kitDiy_subSelect").append($(".kitDiy_select").html());
+				$(select_productId+" li:nth-child(4) .kitDiy_subSelect").append($(product_option).html());
 				$(select_productId+" li:nth-child(4) .kitDiy_subSelect").val($(product_option).val());
 				
 				/*상품이름 미니메뉴에 추가*/

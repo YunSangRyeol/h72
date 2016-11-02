@@ -23,6 +23,7 @@ public class ProductEnrollDao {
 	}
 
 	public int productEnrollDetailInsert(Product product) {
+		System.out.println("****************"+product.getCategoryCode());
 		return sqlSession.insert(NAMESPACE + "productEnrollDetailInsert",product);
 	}
 

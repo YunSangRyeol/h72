@@ -16,37 +16,37 @@
 	</select>
 
 	<insert id="productEnrollDetailInsert" parameterType="ProductEnroll" >
-          <!--   <choose>
-                <when test="categoryCode == BAG "> -->
+            <choose>
+                <when test="categoryCode eq 'BAG'.toString()">
                    	insert into H72.ITEM_DETAIL_BAG VALUES
 					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
 					#{itemName}, #{minPrice}, #{minSailPrice},
 					#{mainImg}, #{detailImg01}, #{detailImg02} , #{etc}
 					)
-               <!--  </when>
+                </when>
                 
-                <when test="categoryCode == PROTECT ">
+                <when test="categoryCode eq 'PROTECT'.toString() ">
                    	insert into H72.ITEM_DETAIL_PROTECT VALUES
 					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
 					#{itemName}, #{minPrice}, #{minSailPrice},
 					#{mainImg}, #{detailImg01}, #{detailImg02}, #{etc}
 					)
                 </when>
-                <when test="categoryCode == FOOD  ">
+                <when test="categoryCode eq 'FOOD'.toString() ">
                    	insert into H72.ITEM_DETAIL_FOOD VALUES
 					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
 					#{itemName}, #{minPrice}, #{minSailPrice},
 					#{mainImg}, #{detailImg01}, #{detailImg02}, #{etc}
 					)
                 </when>
-             	<when test="categoryCode == TOOL  ">
+             	<when test="categoryCode eq 'TOOL'.toString()">
                    	insert into H72.ITEM_DETAIL_TOOL VALUES
 					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
 					#{itemName}, #{minPrice}, #{minSailPrice},
 					#{mainImg}, #{detailImg01}, #{detailImg02}, #{etc}
 					)
                 </when>
-                 <when test="categoryCode == ETC  ">
+                 <when test="categoryCode eq 'ETC'.toString()">
                    	insert into H72.ITEM_DETAIL_ETC VALUES
 					(#{itemDetailId}, #{categoryCode}, #{itemStatus}, 
 					#{itemName}, #{minPrice}, #{minSailPrice},
@@ -58,15 +58,50 @@
                     
                 </otherwise>
                 
-            </choose> -->
+            </choose>
 		
 	</insert>
 	
 	<insert id="productEnrollInsert" parameterType="ProductItem">
-		INSERT INTO H72.ITEM_BAG VALUES
-			(#{itemId}, #{providerCode}, 
-			#{itemDetailId}, #{itemOptionName}, 
-			#{cost}, #{price},
-			#{sailPrice}, #{stock})
+		<choose>
+                <when test="itemDetailId.substring(0,3) eq 'BAG'.toString()">
+				INSERT INTO H72.ITEM_BAG VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+                <when test="itemDetailId.substring(0,7) eq 'PROTECT'.toString()">
+				INSERT INTO H72.ITEM_PROTECT VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+                <when test="itemDetailId.substring(0,4) eq 'FOOD'.toString()">
+				INSERT INTO H72.ITEM_FOOD VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+                <when test="itemDetailId.substring(0,4) eq 'TOOL'.toString()">
+				INSERT INTO H72.ITEM_TOOL VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+                <when test="itemDetailId.substring(0,3) eq 'ETC'.toString()">
+				INSERT INTO H72.ITEM_ETC VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+				<otherwise>
+                    
+                </otherwise>
+            </choose>
 	</insert>
 </mapper>
