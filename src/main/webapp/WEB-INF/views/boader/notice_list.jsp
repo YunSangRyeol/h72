@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%-- 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> --%>
+<%--  	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,7 @@
 						<col style="width: 135px;" class="displaynone">
 						<col style="width: auto;">
 						<col style="width: 100px;">
-						<col style="width: 100px;" class="">s
+						<col style="width: 100px;" class="">
 						<col style="width: 100px;" class="displaynone">
 						<col style="width: 100px;" class="displaynone">
 						<col style="width: 100px;" class="displaynone">
@@ -58,69 +59,28 @@
 						class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 						<tr style="">
 							<th scope="col">NO</th>
-
 							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
 							<th scope="col" class="">작성일</th>
 
 						</tr>
 					</thead>
 					<tbody>
-					         <c:choose> 
-<%--                 <c:when test="${fn:length(list) > 0}"> 
-                    <c:forEach items="${list }" var="row"> 
-                        <tr> 
-                            <td>${row.IDX }</td> 
-                            <td class="title"> 
-                                <a href="#this" name="title">${row.No }</a> 
-                                <input type="hidden" id="IDX" value="${row.Title }"> 
-                            </td> 
-                            <td>${row.Writer }</td> 
-                            <td>${row.Date }</td> 
-                        </tr> 
-                    </c:forEach> 
-                </c:when>  --%>
-                <c:otherwise> 
-                    <tr> 
-                        <td colspan="4">조회된 결과가 없습니다.</td> 
-                    </tr> 
-                </c:otherwise> 
-            </c:choose> 
-					
-					
-					
-<!-- 						class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 notice">
-						
-                $count = 20
-                $login_page_url = /member/login.html
-                $deny_access_url = /index.html
-           
-						<tr style="background-color: #FFFFFF; color: #000000;"
-							class="xans-record-">
-							<td>2</td>
-
-							<td class="subject"><a
-								href="/board/free/read.html?no=559012&amp;board_no=1"
-								style="color: #000000;"><font color="ff0000">회원등급별혜택</font></a>
-								<span class="comment"></span></td>
-							<td><img src="/web/upload/sunny/images/icon_10world.png"></td>
-							<td class="txtLess ">2015-07-28</td>
-
-
-						</tr>
-						<tr style="background-color: #FFFFFF; color: #000000;"
-							class="xans-record-">
-							<td>1</td>
-
-							<td class="subject"><a
-								href="/board/free/read.html?no=484087&amp;board_no=1"
-								style="color: #000000;"><font color="ff0000">장기간 연락이
-										안되는 품절건 자동환불처리</font></a> <span class="comment"></span></td>
-							<td><img src="/web/upload/sunny/images/icon_10world.png"></td>
-							<td class="txtLess ">2014-07-03</td>
-
-
-						</tr> -->
+					        
+						 <c:forEach var="list" items="${list}">
+                  <tr>
+                    <td class="noticeNo">${list.noticeNo}
+                    </td>
+                    <td class="noticeTitle">
+                        <a href="notice.do?noticeNo=${list.noticeNo}">${list.noticeTitle}</a>
+                    </td>
+                    <td class="enrolldate">${list.enrolldate}</td>
+                </tr>
+            </c:forEach>
+<%--             <c:if test="${count==0}">
+                <tr>
+                    <td colspan="5" class="align-center">등록된 게시물이 없습니다.</td>
+                </tr>
+            </c:if> --%>           
 					</tbody>
 					<tbody
 						class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002">
@@ -128,7 +88,7 @@
                 $login_page_url = /member/login.html
                 $deny_access_url = /index.html
             -->
-						<tr style="background-color: #FFFFFF; color: #000000;"
+	<!-- 					<tr style="background-color: #FFFFFF; color: #000000;"
 							class="xans-record-">
 							<td>146</td>
 
@@ -140,7 +100,7 @@
 							<td class="txtLess ">2016-09-30</td>
 
 
-						</tr>
+						</tr> -->
 
 					</tbody>
 				</table>
@@ -160,7 +120,7 @@
 			class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002">
 			<p>
 				<a href="?board_no=1&amp;page=1"><img
-					src="/web/upload/sunny/images/btn_page_prev.png" alt="이전 페이지"></a>
+					src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
 			</p>
 			<ol>
 				<li class="xans-record-"><a href="?board_no=1&amp;page=1"
@@ -186,7 +146,7 @@
 			</ol>
 			<p>
 				<a href="?board_no=1&amp;page=2"><img
-					src="/web/upload/sunny/images/btn_page_next.png" alt="다음 페이지"></a>
+					src="/h72/resources/image/btn_page_next.png"  alt="다음 페이지"></a>
 			</p>
 		</div>
 

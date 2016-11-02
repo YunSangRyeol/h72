@@ -3,16 +3,15 @@ package com.project.h72.notice.vo;
 import java.sql.Date;
 
 public class Notice {
-	public Notice(){}
 	
 	private int noticeNo; //글번호
 	private String noticeTitle; //글제목
 	private String noticeContent; //글내용
 	private Date enrolldate; //날짜
-	private String noticeWriter; //작성자
-	
-	
-	
+
+	public Notice() {
+		super();
+	}
 	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date enrolldate) {
 		super();
 		this.noticeNo = noticeNo;
@@ -44,7 +43,7 @@ public class Notice {
 	public void setEnrolldate(Date enrolldate) {
 		this.enrolldate = enrolldate;
 	}
-	
+
 	
 	
 	
