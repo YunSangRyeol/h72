@@ -29,20 +29,7 @@ public class CartController {
 	
 	@RequestMapping(value = "order/shopping_cart", method = RequestMethod.GET)
 	public String cartView(HttpSession session,  Model model) throws Exception {
-		Member login = (Member) session.getAttribute("loginUser");
-		if(!(login==null)){
-			String userid = login.getUserid();
-			List<Cart> clist = cs.getCartList(userid);
-			if(clist.isEmpty()||clist==null){
-				clist = null;
-			}
-			
-			model.addAttribute("clist", clist);
-			
-		}else{
-			
-		}
-		
+		userCartList(session,model);
 		
 		return "order/shopping_cart";
 	}
@@ -54,29 +41,15 @@ public class CartController {
 		int result = cs.updateQuantity(itemid, Integer.parseInt(quantity));
 		
 		if(result>0){
-			Member login = (Member) session.getAttribute("loginUser");
-			if(!(login==null)){
-				String userid = login.getUserid();
-				List<Cart> clist = cs.getCartList(userid);
-				if(clist.isEmpty()||clist==null){
-					clist = null;
-				}
-				
-				model.addAttribute("clist", clist);
-				
-			}else{
-				
-			}
-			
+			userCartList(session,model);
 		}
-		
 		
 		return "order/shopping_cart";
 	}
 	
 	
 	@RequestMapping(value = "/emptyBasket", method = RequestMethod.GET)
-	public String emptyBasket(HttpSession session, Model model) throws Exception {
+	public String deleteEmptyBasket(HttpSession session, Model model) throws Exception {
 		
 		Member login = (Member) session.getAttribute("loginUser");
 		String userid = login.getUserid();
@@ -101,30 +74,25 @@ public class CartController {
 	}
 	
 	
-	@RequestMapping(value = "/deleteBasketChk", method = RequestMethod.POST)
-	public String deleteBasketChk(@RequestParam("cartId") String[] cartid, HttpSession session, Model model) throws Exception {
+	@RequestMapping(value = "/deleteBasketItem", method = RequestMethod.GET)
+	public String deleteBasketItem(@RequestParam("cartId") String cartid, HttpSession session, Model model) throws Exception {
 		
-		for(int i=0; i<cartid.length; i++){
-			System.out.println("cart id :" +cartid[i]);
+		int result = cs.deleteBasketItem(cartid);
+		if(result>0){
+			userCartList(session,model);
 		}
 		
-		/*Member login = (Member) session.getAttribute("loginUser");
-		String userid = login.getUserid();
-		int result = cs.deleteEmptyBasket(userid);
+		return "order/shopping_cart";
+	}
+	
+	@RequestMapping(value = "/deleteBasketChk", method = RequestMethod.GET)
+	public String deleteBasketChk(@RequestParam("cartid") String[] cartid, HttpSession session, Model model) throws Exception {
 		
+		int result = cs.deleteBasketChk(cartid);
 		if(result>0){
-			if(!(login==null)){
-				
-				List<Cart> clist = cs.getCartList(userid);
-				if(clist.isEmpty()||clist==null){
-					clist = null;
-				}
-				
-				model.addAttribute("clist", clist);
-				
-			}
+			userCartList(session,model);
 			
-		}*/
+		}
 		
 		
 		return "order/shopping_cart";
@@ -143,6 +111,22 @@ public class CartController {
 	}
 	
 	
+	//사용자 장바구니 조회
+	public void userCartList(HttpSession session,  Model model) throws Exception {
+		Member login = (Member) session.getAttribute("loginUser");
+		if(!(login==null)){
+			String userid = login.getUserid();
+			List<Cart> clist = cs.getCartList(userid);
+			if(clist.isEmpty()||clist==null){
+				clist = null;
+			}
+			
+			model.addAttribute("clist", clist);
+			
+		}else{
+			
+		}
+	}
 	
 	
 	

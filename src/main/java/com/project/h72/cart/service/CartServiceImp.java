@@ -28,4 +28,15 @@ public class CartServiceImp implements CartService{
 		return cDao.deleteEmptyBasket(userid);
 	}
 
+	@Override
+	public int deleteBasketItem(String cartid) {
+		return cDao.deleteBasketItem(cartid);
+	}
+
+	@Override
+	public int deleteBasketChk(String[] cart) {
+		// TODO Auto-generated method stub
+		return cDao.deleteBasketChk(cart);
+	}
+
 }

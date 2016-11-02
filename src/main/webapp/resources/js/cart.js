@@ -51,7 +51,7 @@ function outQuantityShortcut(id, index){
 		url: "/h72/updateQuantity",
 		data :{"itemId":itemid, "quantity":quantity},
 		success : function(data){
-			$(".total strong")
+			
 			
 		}
 		
@@ -62,7 +62,7 @@ function modifyQuantity(index){
 	var itemId = $('#item_id_'+index).val();
 	var quantity = $('#quantity_id_'+index).val();
 	console.log(itemId);
-	$('#quantity_'+index).submit();
+	//$('#quantity_'+index).submit();
 	location.href="/h72/updateQuantity?quantity="+quantity+"&itemId="+itemId;
 }
 
@@ -71,42 +71,49 @@ function modifyQuantity(index){
 
 //item삭제
 function deleteBasketItem(index){
+	var cartId = $('#cart_id_'+index).val();
+	console.log(cartId);
+	//$('#quantity_'+index).submit();
+	location.href="/h72/deleteBasketItem?cartId="+cartId;
 }
 
 //선택삭제  
 function deleteBasketChk(){
 	
-	 $('input[name=basketItem_chk]').each(function() {
-
-	     if($(".xans-record- input[name=basketItem_chk]").is(":checked")){ //값 비교
-
-	    	 var checkId = $(this).val();
-				for(var i=0; i<checkId.length; i++){
-					console.log(checkId[i]);
-				}
-	      }
-
-	 });
-	
-	
+	var cartid="";
+	$(".xans-record- input[name=basketItem_chk]:checked").each(function(){
+		if(cartid=="")
+			cartid = "cartid="+$(this).val();
+		else
+			cartid = cartid+"&cartid="+$(this).val();
 		
-		
-		$.ajax({
-			type:"post",
-			url: "/h72/deleteBasketChk",
-			data :{"cartId":checkId},
-			success : function(data){
-				alert(data);
-				
-			}
-			
-		}); 
-	
+	});
+	console.log(cartid);
+	location.href="/h72/deleteBasketChk?"+cartid;
+ 
 }
 
 // 장바구니 비우기
 function emptyBasket(){
 	if(confirm("장바구니를 비우시겠습니까?")){
 	location.href="/h72/emptyBasket";}
+}
+
+//전체상품주문
+function orderAll(){
+	$("#allCheck").prop("checked", true);
+	$(".xans-record- input[name=basketItem_chk]").prop("checked", true);
+	
+	var cartAll="";
+	$(".xans-record- input[name=basketItem_chk]:checked").each(function(){
+		if(cartAll=="")
+			cartAll = "cartAll="+$(this).val();
+		else
+			cartAll = cartAll+"&cartAll="+$(this).val();
+		
+	});
+	console.log(cartAll);
+	location.href="/h72/orderAll?"+cartAll;
+	
 	
 }

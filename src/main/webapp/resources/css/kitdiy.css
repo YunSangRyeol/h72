@@ -13,7 +13,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
 
 Inherited from body#main
 body, code {
-    font-size: 11px;
+    font-size: 11pt;
     color: #000;
 }
 
@@ -44,7 +44,7 @@ body, code {
 /*******titleArea**********/
 .titleArea h2 {
     font-family: 'Helvetica',sans-serif;
-    font-size: 18px;
+    font-size: 18pt;
     font-weight: 700;
     letter-spacing: 2px;
     text-align: center;
@@ -123,22 +123,22 @@ body, code {
 	width:5%;
 }
 #kitDiy_product ul:first-child li:nth-child(2){
-	width:13%;
+	width:20%;
 }
 #kitDiy_product ul:first-child li:nth-child(3){
-	width:9%;
+	width:6%;
 }
 #kitDiy_product ul:first-child li:nth-child(4){
-	width:16%;
+	width:21%;
 }
 #kitDiy_product ul:first-child li:nth-child(5){
-	width:15%;
+	width:12%;
 }
 #kitDiy_product ul:first-child li:nth-child(6){
-	width:13%;
+	width:8%;
 }
 #kitDiy_product ul:first-child li:nth-child(7){
-	width:3%;
+	width:2%;
 	text-align:left;
 	cursor:pointer;
 	color:red;
@@ -216,16 +216,16 @@ body, code {
 }
 .kitDiy_subList li:first-child{
 	margin-left:80px;
-	width:26%;
+	width:20%;
 }
 .kitDiy_subList li:nth-child(2){
-	width:15.5%;
+	width:30.2%;
 }
 .kitDiy_subList li:nth-child(3){
-	width:15.2%;
+	width:12.5%;
 }
 .kitDiy_subList li:nth-child(4){
-	width:21%;
+	width:17%;
 }
 .kitDiy_subList li:nth-child(5){
 	width:1%;
@@ -486,8 +486,8 @@ body, code {
     color: black;
     text-align: center;
     border: 1px solid #ddd;
-    font-size: 11px;
-    font-weight: bold;
+    font-size: 9pt;
+    font-weight: 500;
     line-height: 40px; 
     width:19.8%;
     display: inline-block;
@@ -520,7 +520,6 @@ body, code {
     display: table;
     width: 100%;
     min-width: 756px;
-    font-size: 0;
     line-height: 0;
 }
 /***************** List li **********************/
@@ -547,6 +546,43 @@ user agent stylesheet
 .xans-product-listnormal ul.column5 li.item {
     width: 238px;
     margin-right: 15px;
+    margin-top:50px;
+}
+#kitDiy_imgWrap{
+	width:237px;
+	height:362px;
+}
+#kitDiy_imgWrap img{
+	width:237px;
+	height:280px;
+}
+#thumbItemName{
+	font-size:9.5pt;
+	color:black;
+	margin-top:40px;
+	height:0px;
+}
+#thumbItemLine{
+	letter-spacing: -1px; 
+	text-align: left;
+	border-bottom: 1px solid #e7e7e7; 
+	padding-bottom: 5px; 
+	margin: 10px 0px;
+}
+#thumbItemMinPrice{
+	font-family: 'Lato', sans-serif; 
+	font-weight: 400; 
+	color: #333; 
+	font-size: 10pt; 
+	padding: 0; 
+	text-align: left; 
+	line-height: 10px;
+}
+#thumbItemMinPrice span{
+	text-decoration: line-through; 
+	color: #a2a2a2; 
+	font-family: 'Lato', sans-serif; 
+	font-weight: 300;
 }
 
 /***************** paging **********************/
@@ -583,7 +619,7 @@ user agent stylesheet
 
 .xans-product-normalpaging li {
     margin: 0 4px;
-    font-size: 11px;
+    font-size: 11pt;
     font-weight: normal;
 }
 
@@ -595,7 +631,7 @@ user agent stylesheet
 
 .xans-product-normalpaging li {
     margin: 0 4px;
-    font-size: 11px;
+    font-size: 11pt;
     font-weight: normal;
 }
 
@@ -620,7 +656,7 @@ user agent stylesheet
     position: relative;  
     padding-left: 25px;  
     margin-right: 15px;  
-    font-size: 13px;
+    font-size: 13pt;
 }
 
 .kitDiy_wrap input[type=checkbox]+ label:before {     
@@ -641,7 +677,7 @@ user agent stylesheet
 .kitDiy_wrap input[type=checkbox]:checked + label:before { 
 
     content: "";  /* 체크모양 */
-    font-size: 18px; 
+    font-size: 18pt; 
     font-weight:800; 
     color: #fff;  
     text-align: center;  
@@ -668,7 +704,7 @@ user agent stylesheet
 
 .kitDiy_subSelect{
 	font-family: "Noto Sans KR", sans-serif;
-	width:110px;
+	width:200px;
 	position:relative;
 	left:0px;
 	top:0px;

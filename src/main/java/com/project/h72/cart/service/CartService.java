@@ -10,4 +10,8 @@ public interface CartService {
 	int updateQuantity(String itemid, int quantity);
 
 	int deleteEmptyBasket(String userid);
+
+	int deleteBasketItem(String cartid);
+
+	int deleteBasketChk(String[] cart);
 }

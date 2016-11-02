@@ -1,101 +1,156 @@
 package com.project.h72.kitDiy.vo;
 
 public class KitDiy{
-	private String ITEM_DETAIL_ID;
-	private String CATEGORY_CODE ;
-	private String ITEM_STATUS ;
-	private String ITEM_NAME;
-	private int MIN_PRICE;
-	private int MIN_SAIL_PRICE;
-	private String MAIN_IMG;
-	private String DETAIL_IMG01;
-	private String DETAIL_IMG02;
-	private String ETC;
+	private String itemId;
+	private String itemFullName;
+	private String itemDetailId;
+	private int price;
+	private int sailPrice;
+	private int stock;
+	private String mainImg;
+	private String detailImg01;
+	private String detailImg02;
+	private String etc;
+	
+	private String categoryCode;
+	private String itemStatus;
+	private int minPrice;
+	private int minSailPrice;
+	private String itemName;
 	
 	public KitDiy() {
 		
 	}
-	public KitDiy(String iTEM_DETAIL_ID, String cATEGORY_CODE, String iTEM_STATUS, String iTEM_NAME, int mIN_PRICE,
-			int mIN_SAIL_PRICE, String mAIN_IMG, String dETAIL_IMG01, String dETAIL_IMG02, String eTC) {
-		super();
-		ITEM_DETAIL_ID = iTEM_DETAIL_ID;
-		CATEGORY_CODE = cATEGORY_CODE;
-		ITEM_STATUS = iTEM_STATUS;
-		ITEM_NAME = iTEM_NAME;
-		MIN_PRICE = mIN_PRICE;
-		MIN_SAIL_PRICE = mIN_SAIL_PRICE;
-		MAIN_IMG = mAIN_IMG;
-		DETAIL_IMG01 = dETAIL_IMG01;
-		DETAIL_IMG02 = dETAIL_IMG02;
-		ETC = eTC;
+
+	public String getItemId() {
+		return itemId;
 	}
-	public String getITEM_DETAIL_ID() {
-		return ITEM_DETAIL_ID;
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
-	public void setITEM_DETAIL_ID(String iTEM_DETAIL_ID) {
-		ITEM_DETAIL_ID = iTEM_DETAIL_ID;
+
+	public String getItemName() {
+		return itemName;
 	}
-	public String getCATEGORY_CODE() {
-		return CATEGORY_CODE;
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
-	public void setCATEGORY_CODE(String cATEGORY_CODE) {
-		CATEGORY_CODE = cATEGORY_CODE;
+
+	public String getItemFullName() {
+		return itemFullName;
 	}
-	public String getITEM_STATUS() {
-		return ITEM_STATUS;
+
+	public void setItemFullName(String itemFullName) {
+		this.itemFullName = itemFullName;
 	}
-	public void setITEM_STATUS(String iTEM_STATUS) {
-		ITEM_STATUS = iTEM_STATUS;
+
+	public String getItemDetailId() {
+		return itemDetailId;
 	}
-	public String getITEM_NAME() {
-		return ITEM_NAME;
+
+	public void setItemDetailId(String itemDetailId) {
+		this.itemDetailId = itemDetailId;
 	}
-	public void setITEM_NAME(String iTEM_NAME) {
-		ITEM_NAME = iTEM_NAME;
+
+	public int getPrice() {
+		return price;
 	}
-	public int getMIN_PRICE() {
-		return MIN_PRICE;
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public void setMIN_PRICE(int mIN_PRICE) {
-		MIN_PRICE = mIN_PRICE;
+
+	public int getSailPrice() {
+		return sailPrice;
 	}
-	public int getMIN_SAIL_PRICE() {
-		return MIN_SAIL_PRICE;
+
+	public void setSailPrice(int sailPrice) {
+		this.sailPrice = sailPrice;
 	}
-	public void setMIN_SAIL_PRICE(int mIN_SAIL_PRICE) {
-		MIN_SAIL_PRICE = mIN_SAIL_PRICE;
+
+	public int getStock() {
+		return stock;
 	}
-	public String getMAIN_IMG() {
-		return MAIN_IMG;
+
+	public int getMinPrice() {
+		return minPrice;
 	}
-	public void setMAIN_IMG(String mAIN_IMG) {
-		MAIN_IMG = mAIN_IMG;
+
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
 	}
-	public String getDETAIL_IMG01() {
-		return DETAIL_IMG01;
+
+	public int getMinSailPrice() {
+		return minSailPrice;
 	}
-	public void setDETAIL_IMG01(String dETAIL_IMG01) {
-		DETAIL_IMG01 = dETAIL_IMG01;
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
-	public String getDETAIL_IMG02() {
-		return DETAIL_IMG02;
+
+	public void setMinSailPrice(int minSailPrice) {
+		this.minSailPrice = minSailPrice;
 	}
-	public void setDETAIL_IMG02(String dETAIL_IMG02) {
-		DETAIL_IMG02 = dETAIL_IMG02;
+
+	public String getMainImg() {
+		return mainImg;
 	}
-	public String getETC() {
-		return ETC;
+
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
 	}
-	public void setETC(String eTC) {
-		ETC = eTC;
+
+	public String getDetailImg01() {
+		return detailImg01;
 	}
+
+	public void setDetailImg01(String detailImg01) {
+		this.detailImg01 = detailImg01;
+	}
+
+	public String getDetailImg02() {
+		return detailImg02;
+	}
+
+	public void setDetailImg02(String detailImg02) {
+		this.detailImg02 = detailImg02;
+	}
+
+	public String getEtc() {
+		return etc;
+	}
+
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+
+	public String getCategoryCode() {
+		return categoryCode;
+	}
+
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
+	}
+
+	public String getItemStatus() {
+		return itemStatus;
+	}
+
+	public void setItemStatus(String itemStatus) {
+		this.itemStatus = itemStatus;
+	}
+
+
 	@Override
 	public String toString() {
-		return "KitDiy [ITEM_DETAIL_ID=" + ITEM_DETAIL_ID + ", CATEGORY_CODE=" + CATEGORY_CODE + ", ITEM_STATUS="
-				+ ITEM_STATUS + ", ITEM_NAME=" + ITEM_NAME + ", MIN_PRICE=" + MIN_PRICE + ", MIN_SAIL_PRICE="
-				+ MIN_SAIL_PRICE + ", MAIN_IMG=" + MAIN_IMG + ", DETAIL_IMG01=" + DETAIL_IMG01 + ", DETAIL_IMG02="
-				+ DETAIL_IMG02 + ", ETC=" + ETC + "]";
+		return "KitDiy [itemId=" + itemId + ", itemFullName=" + itemFullName + ", itemDetailId=" + itemDetailId
+				+ ", price=" + price + ", sailPrice=" + sailPrice + ", stock=" + stock + ", mainImg=" + mainImg
+				+ ", detailImg01=" + detailImg01 + ", detailImg02=" + detailImg02 + ", etc=" + etc + ", categoryCode="
+				+ categoryCode + ", itemStatus=" + itemStatus + ", minPrice=" + minPrice + ", minSailPrice="
+				+ minSailPrice + ", itemName=" + itemName + "]";
 	}
-	
+
 	
 }

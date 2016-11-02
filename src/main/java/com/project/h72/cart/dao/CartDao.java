@@ -32,7 +32,23 @@ public class CartDao {
 	public int deleteEmptyBasket(String userid) {
 		int result =0;
 		result =sqlSession.delete(NAMESPACE +"deleteEmptyBasket", userid);
-		System.out.println("Dao:"+result+"====================================================");
+		return result;
+	}
+	
+	
+	public int deleteBasketItem(String cartid) {
+		int result =0;
+		result =sqlSession.delete(NAMESPACE +"deleteBasketItem", cartid);
+		return result;
+	}
+
+	public int deleteBasketChk(String[] cart) {
+		int result=0;
+		for(int i=0; i<cart.length; i++){
+			Map<String, String> cartmap = new HashMap<String, String>();
+			cartmap.put("cart", cart[i]);
+			result += sqlSession.update(NAMESPACE +"deleteBasketChk", cartmap);
+		}
 		return result;
 	}
 
