@@ -73,7 +73,7 @@
 				
 									<c:forEach items="${clist}" var="cart" varStatus="cnt">
 									<tr class="xans-record-">
-										<td><input type="checkbox" name="basketItem_chk" value="${cart.cartid}"></td>
+										<td><input type="checkbox" name="basketItem_chk" id="basketItem_chk" value="${cart.cartid}"></td>
 										<td class="thumb"><a href="#"><img src="/h72/resources${cart.mainImg }" class="itemImg"/></a></td>
 										<td class="product"><a href="#"><strong>${cart.itemFullName}</strong> </a>
 											<ul
@@ -91,6 +91,7 @@
 										 -->
 										<span class="quantity">
 										<input type="hidden" value="${cart.itemid }" id="item_id_${cnt.count }" name="itemId"/>
+										<input type="hidden" value="${cart.cartid }" id="cart_id_${cnt.count }" name="cartId"/>
 										<input id="quantity_id_${cnt.count}" name="quantity_id_0" size="2" value="${cart.quantity}" type="text"/>
 										<a href="javascript:;" onclick="addQuantityShortcut('quantity_id_${cnt.count}',${cnt.count});">
 										<img src="/h72/resources/image/btn_quantity_up.gif" alt="증가" class="QuantityUp"></a>
@@ -168,9 +169,8 @@
 
 					<!-- 주문 버튼 -->
 					<div class="xans-element- xans-order xans-order-totalorder">
-						<a href="<c:url value="/order/order"/>"
-							onclick="Basket.orderAll(this)"
-							link-order="/order/order.jsp?basket_type=all_buy"
+						<a href="#order"
+							onclick="orderAll()"
 							link-login="/member/login.html" class="order_total_btn ">전체상품주문</a>
 						<a href="#none" onclick="Basket.orderSelectBasket(this)"
 							link-order="/order/orderform.html?basket_type=all_buy"

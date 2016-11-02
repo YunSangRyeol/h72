@@ -32,10 +32,19 @@
 		WHERE ITEM_ID = #{itemid}
 	</update>
 	
-	
 	<delete id="deleteEmptyBasket" parameterType="String">
  		DELETE FROM CART
 		WHERE  USER_ID= #{userid}
+ 	</delete>
+ 	
+ 	<delete id="deleteBasketItem" parameterType="String">
+ 		DELETE FROM CART
+		WHERE  CART_ID= #{cartid}
+ 	</delete>
+ 	
+ 	<delete id="deleteBasketChk" parameterType="Map">
+ 		DELETE FROM CART
+		WHERE  CART_ID= #{cart}
  	</delete>
 
 
