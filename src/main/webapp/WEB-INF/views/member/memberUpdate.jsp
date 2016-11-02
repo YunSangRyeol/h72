@@ -64,7 +64,7 @@
 	//submit 작동 확인
 	$('#updateMember').click(function(){
 		if (!myPwdCheck) {
-			alert("비밀 번호가 일치하지 않습니다.");
+			alert("비밀 번호를 확인해주세요.");
 			modifyForm.mypage_loginUserPwd.focus();
 		} else if(!newPwd){
 			alert("변경할 비밀번호를 입력해주세요");
@@ -74,6 +74,19 @@
 			modifyForm.userpass_confirm.focus();
 		} else{
 			modifyForm.submit();
+		}
+	});
+	
+		
+	$('#deleteMember').click(function(){
+		if(myPwdCheck){
+			if(confirm("적립된 포인트는 소멸되며, 더이상 주문 내역을 확인/변경하실 수 없습니다. 정말 탈퇴하시겠습니까?")){
+				location.href="/h72/deleteMe.do";
+			}else{
+				return false;
+			}
+		}else{
+			alert("비밀번호를 확인해주세요");
 		}
 	});
 	

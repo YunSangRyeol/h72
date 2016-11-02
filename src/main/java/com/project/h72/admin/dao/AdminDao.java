@@ -96,6 +96,13 @@ public class AdminDao {
 		return sqlSession.selectOne(NAMESPACE + "memberUPage", userid);
 	}
 
+	public int deleteMe(String userid) {
+		int result = 0;
+		result = sqlSession.delete(NAMESPACE + "deleteMe", userid); 
+		System.out.println("resulttttttt" + result);
+		return result;
+	}
+
 	
 
 }

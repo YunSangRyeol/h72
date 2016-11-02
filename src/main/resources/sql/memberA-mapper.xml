@@ -64,6 +64,9 @@
 		UPDATE USERS SET USER_PASS = #{userpwd}, POST_NUM = #{postnum}, ADDRESS = #{address}, ADDRESS_DETAIL = #{addressDetail}, PHONE = #{phone}, email= #{email}  WHERE USER_ID = #{userid}
 	</update>
 	
+	<delete id="deleteMe" parameterType="String">
+		DELETE FROM USERS WHERE USER_ID = #{userid}
+	</delete>
 
 	<!-- Member -->
 	<select id="getMemberList" resultType="member">

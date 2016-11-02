@@ -37,5 +37,7 @@ public interface AdminService {
 
 	int updateChangeOne(String orderNo, String change);
 
+	int deleteMe(String userid);
+
 
 }

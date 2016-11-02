@@ -72,6 +72,11 @@ public class AdminServiceImp implements AdminService{
 		return dao.memberUPage(userid);
 	}
 
+	@Override
+	public int deleteMe(String userid) {
+		return dao.deleteMe(userid);
+	}
+
 	
 	
 }

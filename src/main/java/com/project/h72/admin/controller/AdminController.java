@@ -73,6 +73,15 @@ public class AdminController {
 		return "redirect:/member/memberUpdate";
 	}
 	
+	//회원탈퇴
+	@RequestMapping(value="deleteMe.do", method = RequestMethod.GET)
+	public String deleteMe(HttpSession session){
+		Member login = (Member) session.getAttribute("loginUser");
+		int result = adminService.deleteMe(login.getUserid());
+		
+		return "redirect:/logout.do";
+	}
+	
 	
 	//회원관리 페이지 
 	@RequestMapping(value="admin/users", method = RequestMethod.GET)
