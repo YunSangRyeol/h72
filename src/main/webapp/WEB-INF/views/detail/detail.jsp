@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,9 +55,7 @@ function ResizeFrame(name)
 
 <!-- START -->
     
-    
 <div id="detail_wrap">
-
 
     
 	<div id="detail_contents">
@@ -84,7 +83,7 @@ function ResizeFrame(name)
         	<!-- 이미지 영역 -->
         			<div class="xans-element- xans-product xans-product-image imgArea ">
         				<div class="keyImg"> 
-                		<img src="/h72/resources/image/protect/PRO0015MAIN.jpg" alt="" class=" ">
+                		<img src="/h72/resources${itemDetailList.get(0).MAIN_IMG }" alt="" class=" ">
                			&nbsp;
                		
             <!-- LOGGER SCRIPT FOR SETTING ENVIRONMENT V.27 :  / FILL THE VALUE TO SET. -->
@@ -135,7 +134,7 @@ function ResizeFrame(name)
         	<!-- 상세정보 내역 -->
         <div class="infoArea">   
         
-        <h3 class="resize">2016ver. 데일리 MTM<span class="bookmark mouse_on"> 
+        <h3 class="resize">${param.ItemDetailName }<span class="bookmark mouse_on"> 
             <div id="cssmenu1">
             <ul>
 			<li class="has-sub" style="padding:3px 10px 3px 10px; float:right; font-size:11px;">
@@ -165,7 +164,7 @@ function ResizeFrame(name)
         
         <p class="displaynone">() 해외배송 가능</p> 
         <table id="pdInfo" border="1" summary="">
-			<caption>2016ver. 데일리 MTM 기본 정보</caption>
+			<caption>${param.ItemDetailName }</caption>
             <tbody>
             <tr class="custom0">
 				<th scope="row">소비자가</th>
@@ -177,8 +176,22 @@ function ResizeFrame(name)
 				<th scope="row" class="resize">판매가</th>
 				
                 <td class="td-color2 mem_lv_wrap">
-                	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;">9,900원</strong><label style="display: none">9900</label>
-                    <a href="#none" class="displaynone" sms_restock_login_display="1" name="btn_restock" id="btn_restock" onclick="alert('');"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_sms.gif" alt="재입고 알림 SMS"></a>   
+                	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;">9,900원</strong><label style="display: none">${param.ItemPrice }</label>
+                    <a href="#none" class="displaynone" sms_restock_login_display="1" name="btn_restock" id="btn_restock" onclick="alert('');"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_sms.gif" alt="재입고 알림 SMS"></a>
+                    <!-- input hidden ITEM_PRICE -->
+                    
+                    <input type="hidden" id="itemPrice" name="itemPrice" value="${param.ItemPrice}" style="width:0; height:0">
+                    
+                    <script>
+                    $(document).ready(function(){
+                    	/* var itemPrice = document.getElementById('itemPrice').value;
+                    	itemPrice = numberWithCommas(itemPrice);
+                    	$("#span_product_price_text").text(itemPrice + "원"); */
+                    	//alert(itemPrice);
+                    	
+                    });
+                    </script>
+                    
                 </td>
             </tr>
 			<tr class="resize">
@@ -230,18 +243,12 @@ function ResizeFrame(name)
 			<tr class="xans-element- xans-product xans-product-option xans-record-">
 				<th>옵션선택</th>
 				<td>
-					<select option_product_no="2921" option_select_element="ec-option-select-finder" option_sort_no="1" option_type="T" item_listing_type="S" option_title="색상선택" product_option_area="product_option_2921_0" name="option1" id="product_option_id1" class="ProductOption0" option_style="select" required="true">
+					<select option_product_no="2921" option_select_element="ec-option-select-finder" option_sort_no="1" option_type="T" item_listing_type="S" option_title="색상선택" product_option_area="product_option_2921_0" name="option1" id="product_option_id1" class="ProductOption0" option_style="select" required="true">itemDetai
 						<option disabled value="*" selected="selected">- [필수] 옵션을 선택해 주세요 -</option>
-						<option disabled value="**">-------------------</option>
-						<option value="화이트" link_image="">화이트</option>
-						<option value="크림" link_image="">크림</option>
-						<option value="베이비핑크" link_image="">베이비핑크</option>
-						<option value="민트" link_image="">민트</option>
-						<option value="스카이블루" link_image="">스카이블루</option>
-						<option value="체리핑크" link_image="">체리핑크</option>
-						<option value="그레이" link_image="">그레이</option>
-						<option value="브라운" link_image="">브라운</option>
-						<option value="네이비" link_image="">네이비</option>
+						<option disabled value="**">------------------------------------</option>
+						<c:forEach var="i" begin="0" end="${itemDetailList.size() - 1 }" step="1">
+						<option value="${itemDetailList.get(i).ITEM_OPTION_NAME }">${itemDetailList.get(i).ITEM_OPTION_NAME }</option>
+						</c:forEach>
 					</select>
 					
 					
@@ -281,23 +288,53 @@ function ResizeFrame(name)
 			    </div>
 			    <!-- //[16-08-19 hhj] 수정 -->
 			</div>
-			
+			<c:forEach var="i" begin="0" end="${itemDetailList.size() - 1 }" step="1">
+			<input type="hidden" id="hiddenRemain${i}" class="hiddenRemain" value="${itemDetailList.get(i).STOCK }" data-name="${itemDetailList.get(i).ITEM_OPTION_NAME }"/>
+			</c:forEach>
+			<%-- <input type="hidden" id="hiddenRemain" value="${itemDetailList }" /> --%>
             <script>
             $(document).ready(function(){
-            	//var quantity = $("tbody>tr>td>span>input[name=quantity_name]").val();
-            	//alert(quantity);
             	var price = Number($("#span_product_price_text").next().text());
-            	//var symbol = "plus";
             	var totalprice = 0;
             	var totalcount = 0;
-            	//var quantity = 1;
-            	console.log(typeof(price));
-            	var remain = 100//재고량 - quantity
-            	/*
-            	function remaincal(quantity){
-            		remain = remain - quantity
+            	var remain = 0; // 총재고량 ( 재고량 - quantity )
+            	//alert(typeof(remain));
+            	
+            		
+            	
+            	
+            	var hiddenLength = $(".hiddenRemain").length;
+            	var arrRemain = new Array(hiddenLength);
+            	var arrDataName = new Array(hiddenLength);//data-name 배열 
+            	//alert("hiddenLength : " + hiddenLength);
+            	//alert("arrRemain.length : " + arrRemain.length);
+            	
+            	//각 상품 옵션의 재고량 배열에 입력
+             	for(var i = 0; i < hiddenLength; i++){
+	            	arrRemain[i] = $("#hiddenRemain" + i).val(); //옵션 각각 상품 재고량
+	            	arrDataName[i] = $("#hiddenRemain" + i ).attr("data-name"); //옵션 각각 상품 data-name
+	            	remain += Number(arrRemain[i]); //총 재고량
             	}
-            	*/
+             	//console.log("총 재고량: " + remain);
+             	
+             	/*배열 값 잘 들어왔는지 확인
+             	for(i = 0; i < arrRemain.length; i++){
+             		if(!arrRemain[i]) continue; // null, undefined, 빈 원소일 때 건너뜀
+             		alert("arrRemain["+i+"] :" + arrRemain[i]);
+             	}
+             	*/
+            	
+            	
+            	//총 재고량 function
+            	/* function remaincal(quantity){
+            		remain -= quantity;
+            	} */
+            	
+            	
+            	var itemPrice = document.getElementById('itemPrice').value;
+            	itemPrice = numberWithCommas(itemPrice);
+            	$("#span_product_price_text").text(itemPrice + "원");
+            	
             	
             	//옵션 '+' 클릭
             	$(document).on("click", ".numbtn_plus", function(){
@@ -308,6 +345,7 @@ function ResizeFrame(name)
             		var pc = $(this).parent().next().children().attr("class")//클릭시 해당되는 버튼요소로부터 선택된 옵션의 가격 글자 
             		quantity = priceCal(quantity, symbol, inputtext, pc);
             		console.log(quantity);
+            		
             	});
             	//옵션 '-' 클릭
            		$(document).on("click", ".numbtn_minus", function(){
@@ -318,6 +356,7 @@ function ResizeFrame(name)
             		var pc = $(this).parent().next().children().first().attr("class")//클릭시 해당되는 버튼요소로부터 선택된 옵션의 가격 글자 
             		quantity = priceCal(quantity, symbol, inputtext, pc);
             		console.log(quantity);
+            		
             	});
             	
            		//옵션 +,- 금액합계
@@ -330,7 +369,7 @@ function ResizeFrame(name)
 	            		totalprice += price;//전체 가격
 	            		//$("#span_product_price_text").text(price * quantity + "원");//상품정보 가격
 	            		$("."+pc).children().first().text(numberWithCommas(price * quantity));//선택된 옵션에 가격 변경
-	            		totalcal ( quantity - ( quantity - 1 ) );
+	            		totalcal ( quantity - ( quantity - 1 ) ); //총 금액
             		}else if(symbol == "minus"){
             			if((quantity-1) < 1){
             				alert("1개 이상 선택해주세요");
@@ -339,7 +378,7 @@ function ResizeFrame(name)
 	            			totalprice -= (price * (quantity - (quantity - 1)));
 	            			//$("#span_product_price_text").text(totalprice + "원");
 	            			$("." + pc).children().first().text(numberWithCommas(price * (quantity - 1)));
-	            			totalcal( - (quantity - (quantity - 1)));
+	            			totalcal( - (quantity - (quantity - 1))); //총 금액
 	            			quantity--;
             			}
             		}
@@ -350,12 +389,13 @@ function ResizeFrame(name)
            		//총금액 합계
             	function totalcal(quantity){
             		//totalprice = totalprice1; //총합계
-            		remain -= quantity; //재고량
+            		remain -= quantity; //총 재고량
             		totalcount += quantity;//주문수량
             		$(".ui_total_price").text(numberWithCommas(totalprice));
             		$(".ui_total_count").text(totalcount);
             		
-            		console.log("remain : " + remain);
+            		console.log("총 재고량 : " + remain);
+            		//alert("remain : " + remain);
             	}
             	
             	//////////////////////////////////////////////////////////////////////////////
@@ -382,7 +422,7 @@ function ResizeFrame(name)
 						console.log("remainop_after: " + remainop);
 						remainindex = remainop.indexOf(op);
 						console.log("remainindex: " + remainindex);
-						if(remainindex > 0){temp = "exist"; break;}
+						if(remainindex >= 0){temp = "exist"; break;}
 						if(remainindex == -1) temp = "no-exist";
 					}
 					console.log("temp: " + temp);
@@ -393,14 +433,14 @@ function ResizeFrame(name)
 						$("#option_mini").after(
 								"<div id='option_mini_wrap" + opnum + "' class='option_mini ui_optSelWrapper position_top'>"
 								+"<ul><li id='option_mini' data-amount='1' data-price='9900'>"
-								+"		<em>2016ver. 데일리 MTM / " + op + "</em>"
+								+"		<em>" + op + "</em>"
 								+"		<div class='plusminus_wrap'>"
 								+"			<input id='quantity" + opnum + "' type='text' name='prdcAmount' class='text' title='수량설정' value='1' readonly>"
 								+"			<button type='button' class='numbtn_minus'><span class='hide'>수량감소</span></button>"
 								+"			<button type='button' class='numbtn_plus'><span class='hide'>수량증가</span></button>"
 								+"		</div>"
 								+"		<div class='sel_price'>"
-								+"			<p class='pc" + opnum + "'><strong>9,900</strong>원</p>"
+								+"			<p class='pc" + opnum + "'><strong>" + itemPrice + "</strong>원</p>"
 								+"	        <button type='button' class='btn_cc' id='btn_cc"+opnum+"'><span class='hide'>취소</span></button>"
 								+"		</div>"
 								+"</li></ul></div>"
@@ -481,26 +521,123 @@ function ResizeFrame(name)
             <!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
             <div class="xans-element- xans-product xans-product-action ">
             	<div class="btnArea" style="width:500px;">
-                    <a href="#none" class="first " onclick="product_submit(1, '/exec/front/order/basket/', this)"><img src="/h72/resources/image/btn_buy.png" onmouseover="this.src='/h72/resources/image/btn_buy_h.png'" onmouseout="this.src='/h72/resources/image/btn_buy.png'" style="float:left;"></a>
-                    <a id="cartBtn" href="#none" class="" onclick="product_submit(2, '/exec/front/order/basket/', this)"><img src="/h72/resources/image/btn_cart.png" onmouseover="this.src='/h72/resources/image/btn_cart_h.png'" onmouseout="this.src='/h72/resources/image/btn_cart.png'" style="float:left;"></a>
+                    <a href="#none" class="first " onclick="product_submit(1, '/exec/front/order/basket/', this)">
+                    	<img src="/h72/resources/image/btn_buy.png" onmouseover="this.src='/h72/resources/image/btn_buy_h.png'" onmouseout="this.src='/h72/resources/image/btn_buy.png'" style="float:left;">
+                    </a>
+                    <a id="cartBtn" href="#none" class="" onclick="product_submit(2, '/exec/front/order/basket/', this)">
+                    	<img src="/h72/resources/image/btn_cart.png" onmouseover="this.src='/h72/resources/image/btn_cart_h.png'" onmouseout="this.src='/h72/resources/image/btn_cart.png'" style="float:left;">
+                    </a>
                     
                     <span class="displaynone">SOLD OUT</span>
                 </div>
+
+
+
+
+
+				<input id="loginUser" type="hidden" value="${loginUser.name }" />
                 
 				<!-- Withpang Tracker v3.0 [장바구니&관심상품] start -->
+				
 				<script type="text/javascript">
-				  <!--
+				  
 				  // 장바구니 버튼 클릭 시 호출 메소드
 				  document.getElementById("cartBtn").onmousedown = sendCart;
 				    function sendCart() {
-				      sh.sendCart();
+				    	var loginUser = '${loginUser.name }';
+				    	var arrSelect = $(".option_mini.ui_optSelWrapper.position_top");//추가된 옵션 div 배열
+				    	var arrSelectNum = new Array();//추가된 옵션 div 배열에서 각각 id 끝자리에 있는 num을 담을 배열
+				    	//alert("arrSelect length : " + arrSelect.length);
+				    	for(var i = 0; i < arrSelect.length; i++){
+				    		arrSelectNum.push($(arrSelect[i]).attr("id").substring( $( arrSelect[i] ).attr( "id" ).length - 1 ) );// 추가된 옵션 div 마지막 num 뽑아내기
+				   			//$(a[0]).attr("id").substring($(a[0]).attr("id").length-1)
+				    	}
+				    	
+				    	var arrQuantity = "";
+				    	var arrCost = "";
+				    	var arrOpName = "";
+				    	var op_count = $(".option_mini.ui_optSelWrapper.position_top").length;
+				    	//var arrQuantity = new Array(); //quantity
+			    		//var arrCost = new Array(); //cost
+			    		//var arrOpName = new Array(); //itemOptionName
+			    		
+				    	if(op_count == 0){
+				    		alert("필수 옵션을 선택해주세요.");
+				    	}else{
+				    		
+				    		if(loginUser != ""){//로그인했을 때 장바구니 담기 기능 실행
+				    			
+					    		for(var i = 0; i < op_count; i++){
+					    			//arrQuantity.push($( "#option_mini_wrap" + (Number(i) + 1) + "> ul > li #quantity" + ( Number(i) + 1 )).val());
+					    			//arrCost.push(uncomma($("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > li div.sel_price > p > strong").text()));
+					    			//arrOpName.push($("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > #option_mini > em").text());
+					    			if(i < (op_count - 1)){
+						    			//arrQuantity += $( "#option_mini_wrap" + (Number(i) + 1) + "> ul > li #quantity" + ( Number(i) + 1 )).val();
+						    			arrQuantity += $( "#option_mini_wrap" + arrSelectNum[i] + "> ul > li #quantity" + arrSelectNum[i] ).val();
+						    			arrQuantity += ";";
+						    			//arrCost += uncomma($("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > li div.sel_price > p > strong").text());
+						    			arrCost += uncomma($("#option_mini_wrap" + arrSelectNum[i] + "> ul > li div.sel_price > p > strong").text());
+						    			arrCost += ";";
+						    			//arrOpName += $("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > #option_mini > em").text();
+						    			arrOpName += $("#option_mini_wrap" + arrSelectNum[i] + "> ul > #option_mini > em").text();
+						    			arrOpName += ";";
+					    			}else{
+					    				//arrQuantity += ($( "#option_mini_wrap" + (Number(i) + 1) + "> ul > li #quantity" + ( Number(i) + 1 )).val());
+					    				//arrCost += uncomma($("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > li div.sel_price > p > strong").text());
+					    				//arrOpName += $("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > #option_mini > em").text();
+					    				arrQuantity += ($( "#option_mini_wrap" + arrSelectNum[i] + "> ul > li #quantity" + arrSelectNum[i] ).val());
+					    				arrCost += uncomma($("#option_mini_wrap" + arrSelectNum[i] + "> ul > li div.sel_price > p > strong").text());
+					    				arrOpName += $("#option_mini_wrap" + arrSelectNum[i] + "> ul > #option_mini > em").text();
+					    			}
+					    		}
+				    			/* 
+					    		alert("[op_count] 선택된 옵션 갯수 : " + op_count);
+					    		alert("[Quantity] : [ " + arrQuantity + " ]");
+					    		alert("[Cost] : [ " + arrCost + " ]");
+					    		alert("[OpName] : [ " + arrOpName + " ]");
+ 								*/
+					    		
+						    	$.ajax({
+						    		url : '/h72/detail/insertCart' ,
+						    		type : 'post' , 
+						    		data : {quantity : arrQuantity ,
+						    				cost : arrCost ,
+						    				itemOptionName : arrOpName , 
+						    				op_count : op_count ,
+						    				userid : '${loginUser.userid }' ,
+						    				itemFullName : '${param.ItemDetailName }' ,
+						    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID }' ,
+						    				mainImg : '${itemDetailList.get(0).MAIN_IMG }' ,
+						    				message : null ,
+						    				KitYN : 'N'},
+						    		// 리턴 받는 dataType이 json이면 dataType을 json으로 변경
+						    		dataType : 'json' ,
+						    		success : function(data) {
+						    			alert("return : " + data.result + "\ncount(이미 등록된 카트리지 상품 수) : " + data.count);
+						    			if(data.result > 0) {alert(data.result + "개 insert 성공!"); $("#confirmLayer").css("display", "block");}
+						    			if(data.result == 0) {alert("insert 실패!");}
+						    			if(data.result == -1) {alert("카트에 이미 있습니다."); $("#confirmLayer").css("display", "block");}
+						    			// 리턴 받는 dataType이 json이면 아래와 같이 data.name으로 변경
+						    			//alert("return String : " + data.name);
+						    			//$("#confirmLayer").css("display", "block");
+						    		} ,
+						    		error : function(){
+						    			alert("error : 추가옵션을 선택하세요");
+						    			/* ${param.ItemDetailName } 상품명 */
+						    		}
+						    	});
+				    	
+				    		}else{
+				    			alert("로그인 해주세요");
+				    		}
+				    		
+				    	}
+				    	
 				    }
-				  // 찜,Wish 버튼 클릭 시 호출 메소드
-				  document.getElementById("wishBtn").onmousedown = sendWish;
-				    function sendWish() {
-				        sh.sendWish();
-				    }
-				  //-->
+				      //sh.sendCart();
+				      
+				    
+				  
 				</script>
 				<!-- Withpang Tracker v3.0 [장바구니&관심상품] end -->
 
@@ -530,50 +667,17 @@ function ResizeFrame(name)
 		<div class="cont"> 
 			<center>
 			
-			<p><img src="/h72/resources/image/protect/PRO0015_01.jpg"></p>
+			<p><img src="/h72/resources${itemDetailList.get(0).DETAIL_IMG01 }"></p>
 			
-			<!-- <p><img src="http://10world.co.kr/web/upload/151111/12t_160818_01.jpg"></p>
+			<c:if test="${not empty itemDetailList.get(0).DETAIL_IMG02}">
+			<h1 style="margin: 100px 0; font-size: 50px; color: blue;">NOTICE : NOT EMPTY<br>${itemDetailList.get(0).DETAIL_IMG02}</h1>
+			<p><img src="/h72/resources/${itemDetailList.get(0).DETAIL_IMG02 }"></p>
+			</c:if>
+			<c:if test="${empty itemDetailList.get(0).DETAIL_IMG02}">
+			<h1 style="margin: 100px 0; font-size: 50px; color: red;">NOTICE : EMPTY<br>${itemDetailList.get(0).DETAIL_IMG02}</h1>
+			</c:if>
 			
-			<p><img src="http://10world.co.kr/web/upload/151111/12t_160818_02.jpg"></p>
 			
-			<p><img src="http://10world.co.kr/web/upload/151111/12t_160818_03.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/12t_160818_04.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_160824_0_01.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_160824_01.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_160824_02.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_160824_03.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_160824_04.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_160824_0_02.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/11t_160818_01.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/11t_160818_02.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/11t_160818_03.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/11t_160818_04.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_160824_0_03.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/9t_160818_01.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/9t_160818_02.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/9t_160818_03.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/9t_160818_04.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_d_160824_1.jpg"></p>
-			
-			<p><img src="http://10world.co.kr/web/upload/151111/14t_d_160824_2.jpg"></p> -->
-
 			</center> 
 		</div>
 	</div>
@@ -738,32 +842,6 @@ function ResizeFrame(name)
 	    </div>
 	</div>  
     
-    
-    
-    <!-- 
-	<div id="sunny_footer">
-	    <div id="sunny_in">
-	    <div class="menu">
-	        <ul><li><a href="/shopinfo/company.html"><img src="/web/upload/sunny/image/footer_menu1.png"></a></li>
-	            <li><a href="/member/privacy.html"><img src="/web/upload/sunny/image/footer_menu2.png"></a></li>
-	            <li><a href="/member/agreement.html"><img src="/web/upload/sunny/image/footer_menu3.png"></a></li>
-	            <li><a href="/shopinfo/guide.html"><img src="/web/upload/sunny/image/footer_menu4.png"></a></li>
-	            <li><a href="/board/free/list.html?board_no=7"><img src="/web/upload/sunny/image/footer_menu5.png"></a></li>
-	            <li><a href="/board/recruit.html"><img src="/web/upload/sunny/image/footer_menu6.png"></a></li>
-	            <li><a href="/board/free/list.html?board_no=13"><img src="/web/upload/sunny/image/footer_menu7.png"></a></li>
-	            <li><a href="/front/php/b/board_list.php?board_no=33"><img src="/web/upload/sunny/image/footer_menu8.png"></a></li>
-	        </ul><img src="/web/upload/sunny/image/footer_company.png" width="562" height="91" usemap="#Map1" border="0">
-	        &nbsp;<map name="Map1" id="Map1"><area shape="rect" coords="317,18,399,32" href="http://www.ftc.go.kr/info/bizinfo/communicationView.jsp?apv_perm_no=2011319012830200537&amp;area1=&amp;area2=&amp;currpage=1&amp;searchKey=04&amp;searchVal=1088198622&amp;stdate=&amp;enddate=" target="_blank" onfocus="this.blur();"></map></div> 
-	    <div class="cscenter">
-	        <img src="/web/upload/sunny/image/footer_cscenter.png" width="168" height="141" usemap="#Map2" border="0">
-	        &nbsp;<map name="Map2" id="Map2"><area shape="rect" coords="1,125,79,141" href="/board/product/list.html?board_no=6" onfocus="this.blur();"></map></div>
-	    <div class="bank">
-	        <img src="/web/upload/sunny/image/footer_bank.png">
-	    &nbsp;</div>
-	    </div>
-	</div> 
-    -->
-
 	<div style="clear:both;"></div>    
 	    
 <!-- 	<div id="detail_copy"> 
@@ -771,6 +849,48 @@ function ResizeFrame(name)
 	    &nbsp;<map name="Map3" id="Map3"><area shape="rect" coords="361,5,452,16" href="http://sunnysideweb.com" target="_blank" onfocus="this.blur();"></map></div>
 	
 	</div> -->
+	
+	
+	<div id="confirmLayer" style="display: none">
+	
+
+	<title>H72</title>
+	<meta name="path_role" content="ETC">
+	<meta name="description" content="재난  용품 판매.">
+	
+		<div class="xans-element- xans-product xans-product-basketadd ">
+			<h1>장바구니 담기</h1>
+			<div class="content">
+		        <p>장바구니에 상품이 정상적으로 담겼습니다.</p>
+		    </div>
+			<div class="btnArea center">
+		        <a href="/h72/order/shopping_cart" style="padding:7px 22px 7px 22px; background:#000; border:1px solid #000; color:#fff; font-size:11px; text-decoration:none; ">장바구니보기</a>
+		        <a href="#none" onclick="$('#confirmLayer').hide();" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; font-size:11px; text-decoration:none; ">쇼핑계속하기</a>
+		    </div>
+			<div class="close">
+				<a onclick="$('#confirmLayer').hide();">
+					<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/common/btn_close.png" alt="닫기">
+				</a>
+			</div>
+		</div>
+
+	<!-- External Script Start -->
+
+		<!-- tgg -->
+		<!-- CMC script -->
+		<div id="tgg_common_bottom_script" style="display:none;">
+			<!-- WIDERPLANET HOME SCRIPT START 2016.8.24 -->
+			<div id="wp_tg_cts" style="display:none;"></div>
+		
+			<!-- // WIDERPLANET HOME SCRIPT END 2016.8.24 -->
+		</div>
+		<!-- CMC script -->
+
+	<!-- External Script End -->
+
+
+	</div>
+	
 	
 <jsp:include page='../main_footer.jsp' flush="false" />
 <!-- END --> 
@@ -947,7 +1067,64 @@ _tcts_m('13829','BIZMP');
 	<div id="modalContainer">
 	    <!-- <iframe id="modalContent" scroll="0" scrolling="no" frameborder="0"></iframe> -->
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
 
 
 </body>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="detailMapper">
+	<resultMap id="itemResult" type="com.project.h72.detail.vo.DetailVO">
+	<id property="ITEM_DETAIL_ID" column="ITEM_DETAIL_ID" />
+	<result property="CATEGORY_CODE" column="CATEGORY_CODE" />
+	<result property="ITEM_STATUS" column="ITEM_STATUS" />
+	<result property="ITEM_NAME" column="ITEM_NAME" />
+	<result property="MIN_PRICE" column="MIN_PRICE" />
+	<result property="MIN_SAIL_PRICE" column="MIN_SAIL_PRICE" />
+	<result property="MAIN_IMG" column="MAIN_IMG" />
+	<result property="DETAIL_IMG01" column="DETAIL_IMG01" />
+	<result property="DETAIL_IMG02" column="DETAIL_IMG02" />
+	<result property="ETC" column="ETC" />
+	</resultMap>
+	
+	<resultMap id="detailResult" type="com.project.h72.detail.vo.DetailDIVO">
+	<id property="ITEM_ID" column="ITEM_ID" />
+	<result property="ITEM_NAME" column="ITEM_NAME" />
+	<result property="ITEM_OPTION_NAME" column="ITEM_OPTION_NAME" />
+	<result property="ITEM_DETAIL_ID" column="ITEM_DETAIL_ID" />
+	<result property="PRICE" column="PRICE" />
+	<result property="SAIL_PRICE" column="SAIL_PRICE" />
+	<result property="STOCK" column="STOCK" />
+	<result property="MAIN_IMG" column="MAIN_IMG" />
+	<result property="DETAIL_IMG01" column="DETAIL_IMG01" />
+	<result property="DETAIL_IMG02" column="DETAIL_IMG02" />
+	<result property="ETC" column="ETC" />
+	</resultMap>
+	
+	<select id="selectItemList" resultType="DetailVO" resultMap="itemResult">
+	SELECT *
+	FROM ITEM_DETAIL_VIEW
+	</select>
+	
+	<select id="selectDetailItem" parameterType="String" resultType="DetailDIVO" resultMap="detailResult">
+	SELECT *
+	FROM ITEM_ALL_VIEW
+	WHERE ITEM_DETAIL_ID LIKE #{ItemDetailId, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 
+	<insert id="insertCart" parameterType="java.util.ArrayList">
+		<foreach collection="list" item="element" index="index" >
+		INSERT INTO CART(
+		CART_ID, ITEM_ID, USER_ID, ITEM_FULL_NAME, ITEM_DETAIL_ID, MAIN_IMG, QUANTITY, COST, MESSAGE, KIT_YN, ENROLL_DATE)
+		VALUES(
+			SEQ_CART_ID.NEXTVAL,
+			(SELECT ITEM_ID FROM ITEM_ALL_VIEW WHERE ITEM_DETAIL_ID LIKE (#{element.itemDetailid}) AND ITEM_OPTION_NAME LIKE (#{element.itemOptionName}),
+			#{element.userid},
+			#{element.itemFullName},
+			#{element.itemDetailid},
+			#{element.mainImg},
+			#{element.quantity},
+			#{element.cost},
+			#{element.message},
+			#{element.KitYN},
+			SYSDATE)
+		</foreach>
+	</insert>
+	-->
+	<insert id="insertCart" parameterType="com.project.h72.cart.vo.Cart">
+		INSERT INTO CART(
+		CART_ID, ITEM_ID, USER_ID, ITEM_FULL_NAME, ITEM_DETAIL_ID, MAIN_IMG, QUANTITY, COST, MESSAGE, KIT_YN, ENROLL_DATE)
+		VALUES(
+		SEQ_CART_ID.NEXTVAL,
+		(SELECT ITEM_ID 
+		 FROM ITEM_ALL_VIEW 
+		 WHERE ITEM_DETAIL_ID = #{itemDetailid} AND ITEM_OPTION_NAME = #{itemOptionName}),
+		#{userid}, #{itemFullName}, #{itemDetailid}, #{mainImg}, #{quantity}, #{cost}, #{message}, #{KitYN}, SYSDATE)
+	</insert>
+	
+	<select id="selectItemId" parameterType="com.project.h72.cart.vo.Cart" resultType="String">
+		SELECT ITEM_ID
+		FROM ITEM_ALL_VIEW
+		WHERE ITEM_DETAIL_ID = #{itemDetailid} AND ITEM_OPTION_NAME = #{itemOptionName}
+	</select>
+	
+	
+	<select id="selectCart" parameterType="com.project.h72.cart.vo.Cart" resultType="int">
+		SELECT COUNT(*)
+		FROM CART
+		WHERE ITEM_DETAIL_ID = #{itemDetailid} AND ITEM_ID = #{itemid} AND USER_ID = #{userid}
+	</select>
+
+
+</mapper>
