@@ -146,7 +146,7 @@ public class AdminController {
 		
 	}
 	
-	//주문페이지 개별 변경
+	//주문페이지 status 개별 변경
 	@RequestMapping(value="/updateStatusOne.do", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> updateStatusOne(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status){
 		
@@ -156,6 +156,17 @@ public class AdminController {
 		
 		return map;
 	}
+	
+	//주문페이지 change 개별 변경
+		@RequestMapping(value="/updateChangeOne.do", method = RequestMethod.POST)
+		public @ResponseBody Map<String, Object> updateChangeOne(@RequestParam("orderNo") String orderNo, @RequestParam("change") String change){
+			
+			int result= adminService.updateChangeOne(orderNo, change);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("result", result);
+			
+			return map;
+		}
 
 	//주문페이지 날짜 검색
 	@RequestMapping(value="orderASearchDate.do", method = RequestMethod.POST)

@@ -86,73 +86,124 @@
 	});
 
  	//날짜 선택 버튼시 inputd의 날짜 변경
- 	
-// 날짜포맷 지정하는 함수
-function dateToYYYYMMDD(date)
-{
-    function pad(num) {
-        num = num + '';
-        return num.length < 2 ? '0' + num : num;
-    }
-    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
-}
-
-
-//날짜 선택 버튼시 inputd의 날짜 변경
-	$(function(){		
-		var currDate = new Date(); // 현재 날짜
-		var startDate = new Date(new Date().setMonth(new Date().getDate()-3)); // 한달전 날짜
-		
-		// YYYY-MM-DD로 형식변환
-		var prevMon = dateToYYYYMMDD(startDate);
-		var currMon = dateToYYYYMMDD(currDate);		
-		document.getElementById("startDate").value = prevMon;
-		document.getElementById("endDate").value = currMon;
-				
-		$('a[days=00]').click(
-		function(){
-			document.getElementById("startDate").value = dateToYYYYMMDD(currDate);	
-		});		
-		$('a[days=03]').click(
-				function(){
-					var preOneMonth = new Date(new Date().setMonth(new Date().getDate()-3));
-					document.getElementById("startDate").value = dateToYYYYMMDD(preOneMonth);	
-				});
-		$('a[days=07]').click(
-				function(){
-					var preSeven = new Date(new Date().setDate(new Date().getDate()-7));
-					document.getElementById("startDate").value = dateToYYYYMMDD(preSeven);							
-				});		
-		
-		$('a[days=14]').click(
-				function(){
-					var preThreeMonth = new Date(new Date().setMonth(new Date().getDate()-14));
-					document.getElementById("startDate").value = dateToYYYYMMDD(preThreeMonth);						
-				});
+	 	
+	// 날짜포맷 지정하는 함수
+	function dateToYYYYMMDD(date)
+	{
+	    function pad(num) {
+	        num = num + '';
+	        return num.length < 2 ? '0' + num : num;
+	    }
+	    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
+	}
+	
+	
+	//날짜 선택 버튼시 inputd의 날짜 변경
+		$(function(){		
+			var currDate = new Date(); // 현재 날짜
+			var startDate = new Date(new Date().setMonth(new Date().getDate()-3)); // 한달전 날짜
+			
+			// YYYY-MM-DD로 형식변환
+			var prevMon = dateToYYYYMMDD(startDate);
+			var currMon = dateToYYYYMMDD(currDate);		
+			document.getElementById("startDate").value = prevMon;
+			document.getElementById("endDate").value = currMon;
+					
+			$('a[days=00]').click(
+			function(){
+				document.getElementById("startDate").value = dateToYYYYMMDD(currDate);	
+			});		
+			$('a[days=03]').click(
+					function(){
+						var preOneMonth = new Date(new Date().setMonth(new Date().getDate()-3));
+						document.getElementById("startDate").value = dateToYYYYMMDD(preOneMonth);	
+					});
+			$('a[days=07]').click(
+					function(){
+						var preSeven = new Date(new Date().setDate(new Date().getDate()-7));
+						document.getElementById("startDate").value = dateToYYYYMMDD(preSeven);							
+					});		
+			
+			$('a[days=14]').click(
+					function(){
+						var preThreeMonth = new Date(new Date().setMonth(new Date().getDate()-14));
+						document.getElementById("startDate").value = dateToYYYYMMDD(preThreeMonth);						
+					});
 	});
+	
  	
  	//개별 버튼 변경
- 	function updateStatusOne(orderNo){
- 		var status = $("[name=selectStatusOne] option:selected").val();
- 		//에이작스
-			$.ajax({
-				type:'POST',
-				url: "/h72/updateStatusOne.do",
-				data :{"orderNo":orderNo, "status":status},
-				success: function(data) {
-					alert(data.result);
-					if(data.result > 0){
-						alert("예!");			
-					}
-				},
-				error: function(data) {
-					alert("에러");
-					alert(date);
-				}			
-			});
-		 
-		
+ 	function updateStatusOne0(orderNo){
+ 		var status = $("[name=selectStatusOne0] option:selected").val();
+ 		goAjax1(orderNo, status);
 	}
+ 	
+ 	function updateStatusOne1(orderNo){
+ 		var status = $("[name=selectStatusOne1] option:selected").val();
+ 		goAjax1(orderNo, status);
+	}
+ 	
+ 	function updateStatusOne2(orderNo){
+ 		var status = $("[name=selectStatusOne2] option:selected").val();
+ 		goAjax1(orderNo, status);
+	}
+ 	
+ 	function updateStatusOne3(orderNo){
+ 		var status = $("[name=selectStatusOne3] option:selected").val();
+		goAjax1(orderNo, status);
+	}
+ 	
+ 	//ajax
+ 	function goAjax1(orderNo, status){ 		
+		$.ajax({
+			type:'POST',
+			url: "/h72/updateStatusOne.do",
+			data :{"orderNo":orderNo, "status":status},
+			success: function(data) {
+				if(data.result > 0){
+					alert("주문번호 [" + orderNo + "]를 '" + status + "'(으)로 변경하였습니다.");			
+				}
+			},
+			error: function(data) {
+				alert("에러발생! 변경에 실패하였습니다.");
+			}			
+		});	
+ 	}
+ 	
+ 	//취소.반품.교환 관련 개별 변경 버튼
+ 	function updateChangeOne1(orderNo){
+ 		var change = $("[name=selectChangeOne1] option:selected").val();
+ 		goAjax2(orderNo, change);
+ 	}
+ 	
+ 	function updateChangeOne2(orderNo){
+ 		var change = $("[name=selectChangeOne2] option:selected").val();
+ 		goAjax2(orderNo, change);
+ 	}
+ 	
+ 	function updateChangeOne3(orderNo){
+ 		var change = $("[name=selectChangeOne3] option:selected").val();
+ 		goAjax2(orderNo, change);
+ 	}
+ 	
+ 	//ajax
+ 	function goAjax2(orderNo, change){ 		
+ 		alert("ddd" + orderNo + ", " + change);
+		$.ajax({
+			type:'POST',
+			url: "/h72/updateChangeOne.do",
+			data :{"orderNo":orderNo, "change":change},
+			success: function(data) {
+				if(data.result > 0){
+					alert("주문번호 [" + orderNo + "]를 '" + change + "'(으)로 변경하였습니다.");			
+				}
+			},
+			error: function(data) {
+				alert("에러발생! 변경에 실패하였습니다.");
+			}			
+		});	
+ 	}
+ 	
  	 	
 </script>
 </head>
@@ -207,13 +258,14 @@ function dateToYYYYMMDD(date)
 		<li><a href="javascript:void(0)" class="tablinks"
 			onclick="openTab(event, 'order')">주문접수</a></li>
 		<li><a href="javascript:void(0)" class="tablinks"
-			onclick="openTab(event, 'payed')">결제완료</a></li>
+			onclick="openTab(event, 'resultpaid')">결제완료</a></li>
 		<li><a href="javascript:void(0)" class="tablinks"
 			onclick="openTab(event, 'move')">배송중</a></li>
 		<li><a href="javascript:void(0)" class="tablinks"
 			onclick="openTab(event, 'back')">취소/교환/반품</a></li>
 	</ul>
 
+<!-- ----------------------------------------모두보기----------------------------------------------------------- -->
 	<div id="all" class="tabcontent" style="display:block">
     <input type="button" id="btnExport" value="Export To Excel" />
     <br />
@@ -240,40 +292,48 @@ function dateToYYYYMMDD(date)
 					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
-					<c:set var="result" value="${(list.totalQuantity*list.totalPrice)+result}" />
+					<c:set var="resultAll" value="${list.totalPrice+resultAll}" />
 						<div class="displaynone"></div></td>
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="state${list.orderNo }" name="selectStatusOne" class="selectOption">
+						<select id="state${list.orderNo }" name="selectStatusOne0" class="selectOption">
 							<option value="결제완료">결제완료</option>
 							<option value="배송중">배송중</option>
 							<option value="주문접수">주문접수</option> 
+							<option value="구매완료">구매완료</option> 
+							<option value="취소요청">취소요청</option> 
+							<option value="교환요청">교환요청</option> 
+							<option value="반품요청">반품요청</option> 
 				<script>
 				$(function(){
 					$('#state${list.orderNo }').val('${list.orderStatus}').prop("selected", true);
 				});
 				</script>
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne('${list.orderNo }')" value="변경">
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne0('${list.orderNo }')" value="변경">
 					</td>
 				</tr>				
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${result} 원</div>
+		<div id="totalPrice"> 총 금액 : ${resultAll} 원</div>
 		<div id="optionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
-				<option name="selectStatus" value="결제완료" >결제완료</option>
-				<option name="selectStatus" value="배송중" >배송중</option>
-				<option name="selectStatus" value="주문접수" >주문접수</option>
+				<option value="결제완료">결제완료</option>
+				<option value="배송중">배송중</option>
+				<option value="주문접수">주문접수</option> 
+				<option value="구매완료">구매완료</option> 
+				<option value="취소요청">취소요청</option> 
+				<option value="교환요청">교환요청</option> 
+				<option value="반품요청">반품요청</option> 
 			</select>
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">
 		</div>
 		</form>
 	</div><!-- tab -->
-
+<!-- ------------------------------------주문접수---------------------------------------------------------- -->
 	<div id="order" class="tabcontent">
     <input type="button" id="btnExport" value="Export To Excel" />
     <br />
@@ -292,41 +352,46 @@ function dateToYYYYMMDD(date)
 				</tr>
 			</thead>			
 			<tbody class="">				
-				<c:forEach var="list" items="${list}" >				
+				<c:forEach var="list" items="${list}" >	
+				<c:if test="${list.orderStatus eq '주문접수' }">			
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
-
 					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
-					<c:set var="result" value="${(list.totalQuantity*list.totalPrice)+result}" />
-						<div class="displaynone"></div></td>
+						<c:set var="resultOrder" value="${list.totalPrice+resultOrder}" />
+						<div class="displaynone"></div>
+					</td>
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="state${list.orderNo }" name="selectStatusOne" class="selectOption">
+						<select id="state" name="selectStatusOne1" class="selectOption">
 							<option value="결제완료">결제완료</option>
 							<option value="배송중">배송중</option>
-							<option value="주문접수">주문접수</option> 
-				<script>
-				$(function(){
-					$('#state${list.orderNo }').val('${list.orderStatus}').prop("selected", true);
-				});
-				</script>
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne('${list.orderNo }')" value="변경">
+							<option value="주문접수" selected>주문접수</option> 
+							<option value="구매완료">구매완료</option> 
+							<option value="취소요청">취소요청</option> 
+							<option value="교환요청">교환요청</option> 
+							<option value="반품요청">반품요청</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne1('${list.orderNo }')" value="변경">
 					</td>
-				</tr>				
+				</tr>		
+				</c:if>		
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${result} 원</div>
+		<div id="totalPrice"> 총 금액 : ${resultOrder} 원</div>
 		<div id="optionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
-				<option name="selectStatus" value="결제완료" >결제완료</option>
-				<option name="selectStatus" value="배송중" >배송중</option>
-				<option name="selectStatus" value="주문접수" >주문접수</option>
+				<option value="결제완료">결제완료</option>
+				<option value="배송중">배송중</option>
+				<option value="주문접수" selected>주문접수</option> 
+				<option value="구매완료">구매완료</option> 
+				<option value="취소요청">취소요청</option> 
+				<option value="교환요청">교환요청</option> 
+				<option value="반품요청">반품요청</option> 
 			</select>
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">
@@ -334,223 +399,331 @@ function dateToYYYYMMDD(date)
 		</form>
 	</div><!-- tab -->
 
-	<div id="payed" class="tabcontent">
-		<h3>Tokyo</h3>
-		<p>Tokyo is the capital of Japan.</p>
-	</div><!-- tab -->
-	
-	<div id="move" class="tabcontent">
-		<h3>Tokyo</h3>
-		<p>Tokyo is the capital of Japan.</p>
-	</div><!-- tab -->
-	
-	<div id="back" class="tabcontent">
-		<h3>취소내역</h3>
-				<table id="tblExport" border="1" summary="">
+<!-- -------------------------------------결제완료--------------------------------------------------------------------- -->
+	<div id="resultpaid" class="tabcontent">
+    <input type="button" id="btnExport" value="Export To Excel" />
+    <br />
+    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <table id="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
-					<th scope="col" class="price">상품구매금액</th>
+					<th scope="col" class="price">상품구매금액(원)</th>
 					<th scope="col" class="who">주문자</th>
 					<th scopt="col" class="how">주문 방법</th>
 					<th scope="col" class="state">주문처리상태</th>
 				</tr>
-			</thead>
-			<tbody class="">
+			</thead>			
+			<tbody class="">				
+				<c:forEach var="list" items="${list}" >	
+				<c:if test="${list.orderStatus eq '결제완료' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
-					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a> </p></td>
-
-					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
-					<td class="quantity">1</td>
-
-					<td class="price"><strong>23,900원</strong>
-						<div class="displaynone"></div></td>
-					<td class="who"><a>user01</a></td>
-					<td class="how">무통장</td>
-					<td class="state">
-						<select id="stateMo" class="selectOption">
-							<option id="">결제완료</option>
-							<option id="">배송중</option>
-							<option id="">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
+					<td class="quantity">${list.totalQuantity }</td>
+					<td class="price"><strong>${list.totalPrice }</strong>
+						<c:set var="resultpaid" value="${list.totalPrice+resultpaid}" />
+						<div class="displaynone"></div>
 					</td>
-				</tr>
-				
-				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
-					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a></p></td>
-
-					<td class="product">베이직 모직 백팩 [옵션: 그레이] 외 5개 </td>
-					<td class="quantity">6</td>
-
-					<td class="price"><strong>23,900원</strong>
-						<div class="displaynone"></div></td>
-					<td class="who"><a>user01</a></td>
-					<td class="how">무통장</td>
+					<td class="who"><a>${list.userId }</a></td>
+					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="stateMo" class="selectOption">
-							<option id="">결제완료</option>
-							<option id="">배송중</option>
-							<option id="">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
-					</td>					
-				</tr>
+						<select id="state" name="selectStatusOne2" class="selectOption">
+							<option value="결제완료" selected>결제완료</option>
+							<option value="배송중">배송중</option>
+							<option value="주문접수">주문접수</option> 
+							<option value="구매완료">구매완료</option> 
+							<option value="취소요청">취소요청</option> 
+							<option value="교환요청">교환요청</option> 
+							<option value="반품요청">반품요청</option>  
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne2('${list.orderNo }')" value="변경">
+					</td>
+				</tr>		
+				</c:if>		
+				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : </div>
-		<div id="modifyBtn">
+		<div id="totalPrice"> 총 금액 : ${resultpaid} 원</div>
+		<div id="optionBtn">
 			선택한 주문건을 
-			<select id="modifyWhat" class="selectOption">
-				<option id="">결제완료</option>
-				<option id="">배송중</option>
-				<option id="">주문접수</option>
+			<select id="modifyWhat" name="selectStatus" class="selectOption">
+				<option value="결제완료" selected>결제완료</option>
+				<option value="배송중">배송중</option>
+				<option value="주문접수">주문접수</option> 
+				<option value="구매완료">구매완료</option> 
+				<option value="취소요청">취소요청</option> 
+				<option value="교환요청">교환요청</option> 
+				<option value="반품요청">반품요청</option> 
 			</select>
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">
 		</div>
-		<hr>
-		
-		<h3>교환내역</h3>
-				<table id="orderList" border="1" summary="">
+		</form>
+	</div><!-- tab -->
+
+<!-- -------------------------------------배송중--------------------------------------------------------------------- -->
+	<div id="move" class="tabcontent">
+    <input type="button" id="btnExport" value="Export To Excel" />
+    <br />
+    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <table id="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
-					<th scope="col" class="price">상품구매금액</th>
+					<th scope="col" class="price">상품구매금액(원)</th>
 					<th scope="col" class="who">주문자</th>
 					<th scopt="col" class="how">주문 방법</th>
 					<th scope="col" class="state">주문처리상태</th>
 				</tr>
-			</thead>
-			<tbody class="">
+			</thead>			
+			<tbody class="">				
+				<c:forEach var="list" items="${list}" >	
+				<c:if test="${list.orderStatus eq '배송중' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
-					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a> </p></td>
-
-					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
-					<td class="quantity">1</td>
-
-					<td class="price"><strong>23,900원</strong>
-						<div class="displaynone"></div></td>
-					<td class="who"><a>user01</a></td>
-					<td class="how">무통장</td>
-					<td class="state">
-						<select id="stateMo" class="selectOption">
-							<option id="">결제완료</option>
-							<option id="">배송중</option>
-							<option id="">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
+					<td class="quantity">${list.totalQuantity }</td>
+					<td class="price"><strong>${list.totalPrice }</strong>
+						<c:set var="resultdelivery" value="${list.totalPrice+resultdelivery}" />
+						<div class="displaynone"></div>
 					</td>
-				</tr>
-				
-				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
-					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a></p></td>
-
-					<td class="product">베이직 모직 백팩 [옵션: 그레이] 외 5개 </td>
-					<td class="quantity">6</td>
-
-					<td class="price"><strong>23,900원</strong>
-						<div class="displaynone"></div></td>
-					<td class="who"><a>user01</a></td>
-					<td class="how">무통장</td>
+					<td class="who"><a>${list.userId }</a></td>
+					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="stateMo" class="selectOption">
-							<option id="">결제완료</option>
-							<option id="">배송중</option>
-							<option id="">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
-					</td>					
-				</tr>
+						<select id="state" name="selectStatusOne3" class="selectOption">
+							<option value="결제완료">결제완료</option>
+							<option value="배송중" selected>배송중</option>
+							<option value="주문접수">주문접수</option> 
+							<option value="구매완료">구매완료</option> 
+							<option value="취소요청">취소요청</option> 
+							<option value="교환요청">교환요청</option> 
+							<option value="반품요청">반품요청</option> 
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne3('${list.orderNo }')" value="변경">
+					</td>
+				</tr>		
+				</c:if>		
+				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : </div>
-		<div id="modifyBtn">
+		<div id="totalPrice"> 총 금액 : ${resultdelivery} 원</div>
+		<div id="optionBtn">
 			선택한 주문건을 
-			<select id="modifyWhat" class="selectOption">
-				<option id="">결제완료</option>
-				<option id="">배송중</option>
-				<option id="">주문접수</option>
+			<select id="modifyWhat" name="selectStatus" class="selectOption">
+				<option value="결제완료">결제완료</option>
+				<option value="배송중" selected>배송중</option>
+				<option value="주문접수">주문접수</option> 
+				<option value="구매완료">구매완료</option> 
+				<option value="취소요청">취소요청</option> 
+				<option value="교환요청">교환요청</option> 
+				<option value="반품요청">반품요청</option> 
 			</select>
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">
+		</div>
+		</form>
+	</div><!-- tab -->
+
+<!-- ---------------------------------------------취소내역-------------------------------------------------------------- -->
+	<div id="back" class="tabcontent">
+		<h3>취소내역</h3>
+		<div id="cancel">		
+    <input type="button" id="btnExport" value="Export To Excel" />
+    <br />
+    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <table id="orderList" cellspacing='0' cellpadding='0'>
+			<thead>
+				<tr>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
+					<th scope="col" class="product">상품정보</th>
+					<th scope="col" class="quantity">총 수량</th>
+					<th scope="col" class="price">상품구매금액(원)</th>
+					<th scope="col" class="who">주문자</th>
+					<th scopt="col" class="how">주문 방법</th>
+					<th scope="col" class="change">주문처리상태</th>
+				</tr>
+			</thead>			
+			<tbody class="">				
+				<c:forEach var="list" items="${list}" >	
+				<c:if test="${list.orderStatus eq '취소요청' }">			
+				<tr class="xans-record-">
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
+					<td class="quantity">${list.totalQuantity }</td>
+					<td class="price"><strong>${list.totalPrice }</strong>
+						<c:set var="resultchange" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
+						<div class="displaynone"></div>
+					</td>
+					<td class="who"><a>${list.userId }</a></td>
+					<td class="how">${list.paymentMethod }</td>
+					<td class="change">
+						<select id="change${list.orderNo }" name="selectChangeOne1" class="selectOption">
+							<option value="접수중" >접수중</option>
+							<option value="처리중">처리중</option>
+							<option value="처리완료">처리완료</option> 
+				<script>
+				$(function(){
+					$('#change${list.orderNo }').val('${list.orderChange}').prop("selected", true);
+				});
+				</script>
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateChangeOne1('${list.orderNo }')" value="변경">
+					</td>
+				</tr>		
+				</c:if>		
+				</c:forEach>				
+			</tbody>
+		</table>
+		<div id="totalPrice"> 총 금액 : ${resultpaid} 원</div>
+		<div id="backsOptionBtn">
+			선택한 주문건을 
+			<select id="modifyWhat" name="selectStatus" class="selectOption">
+				<option value="접수중" >접수중</option>
+				<option value="처리중">처리중</option>
+				<option value="처리완료">처리완료</option>
+			</select>
+			로 변경합니다. &nbsp;
+			<input type="submit" class="admin_btn" value="변경하기">
+		</div>
+		</form>
+		</div>
+		<hr>
+		
+		<h3>교환내역</h3>
+		<div id="change">
+    <input type="button" id="btnExport" value="Export To Excel" />
+    <br />
+    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <table id="orderList" cellspacing='0' cellpadding='0'>
+			<thead>
+				<tr>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
+					<th scope="col" class="product">상품정보</th>
+					<th scope="col" class="quantity">총 수량</th>
+					<th scope="col" class="price">상품구매금액(원)</th>
+					<th scope="col" class="who">주문자</th>
+					<th scopt="col" class="how">주문 방법</th>
+					<th scope="col" class="change">주문처리상태</th>
+				</tr>
+			</thead>			
+			<tbody class="">				
+				<c:forEach var="list" items="${list}" >	
+				<c:if test="${list.orderStatus eq '교환요청' }">			
+				<tr class="xans-record-">
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
+					<td class="quantity">${list.totalQuantity }</td>
+					<td class="price"><strong>${list.totalPrice }</strong>
+						<c:set var="resultpaid" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
+						<div class="displaynone"></div>
+					</td>
+					<td class="who"><a>${list.userId }</a></td>
+					<td class="how">${list.paymentMethod }</td>
+					<td class="change">
+						<select id="change${list.orderNo }" name="selectChangeOne2" class="selectOption">
+							<option value="접수중" >접수중</option>
+							<option value="처리중">처리중</option>
+							<option value="처리완료">처리완료</option>	
+			<script>
+				$(function(){
+					$('#change${list.orderNo }').val('${list.orderChange}').prop("selected", true);
+				});
+				</script>
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateChangeOne2('${list.orderNo }')" value="변경">
+					</td>
+				</tr>		
+				</c:if>		
+				</c:forEach>				
+			</tbody>
+		</table>
+		<div id="totalPrice"> 총 금액 : ${resultpaid} 원</div>
+		<div id="backsOptionBtn">
+			선택한 주문건을 
+			<select id="modifyWhat" name="selectStatus" class="selectOption">
+				<option value="접수중" >접수중</option>
+				<option value="처리중">처리중</option>
+				<option value="처리완료">처리완료</option>
+			</select>
+			로 변경합니다. &nbsp;
+			<input type="submit" class="admin_btn" value="변경하기">
+		</div>
+		</form>
 		</div>
 
 		<hr>
 		
 		<h3>반품내역</h3>
-				<table id="orderList" border="1" summary="">
+		<div id="backing">
+    <input type="button" id="btnExport" value="Export To Excel" />
+    <br />
+    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <table id="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
-					<th scope="col" class="price">상품구매금액</th>
+					<th scope="col" class="price">상품구매금액(원)</th>
 					<th scope="col" class="who">주문자</th>
 					<th scopt="col" class="how">주문 방법</th>
-					<th scope="col" class="state">주문처리상태</th>
+					<th scope="col" class="change">주문처리상태</th>
 				</tr>
-			</thead>
-			<tbody class="">
+			</thead>			
+			<tbody class="">				
+				<c:forEach var="list" items="${list}" >	
+				<c:if test="${list.orderStatus eq '반품요청' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
-					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a> </p></td>
-
-					<td class="product">베이직 모직 백팩 [옵션: 그레이]</td>
-					<td class="quantity">1</td>
-
-					<td class="price"><strong>23,900원</strong>
-						<div class="displaynone"></div></td>
-					<td class="who"><a>user01</a></td>
-					<td class="how">무통장</td>
-					<td class="state">
-						<select id="stateMo" class="selectOption">
-							<option id="" >결제완료</option>
-							<option id="">배송중</option>
-							<option id="">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+					<td class="product">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </td>
+					<td class="quantity">${list.totalQuantity }</td>
+					<td class="price"><strong>${list.totalPrice }</strong>
+						<c:set var="resultpaid" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
+						<div class="displaynone"></div>
 					</td>
-				</tr>
-				
-				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
-					<td class="number"><p> 2016/10/17 <br><a href="">[20161017-0001735]</a></p></td>
-
-					<td class="product">베이직 모직 백팩 [옵션: 그레이] 외 5개 </td>
-					<td class="quantity">6</td>
-
-					<td class="price"><strong>23,900원</strong>
-						<div class="displaynone"></div></td>
-					<td class="who"><a>user01</a></td>
-					<td class="how">무통장</td>
-					<td class="state">
-						<select id="stateMo" class="selectOption">
-							<option id="">결제완료</option>
-							<option id="">배송중</option>
-							<option id="">주문접수</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" value="변경">
-					</td>					
-				</tr>
+					<td class="who"><a>${list.userId }</a></td>
+					<td class="how">${list.paymentMethod }</td>
+					<td class="change">
+						<select id="change${list.orderNo }" name="selectChangeOne3" class="selectOption">
+							<option value="접수중" >접수중</option>
+							<option value="처리중">처리중</option>
+							<option value="처리완료">처리완료</option>
+				<script>
+				$(function(){
+					$('#change${list.orderNo }').val('${list.orderChange}').prop("selected", true);
+				});
+				</script>
+						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateChangeOne3('${list.orderNo }')" value="변경">
+					</td>
+				</tr>		
+				</c:if>		
+				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : </div>
-		<div id="modifyBtn">
+		<div id="totalPrice"> 총 금액 : ${resultpaid} 원</div>
+		<div id="backsOptionBtn">
 			선택한 주문건을 
-			<select id="modifyWhat" class="selectOption">
-				<option class="nn" id="">결제완료</option>
-				<option class="nn" id="">배송중</option>
-				<option class="nn" id="">주문접수</option>
+			<select id="modifyWhat" name="selectStatus" class="selectOption">
+				<option value="접수중" >접수중</option>
+				<option value="처리중">처리중</option>
+				<option value="처리완료">처리완료</option>
 			</select>
 			로 변경합니다. &nbsp;
 			<input type="submit" class="admin_btn" value="변경하기">
 		</div>
+		</form>		
+		</div>		
 	</div><!-- tab -->
 
 	</div><!-- all tab -->

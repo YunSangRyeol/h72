@@ -60,13 +60,20 @@ public class AdminDao {
 		return result;
 	}
 
-	public int updateStatusOne(String orderNo, String selectStatusOne) {
-				
+	public int updateStatusOne(String orderNo, String status) {				
 		Map<String, String> noNstatus = new HashMap<String, String>();
 		noNstatus.put( "orderNo", orderNo);
-		noNstatus.put( "status", selectStatusOne);
+		noNstatus.put( "status", status);
 		
 		return sqlSession.update(NAMESPACE +"updateOrderStatus", noNstatus);
+	}
+	
+	public int updateChangeOne(String orderNo, String change) {
+		Map<String, String> noNstatus = new HashMap<String, String>();
+		noNstatus.put( "orderNo", orderNo);
+		noNstatus.put( "change", change);
+		
+		return sqlSession.update(NAMESPACE +"updateOrderChange", noNstatus);
 	}
 
 	public List<Order> orderASearchDate(Date start, Date end) {
@@ -88,5 +95,7 @@ public class AdminDao {
 	public Member memberUPage(String userid) {
 		return sqlSession.selectOne(NAMESPACE + "memberUPage", userid);
 	}
+
+	
 
 }

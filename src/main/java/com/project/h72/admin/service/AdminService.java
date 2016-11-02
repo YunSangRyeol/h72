@@ -35,5 +35,7 @@ public interface AdminService {
 
 	Member memberUPage(String userid);
 
+	int updateChangeOne(String orderNo, String change);
+
 
 }

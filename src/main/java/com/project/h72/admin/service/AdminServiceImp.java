@@ -43,8 +43,13 @@ public class AdminServiceImp implements AdminService{
 	}
 
 	
-	public int updateStatusOne(String orderNo, String selectStatusOne) {
-		return dao.updateStatusOne(orderNo, selectStatusOne);
+	public int updateStatusOne(String orderNo, String status) {
+		return dao.updateStatusOne(orderNo, status);
+	}
+	
+	@Override
+	public int updateChangeOne(String orderNo, String change) {
+		return dao.updateChangeOne(orderNo, change);
 	}
 
 	@Override
@@ -66,5 +71,7 @@ public class AdminServiceImp implements AdminService{
 	public Member memberUPage(String userid) {
 		return dao.memberUPage(userid);
 	}
+
+	
 	
 }
