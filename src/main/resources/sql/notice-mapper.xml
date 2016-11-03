@@ -16,10 +16,11 @@
 		SELECT *	FROM NOTICE
 		
 	</select>
-	
-	<insert id="insertNotice" parameterType="Notice">
-	SELECT *	FROM  H72.NOTICE
-	</insert>
+		<select id="getNoticeContent" parameterType="String" resultType="Notice">
+		SELECT *	FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
+		
+	</select>
+
 	
 	
 </mapper>

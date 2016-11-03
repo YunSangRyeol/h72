@@ -10,5 +10,7 @@ import com.project.h72.notice.vo.Notice;
 @Service
 public interface NoticeService {
 
-	List<Notice> getNoticeList(); 
+	List<Notice> getNoticeList();
+
+	Notice getNoticeContent(String noticeNo); 
 }

@@ -9,14 +9,18 @@ public class QnA {
 	private String qContent; // 내용
 	private Date qDate; // 작성일
 	private String qWriter; // 질문작성자
-	private int answer; // 질문 답변 여부
+	private String answer; // 질문 답변 여부
 	private String answerContent; // 답변내용
 	private Date aDate; // 답변일
 	private String qName; // 분류명
-	private int qCode; // 분류코드
+	private String qCode; // 분류코드
 
-	public QnA(int qNo, String qTitle, String qContent, Date qDate, String qWriter, int answer, String answerContent,
-			Date aDate, String qName, int qCode) {
+	public QnA() {
+		super();
+	}
+
+	public QnA(int qNo, String qTitle, String qContent, Date qDate, String qWriter, String answer, String answerContent,
+			Date aDate, String qName, String qCode) {
 		super();
 		this.qNo = qNo;
 		this.qTitle = qTitle;
@@ -70,11 +74,11 @@ public class QnA {
 		this.qWriter = qWriter;
 	}
 
-	public int getAnswer() {
+	public String getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(int answer) {
+	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
 
@@ -102,12 +106,19 @@ public class QnA {
 		this.qName = qName;
 	}
 
-	public int getqCode() {
+	public String getqCode() {
 		return qCode;
 	}
 
-	public void setqCode(int qCode) {
+	public void setqCode(String qCode) {
 		this.qCode = qCode;
+	}
+
+	@Override
+	public String toString() {
+		return "QnA [qNo=" + qNo + ", qTitle=" + qTitle + ", qContent=" + qContent + ", qDate=" + qDate + ", qWriter="
+				+ qWriter + ", answer=" + answer + ", answerContent=" + answerContent + ", aDate=" + aDate + ", qName="
+				+ qName + ", qCode=" + qCode + "]";
 	}
 
 }

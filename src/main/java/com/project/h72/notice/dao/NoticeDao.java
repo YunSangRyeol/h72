@@ -16,9 +16,13 @@ public class NoticeDao {
 	@Autowired
 	private SqlSession sqlSession;
 
+	public Notice getNoticeContent(String noticeNo){
+	return sqlSession.selectOne(NAMESPACE + "getNoticeContent", noticeNo);
+	}
+	
 	public List<Notice> getNoticeList(){
 		List<Notice> list =sqlSession.selectList(NAMESPACE +"getNoticeList");
-		System.out.println("ujjujj"+list);
-	return sqlSession.selectList(NAMESPACE +"getNoticeList");
+		System.out.println("DAO List"+list);
+		return sqlSession.selectList(NAMESPACE +"getNoticeList");
 	}
 }

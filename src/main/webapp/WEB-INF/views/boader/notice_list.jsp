@@ -32,10 +32,10 @@
 						<a href="<c:url value="/boader/qna_list"/>">Q&A</a>
 				</div>
 
-				<c:if test="${loginUser.id == 'admin' }">
+<%-- 				<c:if test="${loginUser.id == 'ADMIN' }">
 					<a href="new" type="button" class="btn btn-primary btn-block"
 						style="margin-bottom: 20px">공지사항 등록</a>
-				</c:if>
+				</c:if> --%>
 			</div>
 			<div class="boardSort">
 				<span
@@ -82,27 +82,15 @@
                 </tr>
             </c:if> --%>           
 					</tbody>
-					<tbody
+					<!-- <tbody
 						class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002">
-						<!--
+						
                 $login_page_url = /member/login.html
                 $deny_access_url = /index.html
-            -->
-	<!-- 					<tr style="background-color: #FFFFFF; color: #000000;"
-							class="xans-record-">
-							<td>146</td>
+           
+ 
 
-							<td class="subject"><a
-								href="/board/free/read.html?no=622218&amp;board_no=1"
-								style="color: #000000;">10월 3일 개천절 휴무 안내</a> <span
-								class="comment"></span></td>
-							<td><img src="/web/upload/sunny/images/icon_10world.png"></td>
-							<td class="txtLess ">2016-09-30</td>
-
-
-						</tr> -->
-
-					</tbody>
+					</tbody> -->
 				</table>
 			</div>
 			<div
@@ -111,8 +99,14 @@
 			</div>
 			<div
 				class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 ">
+				<c:if test="${loginUser.userid eq 'ADMIN' }">
+					<a href="new" type="button" class="btn btn-primary btn-block"
+						style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">공지사항 등록</a>
+				</c:if>
+				
+			<!-- 	
 				<a href="/board/free/write.html?board_no=1"
-					style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">글쓰기</a>
+					style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">글쓰기</a> -->
 			</div>
 		</div>
 

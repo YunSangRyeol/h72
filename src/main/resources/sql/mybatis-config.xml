@@ -21,6 +21,7 @@
 		<typeAlias type="com.project.h72.notice.vo.Notice" alias="Notice" />
 		<typeAlias type="com.project.h72.detail.vo.DetailVO" alias="DetailVO" />
 		<typeAlias type="com.project.h72.detail.vo.DetailDIVO" alias="DetailDIVO" />
+		<typeAlias type="com.project.h72.qna.vo.QnA" alias="QnA" />
 	</typeAliases>	
 	
 	

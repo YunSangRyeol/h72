@@ -5,11 +5,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="Generator" content="EditPlus®">
-<meta name="Author" content="">
-<meta name="Keywords" content="">
-<meta name="Description" content="">
-<title>Document</title>
+
+<title>detail_view</title>
 <link href="/h72/resources/css/notice.css" type="text/css"
 	rel="stylesheet">
 </head>
@@ -31,9 +28,8 @@
 						style="font-family: 'Helvetica', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">
 						<span
 							style="font-family: 'Helvetica', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">NOTICE</span>
-						<br> <a href="/board/free/list.html?board_no=1"
-							class="active">공지사항</a> <a
-							href="/board/product/list.html?board_no=6">Q&amp;A</a>
+						<br> <a href="<c:url value="/boader/notice_list"/>">공지사항</a>
+						<a href="<c:url value="/boader/qna_list"/>">Q&A</a><br> <br>
 				</div>
 			</div>
 			<!-- 글 내용-->
@@ -62,72 +58,26 @@
 							<tbody>
 								<tr>
 									<th scope="row">제목</th>
-									<td>2016 추석연휴 휴무안내</td>
-								</tr>
-								<tr>
-									<th scope="row">작성자</th>
-									<td><img src="/web/upload/sunny/images/icon_10world.png">
-										<span class="displaynone">(ip:)</span></td>
-								</tr>
-								<tr class="etcArea">
-									<td colspan="2">
-										<ul>
-											<li class="date "><strong class="th">작성일</strong> <span
-												class="td">2016-09-09</span></li>
-
-										</ul>
+									<td class="noticeTitle"><a
+										href="notice.do?noticeNo=${list.noticeNo}">${list.noticeTitle}</a>
 									</td>
 								</tr>
 
-								<tr class="view">
+								<tr>
+									<th scope="row">작성일</th>
+									<td class="enrolldate">${list.enrolldate}</td>
+								</tr>
+
+								<tr>
 									<td colspan="2">
 										<div class="detail"
 											style="text-align: left; line-height: 1.8; padding: 40px;">
+
 											<p align="center">
-												<strong><ins>
-														<br>
-													</ins></strong>
+											${list}
+												
 											</p>
-											<p align="center">
-												<strong><ins>
-														<br>
-													</ins></strong>
-											</p>
-											<p align="center">
-												<strong><ins>추석연휴 휴무안내</ins></strong>
-											</p>
-											<p align="center">
-												<br>
-											</p>
-											<strong><p align="center">
-													<br>
-												</p></strong>
-											<p align="center">2016년 9월 14월(수) - 16일(금)은 추석 연휴기간입니다</p>
-											<p align="center">&nbsp;</p>
-											<p align="center">
-												연휴기간동안 커먼유니크의 상품주문 및 입금확인은 정상적으로 처리되나<br>고객상담 및 배송은
-												19일부터 정상적으로 진행됩니다
-											</p>
-											<p align="center">
-												<br>
-											</p>
-											<p align="center">
-												연휴 전 마지막 상품 출고일은 9월 12일(월)이며<br>연휴 전/후로 전상품 주문폭주가 예상되오니<br>원활한
-												상품수령을 원하시는 고객님께서는<br>미리 여유있는 주문, 입고지연 게시판 확인을 부탁드립니다
-											</p>
-											<p align="center">
-												<br>
-											</p>
-											<p align="center">감사합니다!</p>
-											<p align="center">
-												<br>
-											</p>
-											<p align="center">
-												<br>
-											</p>
-											<p>
-												<br>
-											</p>
+
 										</div>
 									</td>
 								</tr>
@@ -145,8 +95,7 @@
 						</table>
 					</div>
 					<div class="btnArea ">
-						<span class="left"><a
-							href="?board_no=1&amp;page=1"
+						<span class="left"><a href="?board_no=1&amp;page=1"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">목록</a></span>
 						<a href="#none"
 							onclick="BOARD_READ.article_delete('BoardDelForm','1');"
@@ -156,52 +105,14 @@
 							href="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
 							class="displaynone"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">수정</a>
-						<a href="/board/free/reply.html" class="displaynone"
-							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">답변</a>
 					</div>
 				</div>
 			</form>
 		</div>
 
-		<div
-			class="xans-element- xans-board xans-board-commentpackage-1002 xans-board-commentpackage xans-board-1002 ">
-			<!-- 코멘트 리스트 -->
-			<!-- 코멘트 페이징 -->
-			<!-- 댓글 수정 -->
-			<form id="commentForm" name=""
-				action="/exec/front/Board/CommentUpdate/1" method="post"
-				enctype="multipart/form-data" style="display: none;">
-				<input id="board_no" name="board_no" value="1" type="hidden">
-				<input id="no" name="no" value="620208" type="hidden"> <input
-					id="comment_no" name="comment_no" value="" type="hidden"> <input
-					id="member_id" name="member_id" value="" type="hidden">
-				<div
-					class="xans-element- xans-board xans-board-commentform-1002 xans-board-commentform xans-board-1002 ">
-					<fieldset>
-						<legend>댓글 수정</legend>
-						<p>
-							password <input id="comment_password" name="comment_password"
-								fw-filter="isFill" fw-label="댓글비밀번호" fw-msg="" value=""
-								type="password"> <span class="secret displaynone"><label>
-									비밀댓글</label></span>
-						</p>
-						<div class="view">
-							<textarea id="comment_modify" name="comment_modify"
-								fw-filter="isFill" fw-label="댓글내용" fw-msg=""></textarea>
-							<span class="submit"> <a href="#none"
-								onclick="BOARD_COMMENT.comment_update_ok('commentForm');"
-								style="display: inline-block; padding: 17px 27px 17px 27px; background: #fff; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">수정</a>
-								<a href="#none"
-								onclick="BOARD_COMMENT.comment_cancel_ok('commentForm');"
-								style="display: inline-block; padding: 17px 27px 17px 27px; background: #fff; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">취소</a>
-							</span>
-						</div>
-						<p class="displaynone">/ byte</p>
-					</fieldset>
-				</div>
-			</form>
-			<!-- 비밀글 확인 -->
-			<form id="commentSecretForm" name=""
+
+		<!-- 비밀글 확인 -->
+		<!-- 	<form id="commentSecretForm" name=""
 				action="/exec/front/Board/CommentSecret/1" method="post"
 				enctype="multipart/form-data" style="display: none;">
 				<input id="board_no" name="board_no" value="1" type="hidden">
@@ -221,41 +132,10 @@
 							alt="취소"></a>
 					</p>
 				</div>
-			</form>
-			<!-- 댓글 쓰기 -->
-			<div
-				class="xans-element- xans-board xans-board-commentwrite-1002 xans-board-commentwrite xans-board-1002 ">
-				<!-- 댓글권한 있음 -->
-				<div class="displaynone">
-					<fieldset>
-						<legend>댓글 입력</legend>
-						<p style="font-size: 11px;">
-							<strong
-								style="font-family: 'Roboto', sans-serif; letter-spacing: 1px;">comment</strong><span
-								class="displaynone">name </span>password <span
-								class="secret displaynone"><label> 비밀댓글</label></span>
-						</p>
-						<div class="view">
-							<a href="#none" onclick="" class="submit displaynone"
-								style="display: inline-block; padding: 17px 27px 17px 27px; background: #fff; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">확인</a>
-						</div>
-						<p class="grade displaynone"></p>
-						<p class="displaynone">/ byte</p>
-						<p class="captcha displaynone">
-							<img
-								src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/ico_warning.gif"
-								alt=""> 왼쪽의 문자를 공백없이 입력하세요.(대소문자구분)
-						</p>
-					</fieldset>
-				</div>
-				<!-- 댓글권한 없음 -->
-				<div class="">
-					<p style="font-size: 11px;">회원에게만 댓글 작성 권한이 있습니다.</p>
-				</div>
-			</div>
-			<!-- 댓글의 댓글 쓰기 -->
-		</div>
+			</form> -->
 
+	</div>
+	<!-- 
 		<div
 			class="xans-element- xans-board xans-board-movement-1002 xans-board-movement xans-board-1002 ">
 			<ul>
@@ -266,9 +146,8 @@
 					href="/board/product/read.html?no=613760&amp;board_no=1&amp;page=">10대월드
 						프리마켓 공지</a></li>
 			</ul>
-		</div>
-		<!-- 관리자 전용 메뉴 -->
-		<!-- //관리자 전용 메뉴 -->
+		</div> -->
+
 
 	</div>
 </body>

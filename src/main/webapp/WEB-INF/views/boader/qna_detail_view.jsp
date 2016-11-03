@@ -22,8 +22,8 @@
             <h2 style="font-family:'Helvetica', sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase;"><span style="font-family:'Helvetica', sans-serif; font-weight:700; letter-spacing:2px; text-transform:uppercase;">NOTICE</span>
 <br> 
 
-<a href="/board/free/list.html?board_no=1" class="active">공지사항</a>
-<a href="/board/product/list.html?board_no=6">Q&amp;A</a>
+<a href="<c:url value="/boader/notice_list"/>">공지사항</a>
+						<a href="<c:url value="/boader/qna_list"/>">Q&A</a>
 
         </div>
 </div>

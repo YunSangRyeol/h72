@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%-- 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> --%>
+<%--  	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +12,11 @@
 	rel="stylesheet">
 </head>
 <body>
-	<div class="content_wrap">
+
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
-	</div>
-	<br>
-	<br>
-	<br>
+	<br><br><br>
 	<div id="sunny_in">
+
 
 		<div
 			class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
@@ -31,6 +31,7 @@
 						<a href="<c:url value="/boader/notice_list"/>">공지사항</a>
 						<a href="<c:url value="/boader/qna_list"/>">Q&A</a>
 				</div>
+
 			</div>
 			<div class="boardSort">
 				<span
@@ -54,73 +55,42 @@
 						class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 						<tr style="">
 							<th scope="col">NO</th>
-
 							<th scope="col">제목</th>
 							<th scope="col">작성자</th>
+							<th scope="col">답변</th>
 							<th scope="col" class="">작성일</th>
-
 
 						</tr>
 					</thead>
-					<tbody
-						class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 notice">
-						<!--
-                $count = 20
-                $login_page_url = /member/login.html
-                $deny_access_url = /index.html
-            -->
-						<tr style="background-color: #FFFFFF; color: #000000;"
-							class="xans-record-">
-							<td><span
-								style="color: #ef4141; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 12px;">!</span>
-							</td>
-
-							<td class="subject"><a
-								href="/board/free/read.html?no=559012&amp;board_no=1"
-								style="color: #000000;"><font color="ff0000">회원등급별혜택</font></a>
-								<span class="comment"></span></td>
-							<td><img src="/web/upload/sunny/images/icon_10world.png"></td>
-							<td class="txtLess ">2015-07-28</td>
-
-
-						</tr>
-						<tr style="background-color: #FFFFFF; color: #000000;"
-							class="xans-record-">
-							<td><span
-								style="color: #ef4141; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 12px;">!</span>
-							</td>
-
-							<td class="subject"><a
-								href="/board/free/read.html?no=484087&amp;board_no=1"
-								style="color: #000000;"><font color="ff0000">장기간 연락이
-										안되는 품절건 자동환불처리</font></a> <span class="comment"></span></td>
-							<td><img src="/web/upload/sunny/images/icon_10world.png"></td>
-							<td class="txtLess ">2014-07-03</td>
-
-
-						</tr>
+					<tbody>
+					        
+						 <c:forEach var="list" items="${list}">
+                  <tr>
+                    <td class="qNo">${list.qNo}
+                    </td>
+                    <td class="qTitle">
+                        <a href="qna.do?qNo=${list.qNo}">${list.qTitle}</a>
+                    </td>
+                    <td class="qWriter">${list.qWriter}</td>
+                    <td class="answer">${list.answer}</td>
+                    <td class="qDate">${list.qDate}</td>
+                </tr>
+            </c:forEach>
+<%--             <c:if test="${count==0}">
+                <tr>
+                    <td colspan="5" class="align-center">등록된 게시물이 없습니다.</td>
+                </tr>
+            </c:if> --%>           
 					</tbody>
-					<tbody
+					<!-- <tbody
 						class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002">
-						<!--
+						
                 $login_page_url = /member/login.html
                 $deny_access_url = /index.html
-            -->
-						<tr style="background-color: #FFFFFF; color: #000000;"
-							class="xans-record-">
-							<td>146</td>
+           
+ 
 
-							<td class="subject"><a
-								href="/board/free/read.html?no=622218&amp;board_no=1"
-								style="color: #000000;">10월 3일 개천절 휴무 안내</a> <span
-								class="comment"></span></td>
-							<td><img src="/web/upload/sunny/images/icon_10world.png"></td>
-							<td class="txtLess ">2016-09-30</td>
-
-
-						</tr>
-
-					</tbody>
+					</tbody> -->
 				</table>
 			</div>
 			<div
@@ -138,7 +108,7 @@
 			class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002">
 			<p>
 				<a href="?board_no=1&amp;page=1"><img
-					src="/web/upload/sunny/images/btn_page_prev.png" alt="이전 페이지"></a>
+					src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
 			</p>
 			<ol>
 				<li class="xans-record-"><a href="?board_no=1&amp;page=1"
@@ -164,7 +134,7 @@
 			</ol>
 			<p>
 				<a href="?board_no=1&amp;page=2"><img
-					src="/web/upload/sunny/images/btn_page_next.png" alt="다음 페이지"></a>
+					src="/h72/resources/image/btn_page_next.png"  alt="다음 페이지"></a>
 			</p>
 		</div>
 

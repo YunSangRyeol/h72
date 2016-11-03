@@ -1,5 +1,22 @@
 package com.project.h72.qna.service;
 
-public class QnAServiceImp {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.project.h72.qna.dao.QnADao;
+import com.project.h72.qna.vo.QnA;
+
+
+@Service
+public class QnAServiceImp implements QnAService{
+	@Autowired
+	private QnADao dao;
+
+
+	public List<QnA> getQnAList() {
+		// TODO Auto-generated method stub
+		return dao.getQnAList();
+	}
 }
