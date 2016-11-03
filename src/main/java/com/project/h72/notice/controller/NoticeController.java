@@ -32,7 +32,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		return "boader/notice_list";
 	}
 
-	@RequestMapping(value = "boader/notice.do", method = RequestMethod.GET)
+	@RequestMapping(value = "boader/notice_detail_view", method = RequestMethod.GET)
 	public String notice_detail(@RequestParam("noticeNo") String noticeNo, Model model) {
 		
 		Notice list = noticeService.getNoticeContent(noticeNo);
@@ -40,6 +40,11 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		model.addAttribute("list", list );
 	
 		return "boader/notice_detail_view";
+	}
+	@RequestMapping(value = "boader/notice_insert", method = RequestMethod.GET)
+	public String notice_insert(Locale locale, Model model) {
+
+		return "boader/notice_insert";
 	}
 
 	@RequestMapping(value = "boader/notice_update", method = RequestMethod.GET)

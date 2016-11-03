@@ -20,6 +20,8 @@ public class NoticeDao {
 	return sqlSession.selectOne(NAMESPACE + "getNoticeContent", noticeNo);
 	}
 	
+	
+	
 	public List<Notice> getNoticeList(){
 		List<Notice> list =sqlSession.selectList(NAMESPACE +"getNoticeList");
 		System.out.println("DAO List"+list);

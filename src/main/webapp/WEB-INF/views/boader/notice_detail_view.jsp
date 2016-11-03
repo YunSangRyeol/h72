@@ -60,23 +60,17 @@
 									<th scope="row">제목</th>
 									<td class="noticeTitle"><a
 										href="notice.do?noticeNo=${list.noticeNo}">${list.noticeTitle}</a>
-									</td>
-								</tr>
-
+									</td>	</tr>
 								<tr>
 									<th scope="row">작성일</th>
 									<td class="enrolldate">${list.enrolldate}</td>
 								</tr>
-
 								<tr>
 									<td colspan="2">
 										<div class="detail"
 											style="text-align: left; line-height: 1.8; padding: 40px;">
-
 											<p align="center">
-											${list}
-												
-											</p>
+											${list}</p>
 
 										</div>
 									</td>
@@ -95,7 +89,7 @@
 						</table>
 					</div>
 					<div class="btnArea ">
-						<span class="left"><a href="?board_no=1&amp;page=1"
+						<span class="left"><a href="<c:url value="/boader/notice_list"/>"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">목록</a></span>
 						<a href="#none"
 							onclick="BOARD_READ.article_delete('BoardDelForm','1');"

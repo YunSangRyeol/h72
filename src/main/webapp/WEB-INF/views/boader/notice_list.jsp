@@ -71,7 +71,7 @@
                     <td class="noticeNo">${list.noticeNo}
                     </td>
                     <td class="noticeTitle">
-                        <a href="notice.do?noticeNo=${list.noticeNo}">${list.noticeTitle}</a>
+                        <a href="notice_detail_view?noticeNo=${list.noticeNo}">${list.noticeTitle}</a>
                     </td>
                     <td class="enrolldate">${list.enrolldate}</td>
                 </tr>
@@ -100,7 +100,7 @@
 			<div
 				class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 ">
 				<c:if test="${loginUser.userid eq 'ADMIN' }">
-					<a href="new" type="button" class="btn btn-primary btn-block"
+					<a href="<c:url value="/boader/notice_insert"/>"type="button" class="btn btn-primary btn-block"
 						style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">공지사항 등록</a>
 				</c:if>
 				
