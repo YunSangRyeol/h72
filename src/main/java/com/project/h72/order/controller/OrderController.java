@@ -25,12 +25,8 @@ public class OrderController {
 	public String orderForm(@RequestParam("cartAll") String[] cartAll, HttpSession session, Model model) {
 		Member login = (Member) session.getAttribute("loginUser");
 		if(!(login==null)){
-			
-			System.out.println("orderController cartAll length : "+cartAll.length+"========================");
 			List<Cart> orderlist = os.getCartOrder(cartAll);
-			System.out.println("orderController: list.size : "+orderlist.size()+" ============================");
-			
-			model.addAttribute("clist", orderlist);
+			model.addAttribute("olist", orderlist);
 			
 		}
 		return "order/order";

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <link href="/h72/resources/css/cart.css" type="text/css"
@@ -79,7 +81,7 @@ function hideExclude(excludeId ,paylabel) {
 	<div id="content_wrap">
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
 
-
+		<c:if test="${!(loginUser eq null)}">
 		<div id="order_contents_wrap">
 			<div id="order_contents">
 				<div class="order_titleArea">
@@ -95,11 +97,11 @@ function hideExclude(excludeId ,paylabel) {
 						<div class="info">
 							<div class="member">
 								<p>
-									<strong>하지수</strong> 님은, [MEMBER] 회원이십니다.
+									<strong>${loginUser.name }</strong> 님은, [${loginUser.levelcode }] 회원이십니다.
 								</p>
 							</div>
 							<div class="mileage">
-								<span>가용적립금 : <strong>0원</strong></span>
+								<span>가용적립금 : <strong>${loginUser.point }원</strong></span>
 							</div>
 						</div>
 					</div>
@@ -139,36 +141,34 @@ function hideExclude(excludeId ,paylabel) {
 								</thead>
 								<tfoot>
 									<tr>
+										<c:forEach items="${olist}" var="cartOder">
+										<c:set var="result" value="${(cart.quantity*cart.cost)+result}" />
+										</c:forEach>	
 										<td colspan="9"><strong class="type">[기본배송]</strong>
-											상품구매금액 <strong>15,500<span class="displaynone">
-													(0)</span></strong> + 배송비 2,500 = 합계 : <strong class="total"><span>18,000</span>원</strong>
+											상품구매금액 <strong><fmt:formatNumber value="${result}" pattern="#,###" /><span class="displaynone">
+													(0)</span></strong> + 배송비 2,500 = 합계 : 
+													<strong class="total">
+													<span><fmt:formatNumber value="${result+2500}" pattern="#,###" />
+													</span>원</strong>
 											<span class="displaynone"></span></td>
+										
 									</tr>
 								</tfoot>
+								
 								<tbody class="xans-element- xans-order xans-order-normallist">
+								<c:forEach items="${olist}" var="cartOder">
 									<tr class="xans-record-">
-										<!-- <td class="chk displaynone"><input
-										id="chk_order_cancel_list0"
-										name="chk_order_cancel_list_basic0" value="8112:000A::3036653"
-										type="checkbox" disabled=""></td> -->
 										<td class="thumb"><a
 											href="/product/detail.html?product_no=8112&amp;cate_no=28"><img
-												src="http://www.10world.co.kr/web/product/tiny/201601/8112_shop1_503452.jpg"
-												onerror="this.src='http://img.echosting.cafe24.com/thumb/img_product_small.gif';"
-												alt=""></a></td>
+												src="${cartOder.mainImg }" alt=""></a></td>
 										<td class="product"><a
-											href="/product/detail.html?product_no=8112&amp;cate_no=28"><strong>블랙
-													사각 태슬백</strong></a>
+											href="/product/detail.html?product_no=8112&amp;cate_no=28"><strong>${cartOder.itemFullName }</strong></a>
 										<td class="price">
 											<div class="">
-												<strong>15,500원</strong>
-												<p class="displaynone"></p>
-											</div>
-											<div class="displaynone">
-												<strong></strong>
+												<strong>${cartOrder.cost }</strong>
 											</div>
 										</td>
-										<td class="quantity">1</td>
+										<td class="quantity">${cartOrder.quantity }</td>
 										<td class="mileage"><input
 											id="product_mileage_all_8112_000A" name="product_mileage_all"
 											value="160" type="hidden"><span class="mileage_icon">적</span>
@@ -178,6 +178,7 @@ function hideExclude(excludeId ,paylabel) {
 										<td class="total"><strong>15,500원</strong>
 											<div class="displaynone"></div></td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -687,7 +688,7 @@ function hideExclude(excludeId ,paylabel) {
 				</div>
 			</div>
 		</div>
-
+		</c:if>
 		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
 	</div>
 </body>

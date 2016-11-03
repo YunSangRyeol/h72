@@ -16,6 +16,7 @@ public class Member {
 	private int point;
 	private Date enrolldate;
 	private int totalprice;
+	private int pointRate;
 
 	public Member() {
 		super();
@@ -71,7 +72,7 @@ public class Member {
 
 	public Member(String userid, String levelcode, String userpass, String name, Date birthdate, String email,
 			String phone, String postnum, String address, String addressDetail, int point, Date enrollDate,
-			int totalprice) {
+			int totalprice, int pointRate) {
 		super();
 		this.userid = userid;
 		this.levelcode = levelcode;
@@ -86,6 +87,31 @@ public class Member {
 		this.point = point;
 		this.enrolldate = enrollDate;
 		this.totalprice = totalprice;
+		this.pointRate = pointRate;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddressdetail() {
+		return addressdetail;
+	}
+
+	public void setAddressdetail(String addressdetail) {
+		this.addressdetail = addressdetail;
+	}
+
+	public int getPointRate() {
+		return pointRate;
+	}
+
+	public void setPointRate(int pointRate) {
+		this.pointRate = pointRate;
 	}
 
 	public Date getEnrolldate() {
@@ -136,13 +162,6 @@ public class Member {
 		this.birthdate = birthdate;
 	}
 
-	public String getemail() {
-		return email;
-	}
-
-	public void setemail(String email) {
-		this.email = email;
-	}
 
 	public String getPhone() {
 		return phone;
@@ -168,13 +187,6 @@ public class Member {
 		this.address = address;
 	}
 
-	public String getAddressDetail() {
-		return addressdetail;
-	}
-
-	public void setAddressDetail(String addressDetail) {
-		this.addressdetail = addressDetail;
-	}
 
 	public int getPoint() {
 		return point;

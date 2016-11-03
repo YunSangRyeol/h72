@@ -18,7 +18,8 @@
 	</resultMap>
 
 	<select id="getUserInfo" parameterType="Member" resultType="Member">
-		SELECT * FROM H72.USERS
+		SELECT USER_ID,LEVEL_CODE,USER_PASS,NAME,BIRTHDATE,EMAIL,PHONE,POST_NUM,ADDRESS,ADDRESS_DETAIL,POINT,ENROLLDATE,TOTAL_PRICE,POINT_RATE  FROM H72.USERS
+		JOIN USER_LEVEL USING(LEVEL_CODE)
 		WHERE user_id = #{userid} AND user_pass = #{userpass}
 	</select>
 
