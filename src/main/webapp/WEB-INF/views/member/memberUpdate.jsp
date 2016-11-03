@@ -200,7 +200,7 @@
 									<input type="button" id="postFindBtn"
 									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 									<input type="text" id="address" name="address" placeholder="주소" value="${loginUser.address }" readonly><br>
-									<input type="text" id="addressDetail" name="addressDetail" placeholder="상세주소" value="${loginUser.addressDetail }">
+									<input type="text" id="addressDetail" name="addressDetail" placeholder="상세주소" value="${loginUser.addressdetail }">
 									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 									</td>
 							</tr>
