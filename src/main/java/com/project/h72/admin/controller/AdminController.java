@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.h72.admin.service.AdminService;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
+import com.project.h72.order.vo.OrderContents;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 
@@ -83,6 +84,7 @@ public class AdminController {
 	}
 	
 	
+///////////////////////////////////////////////////////////////////////////////////////////////////
 	//회원관리 페이지 
 	@RequestMapping(value="admin/users", method = RequestMethod.GET)
 	public String adminMemberManager(Model model){
@@ -125,16 +127,20 @@ public class AdminController {
 		
 		return "admin/userManager";
 	}
-	
+
+//////////////////////////////////////////////////////////////////////////////////////////
 	//주문내역 페이지 
 	@RequestMapping(value="admin/order", method = RequestMethod.GET)
 	public String adminOrderView(Model model){
 		
 		List<Order> list = adminService.getOrderList();
+		List<OrderContents> listContents = adminService.getOrderContentsList();
 		
 		System.out.println(list);
+		System.out.println(listContents);
 		
 		model.addAttribute("list", list );
+		model.addAttribute("listContents", listContents );
 		
 		return "admin/adminOrderList";
 	}
@@ -160,6 +166,9 @@ public class AdminController {
 	public @ResponseBody Map<String, Object> updateStatusOne(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status){
 		
 		int result= adminService.updateStatusOne(orderNo, status);
+		/*
+		Order order = adminService.readChange(orderNo);*/
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", result);
 		
@@ -172,6 +181,8 @@ public class AdminController {
 			
 			int result= adminService.updateChangeOne(orderNo, change);
 			Map<String, Object> map = new HashMap<String, Object>();
+			
+			
 			map.put("result", result);
 			
 			return map;

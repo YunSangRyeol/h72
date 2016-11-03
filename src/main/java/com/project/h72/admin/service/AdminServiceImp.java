@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.project.h72.admin.dao.AdminDao;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
+import com.project.h72.order.vo.OrderContents;
 
 @Service
 public class AdminServiceImp implements AdminService{
@@ -36,6 +37,11 @@ public class AdminServiceImp implements AdminService{
 	//orderList
 	public List<Order> getOrderList(){
 		return dao.getOrderList();		
+	}
+	
+	@Override
+	public List<OrderContents> getOrderContentsList() {
+		return dao.getOderContentsList();
 	}
 	
 	public int updateOrderStatus(String[] orderNos, String selectStatus) {
@@ -76,6 +82,7 @@ public class AdminServiceImp implements AdminService{
 	public int deleteMe(String userid) {
 		return dao.deleteMe(userid);
 	}
+
 
 	
 	

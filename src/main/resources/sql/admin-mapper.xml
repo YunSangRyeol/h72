@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="memberAMapper">
+<mapper namespace="adminMapper">
 
 	<resultMap id="memberResultMap" type="Member">
 		<result property="userid" column="USER_ID" />
@@ -89,11 +89,19 @@
 
 	<!-- Order -->
 	<select id="getOrderList" resultType="order">
-		SELECT * FROM ORDER_LIST
+		SELECT * FROM ORDER_LIST WHERE ENROLL_DATE between SYSDATE-3 and SYSDATE+1
+	</select>
+	
+	<select id="getOrderContentsList" resultType="OrderContents">
+		SELECT * FROM ORDER_LIST_CONTENTS
 	</select>
 	
 	<update id="updateOrderStatus" parameterType="Map">
-		UPDATE ORDER_LIST SET ORDER_STATUS = #{status} WHERE ORDER_NO = #{orderNo}
+		UPDATE ORDER_LIST SET ORDER_STATUS = #{status}, ORDER_CHANGE = NULL WHERE ORDER_NO = #{orderNo}
+	</update>
+	
+	<update id="updateOrderStatusPlus" parameterType="Map">
+		UPDATE ORDER_LIST SET ORDER_STATUS = #{status}, ORDER_CHANGE = '접수중' WHERE ORDER_NO = #{orderNo}
 	</update>
 	
 	<update id="updateOrderChange" parameterType="Map">

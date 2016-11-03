@@ -11,11 +11,12 @@ import org.springframework.stereotype.Repository;
 
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
+import com.project.h72.order.vo.OrderContents;
 
 @Repository
 public class AdminDao {
 	
-	private static final String NAMESPACE = "memberAMapper.";
+	private static final String NAMESPACE = "adminMapper.";
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -45,6 +46,10 @@ public class AdminDao {
 	public List<Order> getOrderList() {
 		return sqlSession.selectList(NAMESPACE + "getOrderList");
 	}
+	
+	public List<OrderContents> getOderContentsList() {
+		return sqlSession.selectList(NAMESPACE + "getOrderContentsList");
+	}
 
 	public int updateOrderStatus(String[] orderNos, String selectStatus) {		
 		int result = 0;
@@ -65,7 +70,17 @@ public class AdminDao {
 		noNstatus.put( "orderNo", orderNo);
 		noNstatus.put( "status", status);
 		
-		return sqlSession.update(NAMESPACE +"updateOrderStatus", noNstatus);
+		int result = 0;
+		if(status.equals("취소요청") || status.equals("반품요청") || status.equals("교환요청")){
+			System.out.println("반품/교환/취소");
+			result = sqlSession.update(NAMESPACE + "updateOrderStatusPlus", noNstatus);
+		}else{
+			System.out.println("일반변경");
+			result =  sqlSession.update(NAMESPACE +"updateOrderStatus", noNstatus);
+		}
+		
+		
+		return result;
 	}
 	
 	public int updateChangeOne(String orderNo, String change) {
@@ -99,9 +114,10 @@ public class AdminDao {
 	public int deleteMe(String userid) {
 		int result = 0;
 		result = sqlSession.delete(NAMESPACE + "deleteMe", userid); 
-		System.out.println("resulttttttt" + result);
 		return result;
 	}
+
+
 
 	
 

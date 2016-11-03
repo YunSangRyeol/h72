@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.h72.admin.dao.AdminDao;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
+import com.project.h72.order.vo.OrderContents;
 
 @Service
 public interface AdminService {
@@ -38,6 +39,8 @@ public interface AdminService {
 	int updateChangeOne(String orderNo, String change);
 
 	int deleteMe(String userid);
+
+	List<OrderContents> getOrderContentsList();
 
 
 }
