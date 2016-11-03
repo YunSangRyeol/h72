@@ -96,7 +96,7 @@ th, td {
 /* 배송상품 주문내역*/
 
 .xans-order-form .title {
-    margin: 40px 0 10px 0px;
+    margin: 0px 0px 10px 0px;
     font-size: 11px;
 }
 
@@ -124,7 +124,7 @@ th, td {
 .xans-order-form .orderListArea .title .button {
     position: absolute;
     right: 10px;
-    top: 8px;
+    top: 0px;
 }
 
 
@@ -201,12 +201,13 @@ th, td {
 
 .xans-order-form .boardList td.mileage span.mileage_icon {
     /* vertical-align: middle; */
-    font-size: 5px;
-    padding: 0px 3px;
-    font-weight: lighter;
+    font-size: 10px;
+    padding: 0px 3px 0px 2px;
+    /* font-weight: lighter; */
     color: #fff;
     background-color: #f53b2d;
-    border-radius: 5px;
+    /* font-weight: 400; */
+    border-radius: 4px;
 }
 .xans-order-form .boardList td.mileage, .xans-order-form .boardList td.delivery {
     color: #757575;
@@ -267,6 +268,21 @@ th, td {
     text-align: right;
 }
 
+.xans-order-form .orderArea .title .required .star{
+	font-size: 20px;
+    vertical-align: middle;
+    color: #f24443;
+    font-weight: 600;
+}
+
+.xans-order-form .boardWrite th span.star{
+	font-size: 19px;
+    vertical-align: middle;
+    color: #f24443;
+    font-weight: 500;
+}
+
+
 .xans-order-form .boardWrite {
     border: 1px solid #e7e7e7;
     font-size: 11px;
@@ -324,18 +340,26 @@ th, td {
     font-size: 11px;
 }
 
+
+.xans-order-form .orderArea{
+	padding-bottom:50px;
+}
+
 .xans-order-form #oname, .xans-order-form #oname2, .xans-order-form #rname, .xans-order-form #fname, .xans-order-form #fname2, .xans-order-form #english_oname, .xans-order-form #pron_name, .xans-order-form #si_gun_dosi, .xans-order-form #ju_do, .xans-order-form #ocity, .xans-order-form #ostate {
     width: 180px;
 }
 
-.xans-order-form #ozipcode1, .xans-order-form #ozipcode2, .xans-order-form #rzipcode1, .xans-order-form #rzipcode2 {
+.xans-order-form #postnum, .xans-order-form #ozipcode2, .xans-order-form #rpostnum, .xans-order-form #rzipcode2 {
     width: 60px;
     padding: 0;
     text-align: center;
 }
 
+.xans-order-form #search_ozipcode{
+	padding: 5px 10px 5px 10px; line-height: 0px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;
+}
 
-.xans-order-form #oaddr1, .xans-order-form #oaddr2, .xans-order-form #raddr1, .xans-order-form #raddr2 {
+.xans-order-form #address, .xans-order-form #addressDetail, .xans-order-form #raddress, .xans-order-form #raddressDetail {
     width: 450px;
     margin: 5px 0 0;
 }
@@ -427,7 +451,7 @@ th, td {
 .xans-order-form .totalArea {
     color: #353535;
     line-height: 1.5;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
 }
 
 .xans-order-form .totalArea .summary {

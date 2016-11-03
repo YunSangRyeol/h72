@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link href="/h72/resources/css/cart.css" type="text/css"
 	rel="stylesheet">
 <link href="/h72/resources/css/order.css" type="text/css"
@@ -72,6 +74,74 @@ function hideExclude(excludeId ,paylabel) {
   
 
 });
+
+
+function sample6_execDaumPostcode() {
+	new daum.Postcode(
+			{
+				oncomplete : function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+					// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+					var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+					// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+					// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+					if (data.bname !== ''
+							&& /[동|로|가]$/g
+									.test(data.bname)) {
+						extraRoadAddr += data.bname;
+					}
+					// 건물명이 있고, 공동주택일 경우 추가한다.
+					if (data.buildingName !== ''
+							&& data.apartment === 'Y') {
+						extraRoadAddr += (extraRoadAddr !== '' ? ', '
+								+ data.buildingName
+								: data.buildingName);
+					}
+					// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+					if (extraRoadAddr !== '') {
+						extraRoadAddr = ' ('
+								+ extraRoadAddr
+								+ ')';
+					}
+					// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+					if (fullRoadAddr !== '') {
+						fullRoadAddr += extraRoadAddr;
+					}
+
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document
+							.getElementById('rpostnum').value = data.zonecode; //5자리 새우편번호 사용
+					document
+							.getElementById('raddress').value = fullRoadAddr;
+
+					// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+					if (data.autoRoadAddress) {
+						//예상되는 도로명 주소에 조합형 주소를 추가한다.
+						var expRoadAddr = data.autoRoadAddress
+								+ extraRoadAddr;
+						document
+								.getElementById('raddress').innerHTML = '(예상 도로명 주소 : '
+								+ expRoadAddr
+								+ ')';
+
+					} else if (data.autoJibunAddress) {
+						var expJibunAddr = data.autoJibunAddress;
+						document
+								.getElementById('raddress').innerHTML = '(예상 지번 주소 : '
+								+ expJibunAddr
+								+ ')';
+
+					} else {
+						document
+								.getElementById('raddress').innerHTML = '';
+					}
+				}
+			}).open();
+}
 </script>
 
 
@@ -141,8 +211,8 @@ function hideExclude(excludeId ,paylabel) {
 								</thead>
 								<tfoot>
 									<tr>
-										<c:forEach items="${olist}" var="cartOder">
-										<c:set var="result" value="${(cart.quantity*cart.cost)+result}" />
+										<c:forEach items="${olist}" var="cartOrder">
+										<c:set var="result" value="${(cartOrder.quantity*cartOrder.cost)+result}" />
 										</c:forEach>	
 										<td colspan="9"><strong class="type">[기본배송]</strong>
 											상품구매금액 <strong><fmt:formatNumber value="${result}" pattern="#,###" /><span class="displaynone">
@@ -156,13 +226,13 @@ function hideExclude(excludeId ,paylabel) {
 								</tfoot>
 								
 								<tbody class="xans-element- xans-order xans-order-normallist">
-								<c:forEach items="${olist}" var="cartOder">
+								<c:forEach items="${olist}" var="cartOrder">
 									<tr class="xans-record-">
 										<td class="thumb"><a
 											href="/product/detail.html?product_no=8112&amp;cate_no=28"><img
-												src="${cartOder.mainImg }" alt=""></a></td>
+												src="/h72/resources${cartOrder.mainImg }" alt=""></a></td>
 										<td class="product"><a
-											href="/product/detail.html?product_no=8112&amp;cate_no=28"><strong>${cartOder.itemFullName }</strong></a>
+											href="/product/detail.html?product_no=8112&amp;cate_no=28"><strong>${cartOrder.itemFullName }</strong></a>
 										<td class="price">
 											<div class="">
 												<strong>${cartOrder.cost }</strong>
@@ -171,12 +241,12 @@ function hideExclude(excludeId ,paylabel) {
 										<td class="quantity">${cartOrder.quantity }</td>
 										<td class="mileage"><input
 											id="product_mileage_all_8112_000A" name="product_mileage_all"
-											value="160" type="hidden"><span class="mileage_icon">적</span>
-											160원</td>
+											value="160" type="hidden"><span class="mileage_icon">적</span>&nbsp;
+											<fmt:formatNumber value="${(loginUser.pointRate/100)*cartOrder.cost }" pattern="#,###"/>원</td>
 										<td class="delivery">기본배송</td>
 										<td class="charge">[조건]</td>
-										<td class="total"><strong>15,500원</strong>
-											<div class="displaynone"></div></td>
+										<td class="total"><strong><fmt:formatNumber value="${cartOrder.quantity*cartOrder.cost}" pattern="#,###" />원</strong>
+										</td>
 									</tr>
 									</c:forEach>
 								</tbody>
@@ -198,9 +268,7 @@ function hideExclude(excludeId ,paylabel) {
 						<div class="title">
 							<h3>주문자 정보</h3>
 							<p class="required">
-								<img
-									src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-									alt="필수"> 필수입력사항
+								<span class="star">*</span> 필수입력사항
 							</p>
 						</div>
 						<div class="boardWrite">
@@ -208,83 +276,28 @@ function hideExclude(excludeId ,paylabel) {
 								<!-- 국문 쇼핑몰 -->
 								<tbody class="address_form ">
 									<tr>
-										<th scope="row">주문하시는 분 <img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-											alt="필수"></th>
-										<td><input id="oname" name="oname" fw-filter="isFill"
-											fw-label="주문자 성명" fw-msg="" class="inputTypeText" size="15"
+										<th scope="row">주문하시는 분 <span class="star">*</span></th>
+										<td><input id="oname" name="oname" value="${loginUser.name }" class="inputTypeText" size="15"
 											value="" type="text"></td>
 									</tr>
 									<tr>
-										<th scope="row">주소 <img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-											alt="필수"></th>
-										<td><input id="ozipcode1" name="ozipcode1"
-											fw-filter="isFill" fw-label="주문자 우편번호1" fw-msg=""
-											class="inputTypeText" size="6" maxlength="6" readonly="1"
-											value="" type="text"> - <input id="ozipcode2"
-											name="ozipcode2" fw-filter="" fw-label="주문자 우편번호2" fw-msg=""
-											class="inputTypeText" size="6" maxlength="6" readonly="1"
-											value="" type="text" style="display: none;"> <a
-											href="#none" id="btn_search_ozipcode"
-											style="padding: 5px 10px 5px 10px; line-height: 25px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">우편번호</a><br>
-											<input id="oaddr1" name="oaddr1" fw-filter="isFill"
-											fw-label="주문자 주소1" fw-msg="" class="inputTypeText" size="40"
-											readonly="1" value="" type="text"> <span class="grid">기본주소</span><br>
-											<input id="oaddr2" name="oaddr2" fw-filter=""
-											fw-label="주문자 주소2" fw-msg="" class="inputTypeText" size="40"
-											value="" type="text"> <span class="grid">나머지주소</span>
+										<th scope="row">주소 <span class="star">*</span></th>
+										<td><input id="postnum" name="postnum" class="inputTypeText" size="6" maxlength="6" readonly="readonly"
+											value="${loginUser.postnum }" type="text"> 
+											<br>
+											<input id="address" name="address" class="inputTypeText" size="40"
+											readonly="1" value="${loginUser.address }" type="text"> <span class="grid">기본주소</span><br>
+											<input id="addressDetail" name="addressDetail" class="inputTypeText" size="40"
+											value="${loginUser.addressdetail }" type="text"> <span class="grid">나머지주소</span>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row">일반전화 <img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-											alt="필수"></th>
-										<td><select id="ophone1_1" name="ophone1_[]"
-											fw-filter="isNumber&amp;isFill" fw-label="주문자 전화번호"
-											fw-alone="N" fw-msg="">
-												<option value="02">02</option>
-												<option value="031">031</option>
-												<option value="032">032</option>
-												<option value="033">033</option>
-												<option value="041">041</option>
-												<option value="042">042</option>
-												<option value="043">043</option>
-												<option value="044">044</option>
-												<option value="051">051</option>
-												<option value="052">052</option>
-												<option value="053">053</option>
-												<option value="054">054</option>
-												<option value="055">055</option>
-												<option value="061">061</option>
-												<option value="062">062</option>
-												<option value="063">063</option>
-												<option value="064">064</option>
-												<option value="0502">0502</option>
-												<option value="0503">0503</option>
-												<option value="0504">0504</option>
-												<option value="0505">0505</option>
-												<option value="0506">0506</option>
-												<option value="0507">0507</option>
-												<option value="070">070</option>
-												<option value="010">010</option>
-												<option value="011">011</option>
-												<option value="016">016</option>
-												<option value="017">017</option>
-												<option value="018">018</option>
-												<option value="019">019</option>
-										</select>-<input id="ophone1_2" name="ophone1_[]" maxlength="4"
-											fw-filter="isNumber&amp;isFill" fw-label="주문자 전화번호"
-											fw-alone="N" fw-msg="" size="4" value="" type="text">-<input
-											id="ophone1_3" name="ophone1_[]" maxlength="4"
-											fw-filter="isNumber&amp;isFill" fw-label="주문자 전화번호"
-											fw-alone="N" fw-msg="" size="4" value="" type="text"></td>
-									</tr>
-									<tr>
+									<c:set var="tempPhone" value="${loginUser.phone }"/>
+									<c:set var="phoneF" value="${fn:substring(tempPhone, 0, tempPhone.indexOf('-'))}" />
+									<c:set var="phoneM" value="${fn:substring(tempPhone, tempPhone.indexOf('-')+1, tempPhone.lastIndexOf('-'))}" />
+									<c:set var="phoneL" value="${fn:substring(tempPhone, tempPhone.lastIndexOf('-')+1, tempPhone.length()) }" />
 										<th scope="row">휴대전화</th>
-										<td><select id="ophone2_1" name="ophone2_[]"
-											fw-filter="isNumber" fw-label="주문자 핸드폰번호" fw-alone="N"
-											fw-msg="">
+										<td><select id="ophone2_1" name="ophone2_[]">
 												<option value="010">010</option>
 												<option value="011">011</option>
 												<option value="016">016</option>
@@ -292,40 +305,11 @@ function hideExclude(excludeId ,paylabel) {
 												<option value="018">018</option>
 												<option value="019">019</option>
 										</select>-<input id="ophone2_2" name="ophone2_[]" maxlength="4"
-											fw-filter="isNumber" fw-label="주문자 핸드폰번호" fw-alone="N"
-											fw-msg="" size="4" value="" type="text">-<input
+											size="4" value="${phoneM }" type="text">-<input
 											id="ophone2_3" name="ophone2_[]" maxlength="4"
-											fw-filter="isNumber" fw-label="주문자 핸드폰번호" fw-alone="N"
-											fw-msg="" size="4" value="" type="text"></td>
+											size="4" value="${phoneL }" type="text"></td>
 									</tr>
-									<tr>
-										<th scope="row">이메일 <img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-											alt="필수"></th>
-										<td><input id="oemail1" name="oemail1" fw-filter="isFill"
-											fw-label="주문자 이메일" fw-alone="N" fw-msg="" value=""
-											type="text">@<input id="oemail2" name="oemail2"
-											fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg=""
-											readonly="readonly" value="" type="text"><select
-											id="oemail3" fw-filter="isFill" fw-label="주문자 이메일"
-											fw-alone="N" fw-msg="">
-												<option value="" selected="selected">- 이메일 선택 -</option>
-												<option value="naver.com">naver.com</option>
-												<option value="daum.net">daum.net</option>
-												<option value="nate.com">nate.com</option>
-												<option value="hotmail.com">hotmail.com</option>
-												<option value="yahoo.com">yahoo.com</option>
-												<option value="empas.com">empas.com</option>
-												<option value="korea.com">korea.com</option>
-												<option value="dreamwiz.com">dreamwiz.com</option>
-												<option value="gmail.com">gmail.com</option>
-												<option value="etc">직접입력</option>
-										</select>
-											<p class="grid">
-												이메일을 통해 주문처리과정을 보내드립니다.<br>이메일 주소란에는 반드시 수신가능한 이메일주소를
-												입력해 주세요.
-											</p></td>
-									</tr>
+									
 								</tbody>
 
 							</table>
@@ -338,9 +322,7 @@ function hideExclude(excludeId ,paylabel) {
 						<div class="title">
 							<h3>배송지 정보</h3>
 							<p class="required">
-								<img
-									src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-									alt="필수"> 필수입력사항
+								<span class="star">*</span> 필수입력사항
 							</p>
 						</div>
 						<div class="boardWrite">
@@ -350,50 +332,33 @@ function hideExclude(excludeId ,paylabel) {
 										<th scope="row">배송지 선택</th>
 										<td>
 											<div class="address">
-												<input id="sameaddr0" name="sameaddr" fw-filter=""
-													fw-label="1" fw-msg="" value="T" type="radio"><label
+												<input id="sameaddr0" name="sameaddr" value="T" type="radio"><label
 													for="sameaddr0">주문자 정보와 동일</label> <input id="sameaddr1"
-													name="sameaddr" fw-filter="" fw-label="1" fw-msg=""
-													value="F" type="radio"><label for="sameaddr1">새로운배송지</label>
-												<a href="#none" id="btn_shipp_addr" class=""><img
-													src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_address.gif"
-													alt="주소록 보기"></a>
+													name="sameaddr" value="F" type="radio"><label for="sameaddr1">새로운배송지</label>
+												
 											</div>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row">받으시는 분 <img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-											alt="필수"></th>
-										<td><input id="rname" name="rname" fw-filter="isFill"
-											fw-label="수취자 성명" fw-msg="" class="inputTypeText" size="15"
+										<th scope="row">받으시는 분 <span class="star">*</span></th>
+										<td><input id="rname" name="rname" class="inputTypeText" size="15"
 											value="" type="text"></td>
 									</tr>
 									<tr>
-										<th scope="row">주소 <img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-											alt="필수"></th>
-										<td><input id="rzipcode1" name="rzipcode1"
-											fw-filter="isFill" fw-label="수취자 우편번호1" fw-msg=""
-											class="inputTypeText" size="6" maxlength="6" readonly="1"
+										<th scope="row">주소 <span class="star">*</span></th>
+										<td><input id="rpostnum" name="rpostnum" class="inputTypeText" size="6" maxlength="6" readonly="1"
 											value="" type="text"> - <input id="rzipcode2"
-											name="rzipcode2" fw-filter="" fw-label="수취자 우편번호2" fw-msg=""
-											class="inputTypeText" size="6" maxlength="6" readonly="1"
-											value="" type="text" style="display: none;"> <a
-											href="#none" id="btn_search_rzipcode"
-											style="padding: 5px 10px 5px 10px; line-height: 25px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">우편번호</a><br>
-											<input id="raddr1" name="raddr1" fw-filter="isFill"
-											fw-label="수취자 주소1" fw-msg="" class="inputTypeText" size="40"
-											readonly="1" value="" type="text"> <span class="grid">기본주소</span><br>
-											<input id="raddr2" name="raddr2" fw-filter=""
-											fw-label="수취자 주소2" fw-msg="" class="inputTypeText" size="40"
+											name="rzipcode2" class="inputTypeText" size="6" maxlength="6" readonly="1"
+											value="" type="text" style="display: none;"> 
+											<input type="button" id="search_ozipcode" onclick="sample6_execDaumPostcode()" value="우편번호"><br>
+											<input id="raddress" name="raddress" class="inputTypeText" size="40"
+											value="" readonly type="text"> <span class="grid">기본주소</span><br>
+											<input id="raddressDetail" name="raddressDetail" class="inputTypeText" size="40"
 											value="" type="text"> <span class="grid">나머지주소</span>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row">일반전화 <img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-											alt="필수"></th>
+										<th scope="row">일반전화 <span class="star">*</span></th>
 										<td><select id="rphone1_1" name="rphone1_[]"
 											fw-filter="isNumber&amp;isFill" fw-label="수취자 전화번호"
 											fw-alone="N" fw-msg="">
@@ -553,19 +518,15 @@ function hideExclude(excludeId ,paylabel) {
 						<div class="payment">
 							<div class="method">
 								<span class="ec-base-label"><input id="addr_paymethod0"
-									name="addr_paymethod" fw-filter="isFill" fw-label="결제방식"
-									fw-msg="" value="cash" type="radio" checked="checked"><label
+									name="addr_paymethod" value="cash" type="radio" checked="checked"><label
 									for="addr_paymethod0">무통장 입금</label></span> <span
 									class="ec-base-label"><input id="addr_paymethod1"
-									name="addr_paymethod" fw-filter="isFill" fw-label="결제방식"
-									fw-msg="" value="card" type="radio"><label
+									name="addr_paymethod" value="card" type="radio"><label
 									for="addr_paymethod1">카드 결제</label></span> <span class="ec-base-label"><input
-									id="addr_paymethod2" name="addr_paymethod" fw-filter="isFill"
-									fw-label="결제방식" fw-msg="" value="cell" type="radio"><label
+									id="addr_paymethod2" name="addr_paymethod" value="cell" type="radio"><label
 									for="addr_paymethod2">휴대폰 결제</label></span> <span
 									class="ec-base-label"><input id="addr_paymethod3"
-									name="addr_paymethod" fw-filter="isFill" fw-label="결제방식"
-									fw-msg="" value="tcash" type="radio"><label
+									name="addr_paymethod" value="tcash" type="radio"><label
 									for="addr_paymethod3">에스크로(실시간 계좌이체)</label></span>
 							</div>
 
