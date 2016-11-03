@@ -10,6 +10,7 @@
 
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript" src="/h72/resources/js/order.js"></script>
 <link href="/h72/resources/css/cart.css" type="text/css"
 	rel="stylesheet">
 <link href="/h72/resources/css/order.css" type="text/css"
@@ -21,128 +22,6 @@
     margin-left: 0px;
 }
 </style>
-<script>
-$(document).ready(function(){
-	
-	$("input[name=addr_paymethod]:checked").each(function(){
-		$("#payment_input_tcash").each(function() {
-			$(this).css('display', 'none');
-		});
-	});
-	
-$("input[name=addr_paymethod]").change(function(){
-	var radioValue = $(this).val();
-	var paylabel = $(this).next("label").text();
-	console.log(paylabel);
-	
-	if (radioValue == "cash") {
-		hideExclude('payment_input_cash', paylabel);
-	} else if (radioValue == "cell") {
-		hideExclude('pg_paymethod_info_pg', paylabel);
-	} else if (radioValue == "tcash") {
-		hideExclude('payment_input_tcash', paylabel);
-	}	else if (radioValue == "card") {
-			hideExclude('pg_paymethod_info_pg', paylabel);
-	}	
-});
-
-
-function hideExclude(excludeId ,paylabel) {
-	console.log(paylabel);
-	$("#payment_input_cash").each(function() {
-		$(this).css('display', 'none');
-	});
-	
-	$("#payment_input_tcash").each(function() {
-		$(this).css('display', 'none');
-	});
-	// 파라미터로 넘겨 받은 id 요소는 show
-	$("#" + excludeId).css('display','table');
-	
-	$('#current_pay_name').text(paylabel);
-	/* <strong id="current_pay_name">무통장 입금</strong> */
-}
-
-/*  $('#oemail3').change(function(){
-	var option = $(this).val();
-	console.log(option);
-	$('#oemail2').text(option);
-	$('#inputId').attr('readonly', true);
-});
-  */
-  
-  
-
-});
-
-
-function sample6_execDaumPostcode() {
-	new daum.Postcode(
-			{
-				oncomplete : function(data) {
-					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-					// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-					var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-					var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-
-					// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-					// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-					if (data.bname !== ''
-							&& /[동|로|가]$/g
-									.test(data.bname)) {
-						extraRoadAddr += data.bname;
-					}
-					// 건물명이 있고, 공동주택일 경우 추가한다.
-					if (data.buildingName !== ''
-							&& data.apartment === 'Y') {
-						extraRoadAddr += (extraRoadAddr !== '' ? ', '
-								+ data.buildingName
-								: data.buildingName);
-					}
-					// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-					if (extraRoadAddr !== '') {
-						extraRoadAddr = ' ('
-								+ extraRoadAddr
-								+ ')';
-					}
-					// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-					if (fullRoadAddr !== '') {
-						fullRoadAddr += extraRoadAddr;
-					}
-
-					// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					document
-							.getElementById('rpostnum').value = data.zonecode; //5자리 새우편번호 사용
-					document
-							.getElementById('raddress').value = fullRoadAddr;
-
-					// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-					if (data.autoRoadAddress) {
-						//예상되는 도로명 주소에 조합형 주소를 추가한다.
-						var expRoadAddr = data.autoRoadAddress
-								+ extraRoadAddr;
-						document
-								.getElementById('raddress').innerHTML = '(예상 도로명 주소 : '
-								+ expRoadAddr
-								+ ')';
-
-					} else if (data.autoJibunAddress) {
-						var expJibunAddr = data.autoJibunAddress;
-						document
-								.getElementById('raddress').innerHTML = '(예상 지번 주소 : '
-								+ expJibunAddr
-								+ ')';
-
-					} else {
-						document
-								.getElementById('raddress').innerHTML = '';
-					}
-				}
-			}).open();
-}
-</script>
 
 
 </head>
@@ -284,7 +163,7 @@ function sample6_execDaumPostcode() {
 										<th scope="row">주소 <span class="star">*</span></th>
 										<td><input id="postnum" name="postnum" class="inputTypeText" size="6" maxlength="6" readonly="readonly"
 											value="${loginUser.postnum }" type="text"> 
-											<br>
+											<input type="button" id="search_ozipcode" onclick="sample5_execDaumPostcode()" value="우편번호"><br>
 											<input id="address" name="address" class="inputTypeText" size="40"
 											readonly="1" value="${loginUser.address }" type="text"> <span class="grid">기본주소</span><br>
 											<input id="addressDetail" name="addressDetail" class="inputTypeText" size="40"
@@ -297,16 +176,21 @@ function sample6_execDaumPostcode() {
 									<c:set var="phoneM" value="${fn:substring(tempPhone, tempPhone.indexOf('-')+1, tempPhone.lastIndexOf('-'))}" />
 									<c:set var="phoneL" value="${fn:substring(tempPhone, tempPhone.lastIndexOf('-')+1, tempPhone.length()) }" />
 										<th scope="row">휴대전화</th>
-										<td><select id="ophone2_1" name="ophone2_[]">
+										<td><select id="ophone2_1" name="ophone2">
 												<option value="010">010</option>
 												<option value="011">011</option>
 												<option value="016">016</option>
 												<option value="017">017</option>
 												<option value="018">018</option>
 												<option value="019">019</option>
-										</select>-<input id="ophone2_2" name="ophone2_[]" maxlength="4"
+												<script>
+				$(function(){
+					$('#ophone2_1').val('${phoneF}').prop("selected", true);
+				});
+				</script>
+										</select>-<input id="ophone2_2" name="ophone2" maxlength="4"
 											size="4" value="${phoneM }" type="text">-<input
-											id="ophone2_3" name="ophone2_[]" maxlength="4"
+											id="ophone2_3" name="ophone2" maxlength="4"
 											size="4" value="${phoneL }" type="text"></td>
 									</tr>
 									
@@ -347,9 +231,7 @@ function sample6_execDaumPostcode() {
 									<tr>
 										<th scope="row">주소 <span class="star">*</span></th>
 										<td><input id="rpostnum" name="rpostnum" class="inputTypeText" size="6" maxlength="6" readonly="1"
-											value="" type="text"> - <input id="rzipcode2"
-											name="rzipcode2" class="inputTypeText" size="6" maxlength="6" readonly="1"
-											value="" type="text" style="display: none;"> 
+											value="" type="text">
 											<input type="button" id="search_ozipcode" onclick="sample6_execDaumPostcode()" value="우편번호"><br>
 											<input id="raddress" name="raddress" class="inputTypeText" size="40"
 											value="" readonly type="text"> <span class="grid">기본주소</span><br>
@@ -358,69 +240,22 @@ function sample6_execDaumPostcode() {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row">일반전화 <span class="star">*</span></th>
-										<td><select id="rphone1_1" name="rphone1_[]"
-											fw-filter="isNumber&amp;isFill" fw-label="수취자 전화번호"
-											fw-alone="N" fw-msg="">
-												<option value="02">02</option>
-												<option value="031">031</option>
-												<option value="032">032</option>
-												<option value="033">033</option>
-												<option value="041">041</option>
-												<option value="042">042</option>
-												<option value="043">043</option>
-												<option value="044">044</option>
-												<option value="051">051</option>
-												<option value="052">052</option>
-												<option value="053">053</option>
-												<option value="054">054</option>
-												<option value="055">055</option>
-												<option value="061">061</option>
-												<option value="062">062</option>
-												<option value="063">063</option>
-												<option value="064">064</option>
-												<option value="0502">0502</option>
-												<option value="0503">0503</option>
-												<option value="0504">0504</option>
-												<option value="0505">0505</option>
-												<option value="0506">0506</option>
-												<option value="0507">0507</option>
-												<option value="070">070</option>
+										<th scope="row">휴대전화 <span class="star">*</span></th>
+										<td><select id="rphone2_1" name="rphone2">
 												<option value="010">010</option>
 												<option value="011">011</option>
 												<option value="016">016</option>
 												<option value="017">017</option>
 												<option value="018">018</option>
 												<option value="019">019</option>
-										</select>-<input id="rphone1_2" name="rphone1_[]" maxlength="4"
-											fw-filter="isNumber&amp;isFill" fw-label="수취자 전화번호"
-											fw-alone="N" fw-msg="" size="4" value="" type="text">-<input
-											id="rphone1_3" name="rphone1_[]" maxlength="4"
-											fw-filter="isNumber&amp;isFill" fw-label="수취자 전화번호"
-											fw-alone="N" fw-msg="" size="4" value="" type="text"></td>
-									</tr>
-									<tr>
-										<th scope="row">휴대전화</th>
-										<td><select id="rphone2_1" name="rphone2_[]"
-											fw-filter="isNumber" fw-label="수취자 핸드폰번호" fw-alone="N"
-											fw-msg="">
-												<option value="010">010</option>
-												<option value="011">011</option>
-												<option value="016">016</option>
-												<option value="017">017</option>
-												<option value="018">018</option>
-												<option value="019">019</option>
-										</select>-<input id="rphone2_2" name="rphone2_[]" maxlength="4"
-											fw-filter="isNumber" fw-label="수취자 핸드폰번호" fw-alone="N"
-											fw-msg="" size="4" value="" type="text">-<input
-											id="rphone2_3" name="rphone2_[]" maxlength="4"
-											fw-filter="isNumber" fw-label="수취자 핸드폰번호" fw-alone="N"
-											fw-msg="" size="4" value="" type="text"></td>
+										</select>-<input id="rphone2_2" name="rphone2" maxlength="4"
+											 size="4" value="" type="text">-<input
+											id="rphone2_3" name="rphone2" maxlength="4"
+											size="4" value="" type="text"></td>
 									</tr>
 									<tr>
 										<th scope="row">배송메시지</th>
-										<td><textarea id="omessage" name="omessage" fw-filter=""
-												fw-label="배송 메세지" fw-msg="" maxlength="255" cols="70"></textarea>
+										<td><textarea id="omessage" name="omessage" maxlength="255" cols="70"></textarea>
 										</td>
 									</tr>
 
@@ -441,17 +276,14 @@ function sample6_execDaumPostcode() {
 								<thead>
 									<tr>
 										<th scope="col"><span>총 주문 금액</span></th>
-										<th scope="col" class=""><span>총 </span><span
-											id="total_addsale_text" class="">할인</span><span
-											id="plus_mark" class=""> + </span><span
-											id="total_addpay_text" class="">부가결제</span><span> 금액</span></th>
+										<th scope="col" class=""><span>적립금 사용 금액 </span></th>
 										<th scope="col">총 결제예정 금액</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td class="price"><div class="box">
-												<strong id="total_order_price_view">57,300</strong>원 <span
+												<strong id="total_order_price_view"><fmt:formatNumber value="${result+2500}" pattern="#,###" /></strong>원 <span
 													class="tail displaynone"><span
 													id="total_order_price_ref_view" class="tail"></span></span>
 											</div></td>
@@ -461,7 +293,7 @@ function sample6_execDaumPostcode() {
 													id="total_sale_price_ref_view" class="tail"></span></span>
 											</div></td>
 										<td class="total"><div class="box">
-												<strong>=</strong><strong id="total_order_sale_price_view">57,300</strong>원
+												<strong>=</strong><strong id="total_order_sale_price_view"><fmt:formatNumber value="${result+2500}" pattern="#,###" /></strong>원
 												<span class="tail displaynone"><span
 													id="total_order_sale_price_ref_view" class="tail"></span></span>
 											</div></td>
@@ -472,25 +304,25 @@ function sample6_execDaumPostcode() {
 						<div class="detail">
 							<div class="">
 								<table border="1" summary="" class="option">
-									<tbody>
-										<tr class="total">
-											<th scope="row">총 부가결제금액</th>
-											<td><strong id="total_addpay_price_view">0</strong>원</td>
-										</tr>
-									</tbody>
+									
 									<!-- 적립금 -->
 									<tbody class="">
 										<tr>
 											<th scope="row">적립금</th>
 											<td>
 												<p>
-													<input id="input_mile" name="input_mile" fw-filter=""
-														fw-label="적립금" fw-msg="" class="inputTypeText" size="10"
-														value="" type="text"> 원 (총 사용가능 적립금 : <strong
-														class="point">0</strong>원)
+													<c:if test="${loginUser.point < 2000}">
+													<input id="input_mile" name="input_mile" class="inputTypeText" size="10"
+														value="" type="text" readonly="readnonly">
+														</c:if>
+													<c:if test="${loginUser.point >= 2000}">
+													<input id="input_mile" name="input_mile" class="inputTypeText" 
+														value="" type="text" maxlength ="${loginUser.point }">
+													</c:if> 원 (총 사용가능 적립금 : <strong
+														class="point">${loginUser.point }</strong>원)
 												</p>
 												<ul class="info">
-													<li>적립금은 최소 5,000 이상일 때 결제가 가능합니다.</li>
+													<li>적립금은 최소 2,000 이상일 때 결제가 가능합니다.</li>
 													<li id="mileage_max_unlimit" class="">최대 사용금액은 제한이
 														없습니다.</li>
 													<li id="mileage_max_limit" class="displaynone">1회 구매시
