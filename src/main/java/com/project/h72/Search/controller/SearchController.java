@@ -15,14 +15,13 @@ import com.project.h72.Search.service.SearchService;
 import com.project.h72.Search.service.SearchServiceImp;
 import com.project.h72.Search.vo.Search;
 
-
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class SearchController {
 	@Autowired
-	private SearchServiceImp ss;
+	private SearchService ss;
 
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 
@@ -31,54 +30,93 @@ public class SearchController {
 		System.out.println("컨트롤러임니당");
 
 		List<Search> bagList = ss.getBagList();
-		System.out.println(bagList+"서비스에서 받아옴");
-		list.addAttribute("bagList", bagList);
-		
+		System.out.println(bagList + "서비스에서 받아옴");
+
 		String listTitle = "BAG";
+
+		if (bagList.isEmpty()) {
+			bagList = null;
+		}
+		list.addAttribute("bagList", bagList);
 		title.addAttribute("listTitle", listTitle);
 
-		if(bagList.isEmpty()){
-			bagList =null;
-		}
 		// Search cate1 = SearchService.categoryBag();
 		return "search/searchPage";
 	}
 
 	@RequestMapping(value = "/protect", method = RequestMethod.GET)
-	public String protectList(String listTitle, Model model) {
-		listTitle = "PROTECT";
-		model.addAttribute("listTitle", listTitle);
+	public String protectList(Model title, Model list) throws Exception {
+		List<Search> protectList = ss.getProtectList();
+		System.out.println(protectList + "서비스에서 받아옴");
+
+		String listTitle = "PROTECT";
+
+		if (protectList.isEmpty()) {
+			protectList = null;
+		}
+		title.addAttribute("listTitle", listTitle);
+		list.addAttribute("protectList", protectList);
 
 		return "search/searchPage";
 	}
 
 	@RequestMapping(value = "/food", method = RequestMethod.GET)
-	public String foodList(String listTitle, Model model) {
-		listTitle = "FOOD";
-		model.addAttribute("listTitle", listTitle);
+	public String foodList(Model title, Model list) throws Exception {
+		List<Search> foodList = ss.getFoodList();
+		System.out.println(foodList + "서비스에서 받아옴");
+
+		String listTitle = "FOOD";
+
+		if (foodList.isEmpty()) {
+			foodList = null;
+		}
+		title.addAttribute("listTitle", listTitle);
+		list.addAttribute("foodList", foodList);
 
 		return "search/searchPage";
 	}
 
 	@RequestMapping(value = "/tool", method = RequestMethod.GET)
-	public String toolList(String listTitle, Model model) {
-		listTitle = "TOOL";
-		model.addAttribute("listTitle", listTitle);
+	public String toolList(Model title, Model list) throws Exception {
+		List<Search> toolList = ss.getToolList();
+		System.out.println(toolList + "서비스에서 받아옴");
+
+		String listTitle = "TOOL";
+
+		if (toolList.isEmpty()) {
+			toolList = null;
+		}
+		title.addAttribute("listTitle", listTitle);
+		list.addAttribute("toolList", toolList);
 
 		return "search/searchPage";
 	}
 
 	@RequestMapping(value = "/etc", method = RequestMethod.GET)
-	public String etcList(String listTitle, Model model) {
-		listTitle = "ETC";
-		model.addAttribute("listTitle", listTitle);
+	public String etcList(Model title, Model list) throws Exception {
+		List<Search> etcList = ss.getEtcList();
+		System.out.println(etcList + "서비스에서 받아옴");
+
+		String listTitle = "ETC";
+
+		if (etcList.isEmpty()) {
+			etcList = null;
+		}
+		title.addAttribute("listTitle", listTitle);
+		list.addAttribute("etcList", etcList);
 
 		return "search/searchPage";
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String searchList(@RequestParam("keyword") String keyword, Model model) {
-		model.addAttribute("listTitle", keyword);
+	public String searchList(@RequestParam("keyword") String keyword, Model title, Model list) throws Exception {
+		List<Search> searchList = ss.getSearchList(keyword);
+		System.out.println(searchList);
+		if (searchList.isEmpty()) {
+			searchList = null;
+		}
+		title.addAttribute("listTitle", keyword);
+		list.addAttribute("keywordList", searchList);
 
 		return "search/searchPage";
 	}

@@ -19,6 +19,31 @@ public class SearchDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getBagList");
 	}
+
+	public List<Search> getProtectList() throws Exception{
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+"getProtectList");
+	}
+
+	public List<Search> getFoodList() throws Exception{
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+"getFoodList");
+	}
+
+	public List<Search> getToolList() throws Exception{
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+"getToolList");
+	}
+
+	public List<Search> getEtcList() throws Exception{
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+"getEtcList");
+	}
+
+	public List<Search> getSearchList(String keyword) throws Exception{
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+"getSearchList", keyword);
+	}
 	
 
 }

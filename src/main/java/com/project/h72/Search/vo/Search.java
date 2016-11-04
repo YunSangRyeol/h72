@@ -15,6 +15,12 @@ public class Search {
 	public Search() {
 		super();
 	}
+	
+	public Search(String itemName) {
+		super();
+		this.itemName = itemName;
+	}
+
 	public Search(String itemName, int minPrice, int minSailPrice, String mainImg) {
 		super();
 		this.itemName = itemName;
@@ -36,6 +42,7 @@ public class Search {
 		this.detailImg2 = detailImg2;
 		this.etc = etc;
 	}
+	
 	public String getItemDetailId() {
 		return itemDetailId;
 	}

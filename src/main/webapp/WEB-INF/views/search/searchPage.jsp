@@ -50,31 +50,159 @@
 						for (int j = 0; j < 4; j++) {
 					%>
  --%>
-					<c:forEach items="${bagList}" var="list">
+					<c:choose>
+						<c:when test="${listTitle == 'BAG'}">
+							<c:forEach items="${bagList}" var="list">
 
-						<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
-							class="item xans-record-">
-							<div class="box">
-								<a href="#" name="anchorBoxName_8025"><img
-									src="/h72/resources${list.mainImg }" alt="" class="thumb"
-									style="width: 238px; height:300px;"></a>
-								<p class="name"></p>
-								<p
-									style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
-									<a href="#"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
-								</p>
-								<p class="price"
-									style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
-									<span
-										style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
-									\ ${list.minPrice}
-								</p>
+								<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
+									class="item xans-record-">
+									<div class="box">
+										<a href="#" name="anchorBoxName_8025"><img
+											src="/h72/resources${list.mainImg }" alt="" class="thumb"
+											style="width: 238px; height: 300px;"></a>
+										<p class="name"></p>
+										<p
+											style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
+											<a href="#"><span
+												style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+										</p>
+										<p class="price"
+											style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
+											<span
+												style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
+											\ ${list.minPrice}
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</c:when>
+						<c:when test="${listTitle == 'PROTECT'}">
+							<c:forEach items="${protectList}" var="list">
+								<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
+									class="item xans-record-">
+									<div class="box">
+										<a href="#" name="anchorBoxName_8025"><img
+											src="/h72/resources${list.mainImg }" alt="" class="thumb"
+											style="width: 238px; height: 300px;"></a>
+										<p class="name"></p>
+										<p
+											style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
+											<a href="#"><span
+												style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+										</p>
+										<p class="price"
+											style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
+											<span
+												style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
+											\ ${list.minPrice}
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</c:when>
+						<c:when test="${listTitle == 'FOOD'}">
+							<c:forEach items="${foodList}" var="list">
 
+								<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
+									class="item xans-record-">
+									<div class="box">
+										<a href="#" name="anchorBoxName_8025"><img
+											src="/h72/resources${list.mainImg }" alt="" class="thumb"
+											style="width: 238px; height: 300px;"></a>
+										<p class="name"></p>
+										<p
+											style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
+											<a href="#"><span
+												style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+										</p>
+										<p class="price"
+											style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
+											<span
+												style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
+											\ ${list.minPrice}
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</c:when>
+						<c:when test="${listTitle == 'TOOL'}">
+							<c:forEach items="${toolList}" var="list">
 
+								<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
+									class="item xans-record-">
+									<div class="box">
+										<a href="#" name="anchorBoxName_8025"><img
+											src="/h72/resources${list.mainImg }" alt="" class="thumb"
+											style="width: 238px; height: 300px;"></a>
+										<p class="name"></p>
+										<p
+											style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
+											<a href="#"><span
+												style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+										</p>
+										<p class="price"
+											style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
+											<span
+												style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
+											\ ${list.minPrice}
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</c:when>
+						<c:when test="${listTitle == 'ETC'}">
+							<c:forEach items="${etcList}" var="list">
 
-							</div>
-						</li>
-					</c:forEach>
+								<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
+									class="item xans-record-">
+									<div class="box">
+										<a href="#" name="anchorBoxName_8025"><img
+											src="/h72/resources${list.mainImg }" alt="" class="thumb"
+											style="width: 238px; height: 300px;"></a>
+										<p class="name"></p>
+										<p
+											style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
+											<a href="#"><span
+												style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+										</p>
+										<p class="price"
+											style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
+											<span
+												style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
+											\ ${list.minPrice}
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+				
+							<c:forEach items="${keywordList}" var="list">
+								<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
+									class="item xans-record-">
+									<div class="box">
+										<a href="#" name="anchorBoxName_8025"><img
+											src="/h72/resources${list.mainImg }" alt="" class="thumb"
+											style="width: 238px; height: 300px;"></a>
+										<p class="name"></p>
+										<p
+											style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
+											<a href="#"><span
+												style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+										</p>
+										<p class="price"
+											style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
+											<span
+												style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
+											\ ${list.minPrice}
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+
+						</c:otherwise>
+					</c:choose>
+
 					<%-- 	<%
 						}
 					%>
@@ -82,7 +210,6 @@
 						<%
 						}
 					%> --%>
-					
 				</ul>
 			</div>
 			<div class="searchList_paging">

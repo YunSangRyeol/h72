@@ -4,48 +4,44 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="searchMapper">
 
-	<!-- <resultMap id="SearchResultMap" type="Search">
-		<id property="userid" column="user_id" />
-		<result property="userpass" column="user_pass" />
-		<result property="name" column="name" />
-		<result property="birthdate" column="birthdate" />
-		<result property="email" column="email" />
-		<result property="phone" column="phone" />
-		<result property="postnum" column="postNum" />
-		<result property="adrress" column="address" />
-		<result property="adressdetail" column="address_detail" />
-
-	</resultMap> -->
+	<resultMap id="searchResultMap" type="Search">
+		<id property="itemDetailId" column="ITEM_DETAIL_ID" />
+		<result property="categoryCode" column="CATEGORY_CODE" />
+		<result property="itemStatus" column="ITEM_STATUS" />
+		<result property="itemName" column="ITEM_NAME" />
+		<result property="minPrice" column="MIN_PRICE" />
+		<result property="minSailPrice" column="MIN_SAIL_PRICE" />
+		<result property="mainImg" column="MAIN_IMG" />
+		<result property="detailImg1" column="DETAIL_IMG01" />
+		<result property="detailImg2" column="DETAIL_IMG02" />
+		<result property="etc" column="ETC" />
+	</resultMap>
 
 	<select id="getBagList" parameterType="Search" resultType="Search">
 		SELECT * FROM H72.ITEM_DETAIL_BAG
 	</select>
-<!-- 
-	<select id="getCateProtect" parameterType="search" resultType="search">
-		SELECT ITEM_NAME, MIN_PRICE, MIN_SAIL_PRICE, MAIN_IMG FROM
-		H72.ITEM_DETAIL_PROTECT
+
+	<select id="getProtectList" parameterType="Search" resultType="Search">
+		SELECT * FROM H72.ITEM_DETAIL_PROTECT
 	</select>
 
-	<select id="getCateFood" parameterType="search" resultType="search">
-		SELECT ITEM_NAME, MIN_PRICE, MIN_SAIL_PRICE, MAIN_IMG FROM
-		H72.ITEM_DETAIL_FOOD
+	<select id="getFoodList" parameterType="Search" resultType="Search">
+		SELECT * FROM H72.ITEM_DETAIL_FOOD
 	</select>
 
-	<select id="getCateTool" parameterType="search" resultType="search">
-		SELECT ITEM_NAME, MIN_PRICE, MIN_SAIL_PRICE, MAIN_IMG FROM
-		H72.ITEM_DETAIL_TOOL
+	<select id="getToolList" parameterType="Search" resultType="Search">
+		SELECT * FROM H72.ITEM_DETAIL_TOOL
 	</select>
 
-	<select id="getCateEtc" parameterType="search" resultType="search">
-		SELECT ITEM_NAME, MIN_PRICE, MIN_SAIL_PRICE, MAIN_IMG FROM
-		H72.ITEM_DETAIL_ETC
+	<select id="getEtcList" parameterType="Search" resultType="Search">
+		SELECT * FROM H72.ITEM_DETAIL_ETC
 	</select>
 
-	<select id="getSearchKeyword" parameterType="search" resultType="search">
-		SELECT ITEM_NAME, MIN_PRICE, MIN_SAIL_PRICE, MAIN_IMG FROM
-		H72.ITEM_DETAIL_BAG, H72.ITEM_DETAIL_PROTECT, H72.ITEM_DETAIL_FOOD,
-		H72.ITEM_DETAIL_TOOL, H72.ITEM_DETAIL_ETC WHERE ITEM_NAME = #{keyword}
+	<select id="getSearchList" parameterType="String" resultType="Search">
+		SELECT * FROM ITEM_DETAIL_VIEW WHERE ITEM_NAME LIKE
+		'%'||#{itemName}||'%'
+
 	</select>
 
- -->
+
 </mapper>
