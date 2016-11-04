@@ -45,6 +45,12 @@ public String qna_detail(Locale locale, Model model) {
 	
 	return "boader/qna_detail";
 }
+
+@RequestMapping(value = "boader/qna_insert", method = RequestMethod.GET)
+public String qna_insert(Locale locale, Model model) {
+
+	return "boader/qna_insert";
+}
 @RequestMapping(value = "boader/qna_update", method = RequestMethod.GET)
 public String qna_update(Locale locale, Model model) {
 /*	logger.info("Welcome home! The client locale is {}.", locale);

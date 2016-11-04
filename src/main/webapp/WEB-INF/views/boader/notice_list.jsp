@@ -51,9 +51,7 @@
 						<col style="width: auto;">
 						<col style="width: 100px;">
 						<col style="width: 100px;" class="">
-						<col style="width: 100px;" class="displaynone">
-						<col style="width: 100px;" class="displaynone">
-						<col style="width: 100px;" class="displaynone">
+
 					</colgroup>
 					<thead
 						class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">

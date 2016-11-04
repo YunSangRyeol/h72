@@ -39,17 +39,15 @@
 			</div>
 			<div class="boardList">
 				<table border="1" summary="">
-					<caption>게시판 목록</caption>
+					<caption>Q&A</caption>
 					<colgroup
 						class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 						<col style="width: 100px;">
-						<col style="width: 135px;" class="displaynone">
-						<col style="width: auto;">
+						<col style="width: auto;" >
 						<col style="width: 100px;">
-						<col style="width: 100px;" class="">
-						<col style="width: 100px;" class="displaynone">
-						<col style="width: 100px;" class="displaynone">
-						<col style="width: 100px;" class="displaynone">
+						<col style="width: 100px;">
+						<col style="width: 100px;">
+
 					</colgroup>
 					<thead
 						class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
@@ -57,26 +55,23 @@
 							<th scope="col">NO</th>
 							<th scope="col">제목</th>
 							<th scope="col">작성자</th>
+							<th scope="col" >작성일</th>
 							<th scope="col">답변</th>
-							<th scope="col" class="">작성일</th>
-
 						</tr>
 					</thead>
 					<tbody>
-					        
-						 <c:forEach var="list" items="${list}">
-                  <tr>
-                    <td class="qNo">${list.qNo}
-                    </td>
-                    <td class="qTitle">
-                        <a href="qna.do?qNo=${list.qNo}">${list.qTitle}</a>
-                    </td>
-                    <td class="qWriter">${list.qWriter}</td>
-                    <td class="answer">${list.answer}</td>
-                    <td class="qDate">${list.qDate}</td>
-                </tr>
-            </c:forEach>
-<%--             <c:if test="${count==0}">
+
+						<c:forEach var="list" items="${list}">
+							<tr>
+								<td class="qNo">${list.qNo}</td>
+								<td class="qTitle"><a href="qna.do?qNo=${list.qNo}">${list.qTitle}</a>
+								</td>
+								<td class="qWriter">${list.qWriter}</td>
+								<td class="qDate">${list.qDate}</td>
+								<td class="answer">${list.answer}</td>
+							</tr>
+						</c:forEach>
+						<%--             <c:if test="${count==0}">
                 <tr>
                     <td colspan="5" class="align-center">등록된 게시물이 없습니다.</td>
                 </tr>
@@ -99,8 +94,8 @@
 			</div>
 			<div
 				class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 ">
-				<a href="/board/free/write.html?board_no=1"
-					style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">글쓰기</a>
+				<a href="<c:url value="/boader/qna_insert"/>"type="button" class="btn btn-primary btn-block"
+						style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">글쓰기</a>
 			</div>
 		</div>
 
@@ -138,7 +133,7 @@
 			</p>
 		</div>
 
-		<form id="boardSearchForm" name="" action="/board/free/list.html"
+<!-- 		<form id="boardSearchForm" name="" action="/board/free/list.html"
 			method="get" enctype="multipart/form-data">
 			<input id="board_no" name="board_no" value="1" type="hidden">
 			<input id="page" name="page" value="1" type="hidden"> <input
@@ -168,7 +163,7 @@
 					</p>
 				</fieldset>
 			</div>
-		</form>
+		</form> -->
 		<!-- 관리자 전용 메뉴 -->
 
 		<!-- //관리자 전용 메뉴 -->
