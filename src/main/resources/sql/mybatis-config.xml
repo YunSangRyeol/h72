@@ -22,7 +22,7 @@
 		<typeAlias type="com.project.h72.detail.vo.DetailVO" alias="DetailVO" />
 		<typeAlias type="com.project.h72.detail.vo.DetailDIVO" alias="DetailDIVO" />
 		<typeAlias type="com.project.h72.qna.vo.QnA" alias="QnA" />
-		<typeAlias type="com.project.h72.kitDiy.vo.Cart" alias="KitCart" />
+		<!-- <typeAlias type="com.project.h72.kitDiy.vo.Cart" alias="KitCart" /> -->
 	</typeAliases>	
 	
 	
