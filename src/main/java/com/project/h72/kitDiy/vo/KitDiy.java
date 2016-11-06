@@ -2,7 +2,7 @@ package com.project.h72.kitDiy.vo;
 
 public class KitDiy{
 	private String itemId;
-	private String itemFullName;
+	private String itemOptionName;
 	private String itemDetailId;
 	private int price;
 	private int sailPrice;
@@ -19,7 +19,6 @@ public class KitDiy{
 	private String itemName;
 	
 	public KitDiy() {
-		
 	}
 
 	public String getItemId() {
@@ -38,13 +37,15 @@ public class KitDiy{
 		this.itemName = itemName;
 	}
 
-	public String getItemFullName() {
-		return itemFullName;
+
+	public String getItemOptionName() {
+		return itemOptionName;
 	}
 
-	public void setItemFullName(String itemFullName) {
-		this.itemFullName = itemFullName;
+	public void setItemOptionName(String itemOptionName) {
+		this.itemOptionName = itemOptionName;
 	}
+
 
 	public String getItemDetailId() {
 		return itemDetailId;
@@ -142,15 +143,14 @@ public class KitDiy{
 		this.itemStatus = itemStatus;
 	}
 
-
 	@Override
 	public String toString() {
-		return "KitDiy [itemId=" + itemId + ", itemFullName=" + itemFullName + ", itemDetailId=" + itemDetailId
+		return "KitDiy [itemId=" + itemId + ", itemOptionName=" + itemOptionName + ", itemDetailId=" + itemDetailId
 				+ ", price=" + price + ", sailPrice=" + sailPrice + ", stock=" + stock + ", mainImg=" + mainImg
 				+ ", detailImg01=" + detailImg01 + ", detailImg02=" + detailImg02 + ", etc=" + etc + ", categoryCode="
 				+ categoryCode + ", itemStatus=" + itemStatus + ", minPrice=" + minPrice + ", minSailPrice="
 				+ minSailPrice + ", itemName=" + itemName + "]";
 	}
 
-	
+
 }

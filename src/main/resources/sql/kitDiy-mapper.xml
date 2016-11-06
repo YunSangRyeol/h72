@@ -11,4 +11,18 @@
 		SELECT *
 		FROM  H72.ITEM_DETAIL_VIEW
 	</select>
+	<select id="kitDiyCartCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM  H72.CART
+		WHERE USER_ID = #{userId} 
+	    AND ITEM_ID = #{itemId}
+	</select>
+	<insert id="kitDiyCart" parameterType="Cart">
+		INSERT INTO CART VALUES(
+			SEQ_CART_ID.NEXTVAL,#{itemId},
+			#{userId},#{itemFullName},
+			#{itemDetailId},#{mainImg},
+			#{quantity},#{cost},
+			#{message},#{kit_yn},sysdate)
+	</insert>
 </mapper>

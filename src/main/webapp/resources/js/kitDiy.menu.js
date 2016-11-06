@@ -109,7 +109,7 @@
 		/*상품 코드번호를 확인하기 위한 변수*/
 		var productId = $("#"+menuId + " .product_code").html();
 		/*checkbox에 해당 상품 코드번호를 가진 옵셥 내용 적용*/
-		var chkProductId = $("#"+productId + " .kitDiy_select").val("product_option1");
+		var chkProductId = $("#"+productId + " .kitDiy_select").val();
 		
 		
 		
@@ -142,9 +142,22 @@
 			/*상품가격 메뉴에 삭제*/                                        
 			$("#"+select_productId+" ul:first-child li:nth-child(6)").text("-");
 			/*상품수량 메뉴에 삭제*/
-			$("#"+select_productId+" ul:first-child .select_input").val("-");
+			$("#"+select_productId+" ul:first-child .select_input").val("0");
 			/*상품옵셥 메뉴에 삭제*/                                        
 			$("#"+select_productId+" ul:first-child .kitDiy_subSelect option").remove();
+			
+			/*hidden값 삭제*/
+			$("#"+select_productId+" ul:first-child .itemFullName").removeAttr("name");
+			$("#"+select_productId+" ul:first-child .itemDetailId").removeAttr("name");
+			$("#"+select_productId+" ul:first-child .mainImg").removeAttr("name");
+			$("#"+select_productId+" ul:first-child .cost").removeAttr("name");
+			$("#"+select_productId+" ul:first-child .select_input").removeAttr("name");
+			
+			$("#"+select_productId+" ul:first-child .itemFullName").val(" ");
+			$("#"+select_productId+" ul:first-child .itemDetailId").val(" ");
+			$("#"+select_productId+" ul:first-child .mainImg").val(" ");
+			$("#"+select_productId+" ul:first-child .cost").val(0);
+			
 			
 			
 			/*mainmenu 삭제 <외 1> 이부분만 */
@@ -163,6 +176,7 @@
 				var product_stock = $("#"+select_productId+" ul:nth-child(2) .select_input").val();
 				var product_option = $("#"+select_productId+" ul:nth-child(2) .kitDiy_subSelect").html();
 				var optionVal = $("#"+select_productId+" ul:nth-child(2) .kitDiy_subSelect").val();
+				var thumbMainImg = $("#"+select_productId+" ul:nth-child(2) #mainImg").val();
 				
 				/*submenu정보를  mainmenu로 옮기기*/
 				/*상품코드 메뉴에 추가*/
@@ -178,6 +192,17 @@
 				/*상품옵셥 메뉴에 추가*/
 				$("#"+select_productId+" ul:first-child .kitDiy_subSelect").append(product_option);
 				$("#"+select_productId+" ul:first-child .kitDiy_subSelect").val(optionVal);
+				
+				/*hidden값 옮기기*/
+			$("#"+select_productId+" ul:first-child .itemFullName").val(product_name); 
+				$("#"+select_productId+" ul:first-child .itemFullName").attr("name","itemFullName"); 
+				$("#"+select_productId+" ul:first-child .itemDetailId").val(product_code);       
+				$("#"+select_productId+" ul:first-child .itemDetailId").attr("name","itemDetailId");     
+				$("#"+select_productId+" ul:first-child .mainImg").val(thumbMainImg);          
+				$("#"+select_productId+" ul:first-child .mainImg").attr("name","mainImg");     
+				$("#"+select_productId+" ul:first-child .cost").val(product_price);            
+				$("#"+select_productId+" ul:first-child .cost").attr("name","cost");    
+				$("#"+select_productId+" ul:first-child .select_input").attr("name","quantity");      
 				
 				
 				/*2번째 있는 submenu 삭제*/

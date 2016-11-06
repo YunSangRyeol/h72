@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.h72.kitDiy.dao.KitDiyDao;
+import com.project.h72.kitDiy.vo.Cart;
 import com.project.h72.kitDiy.vo.KitDiy;
 
 @Service
@@ -22,6 +23,17 @@ public class KitDiyServiceImp implements KitDiyService{
 	@Override
 	public List<KitDiy> itemDetailViewSelect() {
 		return dao.itemDetailViewSelect();
+	}
+
+
+	@Override
+	public int kitDiyCart(Cart cart) {
+		return dao.kitDiyCart(cart);
+	}
+
+	@Override
+	public int kitDiyCartCheck(Cart cart) {
+		return dao.kitDiyCartCheck(cart);
 	}
 
 }

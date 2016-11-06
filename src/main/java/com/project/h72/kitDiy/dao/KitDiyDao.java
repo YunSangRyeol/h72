@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.h72.kitDiy.vo.Cart;
 import com.project.h72.kitDiy.vo.KitDiy;
 
 @Repository
@@ -19,6 +20,12 @@ public class KitDiyDao {
 	}
 	public List<KitDiy> itemDetailViewSelect() {
 		return sqlSession.selectList(NAMESPACE + "itemDetailViewSelect");
+	}
+	public int kitDiyCart(Cart cart) {
+		return sqlSession.insert(NAMESPACE + "kitDiyCart",cart);
+	}
+	public int kitDiyCartCheck(Cart cart) {
+		return sqlSession.selectOne(NAMESPACE + "kitDiyCartCheck",cart);
 	}
 
 }
