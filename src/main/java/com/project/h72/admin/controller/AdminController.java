@@ -166,9 +166,7 @@ public class AdminController {
 	public @ResponseBody Map<String, Object> updateStatusOne(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status){
 		
 		int result= adminService.updateStatusOne(orderNo, status);
-		/*
-		Order order = adminService.readChange(orderNo);*/
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", result);
 		
@@ -181,8 +179,7 @@ public class AdminController {
 			
 			int result= adminService.updateChangeOne(orderNo, change);
 			Map<String, Object> map = new HashMap<String, Object>();
-			
-			
+
 			map.put("result", result);
 			
 			return map;

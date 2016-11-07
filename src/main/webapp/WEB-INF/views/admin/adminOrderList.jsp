@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,7 @@
     <li>기본적으로 최근 3일간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
     <li>주문번호를 클릭하시면 해당 주문에 대한 배송정보를 확인하실 수 있습니다.</li>
     <li>상품정보를 클릭하시면 해당 주문의 대한 상세내역을 확인하실 수 있습니다.</li>
-    <li>개별 변경 후에 상단의 탭 이동시 새로고침을 해주셔야 재배열됩니다.</li>
+    <li>종류별 변경 후에 상단의 탭 이동시 새로고침을 해주셔야 재배열됩니다.</li>
   </ul>  
  
 	<br>
@@ -70,6 +71,7 @@
 		<li><a href="javascript:void(0)" class="tablinks"
 			onclick="openTab(event, 'back')">취소/교환/반품</a></li>
 	</ul>
+	
 
 <!-- ----------------------------------------모두보기----------------------------------------------------------- -->
 	<div id="all" class="tabcontent" style="display:block">
@@ -87,7 +89,6 @@
 					<th scope="col" class="who">주문자</th>
 					<th scopt="col" class="how">주문 방법</th>
 					<th scope="col" class="state">주문처리상태</th>
-					<th scope="col" class="change">변화상태</th>
 				</tr>
 			</thead>			
 			<tbody class="">				
@@ -95,10 +96,9 @@
 				<tr class="xans-record-"><!-- 내용 -->
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
-
-					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </a></td>
+					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
-					<td class="price"><strong>${list.totalPrice }</strong>
+					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>					
 					<c:set var="resultAll" value="${list.totalPrice+resultAll}" />
 						<div class="displaynone"></div></td>
 					<td class="who"><a>${list.userId }</a></td>
@@ -119,20 +119,6 @@
 				</script>
 						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne0('${list.orderNo }')" value="변경">
 					</td>
-		<!-- 교환/취소/반품일 경우에만 -->
-		<c:if test="${!(list.orderChange eq null) }">
-					<th class="change"><select id="change${list.orderNo }" name="selectChangeOne${list.orderNo}3" class="selectOption">
-							<option value="접수중" >접수중</option>
-							<option value="처리중">처리중</option>
-							<option value="처리완료">처리완료</option>
-				<script>
-				$(function(){
-					$('#change${list.orderNo }').val('${list.orderChange}').prop("selected", true);
-				});
-				</script>
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateChangeOne3('${list.orderNo }')" value="변경">
-					</th>
-		</c:if>
 		<c:if test="${list.orderChange eq null }">
 		<th class="change"></th>
 		</c:if>
@@ -144,7 +130,7 @@
 						<th scope="col" class="number"></th>
 						<th scope="col" class="product">${listContents.itemName } [ 옵션 : ${listContents.itemOptionName } ]</th>
 						<th scope="col" class="quantity">${listContents.quantity }</th>
-						<th scope="col" class="price">${listContents.cost }</th>
+						<th scope="col" class="price"><fmt:formatNumber value="${listContents.cost }" groupingUsed="true" /> </th>
 						<th scope="col" class="who"></th>
 						<th scopt="col" class="how"></th>
 						<th scope="col" class="state"></th>
@@ -156,7 +142,8 @@
 							
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${resultAll} 원</div>
+		
+		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultAll }" groupingUsed="true" /> 원</div>
 		<div id="optionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
@@ -197,16 +184,17 @@
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
-					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </a></td>
+					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
-					<td class="price"><strong>${list.totalPrice }</strong>
+					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
+						<c:set var="resultOrder" value="0"/>
 						<c:set var="resultOrder" value="${list.totalPrice+resultOrder}" />
 						<div class="displaynone"></div>
 					</td>
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="state${list.orderNo }" name="selectStatusOne1" class="selectOption">
+						<select id="state${list.orderNo }" name="selectStatusOne" class="selectOption">
 							<option value="결제완료">결제완료</option>
 							<option value="배송중">배송중</option>
 							<option value="주문접수" selected>주문접수</option> 
@@ -224,7 +212,7 @@
 						<th scope="col" class="number"></th>
 						<th scope="col" class="product">${listContents.itemName } [ 옵션 : ${listContents.itemOptionName } ]</th>
 						<th scope="col" class="quantity">${listContents.quantity }</th>
-						<th scope="col" class="price">${listContents.cost }</th>
+						<th scope="col" class="price"><fmt:formatNumber value="${listContents.cost }" groupingUsed="true" /></th>
 						<th scope="col" class="who"></th>
 						<th scopt="col" class="how"></th>
 						<th scope="col" class="state"></th>
@@ -235,7 +223,7 @@
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${resultOrder} 원</div>
+		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultOrder}" groupingUsed="true" pattern="0"/> 원</div>
 		<div id="optionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
@@ -277,9 +265,10 @@
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
-					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </a></td>
+					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
+						<c:set var="resultpaid" value="0" />
 						<c:set var="resultpaid" value="${list.totalPrice+resultpaid}" />
 						<div class="displaynone"></div>
 					</td>
@@ -357,9 +346,10 @@
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
-					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </a></td>
+					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
+						<c:set var="resultdelivery" value="0" />
 						<c:set var="resultdelivery" value="${list.totalPrice+resultdelivery}" />
 						<div class="displaynone"></div>
 					</td>
@@ -439,9 +429,10 @@
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
-					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </a></td>
+					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
+						<c:set var="resultchange" value="0" /> 
 						<c:set var="resultchange" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
 						<div class="displaynone"></div>
 					</td>
@@ -517,7 +508,7 @@
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
-					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </a></td>
+					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
 						<c:set var="resultpaid" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
@@ -596,7 +587,7 @@
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
-					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.totalQuantity -1 }개 </a></td>
+					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong>${list.totalPrice }</strong>
 						<c:set var="resultpaid" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />

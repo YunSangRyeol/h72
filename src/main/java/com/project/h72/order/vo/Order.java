@@ -9,6 +9,7 @@ public class Order {
 	private String itemNameN1;
 	private String itemOptionNameN1;
 	private int totalQuantity;
+	private int kindsQuantity;
 	private int totalPrice;
 	private String paymentMethod;
 	private int paymentPoint;
@@ -24,15 +25,17 @@ public class Order {
 	private Date enrollDate;
 	
 	
+
 	public Order() {
 		super();
 	}
 
+	
 
 	public Order(String orderNo, String userId, String mainImgN1, String itemNameN1, String itemOptionNameN1,
-			int totalQuantity, int totalPrice, String paymentMethod, int paymentPoint, int totalSavingPoint,
-			int deliveryPee, String phone, String postNum, String address, String addressDetail, String deliveryMessage,
-			String orderStatus, String orderChange, Date enrollDate) {
+			int totalQuantity, int kindsQuantity, int totalPrice, String paymentMethod, int paymentPoint,
+			int totalSavingPoint, int deliveryPee, String phone, String postNum, String address, String addressDetail,
+			String deliveryMessage, String orderStatus, String orderChange, Date enrollDate) {
 		super();
 		this.orderNo = orderNo;
 		this.userId = userId;
@@ -40,6 +43,7 @@ public class Order {
 		this.itemNameN1 = itemNameN1;
 		this.itemOptionNameN1 = itemOptionNameN1;
 		this.totalQuantity = totalQuantity;
+		this.kindsQuantity = kindsQuantity;
 		this.totalPrice = totalPrice;
 		this.paymentMethod = paymentMethod;
 		this.paymentPoint = paymentPoint;
@@ -56,37 +60,48 @@ public class Order {
 	}
 
 
-
-
+	
 
 	public String getOrderNo() {
 		return orderNo;
 	}
 
+
+
 	public void setOrderNo(String orderNo) {
 		this.orderNo = orderNo;
 	}
+
+
 
 	public String getUserId() {
 		return userId;
 	}
 
+
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
+
 
 	public String getMainImgN1() {
 		return mainImgN1;
 	}
 
+
+
 	public void setMainImgN1(String mainImgN1) {
 		this.mainImgN1 = mainImgN1;
 	}
 
-	
+
+
 	public String getItemNameN1() {
 		return itemNameN1;
 	}
+
 
 
 	public void setItemNameN1(String itemNameN1) {
@@ -94,9 +109,11 @@ public class Order {
 	}
 
 
+
 	public String getItemOptionNameN1() {
 		return itemOptionNameN1;
 	}
+
 
 
 	public void setItemOptionNameN1(String itemOptionNameN1) {
@@ -104,117 +121,186 @@ public class Order {
 	}
 
 
+
 	public int getTotalQuantity() {
 		return totalQuantity;
 	}
+
+
 
 	public void setTotalQuantity(int totalQuantity) {
 		this.totalQuantity = totalQuantity;
 	}
 
+
+
+	public int getKindsQuantity() {
+		return kindsQuantity;
+	}
+
+
+
+	public void setKindsQuantity(int kindsQuantity) {
+		this.kindsQuantity = kindsQuantity;
+	}
+
+
+
 	public int getTotalPrice() {
 		return totalPrice;
 	}
+
+
 
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
+
+
 	public String getPaymentMethod() {
 		return paymentMethod;
 	}
+
+
 
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
 
+
+
 	public int getPaymentPoint() {
 		return paymentPoint;
 	}
+
+
 
 	public void setPaymentPoint(int paymentPoint) {
 		this.paymentPoint = paymentPoint;
 	}
 
+
+
 	public int getTotalSavingPoint() {
 		return totalSavingPoint;
 	}
+
+
 
 	public void setTotalSavingPoint(int totalSavingPoint) {
 		this.totalSavingPoint = totalSavingPoint;
 	}
 
+
+
 	public int getDeliveryPee() {
 		return deliveryPee;
 	}
+
+
 
 	public void setDeliveryPee(int deliveryPee) {
 		this.deliveryPee = deliveryPee;
 	}
 
+
+
 	public String getPhone() {
 		return phone;
 	}
+
+
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
+
+
 	public String getPostNum() {
 		return postNum;
 	}
+
+
 
 	public void setPostNum(String postNum) {
 		this.postNum = postNum;
 	}
 
+
+
 	public String getAddress() {
 		return address;
 	}
+
+
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
+
+
 	public String getAddressDetail() {
 		return addressDetail;
 	}
+
+
 
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
 
+
+
 	public String getDeliveryMessage() {
 		return deliveryMessage;
 	}
+
+
 
 	public void setDeliveryMessage(String deliveryMessage) {
 		this.deliveryMessage = deliveryMessage;
 	}
 
+
+
 	public String getOrderStatus() {
 		return orderStatus;
 	}
+
+
 
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 
+
+
 	public String getOrderChange() {
 		return orderChange;
 	}
+
+
 
 	public void setOrderChange(String orderChange) {
 		this.orderChange = orderChange;
 	}
 
+
+
 	public Date getEnrollDate() {
 		return enrollDate;
 	}
 
+
+
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+
+
 
 	@Override
 	public String toString(){

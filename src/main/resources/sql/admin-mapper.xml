@@ -26,6 +26,7 @@
 		<result property="itemNameN1" column="ITEM_NAME_N1" />
 		<result property="itemOptionNameN1" column="ITEM_OPTION_NAME_N1" />
 		<result property="totalQuantity" column="TOTAL_QUANTITY" />
+		<result property="kindsQuantity" column="KINDS_QUANTITY" />		
 		<result property="totalPrice" column="TOTAL_PRICE" />
 		<result property="paymentMethod" column="PAYMENT_METHOD" />
 		<result property="paymentPoint" column="PYMNET_POINT" />

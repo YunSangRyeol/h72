@@ -93,7 +93,7 @@
 	});//document.ready 
 </script>
 <script>
-	function sample4_execDaumPostcode() {
+	function sample6_execDaumPostcode() {
 		new daum.Postcode(
 				{
 					oncomplete : function(
