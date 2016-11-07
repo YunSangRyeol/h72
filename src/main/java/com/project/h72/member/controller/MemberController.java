@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,9 @@ import com.project.h72.member.vo.Member;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+
+	@Autowired
+	private JavaMailSender mailSender;
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
@@ -106,13 +112,13 @@ public class MemberController {
 		return "member/idFindPage";
 	}
 
-	@RequestMapping(value = "/searchId.do", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String mSearchID(@RequestParam("name") String name, @RequestParam("birthdate") Date birthdate,
-			Model user) throws Exception  {
+	@RequestMapping(value = "/searchId.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String mSearchID(@RequestParam("name") String name, @RequestParam("birthdate") Date birthdate, Model user)
+			throws Exception {
 		/* 아이디찾기 */
 		System.out.println(name + "%%%%" + birthdate);
 		Member searchId = memberService.getSearchId(new Member(name, birthdate));
-		user.addAttribute("user",searchId);
+		user.addAttribute("user", searchId);
 		System.out.println(user);
 
 		return "member/idFindResult";
@@ -124,12 +130,24 @@ public class MemberController {
 		return "member/pwdFindPage";
 	}
 
-	@RequestMapping(value = "/searchPw.do", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String mSearchPW(@RequestParam("userid") String userid, @RequestParam("name") String name, @RequestParam("email") String email,
-			Model user) throws Exception  {
+	@RequestMapping(value = "/searchPw.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String mSearchPW(@RequestParam("userid") String userid, @RequestParam("name") String name,
+			@RequestParam("email") String email, Model user) throws Exception {
 		/* 아이디찾기 */
 		Member searchPw = memberService.getSearchPw(new Member(userid, name, email));
-		user.addAttribute("user",searchPw);
+		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setFrom("h72shop@gmail.com");
+		msg.setTo(new String[] { email });
+		msg.setSubject("재난대비 용품점 h72, 귀하의 비밀번호 찾기 결과입니다.");
+		msg.setText(searchPw.getName() + "님, 항상 이용해 주셔서 감사합니다! ^-^  귀하의 비밀번호는 [ "+ searchPw.getUserpass() +" ] 입니다");
+
+		try {
+			mailSender.send(msg);
+		} catch (MailException ex) {
+			// 적절히 처리
+		}
+		user.addAttribute("user", searchPw);
 		System.out.println(user);
 
 		return "member/pwdFindResult";
