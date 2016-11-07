@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,17 +19,17 @@
 			</div>
 			<div class="mSearch_result_info">
 				<ul>
-					<li><strong><span>À±»ó·Ä</span></strong>´ÔÀÇ ºñ¹Ğ¹øÈ£ Ã£±â °á°ú
-					</li>
-					<li><span>ysr9393@naver.com</span></li>
-					<li><label>ÇØ´ç ¸ŞÀÏ·Î º¸³»µå·È½À´Ï´Ù.</label><br></li>
-				
+					<li><strong><u>${user.name }</u></strong>ë‹˜ì˜ ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ê²°ê³¼</li>
+					<li><strong><u>${user.email }</u></strong></li>
+					<li><label>í•´ë‹¹ ë©”ì¼ë¡œ ë³´ë‚´ë“œë ¸ìŠµë‹ˆë‹¤.</label><br></li>
+					<li>${user.userpass }</li>
+
 				</ul>
 			</div>
 			<p class="mSearch_result_button">
-				<a id="mSearch_result_btn1" href="loginPage"
+				<a id="mSearch_result_btn1" href="<c:url value="member/loginPage" />"
 					style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; font-size: 11px;"
-					class="">·Î±×ÀÎ</a>
+					class="">ë¡œê·¸ì¸</a>
 			</p>
 
 

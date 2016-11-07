@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,21 +17,20 @@
 				<h2>FIND ID</h2>
 			</div>
 			<div class="mSearch_input">
-				<p id="mSearch_name_view" class="name">
-					<strong id="name_lable">ְּ¸§</strong> <input id="name" name="name"
-						fw-filter="" fw-label="ְּ¸§" fw-msg="" class="lostInput" value=""
-						type="text">
-				</p>
-				<p id="mSearch_email_view" class="email" style="display: block;">
-					<strong>ְּ¸Þְֿ</strong> <input id="email" name="email"
-						fw-filter="isEmail" fw-label="ְּ¸Þְֿ" fw-msg="" class="lostInput"
-						value="" type="text">
-				</p><br>
-				<p class="mSearch_button">
-					<a href="#none"
-						onclick="findId.action('jjukbbang1' , 'kcp'); return false;"
-						style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; font-size: 11px;">ָ®ְ־</a>
-				</p>
+				<form class="findId" action="../searchId.do" method="post">
+					<p id="mSearch_name_view" class="findIdName">
+						<strong id="name_lable">ל´כ¦„</strong> <input id="findIdName"
+							name="name" class="lostInput" type="text">
+					</p>
+					<p id="mSearch_birth_view" class="findIdBirth"
+						style="display: block;">
+						<strong>לƒכ…„ל›”ל¼</strong> <input id="findIdBirth" name="birthdate"
+							type="date"> ל…כ ¥ ל˜ˆ) 2000/01/01
+					</p>
+					<br> <input type="submit" class="searchBtn" value="ם™•ל¸"
+						style="width: 120px; height: 40px; cursor: pointer; padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; font-size: 11px;" />
+
+				</form>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />

@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.h72.Search.dao.SearchDao;
 import com.project.h72.Search.service.SearchService;
 import com.project.h72.Search.service.SearchServiceImp;
 import com.project.h72.Search.vo.Search;
@@ -40,7 +42,7 @@ public class SearchController {
 		list.addAttribute("bagList", bagList);
 		title.addAttribute("listTitle", listTitle);
 
-		// Search cate1 = SearchService.categoryBag();
+		// Search cate1 = SearchService.categoryBag(); return
 		return "search/searchPage";
 	}
 

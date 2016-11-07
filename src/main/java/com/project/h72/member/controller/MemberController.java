@@ -75,18 +75,18 @@ public class MemberController {
 		int mJoin = 0;
 		System.out.println(id + ", " + pass + ", " + name + ", " + birthdate + ", " + email + ", " + phone + ", "
 				+ postnum + ", " + address + ", " + addressDetail);
-			mJoin = memberService.insertMember(
-					new Member(id, pass, name, birthdate, email, phone, postnum, address, addressDetail));
-			System.out.println(mJoin + "@@@@Controller");
+		mJoin = memberService
+				.insertMember(new Member(id, pass, name, birthdate, email, phone, postnum, address, addressDetail));
+		System.out.println(mJoin + "@@@@Controller");
 
 		return "home";
 	}
 
-/*	@RequestMapping(value = "member/memberUpdate", method = RequestMethod.GET)
-	public String mUpdatePage(Locale locale, Model model) {
-		 단순 페이지 이동 
-		return "member/memberUpdate";
-	}*/
+	/*
+	 * @RequestMapping(value = "member/memberUpdate", method =
+	 * RequestMethod.GET) public String mUpdatePage(Locale locale, Model model)
+	 * { 단순 페이지 이동 return "member/memberUpdate"; }
+	 */
 
 	@RequestMapping(value = "/mUpdate", method = RequestMethod.POST)
 	public String mUpdate(Locale locale, Model model) {
@@ -101,29 +101,37 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "member/idFindPage", method = RequestMethod.GET)
-	public String mSearchID(Locale locale, Model model) {
+	public String mSearchIdPage(Locale locale, Model model) {
 		/* 단순 페이지 이동 */
 		return "member/idFindPage";
 	}
 
-	@RequestMapping(value = "member/pwdFindPage", method = RequestMethod.GET)
-	public String mSearchPW(Locale locale, Model model) {
-		/* 단순 페이지 이동 */
-		return "member/pwdFindPage";
-	}
-
-	@RequestMapping(value = "member/idFindResult", method = RequestMethod.POST)
-	public String idFindResult(Locale locale, Model model) {
+	@RequestMapping(value = "/searchId.do", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String mSearchID(@RequestParam("name") String name, @RequestParam("birthdate") Date birthdate,
+			Model user) throws Exception  {
+		/* 아이디찾기 */
+		System.out.println(name + "%%%%" + birthdate);
+		Member searchId = memberService.getSearchId(new Member(name, birthdate));
+		user.addAttribute("user",searchId);
+		System.out.println(user);
 
 		return "member/idFindResult";
 	}
 
-	@RequestMapping(value = "member/pwdFindResult", method = RequestMethod.POST)
-	public String pwdFindResult(Locale locale, Model model) {
+	@RequestMapping(value = "member/pwdFindPage", method = RequestMethod.GET)
+	public String mSearchPwPage(Locale locale, Model model) {
+		/* 단순 페이지 이동 */
+		return "member/pwdFindPage";
+	}
+
+	@RequestMapping(value = "/searchPw.do", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String mSearchPW(@RequestParam("userid") String userid, @RequestParam("name") String name, @RequestParam("email") String email,
+			Model user) throws Exception  {
+		/* 아이디찾기 */
+		Member searchPw = memberService.getSearchPw(new Member(userid, name, email));
+		user.addAttribute("user",searchPw);
+		System.out.println(user);
 
 		return "member/pwdFindResult";
 	}
-	
-
-
 }

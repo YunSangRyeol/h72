@@ -19,4 +19,14 @@ public class MemberService {
 		return dao.insertMember(member);
 	}
 
+	public Member getSearchId(Member member) {
+		// TODO Auto-generated method stub
+		return dao.getSearchId(member);
+	}
+
+	public Member getSearchPw(Member member) {
+		// TODO Auto-generated method stub
+		return dao.getSearchPw(member);
+	}
+
 }

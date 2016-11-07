@@ -32,7 +32,8 @@ a {
 
 /* shopping cart, order, order list, order detail title */
 .mSearch_titleArea h2 {
-	padding-top: 124px; font-family : "Noto Sans KR", sans-serif;
+	padding-top: 124px;
+	font-family: "Noto Sans KR", sans-serif;
 	font-size: 20px;
 	font-weight: 900;
 	letter-spacing: 2px;
@@ -55,14 +56,16 @@ a {
 	color: #353535;
 	vertical-align: middle;
 	display: block;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	text-align: left;
+	padding-left: 420px;
 }
 
 .mSearch_input strong {
-	text-align:left;
+	text-align: left;
 	display: inline-block;
 	margin: 0 0 5px;
 	padding: 0 0 0 10px;
@@ -80,15 +83,16 @@ a {
 	border: 1px solid #d9d9d9;
 	color: #202020;
 }
-.mSearch_button{
-	margin: 20px 0 20px 0;
-    text-align: center;
-}
-.mSearch_button a{
-    padding: 7px 22px 7px 22px;
-    background: #000;
-    border: 1px solid #000;
-    color: #fff;
-    font-size: 11px;
 
+.mSearch_button {
+	margin: 20px 0 20px 0;
+	text-align: center;
+}
+
+.mSearch_button a {
+	padding: 7px 22px 7px 22px;
+	background: #000;
+	border: 1px solid #000;
+	color: #fff;
+	font-size: 11px;
 }

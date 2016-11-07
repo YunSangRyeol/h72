@@ -23,4 +23,14 @@ public int insertMember(Member member) {
 	return sqlSession.insert(NAMESPACE+"insertMember", member);
 }
 
+public Member getSearchId(Member member) {
+	// TODO Auto-generated method stub
+	return sqlSession.selectOne(NAMESPACE + "searchId", member);
+}
+
+public Member getSearchPw(Member member) {
+	// TODO Auto-generated method stub
+	return sqlSession.selectOne(NAMESPACE + "searchPw", member);
+}
+
 }

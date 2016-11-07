@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,26 +18,24 @@
 				<h2>FIND PASSWORD</h2>
 			</div>
 			<div class="mSearch_input">
-			<p id="mSearch_name_view" class="userid">
-					<strong id="userid_lable">æ∆¿Ãµ</strong> <input id="userid" name="userid"
-						fw-filter="" fw-label="æ∆¿Ãµ" fw-msg="" class="lostInput" value=""
-						type="text">
-				</p>
-				<p id="mSearch_name_view" class="name">
-					<strong id="name_lable">¿Ã∏ß</strong> <input id="name" name="name"
-						fw-filter="" fw-label="¿Ã∏ß" fw-msg="" class="lostInput" value=""
-						type="text">
-				</p>
-				<p id="mSearch_email_view" class="email" style="display: block;">
-					<strong>¿Ã∏ﬁ¿œ</strong> <input id="email" name="email"
-						fw-filter="isEmail" fw-label="¿Ã∏ﬁ¿œ" fw-msg="" class="lostInput"
-						value="" type="text">
-				</p><br>
-				<p class="mSearch_button">
-					<a href="#none"
-						onclick="findId.action('jjukbbang1' , 'kcp'); return false;"
-						style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; font-size: 11px;">»Æ¿Œ</a>
-				</p>
+				<form class="findPwd" action="../searchPw.do" method="post">
+
+					<p id="mSearch_name_view" class="userid">
+						<strong id="userid_lable">ÏïÑÏù¥Îîî</strong> <input id="userid"
+							name="userid" class="lostInput" type="text">
+					</p>
+					<p id="mSearch_name_view" class="name">
+						<strong id="name_lable">Ïù¥Î¶Ñ</strong> <input id="name" name="name"
+							type="text">
+					</p>
+					<p id="mSearch_email_view" class="email" style="display: block;">
+						<strong>Ïù¥Î©îÏùº</strong> <input id="email" name="email"
+							class="lostInput" type="text">
+					</p>
+					<br> <input type="submit" class="searchBtn" value="ÌôïÏù∏"
+						style="width: 120px; height: 40px; cursor: pointer; padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; font-size: 11px;" />
+
+				</form>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
