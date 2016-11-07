@@ -34,10 +34,7 @@ a {
 	margin: 0 auto;
 }
 
-/* shopping cart, order, order list, order detail title */
-.searchList_titleArea{
-	border-bottom:3px solid gray;
-}
+
 .searchList_titleArea h2 {
 	padding-top: 124px;
 	font-family: "Noto Sans KR", sans-serif;

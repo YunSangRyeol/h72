@@ -20,16 +20,26 @@
 						<c:if test="${loginUser eq null }">
 							<li><a href="<c:url value="/member/loginPage" />">LOGIN</a></li>
 							<li><a href="<c:url value="/member/memberJoin" />">JOIN</a></li>
+							<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
+							<li><a href="<c:url value="/order/order_list"/>">ORDER</a></li>
 						</c:if>
 						<c:if test="${!(loginUser eq null) }">
 							<li style="color: #fff;"><strong> ${loginUser.name }</strong>
 								님</li>
 							<li><a href="<c:url value="/logout.do" />">LOGOUT</a></li>
-							<li><a href="<c:url value="/member/memberUpdate" />">MyInfo</a></li>
-
+							<c:if test="${!(loginUser.levelcode eq 'ADMIN') && !(loginUser.levelcode eq 'STEP') }">
+								<li><a href="<c:url value="/member/memberUpdate" />">MyInfo</a></li>
+								<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
+								<li><a href="<c:url value="/order/order_list"/>">ORDER</a></li>
+							</c:if>
 						</c:if>
-						<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
-						<li><a href="<c:url value="/order/order_list"/>">ORDER</a></li>
+						<c:if
+							test="${loginUser.levelcode eq 'ADMIN' || loginUser.levelcode eq 'STEP' }">
+							<li><a href="<c:url value="#" />">상품관리</a></li>
+							<li><a href="<c:url value="#" />">회원관리</a></li>
+							<li><a href="<c:url value="#" />">주문관리</a></li>
+							<li><a href="<c:url value="#" />">매출관리</a></li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
