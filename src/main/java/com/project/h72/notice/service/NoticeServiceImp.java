@@ -27,5 +27,12 @@ public class NoticeServiceImp implements NoticeService {
 		return dao.getNoticeContent(noticeNo);
 	}
 
+
+	@Override
+	public int insertnotice(String insertNoticeTitle, String insertNoticeContent) {
+		// TODO Auto-generated method stub
+		return dao.NoticeInsert(insertNoticeTitle,insertNoticeContent);
+	}
+
 	
 }

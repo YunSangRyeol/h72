@@ -1,6 +1,7 @@
 package com.project.h72.notice.service;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -12,5 +13,7 @@ public interface NoticeService {
 
 	List<Notice> getNoticeList();
 
-	Notice getNoticeContent(String noticeNo); 
+	Notice getNoticeContent(String noticeNo);
+
+	int insertnotice(String insertNoticeTitle, String insertNoticeContent);
 }

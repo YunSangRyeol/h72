@@ -48,10 +48,7 @@
 					id="bdf_action_type" name="bdf_action_type" value="" type="hidden">
 				<div
 					class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
-					<!--
-            $login_page_url = /member/login.html
-            $deny_access_url = /board/free/list.html
-        -->
+
 					<div class="boardView ">
 						<table border="1" summary="">
 							<caption>게시판 상세</caption>
@@ -91,14 +88,19 @@
 					<div class="btnArea ">
 						<span class="left"><a href="<c:url value="/boader/notice_list"/>"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">목록</a></span>
-						<a href="#none"
-							onclick="BOARD_READ.article_delete('BoardDelForm','1');"
-							class="displaynone"
-							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">삭제</a>
-						<a
+						&nbsp;&nbsp;
+						<c:if test="${loginUser.userid eq 'ADMIN' }"> 
+					<a
 							href="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
-							class="displaynone"
+							OnClick="javascript:writeCheck();"
+							class="left"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">수정</a>
+								<a href="#none"
+							onclick="BOARD_READ.article_delete('BoardDelForm','1');"
+							class="left"
+							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">삭제</a>&nbsp;&nbsp;
+						
+							</c:if> 
 					</div>
 				</div>
 			</form>

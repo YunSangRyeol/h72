@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link href="/h72/resources/css/notice.css" type="text/css"
 	rel="stylesheet">
+
 </head>
 <body>
 <div class="content_wrap">
@@ -29,25 +30,14 @@
 				</div>
 			</div>
 			<!-- 글 내용-->
-			<form id="BoardDelForm" name="" action="/exec/front/Board/del/1"
-				method="post" enctype="multipart/form-data">
-				<input id="no" name="no" value="620208" type="hidden"> <input
-					id="bulletin_no" name="bulletin_no" value="403413" type="hidden">
-				<input id="board_no" name="board_no" value="1" type="hidden">
-				<input id="member_id" name="member_id" value="jjukbbang1"
-					type="hidden"> <input id="list_url" name="list_url"
-					value="/board/free/list.html?board_no=1" type="hidden"> <input
-					id="bdf_modify_url" name="bdf_modify_url"
-					value="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
-					type="hidden"> <input id="bdf_del_url" name="bdf_del_url"
-					value="/exec/front/Board/del/1" type="hidden"> <input
-					id="bdf_action_type" name="bdf_action_type" value="" type="hidden">
+<!-- 			<form name="notice" method="post"
+        action="/board/notice_insert"> -->
+ 			<form id="NoticeInsert" name="NoticeInsert" action="../notice_insert2.do"
+				method="get" >
+				
 				<div
 					class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
-					<!--
-            $login_page_url = /member/login.html
-            $deny_access_url = /board/free/list.html
-        -->
+
 					<!-- <div class="boardView "> -->
 					<table border="1" summary="">
 						<caption>공지등록</caption>
@@ -67,9 +57,9 @@
 					<input type="submit" value="등록" class="btn btn-primary"
 						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;" />&nbsp;&nbsp;
 					<span><a href="<c:url value="/boader/notice_list"/>"
-						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">뒤로</a></span>
+						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e 7; color: #000; letter-spacing: 1px; font-size: 11px;">뒤로</a></span>
 
-				</div></div>
+				</div>
 			</form>
 		</div>
 	</div>

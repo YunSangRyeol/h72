@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.h72.HomeController;
 import com.project.h72.admin.service.AdminService;
@@ -41,11 +42,29 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	
 		return "boader/notice_detail_view";
 	}
+
+	
 	@RequestMapping(value = "boader/notice_insert", method = RequestMethod.GET)
 	public String notice_insert(Locale locale, Model model) {
-
+		System.out.println("OK");
+	
 		return "boader/notice_insert";
 	}
+	
+	@RequestMapping(value = "/notice_insert2.do", method = RequestMethod.GET)
+	public String notice_insert2(@RequestParam("insertNoticeTitle") String insertNoticeTitle,
+			@RequestParam("insertNoticeContent") String insertNoticeContent, Model model) {
+		System.out.println("OK");
+		System.out.println("insertNoticeTitle");
+		
+		int result = 0;
+		result =  noticeService.insertnotice(insertNoticeTitle, insertNoticeContent);
+		
+		return "redirect:/boader/notice_list";
+	}	
+	
+	
+	
 
 	@RequestMapping(value = "boader/notice_update", method = RequestMethod.GET)
 	public String notice_update(Locale locale, Model model) {

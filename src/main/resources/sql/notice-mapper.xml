@@ -9,7 +9,7 @@
 		<result property="noticeNo" column="NOTICE_NO" />
 		<result property="noticeTitle" column="NOTICE_TITLE" />
 		<result property="noticeContent" column="NOTICE_CONTENTS" />
-		<result property="enrolldate" column="ENROLLDATE" />
+		<result property="enrolldate" column="ENROLLDATE" />		
 
 	</resultMap>
 	<select id="getNoticeList" resultType="Notice">
@@ -20,6 +20,12 @@
 		SELECT *	FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
 		
 	</select>
+	<insert id = "NoticeInsert" parameterType="Map">
+	insert into H72.NOTICE values
+	(SEQ_NOTICE_NO.NEXTVAL, #{insertNoticeTitle},  #{insertNoticeContent}, sysdate
+	)
+	
+	</insert>
 
 	
 	

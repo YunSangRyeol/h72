@@ -10,6 +10,14 @@ public class Notice {
 	private Date enrolldate; //날짜
 	
 	
+
+	public Notice(String noticeTitle, String noticeContent) {
+		super();
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+	}
+
+
 	public Notice() {
 		super();
 	}
