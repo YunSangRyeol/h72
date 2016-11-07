@@ -117,3 +117,24 @@ function orderAll(){
 	
 	
 }
+
+
+
+//전체상품주문
+function orderSelectBasket(){
+	var cartAll="";
+	$(".xans-record- input[name=basketItem_chk]:checked").each(function(){
+		if(cartAll=="")
+			cartAll = "cartAll="+$(this).val();
+		else
+			cartAll = cartAll+"&cartAll="+$(this).val();
+		
+	});
+	console.log(cartAll);
+	location.href="/h72/orderAll?"+cartAll;
+	
+	
+}
+
+
+

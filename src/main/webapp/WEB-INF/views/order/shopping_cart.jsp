@@ -172,8 +172,7 @@
 						<a href="#order"
 							onclick="orderAll()"
 							link-login="/member/login.html" class="order_total_btn ">전체상품주문</a>
-						<a href="#none" onclick="Basket.orderSelectBasket(this)"
-							link-order="/order/orderform.html?basket_type=all_buy"
+						<a href="#order" onclick="orderSelectBasket()"
 							link-login="/member/login.html" class="order_select_btn">선택상품주문</a><span
 							class="right"><a href="/h72"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">쇼핑계속하기</a>

@@ -94,8 +94,7 @@
 										<c:set var="result" value="${(cartOrder.quantity*cartOrder.cost)+result}" />
 										</c:forEach>	
 										<td colspan="9"><strong class="type">[기본배송]</strong>
-											상품구매금액 <strong><fmt:formatNumber value="${result}" pattern="#,###" /><span class="displaynone">
-													(0)</span></strong> + 배송비 2,500 = 합계 : 
+											상품구매금액 <strong><fmt:formatNumber value="${result}" pattern="#,###" /></strong> + 배송비 2,500 = 합계 : 
 													<strong class="total">
 													<span><fmt:formatNumber value="${result+2500}" pattern="#,###" />
 													</span>원</strong>
@@ -293,9 +292,38 @@
 													id="total_sale_price_ref_view" class="tail"></span></span>
 											</div></td>
 										<td class="total"><div class="box">
-												<strong>=</strong><strong id="total_order_sale_price_view"><fmt:formatNumber value="${result+2500}" pattern="#,###" /></strong>원
-												<span class="tail displaynone"><span
-													id="total_order_sale_price_ref_view" class="tail"></span></span>
+												<strong>= </strong><strong id="total_order_sale_price_view">
+												<fmt:formatNumber value="${result+2500}" pattern="#,###" type="number" /></strong>원
+												<script>
+	$(function(){
+		
+		$('.input_mile').change(function() {
+			var mile = $(this).val();
+			var point = ${loginUser.point };
+				console.log(point);
+				
+			if(mile <= point){	
+		    console.log(mile);
+		    $('strong#total_sale_price_view').text(mile).trigger('change');
+		    var total = ${result+2500};
+		    console.log(total);
+		    $('strong#total_order_sale_price_view').text(formatNumber(total-mile));
+		    $('#total_price').val(formatNumber(total-mile));
+			}else{
+				$('strong#total_sale_price_view').text("0");
+				var total = ${result+2500};
+			    console.log(total);
+			    $('strong#total_order_sale_price_view').text(formatNumber(total));
+			    $('#total_price').val(formatNumber(total));
+			}
+		});
+		
+		function formatNumber (num) {
+		    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+		}
+
+	});
+</script>
 											</div></td>
 									</tr>
 								</tbody>
@@ -316,8 +344,36 @@
 														value="" type="text" readonly="readnonly">
 														</c:if>
 													<c:if test="${loginUser.point >= 2000}">
-													<input id="input_mile" name="input_mile" class="inputTypeText" 
-														value="" type="text" maxlength ="${loginUser.point }">
+													<input id="input_mile" class="input_mile" name="input_mile" class="inputTypeText" 
+														value="" type="text" maxlength="${loginUser.point }" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'/>
+														<script>
+		function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39){
+				
+				return;
+			}
+			else{
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+	        }
+			
+			var point = ${loginUser.point };
+			var mile = $('.input_mile').val();
+		    if($('.input_mile').val() > point) {
+		    	alert("사용가능 적립금보다 사용금액이 많습니다.\n다시 입력해 주세요");
+	        }
+		}
+	</script>
+													
 													</c:if> 원 (총 사용가능 적립금 : <strong
 														class="point">${loginUser.point }</strong>원)
 												</p>
@@ -368,14 +424,12 @@
 									<tbody>
 										<tr>
 											<th scope="row">입금자명</th>
-											<td><input id="pname" name="pname" fw-filter=""
-												fw-label="무통장 입금자명" fw-msg="" class="inputTypeText"
+											<td><input id="pname" name="pname" class="inputTypeText"
 												size="15" maxlength="20" value="" type="text"></td>
 										</tr>
 										<tr>
 											<th scope="row">입금은행</th>
-											<td><select id="bankaccount" name="bankaccount"
-												fw-filter="" fw-label="무통장 입금은행" fw-msg="">
+											<td><select id="bankaccount" name="bankaccount">
 													<option value="-1">::: 입금은행 선택 :::</option>
 													<option
 														value="bank_04:03900104245260:(주)어나더무드:국민은행:www.kbstar.com">국민은행:00112233445566
@@ -410,7 +464,6 @@
 										<tr>
 											<th scope="row">예금주명</th>
 											<td><input id="allat_account_nm" name="allat_account_nm"
-												fw-filter="" fw-label="무통장 입금자명" fw-msg=""
 												class="inputTypeText" size="26" maxlength="30" value=""
 												type="text"></td>
 										</tr>
@@ -443,17 +496,15 @@
 									금액</span>
 							</h4>
 							<p class="price">
-								<span></span><input id="total_price" name="total_price"
-									fw-filter="isFill" fw-label="결제금액" fw-msg=""
+								<input id="total_price" name="total_price"
 									class="inputTypeText"
-									style="text-align: right; ime-mode: disabled; clear: none; border: 0px; float: none;"
-									size="10" readonly="1" value="11400" type="text"><span>원</span>
+									style="text-align: right; clear: none; border: 0px; float: none;"
+									size="10" readonly="1" value="${result+2500 }" type="text"><span>원</span>
 							</p>
 							<p class="paymentAgree" id="chk_purchase_agreement"
 								style="display: block;">
 								<input id="chk_purchase_agreement0"
-									name="chk_purchase_agreement" fw-filter="" fw-label="구매진행 동의"
-									fw-msg="" value="T" type="checkbox" style="display: block;"><label
+									name="chk_purchase_agreement" value="T" type="checkbox" style="display: block;"><label
 									for="chk_purchase_agreement0">결제정보를 확인하였으며, 구매진행에
 									동의합니다.</label>
 							</p>
