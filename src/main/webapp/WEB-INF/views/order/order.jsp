@@ -11,6 +11,7 @@
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="/h72/resources/js/order.js"></script>
+<script type="text/javascript" src="/h72/resources/js/iamport.payment-1.1.1.js"></script>
 <link href="/h72/resources/css/cart.css" type="text/css"
 	rel="stylesheet">
 <link href="/h72/resources/css/order.css" type="text/css"
@@ -22,7 +23,126 @@
     margin-left: 0px;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	//결제 부분
+	$("input[name=addr_paymethod]:checked").each(function(){
+		$("#payment_input_tcash").each(function() {
+			$(this).css('display', 'none');
+		});
+	});
+	
+/* $("input[name=addr_paymethod]").change(function(){
+	var radioValue = $(this).val();
+	var paylabel = $(this).next("label").text();
+	console.log(paylabel);
+	
+	if (radioValue == "cash") {
+		hideExclude('payment_input_cash', paylabel);
+	} else if (radioValue == "cell") {
+		hideExclude('pg_paymethod_info_pg', paylabel);
+	} else if (radioValue == "tcash") {
+		hideExclude('payment_input_tcash', paylabel);
+	}	else if (radioValue == "card") {
+			hideExclude('pg_paymethod_info_pg', paylabel);
+	}	
+}); */
+	
+});
 
+function hideExclude(excludeId) {
+	$("#payment_input_cash").each(function() {
+		$(this).css('display', 'none');
+	});
+	
+	$("#payment_input_tcash").each(function() {
+		$(this).css('display', 'none');
+	});
+	// 파라미터로 넘겨 받은 id 요소는 show
+	$("#" + excludeId).css('display','table');
+}
+
+
+var payMethod = "vbank";
+
+function setPayMethod(payment){
+	payMethod = payment;
+	
+	var paylabel = $('#paymethod_'+payment).next("label").text();
+	$('#current_pay_name').text(paylabel);
+	
+	if (payment == "vbank") {
+		hideExclude('payment_input_cash');
+	} else if (payment == "phone") {
+		hideExclude('pg_paymethod_info_pg');
+	} else if (payment == "trans") {
+		hideExclude('payment_input_tcash');
+	}	else if (payment == "card") {
+			hideExclude('pg_paymethod_info_pg');
+	}	
+	
+}
+
+
+function paymentSubmit(){
+	var orderName = $('#rname').val();
+	var orderAddress = $('#raddress').val();
+	var orderAddressDetail=$('#raddressDetail').val();
+	var orderPost = $('#rpostnum').val();
+	var orderPhone = $('rphone2_1').val()+"-"+$('rphone2_2').val()+"-"+$('rphone2_3').val();
+	
+	if($('#chk_purchase_agreement0').is(':checked') != true){
+		
+		alert('결제정보 및 구매진행 동의에 체크해주세요.');
+		
+	}else if(orderName == "" || orderAddress=="" ||orderAddressDetail==""|| orderPost == "" || orderPhone == ""){
+		alert('배송지 정보 필수입력사항을 입력해주세요.');
+	}else{
+		CallpaymentAPI();
+	}
+	
+}
+
+function CallpaymentAPI(){
+	orderTitle = '${olist.get(0).getItemFullName()}'+'외 ${olist.size()}개';
+	totalPrice = $('#totalPrice').val();
+	orderName = $('#rname').val();
+	orderAddress = $('#raddress').val()+$('#raddressDetail').val();
+	orderPost = $('#rpostnum').val();
+	orderPhone = $('rphone2_1').val()+"-"+$('rphone2_2').val()+"-"+$('rphone2_3').val();
+
+	var IMP = window.IMP; // 생략가능
+	IMP.init('imp29445119'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	
+	IMP.request_pay({
+	    pg : 'uplus', // 결제회사 결정
+	    pay_method : payMethod, // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
+	    merchant_uid : 'merchant_' + new Date().getTime(), //가맹점에서 생성/관리하는 고유 주문번호, 결제가 된 적이 있는 merchant_uid로는 재결제 불가
+	    name : orderTitle,
+	    amount : totalPrice,
+	    buyer_name : orderName,
+	    buyer_tel : orderPhone,
+	    buyer_addr : orderAddress,
+	    buyer_postcode : orderPost,
+	}, function(rsp) {
+	    if ( rsp.success ) {
+	    	$("#orderForm").submit();
+	        var msg = '결제가 완료되었습니다.';
+	        msg += '고유ID : ' + rsp.imp_uid;
+	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+	        msg += '결제 금액 : ' + rsp.paid_amount;
+	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	    } else {
+	    	var msg = '결제를 취소하셨습니다.';
+	        //var msg = '결제에 실패하였습니다.';
+	        //msg += '에러내용 : ' + rsp.error_msg;
+	    }
+	    alert(msg);
+	});
+	
+}
+
+</script>
 
 </head>
 <body id="main">
@@ -46,7 +166,7 @@
 						<div class="info">
 							<div class="member">
 								<p>
-									<strong>${loginUser.name }</strong> 님은, [${loginUser.levelcode }] 회원이십니다.
+									<strong>${loginUser.name }</strong> 님은, <strong>[${loginUser.levelcode }]</strong> 회원이십니다.
 								</p>
 							</div>
 							<div class="mileage">
@@ -60,6 +180,7 @@
 						<li>상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</li>
 					</ul>
 					<!-- 배송상품 주문 내역  -->
+					<form action="/h72/insertOrder" method="post" id="orderForm">
 					<div class="orderListArea ">
 						<div class="title">
 							<h3>국내배송상품 주문내역</h3>
@@ -215,7 +336,7 @@
 										<th scope="row">배송지 선택</th>
 										<td>
 											<div class="address">
-												<input id="sameaddr0" name="sameaddr" value="T" type="radio"><label
+												<input id="sameaddr0" name="sameaddr" value="T" type="radio" checked="checked"><label
 													for="sameaddr0">주문자 정보와 동일</label> <input id="sameaddr1"
 													name="sameaddr" value="F" type="radio"><label for="sameaddr1">새로운배송지</label>
 												
@@ -225,7 +346,7 @@
 									<tr>
 										<th scope="row">받으시는 분 <span class="star">*</span></th>
 										<td><input id="rname" name="rname" class="inputTypeText" size="15"
-											value="" type="text"></td>
+											value="" type="text" required></td>
 									</tr>
 									<tr>
 										<th scope="row">주소 <span class="star">*</span></th>
@@ -235,7 +356,7 @@
 											<input id="raddress" name="raddress" class="inputTypeText" size="40"
 											value="" readonly type="text"> <span class="grid">기본주소</span><br>
 											<input id="raddressDetail" name="raddressDetail" class="inputTypeText" size="40"
-											value="" type="text"> <span class="grid">나머지주소</span>
+											value="" type="text" required> <span class="grid">나머지주소</span>
 										</td>
 									</tr>
 									<tr>
@@ -248,9 +369,9 @@
 												<option value="018">018</option>
 												<option value="019">019</option>
 										</select>-<input id="rphone2_2" name="rphone2" maxlength="4"
-											 size="4" value="" type="text">-<input
+											 size="4" value="" type="text" required>-<input
 											id="rphone2_3" name="rphone2" maxlength="4"
-											size="4" value="" type="text"></td>
+											size="4" value="" type="text" required></td>
 									</tr>
 									<tr>
 										<th scope="row">배송메시지</th>
@@ -308,13 +429,15 @@
 		    var total = ${result+2500};
 		    console.log(total);
 		    $('strong#total_order_sale_price_view').text(formatNumber(total-mile));
-		    $('#total_price').val(formatNumber(total-mile));
+		    $('#totalPrice').attr('value', total-mile);
+		    $('#total_price').text(formatNumber(total-mile));
 			}else{
 				$('strong#total_sale_price_view').text("0");
 				var total = ${result+2500};
 			    console.log(total);
 			    $('strong#total_order_sale_price_view').text(formatNumber(total));
-			    $('#total_price').val(formatNumber(total));
+			    $('#totalPrice').attr('value', total);
+			    $('#total_price').text(formatNumber(total));
 			}
 		});
 		
@@ -405,17 +528,15 @@
 					<div class="payArea">
 						<div class="payment">
 							<div class="method">
-								<span class="ec-base-label"><input id="addr_paymethod0"
-									name="addr_paymethod" value="cash" type="radio" checked="checked"><label
-									for="addr_paymethod0">무통장 입금</label></span> <span
-									class="ec-base-label"><input id="addr_paymethod1"
-									name="addr_paymethod" value="card" type="radio"><label
-									for="addr_paymethod1">카드 결제</label></span> <span class="ec-base-label"><input
-									id="addr_paymethod2" name="addr_paymethod" value="cell" type="radio"><label
-									for="addr_paymethod2">휴대폰 결제</label></span> <span
-									class="ec-base-label"><input id="addr_paymethod3"
-									name="addr_paymethod" value="tcash" type="radio"><label
-									for="addr_paymethod3">에스크로(실시간 계좌이체)</label></span>
+								<span class="ec-base-label">
+								<input id="paymethod_vbank" name="addr_paymethod" value="vbank" type="radio" checked="checked" onclick="setPayMethod('vbank');">
+								<label for="paymethod_vbank">무통장 입금</label></span> 
+								<span class="ec-base-label"><input id="paymethod_card" name="addr_paymethod" value="card" type="radio" onclick="setPayMethod('card');"><label
+									for="paymethod_card">카드 결제</label></span> 
+								<span class="ec-base-label"><input id="paymethod_phone" name="addr_paymethod" value="phone" type="radio" onclick="setPayMethod('phone');"><label
+									for="paymethod_phone">휴대폰 결제</label></span> 
+								<span class="ec-base-label"><input id="paymethod_trans" name="addr_paymethod" value="trans" type="radio" onclick="setPayMethod('trans');"><label
+									for="paymethod_trans">실시간 계좌이체</label></span>
 							</div>
 
 							<div class="info">
@@ -471,7 +592,7 @@
 											<th scope="row"></th>
 											<td><input type="checkbox" name="flagEscrowUse"
 												id="flagEscrowUse0" value="T"><label
-												for="flagEscrowUse0"> 에스크로(구매안전)서비스를 적용합니다.</label></td>
+												for="flagEscrowUse0"> 구매안전 서비스를 적용합니다.</label></td>
 										</tr>
 									</tbody>
 								</table>
@@ -496,10 +617,14 @@
 									금액</span>
 							</h4>
 							<p class="price">
-								<input id="total_price" name="total_price"
+								<input id= totalPrice name ="totalPrice" value="${result+2500 }" type="hidden"/>
+								<%-- <input id="total_price" name="total_price"
 									class="inputTypeText"
 									style="text-align: right; clear: none; border: 0px; float: none;"
-									size="10" readonly="1" value="${result+2500 }" type="text"><span>원</span>
+									size="10" readonly="1" value="${result+2500 }" type="text"> --%>
+								<span id="total_price">
+								<fmt:formatNumber value="${result+2500}" pattern="#,###" type="number" /></span>
+								<span>원</span>
 							</p>
 							<p class="paymentAgree" id="chk_purchase_agreement"
 								style="display: block;">
@@ -509,10 +634,8 @@
 									동의합니다.</label>
 							</p>
 							<div class="button">
-								<a href="#none"><!-- <img
-									src="/web/upload/sunny/images/btn_payment.png" id="btn_payment"
-									alt="결제하기"> -->
-								<div class="btn_payment">결제하기</div>
+								<a href="#none">
+								<span class="btn_payment" onclick="paymentSubmit();">결제하기</span>
 								</a>
 							</div>
 							<div class="mileage">
@@ -527,6 +650,7 @@
 							</div>
 						</div>
 					</div>
+					</form>
 					<p><br><br><br><br></p>
 
 				</div>

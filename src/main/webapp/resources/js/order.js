@@ -1,5 +1,25 @@
 $(document).ready(function(){
 	
+	$("input[name=sameaddr]").each(function(){
+		if(this.checked){
+		var name = $("#oname").val();
+		var post = $("#postnum").val();
+		var add = $("#address").val();
+		var addDtail = $("#addressDetail").val();
+		var phone2_1 = $("#ophone2_1").val();
+		var phone2_2 = $("#ophone2_2").val();
+		var phone2_3 = $("#ophone2_3").val();
+		
+		$('#rname').val(name);
+		$('#rpostnum').val(post);
+		$('#raddress').val(add);
+		$('#raddressDetail').val(addDtail);
+		$('#rphone2_1').val(phone2_1).prop("selected",true);
+		$('#rphone2_2').val(phone2_2);
+		$('#rphone2_3').val(phone2_3);
+		}
+	});
+	
 	//배송지 정보 주문자 정보와 동일
 	$("input[name=sameaddr]").change(function(){
 		var sameadd = $(this).val();
@@ -34,57 +54,6 @@ $(document).ready(function(){
 		}	
 			
 	});
-	
-	
-	
-	//결제 부분
-	$("input[name=addr_paymethod]:checked").each(function(){
-		$("#payment_input_tcash").each(function() {
-			$(this).css('display', 'none');
-		});
-	});
-	
-$("input[name=addr_paymethod]").change(function(){
-	var radioValue = $(this).val();
-	var paylabel = $(this).next("label").text();
-	console.log(paylabel);
-	
-	if (radioValue == "cash") {
-		hideExclude('payment_input_cash', paylabel);
-	} else if (radioValue == "cell") {
-		hideExclude('pg_paymethod_info_pg', paylabel);
-	} else if (radioValue == "tcash") {
-		hideExclude('payment_input_tcash', paylabel);
-	}	else if (radioValue == "card") {
-			hideExclude('pg_paymethod_info_pg', paylabel);
-	}	
-});
-
-
-function hideExclude(excludeId ,paylabel) {
-	console.log(paylabel);
-	$("#payment_input_cash").each(function() {
-		$(this).css('display', 'none');
-	});
-	
-	$("#payment_input_tcash").each(function() {
-		$(this).css('display', 'none');
-	});
-	// 파라미터로 넘겨 받은 id 요소는 show
-	$("#" + excludeId).css('display','table');
-	
-	$('#current_pay_name').text(paylabel);
-	/* <strong id="current_pay_name">무통장 입금</strong> */
-}
-
-/*  $('#oemail3').change(function(){
-	var option = $(this).val();
-	console.log(option);
-	$('#oemail2').text(option);
-	$('#inputId').attr('readonly', true);
-});
-  */
-  
   
 
 });

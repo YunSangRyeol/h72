@@ -687,6 +687,18 @@ th, td {
     background: #fbfafa;
 }
 
+.xans-order-form .payArea .total .price #total_price {
+    width: 200px;
+    height: auto;
+    padding: 0;
+    border: 0;
+    color: #000;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: normal;
+    background: #fbfafa;
+}
+
 
 .xans-order-form .payArea .total .paymentAgree {
     position: relative;
@@ -711,8 +723,7 @@ th, td {
 
 .xans-order-form .payArea .total .button .btn_payment{
 	    color: #fff;
-    padding: 10px 10px;
-    width: 85%;
+    padding: 8px 86px;
     background-color: #000;
     font-size: 13px;
 }

@@ -32,9 +32,9 @@ public class OrderController {
 		return "order/order";
 	}
 	
-	@RequestMapping(value = "order/order_finish", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertOrder", method = RequestMethod.POST)
 	public String orderFinishForm(Model model) {
-		
+		System.out.println("결제페이지 넘어옴!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		return "order/order_finish";
 	}
 	
