@@ -32,6 +32,32 @@ $(function(){
 		});
 	});
 	
+	/* item_img : MAIN_IMG_N1
+	item_name : ITEM_NAME_N1
+	item_quantity : TOTAL_QUANTITY
+	item_cost
+
+	item_mileage_all : TOTAL_SAVING_POINT 
+
+	totalPrice : TOTAL_PRICE
+
+	payMethodName : PAYMENT_METHOD
+
+	input_mile : PYMNET_POINT
+
+	rname
+	rpostnum : POST_NUM
+	raddress : ADDRESS
+	raddressDetail : ADDRESS_DETAIL
+
+	rphone2 : PHONE
+
+	omessage : DELIVERY_MESSAGE
+
+	주문접수 : ORDER_STATUS
+	NULL : ORDER_CHANGE
+	 */
+	
 /* $("input[name=addr_paymethod]").change(function(){
 	var radioValue = $(this).val();
 	var paylabel = $(this).next("label").text();
@@ -71,8 +97,15 @@ function setPayMethod(payment){
 	var paylabel = $('#paymethod_'+payment).next("label").text();
 	$('#current_pay_name').text(paylabel);
 	
+	 var input = document.createElement("input");
+     input.type = "hidden";
+     input.name = 'payMethodName';
+     input.value = paylabel;
+     $(form).append(input);
+	
+	
 	if (payment == "vbank") {
-		hideExclude('payment_input_cash');
+		hideExclude('pg_paymethod_info_pg');
 	} else if (payment == "phone") {
 		hideExclude('pg_paymethod_info_pg');
 	} else if (payment == "trans") {
@@ -213,6 +246,7 @@ function CallpaymentAPI(){
 									<tr>
 										<c:forEach items="${olist}" var="cartOrder">
 										<c:set var="result" value="${(cartOrder.quantity*cartOrder.cost)+result}" />
+										<c:set value="${(loginUser.pointRate/100)*cartOrder.cost +mileage}" var="mileage"/>
 										</c:forEach>	
 										<td colspan="9"><strong class="type">[기본배송]</strong>
 											상품구매금액 <strong><fmt:formatNumber value="${result}" pattern="#,###" /></strong> + 배송비 2,500 = 합계 : 
@@ -225,7 +259,11 @@ function CallpaymentAPI(){
 								</tfoot>
 								
 								<tbody class="xans-element- xans-order xans-order-normallist">
-								<c:forEach items="${olist}" var="cartOrder">
+								<c:forEach items="${olist}" var="cartOrder"  varStatus="cnt">
+									<input type="hidden" name="item_img" value="${cartOrder.mainImg }"/>
+									<input type="hidden" name="item_name" value="${cartOrder.itemFullName }"/>
+									<input type="hidden" name="item_cost" value="${cartOrder.cost }"/>
+									<input type="hidden" name="item_quantity" value="${cartOrder.quantity }"/>
 									<tr class="xans-record-">
 										<td class="thumb"><a
 											href="/product/detail.html?product_no=8112&amp;cate_no=28"><img
@@ -238,9 +276,7 @@ function CallpaymentAPI(){
 											</div>
 										</td>
 										<td class="quantity">${cartOrder.quantity }</td>
-										<td class="mileage"><input
-											id="product_mileage_all_8112_000A" name="product_mileage_all"
-											value="160" type="hidden"><span class="mileage_icon">적</span>&nbsp;
+										<td class="mileage"><span class="mileage_icon">적</span>&nbsp;
 											<fmt:formatNumber value="${(loginUser.pointRate/100)*cartOrder.cost }" pattern="#,###"/>원</td>
 										<td class="delivery">기본배송</td>
 										<td class="charge">[조건]</td>
@@ -530,7 +566,7 @@ function CallpaymentAPI(){
 							<div class="method">
 								<span class="ec-base-label">
 								<input id="paymethod_vbank" name="addr_paymethod" value="vbank" type="radio" checked="checked" onclick="setPayMethod('vbank');">
-								<label for="paymethod_vbank">무통장 입금</label></span> 
+								<label for="paymethod_vbank">가상계좌 입금</label></span> 
 								<span class="ec-base-label"><input id="paymethod_card" name="addr_paymethod" value="card" type="radio" onclick="setPayMethod('card');"><label
 									for="paymethod_card">카드 결제</label></span> 
 								<span class="ec-base-label"><input id="paymethod_phone" name="addr_paymethod" value="phone" type="radio" onclick="setPayMethod('phone');"><label
@@ -540,45 +576,6 @@ function CallpaymentAPI(){
 							</div>
 
 							<div class="info">
-								<!-- 무통장입금 -->
-								<table border="1" summary="" id="payment_input_cash" style="display:table">
-									<tbody>
-										<tr>
-											<th scope="row">입금자명</th>
-											<td><input id="pname" name="pname" class="inputTypeText"
-												size="15" maxlength="20" value="" type="text"></td>
-										</tr>
-										<tr>
-											<th scope="row">입금은행</th>
-											<td><select id="bankaccount" name="bankaccount">
-													<option value="-1">::: 입금은행 선택 :::</option>
-													<option
-														value="bank_04:03900104245260:(주)어나더무드:국민은행:www.kbstar.com">국민은행:00112233445566
-														(주)살아남조</option>
-													<option
-														value="bank_11:3550013731443:(주)어나더무드:농협중앙회:banking.nonghyup.com">농협중앙회:3111234123123
-														(주)살아남조</option>
-													<option
-														value="bank_20:1005501934183:(주)어나더무드:우리은행:www.wooribank.com">우리은행:1234567890000
-														(주)살아남조</option>
-													<option
-														value="bank_26:100027696470:(주)어나더무드:신한은행:www.shinhan.com">신한은행:123412312345
-														(주)살아남조</option>
-													<option
-														value="bank_71:01391201008686:(주)어나더무드:우체국:www.epostbank.go.kr">우체국:01111111111112
-														(주)살아남조</option>
-													<option
-														value="bank_81:23491001101104:(주)어나더무드:KEB하나은행:www.hanabank.com">KEB하나은행:88888888888888
-														(주)살아남조</option>
-											</select>
-												<p class="grid ">
-													<a href="#none" id="btn_bank_go"><img
-														src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_bank.gif"
-														alt="은행사이트 바로가기"></a>
-												</p></td>
-										</tr>
-									</tbody>
-								</table>
 								<!-- 실시간 계좌이체 -->
 								<table border="1" summary="" id="payment_input_tcash">
 									<tbody>
@@ -613,7 +610,7 @@ function CallpaymentAPI(){
 						<!-- 최종결제금액 -->
 						<div class="total">
 							<h4>
-								<strong id="current_pay_name">무통장 입금</strong> <span>최종결제
+								<strong id="current_pay_name">가상계좌 입금</strong> <span>최종결제
 									금액</span>
 							</h4>
 							<p class="price">
@@ -640,13 +637,17 @@ function CallpaymentAPI(){
 							</div>
 							<div class="mileage">
 								<p>
-									<strong>총 적립예정금액</strong><span id="mAllMileageSum"
-										style="display: block;">90원</span>
+									<strong>총 적립예정금액</strong>
+										<%-- <c:forEach items="${olist }" var="cartOrder">
+										<c:out test="${(loginUser.pointRate/100)*cartOrder.cost }" var="mileage"/>
+										</c:forEach> --%>
+										<input
+											id="item_mileage_all" name="item_mileage_all"
+											value="${mileage }" type="hidden">
+										<span id="MileageSum"
+										style="display: block;"><fmt:formatNumber value="${mileage}" pattern="#,###"/>원</span>
+										
 								</p>
-								<ul>
-									<li><strong>회원 적립금</strong><span id="mMemberMileage">0원</span>
-									</li>
-								</ul>
 							</div>
 						</div>
 					</div>
