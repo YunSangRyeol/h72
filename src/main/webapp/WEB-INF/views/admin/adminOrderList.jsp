@@ -194,7 +194,7 @@
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="state${list.orderNo }" name="selectStatusOne" class="selectOption">
+						<select id="state${list.orderNo }" name="selectStatusOne${list.orderNo }1" class="selectOption">
 							<option value="결제완료">결제완료</option>
 							<option value="배송중">배송중</option>
 							<option value="주문접수" selected>주문접수</option> 
