@@ -26,11 +26,11 @@
 <script type="text/javascript">
 $(function(){
 	//결제 부분
-	$("input[name=addr_paymethod]:checked").each(function(){
+	/* $("input[name=addr_paymethod]:checked").each(function(){
 		$("#payment_input_tcash").each(function() {
 			$(this).css('display', 'none');
 		});
-	});
+	}); */
 	
 	
 /* $("input[name=addr_paymethod]").change(function(){
@@ -76,7 +76,7 @@ function setPayMethod(payment){
      input.type = "hidden";
      input.name = 'payMethodName';
      input.value = paylabel;
-     $(form).append(input);
+     $("#orderForm").append(input);
 	
 	
 	if (payment == "vbank") {
@@ -84,7 +84,7 @@ function setPayMethod(payment){
 	} else if (payment == "phone") {
 		hideExclude('pg_paymethod_info_pg');
 	} else if (payment == "trans") {
-		hideExclude('payment_input_tcash');
+		hideExclude('pg_paymethod_info_pg');
 	}	else if (payment == "card") {
 			hideExclude('pg_paymethod_info_pg');
 	}	
@@ -105,6 +105,8 @@ function paymentSubmit(){
 		
 	}else if(orderName == "" || orderAddress=="" ||orderAddressDetail==""|| orderPost == "" || orderPhone == ""){
 		alert('배송지 정보 필수입력사항을 입력해주세요.');
+	}else if($("input[name=addr_paymethod]").is(':checked') != true){
+		alert('결제수단을 선택해 주세요');
 	}else{
 		CallpaymentAPI();
 	}
@@ -117,15 +119,15 @@ function CallpaymentAPI(){
 	orderName = $('#rname').val();
 	orderAddress = $('#raddress').val()+$('#raddressDetail').val();
 	orderPost = $('#rpostnum').val();
-	orderPhone = $('rphone2_1').val()+"-"+$('rphone2_2').val()+"-"+$('rphone2_3').val();
-
+	orderPhone = $('rphone2_1').val()+$('rphone2_2').val()+$('rphone2_3').val();
+	console.log(orderPhone);
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp29445119'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	
 	IMP.request_pay({
 	    pg : 'uplus', // 결제회사 결정
 	    pay_method : payMethod, // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
-	    merchant_uid : '72'+new Date().getTime(), //가맹점에서 생성/관리하는 고유 주문번호, 결제가 된 적이 있는 merchant_uid로는 재결제 불가
+	    merchant_uid : '72_'+new Date().getTime(), //가맹점에서 생성/관리하는 고유 주문번호, 결제가 된 적이 있는 merchant_uid로는 재결제 불가
 	    name : orderTitle,
 	    amount : totalPrice,
 	    buyer_name : orderName,
@@ -138,7 +140,7 @@ function CallpaymentAPI(){
 	        input.type = "hidden";
 	        input.name = 'orderNo';
 	        input.value = rsp.merchant_uid;
-	        $(form).append(input);
+	        $("#orderForm").append(input);
 	        
 	    	$("#orderForm").submit();
 	        var msg = '결제가 완료되었습니다.';
@@ -169,7 +171,7 @@ function CallpaymentAPI(){
 		<c:forEach items="${olist}" var="cartOrder">
 			<c:set var="result" value="${(cartOrder.quantity*cartOrder.cost)+result}" />
 			<c:set var="totalCost" value="${result}" />
-			<c:set value="${(loginUser.pointRate/100)*cartOrder.cost +mileage}" var="mileage"/>
+			<c:set var="mileageAll" value="${(loginUser.pointRate/100)*(cartOrder.quantity*cartOrder.cost) +mileageAll}"/>
 			<c:set var="delevery" value="무료배송"/>
 		</c:forEach>
 		<c:if test="${result<80000}">
@@ -249,11 +251,13 @@ function CallpaymentAPI(){
 								
 								<tbody class="xans-element- xans-order xans-order-normallist">
 								<c:forEach items="${olist}" var="cartOrder"  varStatus="cnt">
+									<input type="hidden" name="cartId" value="${cartOrder.cartid }"/>
 									<input type="hidden" name="item_img" value="${cartOrder.mainImg }"/>
 									<input type="hidden" name="item_name" value="${cartOrder.itemFullName }"/>
 									<input type="hidden" name="item_cost" value="${cartOrder.cost }"/>
 									<input type="hidden" name="item_quantity" value="${cartOrder.quantity }"/>
 									<input type="hidden" name="item_option" value="${cartOrder.itemOptionName }"/>
+									<input name="item_mileage" value="${(loginUser.pointRate/100)*(cartOrder.quantity*cartOrder.cost) }" type="hidden">
 									<tr class="xans-record-">
 										<td class="thumb"><a
 											href="/product/detail.html?product_no=8112&amp;cate_no=28"><img
@@ -269,7 +273,7 @@ function CallpaymentAPI(){
 										</td>
 										<td class="quantity">${cartOrder.quantity }</td>
 										<td class="mileage"><span class="mileage_icon">적</span>&nbsp;
-											<fmt:formatNumber value="${(loginUser.pointRate/100)*cartOrder.cost }" pattern="#,###"/>원</td>
+											<fmt:formatNumber value="${(loginUser.pointRate/100)*(cartOrder.quantity*cartOrder.cost) }" pattern="#,###"/>원</td>
 										<td class="delivery">기본배송</td>
 										<td class="charge">[조건]</td>
 									</tr>
@@ -430,9 +434,6 @@ function CallpaymentAPI(){
 									<tr>
 										<td class="price"><div class="box">
 												<strong id="total_order_price_view">
-												<%-- <c:if test="${result<80000 }">
-												<fmt:formatNumber value="${result+2500}" pattern="#,###" />
-												</c:if> --%>
 												<fmt:formatNumber value="${result}" pattern="#,###" />
 												</strong>원 <span
 													class="tail displaynone"><span
@@ -495,7 +496,7 @@ function CallpaymentAPI(){
 												<p>
 													<c:if test="${loginUser.point < 2000}">
 													<input id="input_mile" name="input_mile" class="inputTypeText" size="10"
-														value="" type="text" readonly="readnonly">
+														value="" type="text" readonly="readonly">
 														</c:if>
 													<c:if test="${loginUser.point >= 2000}">
 													<input id="input_mile" class="input_mile" name="input_mile" class="inputTypeText" 
@@ -560,7 +561,7 @@ function CallpaymentAPI(){
 						<div class="payment">
 							<div class="method">
 								<span class="ec-base-label">
-								<input id="paymethod_vbank" name="addr_paymethod" value="vbank" type="radio" checked="checked" onclick="setPayMethod('vbank');">
+								<input id="paymethod_vbank" name="addr_paymethod" value="vbank" type="radio" onclick="setPayMethod('vbank');">
 								<label for="paymethod_vbank">가상계좌 입금</label></span> 
 								<span class="ec-base-label"><input id="paymethod_card" name="addr_paymethod" value="card" type="radio" onclick="setPayMethod('card');"><label
 									for="paymethod_card">카드 결제</label></span> 
@@ -571,23 +572,7 @@ function CallpaymentAPI(){
 							</div>
 
 							<div class="info">
-								<!-- 실시간 계좌이체 -->
-								<table border="1" summary="" id="payment_input_tcash">
-									<tbody>
-										<tr>
-											<th scope="row">예금주명</th>
-											<td><input id="allat_account_nm" name="allat_account_nm"
-												class="inputTypeText" size="26" maxlength="30" value=""
-												type="text"></td>
-										</tr>
-										<tr>
-											<th scope="row"></th>
-											<td><input type="checkbox" name="flagEscrowUse"
-												id="flagEscrowUse0" value="T"><label
-												for="flagEscrowUse0"> 구매안전 서비스를 적용합니다.</label></td>
-										</tr>
-									</tbody>
-								</table>
+								
 								
 								<!-- 무통장입금, 카드결제, 휴대폰결제, 실시간계좌이체 -->
 								<div id="pg_paymethod_info" class="payHelp"
@@ -629,14 +614,8 @@ function CallpaymentAPI(){
 							<div class="mileage">
 								<p>
 									<strong>총 적립예정금액</strong>
-										<%-- <c:forEach items="${olist }" var="cartOrder">
-										<c:out test="${(loginUser.pointRate/100)*cartOrder.cost }" var="mileage"/>
-										</c:forEach> --%>
-										<input
-											id="item_mileage_all" name="item_mileage_all"
-											value="${mileage }" type="hidden">
 										<span id="MileageSum"
-										style="display: block;"><fmt:formatNumber value="${mileage}" pattern="#,###"/>원</span>
+										style="display: block;"><fmt:formatNumber value="${mileageAll}" pattern="#,###"/>원</span>
 										
 								</p>
 							</div>
