@@ -22,9 +22,13 @@
 
 	</select>
 
-	<insert id="insertQnA" parameterType="QnA">
-		SELECT * FROM QNA
+	<select id="getQnAContent" parameterType="String" resultType="QnA">
+		SELECT * FROM QNA WHERE Q_NO = #{qNo}
+	</select>
+    <insert id = "QnAInsert" parameterType="Map">
+	insert into H72.QNA values
+	(SEQ_Q_NO.NEXTVAL, null,null, #{insertqTitle},  #{insertqContent}, sysdate ,null,null,null
+	)
 	</insert>
-
 
 </mapper>

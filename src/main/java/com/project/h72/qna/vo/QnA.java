@@ -15,6 +15,14 @@ public class QnA {
 	private String qName; // 분류명
 	private String qCode; // 분류코드
 
+	
+	
+	public QnA(String qTitle, String qContent) {
+		super();
+		this.qTitle = qTitle;
+		this.qContent = qContent;
+	}
+
 	public QnA() {
 		super();
 	}

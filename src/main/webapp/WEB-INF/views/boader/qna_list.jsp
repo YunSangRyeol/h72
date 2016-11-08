@@ -54,7 +54,7 @@
 						<tr style="">
 							<th scope="col">NO</th>
 							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
+						<!-- 	<th scope="col">작성자</th> -->
 							<th scope="col" >작성일</th>
 							<th scope="col">답변</th>
 						</tr>
@@ -64,9 +64,9 @@
 						<c:forEach var="list" items="${list}">
 							<tr>
 								<td class="qNo">${list.qNo}</td>
-								<td class="qTitle"><a href="qna.do?qNo=${list.qNo}">${list.qTitle}</a>
+								<td class="qTitle"><a href="qna_detail_view?qNo=${list.qNo}">${list.qTitle}</a>
 								</td>
-								<td class="qWriter">${list.qWriter}</td>
+								<%-- <td class="qWriter">${list.qWriter}</td> --%>
 								<td class="qDate">${list.qDate}</td>
 								<td class="answer">${list.answer}</td>
 							</tr>
@@ -94,8 +94,10 @@
 			</div>
 			<div
 				class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 ">
+				<c:if test="${loginUser.userid eq loginUser.userid}">
 				<a href="<c:url value="/boader/qna_insert"/>"type="button" class="btn btn-primary btn-block"
 						style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">글쓰기</a>
+			</c:if>
 			</div>
 		</div>
 
