@@ -35,10 +35,10 @@
 						</c:if>
 						<c:if
 							test="${loginUser.levelcode eq 'ADMIN' || loginUser.levelcode eq 'STEP' }">
-							<li><a href="<c:url value="#" />">상품관리</a></li>
-							<li><a href="<c:url value="#" />">회원관리</a></li>
-							<li><a href="<c:url value="#" />">주문관리</a></li>
-							<li><a href="<c:url value="#" />">매출관리</a></li>
+							<li><a href="<c:url value="#" />">상품등록</a></li>
+							<li><a href="<c:url value="/admin/users" />">회원관리</a></li>
+							<li><a href="<c:url value="/admin/order" />">주문관리</a></li>
+							<li><a href="<c:url value="/admin/chart" />">매출관리</a></li>
 						</c:if>
 					</ul>
 				</div>
