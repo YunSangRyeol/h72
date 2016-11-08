@@ -1,6 +1,8 @@
 package com.project.h72.qna.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,20 @@ public class QnADao {
 		// TODO Auto-generated method stub
 		List<QnA> list =sqlSession.selectList(NAMESPACE +"getQnAList");
 		return sqlSession.selectList(NAMESPACE +"getQnAList");
+	}
+
+	public QnA getQnAContent(String qNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE + "getQnAContent", qNo);
+	}
+
+	public int QnAInsert(String insertqTitle, String insertqContent) {
+		// TODO Auto-generated method stub
+		Map<String, String> qna = new HashMap<String, String>();
+		qna.put( "insertqTitle", insertqTitle);
+		qna.put( "insertqContent", insertqContent );
+		return sqlSession.insert(NAMESPACE+"QnAInsert",qna);
+
 	}
 
 }

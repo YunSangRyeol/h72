@@ -30,8 +30,7 @@
 				</div>
 			</div>
 			<!-- 글 내용-->
-<!-- 			<form name="notice" method="post"
-        action="/board/notice_insert"> -->
+
  			<form id="NoticeInsert" name="NoticeInsert" action="../notice_insert2.do"
 				method="get" >
 				

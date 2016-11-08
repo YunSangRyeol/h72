@@ -35,7 +35,7 @@
 			<!-- 글 내용-->
 			<form id="BoardDelForm" name="" action="/exec/front/Board/del/1"
 				method="post" enctype="multipart/form-data">
-				<input id="no" name="no" value="620208" type="hidden"> <input
+				<!-- <input id="no" name="no" value="620208" type="hidden"> <input
 					id="bulletin_no" name="bulletin_no" value="403413" type="hidden">
 				<input id="board_no" name="board_no" value="1" type="hidden">
 				<input id="member_id" name="member_id" value="jjukbbang1"
@@ -45,7 +45,7 @@
 					value="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
 					type="hidden"> <input id="bdf_del_url" name="bdf_del_url"
 					value="/exec/front/Board/del/1" type="hidden"> <input
-					id="bdf_action_type" name="bdf_action_type" value="" type="hidden">
+					id="bdf_action_type" name="bdf_action_type" value="" type="hidden"> -->
 				<div
 					class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
 
@@ -56,7 +56,7 @@
 								<tr>
 									<th scope="row">제목</th>
 									<td class="noticeTitle"><a
-										href="notice.do?noticeNo=${list.noticeNo}">${list.noticeTitle}</a>
+										href="notice_detail_view?noticeNo=${list.noticeNo}">${list.noticeTitle}</a>
 									</td>	</tr>
 								<tr>
 									<th scope="row">작성일</th>
@@ -92,7 +92,6 @@
 						<c:if test="${loginUser.userid eq 'ADMIN' }"> 
 					<a
 							href="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
-							OnClick="javascript:writeCheck();"
 							class="left"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">수정</a>
 								<a href="#none"
