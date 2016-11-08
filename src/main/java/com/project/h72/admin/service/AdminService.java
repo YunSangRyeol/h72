@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.h72.admin.dao.AdminDao;
+import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
 import com.project.h72.order.vo.OrderContents;
@@ -41,6 +42,20 @@ public interface AdminService {
 	int deleteMe(String userid);
 
 	List<OrderContents> getOrderContentsList();
+
+	TotalOrder chartToday(String now);
+
+	List nowYears(String now);
+
+	List lastYears(String now);
+
+	List thisWeek(String now);
+
+	List LastWeek(String now);
+
+	TotalOrder category(String now);
+
+	TotalOrder kit(String now);
 
 
 }

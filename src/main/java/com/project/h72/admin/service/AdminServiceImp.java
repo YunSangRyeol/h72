@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.h72.admin.dao.AdminDao;
+import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
 import com.project.h72.order.vo.OrderContents;
@@ -81,6 +82,43 @@ public class AdminServiceImp implements AdminService{
 	@Override
 	public int deleteMe(String userid) {
 		return dao.deleteMe(userid);
+	}
+
+	
+	//Chart
+	@Override
+	public TotalOrder chartToday(String now) {
+		return dao.chartToday(now);
+	}
+
+	@Override
+	public List nowYears(String now) {
+		return dao.nowYears(now);
+	}
+
+	@Override
+	public List lastYears(String now) {
+		return dao.lastYears(now);
+	}
+
+	@Override
+	public List thisWeek(String now) {
+		return dao.thisWeek(now);
+	}
+
+	@Override
+	public List LastWeek(String now) {
+		return dao.LastWeek(now);
+	}
+
+	@Override
+	public TotalOrder category(String now) {
+		return dao.category(now);
+	}
+
+	@Override
+	public TotalOrder kit(String now) {
+		return dao.kit(now);
 	}
 
 

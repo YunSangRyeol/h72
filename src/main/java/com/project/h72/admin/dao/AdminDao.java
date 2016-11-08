@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
 import com.project.h72.order.vo.OrderContents;
@@ -115,6 +116,35 @@ public class AdminDao {
 		int result = 0;
 		result = sqlSession.delete(NAMESPACE + "deleteMe", userid); 
 		return result;
+	}
+
+	public TotalOrder chartToday(String now) {
+		return sqlSession.selectOne(NAMESPACE + "chartToday", now);
+	}
+
+	public List nowYears(String now) {
+		List nowYears = sqlSession.selectList(NAMESPACE + "nowYears", now);
+		return nowYears;
+	}
+
+	public List lastYears(String now) {
+		return sqlSession.selectList(NAMESPACE + "lastYears", now);
+	}
+
+	public List thisWeek(String now) {
+		return sqlSession.selectList(NAMESPACE + "thisWeek", now);
+	}
+
+	public List LastWeek(String now) {
+		return sqlSession.selectList(NAMESPACE + "LastWeek", now);
+	}
+
+	public TotalOrder category(String now) {
+		return sqlSession.selectOne(NAMESPACE + "category", now);
+	}
+
+	public TotalOrder kit(String now) {
+		return sqlSession.selectOne(NAMESPACE + "kit", now);
 	}
 
 

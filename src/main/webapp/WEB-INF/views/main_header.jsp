@@ -38,7 +38,7 @@
 							<li><a href="<c:url value="#" />">상품등록</a></li>
 							<li><a href="<c:url value="/admin/users" />">회원관리</a></li>
 							<li><a href="<c:url value="/admin/order" />">주문관리</a></li>
-							<li><a href="<c:url value="/admin/chart" />">매출관리</a></li>
+							<li><a href="<c:url value="/admin/chart?now=null" />">매출관리</a></li>
 						</c:if>
 					</ul>
 				</div>

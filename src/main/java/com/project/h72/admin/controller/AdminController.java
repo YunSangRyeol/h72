@@ -1,6 +1,8 @@
 package com.project.h72.admin.controller;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.h72.admin.service.AdminService;
+import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
 import com.project.h72.order.vo.OrderContents;
@@ -207,20 +210,56 @@ public class AdminController {
 			return "admin/adminOrderList";
 		}
 	
-	
+//////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value = "admin/chart", method = RequestMethod.GET)
-	public String adminSalesChart(Locale locale, Model model) {
+	public String adminSalesChart(@RequestParam("now") String now, Model model) {
+		
+//		java.util.Date date = new java.util.Date();
+		
+		
+		
+		if(now.equals("null")){		
+			String nowDate = new SimpleDateFormat("YYYY-MM-dd").format(new java.util.Date());
+			now = nowDate;
+		}else{
+//			java.util.Date date = Calendar.set(now.substring(0, 4), now.substring(0, 2), now.substring(0, 2));
+		}
+		
+		/*
+		Map<String, String> date = new HashMap<String, String>();
+		date.put( "year", now.substring(0, 4));*/
+	/*	date.put( "month", end );
+		date.put( "day", end );*/
+		
+		model.addAttribute("now", now);		
+		
+		//오늘
+		TotalOrder today = adminService.chartToday(now);
+		model.addAttribute("today", today);
+		
+		//년도별
+		List nowYears = adminService.nowYears(now);
+		List lastYears = adminService.nowYears(now);
+		model.addAttribute("nowYears", nowYears);
+		model.addAttribute("lastYears", lastYears);
+		
+		//주간
+		List thisWeek = adminService.thisWeek(now);
+		List LastWeek = adminService.LastWeek(now);
+		model.addAttribute("thisWeek", thisWeek);
+		model.addAttribute("LastWeek", LastWeek);
+		
+		//카테고리
+		TotalOrder category = adminService.category(now);
+		model.addAttribute("category", category);
+		
+		//kit
+		TotalOrder kit = adminService.kit(now);
+		model.addAttribute("kit", kit);
 		
 		return "admin/salesChart";
 	}
 	
-	//
-	
-/*	@RequestMapping(value = "member/update", method = RequestMethod.GET)
-	public String memberUpdate(Locale locale, Model model) {
-		
-		return "member/memberUpdate";
-	}*/
-	
+
 	
 }
