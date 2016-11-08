@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -40,6 +41,15 @@
 					<c:if test="${!(clist eq null)}">
 						<div class="orderListArea">
 							<!-- 일반상품  -->
+							<c:forEach items="${clist}" var="cart">
+								<c:set var="result" value="${(cart.quantity*cart.cost)+result}" />
+								<c:set var="totalCost" value="${result}" />
+								<c:set var="delevery" value="0"/>
+							</c:forEach>
+							<c:if test="${result<80000}">
+								<c:set var="result" value="${result+2500}" />
+								<c:set var="delevery" value="2,500원"/>
+							</c:if>
 							<table border="1" summary=""
 								class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
 								<thead>
@@ -51,21 +61,15 @@
 										<th scope="col" class="quantity">수량</th>
 										<th scope="col" class="mileage">적립금</th>
 										<th scope="col" class="delivery">배송구분</th>
-										<th scope="col" class="charge">배송비</th>
-										<th scope="col" class="total">합계</th>
 										<th scope="col" class="button">선택</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
 										<td colspan="10">
-											<c:forEach items="${clist}" var="cart">
-											<c:set var="result" value="${(cart.quantity*cart.cost)+result}" />
-											</c:forEach>
 											<strong class="type">[기본배송]</strong>
-											상품구매금액 <strong>${result}</strong> + 배송비 2,500 = 합계 : <strong
-											class="total"><span>${result+2500}</span>원</strong> 
-											
+											상품구매금액 <strong><fmt:formatNumber value="${totalCost }" pattern="#,###"/></strong> + 배송비 ${delevery }원 = 합계 : <strong
+											class="total"><span><fmt:formatNumber value="${result }" pattern="#,###"/></span>원</strong> 
 											</td>
 									</tr>
 								</tfoot>
@@ -82,7 +86,7 @@
 											</ul></td>
 										<td class="price">
 											<div class="">
-												<strong>${cart.cost }</strong>
+												<strong><fmt:formatNumber value="${cart.cost }" pattern="#,###"/></strong>
 											</div>
 										</td>
 										<td class="quantity">
@@ -103,17 +107,11 @@
 										<!--</form>  -->
 										</td>
 										<td class="mileage">-</td>
-										<td class="delivery">기본배송
-											<div class="displaynone">(해외배송가능)</div>
+										<td class="delivery">조건부 무료
 										</td>
-										<td>
-											<p class="">
-												2,500원<br>
-											</p>조건
-										</td>
-										<td class="total"><strong>${cart.cost*cart.quantity+2500}</strong></td>
+							
 										<td class="button"><a href="javascript:;"
-											onclick="orderBasketItem(${cnt.count});"
+											onclick="orderBasketItem(${cart.cartid});"
 											style="padding: 2px 7px 2px 7px; line-height: 0px; background: #000; border: 1px solid #000; color: #fff; font-size: 11px;">주문하기</a><br>
 											<br> <a href="javascript:;"
 											onclick="deleteBasketItem(${cnt.count});"
@@ -147,16 +145,17 @@
 									<tbody>
 										<tr>
 											<td class="price"><div class="box">
-													<strong>${result}</strong>원 <span class="tail displaynone"></span>
+													<strong><strong><fmt:formatNumber value="${totalCost }" pattern="#,###"/></strong></strong>원 <span class="tail displaynone"></span>
 												</div></td>
 											<td class="option"><div class="box">
-													<strong> + </strong><strong>2,500</strong>원 <span
+													<strong> + </strong><strong>${delevery }</strong>원 <span
 														class="tail displaynone"></span>
 												</div></td>
 											<td class="total"><div class="box">
-													<strong> = </strong><strong>${result+2500}</strong>원 <span
+													<strong> = </strong><strong><strong><fmt:formatNumber value="${result}" pattern="#,###"/></strong></strong>원 <span
 														class="tail displaynone"></span>
 												</div></td>
+											
 										</tr>
 									</tbody>
 								</table>

@@ -15,17 +15,7 @@ public class Cart {
 	private char KitYN;
 	private Date enrollDate;
 	private String itemOptionName;
-	/*CART_id īƮ ���̵�
-	ITEM_id ��ǰ ���̵�
-	USER_id ���� ���̵�
-	ITEM_FULL_NAME ��ǰ ��ü �̸�
-	ITEM_DETAIL_id ��ǰ ���� ���̵�
-	MAIN_IMG �����
-	QUANTITY ��ǰ ����
-	COST ��ǰ ����
-	MESSAGE ���Ž� ��û����
-	KIT_YN KIT ����
-	ENROLL_DATE ��� ��¥*/
+	
 	
 	public Cart(){
 		super();

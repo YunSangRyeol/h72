@@ -2,6 +2,8 @@ package com.project.h72.order.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,47 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/insertOrder", method = RequestMethod.POST)
-	public String orderFinishForm(Model model) {
+	public String orderFinishForm(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
 		System.out.println("결제페이지 넘어옴!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		Member login = (Member) session.getAttribute("loginUser");
+		String orderNO = request.getParameter("orderNo");
+		String userId = login.getUserid();
+		String[] itemImg= request.getParameterValues("item_img");
+		String[] itemName = request.getParameterValues("item_name");
+		String[] itemOption = request.getParameterValues("item_option");
+		String[] itemQuantity = request.getParameterValues("item_quantity");
+		String[] itemCost = request.getParameterValues("item_cost");
+		String paymethod = request.getParameter("payMethodName");
+		String[] inputMile = request.getParameterValues("input_mile");
+		String totalPoint = request.getParameter("item_mileage_all");
+		
+		/*
+		 
+		ORDER_NO 
+		USER_ID
+		DELEVERY_NAME : rname
+		MAIN_IMG_N1 : item_img
+		ITEM_NAME_N1 : item_name
+		ITEM_OPTION_NAME_N1 : item_option
+		TOTAL_QUANTITY : item_quantity
+		KINDS_QUANTITY
+		TOTAL_PRICE : item_cost
+		PAYMENT_METHOD : payMethodName
+		PYMNET_POINT : input_mile
+		TOTAL_SAVING_POINT : item_mileage_all
+		DELEVERY_PEE : 2500
+		PHONE : rphone2
+		POST_NUM : rpostnum
+		ADDRESS :raddress
+		ADDRESS_DETAIL : raddressDetail
+		DELIVERY_MESSAGE : omessage
+		ORDER_STATUS : 주문접수
+		ORDER_CHANGE : null
+		ENROLL_DATE : sysdate
+		
+		*/
+		
+		
 		return "order/order_finish";
 	}
 	

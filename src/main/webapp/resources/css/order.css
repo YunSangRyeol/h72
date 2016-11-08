@@ -199,6 +199,12 @@ th, td {
     width: 85px;
 }
 
+.xans-order-form .boardList .product .option{
+    color: #757575;
+}
+
+
+
 .xans-order-form .boardList td.mileage span.mileage_icon {
     /* vertical-align: middle; */
     font-size: 10px;

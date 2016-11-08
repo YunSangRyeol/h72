@@ -77,6 +77,8 @@ function deleteBasketItem(index){
 	location.href="/h72/deleteBasketItem?cartId="+cartId;
 }
 
+
+
 //선택삭제  
 function deleteBasketChk(){
 	
@@ -120,7 +122,7 @@ function orderAll(){
 
 
 
-//전체상품주문
+//선택 상품 주문
 function orderSelectBasket(){
 	var cartAll="";
 	$(".xans-record- input[name=basketItem_chk]:checked").each(function(){
@@ -134,6 +136,12 @@ function orderSelectBasket(){
 	location.href="/h72/orderAll?"+cartAll;
 	
 	
+}
+
+//한 아이템 주문하기
+function orderBasketItem(index){
+	var cartId = index;
+	location.href="/h72/orderAll?cartAll="+cartId;
 }
 
 

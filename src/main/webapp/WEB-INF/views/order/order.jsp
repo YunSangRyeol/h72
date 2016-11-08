@@ -32,31 +32,6 @@ $(function(){
 		});
 	});
 	
-	/* item_img : MAIN_IMG_N1
-	item_name : ITEM_NAME_N1
-	item_quantity : TOTAL_QUANTITY
-	item_cost
-
-	item_mileage_all : TOTAL_SAVING_POINT 
-
-	totalPrice : TOTAL_PRICE
-
-	payMethodName : PAYMENT_METHOD
-
-	input_mile : PYMNET_POINT
-
-	rname
-	rpostnum : POST_NUM
-	raddress : ADDRESS
-	raddressDetail : ADDRESS_DETAIL
-
-	rphone2 : PHONE
-
-	omessage : DELIVERY_MESSAGE
-
-	주문접수 : ORDER_STATUS
-	NULL : ORDER_CHANGE
-	 */
 	
 /* $("input[name=addr_paymethod]").change(function(){
 	var radioValue = $(this).val();
@@ -150,7 +125,7 @@ function CallpaymentAPI(){
 	IMP.request_pay({
 	    pg : 'uplus', // 결제회사 결정
 	    pay_method : payMethod, // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
-	    merchant_uid : 'merchant_' + new Date().getTime(), //가맹점에서 생성/관리하는 고유 주문번호, 결제가 된 적이 있는 merchant_uid로는 재결제 불가
+	    merchant_uid : '72'+new Date().getTime(), //가맹점에서 생성/관리하는 고유 주문번호, 결제가 된 적이 있는 merchant_uid로는 재결제 불가
 	    name : orderTitle,
 	    amount : totalPrice,
 	    buyer_name : orderName,
@@ -159,6 +134,12 @@ function CallpaymentAPI(){
 	    buyer_postcode : orderPost,
 	}, function(rsp) {
 	    if ( rsp.success ) {
+	    	var input = document.createElement("input");
+	        input.type = "hidden";
+	        input.name = 'orderNo';
+	        input.value = rsp.merchant_uid;
+	        $(form).append(input);
+	        
 	    	$("#orderForm").submit();
 	        var msg = '결제가 완료되었습니다.';
 	        msg += '고유ID : ' + rsp.imp_uid;
@@ -184,6 +165,18 @@ function CallpaymentAPI(){
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
 
 		<c:if test="${!(loginUser eq null)}">
+		
+		<c:forEach items="${olist}" var="cartOrder">
+			<c:set var="result" value="${(cartOrder.quantity*cartOrder.cost)+result}" />
+			<c:set var="totalCost" value="${result}" />
+			<c:set value="${(loginUser.pointRate/100)*cartOrder.cost +mileage}" var="mileage"/>
+			<c:set var="delevery" value="무료배송"/>
+		</c:forEach>
+		<c:if test="${result<80000}">
+			<c:set var="result" value="${result+2500}" />
+			<c:set var="delevery" value="2,500원"/>
+		</c:if>
+		
 		<div id="order_contents_wrap">
 			<div id="order_contents">
 				<div class="order_titleArea">
@@ -239,21 +232,17 @@ function CallpaymentAPI(){
 										<th scope="col" class="mileage">적립금</th>
 										<th scope="col" class="delivery">배송구분</th>
 										<th scope="col" class="charge">배송비</th>
-										<th scope="col" class="total">합계</th>
 									</tr>
 								</thead>
 								<tfoot>
-									<tr>
-										<c:forEach items="${olist}" var="cartOrder">
-										<c:set var="result" value="${(cartOrder.quantity*cartOrder.cost)+result}" />
-										<c:set value="${(loginUser.pointRate/100)*cartOrder.cost +mileage}" var="mileage"/>
-										</c:forEach>	
+									<tr>	
 										<td colspan="9"><strong class="type">[기본배송]</strong>
-											상품구매금액 <strong><fmt:formatNumber value="${result}" pattern="#,###" /></strong> + 배송비 2,500 = 합계 : 
+										    
+											상품구매금액 <strong><fmt:formatNumber value="${totalCost}" pattern="#,###" /></strong> + ${delevery } = 합계 : 
 													<strong class="total">
-													<span><fmt:formatNumber value="${result+2500}" pattern="#,###" />
+													<span><fmt:formatNumber value="${result}" pattern="#,###" />
 													</span>원</strong>
-											<span class="displaynone"></span></td>
+										</td>
 										
 									</tr>
 								</tfoot>
@@ -264,15 +253,18 @@ function CallpaymentAPI(){
 									<input type="hidden" name="item_name" value="${cartOrder.itemFullName }"/>
 									<input type="hidden" name="item_cost" value="${cartOrder.cost }"/>
 									<input type="hidden" name="item_quantity" value="${cartOrder.quantity }"/>
+									<input type="hidden" name="item_option" value="${cartOrder.itemOptionName }"/>
 									<tr class="xans-record-">
 										<td class="thumb"><a
 											href="/product/detail.html?product_no=8112&amp;cate_no=28"><img
 												src="/h72/resources${cartOrder.mainImg }" alt=""></a></td>
 										<td class="product"><a
-											href="/product/detail.html?product_no=8112&amp;cate_no=28"><strong>${cartOrder.itemFullName }</strong></a>
+											href="/product/detail.html?product_no=8112&amp;cate_no=28"><strong>${cartOrder.itemFullName }</strong>
+											&nbsp;&nbsp;<span class="option">[옵션 : ${cartOrder.itemOptionName }]</span>
+											</a>
 										<td class="price">
 											<div class="">
-												<strong>${cartOrder.cost }</strong>
+												<strong><fmt:formatNumber value="${cartOrder.cost }" pattern="#,###"/></strong>
 											</div>
 										</td>
 										<td class="quantity">${cartOrder.quantity }</td>
@@ -280,8 +272,6 @@ function CallpaymentAPI(){
 											<fmt:formatNumber value="${(loginUser.pointRate/100)*cartOrder.cost }" pattern="#,###"/>원</td>
 										<td class="delivery">기본배송</td>
 										<td class="charge">[조건]</td>
-										<td class="total"><strong><fmt:formatNumber value="${cartOrder.quantity*cartOrder.cost}" pattern="#,###" />원</strong>
-										</td>
 									</tr>
 									</c:forEach>
 								</tbody>
@@ -439,7 +429,12 @@ function CallpaymentAPI(){
 								<tbody>
 									<tr>
 										<td class="price"><div class="box">
-												<strong id="total_order_price_view"><fmt:formatNumber value="${result+2500}" pattern="#,###" /></strong>원 <span
+												<strong id="total_order_price_view">
+												<%-- <c:if test="${result<80000 }">
+												<fmt:formatNumber value="${result+2500}" pattern="#,###" />
+												</c:if> --%>
+												<fmt:formatNumber value="${result}" pattern="#,###" />
+												</strong>원 <span
 													class="tail displaynone"><span
 													id="total_order_price_ref_view" class="tail"></span></span>
 											</div></td>
@@ -450,7 +445,7 @@ function CallpaymentAPI(){
 											</div></td>
 										<td class="total"><div class="box">
 												<strong>= </strong><strong id="total_order_sale_price_view">
-												<fmt:formatNumber value="${result+2500}" pattern="#,###" type="number" /></strong>원
+												<fmt:formatNumber value="${result}" pattern="#,###" /></strong>원
 												<script>
 	$(function(){
 		
@@ -462,14 +457,14 @@ function CallpaymentAPI(){
 			if(mile <= point){	
 		    console.log(mile);
 		    $('strong#total_sale_price_view').text(mile).trigger('change');
-		    var total = ${result+2500};
+		    var total = ${result};
 		    console.log(total);
 		    $('strong#total_order_sale_price_view').text(formatNumber(total-mile));
 		    $('#totalPrice').attr('value', total-mile);
 		    $('#total_price').text(formatNumber(total-mile));
 			}else{
 				$('strong#total_sale_price_view').text("0");
-				var total = ${result+2500};
+				var total = ${result};
 			    console.log(total);
 			    $('strong#total_order_sale_price_view').text(formatNumber(total));
 			    $('#totalPrice').attr('value', total);
@@ -614,13 +609,9 @@ function CallpaymentAPI(){
 									금액</span>
 							</h4>
 							<p class="price">
-								<input id= totalPrice name ="totalPrice" value="${result+2500 }" type="hidden"/>
-								<%-- <input id="total_price" name="total_price"
-									class="inputTypeText"
-									style="text-align: right; clear: none; border: 0px; float: none;"
-									size="10" readonly="1" value="${result+2500 }" type="text"> --%>
+								<input id= totalPrice name ="totalPrice" value="${result}" type="hidden"/>
 								<span id="total_price">
-								<fmt:formatNumber value="${result+2500}" pattern="#,###" type="number" /></span>
+								<fmt:formatNumber value="${result}" pattern="#,###" type="number" /></span>
 								<span>원</span>
 							</p>
 							<p class="paymentAgree" id="chk_purchase_agreement"

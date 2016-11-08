@@ -196,7 +196,7 @@ tr {
 }
 
 .xans-order-basketpackage .boardList .product {
-    width: auto;
+    width: 100%;
 }
 
 .xans-order-basketpackage .boardList td.product {
@@ -272,6 +272,7 @@ tr {
 }
 
 .xans-order-basketpackage .boardList .button {
+	    border-right: 1px solid #e7e7e7;
     width: 106px;
 }
 

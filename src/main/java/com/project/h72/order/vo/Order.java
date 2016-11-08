@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Order {
 	private String orderNo;
 	private String userId;
+	private String deleveryName;
 	private String mainImgN1;
 	private String itemNameN1;
 	private String itemOptionNameN1;
@@ -59,8 +60,37 @@ public class Order {
 		this.enrollDate = enrollDate;
 	}
 
-
 	
+
+	public Order(String orderNo, String userId, String deleveryName, String mainImgN1, String itemNameN1,
+			String itemOptionNameN1, int totalQuantity, int kindsQuantity, int totalPrice, String paymentMethod,
+			int paymentPoint, int totalSavingPoint, int deliveryPee, String phone, String postNum, String address,
+			String addressDetail, String deliveryMessage, String orderStatus, String orderChange, Date enrollDate) {
+		super();
+		this.orderNo = orderNo;
+		this.userId = userId;
+		this.deleveryName = deleveryName;
+		this.mainImgN1 = mainImgN1;
+		this.itemNameN1 = itemNameN1;
+		this.itemOptionNameN1 = itemOptionNameN1;
+		this.totalQuantity = totalQuantity;
+		this.kindsQuantity = kindsQuantity;
+		this.totalPrice = totalPrice;
+		this.paymentMethod = paymentMethod;
+		this.paymentPoint = paymentPoint;
+		this.totalSavingPoint = totalSavingPoint;
+		this.deliveryPee = deliveryPee;
+		this.phone = phone;
+		this.postNum = postNum;
+		this.address = address;
+		this.addressDetail = addressDetail;
+		this.deliveryMessage = deliveryMessage;
+		this.orderStatus = orderStatus;
+		this.orderChange = orderChange;
+		this.enrollDate = enrollDate;
+	}
+
+
 
 	public String getOrderNo() {
 		return orderNo;
@@ -82,6 +112,18 @@ public class Order {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+
+
+	public String getDeleveryName() {
+		return deleveryName;
+	}
+
+
+
+	public void setDeleveryName(String deleveryName) {
+		this.deleveryName = deleveryName;
 	}
 
 
