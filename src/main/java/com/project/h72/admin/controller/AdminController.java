@@ -90,10 +90,33 @@ public class AdminController {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 	//회원관리 페이지 
 	@RequestMapping(value="admin/users", method = RequestMethod.GET)
-	public String adminMemberManager(Model model){
+	public String adminMemberManager(@RequestParam("page") int page,
+						       		@RequestParam("count") int count,
+									@RequestParam("order") String order, Model model){
 		
-		List<Member> list = adminService.getMemberList();
+		
+		System.out.println("시작!!" + page + ", " + count + ", " + order);
+		
+		
+		//총 유저 수 확인
+		int countAll = adminService.getMemberCount();
+		System.out.println(countAll);
+		
+
+		List<Member> list = adminService.getMemberList(page * + 1, count, order );
+		
+		
+		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
+		int endPage = (int)(countAll / (count + 0.9));		
+		
+		System.out.println("고!!" + countAll + ", " + endPage + ", "  + " page" + page);
 		model.addAttribute("list", list );
+		model.addAttribute("countAll", countAll); //총 회원수
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("nowPage", page);
+		model.addAttribute("count", count);
+		model.addAttribute("order", order);
+		
 		
 		return "admin/userManager";
 	}

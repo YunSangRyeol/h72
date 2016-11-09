@@ -18,10 +18,15 @@ public class AdminServiceImp implements AdminService{
 	@Autowired
 	private AdminDao dao;
 
-	public List<Member> getMemberList() {
-		System.out.println("dao 실행");
-		return dao.getMemberList();
+	public List<Member> getMemberList(int page, int count, String order) {
+		return dao.getMemberList(page, count, order);
 	}
+	
+	@Override
+	public int getMemberCount() {
+		return dao.getMemberCount();
+	}
+
 	
 	public List<Member> adminSearchId(String id){
 		return dao.adminSearchId(id);
@@ -121,6 +126,7 @@ public class AdminServiceImp implements AdminService{
 		return dao.kit(now);
 	}
 
+	
 
 	
 	

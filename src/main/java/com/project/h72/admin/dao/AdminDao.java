@@ -23,8 +23,17 @@ public class AdminDao {
 	private SqlSession sqlSession;
 
 	//Member
-	public List<Member> getMemberList() {		
-		return sqlSession.selectList(NAMESPACE + "getMemberList");
+	public List<Member> getMemberList(int page, int count, String order) {	
+		Map<String, String> paging = new HashMap<String, String>();
+		paging.put( "page",  String.valueOf(page));
+		paging.put( "count",  String.valueOf(count) );
+		paging.put( "order", order );
+		
+		return sqlSession.selectList(NAMESPACE + "getMemberList", paging);
+	}
+	
+	public int getMemberCount() {
+		return sqlSession.selectOne(NAMESPACE + "getMemberCount");
 	}
 
 	public List<Member> adminSearchId(String id) {
@@ -146,6 +155,8 @@ public class AdminDao {
 	public TotalOrder kit(String now) {
 		return sqlSession.selectOne(NAMESPACE + "kit", now);
 	}
+
+
 
 
 

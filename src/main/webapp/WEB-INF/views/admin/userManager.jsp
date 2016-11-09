@@ -121,10 +121,30 @@
 	<div id="usersTop">
 	 	<div id="orderbyDiv">
 	 		<ul class="orderby">
-	 			<li><a href="<c:url value="/admin/users?orderby=user_id" />">I D</a></li> &nbsp; ||  &nbsp; 
-	 			<li><a href="<c:url value="/admin/users?orderby=NAME" />">이름</a></li> &nbsp; ||  &nbsp; 
-	 			<li><a href="<c:url value="/admin/users?orderby=ENROLLDATE" />">가입일</a></li> &nbsp; ||  &nbsp; 
-	 			<li><a href="<c:url value="/admin/users?orderby=TOTAL_PRICE" />">구매금액</a></li>
+		 			<c:url var="goOrder" value="/admin/users" >
+						<c:param name="page" value="${nowPage }" />
+						<c:param name="count" value="${count }" />
+						<c:param name="order" value="USER_ID" />
+					</c:url>
+	 			<li><a href="${goOrder }">I D</a></li> &nbsp; ||  &nbsp; 
+		 			<c:url var="goName" value="/admin/users" >
+						<c:param name="page" value="${nowPage }" />
+						<c:param name="count" value="${count }" />
+						<c:param name="order" value="NAME" />
+					</c:url>
+	 			<li><a href="${goName }">이름</a></li> &nbsp; ||  &nbsp; 
+	 				<c:url var="goEnrollDate" value="/admin/users" >
+						<c:param name="page" value="${nowPage }" />
+						<c:param name="count" value="${count }" />
+						<c:param name="order" value="ENROLLDATE" />
+					</c:url>
+	 			<li><a href="${goEnrollDate }">가입일</a></li> &nbsp; ||  &nbsp; 
+	 				<c:url var="goPrice" value="/admin/users" >
+						<c:param name="page" value="${nowPage }" />
+						<c:param name="count" value="${count }" />
+						<c:param name="order" value="TOTAL_PRICE" />
+					</c:url>
+	 			<li><a href="${goPrice }" />">구매금액</a></li>
 	 		</ul>
 	 	</div>
 	 	<div id="selectNumdDiv">
@@ -168,17 +188,51 @@
 			</c:if>
 			</tbody>	
 		</table>
-
+		<!-- 	<c:url var="goUser" value="/admin/users" >
+								<c:param name="page" value="0" />
+								<c:param name="count" value="10" />
+								<c:param name="order" value="USER_ID" />
+							</c:url>
+							<li><a href="${goUser}">회원관리</a></li>
+		 -->
+		
 		<div id="admin_page_list">
-	    	 <ul class="pages">	    	
-	           <li>&lt;&lt;</li>
-	           <li><a href="">&lt;&lt;</a></li>         
-	           <li class="active">1</li>
-	           <li> <a href=""></a>2</li>
-	           <li>&gt;&gt;</li>
-	           <li><a href="">&gt;&gt;</a></li>
-	        </ul>
-    	</div>
+			<c:url var="goUserMinus" value="/admin/users" >
+					<c:param name="page" value="${nowPage -1 }" />
+					<c:param name="count" value="${count }" />
+					<c:param name="order" value="${order }" />
+			</c:url>
+			<c:if test="${nowPage eq 1 }">
+				[이전] 
+			</c:if>
+			<c:if test="${nowPage ne 1 }" >
+				 <a href="${goUserMinus }" >[이전]</a>
+			</c:if>
+			<c:forEach var="p" begin="1" end="${endPage + 1 }" >	
+				<c:url var="goUser" value="/admin/users" >
+					<c:param name="page" value="${p }" />
+					<c:param name="count" value="${count }" />
+					<c:param name="order" value="${order }" />
+				</c:url>
+				<c:if test="${p eq nowPage }">
+					<span style="font-size:20px; color:red;">[${p }]</span>
+				</c:if>
+				<c:if test="${p ne nowPage }">
+					<a href="${goUser }">[${p }]</a>
+				</c:if>
+			</c:forEach>
+			<c:url var="goUserPlus" value="/admin/users" >
+					<c:param name="page" value="${ nowPage + 1 }" />
+					<c:param name="count" value="${count }" />
+					<c:param name="order" value="${order }" />
+			</c:url>
+             <c:if test ="${nowPage eq endPage + 1 }">
+             	[다음]
+             </c:if>
+              <c:if test ="${nowPage ne endPage + 1 }">
+             	<a href="${goUserPlus }">[다음]</a>
+             </c:if>
+		</div><!-- pageList -->
   
 
 	</div><!-- admin_order_contents_wrap -->	

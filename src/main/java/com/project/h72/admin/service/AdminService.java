@@ -15,7 +15,7 @@ import com.project.h72.order.vo.OrderContents;
 @Service
 public interface AdminService {
 
-	List<Member> getMemberList();
+	List<Member> getMemberList(int page, int count, String order);
 
 	List<Member> adminSearchId(String id);
 
@@ -56,6 +56,8 @@ public interface AdminService {
 	TotalOrder category(String now);
 
 	TotalOrder kit(String now);
+
+	int getMemberCount();
 
 
 }

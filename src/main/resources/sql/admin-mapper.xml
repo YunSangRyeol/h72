@@ -84,10 +84,22 @@
 	</delete>
 
 	<!-- Member -->
-	<select id="getMemberList" resultType="member">
-		SELECT * FROM USERS WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' 
+	<select id="getMemberCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERS WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
 	</select>
-
+	<select id="getMemberList" parameterType="Map" resultType="member">
+		SELECT
+		    AAA.*
+		FROM( SELECT COUNT(*) OVER() AS TOTAL_COUNT, AA.*
+		    FROM( SELECT ROW_NUMBER() OVER (ORDER BY #{order} ) RNUM,
+		            USER_ID, LEVEL_CODE, NAME, BIRTHDATE, EMAIL, PHONE, POST_NUM, ADDRESS, ADDRESS_DETAIL, POINT, ENROLLDATE, TOTAL_PRICE
+		        FROM USERS
+		        WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'   
+		        ) AA
+		    ) AAA
+		WHERE AAA.RNUM BETWEEN ((#{page}-1) * #{count} + 1) AND ( ((#{page}-1) * #{count} + 1) + #{count} -1)
+	</select>
+		
 	<select id="adminSearchId" parameterType="String" resultType="member">
 		SELECT * FROM USERS WHERE USER_ID LIKE '%' || #{id} || '%'
 	</select>
