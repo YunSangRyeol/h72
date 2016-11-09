@@ -11,6 +11,7 @@
 	rel="stylesheet">
 </head>
 <body>
+
 	<div class="content_wrap">
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
 	</div>
@@ -33,20 +34,9 @@
 				</div>
 			</div>
 			<!-- 글 내용-->
-			<form id="BoardDelForm" name="" action="/exec/front/Board/del/1"
-				method="post" enctype="multipart/form-data">
-				<!-- <input id="no" name="no" value="620208" type="hidden"> <input
-					id="bulletin_no" name="bulletin_no" value="403413" type="hidden">
-				<input id="board_no" name="board_no" value="1" type="hidden">
-				<input id="member_id" name="member_id" value="jjukbbang1"
-					type="hidden"> <input id="list_url" name="list_url"
-					value="/board/free/list.html?board_no=1" type="hidden"> <input
-					id="bdf_modify_url" name="bdf_modify_url"
-					value="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
-					type="hidden"> <input id="bdf_del_url" name="bdf_del_url"
-					value="/exec/front/Board/del/1" type="hidden"> <input
-					id="bdf_action_type" name="bdf_action_type" value="" type="hidden"> -->
-				<div
+			<form id="NoticeDel" name="NoticeDel" action="../notice_delete2.do"
+				method="get" >
+					<div
 					class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
 
 					<div class="boardView ">
@@ -67,12 +57,12 @@
 										<div class="detail"
 											style="text-align: left; line-height: 1.8; padding: 40px;">
 											<p align="center">
-											${list}</p>
+											${list.noticeContent}</p>
 
 										</div>
 									</td>
 								</tr>
-								<tr class="displaynone">
+								<!-- <tr class="displaynone">
 									<th scope="row">비밀번호</th>
 									<td><input id="password" name="password" fw-filter=""
 										fw-label="비밀번호" fw-msg=""
@@ -81,7 +71,7 @@
 											src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/ico_warning.gif"
 											alt=""> 수정 및 삭제하려면 비밀번호를 입력하세요.
 									</span></td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -91,12 +81,10 @@
 						&nbsp;&nbsp;
 						<c:if test="${loginUser.userid eq 'ADMIN' }"> 
 					<a
-							href="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
-							class="left"
+							href="<c:url value="/boader/notice_update_view?noticeNo=${list.noticeNo}"/>"type="button" class="btn btn-primary btn-block"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">수정</a>
-								<a href="#none"
-							onclick="BOARD_READ.article_delete('BoardDelForm','1');"
-							class="left"
+					<a		href="<c:url value="/boader/notice_list"/>"
+							class="left"  id="delete"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">삭제</a>&nbsp;&nbsp;
 						
 							</c:if> 
@@ -106,43 +94,8 @@
 		</div>
 
 
-		<!-- 비밀글 확인 -->
-		<!-- 	<form id="commentSecretForm" name=""
-				action="/exec/front/Board/CommentSecret/1" method="post"
-				enctype="multipart/form-data" style="display: none;">
-				<input id="board_no" name="board_no" value="1" type="hidden">
-				<input id="comment_no" name="comment_no" value="" type="hidden">
-				<input id="pass_check" name="pass_check" value="F" type="hidden">
-				<div
-					class="xans-element- xans-board xans-board-commentformsecret-1002 xans-board-commentformsecret xans-board-1002 ">
-					<p>
-						비밀번호 : <input id="secure_password" name="secure_password"
-							fw-filter="isFill" fw-label="댓글비밀번호" fw-msg="" value=""
-							type="password"> <a href="#none"
-							onclick="BOARD_COMMENT.show_secret_comment('commentSecretForm');"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_ico_submit.gif"
-							alt="확인"></a> <a href="#none"
-							onclick="BOARD_COMMENT.hide_secret_comment_form('commentSecretForm');"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_ico_cancel.gif"
-							alt="취소"></a>
-					</p>
-				</div>
-			</form> -->
-
 	</div>
-	<!-- 
-		<div
-			class="xans-element- xans-board xans-board-movement-1002 xans-board-movement xans-board-1002 ">
-			<ul>
-				<li class="prev "><strong>이전글</strong><a
-					href="/board/product/read.html?no=622218&amp;board_no=1&amp;page=">10월
-						3일 개천절 휴무 안내</a></li>
-				<li class="next "><strong>다음글</strong><a
-					href="/board/product/read.html?no=613760&amp;board_no=1&amp;page=">10대월드
-						프리마켓 공지</a></li>
-			</ul>
-		</div> -->
-
+	
 
 	</div>
 </body>

@@ -33,4 +33,18 @@ public class QnAServiceImp implements QnAService{
 		// TODO Auto-generated method stub
 		return dao.QnAInsert(insertqTitle,insertqContent);
 	}
+
+
+	@Override
+	public QnA updateqna(String qNo) {
+		// TODO Auto-generated method stub
+		return dao.updateqna(qNo);
+	}
+
+
+	@Override
+	public int upqna(String qNo, String upqTitle, String upqContent) {
+		// TODO Auto-generated method stub
+		return dao.QnAUp( qNo,  upqTitle,  upqContent);
+	}
 }

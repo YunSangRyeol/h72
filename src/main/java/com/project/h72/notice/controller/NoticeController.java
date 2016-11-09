@@ -62,15 +62,28 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		return "redirect:/boader/notice_list";
 	}	
-	
-	
-	
 
-	@RequestMapping(value = "boader/notice_update", method = RequestMethod.GET)
-	public String notice_update(Locale locale, Model model) {
+	@RequestMapping(value = "boader/notice_update_view", method = RequestMethod.GET)
+	public String notice_update(@RequestParam("noticeNo") String noticeNo, Model model) {
+		
+		System.out.println("OK!!"+ noticeNo);
+		
+		Notice list = noticeService.updatenotice(noticeNo);
+		System.out.println( list );
+		model.addAttribute("list", list );
 
-		return "boader/notice_update";
+		return "boader/notice_update_view";
 	}
+	
+	@RequestMapping(value = "/notice_up.do", method = RequestMethod.GET)
+	public String notice_up(@RequestParam("noticeNo") String noticeNo, @RequestParam("upNoticeTitle") String upNoticeTitle,
+			@RequestParam("upNoticeContent") String upNoticeContent, Model model) {
+		
+		int result = 0;
+		result =  noticeService.upnotice(noticeNo, upNoticeTitle, upNoticeContent);
+		
+		return "redirect:/boader/notice_list";
+	}	
 	
 	@RequestMapping(value = "boader/life_kit_detail", method = RequestMethod.GET)
 	public String life_kit_detail(Locale locale, Model model) {

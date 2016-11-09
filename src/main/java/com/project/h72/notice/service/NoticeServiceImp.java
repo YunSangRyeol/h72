@@ -34,5 +34,28 @@ public class NoticeServiceImp implements NoticeService {
 		return dao.NoticeInsert(insertNoticeTitle,insertNoticeContent);
 	}
 
+
+/*	@Override
+	public int upnotice(String upNoticeTitle, String upNoticeContent) {
+		// TODO Auto-generated method stub
+		return dao.NoticeUp(upNoticeTitle,upNoticeContent);
+	}
+*/
+
+
+
+	@Override
+	public int upnotice(String noticeNo, String upNoticeTitle, String upNoticeContent) {
+		// TODO Auto-generated method stub
+		return dao.NoticeUp(noticeNo,upNoticeTitle,upNoticeContent);
+	}
+
+
+	@Override
+	public Notice updatenotice(String noticeNo) {
+		// TODO Auto-generated method stub
+		return dao.updatenotice(noticeNo);
+	}
+
 	
 }

@@ -37,6 +37,32 @@ public class NoticeDao {
 		notice.put( "insertNoticeContent", insertNoticeContent );
 		return sqlSession.insert(NAMESPACE+"NoticeInsert",notice);
 	}
+
+/*
+	public int NoticeUp(String upNoticeTitle, String upNoticeContent) {
+		// TODO Auto-generated method stub
+		Map<String, String> notice = new HashMap<String, String>();
+		notice.put( "upNoticeTitle", upNoticeTitle);
+		notice.put( "upNoticeContent", upNoticeContent );
+		return sqlSession.update(NAMESPACE+"NoticeUp",notice);
+	}
+*/
+
+
+	public int NoticeUp(String noticeNo, String upNoticeTitle, String upNoticeContent) {
+		// TODO Auto-generated method stub
+		Map<String, String> notice = new HashMap<String, String>();
+		notice.put( "noticeNo", noticeNo);
+		notice.put( "upNoticeTitle", upNoticeTitle);
+		notice.put( "upNoticeContent", upNoticeContent );
+		return sqlSession.update(NAMESPACE+"NoticeUp",notice);
+	}
+
+
+	public Notice updatenotice(String noticeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE +"updatenotice",noticeNo);
+	}
 	
 }
 

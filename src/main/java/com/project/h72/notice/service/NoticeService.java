@@ -16,4 +16,10 @@ public interface NoticeService {
 	Notice getNoticeContent(String noticeNo);
 
 	int insertnotice(String insertNoticeTitle, String insertNoticeContent);
+
+/*	int upnotice(String upNoticeTitle, String upNoticeContent);*/
+
+	int upnotice(String noticeNo, String upNoticeTitle, String upNoticeContent);
+
+	Notice updatenotice(String noticeNo);
 }

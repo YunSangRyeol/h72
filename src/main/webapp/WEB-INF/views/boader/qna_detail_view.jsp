@@ -106,7 +106,7 @@
 							class="left"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">삭제</a>
 						<a
-							href="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
+							href="<c:url value="/boader/qna_update_view?qNo=${list.qNo}"/>"type="button"
 							class="left"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">수정</a>
 				

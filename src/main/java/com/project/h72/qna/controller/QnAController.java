@@ -61,14 +61,29 @@ public String qna_insert2(@RequestParam("insertqTitle") String insertqTitle,
 	return "redirect:/boader/qna_list";
 }	
 
-@RequestMapping(value = "boader/qna_update", method = RequestMethod.GET)
-public String qna_update(Locale locale, Model model) {
+@RequestMapping(value = "boader/qna_update_view", method = RequestMethod.GET)
+public String qna_update(@RequestParam("qNo") String qNo, Model model) {
 /*	logger.info("Welcome home! The client locale is {}.", locale);
 
 	
 	model.addAttribute("serverTime" );*/
+
+	System.out.println("OK!!"+ qNo);
 	
-	return "boader/qna_update";
+	QnA list = qnaService.updateqna(qNo);
+	System.out.println( list );
+	model.addAttribute("list", list );
+	return "boader/qna_update_view";
 }
+@RequestMapping(value = "/qna_up.do", method = RequestMethod.GET)
+public String notice_up(@RequestParam("qNo") String qNo, @RequestParam("upqTitle") String upqTitle,
+		@RequestParam("upqContent") String upqContent, Model model) {
+	
+	int result = 0;
+	result =  qnaService.upqna(qNo, upqTitle, upqContent);
+	
+	return "redirect:/boader/qna_list";
+}	
+
 
 }

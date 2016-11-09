@@ -6,10 +6,88 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<link href="/h72/resources/css/notice.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 </head>
+<script type="text/javascript">
+$(function(){
+	$('#upqTitle').val('${list.qTitle}')
+	
+});
+
+
+</script>
+
 <body>
 	<div class="content_wrap">
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
 	</div><br><br><br>
+	
+		<div id="sunny_in">
+		<div
+			class="xans-element- xans-board xans-board-readpackage-1002 xans-board-readpackage xans-board-1002 ">
+			<div
+				class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
+				<div class="title">
+					<h2
+						style="font-family: 'Helvetica', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">
+						<span
+							style="font-family: 'Helvetica', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">NOTICE</span>
+						<br> <a href="<c:url value="/boader/notice_list"/>">공지사항</a>
+						<a href="<c:url value="/boader/qna_list"/>">Q&A</a><br> <br>
+				</div>
+			</div>
+			
+			
+			<form id="QnAUp" name="QnAUp" action="../qna_up.do?qNo=${list.qNo}"
+				method="get" >
+				
+				<div
+					class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
+
+					<!-- <div class="boardView "> -->
+					<table border="1" summary="">
+						<caption>qna등록</caption>
+
+						<tr>
+								<tr>
+									<th scope="row">제목</th>
+									<td><input type="text" name="upqTitle" id="upqTitle"></td>
+									</tr>
+						<tr>
+							<td>내용</td>
+							<td><textarea cols="50" rows="7" name="upqContent" id="upqContent"></textarea></td>
+						</tr>
+
+					</table>
+				</div>
+				<div class="btnArea">
+					<input type="submit" value="저장" class="btn btn-primary"
+						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;" />&nbsp;&nbsp;
+					<span><a href="<c:url value="/boader/qna_list"/>"
+						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e 7; color: #000; letter-spacing: 1px; font-size: 11px;">뒤로</a></span>
+
+				</div>
+			</form>
+		</div>
+	</div>
+			
+			
+			
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
