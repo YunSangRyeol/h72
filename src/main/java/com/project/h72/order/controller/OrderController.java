@@ -1,6 +1,6 @@
 package com.project.h72.order.controller;
 
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +36,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/insertOrder", method = RequestMethod.POST)
-	public String orderFinishForm(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
+	public String insertOrderFinish(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
 		System.out.println("결제페이지 넘어옴!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Member login = (Member) session.getAttribute("loginUser");
 		/*
@@ -62,8 +62,8 @@ public class OrderController {
 		ORDER_STATUS : 주문접수
 		ORDER_CHANGE : null
 		ENROLL_DATE : sysdate
-		
 		*/
+		
 		String[] cartId = request.getParameterValues("cartId");
 		String orderNO = request.getParameter("orderNo");
 		String userId = login.getUserid();
@@ -107,11 +107,11 @@ public class OrderController {
 		String address = request.getParameter("raddress");
 		String addressDetail = request.getParameter("raddressDetail");
 		String deliveryMessage = request.getParameter("omessage");
+		if(deliveryMessage==null){
+			deliveryMessage ="-";
+		}
 		String orderStatus = "주문접수";
-		String orderChange = null;
-		
-		
-		
+		String orderChange = "-";
 		
 		Order order = new Order(orderNO, userId, deleveryName, itemImg[0], itemName[0],
 				itemOption[0], totalQuantity, itemName.length, Integer.valueOf(totalPrice), paymethod,
@@ -119,6 +119,32 @@ public class OrderController {
 				addressDetail, deliveryMessage, orderStatus, orderChange);
 		
 		System.out.println("orderController : "+order);
+		
+		
+		String vbank_num = request.getParameter("vbank_num");
+		String vbank_name = request.getParameter("vbank_name");
+		String buyer_name = request.getParameter("buyer_name");
+		System.out.println("vbank_num:"+vbank_num +"vbank_name"+vbank_name+"buyer_name:"+buyer_name);
+		Map<String, String> bankMap = new HashMap<String, String>();
+		bankMap.put("orderNo", orderNO);
+		bankMap.put("vbankNum", vbank_num);
+		bankMap.put("vbankName", vbank_name);
+		bankMap.put("vName", buyer_name);
+		
+		int bankResult = 0;
+		bankResult = os.insertBankInfo(bankMap);
+		
+		int result = 0;
+		result = os.insertOrderInfo(order);
+		
+		if(bankResult>0 && result>0){
+			model.addAttribute("orderList", order);
+			model.addAttribute("bankInfo", bankMap);
+		}
+		
+		
+	
+		
 		
 		
 		return "order/order_finish";

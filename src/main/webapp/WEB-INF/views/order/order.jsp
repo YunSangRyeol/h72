@@ -125,7 +125,7 @@ function CallpaymentAPI(){
 	IMP.init('imp29445119'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	
 	IMP.request_pay({
-	    pg : 'uplus', // 결제회사 결정
+	    pg : 'html5_inicis', // 결제회사 결정
 	    pay_method : payMethod, // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
 	    merchant_uid : '72_'+new Date().getTime(), //가맹점에서 생성/관리하는 고유 주문번호, 결제가 된 적이 있는 merchant_uid로는 재결제 불가
 	    name : orderTitle,
@@ -141,6 +141,25 @@ function CallpaymentAPI(){
 	        input.name = 'orderNo';
 	        input.value = rsp.merchant_uid;
 	        $("#orderForm").append(input);
+	        
+	        var input = document.createElement("input");
+	        input.type = "hidden";
+	        input.name = 'vbank_num';
+	        input.value = rsp.vbank_num;
+	        $("#orderForm").append(input);
+	        
+	        var input = document.createElement("input");
+	        input.type = "hidden";
+	        input.name = 'vbank_name';
+	        input.value = rsp.vbank_name;
+	        $("#orderForm").append(input);
+	        
+	        var input = document.createElement("input");
+	        input.type = "hidden";
+	        input.name = 'buyer_name';
+	        input.value = rsp.buyer_name;
+	        $("#orderForm").append(input);
+	        
 	        
 	    	$("#orderForm").submit();
 	        var msg = '결제가 완료되었습니다.';

@@ -345,8 +345,8 @@ public class Order {
 
 	@Override
 	public String toString(){
-		return this.orderNo + ", " + this.userId + ", " + this.mainImgN1 + ", " + this.itemNameN1 + ", " + this.itemOptionNameN1  + ", " + this.totalQuantity
-				 + ", " + this.totalPrice + ", " + this.paymentMethod + ", " + this.paymentPoint + ", " + this.totalSavingPoint
+		return this.orderNo + ", " + this.userId + ", " +this.deleveryName + ", " + this.mainImgN1 + ", " + this.itemNameN1 + ", " + this.itemOptionNameN1  + ", " + this.totalQuantity
+				 +" , "+this.totalQuantity+ ", " + this.totalPrice + ", " + this.paymentMethod + ", " + this.paymentPoint + ", " + this.totalSavingPoint
 				 + ", " + this.deliveryPee + ", " + this.phone + ", " + this.postNum + ", " + this.address + ", " + this.addressDetail
 				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange + ", " + this.enrollDate;
 	}

@@ -10,5 +10,18 @@
 	WHERE C.ITEM_ID = A.ITEM_ID
 	AND CART_ID = #{cartAll}
 	</select>
+	
+	<insert id="insertBankInfo" parameterType="java.util.HashMap">
+	INSERT INTO VBANK VALUES(#{orderNo},#{vbankName},#{vbankNum},#{vName})
+	
+	</insert>
+	
+	<insert id="insertOrderInfo" parameterType="Order">
+	INSERT INTO ORDER_LIST VALUES(#{orderNo},#{userId},#{deleveryName},#{mainImgN1},#{itemNameN1},
+	#{itemOptionNameN1},#{totalQuantity},#{kindsQuantity},#{totalPrice},#{paymentMethod},
+	#{paymentPoint},#{totalSavingPoint},#{deliveryPee},#{phone},#{postNum},#{address},
+	#{addressDetail},#{deliveryMessage},#{orderStatus},#{orderChange},SYSDATE)
+	
+	</insert>
 
 </mapper>
