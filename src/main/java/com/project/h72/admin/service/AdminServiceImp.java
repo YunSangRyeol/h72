@@ -18,8 +18,8 @@ public class AdminServiceImp implements AdminService{
 	@Autowired
 	private AdminDao dao;
 
-	public List<Member> getMemberList(int page, int count, String order) {
-		return dao.getMemberList(page, count, order);
+	public List<Member> getMemberList(int page, int count, String order, String where) {
+		return dao.getMemberList(page, count, order, where);
 	}
 	
 	@Override

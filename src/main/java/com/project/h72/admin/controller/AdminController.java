@@ -92,22 +92,21 @@ public class AdminController {
 	@RequestMapping(value="admin/users", method = RequestMethod.GET)
 	public String adminMemberManager(@RequestParam("page") int page,
 						       		@RequestParam("count") int count,
-									@RequestParam("order") String order, Model model){
+									@RequestParam("order") String order,
+									@RequestParam("where") String where, Model model){
 		
 		
-		System.out.println("시작!!" + page + ", " + count + ", " + order);
+		System.out.println("시작!!" + page + ", " + count + ", " + order + ", " + where);
 		
 		
 		//총 유저 수 확인
 		int countAll = adminService.getMemberCount();
 		System.out.println(countAll);
 		
-
-		List<Member> list = adminService.getMemberList(page * + 1, count, order );
-		
+		List<Member> list = adminService.getMemberList(page * + 1, count, order, where );
 		
 		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
-		int endPage = (int)(countAll / (count + 0.9));		
+		int endPage = (int)(countAll / (count + 0.9) + 1);		
 		
 		System.out.println("고!!" + countAll + ", " + endPage + ", "  + " page" + page);
 		model.addAttribute("list", list );
@@ -116,7 +115,7 @@ public class AdminController {
 		model.addAttribute("nowPage", page);
 		model.addAttribute("count", count);
 		model.addAttribute("order", order);
-		
+		model.addAttribute("where", where);
 		
 		return "admin/userManager";
 	}
@@ -127,9 +126,14 @@ public class AdminController {
 		
 		List<Member> list = adminService.adminSearchId(id);
 		
-		model.addAttribute("list", list );
+		String where = "USER_ID," + id;
+
 		
-		return "admin/userManager";
+		model.addAttribute("page", 1);
+		model.addAttribute("count", 10);
+		model.addAttribute("order", "USER_ID");
+		model.addAttribute("where", where);
+		return "redirect:/admin/users";
 	}
 	
 	//회원관리 - 이름검색
@@ -138,9 +142,14 @@ public class AdminController {
 		
 		List<Member> list = adminService.adminSearchName(name);
 		
-		model.addAttribute("list", list );
+		String where = "NAME," + name;
+
+		model.addAttribute("page", 1);
+		model.addAttribute("count", 10);
+		model.addAttribute("order", "USER_ID");
+		model.addAttribute("where", where);
 		
-		return "admin/userManager";
+		return "redirect:/admin/users";
 	}
 	
 	//회원관리 - 날짜검색
@@ -149,9 +158,14 @@ public class AdminController {
 		
 		List<Member> list = adminService.adminSearchDate(start, end);
 		
-		model.addAttribute("list", list );
+		String where = "DATE," + start + "," + end;
+
+		model.addAttribute("page", 1);
+		model.addAttribute("count", 10);
+		model.addAttribute("order", "USER_ID");
+		model.addAttribute("where", where);
 		
-		return "admin/userManager";
+		return "redirect:/admin/users";
 	}
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -237,24 +251,46 @@ public class AdminController {
 	@RequestMapping(value = "admin/chart", method = RequestMethod.GET)
 	public String adminSalesChart(@RequestParam("now") String now, Model model) {
 		
-//		java.util.Date date = new java.util.Date();
+		Calendar rightNow = null;
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat namesformat = new SimpleDateFormat("MM/dd");
 		
-		
-		
-		if(now.equals("null")){		
-			String nowDate = new SimpleDateFormat("YYYY-MM-dd").format(new java.util.Date());
-			now = nowDate;
+		if(now.equals("null")){	
+		     rightNow = Calendar.getInstance();			
 		}else{
-//			java.util.Date date = Calendar.set(now.substring(0, 4), now.substring(0, 2), now.substring(0, 2));
+			rightNow.set(Integer.parseInt(now.substring(0, 4)), 01, 01);			
 		}
 		
-		/*
-		Map<String, String> date = new HashMap<String, String>();
-		date.put( "year", now.substring(0, 4));*/
-	/*	date.put( "month", end );
-		date.put( "day", end );*/
+		now = String.valueOf(format.format(rightNow.getTime()));
+		String now0 = String.valueOf(namesformat.format(rightNow.getTime()));
+	
+		rightNow.add(Calendar.DATE, -1);		
+		String now1 = String.valueOf(namesformat.format(rightNow.getTime()));
+
+		rightNow.add(Calendar.DATE, -1);		
+		String now2 = String.valueOf(namesformat.format(rightNow.getTime()));
+
+		rightNow.add(Calendar.DATE, -1);		
+		String now3 = String.valueOf(namesformat.format(rightNow.getTime()));
+
+		rightNow.add(Calendar.DATE, -1);		
+		String now4 = String.valueOf(namesformat.format(rightNow.getTime()));
+
+		rightNow.add(Calendar.DATE, -1);		
+		String now5 = String.valueOf(namesformat.format(rightNow.getTime()));
+
+		rightNow.add(Calendar.DATE, -1);		
+		String now6 = String.valueOf(namesformat.format(rightNow.getTime()));
 		
+			
 		model.addAttribute("now", now);		
+		model.addAttribute("now0", now0);	
+		model.addAttribute("now1", now1);	
+		model.addAttribute("now2", now2);	
+		model.addAttribute("now3", now3);	
+		model.addAttribute("now4", now4);	
+		model.addAttribute("now5", now5);	
+		model.addAttribute("now6", now6);			
 		
 		//오늘
 		TotalOrder today = adminService.chartToday(now);

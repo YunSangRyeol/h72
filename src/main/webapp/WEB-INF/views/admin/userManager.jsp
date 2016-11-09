@@ -45,8 +45,8 @@
 					$("#orderList input[type=checkbox]").prop("checked", false);
 				}
 				$("#orderList input[type=checkbox]").change();
-		})
-	})
+		});
+	});
  	
 	//체크박스 선택시 tr 색 변경
 	$(function() {
@@ -75,6 +75,19 @@
 			
  	});
  	
+ 	//유저 명수 select value 지정
+ 	$(function(){
+					$('#selectNum').val('${count }').prop("selected", true);
+				});
+ 	
+ 	//한페이지에 유저 명 수 변경
+ 	$(function(){
+ 		$('#selectNumdDiv').change(
+ 				function(){
+ 					var modifyCount = $('#selectNum').val();
+ 					location.href="/h72/admin/users?page=${nowPage }&count=" + modifyCount +"&order=${order}&where=${where}";
+ 				});
+ 	});
 </script>
 </head>
 <body>
@@ -125,33 +138,37 @@
 						<c:param name="page" value="${nowPage }" />
 						<c:param name="count" value="${count }" />
 						<c:param name="order" value="USER_ID" />
+						<c:param name="where" value="${where }" />
 					</c:url>
 	 			<li><a href="${goOrder }">I D</a></li> &nbsp; ||  &nbsp; 
 		 			<c:url var="goName" value="/admin/users" >
 						<c:param name="page" value="${nowPage }" />
 						<c:param name="count" value="${count }" />
 						<c:param name="order" value="NAME" />
+						<c:param name="where" value="${where }" />
 					</c:url>
 	 			<li><a href="${goName }">이름</a></li> &nbsp; ||  &nbsp; 
 	 				<c:url var="goEnrollDate" value="/admin/users" >
 						<c:param name="page" value="${nowPage }" />
 						<c:param name="count" value="${count }" />
 						<c:param name="order" value="ENROLLDATE" />
+						<c:param name="where" value="${where }" />
 					</c:url>
 	 			<li><a href="${goEnrollDate }">가입일</a></li> &nbsp; ||  &nbsp; 
 	 				<c:url var="goPrice" value="/admin/users" >
 						<c:param name="page" value="${nowPage }" />
 						<c:param name="count" value="${count }" />
 						<c:param name="order" value="TOTAL_PRICE" />
+						<c:param name="where" value="${where }" />
 					</c:url>
-	 			<li><a href="${goPrice }" />">구매금액</a></li>
+	 			<li><a href="${goPrice }" />구매금액</a></li>
 	 		</ul>
 	 	</div>
 	 	<div id="selectNumdDiv">
 		 	<select id="selectNum">
-				<option> 10명 </option>
-				<option> 30명 </option>
-				<option> 50명 </option>
+				<option value="10"> 10명 </option>
+				<option value="20"> 20명 </option>
+				<option value="30"> 30명 </option>
 			</select>
 	 	</div>
  	</div>
@@ -187,20 +204,13 @@
 				</c:forEach>			
 			</c:if>
 			</tbody>	
-		</table>
-		<!-- 	<c:url var="goUser" value="/admin/users" >
-								<c:param name="page" value="0" />
-								<c:param name="count" value="10" />
-								<c:param name="order" value="USER_ID" />
-							</c:url>
-							<li><a href="${goUser}">회원관리</a></li>
-		 -->
-		
+		</table>		
 		<div id="admin_page_list">
 			<c:url var="goUserMinus" value="/admin/users" >
 					<c:param name="page" value="${nowPage -1 }" />
 					<c:param name="count" value="${count }" />
 					<c:param name="order" value="${order }" />
+					<c:param name="where" value="${where }" />
 			</c:url>
 			<c:if test="${nowPage eq 1 }">
 				[이전] 
@@ -208,11 +218,12 @@
 			<c:if test="${nowPage ne 1 }" >
 				 <a href="${goUserMinus }" >[이전]</a>
 			</c:if>
-			<c:forEach var="p" begin="1" end="${endPage + 1 }" >	
+			<c:forEach var="p" begin="1" end="${endPage }" >	
 				<c:url var="goUser" value="/admin/users" >
 					<c:param name="page" value="${p }" />
 					<c:param name="count" value="${count }" />
 					<c:param name="order" value="${order }" />
+					<c:param name="where" value="${where }" />
 				</c:url>
 				<c:if test="${p eq nowPage }">
 					<span style="font-size:20px; color:red;">[${p }]</span>
@@ -225,11 +236,12 @@
 					<c:param name="page" value="${ nowPage + 1 }" />
 					<c:param name="count" value="${count }" />
 					<c:param name="order" value="${order }" />
+					<c:param name="where" value="${where }" />
 			</c:url>
-             <c:if test ="${nowPage eq endPage + 1 }">
+             <c:if test ="${nowPage eq endPage }">
              	[다음]
              </c:if>
-              <c:if test ="${nowPage ne endPage + 1 }">
+              <c:if test ="${nowPage ne endPage }">
              	<a href="${goUserPlus }">[다음]</a>
              </c:if>
 		</div><!-- pageList -->

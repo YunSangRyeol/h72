@@ -15,7 +15,7 @@ import com.project.h72.order.vo.OrderContents;
 @Service
 public interface AdminService {
 
-	List<Member> getMemberList(int page, int count, String order);
+	List<Member> getMemberList(int page, int count, String order, String where);
 
 	List<Member> adminSearchId(String id);
 

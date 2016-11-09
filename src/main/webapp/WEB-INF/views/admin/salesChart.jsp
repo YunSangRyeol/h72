@@ -72,7 +72,7 @@
 	<script>
 		var options = {
 			'legend':{
-				names: ['08-12', '08-19', '08-26', '09-02', '09-09', '09-16', '9-22']
+				names: ['${now6 }', '${now5 }', '${now4 }', '${now3 }', '${now2 }', '${now1 }', '${now0 }']
 					},
 			'dataset':{
 				title:'Playing time per day', 

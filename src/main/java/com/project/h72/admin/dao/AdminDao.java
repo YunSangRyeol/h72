@@ -23,13 +23,33 @@ public class AdminDao {
 	private SqlSession sqlSession;
 
 	//Member
-	public List<Member> getMemberList(int page, int count, String order) {	
+	public List<Member> getMemberList(int page, int count, String order, String where) {	
+		
 		Map<String, String> paging = new HashMap<String, String>();
 		paging.put( "page",  String.valueOf(page));
 		paging.put( "count",  String.valueOf(count) );
 		paging.put( "order", order );
 		
-		return sqlSession.selectList(NAMESPACE + "getMemberList", paging);
+				
+		String whereQuery = null;
+		if(!(where.equals("null"))){//조건요구
+			System.out.println("where2222" + where);
+			String[] wheres = where.split(",");
+			switch(wheres[0]){
+			case "NAME" :
+			case "USER_ID":
+				paging.put( "how", wheres[0] );
+				paging.put( "what", wheres[1] );	
+				break;
+			case "DATE":
+				whereQuery = wheres[0] + " BETWEEN TO_DATE(" + wheres[1] + ") AND TO_DATE(" + wheres[2] + ") +1";
+				break;
+			}			
+			
+			return sqlSession.selectList(NAMESPACE + "getMemberListW", paging);
+		}else{ 
+			return sqlSession.selectList(NAMESPACE + "getMemberList", paging);
+		}
 	}
 	
 	public int getMemberCount() {
