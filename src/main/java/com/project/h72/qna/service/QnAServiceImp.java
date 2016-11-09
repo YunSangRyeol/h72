@@ -35,7 +35,7 @@ public class QnAServiceImp implements QnAService{
 	}
 
 
-	@Override
+/*	@Override
 	public QnA updateqna(String qNo) {
 		// TODO Auto-generated method stub
 		return dao.updateqna(qNo);
@@ -46,5 +46,12 @@ public class QnAServiceImp implements QnAService{
 	public int upqna(String qNo, String upqTitle, String upqContent) {
 		// TODO Auto-generated method stub
 		return dao.QnAUp( qNo,  upqTitle,  upqContent);
+	}*/
+
+
+	@Override
+	public int deleteqna(String qNo, String qTitle, String qContent) {
+		// TODO Auto-generated method stub
+		return dao.deleteqna(qNo,qTitle,qContent);
 	}
 }

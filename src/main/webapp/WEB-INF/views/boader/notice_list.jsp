@@ -142,7 +142,7 @@
 			</p>
 		</div>
 
-		<form id="boardSearchForm" name="" action="/board/free/list.html"
+	<!-- 	<form id="boardSearchForm" name="" action="/board/free/list.html"
 			method="get" enctype="multipart/form-data">
 			<input id="board_no" name="board_no" value="1" type="hidden">
 			<input id="page" name="page" value="1" type="hidden"> <input
@@ -162,9 +162,7 @@
 							fw-label="" fw-msg="">
 							<option value="subject">제목</option>
 							<option value="content">내용</option>
-							<option value="writer_name">글쓴이</option>
-							<option value="member_id">아이디</option>
-							<option value="nick_name">별명</option>
+						
 						</select> <input id="search" name="search" fw-filter="" fw-label=""
 							fw-msg="" class="inputTypeText" value="" type="text"> <a
 							href="#none" onclick="BOARD.form_submit('boardSearchForm');"
@@ -172,10 +170,8 @@
 					</p>
 				</fieldset>
 			</div>
-		</form>
-		<!-- 관리자 전용 메뉴 -->
-
-		<!-- //관리자 전용 메뉴 -->
+		</form> -->
+	
 	</div>
 
 

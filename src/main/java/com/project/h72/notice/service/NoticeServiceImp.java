@@ -57,5 +57,12 @@ public class NoticeServiceImp implements NoticeService {
 		return dao.updatenotice(noticeNo);
 	}
 
+
+	@Override
+	public int deletenotice(String noticeNo, String noticeTitle, String noticeContent) {
+		// TODO Auto-generated method stub
+		return dao.deletenotice(noticeNo,noticeTitle,noticeContent);
+	}
+
 	
 }

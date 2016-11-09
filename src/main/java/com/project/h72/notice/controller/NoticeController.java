@@ -85,6 +85,16 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		return "redirect:/boader/notice_list";
 	}	
 	
+	@RequestMapping(value = "/notice_delete.do", method = RequestMethod.GET)
+	public String notice_delete(@RequestParam("noticeNo") String noticeNo, @RequestParam("noticeTitle") String noticeTitle,
+			@RequestParam("noticeContent") String noticeContent, Model model) {
+		
+		int result = 0;
+		result =  noticeService.deletenotice(noticeNo, noticeTitle, noticeContent);
+		
+		return "redirect:/boader/notice_list";
+	}	
+	
 	@RequestMapping(value = "boader/life_kit_detail", method = RequestMethod.GET)
 	public String life_kit_detail(Locale locale, Model model) {
 		

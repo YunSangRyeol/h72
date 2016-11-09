@@ -30,15 +30,19 @@
 	(SEQ_Q_NO.NEXTVAL, null,null, #{insertqTitle},  #{insertqContent}, sysdate ,null,null,null
 	)
 	</insert>
-		<update id="QnAUp" parameterType="Map">
-		UPDATE QNA SET QNA_TITLE = #{upqTitle}, 
-		QNA_CONTENTS = #{upqContent}
+<!-- 		<update id="QnAUp" parameterType="Map">
+		UPDATE QNA SET Q_TITLE = #{upqTitle}, 
+		Q_CONTENTS = #{upqContent}
+		WHERE Q_NO = #{qNo}
 
-	</update>
+	</update> -->
 	
 	<select id="updateqna" parameterType="Map" resultType="QnA">
 		SELECT * FROM QNA WHERE Q_NO = #{qNo}
 
 	</select>
-
+	<delete id="deleteqna" parameterType="Map" >
+		DELETE FROM QNA
+		WHERE Q_NO = #{qNo}
+		</delete>
 </mapper>

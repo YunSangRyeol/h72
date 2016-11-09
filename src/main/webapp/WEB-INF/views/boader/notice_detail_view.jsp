@@ -34,8 +34,11 @@
 				</div>
 			</div>
 			<!-- 글 내용-->
-			<form id="NoticeDel" name="NoticeDel" action="../notice_delete2.do"
+			<form id="NoticeDel" name="NoticeDel" action="../notice_delete.do"
 				method="get" >
+				<tr><input type="text" style="display:none;" id="noticeNo" name="noticeNo" value="${list.noticeNo }"></tr>
+									<tr><input type="text" style="display:none;" id="noticeTitle" name="noticeTitle" value="${list.noticeTitle }"></tr>
+									<tr><input type="text" style="display:none;" id="noticeContent" name="noticeContent" value="${list.noticeContent }"></tr>
 					<div
 					class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
 
@@ -43,6 +46,7 @@
 						<table border="1" summary="">
 							<caption>게시판 상세</caption>
 							<tbody>
+									
 								<tr>
 									<th scope="row">제목</th>
 									<td class="noticeTitle"><a
@@ -83,9 +87,8 @@
 					<a
 							href="<c:url value="/boader/notice_update_view?noticeNo=${list.noticeNo}"/>"type="button" class="btn btn-primary btn-block"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">수정</a>
-					<a		href="<c:url value="/boader/notice_list"/>"
-							class="left"  id="delete"
-							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">삭제</a>&nbsp;&nbsp;
+					<input type="submit" value="삭제" class="btn btn-primary"
+							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;"/>&nbsp;&nbsp;
 						
 							</c:if> 
 					</div>

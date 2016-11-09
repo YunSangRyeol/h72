@@ -36,7 +36,7 @@ $(function(){
 				</div>
 			</div>
 	
- 			<form id="NoticeUp" name="NoticeUp" action="../notice_up.do?noticeNo=${list.noticeNo}"
+ 			<form id="NoticeUp" name="NoticeUp" action="../notice_up.do"
 				method="get" >
 				
 				<div
@@ -45,6 +45,7 @@ $(function(){
 					<!-- <div class="boardView "> -->
 					<table border="1" summary="">
 						<caption>공지등록</caption>
+						<tr><input type="text" style="display:none;" id="noticeNo" name="noticeNo" value="${list.noticeNo }"></tr>
 
 						<tr>
 								<tr>
