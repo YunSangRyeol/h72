@@ -5,9 +5,27 @@
 <html>
 <head>
 <title>MemberJoin</title>
+<script type="text/javascript"
+	src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <link href="/h72/resources/css/loginPage.css" type="text/css"
 	rel="stylesheet">
 
+<script type="text/javascript">
+	$(function() {
+
+		$('#loginBtn').click(function() {
+			var userid = $("#userid").val();
+			var userpw = $("#userpass").val();
+			if (userid == "") {
+				alert("아이디를 입력하세요");
+			} else if (userpw == "") {
+				alert("비밀번호를 입력하세요");
+			} else {
+				login_form.submit();
+			}
+		});
+	});
+</script>
 </head>
 <body id="login">
 	<div id="login_content_wrap">
@@ -20,12 +38,13 @@
 
 			<div class="inner">
 				<div class="login_inputArea">
-					<form id="login_form" method="post" action="../login.do">
+					<form id="login_form" method="post" action="/h72/login.do">
 						<br> <br> <label>ID</label> <input type="text"
 							class="login_inputData" id="userid" name="userid"><br>
 						<label>PW</label><input type="password" class="login_inputData"
-							id="userpass" name="userpass"> <input type="submit"
-							class="loginBtn" value="로그인" style="cursor: pointer;" />
+							id="userpass" name="userpass"> <input type="button"
+							class="loginBtn" id="loginBtn" value="로그인"
+							style="cursor: pointer;" />
 						<!-- <a href="#"><span class="loginBtn">LOGIN</span></a> -->
 					</form>
 

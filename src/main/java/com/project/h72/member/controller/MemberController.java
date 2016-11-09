@@ -1,25 +1,23 @@
 package com.project.h72.member.controller;
 
 import java.text.DateFormat;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.catalina.connector.Response;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import com.project.h72.cart.vo.Cart;
 import com.project.h72.member.service.MemberService;
 import com.project.h72.member.vo.Member;
 
@@ -28,6 +26,7 @@ import com.project.h72.member.vo.Member;
  */
 @Controller
 public class MemberController {
+
 	@Autowired
 	private MemberService memberService;
 
@@ -46,14 +45,19 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String login(@RequestParam("userid") String id, @RequestParam("userpass") String pass, HttpSession session)
-			throws Exception {
+	public String login(@RequestParam("userid") String id, @RequestParam("userpass") String pass, HttpSession session,
+			HttpServletResponse response) throws Exception {
 		System.out.println(id + " @@ " + pass);
 		Member login = memberService.getUserInfo(new Member(id, pass));
 		System.out.println(login);
 		if (login != null) {
 			session.setAttribute("loginUser", login);
-			System.out.println(login + "!@#!@#@!#!@#@!#!@#@!#@!#@!#@!#@!#@!#@!#");
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			writer.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.');</script>");
+			writer.flush();
+			return "member/loginPage";
 		}
 		return "home";
 	}
@@ -135,12 +139,12 @@ public class MemberController {
 			@RequestParam("email") String email, Model user) throws Exception {
 		/* 아이디찾기 */
 		Member searchPw = memberService.getSearchPw(new Member(userid, name, email));
-		
+
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom("h72shop@gmail.com");
 		msg.setTo(new String[] { email });
 		msg.setSubject("재난대비 용품점 h72, 귀하의 비밀번호 찾기 결과입니다.");
-		msg.setText(searchPw.getName() + "님, 항상 이용해 주셔서 감사합니다! ^-^  귀하의 비밀번호는 [ "+ searchPw.getUserpass() +" ] 입니다");
+		msg.setText(searchPw.getName() + "님, 항상 이용해 주셔서 감사합니다! ^-^  귀하의 비밀번호는 [ " + searchPw.getUserpass() + " ] 입니다");
 
 		try {
 			mailSender.send(msg);
