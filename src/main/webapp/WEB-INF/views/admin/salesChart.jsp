@@ -70,7 +70,6 @@
  	<h2>주간 매출 내역</h2>
 	<div id="chartWeek"></div>
 	<script>
-	
 		var options = {
 			'legend':{
 				names: ['08-12', '08-19', '08-26', '09-02', '09-09', '09-16', '9-22']
