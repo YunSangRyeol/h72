@@ -22,4 +22,6 @@ public interface NoticeService {
 	int upnotice(String noticeNo, String upNoticeTitle, String upNoticeContent);
 
 	Notice updatenotice(String noticeNo);
+
+	int deletenotice(String noticeNo, String noticeTitle, String noticeContent);
 }

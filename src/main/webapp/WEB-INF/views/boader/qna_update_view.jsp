@@ -39,7 +39,7 @@ $(function(){
 			</div>
 			
 			
-			<form id="QnAUp" name="QnAUp" action="../qna_up.do?qNo=${list.qNo}"
+			<form id="QnAUp" name="QnAUp" action="../qna_up.do"
 				method="get" >
 				
 				<div
@@ -48,6 +48,7 @@ $(function(){
 					<!-- <div class="boardView "> -->
 					<table border="1" summary="">
 						<caption>qna등록</caption>
+						<tr><input type="text" style="display:none;" id="qNo" name="qNo" value="${list.qNo }"></tr>
 
 						<tr>
 								<tr>

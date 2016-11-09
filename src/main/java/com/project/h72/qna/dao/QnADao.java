@@ -38,7 +38,7 @@ public class QnADao {
 
 	}
 
-	public QnA updateqna(String qNo) {
+/*	public QnA updateqna(String qNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE +"updateqna",qNo);
 	}
@@ -50,6 +50,15 @@ public class QnADao {
 		qna.put( "upNoticeTitle", upqTitle);
 		qna.put( "upNoticeContent", upqContent );
 		return sqlSession.update(NAMESPACE+"QnAUp",qna);
+	}*/
+
+	public int deleteqna(String qNo, String qTitle, String qContent) {
+		// TODO Auto-generated method stub
+		Map<String, String> notice = new HashMap<String, String>();
+		notice.put( "qNo", qNo);
+		notice.put( "qTitle", qTitle);
+		notice.put( "qContent", qContent );
+		return sqlSession.update(NAMESPACE+"deleteqna",notice);
 	}
 
 }

@@ -33,27 +33,21 @@
 				</div>
 			</div>
 			<!-- 글 내용-->
-			<form id="BoardDelForm" name="" action="/exec/front/Board/del/1"
-				method="post" enctype="multipart/form-data">
-			<!-- 	<input id="no" name="no" value="620208" type="hidden"> <input
-					id="bulletin_no" name="bulletin_no" value="403413" type="hidden">
-				<input id="board_no" name="board_no" value="1" type="hidden">
-				<input id="member_id" name="member_id" value="jjukbbang1"
-					type="hidden"> <input id="list_url" name="list_url"
-					value="/board/free/list.html?board_no=1" type="hidden"> <input
-					id="bdf_modify_url" name="bdf_modify_url"
-					value="/board/free/modify.html?board_act=edit&amp;no=620208&amp;board_no=1"
-					type="hidden"> <input id="bdf_del_url" name="bdf_del_url"
-					value="/exec/front/Board/del/1" type="hidden"> <input
-					id="bdf_action_type" name="bdf_action_type" value="" type="hidden"> -->
-				<div
+			<form id="QnADel" name="QnADel" action="../qna_delete.do"
+				method="get">
+				<tr><input type="text" style="display:none;" id="qNo" name="qNo" value="${list.qNo }"></tr>
+									<tr><input type="text" style="display:none;" id="qTitle" name="qTitle" value="${list.qTitle }"></tr>
+									<tr><input type="text" style="display:none;" id="qContent" name="qContent" value="${list.qContent }"></tr>
+									<tr><input type="text" style="display:none;" id="qWriter" name="qWriter" value="${list.qWriter }"></tr>
+			<div
 					class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
 
 					<div class="boardView ">
 						<table border="1" summary="">
 							<caption>공지 상세</caption>
 							<tbody>
-								<tr>
+							
+									<tr>
 									<th scope="row">제목</th>
 									<td class = "QTitle"><a
 									href="qna_detail_view?qNo=${list.qNo}">${list.qTitle}</a>
@@ -77,19 +71,7 @@
 										</div>
 									</td>
 								</tr>
-								
-								
-
-								<tr class="displaynone">
-									<th scope="row">비밀번호</th>
-									<td><input id="password" name="password" fw-filter=""
-										fw-label="비밀번호" fw-msg=""
-										onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }"
-										value="" type="password"> <span class="info"> <img
-											src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/ico_warning.gif"
-											alt=""> 수정 및 삭제하려면 비밀번호를 입력하세요.
-									</span></td>
-								</tr>
+	
 							</tbody>
 						</table>
 					</div>
@@ -98,18 +80,19 @@
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">목록</a></span>
 						&nbsp;&nbsp;
 						<c:if test="${loginUser.userid eq 'ADMIN' }">
-						<a href="/board/free/reply.html" 
+						<a href="" 
 							class="left"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">답변</a>
-							
-						<a href="#none"
-							class="left"
-							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">삭제</a>
-						<a
+							</c:if>
+							<c:if test="${loginUser.userid eq 'ADMIN'}">
+							<%-- <c:if test="${loginUser.userid eq 'ADMIN' || loginUser.userid eq qWriter }"> --%>
+						<input type="submit" value="삭제" class="btn btn-primary"
+							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;"/>
+						<%-- <a
 							href="<c:url value="/boader/qna_update_view?qNo=${list.qNo}"/>"type="button"
 							class="left"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">수정</a>
-				
+				 --%>
 						
 					</c:if>
 					</div>

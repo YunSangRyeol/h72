@@ -94,7 +94,8 @@
 			</div>
 			<div
 				class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 ">
-				<c:if test="${loginUser.userid eq loginUser.userid}">
+				<%-- <c:if test="${loginUser.userid eq 'ADMIN' }"> --%>
+					<c:if test="${!(loginUser eq null) }">
 				<a href="<c:url value="/boader/qna_insert"/>"type="button" class="btn btn-primary btn-block"
 						style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">글쓰기</a>
 			</c:if>

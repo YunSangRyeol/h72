@@ -63,6 +63,16 @@ public class NoticeDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE +"updatenotice",noticeNo);
 	}
+
+
+	public int deletenotice(String noticeNo, String noticeTitle, String noticeContent) {
+		// TODO Auto-generated method stub
+		Map<String, String> notice = new HashMap<String, String>();
+		notice.put( "noticeNo", noticeNo);
+		notice.put( "noticeTitle", noticeTitle);
+		notice.put( "noticeContent", noticeContent );
+		return sqlSession.update(NAMESPACE+"deletenotice",notice);
+	}
 	
 }
 

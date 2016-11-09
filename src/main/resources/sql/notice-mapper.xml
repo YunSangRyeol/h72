@@ -28,12 +28,18 @@
 	<update id="NoticeUp" parameterType="Map">
 		UPDATE NOTICE SET NOTICE_TITLE = #{upNoticeTitle}, 
 		NOTICE_CONTENTS = #{upNoticeContent}
-		<!-- WHERE NOTICE_NO = #{noticeNo} -->
+		WHERE NOTICE_NO = #{noticeNo}
 
 	</update>
 	<select id="updatenotice" parameterType="Map" resultType="Notice">
 		SELECT * FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
 
 	</select>
+	
+	<delete id="deletenotice" parameterType="Map" >
+		DELETE FROM NOTICE
+		WHERE NOTICE_NO = #{noticeNo}
+	
+	</delete>
 
 </mapper>

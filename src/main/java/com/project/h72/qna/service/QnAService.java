@@ -15,9 +15,11 @@ public interface QnAService {
 
 	int insertq(String insertqTitle, String insertqContent);
 
-	QnA updateqna(String qNo);
+/*	QnA updateqna(String qNo);
 
-	int upqna(String qNo, String upqTitle, String upqContent);
+	int upqna(String qNo, String upqTitle, String upqContent);*/
+
+	int deleteqna(String qNo, String qTitle, String qContent);
 
 
 
