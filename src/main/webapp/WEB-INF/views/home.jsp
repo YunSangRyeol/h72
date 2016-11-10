@@ -6,7 +6,8 @@
 <title>72hours::국내 최대 재난대비 용품샵</title>
 <link href="/h72/resources/css/home.css" type="text/css"
 	rel="stylesheet">
-
+<link rel="shortcut icon" href="/h72/resources/image/favicon.ico">
+<link rel="icon" type="image/gif" href="/h72/resources/image/animated_favicon1.gif">
 </head>
 <body id="main">
 	<div id="main_content_wrap">
