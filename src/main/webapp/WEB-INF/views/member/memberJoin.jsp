@@ -9,9 +9,9 @@
 <link href="/h72/resources/css/mJoin.css" type="text/css"
 	rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
-	
-</script>
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="/h72/resources/js/memberJoin.js"></script>
+
 </head>
 <body id="mjoin">
 	<div id="mjoin_content_wrap">
@@ -37,27 +37,22 @@
 							<tbody>
 								<tr>
 									<th scope="row">아이디 <span id="mjoin_red">*</span></th>
-									<td><input id="userid" name="userid"
-										fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity"
-										fw-label="아이디" fw-msg="" class="inputTypeText" value=""
-										type="text"> <a href="#none" title="새창 열기"
-										style="padding: 4px 12px 6px 12px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;">아이디중복확인</a>
-										(영문소문자/숫자, 4~16자)</td>
+									<td><input id="userid" name="userid" class="inputTypeText"
+										value="" type="text"> <input type="button"
+										id="chkDupId" value="아이디 중복확인"
+										style="background: #fff; border: 1px soild #eee; color: black; font-zise: 11px; border-radius: 7px; height: 25px;">(영문자/숫자,
+										5~12자) <input type="hidden" id="chkYN" value="n"></td>
 								</tr>
 								<tr>
 									<th scope="row">비밀번호 <span id="mjoin_red">*</span></th>
 									<td><input id="userpass" name="userpass"
-										fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="비밀번호"
-										fw-msg="" autocomplete="off" maxlength="16"
-										0="disabled" value="" type="password"> (영문
-										대소문자/숫자/특수문자, 10~16자)</td>
+										autocomplete="off" maxlength="16" value="" type="password">
+										(영문 대소문자/숫자/특수문자, 10~16자)</td>
 								</tr>
 								<tr>
 									<th scope="row">비밀번호 확인 <span id="mjoin_red">*</span></th>
 									<td><input id="userpass_confirm" name="userpass_confirm"
-										fw-filter="isFill&amp;isMatch[passwd]" fw-label="비밀번호 확인"
-										fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
-										0="disabled" value="" type="password"></td>
+										value="" type="password"></td>
 								</tr>
 								<tr>
 									<th scope="row">이름 <span id="mjoin_red">*</span></th>
@@ -175,7 +170,7 @@
 									<th scope="row">이메일 <span id="mjoin_red">*</span></th>
 									<td><input id="email" name="email" fw-filter="isFill"
 										fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text">
-									<!-- @<input
+										<!-- @<input
 									id="email2" name="email2" fw-filter="isFill" fw-label="이메일"
 									fw-alone="N" fw-msg="" readonly="readonly" value="" type="text"><select
 									id="email3" fw-filter="isFill" fw-label="이메일" fw-alone="N"

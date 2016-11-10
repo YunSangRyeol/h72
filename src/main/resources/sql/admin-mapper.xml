@@ -87,34 +87,83 @@
 	<select id="getMemberCount" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM USERS WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
 	</select>
+				
+	<select id="getMemberCountWID" parameterType="String" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERS 
+		WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
+		 AND USER_ID LIKE '%' || #{id} || '%'
+	</select>
 	
-	<select id="getMemberListW" parameterType="Map" resultType="member">
+	<!-- 네임 오류!!!!! -->
+	<select id="getMemberCountWNAME" parameterType="String" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERS 
+		WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
+		 AND NAME LIKE '%' || #{name} || '%'
+	</select>	
+	
+	<select id="getMemberCountWDATE" parameterType="Map" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM USERS 
+		WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' 
+		  AND ENROLLDATE BETWEEN TO_DATE(#{start}) AND TO_DATE(#{end})+1
+	</select>
+	
+	
+	
+		
+	<select id="getMemberList" parameterType="Paging" resultType="member">
+		SELECT * 
+		FROM( SELECT T1.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTAL_CNT
+              FROM( SELECT *
+			        FROM USERS
+			        WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
+			        ORDER BY ${order}
+			         ) T1
+			    )
+		WHERE RNUM BETWEEN ((#{page}-1) * #{count} + 1) AND ( ((#{page}-1) * #{count} + 1) + #{count} -1)
+	</select>	
+		
+	<select id="getMemberListWID" parameterType="Paging" resultType="member">
 		SELECT
 		    AAA.*
 		FROM( SELECT COUNT(*) OVER() AS TOTAL_COUNT, AA.*
-		    FROM( SELECT ROW_NUMBER() OVER (ORDER BY #{order} ) RNUM,
+		    FROM( SELECT ROW_NUMBER() OVER (ORDER BY ${order} ) RNUM,
 		            USER_ID, LEVEL_CODE, NAME, BIRTHDATE, EMAIL, PHONE, POST_NUM, ADDRESS, ADDRESS_DETAIL, POINT, ENROLLDATE, TOTAL_PRICE
 		        FROM USERS
-		        WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' AND #{how} LIKE '%' || #{what} || '%'
+		        WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' AND USER_ID LIKE '%' || #{idNname} || '%'
 		        ) AA
 		    ) AAA
 		WHERE AAA.RNUM BETWEEN ((#{page}-1) * #{count} + 1) AND ( ((#{page}-1) * #{count} + 1) + #{count} -1)
-		ORDER BY #{order} DESC
+		ORDER BY ${order} DESC
 	</select>
 		
-	<select id="getMemberList" parameterType="Map" resultType="member">
+	<select id="getMemberListWNAME" parameterType="Paging" resultType="member">
 		SELECT
 		    AAA.*
 		FROM( SELECT COUNT(*) OVER() AS TOTAL_COUNT, AA.*
-		    FROM( SELECT ROW_NUMBER() OVER (ORDER BY #{order} ) RNUM,
+		    FROM( SELECT ROW_NUMBER() OVER (ORDER BY ${order} ) RNUM,
 		            USER_ID, LEVEL_CODE, NAME, BIRTHDATE, EMAIL, PHONE, POST_NUM, ADDRESS, ADDRESS_DETAIL, POINT, ENROLLDATE, TOTAL_PRICE
 		        FROM USERS
-		        WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
+		        WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' AND NAME LIKE '%' || #{idNname} || '%'
 		        ) AA
 		    ) AAA
 		WHERE AAA.RNUM BETWEEN ((#{page}-1) * #{count} + 1) AND ( ((#{page}-1) * #{count} + 1) + #{count} -1)
-		ORDER BY #{order} DESC
+		ORDER BY ${order} DESC
 	</select>
+	
+	<select id="getMemberListWDATE" parameterType="Paging" resultType="member">
+		SELECT
+		    AAA.*
+		FROM( SELECT COUNT(*) OVER() AS TOTAL_COUNT, AA.*
+		    FROM( SELECT ROW_NUMBER() OVER (ORDER BY ${order} ) RNUM,
+		            USER_ID, LEVEL_CODE, NAME, BIRTHDATE, EMAIL, PHONE, POST_NUM, ADDRESS, ADDRESS_DETAIL, POINT, ENROLLDATE, TOTAL_PRICE
+		        FROM USERS
+		        WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' AND ENROLLDATE BETWEEN TO_DATE(#{start}) AND TO_DATE(#{end})+1
+		        ) AA
+		    ) AAA
+		WHERE AAA.RNUM BETWEEN ((#{page}-1) * #{count} + 1) AND ( ((#{page}-1) * #{count} + 1) + #{count} -1)
+		ORDER BY ${order} DESC
+	</select>
+
 	
 	<select id="adminSearchId" parameterType="String" resultType="member">
 		SELECT * FROM USERS WHERE USER_ID LIKE '%' || #{id} || '%'

@@ -4,7 +4,7 @@ package com.project.h72.order.vo;
 public class OrderContents {
 
 	private String orderNo;
-	private String itmeId;
+	private String itemId;
 	private String itemName;
 	private String itemOptionName;
 	private String itemDetailID;
@@ -21,11 +21,11 @@ public class OrderContents {
 	}
 
 
-	public OrderContents(String orderNo, String itmeId, String itemName, String itemOptionName,
+	public OrderContents(String orderNo, String itemId, String itemName, String itemOptionName,
 			String itemDetailID, String mainImg, int quantity, int savingPoint, int cost, String message, char kitYN) {
 		super();
 		this.orderNo = orderNo;
-		this.itmeId = itmeId;
+		this.itemId = itemId;
 		this.itemName = itemName;
 		this.itemOptionName = itemOptionName;
 		this.itemDetailID = itemDetailID;
@@ -51,13 +51,13 @@ public class OrderContents {
 	}
 
 
-	public String getItmeId() {
-		return itmeId;
+	public String getItemId() {
+		return itemId;
 	}
 
 
-	public void setItmeId(String itmeId) {
-		this.itmeId = itmeId;
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
 
 
@@ -165,7 +165,7 @@ public class OrderContents {
 	
 	@Override
 	public String toString(){
-		return this.orderNo + ", " + this.itmeId + ", " + this.itemName + ", " + this.itemOptionName
+		return this.orderNo + ", " + this.itemId + ", " + this.itemName + ", " + this.itemOptionName
 				 + ", " + this.itemDetailID + ", " + this.mainImg + ", " + this.quantity
 				 + ", " + this.savingPoint + ", " + this.cost + ", " + this.message + ", " + this.kitYN;
 	}

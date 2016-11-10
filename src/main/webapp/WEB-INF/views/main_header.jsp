@@ -36,13 +36,14 @@
 							test="${loginUser.levelcode eq 'ADMIN' || loginUser.levelcode eq 'STEP' }">
 							<li><a href="<c:url value="#" />">상품등록</a></li>
 							<c:url var="goUser" value="/admin/users" >
-								<c:param name="page" value="0" />
+								<c:param name="page" value="1" />
 								<c:param name="count" value="10" />
 								<c:param name="order" value="USER_ID" />
+								<c:param name="where" value="null" />
 							</c:url>
 							<li><a href="${goUser}">회원관리</a></li>
 							<li><a href="<c:url value="/admin/order" />">주문관리</a></li>
-							<li><a href="<c:url value="/admin/order?now=null" />">매출관리</a></li>
+							<li><a href="<c:url value="/admin/chart?now=null" />">매출관리</a></li>
 						</c:if>
 					</ul>
 				</div>

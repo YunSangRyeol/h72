@@ -1,5 +1,6 @@
 package com.project.h72.order.dao;
 
+import java.sql.Date;
 import java.util.*;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.h72.cart.vo.Cart;
 import com.project.h72.order.vo.Order;
+import com.project.h72.order.vo.OrderContents;
 
 @Repository
 public class OrderDao {
@@ -28,6 +30,23 @@ public class OrderDao {
 
 	public int insertOrderInfo(Order order) {
 		return sqlSession.insert(NAMESPACE+"insertOrderInfo", order);
+	}
+
+	public int insertOrderContents(OrderContents orderContents) {
+		return sqlSession.insert(NAMESPACE+"insertOrderContents", orderContents);
+	}
+
+	public int deleteFinishCart(String cartId) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"deleteFinishCart", cartId);
+	}
+
+	public List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth) {
+		Map<String, Comparable> paramMap = new HashMap();
+		paramMap.put("userId", userId);
+		paramMap.put("currentDate", currentDate);
+		paramMap.put("preThreeMonth", preThreeMonth);
+		return sqlSession.selectList(NAMESPACE+"selectOrderList", paramMap);
 	}
 
 }

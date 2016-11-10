@@ -40,6 +40,11 @@
 		SELECT * FROM H72.USERS
 		WHERE user_id = #{userid} AND name = #{name} AND email = #{email}
 	</select>
+	
+	<select id="chkDupId" parameterType="String" resultType="int">
+		SELECT count(*) FROM H72.USERS
+		WHERE user_id = #{userid}
+	</select>
 	<!-- USER_ID
 	LEVEL_CODE
 	USER_PASS

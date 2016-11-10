@@ -1,6 +1,7 @@
 package com.project.h72.order.controller;
 
 import java.util.*;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import com.project.h72.cart.vo.Cart;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.service.OrderService;
 import com.project.h72.order.vo.Order;
+import com.project.h72.order.vo.OrderContents;
 
 @Controller
 public class OrderController {
@@ -34,6 +36,19 @@ public class OrderController {
 		}
 		return "order/order";
 	}
+	
+	
+	@RequestMapping(value = "/directOrder", method = RequestMethod.GET)
+	public String directOrderForm(@RequestParam("cartAll") String[] cartAll, HttpSession session, Model model) {
+		Member login = (Member) session.getAttribute("loginUser");
+		if(!(login==null)){
+			List<Cart> orderlist = os.getCartOrder(cartAll);
+			model.addAttribute("olist", orderlist);
+			
+		}
+		return "order/order";
+	}
+	
 	
 	@RequestMapping(value = "/insertOrder", method = RequestMethod.POST)
 	public String insertOrderFinish(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
@@ -102,21 +117,28 @@ public class OrderController {
 			}
 			
 		}
+		String[] kitNY = request.getParameterValues("cartKitNY");
+		String[] itemId = request.getParameterValues("itemId");
+		String[] itemDetailId = request.getParameterValues("itemDetailId");
+		
 		
 		String postNum = request.getParameter("rpostnum");
 		String address = request.getParameter("raddress");
 		String addressDetail = request.getParameter("raddressDetail");
 		String deliveryMessage = request.getParameter("omessage");
-		if(deliveryMessage==null){
+		System.out.println("deliveryMessage : "+deliveryMessage);
+		if(deliveryMessage==null || deliveryMessage ==""){
 			deliveryMessage ="-";
 		}
+		System.out.println("deliveryMessage : "+deliveryMessage);
 		String orderStatus = "주문접수";
 		String orderChange = "-";
+		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
 		
 		Order order = new Order(orderNO, userId, deleveryName, itemImg[0], itemName[0],
 				itemOption[0], totalQuantity, itemName.length, Integer.valueOf(totalPrice), paymethod,
 				Integer.valueOf(inputMile), totalMileage, deliveryPee, phone, postNum, address,
-				addressDetail, deliveryMessage, orderStatus, orderChange);
+				addressDetail, deliveryMessage, orderStatus, orderChange, date);
 		
 		System.out.println("orderController : "+order);
 		
@@ -131,36 +153,68 @@ public class OrderController {
 		bankMap.put("vbankName", vbank_name);
 		bankMap.put("vName", buyer_name);
 		
-		int bankResult = 0;
-		bankResult = os.insertBankInfo(bankMap);
 		
-		int result = 0;
-		result = os.insertOrderInfo(order);
-		
-		if(bankResult>0 && result>0){
-			model.addAttribute("orderList", order);
-			model.addAttribute("bankInfo", bankMap);
+		int resultOrderContents =0;
+		for(int i=0; i<itemId.length; i++){
+			OrderContents orderContents = new OrderContents(orderNO,itemId[i],itemName[i],itemOption[i],
+				itemDetailId[i], itemImg[i], Integer.valueOf(itemQuantity[i]) ,Double.valueOf(itemMileage[i]).intValue(), 
+				Integer.valueOf(itemCost[i]), deliveryMessage, kitNY[i].charAt(0));
+			System.out.println("orderControllder:"+orderContents);
+			
+			resultOrderContents = os.insertOrderContents(orderContents);
 		}
 		
 		
-	
+		int bankResult = 0;
+		bankResult = os.insertBankInfo(bankMap);
 		
+		int resultOrder = 0;
+		resultOrder = os.insertOrderInfo(order);
 		
+		if(bankResult>0 && resultOrder>0 && resultOrderContents>0){
+			
+			int resultCart = os.deleteFinishCart(cartId);
+			
+			if(resultCart>0){
+				model.addAttribute("order", order);
+				model.addAttribute("bankInfo", bankMap);
+			}
+		}
 		
 		return "order/order_finish";
 	}
 	
 	
 	@RequestMapping(value = "order/order_list", method = RequestMethod.GET)
-	public String orderListView(Model model) {
+	public String orderListView(HttpSession session, Model model) {
+		
+		Member login = (Member) session.getAttribute("loginUser");
+		List<Order> listOrder = new ArrayList<Order>();
+		
+		if(login==null){
+			
+		 	return "member/loginPage";
+		}else{
+			String userId = login.getUserid();
+			Date currentDate = new Date(new java.util.Date().getTime());
+			Calendar cal = Calendar.getInstance ( );//오늘 날짜를 기준으루..
+			cal.add ( cal.MONTH, -3 );
+			Date preThreeMonth = new Date(cal.getTime().getTime());
+			System.out.println(preThreeMonth+" , "+currentDate);
+			listOrder = os.selectOrderList(userId, currentDate, preThreeMonth);
+			
+		}
+		
+		model.addAttribute("orderList", listOrder);
+		System.out.println(listOrder);
 		
 		return "order/order_list";
 	}
 	
-	@RequestMapping(value = "/orderdetail", method = RequestMethod.GET)
+	@RequestMapping(value = "order/order_detail", method = RequestMethod.GET)
 	public String orderDeitailView(Model model) {
 		
-		return null;
+		return "order/order_detail";
 	}
 	
 	

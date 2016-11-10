@@ -3,6 +3,7 @@ package com.project.h72.admin.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.h72.admin.service.AdminService;
+import com.project.h72.admin.vo.Paging;
 import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
@@ -98,12 +100,32 @@ public class AdminController {
 		
 		System.out.println("시작!!" + page + ", " + count + ", " + order + ", " + where);
 		
+		int countAll = 0;
 		
-		//총 유저 수 확인
-		int countAll = adminService.getMemberCount();
-		System.out.println(countAll);
+		List<Member> list = null;
 		
-		List<Member> list = adminService.getMemberList(page * + 1, count, order, where );
+		if(where.equals("null")){ //조건없음
+			countAll = adminService.getMemberCount();
+			list = adminService.getMemberList(new Paging(page * + 1, count, order));
+			
+		}else{ //조건 있음
+			String[] wheres = where.split(",");
+			
+			if(wheres[0].equals("USER_ID")){
+				//아이디
+				countAll = adminService.getMemberCountWID(wheres[1]);
+				list = adminService.getMemberListWID(new Paging(page * + 1, count, order, wheres[1]));
+			}else if(wheres[0].equals("NAME")){
+				//이름
+				countAll = adminService.getMemberCountWNAME(wheres[1]);
+				list = adminService.getMemberListWNAME(new Paging(page * + 1, count, order, wheres[1]));
+				
+			}else if(wheres[0].equals("ENROLLDATE")){
+				//데이터 검색
+				countAll = adminService.getMemberCountWDATE(wheres[1], wheres[2]);		
+				list = adminService.getMemberListWDATE(new Paging(page * + 1, count, order, wheres[1], wheres[2]));
+			}
+		}		
 		
 		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int endPage = (int)(countAll / (count + 0.9) + 1);		
@@ -120,11 +142,12 @@ public class AdminController {
 		return "admin/userManager";
 	}
 	
+	
+	
 	//회원관리 - ID검색
 	@RequestMapping(value="adminSID.do", method = RequestMethod.POST)
 	public String adminSearchId(@RequestParam("userid") String id, Model model){
 		
-		List<Member> list = adminService.adminSearchId(id);
 		
 		String where = "USER_ID," + id;
 
@@ -140,8 +163,6 @@ public class AdminController {
 	@RequestMapping(value="adminSName.do", method = RequestMethod.POST)
 	public String adminSearchName(@RequestParam("username") String name, Model model){
 		
-		List<Member> list = adminService.adminSearchName(name);
-		
 		String where = "NAME," + name;
 
 		model.addAttribute("page", 1);
@@ -156,9 +177,7 @@ public class AdminController {
 	@RequestMapping(value="adminSDate.do", method = RequestMethod.POST)
 	public String adminSearchDate(@RequestParam("start") Date start, @RequestParam("end") Date end, Model model){
 		
-		List<Member> list = adminService.adminSearchDate(start, end);
-		
-		String where = "DATE," + start + "," + end;
+		String where = "ENROLLDATE," + start + "," + end;
 
 		model.addAttribute("page", 1);
 		model.addAttribute("count", 10);
@@ -168,6 +187,10 @@ public class AdminController {
 		return "redirect:/admin/users";
 	}
 
+	
+	
+	
+	
 //////////////////////////////////////////////////////////////////////////////////////////
 	//주문내역 페이지 
 	@RequestMapping(value="admin/order", method = RequestMethod.GET)
@@ -247,40 +270,41 @@ public class AdminController {
 			return "admin/adminOrderList";
 		}
 	
-//////////////////////////////////////////////////////////////////////////
+/////////////////CHART/////////////////////////////////////////////////////////
 	@RequestMapping(value = "admin/chart", method = RequestMethod.GET)
 	public String adminSalesChart(@RequestParam("now") String now, Model model) {
 		
-		Calendar rightNow = null;
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		System.out.println("now??" + now);
+		GregorianCalendar rightNow = null;
 		SimpleDateFormat namesformat = new SimpleDateFormat("MM/dd");
 		
 		if(now.equals("null")){	
-		     rightNow = Calendar.getInstance();			
+		     rightNow = new GregorianCalendar();	
+		     rightNow.add(Calendar.MONTH, 1);
 		}else{
-			rightNow.set(Integer.parseInt(now.substring(0, 4)), 01, 01);			
+			rightNow = new GregorianCalendar(Integer.parseInt(now.substring(0, 4)), Integer.parseInt(now.substring(5, 7)), Integer.parseInt(now.substring(8)));			
 		}
+				
+		now = rightNow.get(Calendar.YEAR) + "-" + rightNow.get(Calendar.MONTH) + "-" +  ( rightNow.get(Calendar.DATE) < 10 ? "0" + rightNow.get(Calendar.DATE) : rightNow.get(Calendar.DATE) );
 		
-		now = String.valueOf(format.format(rightNow.getTime()));
-		String now0 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now0 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 	
 		rightNow.add(Calendar.DATE, -1);		
-		String now1 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now1 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
+		rightNow.add(Calendar.DATE, -1);		
+		String now2 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 
 		rightNow.add(Calendar.DATE, -1);		
-		String now2 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now3 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
+		
+		rightNow.add(Calendar.DATE, -1);		
+		String now4 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 
 		rightNow.add(Calendar.DATE, -1);		
-		String now3 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now5 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 
 		rightNow.add(Calendar.DATE, -1);		
-		String now4 = String.valueOf(namesformat.format(rightNow.getTime()));
-
-		rightNow.add(Calendar.DATE, -1);		
-		String now5 = String.valueOf(namesformat.format(rightNow.getTime()));
-
-		rightNow.add(Calendar.DATE, -1);		
-		String now6 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now6 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 		
 			
 		model.addAttribute("now", now);		
@@ -290,8 +314,10 @@ public class AdminController {
 		model.addAttribute("now3", now3);	
 		model.addAttribute("now4", now4);	
 		model.addAttribute("now5", now5);	
-		model.addAttribute("now6", now6);			
+		model.addAttribute("now6", now6);	
 		
+		
+		System.out.println("now" + ", now0" + ", now1" + ", now2" + ", now3" + ", now4" + ", now5" + ", now6");
 		//오늘
 		TotalOrder today = adminService.chartToday(now);
 		model.addAttribute("today", today);
@@ -317,6 +343,11 @@ public class AdminController {
 		model.addAttribute("kit", kit);
 		
 		return "admin/salesChart";
+	}
+
+	private void GregorianCalendar(int i, int j, int k) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

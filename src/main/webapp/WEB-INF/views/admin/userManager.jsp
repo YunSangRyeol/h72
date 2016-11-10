@@ -88,6 +88,42 @@
  					location.href="/h72/admin/users?page=${nowPage }&count=" + modifyCount +"&order=${order}&where=${where}";
  				});
  	});
+ 	
+ 	//검색시 null값 불가
+ 	$(function(){
+ 		$('#idsubmit').click(
+ 			function(){
+ 				if($('#userid').val().length == 0){
+ 					alert("검색 내용을 입력해주세요.");
+ 					searchIdForm.userid.focus();
+ 				}else{
+ 					searchIdForm.submit();
+ 				}
+ 		});
+ 		
+ 		$('#namesubmit').click(
+ 	 			function(){
+ 	 				if($('#username').val().length == 0){
+ 	 					alert("검색 내용을 입력해주세요.");
+ 	 					searchNameForm.username.focus();
+ 	 				}else{
+ 	 					searchNameForm.submit();
+ 	 				}
+ 	 		});
+ 		
+ 		$('#datesubmit').click(
+ 	 			function(){
+ 	 				if($('#startDate').val().length == 0){
+ 	 					alert("날짜를 선택해주세요.");
+ 	 					searchDateForm.startDate.focus();
+ 	 				}else if($('#endDate').val().length == 0){
+ 	 					alert("날짜를 선택해주세요.");
+ 	 					searchDateForm.endDate.focus();
+ 	 				}else{
+ 	 					searchDateForm.submit();
+ 	 				}
+ 	 		});
+ 	});
 </script>
 </head>
 <body>
@@ -112,17 +148,20 @@
 	<div id="searchDate"  style="display:none;">
 		<form form id="searchDateForm" method="post" action="/h72/adminSDate.do">
 		<input type="date" name="start" id="startDate" class="searchDateInput"> ~ <input type="date" name="end" id="endDate" class="searchDateInput">
-		 &nbsp; <input type="submit" value="검색" class="admin_btn_min">
+		 &nbsp; 
+		 <input type="button" id="datesubmit" value="검색" class="admin_btn_min">
 		</form>
 	</div><!-- searchDate -->    
     <div id="searchID">
 		<form id="searchIdForm" method="post" action="/h72/adminSID.do">
-			<input type="text" name="userid" size="30" class="searchInput"> &nbsp; <input type="submit" value="검색" class="admin_btn_min">
+			<input type="text" id="userid" name="userid" size="30" class="searchInput"> &nbsp; 
+			<input type="button"  id="idsubmit" value="검색" class="admin_btn_min">
 		</form>
 	</div>
     <div id="searchName" style="display:none;">
 		<form id="searchNameForm" method="post" action="/h72/adminSName.do">
-			<input type="text" name="username" size="30" class="searchInput"> &nbsp; <input type="submit" value="검색" class="admin_btn_min">
+			<input type="text" id="username" name="username" size="30" class="searchInput"> &nbsp; 
+			<input type="button" id="namesubmit" value="검색" class="admin_btn_min">
 		</form>
 	</div>	
     </div>

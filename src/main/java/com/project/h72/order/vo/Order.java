@@ -65,7 +65,7 @@ public class Order {
 	public Order(String orderNo, String userId, String deleveryName, String mainImgN1, String itemNameN1,
 			String itemOptionNameN1, int totalQuantity, int kindsQuantity, int totalPrice, String paymentMethod,
 			int paymentPoint, int totalSavingPoint, int deliveryPee, String phone, String postNum, String address,
-			String addressDetail, String deliveryMessage, String orderStatus, String orderChange) {
+			String addressDetail, String deliveryMessage, String orderStatus, String orderChange,Date enrollDate) {
 		super();
 		this.orderNo = orderNo;
 		this.userId = userId;
@@ -87,6 +87,7 @@ public class Order {
 		this.deliveryMessage = deliveryMessage;
 		this.orderStatus = orderStatus;
 		this.orderChange = orderChange;
+		this.enrollDate = enrollDate;
 	}
 
 

@@ -276,6 +276,9 @@ function CallpaymentAPI(){
 									<input type="hidden" name="item_cost" value="${cartOrder.cost }"/>
 									<input type="hidden" name="item_quantity" value="${cartOrder.quantity }"/>
 									<input type="hidden" name="item_option" value="${cartOrder.itemOptionName }"/>
+									<input type="hidden" name="cartKitNY" value="${cartOrder.kitYN }"/>
+									<input type="hidden" name="itemId" value="${cartOrder.itemid }"/>
+									<input type="hidden" name="itemDetailId" value="${cartOrder.itemDetailid }"/>
 									<input name="item_mileage" value="${(loginUser.pointRate/100)*(cartOrder.quantity*cartOrder.cost) }" type="hidden">
 									<tr class="xans-record-">
 										<td class="thumb"><a
@@ -304,6 +307,7 @@ function CallpaymentAPI(){
 					</div>
 					<ul class="controlInfo typeBtm">
 						<li>상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</li>
+						<li>총 주문금액  80,000원 이상일 경우 무료배송 됩니다. </li>
 					</ul>
 					<!-- 이전페이지 이동 -->
 					<div class="btnArea">

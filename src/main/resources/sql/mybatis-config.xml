@@ -16,6 +16,7 @@
 		<typeAlias type="com.project.h72.order.vo.Order" alias="Order" />
 		<typeAlias type="com.project.h72.order.vo.OrderContents" alias="OrderContents" />
  		<typeAlias type="com.project.h72.admin.vo.TotalOrder" alias="TotalOrder" />
+ 		<typeAlias type="com.project.h72.admin.vo.Paging" alias="Paging" />
 		<typeAlias type="com.project.h72.ProductEnroll.vo.ProductItem" alias="ProductItem" />
 		<typeAlias type="com.project.h72.ProductEnroll.vo.ProductProvider" alias="ProductProvider" />
 		<typeAlias type="com.project.h72.kitDiy.vo.KitDiy" alias="KitDiy" />
@@ -24,6 +25,10 @@
 		<typeAlias type="com.project.h72.detail.vo.DetailDIVO" alias="DetailDIVO" />
 		<typeAlias type="com.project.h72.qna.vo.QnA" alias="QnA" />
 		<typeAlias type="com.project.h72.kitDiy.vo.Cart" alias="KitCart" />
+		<typeAlias type="com.project.h72.kitDiy.vo.Order" alias="KitOrder" />
+		<typeAlias type="com.project.h72.detail.vo.Review" alias="Review" />
+      	<typeAlias type="com.project.h72.detail.vo.ManageForm" alias="ManageForm" />
+		
 	</typeAliases>	
 	
 	

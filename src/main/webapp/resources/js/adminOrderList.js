@@ -1,13 +1,4 @@
-	//excel파일 다운로드
-	$(document).ready(function () {
-	    $("#btnExport").click(function () {
-	        $("#orderList").battatech_excelexport({
-	            containerid: "orderList"
-	           , datatype: 'table'
-	        });
-	        $(this).attr('download', 'sample.xls').attr('href', uri);
-	    });
-	});
+	
 	
 /* 	//위치에 따른 옵션바 생성/제거
 	$(window).scroll(function(){

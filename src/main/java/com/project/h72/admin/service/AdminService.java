@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.h72.admin.dao.AdminDao;
+import com.project.h72.admin.vo.Paging;
 import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
@@ -14,15 +15,36 @@ import com.project.h72.order.vo.OrderContents;
 
 @Service
 public interface AdminService {
+	
+	List<Member> getMemberList(Paging paging);
 
-	List<Member> getMemberList(int page, int count, String order, String where);
+	List<Member> getMemberListWID(Paging paging);
 
-	List<Member> adminSearchId(String id);
+	List<Member> getMemberListWNAME(Paging paging);
 
-	List<Member> adminSearchName(String name);
+	List<Member> getMemberListWDATE(Paging paging);
+	
+	
+	
+	
+	
 
-	List<Member> adminSearchDate(Date start, Date end);
+	int getMemberCount();
+	
+	int getMemberCountWID(String id);
 
+	int getMemberCountWNAME(String name);
+
+	int getMemberCountWDATE(String start, String end);
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	List<Order> getOrderList();
 
 	int updateOrderStatus(String[] orderNos, String selectStatus);
@@ -57,7 +79,12 @@ public interface AdminService {
 
 	TotalOrder kit(String now);
 
-	int getMemberCount();
 
+
+
+
+	
+
+	
 
 }
