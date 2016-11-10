@@ -17,11 +17,17 @@
 	</insert>
 	
 	<insert id="insertOrderInfo" parameterType="Order">
-	INSERT INTO ORDER_LIST VALUES(#{orderNo},#{userId},#{deleveryName},#{mainImgN1},#{itemNameN1},
-	#{itemOptionNameN1},#{totalQuantity},#{kindsQuantity},#{totalPrice},#{paymentMethod},
-	#{paymentPoint},#{totalSavingPoint},#{deliveryPee},#{phone},#{postNum},#{address},
-	#{addressDetail},#{deliveryMessage},#{orderStatus},#{orderChange},SYSDATE)
+	INSERT INTO ORDER_LIST VALUES(#{orderNo},#{userId},#{deleveryName},#{mainImgN1},#{itemNameN1},#{itemOptionNameN1},#{totalQuantity},#{kindsQuantity},#{totalPrice},#{paymentMethod},#{paymentPoint},#{totalSavingPoint},#{deliveryPee},#{phone},#{postNum},#{address},#{addressDetail},#{deliveryMessage},#{orderStatus},#{orderChange},SYSDATE)
 	
 	</insert>
+	
+	<insert id="insertOrderContents" parameterType="OrderContents">
+	INSERT INTO ORDER_LIST_CONTENTS VALUES(#{orderNo},#{itemId},#{itemName},#{itemOptionName},#{itemDetailID},#{mainImg},#{quantity},#{savingPoint},#{cost},#{message},#{kitYN})
+	</insert>
+	
+	<delete id="deleteFinishCart" parameterType="String">
+		DELETE FROM CART
+		WHERE  CART_ID= #{cartId}
+	</delete>
 
 </mapper>

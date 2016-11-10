@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.h72.cart.vo.Cart;
 import com.project.h72.order.vo.Order;
+import com.project.h72.order.vo.OrderContents;
 
 @Repository
 public class OrderDao {
@@ -28,6 +29,15 @@ public class OrderDao {
 
 	public int insertOrderInfo(Order order) {
 		return sqlSession.insert(NAMESPACE+"insertOrderInfo", order);
+	}
+
+	public int insertOrderContents(OrderContents orderContents) {
+		return sqlSession.insert(NAMESPACE+"insertOrderContents", orderContents);
+	}
+
+	public int deleteFinishCart(String cartId) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"deleteFinishCart", cartId);
 	}
 
 }

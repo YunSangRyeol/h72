@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.project.h72.cart.vo.Cart;
 import com.project.h72.order.dao.OrderDao;
 import com.project.h72.order.vo.Order;
+import com.project.h72.order.vo.OrderContents;
 
 @Service
 public class OrderServiceImp implements OrderService {
@@ -35,6 +36,21 @@ public class OrderServiceImp implements OrderService {
 	public int insertOrderInfo(Order order) {
 		// TODO Auto-generated method stub
 		return oDao.insertOrderInfo(order);
+	}
+
+	@Override
+	public int insertOrderContents(OrderContents orderContents) {
+		// TODO Auto-generated method stub
+		return oDao.insertOrderContents(orderContents);
+	}
+
+	@Override
+	public int deleteFinishCart(String[] cartId) {
+		int result =0; 
+		for(int i=0; i<cartId.length; i++){
+			result = oDao.deleteFinishCart(cartId[i]);
+		}
+		return result;
 	}
 
 }
