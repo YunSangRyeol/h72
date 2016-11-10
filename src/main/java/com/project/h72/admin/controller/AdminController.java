@@ -104,9 +104,9 @@ public class AdminController {
 		List<Member> list = null;
 		
 		if(where.equals("null")){ //조건없음
-			System.out.println("널로 들어옴" + where);
 			countAll = adminService.getMemberCount();
 			list = adminService.getMemberList(new Paging(page * + 1, count, order));
+			
 		}else{ //조건 있음
 			String[] wheres = where.split(",");
 			
@@ -124,14 +124,7 @@ public class AdminController {
 				countAll = adminService.getMemberCountWDATE(wheres[1], wheres[2]);		
 				list = adminService.getMemberListWDATE(new Paging(page * + 1, count, order, wheres[1], wheres[2]));
 			}
-		}
-		
-		
-		//총 유저 수 확인
-		System.out.println("총유저수: " + countAll);
-		
-		 ;
-		
+		}		
 		
 		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int endPage = (int)(countAll / (count + 0.9) + 1);		
