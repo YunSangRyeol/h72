@@ -38,17 +38,19 @@ public class QnADao {
 
 	}
 
-/*	public QnA updateqna(String qNo) {
+	public QnA updateqna(String qNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE +"updateqna",qNo);
 	}
 
-	public int QnAUp(String qNo, String upqTitle, String upqContent) {
+
+/*	public int QnAUp(String qNo, String upqTitle, String upqContent, String answerContent) {
 		// TODO Auto-generated method stub
 		Map<String, String> qna = new HashMap<String, String>();
 		qna.put( "qNo", qNo);
 		qna.put( "upNoticeTitle", upqTitle);
 		qna.put( "upNoticeContent", upqContent );
+		qna.put( "answerContent", answerContent );
 		return sqlSession.update(NAMESPACE+"QnAUp",qna);
 	}*/
 
@@ -60,5 +62,16 @@ public class QnADao {
 		notice.put( "qContent", qContent );
 		return sqlSession.update(NAMESPACE+"deleteqna",notice);
 	}
+
+	public int upqna(String qNo, String answerContent) {
+		System.out.println("디에이오 진입");
+		
+		Map<String, String> nc = new HashMap<String, String>();
+		nc.put( "qNo", qNo);
+		nc.put( "answerContent", answerContent);
+		
+		return sqlSession.update(NAMESPACE+"upqna", nc);
+	}
+
 
 }

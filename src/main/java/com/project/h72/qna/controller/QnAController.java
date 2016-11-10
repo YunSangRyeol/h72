@@ -61,29 +61,27 @@ public String qna_insert2(@RequestParam("insertqTitle") String insertqTitle,
 	return "redirect:/boader/qna_list";
 }	
 
-/*@RequestMapping(value = "boader/qna_update_view", method = RequestMethod.GET)
-public String qna_update(@RequestParam("qNo") String qNo, Model model) {
-	logger.info("Welcome home! The client locale is {}.", locale);
-
-	
-	model.addAttribute("serverTime" );
-
+@RequestMapping(value = "boader/qna_answer", method = RequestMethod.GET)
+public String qna_answer(@RequestParam("qNo") String qNo, Model model) {
+		
 	System.out.println("OK!!"+ qNo);
 	
 	QnA list = qnaService.updateqna(qNo);
 	System.out.println( list );
 	model.addAttribute("list", list );
-	return "boader/qna_update_view";
+	return "boader/qna_answer";
 }
 @RequestMapping(value = "/qna_up.do", method = RequestMethod.GET)
-public String notice_up(@RequestParam("qNo") String qNo, @RequestParam("upqTitle") String upqTitle,
-		@RequestParam("upqContent") String upqContent, Model model) {
+public String notice_up(@RequestParam("qNo") String qNo, 
+		@RequestParam("answerContent") String answerContent, Model model) {
 	
+	System.out.println("qNo, upqTitle, upqContent,answerContent" + qNo +"/" +answerContent);
 	int result = 0;
-	result =  qnaService.upqna(qNo, upqTitle, upqContent);
-	
+
+	result =  qnaService.upqna(qNo, answerContent );
+	System.out.println("성공?????????????????" + result );
 	return "redirect:/boader/qna_list";
-}*/	
+}
 @RequestMapping(value = "/qna_delete.do", method = RequestMethod.GET)
 public String notice_delete(@RequestParam("qNo") String qNo, @RequestParam("qTitle") String qTitle,
 		@RequestParam("qContent") String qContent, Model model) {

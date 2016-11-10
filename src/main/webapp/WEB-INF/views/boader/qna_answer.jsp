@@ -53,11 +53,16 @@ $(function(){
 						<tr>
 								<tr>
 									<th scope="row">제목</th>
-									<td><input type="text" name="upqTitle" id="upqTitle"></td>
+									<td>RE:<input type="text" name="upqTitle" id="upqTitle"></td>
 									</tr>
 						<tr>
 							<td>내용</td>
 							<td><textarea cols="50" rows="7" name="upqContent" id="upqContent"></textarea></td>
+						</tr>
+						
+						<tr>
+							<td>답변</td>
+							<td><textarea cols="50" rows="7" name="answerContent" id="answerContent"></textarea></td>
 						</tr>
 
 					</table>
@@ -66,7 +71,7 @@ $(function(){
 					<input type="submit" value="저장" class="btn btn-primary"
 						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;" />&nbsp;&nbsp;
 					<span><a href="<c:url value="/boader/qna_list"/>"
-						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e 7; color: #000; letter-spacing: 1px; font-size: 11px;">뒤로</a></span>
+						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e 7; color: #000; letter-spacing: 1px; font-size: 11px;">취소</a></span>
 
 				</div>
 			</form>
