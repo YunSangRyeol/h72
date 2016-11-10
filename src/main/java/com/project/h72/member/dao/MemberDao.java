@@ -33,4 +33,9 @@ public Member getSearchPw(Member member) {
 	return sqlSession.selectOne(NAMESPACE + "searchPw", member);
 }
 
+public int chkDupId(String userid) {
+	// TODO Auto-generated method stub
+	return sqlSession.selectOne(NAMESPACE + "chkDupId", userid);
+}
+
 }

@@ -21,6 +21,12 @@ public class Member {
 	public Member() {
 		super();
 	}
+	
+	//중복검사
+	public Member(String userid) {
+		super();
+		this.userid = userid;
+	}
 
 	// 로그인
 	public Member(String userid, String userpass) {
@@ -89,6 +95,7 @@ public class Member {
 		this.totalprice = totalprice;
 		this.pointRate = pointRate;
 	}
+
 
 	public String getEmail() {
 		return email;

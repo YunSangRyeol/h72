@@ -29,4 +29,9 @@ public class MemberService {
 		return dao.getSearchPw(member);
 	}
 
+	public int chkDupId(String userid) {
+		// TODO Auto-generated method stub
+		return dao.chkDupId(userid);
+	}
+
 }
