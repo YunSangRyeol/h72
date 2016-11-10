@@ -9,6 +9,8 @@
 .footer_body{
 	text-align:center;
 }</style>
+<link rel="shortcut icon" href="/h72/resources/image/favicon.ico">
+<link rel="icon" type="image/gif" href="/h72/resources/image/animated_favicon1.gif">
 </head>
 
 <body class="footer_body">
