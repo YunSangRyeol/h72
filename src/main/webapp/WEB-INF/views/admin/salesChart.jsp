@@ -11,7 +11,6 @@
 <script type="text/javascript" src="/h72/resources/js/chart.js"></script>
 <script type="text/javascript">
 	$(function(){
-		alert();
 		document.getElementById("now").value = '${now}';
 	});
 </script>
