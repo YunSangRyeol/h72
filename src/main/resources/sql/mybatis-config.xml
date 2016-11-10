@@ -26,8 +26,8 @@
 		<typeAlias type="com.project.h72.qna.vo.QnA" alias="QnA" />
 		<typeAlias type="com.project.h72.kitDiy.vo.Cart" alias="KitCart" />
 		<typeAlias type="com.project.h72.kitDiy.vo.Order" alias="KitOrder" />
-		<!--    <typeAlias type="com.project.h72.detail.vo.Review" alias="Review" />
-      <typeAlias type="com.project.h72.detail.vo.ManageForm" alias="ManageForm" /> -->
+		<typeAlias type="com.project.h72.detail.vo.Review" alias="Review" />
+      	<typeAlias type="com.project.h72.detail.vo.ManageForm" alias="ManageForm" />
 		
 	</typeAliases>	
 	

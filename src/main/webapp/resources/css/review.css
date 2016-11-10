@@ -890,7 +890,7 @@ li.review .l-contents .review-content .review-content-collapsed {
 }
 li.review .l-contents .panel-header, li.review .l-contents .panel-body, 
 li.review .l-contents .panel-footer {
-    padding-bottom: 20px;
+    padding-bottom: 45px;
     padding-top: 13px;
 }
 
@@ -939,9 +939,185 @@ expanded {
     transition: padding-top 0.3s ease;
 }
 
+/* 페이징 */
+
+.widget .widget-footer {
+    text-align: center;
+    padding-top: 25px;
+}
+body.products.reviews .widget-footer, 
+#review-edit-form .widget-footer {
+    padding-top: 0 !important;
+}
+.dataTables_paginate.paging_full_numbers {
+    padding-top: 10px;
+    font-size: 0;
+}
 
 
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.paginate_button_disabled {
+    pointer-events: none;
+}
+.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
+    padding: 4px 4px;
+    margin: 0 3px;
+    cursor: pointer;
+    color: #6e6e6e;
+    font-size: 11px;
+}
+.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
+    padding: 4px 8px;
+    margin: 0 2px 0 2px;
+    cursor: pointer;
+    color: #bbb;
+    font-weight: bold;
+    font-family: Verdana, Dotum, AppleGothic, sans-serif;
+    font-size: 10px;
+}
+a.last.paginate_button, a.next.paginate_button, a.first.paginate_button, a.previous.paginate_button {
+    color: black;
+    letter-spacing: -2px;
+}
+.dataTables_paginate.paging_full_numbers .first, .dataTables_paginate.paging_full_numbers .last {
+    display: none;
+}
+.dataTables_paginate.paging_full_numbers .first, 
+.dataTables_paginate.paging_full_numbers .last {
+    display: none;
+}
 
 
+.paginate_button_disabled {
+    pointer-events: none;
+}
 
+.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
+    padding: 4px 4px;
+    margin: 0 3px;
+    cursor: pointer;
+    color: #6e6e6e;
+    font-size: 11px;
+}
+.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
+    padding: 4px 8px;
+    margin: 0 2px 0 2px;
+    cursor: pointer;
+    color: #bbb;
+    font-weight: bold;
+    font-family: Verdana, Dotum, AppleGothic, sans-serif;
+    font-size: 10px;
+}
+a.last.paginate_button, a.next.paginate_button, a.first.paginate_button, a.previous.paginate_button {
+    color: black;
+    letter-spacing: -2px;
+}
+a.previous.paginate_button {
+    margin: 0 13px 0 2px;
+}
+
+#pager ul {
+	text-align: center;
+}
+#pager ul li {
+	display:inline;
+	margin: 10px;
+	cursor: pointer;
+}
+#pager ul .ajaxPageC.active{
+	color: red;
+    font-weight: 600;
+    font-size: 11pt;
+}
+#pager div ul li a {
+	text-decoration: none;
+	color:black;
+}
+
+/* 리뷰 수정, 삭제 버튼 */
+.edit-review-container {
+    font-size: 0;
+    padding-left: 15px;
+    position: relative;
+    height: 25px;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit-review-container .delete-review, 
+.edit-review-container .edit-review {
+    font-size: 11px;
+    padding: 6px 4px;
+    border: 1px solid white;
+    margin-right: 5px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.edit-review-container .delete-review, 
+.edit-review-container .edit-review {
+    font-size: 11px;
+    padding: 6px 4px;
+    border: 1px solid white;
+    margin-right: 5px;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.edit-review-container .delete-review {
+    background-color: #515151;
+    color: white;
+    border-color: #515151;
+}
+
+/* 리뷰 이미지 */
+li.review .l-contents ul.images {
+    display: inline-block;
+    width: 100%;
+    margin: 18px -5px 0 -5px;
+    font-size: 0;
+}
+ul.reviews.reviews-product li.review ul.images {
+    display: inline-block;
+    width: 100%;
+    margin: 18px -5px 0 -5px;
+    font-size: 0;
+}
+
+li.review .l-contents ul.images li {
+    position: relative;
+    float: left;
+    margin: 0px 5px 0px 5px;
+    border: 1px solid #eeeeee;
+    font-size: 0;
+}
+
+ul.reviews.reviews-product li.review ul.images li {
+    position: relative;
+    float: left;
+    margin: 0px 5px 0px 5px;
+    border: 1px solid #eeeeee;
+    font-size: 0;
+}
+
+ul.reviews.reviews-product li.review ul.images li {
+    height: 125px;
+}
+
+.photo-review-popup {
+    cursor: pointer;
+}
 
