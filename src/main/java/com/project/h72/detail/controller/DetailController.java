@@ -251,8 +251,8 @@ public class DetailController {
 				//1. 웹 컨테이너 내에 저장 위치를 지정할 경우
 				//String savePath = request.getSession().getServletContext().getRealPath("/uploadFiles/");
 				//2. 임의로 파일 저장 폴더를 만들고, 위치를 지정할 경우
-				String savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
-				//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles"
+				String savePath = //"C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+				"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
 				
 				/*"D:\\SEARCHSTUDY\\forgit\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\searchStudy\\uploadFiles";*/
 				
