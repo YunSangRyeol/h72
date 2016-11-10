@@ -30,6 +30,20 @@
 	<result property="ETC" column="ETC" />
 	</resultMap>
 	
+	<resultMap id="reviewResult" type="com.project.h72.detail.vo.Review">
+	<id property="REVIEW_ID" column="REVIEW_ID" />
+	<result property="ITEM_DETAIL_ID" column="ITEM_DETAIL_ID" />
+	<result property="R_WRITER" column="R_WRITER" />
+	<result property="R_CONTENTS" column="R_CONTENTS" />
+	<result property="R_DATE" column="R_DATE" />
+	<result property="R_IMG01" column="R_IMG01" />
+	<result property="R_IMG02" column="R_IMG02" />
+	<result property="R_IMG03" column="R_IMG03" />
+	<result property="R_IMG04" column="R_IMG04" />
+	<result property="R_IMG05" column="R_IMG05" />
+	</resultMap>
+	
+	
 	<select id="selectItemList" resultType="DetailVO" resultMap="itemResult">
 	SELECT *
 	FROM ITEM_DETAIL_VIEW
@@ -85,5 +99,75 @@
 		WHERE ITEM_DETAIL_ID = #{itemDetailid} AND ITEM_ID = #{itemid} AND USER_ID = #{userid}
 	</select>
 
+
+	<select id="selectReviewListCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM REVIEW
+		WHERE ITEM_DETAIL_ID = #{itemDetailId}
+	</select>
+
+	<select id="selectReview" parameterType="hashmap" resultType="Review" resultMap="reviewResult">
+		SELECT *
+		FROM(
+		SELECT ROWNUM RNUM, REVIEW_ID, ITEM_DETAIL_ID, R_WRITER, R_CONTENTS, R_DATE, R_IMG01, R_IMG02, R_IMG03, R_IMG04, R_IMG05
+      		 FROM(SELECT *
+            	  FROM REVIEW
+            	  WHERE ITEM_DETAIL_ID = #{itemDetailId, jdbcType=VARCHAR}
+            	  ORDER BY REVIEW_ID DESC)
+            	  )
+        <![CDATA[    	  
+		WHERE RNUM >= (#{currentPage, jdbcType=VARCHAR} - 1 ) * 5 + 1 AND RNUM <= ((#{currentPage, jdbcType=VARCHAR} - 1 ) * 5 + 1) + (#{limit, jdbcType=VARCHAR} - 1) 
+		]]>
+	</select>
+
+		<!-- (needPageData.currentPage - 1) * 5 + 1
+		((needPageData.currentPage - 1) * 5 + 1) + needPageData.limit - 1 -->
+		<!-- int startRow = (currentPage - 1) * 5 + 1; // 읽기 시작할 row 번호
+		int endRow = startRow + limit - 1; //읽을 마지막  row 번호 -->
+
+	<select id="selectListNo" resultType="String">
+		SELECT MAX(REVIEW_ID)
+		FROM REVIEW
+		<!-- WHERE ITEM_DETAIL_ID = #{itemDetailId} -->
+	</select>
+
+	<insert id="insertReview" parameterType="Review">
+		INSERT INTO REVIEW
+		VALUES(
+			(SELECT MAX(REVIEW_ID) + 1 
+			 FROM REVIEW) ,
+			#{ITEM_DETAIL_ID, jdbcType=VARCHAR} ,
+			#{R_WRITER, jdbcType=VARCHAR} ,
+			#{R_CONTENTS, jdbcType=VARCHAR} ,
+			SYSDATE ,
+			#{R_IMG01, jdbcType=VARCHAR} ,
+			#{R_IMG02, jdbcType=VARCHAR} ,
+			#{R_IMG03, jdbcType=VARCHAR} ,
+			#{R_IMG04, jdbcType=VARCHAR} ,
+			#{R_IMG05, jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<insert id="insertFirstReview" parameterType="hashmap">
+		INSERT INTO REVIEW
+		VALUES(
+			#{listNo} ,
+			#{review.ITEM_DETAIL_ID, jdbcType=VARCHAR} ,
+			#{review.R_WRITER, jdbcType=VARCHAR} ,
+			#{review.R_CONTENTS, jdbcType=VARCHAR} ,
+			SYSDATE ,
+			#{review.R_IMG01, jdbcType=VARCHAR} ,
+			#{review.R_IMG02, jdbcType=VARCHAR} ,
+			#{review.R_IMG03, jdbcType=VARCHAR} ,
+			#{review.R_IMG04, jdbcType=VARCHAR} ,
+			#{review.R_IMG05, jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<delete id="deleteReview" parameterType="ManageForm">
+		DELETE FROM REVIEW
+		WHERE REVIEW_ID = #{reviewNo}
+		AND R_WRITER = #{user} 
+	</delete>
 
 </mapper>

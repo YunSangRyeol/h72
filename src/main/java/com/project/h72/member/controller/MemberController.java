@@ -1,6 +1,7 @@
 package com.project.h72.member.controller;
 
 import java.text.DateFormat;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
@@ -156,4 +157,24 @@ public class MemberController {
 
 		return "member/pwdFindResult";
 	}
+
+	/* 아이디 중복검사 */
+	@RequestMapping(value = "/chkDupId.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int chkDupId(@RequestParam("userid") String userid, HttpSession session, HttpServletResponse response)
+			throws IOException {
+		int result = 0;
+		try {
+
+			result = memberService.chkDupId(userid);
+			System.out.println(result);
+			//response.getWriter().print("result");
+
+		} catch (Exception e) {
+			System.out.println("아이디 사용가능");
+		} 
+		return result;
+
+	}
+
 }

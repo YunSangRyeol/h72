@@ -3,6 +3,7 @@ package com.project.h72.admin.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -186,6 +187,10 @@ public class AdminController {
 		return "redirect:/admin/users";
 	}
 
+	
+	
+	
+	
 //////////////////////////////////////////////////////////////////////////////////////////
 	//주문내역 페이지 
 	@RequestMapping(value="admin/order", method = RequestMethod.GET)
@@ -265,40 +270,41 @@ public class AdminController {
 			return "admin/adminOrderList";
 		}
 	
-//////////////////////////////////////////////////////////////////////////
+/////////////////CHART/////////////////////////////////////////////////////////
 	@RequestMapping(value = "admin/chart", method = RequestMethod.GET)
 	public String adminSalesChart(@RequestParam("now") String now, Model model) {
 		
-		Calendar rightNow = null;
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		System.out.println("now??" + now);
+		GregorianCalendar rightNow = null;
 		SimpleDateFormat namesformat = new SimpleDateFormat("MM/dd");
 		
 		if(now.equals("null")){	
-		     rightNow = Calendar.getInstance();			
+		     rightNow = new GregorianCalendar();	
+		     rightNow.add(Calendar.MONTH, 1);
 		}else{
-			rightNow.set(Integer.parseInt(now.substring(0, 4)), 01, 01);			
+			rightNow = new GregorianCalendar(Integer.parseInt(now.substring(0, 4)), Integer.parseInt(now.substring(5, 7)), Integer.parseInt(now.substring(8)));			
 		}
+				
+		now = rightNow.get(Calendar.YEAR) + "-" + rightNow.get(Calendar.MONTH) + "-" +  ( rightNow.get(Calendar.DATE) < 10 ? "0" + rightNow.get(Calendar.DATE) : rightNow.get(Calendar.DATE) );
 		
-		now = String.valueOf(format.format(rightNow.getTime()));
-		String now0 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now0 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 	
 		rightNow.add(Calendar.DATE, -1);		
-		String now1 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now1 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
+		rightNow.add(Calendar.DATE, -1);		
+		String now2 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 
 		rightNow.add(Calendar.DATE, -1);		
-		String now2 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now3 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
+		
+		rightNow.add(Calendar.DATE, -1);		
+		String now4 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 
 		rightNow.add(Calendar.DATE, -1);		
-		String now3 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now5 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 
 		rightNow.add(Calendar.DATE, -1);		
-		String now4 = String.valueOf(namesformat.format(rightNow.getTime()));
-
-		rightNow.add(Calendar.DATE, -1);		
-		String now5 = String.valueOf(namesformat.format(rightNow.getTime()));
-
-		rightNow.add(Calendar.DATE, -1);		
-		String now6 = String.valueOf(namesformat.format(rightNow.getTime()));
+		String now6 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 		
 			
 		model.addAttribute("now", now);		
@@ -308,8 +314,10 @@ public class AdminController {
 		model.addAttribute("now3", now3);	
 		model.addAttribute("now4", now4);	
 		model.addAttribute("now5", now5);	
-		model.addAttribute("now6", now6);			
+		model.addAttribute("now6", now6);	
 		
+		
+		System.out.println("now" + ", now0" + ", now1" + ", now2" + ", now3" + ", now4" + ", now5" + ", now6");
 		//오늘
 		TotalOrder today = adminService.chartToday(now);
 		model.addAttribute("today", today);
@@ -335,6 +343,11 @@ public class AdminController {
 		model.addAttribute("kit", kit);
 		
 		return "admin/salesChart";
+	}
+
+	private void GregorianCalendar(int i, int j, int k) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

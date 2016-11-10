@@ -1,5 +1,6 @@
 package com.project.h72.order.dao;
 
+import java.sql.Date;
 import java.util.*;
 
 import org.apache.ibatis.session.SqlSession;
@@ -38,6 +39,14 @@ public class OrderDao {
 	public int deleteFinishCart(String cartId) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"deleteFinishCart", cartId);
+	}
+
+	public List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth) {
+		Map<String, Comparable> paramMap = new HashMap();
+		paramMap.put("userId", userId);
+		paramMap.put("currentDate", currentDate);
+		paramMap.put("preThreeMonth", preThreeMonth);
+		return sqlSession.selectList(NAMESPACE+"selectOrderList", paramMap);
 	}
 
 }

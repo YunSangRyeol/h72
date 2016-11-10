@@ -11,6 +11,66 @@
 <script src="/h72/resources/js/jquery.battatech.excelexport.js"></script>
 <script src="/h72/resources/js/adminOrderList.js"></script>
 <title>Admin Order List</title>
+<script type="text/javascript">
+//excel파일 다운로드
+$(function(){
+    $("#btnExportAll").click(function () {
+        $("#orderListAll").battatech_excelexport({
+            containerid: "orderList"
+           , datatype: 'table'
+        });
+        $(this).attr('download', 'sample.xls').attr('href', uri);
+    });
+    
+    $("#btnExportOrder").click(function () {
+        $("#orderListOrder").battatech_excelexport({
+            containerid: "orderList"
+           , datatype: 'table'
+        });
+        $(this).attr('download', 'sample.xls').attr('href', uri);
+    });
+    
+    $("#btnExportPurchased").click(function () {
+        $("#orderListPurchased").battatech_excelexport({
+            containerid: "orderList"
+           , datatype: 'table'
+        });
+        $(this).attr('download', 'sample.xls').attr('href', uri);
+    });
+    
+    $("#btnExportdelivery").click(function () {
+        $("#orderListdelivery").battatech_excelexport({
+            containerid: "orderList"
+           , datatype: 'table'
+        });
+        $(this).attr('download', 'sample.xls').attr('href', uri);
+    });
+    
+    $("#btnExportCancle").click(function () {
+        $("#orderListCancle").battatech_excelexport({
+            containerid: "orderList"
+           , datatype: 'table'
+        });
+        $(this).attr('download', 'sample.xls').attr('href', uri);
+    });
+    
+    $("#btnExportChange").click(function () {
+        $("#orderListChange").battatech_excelexport({
+            containerid: "orderList"
+           , datatype: 'table'
+        });
+        $(this).attr('download', 'sample.xls').attr('href', uri);
+    });
+    
+    $("#btnExportBack").click(function () {
+        $("#orderListBack").battatech_excelexport({
+            containerid: "orderList"
+           , datatype: 'table'
+        });
+        $(this).attr('download', 'sample.xls').attr('href', uri);
+    });
+});
+</script>
 </head>
 <body>
 	<div class="content_wrap">
@@ -75,10 +135,10 @@
 
 <!-- ----------------------------------------모두보기----------------------------------------------------------- -->
 	<div id="all" class="tabcontent" style="display:block">
-    <input type="button" id="btnExport" value="Export To Excel" />
+    <input type="button" id="btnExportAll" value="모든 내역 엑셀로 다운로드" />
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderList" cellspacing='0' cellpadding='0'>
+    <table id="orderListAll" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
@@ -162,10 +222,10 @@
 	</div><!-- tab -->
 <!-- ------------------------------------주문접수---------------------------------------------------------- -->
 	<div id="order" class="tabcontent">
-    <input type="button" id="btnExport" value="Export To Excel" />
+    <input type="button" id="btnExportOrder" value="접수내역 엑셀로 다운로드" />
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderList" cellspacing='0' cellpadding='0'>
+    <table id="orderListOrder" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
@@ -243,10 +303,10 @@
 
 <!-- -------------------------------------결제완료--------------------------------------------------------------------- -->
 	<div id="resultpaid" class="tabcontent">
-    <input type="button" id="btnExport" value="Export To Excel" />
+    <input type="button" id="btnExportPurchased" value="결제내역 엑셀로 다운로드" />
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderList" cellspacing='0' cellpadding='0'>
+    <table id="orderListPurchased" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
@@ -324,10 +384,10 @@
 
 <!-- -------------------------------------배송중--------------------------------------------------------------------- -->
 	<div id="move" class="tabcontent">
-    <input type="button" id="btnExport" value="Export To Excel" />
+    <input type="button" id="btnExportdelivery" value="배송내역 엑셀로 다운로드" />
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderList" cellspacing='0' cellpadding='0'>
+    <table id="orderListdelivery" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
@@ -407,10 +467,10 @@
 	<div id="back" class="tabcontent">
 		<h3>취소내역</h3>
 		<div id="cancel">		
-    <input type="button" id="btnExport" value="Export To Excel" />
+    <input type="button" id="btnExportCancle" value="최소내역 엑셀로 다운로드" />
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderList" cellspacing='0' cellpadding='0'>
+    <table id="orderListCancle" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
@@ -486,10 +546,10 @@
 		
 		<h3>교환내역</h3>
 		<div id="change">
-    <input type="button" id="btnExport" value="Export To Excel" />
+    <input type="button" id="btnExportChange" value="교환내역 엑셀로 다운로드" />
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderList" cellspacing='0' cellpadding='0'>
+    <table id="orderListChange" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
@@ -565,10 +625,10 @@
 		
 		<h3>반품내역</h3>
 		<div id="backing">
-    <input type="button" id="btnExport" value="Export To Excel" />
+    <input type="button" id="btnExportBack" value="반품내역 엑셀로 다운로드" />
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderList" cellspacing='0' cellpadding='0'>
+    <table id="orderListBack" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>

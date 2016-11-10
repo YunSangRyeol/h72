@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,7 +134,7 @@ function ResizeFrame(name)
         	<!-- 상세정보 내역 -->
         <div class="infoArea">   
         
-        <h3 class="resize">${param.ItemDetailName }<span class="bookmark mouse_on"> 
+        <h3 class="resize">${itemDetailList[0].ITEM_NAME}<span class="bookmark mouse_on"> 
             <div id="cssmenu1">
             <ul>
 			<li class="has-sub" style="padding:3px 10px 3px 10px; float:right; font-size:11px;">
@@ -148,160 +148,27 @@ function ResizeFrame(name)
             </ul>
 			</div>
 			<script>
+			var _itemDetailId = "${itemDetailId}";
+			
 			$(document).ready(function(){
 				//.has-sub ul li ul
+				
 				$("#cssmenu1 ul li").hover(function(){
 						$("#cssmenu1 > ul > li > ul").css({'left':'0px', 'opacity':'1'});
 				},function(){
 						$("#cssmenu1 > ul > li > ul").css({'left':'-9999px', 'opacity':'0'});
 				});
+				
+				
 			});
 			</script>    
-			
-			        
-            <!-- <a href="javascript:BookMarkNow();" style="font-size:11px; padding:2px 10px 3px 10px; float:right; cursor:pointer; margin-right:0px;"><img src="/web/upload/sunny/image/icon_detailtop2.png" style="margin:-1px 5px 0 0;"><span style="color:#4da1bd; font-size:11px;">즐겨찾기추가</span></a></span> -->
-        </h3>      
-        
-        <p class="displaynone">() 해외배송 가능</p> 
-        <table id="pdInfo" border="1" summary="">
-			<caption>${param.ItemDetailName }</caption>
-            <tbody>
-            <tr class="custom0">
-				<th scope="row">소비자가</th>
-                    <td>
-                        <strong id="product_custom" class="" style="font-size:12px; font-weight:400;"><span style="text-decoration:line-through;">0원</span></strong> 
-                    </td>
-                </tr>
-			<tr class="price">
-				<th scope="row" class="resize">판매가</th>
-				
-                <td class="td-color2 mem_lv_wrap">
-                	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;">9,900원</strong><label style="display: none">${param.ItemPrice }</label>
-                    <a href="#none" class="displaynone" sms_restock_login_display="1" name="btn_restock" id="btn_restock" onclick="alert('');"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_sms.gif" alt="재입고 알림 SMS"></a>
-                    <!-- input hidden ITEM_PRICE -->
-                    
-                    <input type="hidden" id="itemPrice" name="itemPrice" value="${param.ItemPrice}" style="width:0; height:0">
-                    
-                    <script>
-                    $(document).ready(function(){
-                    	/* var itemPrice = document.getElementById('itemPrice').value;
-                    	itemPrice = numberWithCommas(itemPrice);
-                    	$("#span_product_price_text").text(itemPrice + "원"); */
-                    	//alert(itemPrice);
-                    	
-                    });
-                    </script>
-                    
-                </td>
-            </tr>
-			<tr class="resize">
-				<th scope="row">적립금</th>
-                <td class="td-color1">
-                	<ul class="mileage">
-					<li class="">
-						<span id="span_mileage_text">100</span> <span class="">(1.00%)</span>
-					</li>
-                    <li class="displaynone">
-						<img src="" alt="무통장 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
-					</li>
-                    <li class="displaynone">
-						<img src="" alt="카드 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
-					</li>
-                    <li class="displaynone">
-						<img src="" alt="실시간 계좌 이체시 적립금"> 0 원 <span class="displaynone">( %)</span>
-					</li>
-                    <li class="displaynone">
-						<img src="/h72/resources/image/icon_201403181204001600.gif" alt="적립금 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
-					</li>
-                    <li class="displaynone">
-						<img src="" alt="휴대폰 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
-					</li>
-                    <li class="displaynone">
-						<img src="" alt="예치금 결제시 적립금">0 원<span class="displaynone"> %)</span>
-					</li>
-                    </ul>
-				</td>
-			</tr>
-			<tr class="displaynone">
-				<th scope="row">제휴적립금</th>
-                <td class="td-color1">
-                      	 네이버 마일리지  적립
-                	<img src="" id="imgNaverMileageHelp" onclick="">
-                    &nbsp;
-                </td>
-            </tr>
-			</tbody>
-			
-			<tbody>
-			<tr class="displaynone">
-				<th scope="row">구매tip</th>
-                <td style="line-height:20px;"></td>
-            </tr>
-			</tbody>
-			
-			<tbody class="xans-element- xans-product xans-product-option xans-record-">
-			<tr class="xans-element- xans-product xans-product-option xans-record-">
-				<th>옵션선택</th>
-				<td>
-					<select option_product_no="2921" option_select_element="ec-option-select-finder" option_sort_no="1" option_type="T" item_listing_type="S" option_title="색상선택" product_option_area="product_option_2921_0" name="option1" id="product_option_id1" class="ProductOption0" option_style="select" required="true">itemDetai
-						<option disabled value="*" selected="selected">- [필수] 옵션을 선택해 주세요 -</option>
-						<option disabled value="**">------------------------------------</option>
-						<c:forEach var="i" begin="0" end="${itemDetailList.size() - 1 }" step="1">
-						<option value="${itemDetailList.get(i).ITEM_OPTION_NAME }">${itemDetailList.get(i).ITEM_OPTION_NAME }</option>
-						</c:forEach>
-					</select>
-					
-					
-					
-					
-				</td>
-			</tr>
-			</tbody>
-		</table>
-		
-			<!-- 옵션 -->
-			<div id="option_mini" class="option_mini ui_optSelWrapper position_top_ex" style="display:none" >
-    		<!-- 기본옵션 선택한 정보 : 1 -->
-				<ul>
-				    <li id="option_mini" data-amount="1" data-addprc="-3000" data-price="9900">
-				        <em>2016ver. 데일리 MTM / </em>
-				        <div class="plusminus_wrap">
-				            <input id="quantity" type="text" name="prdcAmount" data-prdstckno="6145046693" class="text" title="수량설정" value="1" readonly>
-				            <button type="button" class="numbtn_minus"><span class="hide">수량감소</span></button>
-				            <button type="button" class="numbtn_plus"><span class="hide">수량증가</span></button>
-				        </div>
-				        <div class="sel_price">
-				            <p class="pc"><strong>9900</strong>원</p>
-				            <button type="button" class="btn_cc_ex" ><span class="hide">취소</span></button>
-				        </div>
-				    </li>
-				</ul>
-			</div>
-			
-			<div class="prdc_total" name="divPrdcTotalPrcArea" style="display: none">
-			    <!-- [16-08-19 hhj] 수정 -->
-			    <!-- 쿠폰 -->
-			    <!-- 가격 -->
-			    <div class="total_price">
-			        <strong class="txt_tt">총 합계금액(수량)</strong><!-- [16-08-29 ckh] strong 태그로 수정 -->
-			        <span class="total_pr"><strong class="ui_total_price" name="totalPriceArea">9,900</strong>원(<span class="ui_total_count">1</span>개)</span>
-			    </div>
-			    <!-- //[16-08-19 hhj] 수정 -->
-			</div>
-			<c:forEach var="i" begin="0" end="${itemDetailList.size() - 1 }" step="1">
-			<input type="hidden" id="hiddenRemain${i}" class="hiddenRemain" value="${itemDetailList.get(i).STOCK }" data-name="${itemDetailList.get(i).ITEM_OPTION_NAME }"/>
-			</c:forEach>
-			<%-- <input type="hidden" id="hiddenRemain" value="${itemDetailList }" /> --%>
-            <script>
+			<script>
             $(document).ready(function(){
             	var price = Number($("#span_product_price_text").next().text());
             	var totalprice = 0;
             	var totalcount = 0;
             	var remain = 0; // 총재고량 ( 재고량 - quantity )
             	//alert(typeof(remain));
-            	
-            		
-            	
             	
             	var hiddenLength = $(".hiddenRemain").length;
             	var arrRemain = new Array(hiddenLength);
@@ -488,6 +355,81 @@ function ResizeFrame(name)
             		console.log(totalcount);
             		//$(".ui_total_price").text(price);
            		});
+				
+				// 장바구니 버튼 클릭 시 호출 메소드
+				document.getElementById("cartBtn").onmousedown = sendCart;
+			    function sendCart() {
+			    	var loginUser = '${loginUser.name }';
+			    	var arrSelect = $(".option_mini.ui_optSelWrapper.position_top");//추가된 옵션 div 배열
+			    	var arrSelectNum = new Array();//추가된 옵션 div 배열에서 각각 id 끝자리에 있는 num을 담을 배열
+			    	//alert("arrSelect length : " + arrSelect.length);
+			    	for(var i = 0; i < arrSelect.length; i++){
+			    		arrSelectNum.push($(arrSelect[i]).attr("id").substring( $( arrSelect[i] ).attr( "id" ).length - 1 ) );// 추가된 옵션 div 마지막 num 뽑아내기
+			   			//$(a[0]).attr("id").substring($(a[0]).attr("id").length-1)
+			    	}
+			    	
+			    	var arrQuantity = "";
+			    	var arrCost = "";
+			    	var arrOpName = "";
+			    	var op_count = $(".option_mini.ui_optSelWrapper.position_top").length;
+			    	//var arrQuantity = new Array(); //quantity
+		    		//var arrCost = new Array(); //cost
+		    		//var arrOpName = new Array(); //itemOptionName
+		    		
+			    	if(op_count == 0){
+			    		alert("필수 옵션을 선택해주세요.");
+			    	}else{
+			    		
+			    		if(loginUser != ""){//로그인했을 때 장바구니 담기 기능 실행
+			    			
+				    		for(var i = 0; i < op_count; i++){
+				    			if(i < (op_count - 1)){
+					    			arrQuantity += $( "#option_mini_wrap" + arrSelectNum[i] + "> ul > li #quantity" + arrSelectNum[i] ).val();
+					    			arrQuantity += ";";
+					    			arrCost += uncomma($("#option_mini_wrap" + arrSelectNum[i] + "> ul > li div.sel_price > p > strong").text());
+					    			arrCost += ";";
+					    			arrOpName += $("#option_mini_wrap" + arrSelectNum[i] + "> ul > #option_mini > em").text();
+					    			arrOpName += ";";
+				    			}else{
+				    				arrQuantity += ($( "#option_mini_wrap" + arrSelectNum[i] + "> ul > li #quantity" + arrSelectNum[i] ).val());
+				    				arrCost += uncomma($("#option_mini_wrap" + arrSelectNum[i] + "> ul > li div.sel_price > p > strong").text());
+				    				arrOpName += $("#option_mini_wrap" + arrSelectNum[i] + "> ul > #option_mini > em").text();
+				    			}
+				    		}
+				    		
+					    	$.ajax({
+					    		url : '/h72/detail/insertCart' ,
+					    		type : 'post' , 
+					    		data : {quantity : arrQuantity ,
+					    				cost : arrCost ,
+					    				itemOptionName : arrOpName , 
+					    				op_count : op_count ,
+					    				userid : '${loginUser.userid }' ,
+					    				itemFullName : '${itemDetailList.get(0).ITEM_NAME }' ,
+					    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID }' ,
+					    				mainImg : '${itemDetailList.get(0).MAIN_IMG }' ,
+					    				message : null ,
+					    				KitYN : 'N'},
+					    		// 리턴 받는 dataType이 json이면 dataType을 json으로 변경
+					    		dataType : 'json' ,
+					    		success : function(data) {
+					    			alert("return : " + data.result + "\ncount(이미 등록된 카트리지 상품 수) : " + data.count);
+					    			if(data.result > 0) {alert(data.result + "개 insert 성공!"); $("#confirmLayer").css("display", "block");}
+					    			if(data.result == 0) {alert("insert 실패!");}
+					    			if(data.result == -1) {alert("카트에 이미 있습니다."); $("#confirmLayer").css("display", "block");}
+					    		} ,
+					    		error : function(){
+					    			alert("error : 추가옵션을 선택하세요");
+					    		}
+					    	});
+			    	
+			    		}else{
+			    			alert("로그인 해주세요");
+			    		}
+			    	}
+			    }
+
+			    
             });
             
            
@@ -502,14 +444,136 @@ function ResizeFrame(name)
                 return str.replace(/[^\d]+/g, '');
             }
             </script>
+			        
+            <!-- <a href="javascript:BookMarkNow();" style="font-size:11px; padding:2px 10px 3px 10px; float:right; cursor:pointer; margin-right:0px;"><img src="/web/upload/sunny/image/icon_detailtop2.png" style="margin:-1px 5px 0 0;"><span style="color:#4da1bd; font-size:11px;">즐겨찾기추가</span></a></span> -->
+        </h3>      
+        
+        <p class="displaynone">() 해외배송 가능</p> 
+        <table id="pdInfo" border="1" summary="">
+			<caption>${itemDetailList[0].ITEM_NAME }</caption>
+            <tbody>
+            <tr class="custom0">
+				<th scope="row">소비자가</th>
+                    <td>
+                        <strong id="product_custom" class="" style="font-size:12px; font-weight:400;"><span style="text-decoration:line-through;">0원</span></strong> 
+                    </td>
+                </tr>
+			<tr class="price">
+				<th scope="row" class="resize">판매가</th>
+				
+                <td class="td-color2 mem_lv_wrap">
+                	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;">9,900원</strong><label style="display: none">${itemDetailList[0].SAIL_PRICE }</label>
+                    <a href="#none" class="displaynone" sms_restock_login_display="1" name="btn_restock" id="btn_restock" onclick="alert('');"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_sms.gif" alt="재입고 알림 SMS"></a>
+                    <!-- input hidden ITEM_PRICE -->
+                    
+                    <input type="hidden" id="itemPrice" name="itemPrice" value="${itemDetailList[0].SAIL_PRICE }" style="width:0; height:0">
+                </td>
+            </tr>
+			<tr class="resize">
+				<th scope="row">적립금</th>
+                <td class="td-color1">
+                	<ul class="mileage">
+					<li class="">
+						<span id="span_mileage_text">100</span> <span class="">(1.00%)</span>
+					</li>
+                    <li class="displaynone">
+						<img src="" alt="무통장 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
+					</li>
+                    <li class="displaynone">
+						<img src="" alt="카드 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
+					</li>
+                    <li class="displaynone">
+						<img src="" alt="실시간 계좌 이체시 적립금"> 0 원 <span class="displaynone">( %)</span>
+					</li>
+                    <li class="displaynone">
+						<img src="/h72/resources/image/icon_201403181204001600.gif" alt="적립금 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
+					</li>
+                    <li class="displaynone">
+						<img src="" alt="휴대폰 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
+					</li>
+                    <li class="displaynone">
+						<img src="" alt="예치금 결제시 적립금">0 원<span class="displaynone"> %)</span>
+					</li>
+                    </ul>
+				</td>
+			</tr>
+			<tr class="displaynone">
+				<th scope="row">제휴적립금</th>
+                <td class="td-color1">
+                      	 네이버 마일리지  적립
+                	<img src="" id="imgNaverMileageHelp" onclick="">
+                    &nbsp;
+                </td>
+            </tr>
+			</tbody>
+			
+			<tbody>
+			<tr class="displaynone">
+				<th scope="row">구매tip</th>
+                <td style="line-height:20px;"></td>
+            </tr>
+			</tbody>
+			
+			<tbody class="xans-element- xans-product xans-product-option xans-record-">
+			<tr class="xans-element- xans-product xans-product-option xans-record-">
+				<th>옵션선택</th>
+				<td>
+					<select option_product_no="2921" option_select_element="ec-option-select-finder" option_sort_no="1" option_type="T" item_listing_type="S" option_title="색상선택" product_option_area="product_option_2921_0" name="option1" id="product_option_id1" class="ProductOption0" option_style="select" required="true">itemDetai
+						<option disabled value="*" selected="selected">- [필수] 옵션을 선택해 주세요 -</option>
+						<option disabled value="**">------------------------------------</option>
+						<c:forEach var="i" begin="0" end="${itemDetailList.size() - 1 }" step="1">
+						<option value="${itemDetailList.get(i).ITEM_OPTION_NAME }">${itemDetailList.get(i).ITEM_OPTION_NAME }</option>
+						</c:forEach>
+					</select>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		
+			<!-- 옵션 -->
+			<div id="option_mini" class="option_mini ui_optSelWrapper position_top_ex" style="display:none" >
+    		<!-- 기본옵션 선택한 정보 : 1 -->
+				<ul>
+				    <li id="option_mini" data-amount="1" data-addprc="-3000" data-price="9900">
+				        <em>2016ver. 데일리 MTM / </em>
+				        <div class="plusminus_wrap">
+				            <input id="quantity" type="text" name="prdcAmount" data-prdstckno="6145046693" class="text" title="수량설정" value="1" readonly>
+				            <button type="button" class="numbtn_minus"><span class="hide">수량감소</span></button>
+				            <button type="button" class="numbtn_plus"><span class="hide">수량증가</span></button>
+				        </div>
+				        <div class="sel_price">
+				            <p class="pc"><strong>9900</strong>원</p>
+				            <button type="button" class="btn_cc_ex" ><span class="hide">취소</span></button>
+				        </div>
+				    </li>
+				</ul>
+			</div>
+			
+			<div class="prdc_total" name="divPrdcTotalPrcArea" style="display: none">
+			    <!-- [16-08-19 hhj] 수정 -->
+			    <!-- 가격 -->
+			    <div class="total_price">
+			        <strong class="txt_tt">총 합계금액(수량)</strong><!-- [16-08-29 ckh] strong 태그로 수정 -->
+			        <span class="total_pr"><strong class="ui_total_price" name="totalPriceArea">9,900</strong>원(<span class="ui_total_count">1</span>개)</span>
+			    </div>
+			    <!-- //[16-08-19 hhj] 수정 -->
+			</div>
+			
+			<c:forEach var="i" begin="0" end="${itemDetailList.size() - 1 }" step="1">
+				<input type="hidden" id="hiddenRemain${i}" class="hiddenRemain" value="${itemDetailList.get(i).STOCK }" data-name="${itemDetailList.get(i).ITEM_OPTION_NAME }"/>
+			</c:forEach>
+			
+            
+		
+		<!-- 
 		
 		<div id="zoom_wrap"></div>
  
         <p class="displaynone "><img src="http://img.echosting.cafe24.com/design/skin/default/product/txt_naver.gif" alt="개인결제창을 통한 결제 시 네이버 마일리지 적립 및 사용이 가능합니다."></p>
- 
         <p class="displaynone "><img src="/design/product/txt_naver.gif" alt="개인결제창을 통한 결제 시 네이버 마일리지 적립 및 사용이 가능합니다."></p>
-   
-        <p class="displaynone "><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/product/txt_naver.gif" alt="개인결제창을 통한 결제 시 네이버 마일리지 적립 및 사용이 가능합니다."></p>
+        <p class="displaynone "><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/product/txt_naver.gif" alt="개인결제창을 통한 결제 시 네이버 마일리지 적립 및 사용이 가능합니다."></p> 
+        
+        -->
             <!-- //상세정보 내역 -->
 
 
@@ -541,99 +605,7 @@ function ResizeFrame(name)
 				
 				<script type="text/javascript">
 				  
-				  // 장바구니 버튼 클릭 시 호출 메소드
-				  document.getElementById("cartBtn").onmousedown = sendCart;
-				    function sendCart() {
-				    	var loginUser = '${loginUser.name }';
-				    	var arrSelect = $(".option_mini.ui_optSelWrapper.position_top");//추가된 옵션 div 배열
-				    	var arrSelectNum = new Array();//추가된 옵션 div 배열에서 각각 id 끝자리에 있는 num을 담을 배열
-				    	//alert("arrSelect length : " + arrSelect.length);
-				    	for(var i = 0; i < arrSelect.length; i++){
-				    		arrSelectNum.push($(arrSelect[i]).attr("id").substring( $( arrSelect[i] ).attr( "id" ).length - 1 ) );// 추가된 옵션 div 마지막 num 뽑아내기
-				   			//$(a[0]).attr("id").substring($(a[0]).attr("id").length-1)
-				    	}
-				    	
-				    	var arrQuantity = "";
-				    	var arrCost = "";
-				    	var arrOpName = "";
-				    	var op_count = $(".option_mini.ui_optSelWrapper.position_top").length;
-				    	//var arrQuantity = new Array(); //quantity
-			    		//var arrCost = new Array(); //cost
-			    		//var arrOpName = new Array(); //itemOptionName
-			    		
-				    	if(op_count == 0){
-				    		alert("필수 옵션을 선택해주세요.");
-				    	}else{
-				    		
-				    		if(loginUser != ""){//로그인했을 때 장바구니 담기 기능 실행
-				    			
-					    		for(var i = 0; i < op_count; i++){
-					    			//arrQuantity.push($( "#option_mini_wrap" + (Number(i) + 1) + "> ul > li #quantity" + ( Number(i) + 1 )).val());
-					    			//arrCost.push(uncomma($("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > li div.sel_price > p > strong").text()));
-					    			//arrOpName.push($("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > #option_mini > em").text());
-					    			if(i < (op_count - 1)){
-						    			//arrQuantity += $( "#option_mini_wrap" + (Number(i) + 1) + "> ul > li #quantity" + ( Number(i) + 1 )).val();
-						    			arrQuantity += $( "#option_mini_wrap" + arrSelectNum[i] + "> ul > li #quantity" + arrSelectNum[i] ).val();
-						    			arrQuantity += ";";
-						    			//arrCost += uncomma($("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > li div.sel_price > p > strong").text());
-						    			arrCost += uncomma($("#option_mini_wrap" + arrSelectNum[i] + "> ul > li div.sel_price > p > strong").text());
-						    			arrCost += ";";
-						    			//arrOpName += $("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > #option_mini > em").text();
-						    			arrOpName += $("#option_mini_wrap" + arrSelectNum[i] + "> ul > #option_mini > em").text();
-						    			arrOpName += ";";
-					    			}else{
-					    				//arrQuantity += ($( "#option_mini_wrap" + (Number(i) + 1) + "> ul > li #quantity" + ( Number(i) + 1 )).val());
-					    				//arrCost += uncomma($("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > li div.sel_price > p > strong").text());
-					    				//arrOpName += $("#option_mini_wrap" + ( Number(i) + 1 ) + "> ul > #option_mini > em").text();
-					    				arrQuantity += ($( "#option_mini_wrap" + arrSelectNum[i] + "> ul > li #quantity" + arrSelectNum[i] ).val());
-					    				arrCost += uncomma($("#option_mini_wrap" + arrSelectNum[i] + "> ul > li div.sel_price > p > strong").text());
-					    				arrOpName += $("#option_mini_wrap" + arrSelectNum[i] + "> ul > #option_mini > em").text();
-					    			}
-					    		}
-				    			/* 
-					    		alert("[op_count] 선택된 옵션 갯수 : " + op_count);
-					    		alert("[Quantity] : [ " + arrQuantity + " ]");
-					    		alert("[Cost] : [ " + arrCost + " ]");
-					    		alert("[OpName] : [ " + arrOpName + " ]");
- 								*/
-					    		
-						    	$.ajax({
-						    		url : '/h72/detail/insertCart' ,
-						    		type : 'post' , 
-						    		data : {quantity : arrQuantity ,
-						    				cost : arrCost ,
-						    				itemOptionName : arrOpName , 
-						    				op_count : op_count ,
-						    				userid : '${loginUser.userid }' ,
-						    				itemFullName : '${param.ItemDetailName }' ,
-						    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID }' ,
-						    				mainImg : '${itemDetailList.get(0).MAIN_IMG }' ,
-						    				message : null ,
-						    				KitYN : 'N'},
-						    		// 리턴 받는 dataType이 json이면 dataType을 json으로 변경
-						    		dataType : 'json' ,
-						    		success : function(data) {
-						    			alert("return : " + data.result + "\ncount(이미 등록된 카트리지 상품 수) : " + data.count);
-						    			if(data.result > 0) {alert(data.result + "개 insert 성공!"); $("#confirmLayer").css("display", "block");}
-						    			if(data.result == 0) {alert("insert 실패!");}
-						    			if(data.result == -1) {alert("카트에 이미 있습니다."); $("#confirmLayer").css("display", "block");}
-						    			// 리턴 받는 dataType이 json이면 아래와 같이 data.name으로 변경
-						    			//alert("return String : " + data.name);
-						    			//$("#confirmLayer").css("display", "block");
-						    		} ,
-						    		error : function(){
-						    			alert("error : 추가옵션을 선택하세요");
-						    			/* ${param.ItemDetailName } 상품명 */
-						    		}
-						    	});
-				    	
-				    		}else{
-				    			alert("로그인 해주세요");
-				    		}
-				    		
-				    	}
-				    	
-				    }
+				  
 				      //sh.sendCart();
 				      
 				    
@@ -670,11 +642,9 @@ function ResizeFrame(name)
 			<p><img src="/h72/resources${itemDetailList.get(0).DETAIL_IMG01 }"></p>
 			
 			<c:if test="${not empty itemDetailList.get(0).DETAIL_IMG02}">
-			<h1 style="margin: 100px 0; font-size: 50px; color: blue;">NOTICE : NOT EMPTY<br>${itemDetailList.get(0).DETAIL_IMG02}</h1>
-			<p><img src="/h72/resources/${itemDetailList.get(0).DETAIL_IMG02 }"></p>
+				<p><img src="/h72/resources/${itemDetailList.get(0).DETAIL_IMG02 }"></p>
 			</c:if>
 			<c:if test="${empty itemDetailList.get(0).DETAIL_IMG02}">
-			<h1 style="margin: 100px 0; font-size: 50px; color: red;">NOTICE : EMPTY<br>${itemDetailList.get(0).DETAIL_IMG02}</h1>
 			</c:if>
 			
 			
@@ -719,101 +689,17 @@ function ResizeFrame(name)
 			</div>
 	    </div>
 	</div>
-	
-<!-- 	<div class="xans-element- xans-prddetail ">
-		<div class="conttext" style="text-align:center;">
-	        <h3 style="font-family:'Helvetica', sans-serif;">MODEL SIZE</h3> 
-	        <img src="/web/upload/sunny/images/img_modelsize.png" style="padding:5px 0 40px;">
-	    &nbsp;
-	    </div>
-	    
-		<div class="conttext" style="text-align:center;">
-	        <h3>REVIEW EVENT</h3> 
-	        <img src="/web/upload/sunny/images/topimage_reviewevent_160222.png" style="padding-top:15px;" usemap="#Map" border="0">
-	                &nbsp;<map name="Map"><area shape="rect" coords="398,52,773,488" href="http://www.10world.co.kr/board/product/list.html?board_no=4" target="_blank" onfocus="this.blur();"></map>
-		</div>
-	</div> -->
-
 
 
 	<!-- 상품사용후기 -->
-	<div id="prdReview"> 
-	        <!-- crema.me / 상품 리뷰 / 스크립트를 수정할 경우 연락주세요 (support@crema.me) -->
-	       	<div class="crema-product-reviews crema-applied" >
-	       		<!-- <iframe src="http://localhost:8888/h72/detail/selectReview" width="100%" scrolling="no" allowtransparency="true" frameborder="0" name="" style="visibility: visible; height: 4380px;"></iframe> -->
-	       		<jsp:include page="review.jsp" flush="false" />
-	       		<!-- <iframe name="reviewBoard" src='http://localhost:8888/h72/detail/selectReview' framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0 onload='resizeIframe(this)'>
-	       		</iframe> -->
-	       		<!-- onload="ResizeFrame('reviewBoard');" -->
-
-	       	</div>
-	        
-	        <div class="board crema-hide crema-applied" style="display: none;">
-	            <h3>REVIEW</h3>  
-	            <div class="xans-element- xans-product xans-product-review"><a name="use_review"></a>
-					<p class="noAccess displaynone">글읽기 권한이 없습니다.</p>
-		
-					<div class="minor displaynone">
-					    <p><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/product/ico_under19.gif" alt=""> &nbsp;<strong>"19세 미만의 미성년자"</strong>는 출입을 금합니다!</p>
-					    <p class="button"><a href="/intro/board.html"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/product/btn_adult_certification.gif" alt="성인인증 하기"></a></p>
-					</div>
-	
-					<table border="1" summary="" class="board ">
-						<caption>상품사용후기</caption>
-					    <colgroup>
-							<col style="width:70px;">
-							<col style="width:auto">
-							<col style="width:130px;">
-							<col style="width:100px;">
-							<col style="width:100px;">
-							<col style="width:100px;" class="displaynone">
-						</colgroup>
-					
-						<thead>					
-							<tr>
-								<th scope="col">no</th>
-					            <th scope="col">subject</th>
-					            <th scope="col">writer</th>
-					            <th scope="col">date</th>
-					            <th scope="col">read</th>
-					            <th scope="col" class="displaynone">point</th>
-					        </tr>
-					    </thead>
-						<tbody>
-								<tr class="xans-record-">
-									<td>226</td>
-					                <td class="subject"> <a href="/product/provider/review_read.xml?no=603456&amp;board_no=4&amp;spread_flag=T">그린</a> <img src="/web/upload/hiticon2(1).gif" alt="HIT"></td>
-					                <td>김아영</td>
-					                <td class="txtLess">2016-05-07</td>
-					                <td class="txtLess">1438</td>
-					                <td class="displaynone"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/ico_point5.gif" alt="5점"></td>
-					           	</tr>
-								<tr class="xans-record-">
-									<td>225</td>
-					                <td class="subject"> <a href="/product/provider/review_read.xml?no=544574&amp;board_no=4&amp;spread_flag=T">러비더비 MTM 블랙 M 후기</a> <img src="/web/upload/hiticon2(1).gif" alt="HIT">[1]</td>
-					                <td>정애란</td>
-					                <td class="txtLess">2015-04-21</td>
-					                <td class="txtLess">780</td>
-					                <td class="displaynone"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/ico_point5.gif" alt="5점"></td>
-					            </tr>
-								<tr class="xans-record-">
-									<td>224</td>
-					                <td class="subject"> <a href="/product/provider/review_read.xml?no=540205&amp;board_no=4&amp;spread_flag=T">기모그레이 M</a> <img src="/web/upload/hiticon2(1).gif" alt="HIT">[1]</td>
-					                <td>김정빈</td>
-					                <td class="txtLess">2015-03-24</td>
-					                <td class="txtLess">799</td>
-					                <td class="displaynone"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/ico_point5.gif" alt="5점"></td>
-					            </tr>
-						</tbody>
-					</table>
-				</div>
-	
-	            <p class="btnArea">
-	                <a href="/board/product/list.html?board_no=4" style="padding:7px 22px 7px 22px; background:#f7f7f7; border:1px solid #e7e7e7; color:#000; font-size:11px;">모두보기</a>
-	                <a href="/board/product/write.html?board_no=4&amp;product_no=2921&amp;cate_no=1&amp;display_group=11" style="padding:7px 22px 7px 22px; background:#000; border:1px solid #000; color:#fff; font-size:11px;">후기쓰기</a>
-	            </p>
-	        </div>
-	</div>
+       		<c:if test="${reviewListCount ne 0}">
+       			<c:set var="reviewList" value="${reviewList }" scope="request" />
+       		</c:if>
+       		<c:if test="${reviewListCount eq 0}">
+       			<c:set var="reviewList" value="" scope="request" />
+       		</c:if>
+      			<c:set var=" " value="${itemDetailId }" scope="request" />
+			<c:import url="review.jsp" />
 	<!-- //상품사용후기 -->
 	
 
@@ -843,16 +729,8 @@ function ResizeFrame(name)
 	</div>  
     
 	<div style="clear:both;"></div>    
-	    
-<!-- 	<div id="detail_copy"> 
-	    <img src="/web/upload/sunny/image/footer_copyright.png" usemap="#Map3" border="0">
-	    &nbsp;<map name="Map3" id="Map3"><area shape="rect" coords="361,5,452,16" href="http://sunnysideweb.com" target="_blank" onfocus="this.blur();"></map></div>
-	
-	</div> -->
-	
 	
 	<div id="confirmLayer" style="display: none">
-	
 
 	<title>H72</title>
 	<meta name="path_role" content="ETC">
@@ -874,21 +752,6 @@ function ResizeFrame(name)
 			</div>
 		</div>
 
-	<!-- External Script Start -->
-
-		<!-- tgg -->
-		<!-- CMC script -->
-		<div id="tgg_common_bottom_script" style="display:none;">
-			<!-- WIDERPLANET HOME SCRIPT START 2016.8.24 -->
-			<div id="wp_tg_cts" style="display:none;"></div>
-		
-			<!-- // WIDERPLANET HOME SCRIPT END 2016.8.24 -->
-		</div>
-		<!-- CMC script -->
-
-	<!-- External Script End -->
-
-
 	</div>
 	
 	
@@ -898,175 +761,6 @@ function ResizeFrame(name)
     
     
 
-<!-- BS CTS TRACKING SCRIPT V.20 / 13829 : CTS / DO NOT ALTER THIS SCRIPT. -->
-<!-- COPYRIGHT (C) 2002-2016 BIZSPRING INC. L4AD ALL RIGHTS RESERVED. -->
-<script type="text/javascript">
-(function(b,s,t,c,k){b[k]=s;b[s]=b[s]||function(){(b[s].q=b[s].q||[]).push(arguments)};  var f=t.getElementsByTagName(c)[0],j=t.createElement(c);j.async=true;j.src='//fs.bizspring.net/fs4/l4cts.v4.2.js';f.parentNode.insertBefore(j,f);})(window,'_tcts_m',document,'script','BSAnalyticsObj');
-_tcts_m('13829','BIZMP');
-</script>
-<!-- END OF BS CTS TRACKING SCRIPT -->
-       
-    
-	<div id="multi_option" style="display:none;"></div>
-	<form id="frm_image_zoom" style="display:none;"></form>
-	<script type="text/javascript" src="https://login2.cafe24ssl.com/crypt/AuthSSLManager.js"></script>
-	<script type="text/javascript" src="https://login2.cafe24ssl.com/crypt/AuthSSLManager.plugin.js"></script>
-
-    <script>
-        // Account ID 적용
-        if (!wcs_add) var wcs_add = {};
-        wcs_add["wa"] = "s_67d37f8bfd2";
-
-        // 마일리지 White list가 있을 경우
-        wcs.mileageWhitelist = ["jjukbbang1.cafe24.com", "www.jjukbbang1.cafe24.com", "m.jjukbbang1.cafe24.com", "10world.net", "www.10world.net", "m.10world.net", "10world.co.kr", "www.10world.co.kr", "m.10world.co.kr"];
-
-        // 네이버 페이 White list가 있을 경우
-        wcs.checkoutWhitelist = ["jjukbbang1.cafe24.com", "www.jjukbbang1.cafe24.com", "m.jjukbbang1.cafe24.com", "10world.net", "www.10world.net", "m.10world.net", "10world.co.kr", "www.10world.co.kr", "m.10world.co.kr"];
-    
-        // 레퍼러 (스크립트 인젠션 공격 대응 strip_tags) ECQAINT-15101
-        wcs.setReferer("http://10world.co.kr/");
-
-        // 유입 추적 함수 호출
-        wcs.inflow("10world.co.kr");
-
-        // 로그수집
-        wcs_do();
-    </script>
-            
-	<script type="text/javascript">
-	var order_no = '';
-	var order_amount = '';
-	</script>
-<!--광고성과 측정 스크립트 미설정-->
-
-<!-- External Script Start -->
-
-<!-- tgg -->
-<!-- CMC script -->
-<div id="tgg_product_detail_script" style="display:none;">
-	<!-- WIDERPLANET ITEM SCRIPT START 2016.8.24 -->
-	<span style="display: none;" name="wp_detection" tag="i">2921</span>
-	<span style="display: none;" name="wp_detection" tag="t">2016ver. 데일리 MTM</span>
-	<span style="display: none;" name="wp_detection" tag="p">9900</span>
-	
-	<script type="text/javascript">var wp_page_type = 'Item';</script>
-	<!-- // WIDERPLANET ITEM SCRIPT END 2016.8.24 -->
-</div>
-<!-- CMC script -->
-<!-- CMC script -->
-<div id="tgg_common_bottom_script" style="display:none;">
-	<!-- WIDERPLANET HOME SCRIPT START 2016.8.24 -->
-	<div id="wp_tg_cts" style="display:none;">
-		<!-- <iframe width="1px" height="1px" src="http://astg.widerplanet.com/delivery/wpc.php?ti=27554&amp;v=1&amp;device=web&amp;ver=2_0_mall&amp;ty=Item&amp;i1=2921&amp;t1=2016ver.%20%EB%8D%B0%EC%9D%BC%EB%A6%AC%20MTM&amp;p1=9900&amp;charset=UTF-8&amp;tc=1476148814098&amp;ref=http%3A%2F%2F10world.co.kr%2F&amp;loc=http%3A%2F%2F10world.co.kr%2Fproduct%2Fdetail.html%3Fproduct_no%3D2921%26cate_no%3D1%26display_group%3D11" title="tgtracking" style="display: none;">
-		</iframe> -->
-	</div>
-	
-	<script type="text/javascript">
-	var wp_conf = 'ti=27554&v=1&device=web';
-	</script>
-	<script type="text/javascript" defer="" src="//cdn-aitg.widerplanet.com/js/wp_astg_2.0_mall.js"></script>
-	<!-- // WIDERPLANET HOME SCRIPT END 2016.8.24 -->
-</div>
-<!-- CMC script -->
-
-<!-- External Script End -->
-
-	<script type="text/javascript" src="http://srlite.app-runtime.cafe24.com:80/?TYPE=JS&amp;DATA=0d3d8e2285616f5eef55d142aeed3a6e" charset="utf-8"></script>
-	
-	<script type="text/javascript" src="/ind-script/optimizer.php?filename=cae458e806bbfd7c6ce1c1e50cb1a4674af54b0c_1474999854&amp;type=js&amp;"></script>
-	<script type="text/javascript">
-		var mobileWeb = false;
-		var bUseElestic = false;
-		var sSearchBannerUseFlag = 'F';
-		var bIsDisplaySoldoutOption =true;
-		var aSoldoutDisplay = {"2921":"\ud488\uc808"};
-		var aReserveStockMessage = {"show_stock_message":"F","Q":"[\uc7ac\uace0 : [:\uc218\ub7c9:]\uac1c][\ub2f9\uc77c\ubc1c\uc1a1]","R":"[\uc7ac\uace0 : [:\uc218\ub7c9:]\uac1c][\uc608\uc57d\uc8fc\ubb38]","N":"","stock_message_replace_name":"[:\uc218\ub7c9:]"};
-		var SHOP_CURRENCY_INFO = {"1":{"aShopCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"aShopSubCurrencyInfo":null,"aBaseCurrencyInfo":{"currency_code":"KRW","currency_no":"410","currency_symbol":"\uffe6","currency_name":"South Korean won","currency_desc":"\uffe6 \uc6d0 (\ud55c\uad6d)","decimal_place":0,"round_method_type":"F"},"fExchangeRate":1,"fExchangeSubRate":null,"aFrontCurrencyFormat":{"head":"","tail":"\uc6d0"},"aFrontSubCurrencyFormat":{"head":"","tail":""}}};
-		var mileage_val = '100';
-		var mileage_generate_calc = '100';
-		var basket_type = 'A0000';
-		var product_name = '2016ver. 데일리 MTM';
-		var product_max_type = 'F';
-		var has_option = 'T';
-		var mileage_icon = '/web/upload/icon_201403181204001600.gif';var mileage_icon_alt = '적립금';
-		var price_unit_head = '';
-		var price_unit_tail = '원';
-		var option_push_button = 'F';
-		var product_image_tiny = '201610/2921_shop1_311132.gif';
-		var is_adult_product = 'F';
-		var is_individual_buy = 'F';
-		var is_soldout_icon = 'F';
-		var link_product_detail = '/product/2016ver-데일리-mtm/2921/display/11/';
-		var product_min = '1';
-		var order_limit_type = 'O';
-		var product_max = '-1';
-		var buy_unit_type = 'O';
-		var buy_unit = '1';
-		var product_price = '9900';
-		var product_price_content = '';
-		var is_selling_price = 'O';
-		var product_price_mobile = '9900';
-		var mobile_dc_price = '';
-		var isMobileDcStatus = 'F';
-		var product_price_ref = '';
-		var currency_disp_type = 'P';
-		var delvtype = 'A';
-		$.data(document,'SameImage','F');
-		var _iPrdtPriceOrg = 9000;
-		var _iPrdtPriceTax = 900;
-		var qrcode_class = 'EC_Qrcode57fc3e4dc02b7';
-		var qrcode_url = 'http://10world.co.kr/product/detail.html?product_no=2921';
-		var sSocialUrl="/exec/front/Product/Social/";
-		var sIsMileageDisplay = 'T';
-		EC_SHOP_FRONT_NEW_OPTION_COMMON.initObject();
-		EC_SHOP_FRONT_NEW_OPTION_BIND.initChooseBox();
-		EC_SHOP_FRONT_NEW_OPTION_DATA.initData();
-		var sMileageUnit = '[:가격:]원';
-		var sIsDisplayNonmemberPrice = "F";
-		var sNonmemberPrice = '-';
-		var aOptionColorchip = [];
-		var option_type = 'T';var option_name_mapper = '색상선택';var option_stock_data = '{\"P0000EIJ00YY\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\ud654\\uc774\\ud2b8\",\"stock_number\":17,\"option_value_orginal\":[\"\\ud654\\uc774\\ud2b8\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00YY\",\"is_reserve_stat\":\"N\",\"item_image_file\":null},\"P0000EIJ00YZ\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\ud06c\\ub9bc\",\"stock_number\":-13,\"option_value_orginal\":[\"\\ud06c\\ub9bc\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00YZ\",\"is_reserve_stat\":\"N\",\"item_image_file\":null},\"P0000EIJ00ZA\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\ubca0\\uc774\\ube44\\ud551\\ud06c\",\"stock_number\":26,\"option_value_orginal\":[\"\\ubca0\\uc774\\ube44\\ud551\\ud06c\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00ZA\",\"is_reserve_stat\":\"N\",\"item_image_file\":null},\"P0000EIJ00ZB\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\ubbfc\\ud2b8\",\"stock_number\":87,\"option_value_orginal\":[\"\\ubbfc\\ud2b8\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00ZB\",\"is_reserve_stat\":\"N\",\"item_image_file\":null},\"P0000EIJ00ZC\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\uc2a4\\uce74\\uc774\\ube14\\ub8e8\",\"stock_number\":-9,\"option_value_orginal\":[\"\\uc2a4\\uce74\\uc774\\ube14\\ub8e8\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00ZC\",\"is_reserve_stat\":\"N\",\"item_image_file\":null},\"P0000EIJ00ZD\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\uccb4\\ub9ac\\ud551\\ud06c\",\"stock_number\":50,\"option_value_orginal\":[\"\\uccb4\\ub9ac\\ud551\\ud06c\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00ZD\",\"is_reserve_stat\":\"N\",\"item_image_file\":null},\"P0000EIJ00ZE\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\uadf8\\ub808\\uc774\",\"stock_number\":44,\"option_value_orginal\":[\"\\uadf8\\ub808\\uc774\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00ZE\",\"is_reserve_stat\":\"N\",\"item_image_file\":null},\"P0000EIJ00ZF\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\ube0c\\ub77c\\uc6b4\",\"stock_number\":14,\"option_value_orginal\":[\"\\ube0c\\ub77c\\uc6b4\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00ZF\",\"is_reserve_stat\":\"N\",\"item_image_file\":null},\"P0000EIJ00ZG\":{\"stock_price\":\"0.00\",\"use_stock\":false,\"use_soldout\":\"T\",\"is_display\":\"T\",\"is_selling\":\"T\",\"option_price\":9900,\"option_name\":\"\\uc0c9\\uc0c1\\uc120\\ud0dd\",\"option_value\":\"\\ub124\\uc774\\ube44\",\"stock_number\":28,\"option_value_orginal\":[\"\\ub124\\uc774\\ube44\"],\"use_stock_original\":\"F\",\"use_soldout_original\":\"T\",\"use_soldout_today_delivery\":null,\"is_auto_soldout\":\"F\",\"is_mandatory\":\"T\",\"option_id\":\"00ZG\",\"is_reserve_stat\":\"N\",\"item_image_file\":null}}';var stock_manage = '';var option_value_mapper = '{\"\\ud654\\uc774\\ud2b8\":\"P0000EIJ00YY\",\"\\ud06c\\ub9bc\":\"P0000EIJ00YZ\",\"\\ubca0\\uc774\\ube44\\ud551\\ud06c\":\"P0000EIJ00ZA\",\"\\ubbfc\\ud2b8\":\"P0000EIJ00ZB\",\"\\uc2a4\\uce74\\uc774\\ube14\\ub8e8\":\"P0000EIJ00ZC\",\"\\uccb4\\ub9ac\\ud551\\ud06c\":\"P0000EIJ00ZD\",\"\\uadf8\\ub808\\uc774\":\"P0000EIJ00ZE\",\"\\ube0c\\ub77c\\uc6b4\":\"P0000EIJ00ZF\",\"\\ub124\\uc774\\ube44\":\"P0000EIJ00ZG\"}';var item_count = '9';var item_listing_type = 'S';var product_option_price_display = 'T';
-		var add_option_name = '';
-		var iProductNo = '2921';var iCategoryNo = '1';var iDisplayGroup = '11';var option_msg = '필수 옵션을 선택해 주세요.';var sLoginURL = 'login.html';var bPrdOptLayer = '';var sOptionType = 'T';
-		if (typeof Cafe24_SDK_Config_Url == 'function') { Cafe24_SDK_Config_Url('http://srlite.app-runtime.cafe24.com:80/'); }
-		var bIsDisplaySoldoutOption =true;
-		var aSoldoutDisplay = {"2921":"\ud488\uc808","5702":"\ud488\uc808"};
-		var bIsDisplaySoldoutOption =true;
-		var aSoldoutDisplay = {"2921":"\ud488\uc808","5702":"\ud488\uc808","8448":"\ud488\uc808"};
-		var bIsDisplaySoldoutOption =true;
-		var aSoldoutDisplay = {"2921":"\ud488\uc808","5702":"\ud488\uc808","8448":"\ud488\uc808","8632":"\ud488\uc808"};
-		var bIsDisplaySoldoutOption =true;
-		var aSoldoutDisplay = {"2921":"\ud488\uc808","5702":"\ud488\uc808","8448":"\ud488\uc808","8632":"\ud488\uc808","8229":"\ud488\uc808"};
-		var bIsDisplaySoldoutOption =true;
-		var aSoldoutDisplay = {"2921":"\ud488\uc808","5702":"\ud488\uc808","8448":"\ud488\uc808","8632":"\ud488\uc808","8229":"\ud488\uc808","8384":"\ud488\uc808"};
-		var bIsDisplaySoldoutOption =true;
-		var aSoldoutDisplay = {"2921":"\ud488\uc808","5702":"\ud488\uc808","8448":"\ud488\uc808","8632":"\ud488\uc808","8229":"\ud488\uc808","8384":"\ud488\uc808","8708":"\ud488\uc808"};
-		var bIsDisplaySoldoutOption =true;
-		var aSoldoutDisplay = {"2921":"\ud488\uc808","5702":"\ud488\uc808","8448":"\ud488\uc808","8632":"\ud488\uc808","8229":"\ud488\uc808","8384":"\ud488\uc808","8708":"\ud488\uc808","8707":"\ud488\uc808"};
-		var sOptionValueMapper5702 = '{\"\\uc5f0\\uccad\":\"P0000ILI000E\",\"\\uc9c4\\uccad\":\"P0000ILI000F\",\"\\uadf8\\ub808\\uc774\":\"P0000ILI000G\",\"\\uc0dd\\uc9c0\":\"P0000ILI000H\",\"\\ud751\\uccad\":\"P0000ILI000I\"}';
-		var sOptionValueMapper8448 = '{\"\\uc911\\uccad#$%S\":\"P0000MMX000A\",\"\\uc911\\uccad#$%M\":\"P0000MMX000B\",\"\\uc911\\uccad#$%L\":\"P0000MMX000C\",\"\\uc9c4\\uccad#$%S\":\"P0000MMX000D\",\"\\uc9c4\\uccad#$%M\":\"P0000MMX000E\",\"\\uc9c4\\uccad#$%L\":\"P0000MMX000F\"}';
-		var sOptionValueMapper8632 = '{\"\\ud654\\uc774\\ud2b8#$%S\":\"P0000MTZ000A\",\"\\ud654\\uc774\\ud2b8#$%M\":\"P0000MTZ000B\",\"\\ud654\\uc774\\ud2b8#$%L\":\"P0000MTZ000C\",\"\\ube14\\ub799#$%S\":\"P0000MTZ000D\",\"\\ube14\\ub799#$%M\":\"P0000MTZ000E\",\"\\ube14\\ub799#$%L\":\"P0000MTZ000F\"}';
-		var sOptionValueMapper8229 = '{\"\\uc544\\uc774\\ubcf4\\ub9ac#$%\\uc120\\ud0dd\\uc548\\ud568\":\"P0000MEM00BK\",\"\\uc544\\uc774\\ubcf4\\ub9ac#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8\":\"P0000MEM00BL\",\"\\uc544\\uc774\\ubcf4\\ub9ac#$%\\ud0a4\\ub9c1 - \\ube14\\ub799\":\"P0000MEM00BM\",\"\\uc544\\uc774\\ubcf4\\ub9ac#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8+\\ube14\\ub799\":\"P0000MEM00BN\",\"\\ubca0\\uc774\\uc9c0#$%\\uc120\\ud0dd\\uc548\\ud568\":\"P0000MEM00BO\",\"\\ubca0\\uc774\\uc9c0#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8\":\"P0000MEM00BP\",\"\\ubca0\\uc774\\uc9c0#$%\\ud0a4\\ub9c1 - \\ube14\\ub799\":\"P0000MEM00BQ\",\"\\ubca0\\uc774\\uc9c0#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8+\\ube14\\ub799\":\"P0000MEM00BR\",\"\\uc778\\ub514\\ud551\\ud06c#$%\\uc120\\ud0dd\\uc548\\ud568\":\"P0000MEM00BS\",\"\\uc778\\ub514\\ud551\\ud06c#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8\":\"P0000MEM00BT\",\"\\uc778\\ub514\\ud551\\ud06c#$%\\ud0a4\\ub9c1 - \\ube14\\ub799\":\"P0000MEM00BU\",\"\\uc778\\ub514\\ud551\\ud06c#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8+\\ube14\\ub799\":\"P0000MEM00BV\",\"\\uc560\\ud50c\\ubbfc\\ud2b8#$%\\uc120\\ud0dd\\uc548\\ud568\":\"P0000MEM00BW\",\"\\uc560\\ud50c\\ubbfc\\ud2b8#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8\":\"P0000MEM00BX\",\"\\uc560\\ud50c\\ubbfc\\ud2b8#$%\\ud0a4\\ub9c1 - \\ube14\\ub799\":\"P0000MEM00BY\",\"\\uc560\\ud50c\\ubbfc\\ud2b8#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8+\\ube14\\ub799\":\"P0000MEM00BZ\",\"\\ub77c\\uc774\\ud2b8\\uadf8\\ub808\\uc774#$%\\uc120\\ud0dd\\uc548\\ud568\":\"P0000MEM00CA\",\"\\ub77c\\uc774\\ud2b8\\uadf8\\ub808\\uc774#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8\":\"P0000MEM00CB\",\"\\ub77c\\uc774\\ud2b8\\uadf8\\ub808\\uc774#$%\\ud0a4\\ub9c1 - \\ube14\\ub799\":\"P0000MEM00CC\",\"\\ub77c\\uc774\\ud2b8\\uadf8\\ub808\\uc774#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8+\\ube14\\ub799\":\"P0000MEM00CD\",\"\\ub124\\uc774\\ube44#$%\\uc120\\ud0dd\\uc548\\ud568\":\"P0000MEM00CE\",\"\\ub124\\uc774\\ube44#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8\":\"P0000MEM00CF\",\"\\ub124\\uc774\\ube44#$%\\ud0a4\\ub9c1 - \\ube14\\ub799\":\"P0000MEM00CG\",\"\\ub124\\uc774\\ube44#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8+\\ube14\\ub799\":\"P0000MEM00CH\",\"\\ube14\\ub799#$%\\uc120\\ud0dd\\uc548\\ud568\":\"P0000MEM00CI\",\"\\ube14\\ub799#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8\":\"P0000MEM00CJ\",\"\\ube14\\ub799#$%\\ud0a4\\ub9c1 - \\ube14\\ub799\":\"P0000MEM00CK\",\"\\ube14\\ub799#$%\\ud0a4\\ub9c1 - \\ud654\\uc774\\ud2b8+\\ube14\\ub799\":\"P0000MEM00CL\"}';
-		var sOptionValueMapper8384 = '{\"\\ud654\\uc774\\ud2b8#$%230\":\"P0000MKL000K\",\"\\ud654\\uc774\\ud2b8#$%235\":\"P0000MKL000L\",\"\\ud654\\uc774\\ud2b8#$%240\":\"P0000MKL000M\",\"\\ud654\\uc774\\ud2b8#$%245\":\"P0000MKL000N\",\"\\ud654\\uc774\\ud2b8#$%250\":\"P0000MKL000O\",\"\\ube14\\ub799#$%230\":\"P0000MKL000P\",\"\\ube14\\ub799#$%235\":\"P0000MKL000Q\",\"\\ube14\\ub799#$%240\":\"P0000MKL000R\",\"\\ube14\\ub799#$%245\":\"P0000MKL000S\",\"\\ube14\\ub799#$%250\":\"P0000MKL000T\"}';
-		var sOptionValueMapper8708 = '{\"\\uc2e4\\ubc84\":\"P0000MWX000A\",\"\\uace8\\ub4dc\":\"P0000MWX000B\"}';
-		var sOptionValueMapper8707 = '{\"\\uc2e4\\ubc84\":\"P0000MWW000A\",\"\\uace8\\ub4dc\":\"P0000MWW000B\"}';
-		var relation_product = '{\"5702\":{\"buy_unit\":1,\"product_min\":1,\"product_max\":0},\"8448\":{\"buy_unit\":1,\"product_min\":1,\"product_max\":0},\"8632\":{\"buy_unit\":1,\"product_min\":1,\"product_max\":0},\"8229\":{\"buy_unit\":1,\"product_min\":1,\"product_max\":0},\"8384\":{\"buy_unit\":1,\"product_min\":1,\"product_max\":0},\"8708\":{\"buy_unit\":1,\"product_min\":1,\"product_max\":0},\"8707\":{\"buy_unit\":1,\"product_min\":1,\"product_max\":0}}';
-		var aLogData = {"log_server1":"eclog2-066.cafe24.com","log_server2":"eclog2-066.cafe24.com","mid":"jjukbbang1","log_app":"Eclog"};
-		var aReviewtt = {"env_type":"ppdp","cuk45":"cuk45_jjukbbang1_00fe08d75f3dd693e9f5aa4011fae29b"};
-		$(document).ready(function(){
-		var cHeight =  $('.xans-srlite-display > .srlite-list').outerHeight(true) + 60;
-		$('.xans-srlite-display').height( cHeight );
-		$('.xans-srlite-display > .srlite-list').show()
-		$('.xans-srlite-display > .srlite-remote').hide();
-		});
-	</script>
-	<!-- <iframe src="/exec/front/Eclog/main/?product_no=2921&amp;cate_no=1&amp;isplay_group=11&amp;rloc=http%3A//10world.co.kr/product/detail.html%3Fproduct_no%3D2921%26cate_no%3D1%26display_group%3D11&amp;rref=http%3A//10world.co.kr/&amp;udim=1600*900&amp;rserv=eclog2-066.cafe24.com&amp;cid=CID49a94a3e21d5d4b92f5ab5572b7d3f70" id="log_realtime" style="display: none;"></iframe> -->
-	
-	<script src="http://eclog2-066.cafe24.com/weblog_ubp.html?uid=jjukbbang1&amp;udim=1600*900&amp;uref=http://10world.co.kr/&amp;uname=jjukbbang1&amp;url=http://10world.co.kr/product/detail.html?product_no=2921&amp;cate_no=1&amp;display_group=11&amp;r_ref=http://10world.co.kr/&amp;t=1476148814168"></script><script type="text/javascript" src="http://eclog2-066.cafe24.com/weblog.js?uid=jjukbbang1&amp;uname=jjukbbang1&amp;r_ref=http://10world.co.kr/&amp;t=1476148814168" id="log_script"></script>
-	<div id="modalBackpanel"></div>
-	<div id="modalContainer">
-	    <!-- <iframe id="modalContent" scroll="0" scrolling="no" frameborder="0"></iframe> -->
-	</div>
 	
 	
 	

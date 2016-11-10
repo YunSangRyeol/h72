@@ -38,7 +38,7 @@
 				<tr><input type="text" style="display:none;" id="qNo" name="qNo" value="${list.qNo }"></tr>
 									<tr><input type="text" style="display:none;" id="qTitle" name="qTitle" value="${list.qTitle }"></tr>
 									<tr><input type="text" style="display:none;" id="qContent" name="qContent" value="${list.qContent }"></tr>
-									<tr><input type="text" style="display:none;" id="qWriter" name="qWriter" value="${list.qWriter }"></tr>
+									<tr><input type="text" style="display:none;" id="answerContent" name="answerContent" value="${list.answerContent }"></tr>
 			<div
 					class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
 
@@ -80,8 +80,8 @@
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">목록</a></span>
 						&nbsp;&nbsp;
 						<c:if test="${loginUser.userid eq 'ADMIN' }">
-						<a href="" 
-							class="left"
+						<a  href="<c:url value="/boader/qna_answer?qNo=${list.qNo}"/>"
+							type="button"  class="btn btn-primary btn-block"
 							style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;">답변</a>
 							</c:if>
 							<c:if test="${loginUser.userid eq 'ADMIN'}">
@@ -100,11 +100,11 @@
 			</form>
 		</div>
 
-		<div
+	<!-- 	<div
 			class="xans-element- xans-board xans-board-commentpackage-1002 xans-board-commentpackage xans-board-1002 ">
-			<!-- 코멘트 리스트 -->
-			<!-- 코멘트 페이징 -->
-			<!-- 댓글 수정 -->
+			코멘트 리스트
+			코멘트 페이징
+			댓글 수정
 			<form id="commentForm" name=""
 				action="/exec/front/Board/CommentUpdate/1" method="post"
 				enctype="multipart/form-data" style="display: none;">
@@ -137,7 +137,7 @@
 					</fieldset>
 				</div>
 			</form>
-			<!-- 비밀글 확인 -->
+			비밀글 확인
 			<form id="commentSecretForm" name=""
 				action="/exec/front/Board/CommentSecret/1" method="post"
 				enctype="multipart/form-data" style="display: none;">
@@ -159,13 +159,9 @@
 					</p>
 				</div>
 			</form>
-			<!-- 댓글 쓰기 -->
 
-			<!-- 댓글의 댓글 쓰기 -->
 		</div>
-
-		<!-- 관리자 전용 메뉴 -->
-		<!-- //관리자 전용 메뉴 -->
+ -->
 
 	</div>
 </body>

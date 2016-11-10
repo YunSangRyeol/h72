@@ -9,6 +9,11 @@
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <script src="/h72/resources/js/jquery.battatech.excelexport.js"></script>
 <script type="text/javascript" src="/h72/resources/js/chart.js"></script>
+<script type="text/javascript">
+	$(function(){
+		document.getElementById("now").value = '${now}';
+	});
+</script>
 <title>Sales Chart</title>
 </head>
 <body>
@@ -69,10 +74,12 @@
  	
  	<h2>주간 매출 내역</h2>
 	<div id="chartWeek"></div>
-	<script>
+	<script>	
+		
 		var options = {
 			'legend':{
-				names: ['${now6 }', '${now5 }', '${now4 }', '${now3 }', '${now2 }', '${now1 }', '${now0 }']
+				names: ['${now6 }', '${now5 }', '${now4 }', '${now3 }', '${now2 }', '${now1 }', '${now0 }'] 
+				//names: ['1', '2', '3', '4', '5', '6', '7']
 					},
 			'dataset':{
 				title:'Playing time per day', 

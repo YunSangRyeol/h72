@@ -1,6 +1,7 @@
 package com.project.h72.order.controller;
 
 import java.util.*;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,19 @@ public class OrderController {
 		}
 		return "order/order";
 	}
+	
+	
+	@RequestMapping(value = "/directOrder", method = RequestMethod.GET)
+	public String directOrderForm(@RequestParam("cartAll") String[] cartAll, HttpSession session, Model model) {
+		Member login = (Member) session.getAttribute("loginUser");
+		if(!(login==null)){
+			List<Cart> orderlist = os.getCartOrder(cartAll);
+			model.addAttribute("olist", orderlist);
+			
+		}
+		return "order/order";
+	}
+	
 	
 	@RequestMapping(value = "/insertOrder", method = RequestMethod.POST)
 	public String insertOrderFinish(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
@@ -172,7 +186,27 @@ public class OrderController {
 	
 	
 	@RequestMapping(value = "order/order_list", method = RequestMethod.GET)
-	public String orderListView(Model model) {
+	public String orderListView(HttpSession session, Model model) {
+		
+		Member login = (Member) session.getAttribute("loginUser");
+		List<Order> listOrder = new ArrayList<Order>();
+		
+		if(login==null){
+			
+		 	return "member/loginPage";
+		}else{
+			String userId = login.getUserid();
+			Date currentDate = new Date(new java.util.Date().getTime());
+			Calendar cal = Calendar.getInstance ( );//오늘 날짜를 기준으루..
+			cal.add ( cal.MONTH, -3 );
+			Date preThreeMonth = new Date(cal.getTime().getTime());
+			System.out.println(preThreeMonth+" , "+currentDate);
+			listOrder = os.selectOrderList(userId, currentDate, preThreeMonth);
+			
+		}
+		
+		model.addAttribute("orderList", listOrder);
+		System.out.println(listOrder);
 		
 		return "order/order_list";
 	}

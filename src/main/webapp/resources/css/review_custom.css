@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+span.star, span.camera, .sprite_comment {
+	background-image: url(http://assets2.cre.ma/p/10world-co-kr/brand_settings/00/00/00/00/01/sprite/582cbe9cb5adad16.png);
+}
+.mall-link-color {
+	color: #6eb67e;
+}
+.review_comment_color {
+	color: #6db67e;
+}
+
+.review-submit-button, .review-submit-button:hover, .review-submit-button:active  {
+	border: 1px solid #363636;
+	background: #363636;
+	background: linear-gradient(to bottom, #363636 0%,#363636 2%,#363636 3%,#363636 100%);
+	background: -ms-linear-gradient(top,  #363636 0%,#023E69 2%,#363636 3%,#363636 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#363636, endColorstr=#363636,GradientType=0 );
+ 	text-shadow: 0 -1px 0 #363636;
+}
+
+body.products.reviews #review-photo-thumbnails .product-thumbnail-container .photo-review-thumbnail a img+img {display: none !important;}
+body.products.reviews #review-photo-thumbnails .product-thumbnail-container .photo-review-thumbnail a img {filter: none;}
+
+body.products.reviews .widget.widget-reviews .widget-heading .review-options-search, #review-edit-form .widget.widget-reviews .widget-heading .review-options-search {width: 475px;}
+.review-options-search {padding: 0;}
+.review-options-search ul.review_option_types {top: -39px;}
+body.products.reviews ul.reviews, body.products.reviews ul.header, #review-edit-form ul.reviews, #review-edit-form ul.header {ont-family: '돋움', Dotum, Helvetica, 'Apple SD Gothic Neo', Sans-serif;}
+.widget .widget-body {border-bottom: 0;}
+body.products.reviews #review-photo-thumbnails .product-thumbnail-container, #review-edit-form #review-photo-thumbnails .product-thumbnail-container {width: 953px;}
+body.products.reviews #review-photo-thumbnails .product-thumbnail-container .photo-review-thumbnail a img, 
+#review-edit-form #review-photo-thumbnails .product-thumbnail-container .photo-review-thumbnail a img {	width: 63px !important; height: 63px !important;}
+ul.reviews.reviews-product li.review ul.images li {height: 74px;}
+li.review .l-contents .star-wrap .review-tags {margin-top: -4px;}
+.review_option__title { width: 20%; }
+.review_option__content { width: 80%; }
