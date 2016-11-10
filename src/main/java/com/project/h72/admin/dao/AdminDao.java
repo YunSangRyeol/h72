@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.h72.admin.vo.Paging;
 import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
@@ -23,54 +24,57 @@ public class AdminDao {
 	private SqlSession sqlSession;
 
 	//Member
-	public List<Member> getMemberList(int page, int count, String order, String where) {	
-		
-		Map<String, String> paging = new HashMap<String, String>();
-		paging.put( "page",  String.valueOf(page));
-		paging.put( "count",  String.valueOf(count) );
-		paging.put( "order", order );
-		
-				
-		String whereQuery = null;
-		if(!(where.equals("null"))){//조건요구
-			System.out.println("where2222" + where);
-			String[] wheres = where.split(",");
-			switch(wheres[0]){
-			case "NAME" :
-			case "USER_ID":
-				paging.put( "how", wheres[0] );
-				paging.put( "what", wheres[1] );	
-				break;
-			case "DATE":
-				whereQuery = wheres[0] + " BETWEEN TO_DATE(" + wheres[1] + ") AND TO_DATE(" + wheres[2] + ") +1";
-				break;
-			}			
-			
-			return sqlSession.selectList(NAMESPACE + "getMemberListW", paging);
-		}else{ 
-			return sqlSession.selectList(NAMESPACE + "getMemberList", paging);
-		}
+	
+	public List<Member> getMemberList(Paging paging) {		
+		return sqlSession.selectList(NAMESPACE + "getMemberList", paging);
+	}
+
+	public List<Member> getMemberListWID(Paging paging) {		
+		return sqlSession.selectList(NAMESPACE + "getMemberListWID", paging);
+	}
+
+	public List<Member> getMemberListWNAME(Paging paging) {
+		return sqlSession.selectList(NAMESPACE + "getMemberListWNAME", paging);
+	}
+
+	public List<Member> getMemberListWDATE(Paging paging) {
+		return sqlSession.selectList(NAMESPACE + "getMemberListWDATE", paging);
 	}
 	
+	
+	
+	
+	
+	
 	public int getMemberCount() {
+		System.out.println("조건없이 실행");
 		return sqlSession.selectOne(NAMESPACE + "getMemberCount");
 	}
-
-	public List<Member> adminSearchId(String id) {
-		return sqlSession.selectList(NAMESPACE + "adminSearchId", id);
+	
+	public int getMemberCountWID(String id) {
+		System.out.println("id 검색 실행" + id);
+		return sqlSession.selectOne(NAMESPACE + "getMemberCountWID", id);
 	}
 
-	public List<Member> adminSearchName(String name) {
-		return sqlSession.selectList(NAMESPACE + "adminSearchName", name);
+	public int getMemberCountWNAME(String name) {
+		System.out.println("이름 검색 실행" + name);
+		return sqlSession.selectOne(NAMESPACE + "getMemberCountWNAME" + name);
 	}
 
-	public List<Member> adminSearchDate(Date start, Date end) {
-		Map<String, Date> dates = new HashMap<String, Date>();
+	public int getMemberCountWDATE(String start, String end) {
+		System.out.println("날짜 검색 실행" + start + "부터 " + end);
+		
+		Map<String, String> dates = new HashMap<String, String>();
 		dates.put( "start", start);
 		dates.put( "end", end );
 		
-		return sqlSession.selectList(NAMESPACE + "adminSearchDate", dates);
+		return sqlSession.selectOne(NAMESPACE + "getMemberCountWDATE", dates);
 	}
+	
+	
+	
+	
+
 
 	//Order
 	public List<Order> getOrderList() {
@@ -175,6 +179,12 @@ public class AdminDao {
 	public TotalOrder kit(String now) {
 		return sqlSession.selectOne(NAMESPACE + "kit", now);
 	}
+
+
+
+
+
+
 
 
 

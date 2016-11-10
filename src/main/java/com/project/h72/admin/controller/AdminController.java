@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.h72.admin.service.AdminService;
+import com.project.h72.admin.vo.Paging;
 import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
@@ -98,12 +99,39 @@ public class AdminController {
 		
 		System.out.println("시작!!" + page + ", " + count + ", " + order + ", " + where);
 		
+		int countAll = 0;
+		
+		List<Member> list = null;
+		
+		if(where.equals("null")){ //조건없음
+			System.out.println("널로 들어옴" + where);
+			countAll = adminService.getMemberCount();
+			list = adminService.getMemberList(new Paging(page * + 1, count, order));
+		}else{ //조건 있음
+			String[] wheres = where.split(",");
+			
+			if(wheres[0].equals("USER_ID")){
+				//아이디
+				countAll = adminService.getMemberCountWID(wheres[1]);
+				list = adminService.getMemberListWID(new Paging(page * + 1, count, order, wheres[1]));
+			}else if(wheres[0].equals("NAME")){
+				//이름
+				countAll = adminService.getMemberCountWNAME(wheres[1]);
+				list = adminService.getMemberListWNAME(new Paging(page * + 1, count, order, wheres[1]));
+				
+			}else if(wheres[0].equals("ENROLLDATE")){
+				//데이터 검색
+				countAll = adminService.getMemberCountWDATE(wheres[1], wheres[2]);		
+				list = adminService.getMemberListWDATE(new Paging(page * + 1, count, order, wheres[1], wheres[2]));
+			}
+		}
+		
 		
 		//총 유저 수 확인
-		int countAll = adminService.getMemberCount();
-		System.out.println(countAll);
+		System.out.println("총유저수: " + countAll);
 		
-		List<Member> list = adminService.getMemberList(page * + 1, count, order, where );
+		 ;
+		
 		
 		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int endPage = (int)(countAll / (count + 0.9) + 1);		
@@ -120,11 +148,12 @@ public class AdminController {
 		return "admin/userManager";
 	}
 	
+	
+	
 	//회원관리 - ID검색
 	@RequestMapping(value="adminSID.do", method = RequestMethod.POST)
 	public String adminSearchId(@RequestParam("userid") String id, Model model){
 		
-		List<Member> list = adminService.adminSearchId(id);
 		
 		String where = "USER_ID," + id;
 
@@ -140,8 +169,6 @@ public class AdminController {
 	@RequestMapping(value="adminSName.do", method = RequestMethod.POST)
 	public String adminSearchName(@RequestParam("username") String name, Model model){
 		
-		List<Member> list = adminService.adminSearchName(name);
-		
 		String where = "NAME," + name;
 
 		model.addAttribute("page", 1);
@@ -156,9 +183,7 @@ public class AdminController {
 	@RequestMapping(value="adminSDate.do", method = RequestMethod.POST)
 	public String adminSearchDate(@RequestParam("start") Date start, @RequestParam("end") Date end, Model model){
 		
-		List<Member> list = adminService.adminSearchDate(start, end);
-		
-		String where = "DATE," + start + "," + end;
+		String where = "ENROLLDATE," + start + "," + end;
 
 		model.addAttribute("page", 1);
 		model.addAttribute("count", 10);

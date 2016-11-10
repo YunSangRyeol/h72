@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.h72.admin.dao.AdminDao;
+import com.project.h72.admin.vo.Paging;
 import com.project.h72.admin.vo.TotalOrder;
 import com.project.h72.member.vo.Member;
 import com.project.h72.order.vo.Order;
@@ -18,27 +19,63 @@ public class AdminServiceImp implements AdminService{
 	@Autowired
 	private AdminDao dao;
 
-	public List<Member> getMemberList(int page, int count, String order, String where) {
-		return dao.getMemberList(page, count, order, where);
+	@Override
+	public List<Member> getMemberList(Paging paging) {
+		return dao.getMemberList(paging);
 	}
+
+
+	@Override
+	public List<Member> getMemberListWID(Paging paging) {
+		return dao.getMemberListWID(paging);
+	}
+
+
+	@Override
+	public List<Member> getMemberListWNAME(Paging paging) {
+		return dao.getMemberListWNAME(paging);
+	}
+
+
+	@Override
+	public List<Member> getMemberListWDATE(Paging paging) {
+		return dao.getMemberListWDATE(paging);
+	}
+
 	
+	
+	
+	//수 확인
 	@Override
 	public int getMemberCount() {
 		return dao.getMemberCount();
 	}
-
 	
-	public List<Member> adminSearchId(String id){
-		return dao.adminSearchId(id);
-	}
-	
-	public List<Member> adminSearchName(String name){
-		return dao.adminSearchName(name);
+	@Override
+	public int getMemberCountWID(String id) {
+		return dao.getMemberCountWID(id);
 	}
 
-	public List<Member> adminSearchDate(Date start, Date end){
-		return dao.adminSearchDate(start, end);
+
+	@Override
+	public int getMemberCountWNAME(String name) {
+		return dao.getMemberCountWNAME(name);
 	}
+
+
+	@Override
+	public int getMemberCountWDATE(String start, String end) {
+		return dao.getMemberCountWDATE(start, end);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	//orderList
 	public List<Order> getOrderList(){
@@ -125,6 +162,12 @@ public class AdminServiceImp implements AdminService{
 	public TotalOrder kit(String now) {
 		return dao.kit(now);
 	}
+
+
+
+
+
+
 
 	
 
