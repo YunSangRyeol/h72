@@ -29,5 +29,9 @@
 		DELETE FROM CART
 		WHERE  CART_ID= #{cartId}
 	</delete>
-
+		
+	<select id="selectOrderList" parameterType="java.util.HashMap" resultType="Order">
+	 SELECT * FROM ORDER_LIST
+	 WHERE USER_ID=#{userId} AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1
+	</select>	
 </mapper>

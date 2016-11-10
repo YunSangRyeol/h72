@@ -1,5 +1,6 @@
 package com.project.h72.order.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,5 +19,7 @@ public interface OrderService {
 	int insertOrderContents(OrderContents orderContents);
 
 	int deleteFinishCart(String[] cartId);
+
+	List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth);
 
 }
