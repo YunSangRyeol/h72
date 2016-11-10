@@ -1,6 +1,7 @@
 package com.project.h72.kitDiy.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.h72.kitDiy.service.KitDiyService;
 import com.project.h72.kitDiy.vo.Cart;
 import com.project.h72.kitDiy.vo.KitDiy;
+import com.project.h72.kitDiy.vo.Order;
 @Controller
 
 @RequestMapping("/kitDiy")
@@ -33,12 +35,25 @@ public class KitDiyController {
 		return "detail/kitDiy";
 	}
 	
-	@RequestMapping(value = "/kitDiyOrder", method = RequestMethod.GET)
-	public String kitDiyOrder(Locale locale, Model model) {
-		
-		return "kityDiy";
+	@RequestMapping(value = "/kitDiyOrder", method = RequestMethod.POST)
+	public String kitDiyOrder(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model) {
+		String[] itemId = request.getParameterValues("itemId");
+		String userId = request.getParameter("userId");
+		Order order = null;
+		List<Order> orderList = new ArrayList<Order>();
+		for (int i = 0; i < itemId.length; i++) {
+			System.out.println(itemId[i]);
+			order = new Order();
+			order.setItemid(itemId[i]);
+			order.setUserid(userId);
+			orderList.add(service.kitDiyOrder(order));
+			
+		}
+		model.addAttribute("olist", orderList);
+		return "order/order";
 	}
 	
+
 	@RequestMapping(value = "/kitDiyCart", method = RequestMethod.POST)
 	public void kitDiyCart(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model) throws IOException {
 		JSONObject json = new JSONObject();
@@ -58,6 +73,7 @@ public class KitDiyController {
 					itemDetailId[i],mainImg[i],Integer.parseInt(quantity[i]),
 					Integer.parseInt(cost[i]),"","Y");
 			System.out.println(cart);
+			//상품이 이미존재하는 확인
 			checkCart = service.kitDiyCartCheck(cart);
 			//카트에 없는 경우
 			if (checkCart <1) {

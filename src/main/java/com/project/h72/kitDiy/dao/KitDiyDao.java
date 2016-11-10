@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.h72.kitDiy.vo.Cart;
 import com.project.h72.kitDiy.vo.KitDiy;
+import com.project.h72.kitDiy.vo.Order;
 
 @Repository
 public class KitDiyDao {
@@ -26,6 +27,9 @@ public class KitDiyDao {
 	}
 	public int kitDiyCartCheck(Cart cart) {
 		return sqlSession.selectOne(NAMESPACE + "kitDiyCartCheck",cart);
+	}
+	public Order kitDiyOrder(Order order) {
+		return sqlSession.selectOne(NAMESPACE + "kitDiyOrder",order);
 	}
 
 }

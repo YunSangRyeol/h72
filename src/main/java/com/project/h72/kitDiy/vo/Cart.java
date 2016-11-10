@@ -1,7 +1,10 @@
 package com.project.h72.kitDiy.vo;
 
+import java.sql.Date;
+
 public class Cart{
 	
+	private String cartId;
 	private String itemId;
 	private String userId;
 	private String itemFullName;
@@ -11,11 +14,19 @@ public class Cart{
 	private int cost;
 	private String message;
 	private String kit_yn;
+	private Date enrollDate;
 	
 	private String tempQ;
 	private String tempC;
 	
 	public Cart() {	}
+
+	
+	public Cart(String itemId, String userId) {
+		super();
+		this.itemId = itemId;
+		this.userId = userId;
+	}
 
 
 	public Cart(String itemId, String userId, String itemFullName, String itemDetailId, String mainImg,
@@ -30,6 +41,16 @@ public class Cart{
 		this.cost = cost;
 		this.message = message;
 		this.kit_yn = kit_yn;
+	}
+
+
+	public String getCartId() {
+		return cartId;
+	}
+
+
+	public void setCartId(String cartId) {
+		this.cartId = cartId;
 	}
 
 
@@ -140,6 +161,17 @@ public class Cart{
 
 	public void setTempC(String tempC) {
 		this.tempC = tempC;
+	}
+
+	
+
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
 	}
 
 

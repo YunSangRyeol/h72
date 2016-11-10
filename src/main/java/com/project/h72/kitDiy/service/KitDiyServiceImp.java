@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.project.h72.kitDiy.dao.KitDiyDao;
 import com.project.h72.kitDiy.vo.Cart;
 import com.project.h72.kitDiy.vo.KitDiy;
+import com.project.h72.kitDiy.vo.Order;
 
 @Service
 public class KitDiyServiceImp implements KitDiyService{
@@ -35,5 +36,12 @@ public class KitDiyServiceImp implements KitDiyService{
 	public int kitDiyCartCheck(Cart cart) {
 		return dao.kitDiyCartCheck(cart);
 	}
+
+	@Override
+	public Order kitDiyOrder(Order order) {
+		return dao.kitDiyOrder(order);
+	}
+
+
 
 }

@@ -23,6 +23,22 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#select_button1').click(function(){
+			var params = $("#kitDiyForm").serialize();
+			 $.ajax({
+	   		url : 'kitDiyCart' ,
+	   		type : 'post' , 
+	   		data : params,
+	   		// 리턴 받는 dataType이 json이면 dataType을 json으로 변경
+	   		dataType : 'json' ,
+	   		  success: function(data) {
+	   			  $('#kitDiyForm').attr('action', 'kitDiyOrder');
+	   			  $('#kitDiyForm').submit(); 
+	   		  },
+	   		  error: function(data) {
+	   		        alert("실패");
+	   		  }
+	   	});
+		
 		   $('#kitDiyForm').attr('action', 'page1');
 		});
 
