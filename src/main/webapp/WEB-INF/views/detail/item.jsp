@@ -55,8 +55,6 @@ a {
 	
 	<c:url var="url" value="selectItem"><!-- h72/detail/selectItem -->
 	<c:param name="ItemDetailId" value="${itemList.get(i).ITEM_DETAIL_ID }" />
-	<c:param name="ItemDetailName" value="${itemList.get(i).ITEM_NAME }" />
-	<c:param name="ItemPrice" value="${itemList.get(i).MIN_PRICE }" />
 	</c:url>
 	
 	<div style="display: inline" >

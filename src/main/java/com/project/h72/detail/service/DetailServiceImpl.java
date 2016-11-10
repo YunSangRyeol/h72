@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.project.h72.cart.vo.Cart;
 import com.project.h72.detail.dao.DetailDao;
 import com.project.h72.detail.vo.DetailVO;
+import com.project.h72.detail.vo.ManageForm;
+import com.project.h72.detail.vo.Review;
 import com.project.h72.detail.vo.DetailDIVO;
 
 @Service
@@ -32,6 +34,31 @@ public class DetailServiceImpl implements DetailService {
 	public List<Integer> selectCart(ArrayList<Cart> cartList) {
 		List<Integer> tOf = dd.selectCart(cartList);
 		return tOf;
+	}
+	@Override
+	public int selectReviewListCount(String itemDetailId) {
+		int reviewListCount = dd.selectReviewListCount(itemDetailId);
+		return reviewListCount;
+	}
+	@Override
+	public List<Review> selectReview(Map<String, String> needPageData) {
+		List<Review> reviewList = dd.selectReview(needPageData);
+		return reviewList;
+	}
+	@Override
+	public int selectListNo() {
+		int listNo = dd.selectListNo();
+		return listNo;
+	}
+	@Override
+	public int insertReview(Review review) {
+		int result = dd.insertReview(review);
+		return result;
+	}
+	@Override
+	public int deleteReview(ManageForm form) {
+		int result = dd.deleteReview(form);
+		return result;
 	}
 	
 	
