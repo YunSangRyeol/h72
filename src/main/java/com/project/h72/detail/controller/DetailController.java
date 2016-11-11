@@ -174,6 +174,7 @@ public class DetailController {
 		String mainImg = request.getParameter("mainImg");
 		String message = request.getParameter("message");
 		char KitYN = request.getParameter("KitYN").charAt(0);
+		String kinds = request.getParameter("kinds");
 		
 		int result = 0;
 		
@@ -188,7 +189,9 @@ public class DetailController {
 		System.out.println("mainImg : " + mainImg);
 		System.out.println("message : " + message);
 		System.out.println("KitYN : " + KitYN);
+		System.out.println("kinds : " + kinds);
 		System.out.println("-----------------------------------------------");
+		
 		ArrayList<Cart> cartList = new ArrayList<Cart>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -207,22 +210,26 @@ public class DetailController {
 			//item_id는 view페이지에서 가져오기 힘드니까. item_name이랑, item_option_name 2개를 가져오고 db query 문에서 연결시켜 가져와서 카트로 넘겨주자. 
 			
 			//System.out.println("data from ajax : " + name);
-			List<Integer> tOf = new ArrayList<Integer>();
-			tOf = ds.selectCart(cartList);//장바구니에 추가하려는 상품이 장바구니에 들어있는지 확인
-			int count = tOf.get(0);
-			
+			int tOf = 0;
+			tOf = ds.selectCart(cartList);//장바구니에 추가하려는 상품이 장바구니에 들어있는지 확인//0이면 카트에 이미 있다는 말이고, 0 보다 크면 카트에 그 수만큼 상품 등록됐다는 의미
+			int count = tOf;
+			System.out.println("count : " + count);
 			//System.out.println("sssssssssssssssssssssssssssssssss " + tOf.get(0));
 			
-			if(count > 0){//카트에 이미 상품이 등록되어있을 때
-				result = -1;//카트에 이미 있는 경우
-				map.put("result", result);
-			}else{//카트에 없을 때 
-				result = ds.insertCart(cartList);
-				map.put("result", result);
-				//result = -1 : 카트에 이미 있는 경우
-				//result > 0  : 카트에 등록된 경우
-				//result = 0  : 카트 등록 실패한 경우
+			if(count == 0){//카트에 상품이 추가된 수가 0이라는 의미. 이미 있다!
+				result = -1;
+			}else{
+				result = tOf;
 			}
+			map.put("result", result);
+			
+				
+			//카트에 담긴 카트아이디[]를 가져옴
+			List<String> cartId = ds.selectCartId(cartList);
+			System.out.println("carId 시퀀스");
+			for(String s : cartId)
+				System.out.println(s);
+			map.put("cartId", cartId);
 			map.put("count", count);
 		}
 		//선택된 옵션이 없는 경우

@@ -31,8 +31,8 @@ public class DetailServiceImpl implements DetailService {
 		return result;
 	}
 	@Override
-	public List<Integer> selectCart(ArrayList<Cart> cartList) {
-		List<Integer> tOf = dd.selectCart(cartList);
+	public int selectCart(ArrayList<Cart> cartList) {
+		int tOf = dd.selectCart(cartList);
 		return tOf;
 	}
 	@Override
@@ -64,6 +64,11 @@ public class DetailServiceImpl implements DetailService {
 	public Review selectSingleReview(ManageForm form) {
 		Review review = dd.selectSingleReview(form);
 		return review;
+	}
+	@Override
+	public List<String> selectCartId(ArrayList<Cart> cartList) {
+		List<String> cartId = dd.selectCartId(cartList);
+		return cartId;
 	}
 	
 	

@@ -41,15 +41,19 @@ public class DetailDao {
 		//result = sqlSession.insert(NAMESPACE + "insertCart", cartList);
 		return result;
 	}
-	//카트에 있는지 확인(먼저, 들어온 cart 객체에 item_id 고유의 값을 db로 가져와서 set하고 selectCart 진행
-	public List<Integer> selectCart(ArrayList<Cart> cartList) {
-		List<Integer> tOf  = new ArrayList<Integer>();
+	//카트에 있는지 확인(먼저, 들어온 cart 객체에 item_id 고유의 값을 db를 통해 가져와서 set하고 selectCart 진행
+	public int selectCart(ArrayList<Cart> cartList) {
+		int tOf  = 0;
 		for(int i = 0; i < cartList.size(); i++){
 			cartList.get(i).setItemid(String.valueOf(sqlSession.selectOne(NAMESPACE + "selectItemId", cartList.get(i))));
 			System.out.println(cartList.get(i).toString());
 		}
 		for(int i = 0; i < cartList.size(); i++){
-			tOf = sqlSession.selectList(NAMESPACE + "selectCart", cartList.get(i));//카트에서 유저아이디와, 아이템디테일아이디, 아이템아이디 모두 일치하는 count(*) 꺼내옴
+			int result = (Integer)sqlSession.selectOne(NAMESPACE + "selectCart", cartList.get(i));
+			if(result == 0){//있는지 검사해서 count(result)가 0 나오면 카트 추가//tOf가 0이면 카트에 이미 존재합니다. 0보다 크면 카트가 추가되었습니다.
+				tOf += sqlSession.insert(NAMESPACE + "insertCart", cartList.get(i));
+			}
+			//tOf += (Integer)sqlSession.selectOne(NAMESPACE + "selectCart", cartList.get(i));//카트에서 유저아이디와, 아이템디테일아이디, 아이템아이디 모두 일치하는 count(*) 꺼내옴
 		}
 		return tOf;
 	}
@@ -108,6 +112,16 @@ public class DetailDao {
 	public Review selectSingleReview(ManageForm form) {
 		Review review = sqlSession.selectOne(NAMESPACE + "selectSingleReview", form);
 		return review;
+	}
+
+	public List<String> selectCartId(ArrayList<Cart> cartList) {
+		List<String> cartId = new ArrayList<String>();
+		
+		for(int i = 0; i < cartList.size(); i++){
+			cartId.add(String.valueOf(sqlSession.selectOne(NAMESPACE + "selectCartId", cartList.get(i))));
+		}
+		
+		return cartId;
 	}
 
 }

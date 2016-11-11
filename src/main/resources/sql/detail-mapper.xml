@@ -99,6 +99,11 @@
 		WHERE ITEM_DETAIL_ID = #{itemDetailid} AND ITEM_ID = #{itemid} AND USER_ID = #{userid}
 	</select>
 
+	<select id="selectCartId" parameterType="Cart" resultType="String">
+		SELECT CART_ID
+		FROM CART
+		WHERE ITEM_DETAIL_ID = #{itemDetailid} AND ITEM_ID = #{itemid} AND USER_ID = #{userid}
+	</select>
 
 	<select id="selectReviewListCount" parameterType="String" resultType="int">
 		SELECT COUNT(*)

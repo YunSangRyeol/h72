@@ -344,7 +344,10 @@ function ResizeFrame(name)
 				
 				// 장바구니 버튼 클릭 시 호출 메소드
 				document.getElementById("cartBtn").onmousedown = sendCart;
+				document.getElementById("purBtn").onmousedown = sendCart;
 			    function sendCart() {
+			    	console.log("thisthisthisthis");
+			    	var kinds = $(this).attr('data-type');//purchase(구매) or cart(카트)
 			    	var loginUser = '${loginUser.name }';
 			    	var loginUserId = '${loginUser.userid}';
 			    	var arrSelect = $(".option_mini.ui_optSelWrapper.position_top");//추가된 옵션 div 배열
@@ -405,23 +408,24 @@ function ResizeFrame(name)
 					    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID }' ,
 					    				mainImg : '${itemDetailList.get(0).MAIN_IMG }' ,
 					    				message : null ,
-					    				KitYN : 'N'},
+					    				KitYN : 'N' ,
+					    				kinds : kinds},
 					    		// 리턴 받는 dataType이 json이면 dataType을 json으로 변경
 					    		dataType : 'json' ,
 					    		success : function(data) {
-					    			alert("return : " + data.result + "\ncount(이미 등록된 카트리지 상품 수) : " + data.count);
-					    			if(data.result > 0) {alert(data.result + "개 insert 성공!"); $("#confirmLayer").css("display", "block");}
-					    			if(data.result == 0) {alert("insert 실패!");}
-					    			if(data.result == -1) {alert("카트에 이미 있습니다."); $("#confirmLayer").css("display", "block");}
+					    			if(kinds == 'cart'){
+						    			alert("return : " + data.result + "\ncount(추가된 상품 수) : " + data.count);
+						    			if(data.result > 0) {alert(data.result + "개 insert 성공!"); $("#confirmLayer").css("display", "block");}
+						    			if(data.result == 0) {alert("insert 실패!");}
+						    			if(data.result == -1) {alert("해당 상품이 카트에 이미 있습니다."); $("#confirmLayer").css("display", "block");}
+					    			}else if(kinds == 'purchase'){
+					    				purchase(data.cartId);
+					    			}
 					    		} ,
 					    		error : function(){
 					    			alert("error : 추가옵션을 선택하세요");
 					    		}
 					    	});
-			    	
-			    		//}else{
-			    		//	alert("로그인 해주세요");
-			    		//}
 			    	}
 			    }
 
@@ -439,6 +443,12 @@ function ResizeFrame(name)
                 str = String(str);
                 return str.replace(/[^\d]+/g, '');
             }
+          	
+          	function purchase(cartId){
+				alert("구매합니다.");
+          		location.href = "/h72/directOrder?cartAll=" + cartId; 
+          	}
+          	
             </script>
 			        
             <!-- <a href="javascript:BookMarkNow();" style="font-size:11px; padding:2px 10px 3px 10px; float:right; cursor:pointer; margin-right:0px;"><img src="/web/upload/sunny/image/icon_detailtop2.png" style="margin:-1px 5px 0 0;"><span style="color:#4da1bd; font-size:11px;">즐겨찾기추가</span></a></span> -->
@@ -581,10 +591,10 @@ function ResizeFrame(name)
             <!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
             <div class="xans-element- xans-product xans-product-action ">
             	<div class="btnArea" style="width:500px;">
-                    <a href="#none" class="first " onclick="product_submit(1, '/exec/front/order/basket/', this)">
+                    <a id="purBtn" data-type="purchase" href="#none" class="first " onclick="product_submit(1, '/exec/front/order/basket/', this)">
                     	<img src="/h72/resources/image/btn_buy.png" onmouseover="this.src='/h72/resources/image/btn_buy_h.png'" onmouseout="this.src='/h72/resources/image/btn_buy.png'" style="float:left;">
                     </a>
-                    <a id="cartBtn" href="#none" class="" onclick="product_submit(2, '/exec/front/order/basket/', this)">
+                    <a id="cartBtn" data-type="cart" href="#none" class="" onclick="product_submit(2, '/exec/front/order/basket/', this)">
                     	<img src="/h72/resources/image/btn_cart.png" onmouseover="this.src='/h72/resources/image/btn_cart_h.png'" onmouseout="this.src='/h72/resources/image/btn_cart.png'" style="float:left;">
                     </a>
                     
@@ -619,10 +629,6 @@ function ResizeFrame(name)
     </div>
     
     
-	<!-- 공급사:판매사정보 -->
-	<div class="supplyInfo displaynone">
-    </div>
-	<!-- //공급사:판매사정보 -->
 	</div>
 	<!-- //상단 제품 정보 -->
 
