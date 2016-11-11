@@ -46,8 +46,7 @@
 					$("#" + $(this).val() + " input[type=checkbox]").prop("checked", false);
 				}
 //				$("#" + $(this).val() + " input[type=checkbox]").change($(this).val());
-				alert("여긴 되는데..");
-				trCss($(this).val());
+				$("input[type=checkbox]").change();
 		})
 	})
  	

@@ -40,17 +40,17 @@
 		$("#allCheck").click(
 			function() {
 				if ($("#allCheck").prop("checked")) {
-					$("#orderList input[type=checkbox]").prop("checked", true);
+					$("#usersList input[type=checkbox]").prop("checked", true);
 				} else {
-					$("#orderList input[type=checkbox]").prop("checked", false);
+					$("#usersList input[type=checkbox]").prop("checked", false);
 				}
-				$("#orderList input[type=checkbox]").change();
+				$("#usersList input[type=checkbox]").change();
 		});
 	});
  	
 	//체크박스 선택시 tr 색 변경
 	$(function() {
-		$("#orderList input[type=checkbox]").change(function() {
+		$("#usersList input[type=checkbox]").change(function() {
 			if ($(this).is(":checked")) {
 				$(this).closest("tr").find("td").each(function() {
 					$(this).css("background", "#f6f6f6");

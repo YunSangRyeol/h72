@@ -174,11 +174,6 @@ body {
     border-collapse: collapse;
 }
 
- .orderList th {
-    display: table-header-group;
-    vertical-align: middle;
-}
-
  .orderList .checkMargin{
 	margin-top: 15px;
 	margin-bottom: 15px;

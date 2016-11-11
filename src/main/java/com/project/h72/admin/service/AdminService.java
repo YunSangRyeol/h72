@@ -18,9 +18,7 @@ public interface AdminService {
 	
 	List<Member> getMemberList(Paging paging);
 
-	List<Member> getMemberListWID(Paging paging);
-
-	List<Member> getMemberListWNAME(Paging paging);
+	List<Member> getMemberListWIDnName(Paging paging);
 
 	List<Member> getMemberListWDATE(Paging paging);
 	

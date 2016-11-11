@@ -114,11 +114,11 @@ public class AdminController {
 			if(wheres[0].equals("USER_ID")){
 				//아이디
 				countAll = adminService.getMemberCountWID(wheres[1]);
-				list = adminService.getMemberListWID(new Paging(page * + 1, count, order, wheres[1]));
+				list = adminService.getMemberListWIDnName(new Paging(page * + 1, count, order, true, wheres[0], wheres[1]));
 			}else if(wheres[0].equals("NAME")){
 				//이름
 				countAll = adminService.getMemberCountWNAME(wheres[1]);
-				list = adminService.getMemberListWNAME(new Paging(page * + 1, count, order, wheres[1]));
+				list = adminService.getMemberListWIDnName(new Paging(page * + 1, count, order, false, wheres[0], wheres[1]));
 				
 			}else if(wheres[0].equals("ENROLLDATE")){
 				//데이터 검색

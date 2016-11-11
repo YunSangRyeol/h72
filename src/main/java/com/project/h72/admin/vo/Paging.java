@@ -5,6 +5,7 @@ public class Paging {
 	private int page;
 	private int count;
 	private String order;
+	private boolean idtrue;
 	private String whatIdNName;
 	private String idNname;
 	private String start;
@@ -19,15 +20,17 @@ public class Paging {
 		this.page = page;
 		this.count = count;
 		this.order = order;
-	}
+	}	
 
-	public Paging(int page, int count, String order, String idNname) {
+	public Paging(int page, int count, String order, boolean idtrue, String whatIdNName, String idNname) {
 		super();
 		this.page = page;
 		this.count = count;
 		this.order = order;
+		this.idtrue = idtrue;
+		this.whatIdNName = whatIdNName;
 		this.idNname = idNname;
-	}	
+	}
 
 	public Paging(int page, int count, String order, String start, String end) {
 		super();
@@ -61,7 +64,22 @@ public class Paging {
 	public void setOrder(String order) {
 		this.order = order;
 	}
-	
+
+	public boolean isIdtrue() {
+		return idtrue;
+	}
+
+	public void setIdtrue(boolean idtrue) {
+		this.idtrue = idtrue;
+	}
+
+	public String getWhatIdNName() {
+		return whatIdNName;
+	}
+
+	public void setWhatIdNName(String whatIdNName) {
+		this.whatIdNName = whatIdNName;
+	}
 
 	public String getIdNname() {
 		return idNname;
@@ -89,13 +107,11 @@ public class Paging {
 
 	@Override
 	public String toString() {
-		return "Paging [page=" + page + ", count=" + count + ", order=" + order + ", idNname=" + idNname 
-				+ ", start=" + start + ", end=" + end + "]";
+		return "Paging [page=" + page + ", count=" + count + ", order=" + order + ", idtrue=" + idtrue
+				+ ", whatIdNName=" + whatIdNName + ", idNname=" + idNname + ", start=" + start + ", end=" + end + "]";
 	}
 
 	
 	
-	
-	
-	
 }
+	

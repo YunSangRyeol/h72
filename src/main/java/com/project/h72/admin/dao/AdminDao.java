@@ -29,13 +29,10 @@ public class AdminDao {
 		return sqlSession.selectList(NAMESPACE + "getMemberList", paging);
 	}
 
-	public List<Member> getMemberListWID(Paging paging) {		
+	public List<Member> getMemberListWIDnName(Paging paging) {	
 		return sqlSession.selectList(NAMESPACE + "getMemberListWID", paging);
 	}
 
-	public List<Member> getMemberListWNAME(Paging paging) {
-		return sqlSession.selectList(NAMESPACE + "getMemberListWNAME", paging);
-	}
 
 	public List<Member> getMemberListWDATE(Paging paging) {
 		return sqlSession.selectList(NAMESPACE + "getMemberListWDATE", paging);

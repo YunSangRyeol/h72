@@ -26,16 +26,9 @@ public class AdminServiceImp implements AdminService{
 
 
 	@Override
-	public List<Member> getMemberListWID(Paging paging) {
-		return dao.getMemberListWID(paging);
+	public List<Member> getMemberListWIDnName(Paging paging) {
+		return dao.getMemberListWIDnName(paging);
 	}
-
-
-	@Override
-	public List<Member> getMemberListWNAME(Paging paging) {
-		return dao.getMemberListWNAME(paging);
-	}
-
 
 	@Override
 	public List<Member> getMemberListWDATE(Paging paging) {
