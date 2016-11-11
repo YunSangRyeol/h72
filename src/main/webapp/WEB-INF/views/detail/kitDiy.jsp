@@ -180,7 +180,7 @@ $(document).ready(function(){
 									</c:if>
 									</c:forEach> 
 									</select>
-									<a id="kitDiy_imgWrap" href="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+									<a id="kitDiy_imgWrap" href="" onclick="window.open('/h72/detail/selectItem?ItemDetailId=${item.itemDetailId}','new','width=800','top=0');return false">
 										<img src="/h72/resources${item.mainImg}"></a>
 									<input type="hidden" id="thumbMainImg" value="${item.mainImg}"/>
 									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>
@@ -235,7 +235,7 @@ $(document).ready(function(){
 									</c:if>
 									</c:forEach> 
 									</select>
-									<a id="kitDiy_imgWrap" href="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+									<a id="kitDiy_imgWrap" href="" onclick="window.open('/h72/detail/selectItem?ItemDetailId=${item.itemDetailId}','new','width=800','top=0');return false">
 										<img src="/h72/resources${item.mainImg}">
 									</a>
 									<input type="hidden" id="thumbMainImg" value="${item.mainImg}"/>
@@ -290,7 +290,7 @@ $(document).ready(function(){
 									</c:if>
 									</c:forEach> 
 									</select>
-									<a id="kitDiy_imgWrap" href="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+									<a id="kitDiy_imgWrap" href="" onclick="window.open('/h72/detail/selectItem?ItemDetailId=${item.itemDetailId}','new','width=800','top=0');return false">
 										<img src="/h72/resources${item.mainImg}"></a>
 									<input type="hidden" id="thumbMainImg" value="${item.mainImg}"/>
 									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>
@@ -344,7 +344,7 @@ $(document).ready(function(){
 									</c:if>
 									</c:forEach> 
 									</select>
-									<a id="kitDiy_imgWrap" href="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+									<a id="kitDiy_imgWrap" href="" onclick="window.open('/h72/detail/selectItem?ItemDetailId=${item.itemDetailId}','new','width=800','top=0');return false">
 										<img src="/h72/resources${item.mainImg}"></a>
 									<input type="hidden" id="thumbMainImg" value="${item.mainImg}"/>
 									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>
@@ -398,7 +398,7 @@ $(document).ready(function(){
 									</c:if>
 									</c:forEach> 
 									</select>
-									<a id="kitDiy_imgWrap" href="" onclick="window.open('test.htm','new','resizable=no channelmode');return false">
+									<a id="kitDiy_imgWrap" href="" onclick="window.open('/h72/detail/selectItem?ItemDetailId=${item.itemDetailId}','new','width=800','top=0');return false">
 										<img src="/h72/resources${item.mainImg}"></a>
 									<input type="hidden" id="thumbMainImg" value="${item.mainImg}"/>	
 									<p id="thumbItemName">${fn:substring(item.itemName,0,25)}</p>

@@ -417,14 +417,14 @@ body, code {
 }
 #kitDiy_minuMenu span:first-of-type{
 	position: relative;
-    bottom: 7px;
+    top:-5px;
     left: 6px;
 	
 }
 #kitDiy_minuMenu span:nth-child(3){
 	position: relative;
-    bottom: 7px;
-    left:60px;
+    top:-5px;
+    left:30px;
 	
 }
 #select_minuMenu1{
@@ -461,6 +461,8 @@ body, code {
 #kitDiy_minuMenu div img{
 	width:23px;
 	hieght:20px;
+	position:relative;
+	top:9px;
 }
 @-webkit-keyframes display-none-transition {
   0% {
@@ -794,4 +796,7 @@ img, fieldset {
 
 .xans-product-basketadd .close img {
     cursor: pointer;
+}
+#main_header .main_line2 .main_board li{
+	margin-top:11px;
 }

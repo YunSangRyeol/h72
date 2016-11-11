@@ -88,7 +88,7 @@
 				/*상품코드 메뉴에 추가*/
 				$(select_productId+" li:nth-child(6)").text(product_code);
 				/*상품이름 메뉴에 추가*/
-				$(select_productId+" li:nth-child(1)").text($(product_name).val().substr(0,20));
+				$(select_productId+" li:nth-child(1)").text($(product_name).val().substr(0,15));
 				/*상품옵셥 메뉴에 추가*/
 				/*$(select_productId+" li:nth-child(2) .kitDiy_subSelect").text($(product_option).val());*/
 				/*상품가격 메뉴에 추가*/
@@ -122,7 +122,7 @@
 				/*상품코드 메뉴에 추가*/
 				$(select_productId+" li:nth-child(9)").text(product_code);
 				/*상품이름 메뉴에 추가*/
-				$(select_productId+" li:nth-child(2)").text($(product_name).val().substr(0,20));
+				$(select_productId+" li:nth-child(2)").text($(product_name).val().substr(0,15));
 				/*상품옵셥 메뉴에 추가
 				$(select_productId+" li:nth-child(4)").text($(product_option).val());*/
 				/*상품가격 메뉴에 추가*/
@@ -144,7 +144,7 @@
 				$(select_productId+" .cost").val($(product_price).val());
 				$(select_productId+" .select_input").attr("name","quantity");
 				/*상품이름 미니메뉴에 추가*/
-				$(miniMenuId+" span:first").html($(product_name).val().substr(0,25));
+				$(miniMenuId+" span:first").html($(product_name).val().substr(0,14)+"..");
 				
 				/*서브메뉴 버튼 숨기기*/
 				$(subMenu_li).css("display","none");
