@@ -45,13 +45,15 @@
 				} else {
 					$("#" + $(this).val() + " input[type=checkbox]").prop("checked", false);
 				}
-				$("#" + $(this).val() + " input[type=checkbox]").change();
+//				$("#" + $(this).val() + " input[type=checkbox]").change($(this).val());
+				alert("여긴 되는데..");
+				trCss($(this).val());
 		})
 	})
  	
 	//체크박스 선택시 tr 색 변경
 	$(function() {
-		$("#orderList input[type=checkbox]").change(function() {
+		$("input[type=checkbox]").change(function() {
 			if ($(this).is(":checked")) {
 				$(this).closest("tr").find("td").each(function() {
 					$(this).css("background", "#f6f6f6");
@@ -65,7 +67,6 @@
 		} );
 	});
  	
-
 
  	//날짜 선택 버튼시 inputd의 날짜 변경
 	 	

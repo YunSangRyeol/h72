@@ -164,7 +164,7 @@ $(function(){
     <table id="orderListAll" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListAll"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListAll" class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -177,7 +177,7 @@ $(function(){
 			<tbody class="">				
 				<c:forEach var="list" items="${list}" >				
 				<tr class="xans-record-"><!-- 내용 -->
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -254,7 +254,7 @@ $(function(){
     <table id="orderListOrder" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListOrder"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListOrder"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -268,7 +268,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '주문접수' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -337,7 +337,7 @@ $(function(){
     <table id="orderListPurchased" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListPurchased"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListPurchased"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -351,7 +351,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '결제완료' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"   class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -420,7 +420,7 @@ $(function(){
     <table id="orderListdelivery" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListdelivery"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListdelivery"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -434,7 +434,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '배송중' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -505,7 +505,7 @@ $(function(){
     <table id="orderListCancle" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListCancle"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListCancle"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -519,7 +519,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '취소요청' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -586,7 +586,7 @@ $(function(){
     <table id="orderListChange" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListChange"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListChange"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -600,7 +600,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '교환요청' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -667,7 +667,7 @@ $(function(){
     <table id="orderListBack" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListBack"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListBack"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -681,7 +681,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '반품요청' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" ></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>

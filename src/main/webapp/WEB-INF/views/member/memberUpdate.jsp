@@ -7,6 +7,7 @@
 <html>
 <head>
 <title>Member Info</title>
+<link href="/h72/resources/css/admin.css" type="text/css" rel="stylesheet">
 <link href="/h72/resources/css/mJoin.css" type="text/css" rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
@@ -33,7 +34,6 @@
 	});	
 		
 	//새 비밀번호 유효성 검사	
-	var newPwd= false;
 	$("#userpassNew").blur(function(){
 		var myPassword = $("#userpassNew").val();				
 		if(myPassword.length !=0){
@@ -42,6 +42,33 @@
 			}else{
 				$('#newPwLabel').hide();
 				newPwd = true;
+			}
+		}
+	});
+	
+	var newPwd = false; //입력한 비밀번호가 유효성에 적합한지 체크
+	$("#userpassNew").blur(function(){ //비밀번호 입력칸 옆에 사용가능여부 표시
+		var userpass = $("#userpassNew").val();		
+		var re_pwNum = userpass.search(/[0-9]/g); //숫자
+		var re_pwEng = userpass.search(/[a-z]/ig); //영문
+		var re_pwSpe = userpass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); //특문
+		var re_pwSpace = userpass.search(/[\s]/gi); //공백
+		if(userpass.length !=0){
+			if((userpass.length > 0 && userpass.length < 10)){ //길이 체크
+				$('#newPwLabel').show();
+				pwResult = false;
+
+			} else if (re_pwSpace >=0) {	//공백 여부
+				$('#newPwLabel').show();
+				pwResult = false;
+
+			} else if (re_pwNum < 0 || re_pwEng < 0 || re_pwSpe < 0) { //숫자, 영문, 특문 포함되어있는지
+				$('#newPwLabel').show();
+				pwResult = false;
+
+			} else{	//모든 조건 적합할 때
+				$('#newPwLabel').hide();
+				pwResult = true;
 			}
 		}
 	});
@@ -181,18 +208,18 @@
 							<tr>
 								<th scope="row">기존 비밀번호 <span id="mjoin_red">*</span></th>
 								<td><input id="userpass"  maxlength="16" type="password"> 
-								<label id="nowPwLabel" style="color:red; display:none;">비밀번호가 일치하지 않습니다.</label></td>
+								<label id="nowPwLabel" style="color:red; display:none;">&nbsp; 비밀번호가 일치하지 않습니다.</label></td>
 							</tr>
 							<tr>
 								<th scope="row">새로운 비밀번호 <span id="mjoin_red">*</span></th>
 								<td><input id="userpassNew" name="userpassNew" maxlength="16" type="password"> 
-								<label id="newPwLabel" style="color:red; display:none;">사용불가</label>&nbsp; (영문 대소문자/숫자/특수문자, 10~16자)</td>
+								<label id="newPwLabel" style="color:red; display:none;">&nbsp; 사용불가</label>&nbsp; (영문 대소문자/숫자/특수문자, 10~16자)</td>
 							</tr>	
 							<tr>
 								<th scope="row">새로운 비밀번호 확인 <span id="mjoin_red">*</span></th>
 								<td><input id="userpass_confirm" maxlength="16"
 									 type="password">
-									<label id="newPwLabelOK" style="color:red; display:none;">비밀번호가 일치하지 않습니다.</label></td>
+									<label id="newPwLabelOK" style="color:red; display:none;">&nbsp; 비밀번호가 일치하지 않습니다.</label></td>
 							</tr>
 							<tr>
 								<th scope="row">주소 <span id="mjoin_red">*</span></th>
@@ -250,9 +277,9 @@
 					</table>
 				</div>
 				<div id="mupdate_btnArea">
-				<input type="button" id="updateMember" value="변경하기">
+				<input type="button" id="updateMember" class="userUpBtn" value="변경하기">
 				 &nbsp;  &nbsp;  &nbsp; 
-				<input type="button" id="deleteMember" value="탈퇴하기">
+				<input type="button" id="deleteMember" class="userUpBtn" value="탈퇴하기">
 				</div>
 			</form>
 		</div>

@@ -223,7 +223,7 @@
  	</div>
  	
 	<div id="userContents" >
-		<table id="usersList" border="1" summary="">
+		<table id="usersList" >
 			<thead>
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck" class="checkMargin"></th>
@@ -241,7 +241,7 @@
 						
 				<c:forEach var="list" items="${list}" >
 				<tr class="xans-record-">
-					<td><input type="checkbox" class="checkMargin"></td>
+					<td><input type="checkbox" class="checkMargin" id="checkUser"></td>
 					<td class="levelcode">${list.levelcode }</td>
 					<td class="userid"><p><strong> ${list.userid } </strong></p></td>
 					

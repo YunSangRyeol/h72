@@ -30,6 +30,17 @@ body {
     margin: 0 auto;
 }
 
+.userUpBtn{
+	padding: 7px 7px 7px 7px;
+    background: black;
+    border: 1px solid #a2a2a2;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+
 /*타이틀*/
 .admin_order_titleArea h2 {
     font-family: "Noto Sans KR", sans-serif;
@@ -77,6 +88,9 @@ body {
     font-size: 13px;
 }
 
+.orderCheck{
+	margin: 20px 15px 20px 15px;
+}
 .searchDateInput{
     width: 150px;
     height: 30px;
@@ -139,9 +153,8 @@ body {
 	margin: 0 auto;
 	margin-top: 50px;
 	margin-bottom: 150px;
-	
 }
-table #usersList {
+#usersList {
 	width: 100%;
 	border: 0;
 	border-spacing: 0;
@@ -149,22 +162,31 @@ table #usersList {
 	text-align:center;
 } 
 
+#usersList thead{
+	border: 1px solid #ccc;
+	background-color: #c7c7c7;
+	padding-top: 10px;
+}
+
  .orderList {
     width: 100%;
     border: 0px;
     border-collapse: collapse;
 }
 
- .orderList thead {
+ .orderList th {
     display: table-header-group;
     vertical-align: middle;
-    border-color: inherit;
-    
 }
 
  .orderList .checkMargin{
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#allCheck, #checkUser{
+	 margin-top: 10px;
+	 margin-bottom: 10px;
 }
 
 ul.tab {
@@ -447,11 +469,14 @@ ul.accessibility {font-size: 1px;height: 1px; line-height: 1px; overflow: hidden
 div.label_ie {padding:0; margin:0;}
 
 
-
+.chartTable{
+	border-collapse:collapse;
+	border: 1px solid #ccc;
+}
 
 .chartTable th{
 	 background-color: #e0e0e0;
-	 border-spacing: 0;
+	 border-spacing: 0px;
 	 padding: 10px 30px 10px 30px;
 }
 
@@ -459,4 +484,5 @@ div.label_ie {padding:0; margin:0;}
 	 border-spacing: 0;
 	 padding: 10px 10px 10px 0px;
 	 text-align: right;
+	 border: 1px solid #ccc;
 }
