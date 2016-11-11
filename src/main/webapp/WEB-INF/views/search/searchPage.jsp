@@ -59,7 +59,7 @@
 									<div class="box">
 										<a href="#" name="anchorBoxName_8025"><img
 											src="/h72/resources${list.mainImg }" alt="" class="thumb"
-											style="width: 238px; height: 300px;"></a>
+											style="width: 250px; height: 250px;"></a>
 										<p class="name"></p>
 										<p
 											style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">

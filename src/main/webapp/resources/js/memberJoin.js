@@ -33,6 +33,46 @@ $(document).ready(function() {
 			});
 		}
 	});
+	var pwResult = false; //입력한 비밀번호가 유효성에 적합한지 체크
+	$("#userpass").blur(function(){ //비밀번호 입력칸 옆에 사용가능여부 표시
+		var userpass = $("#userpass").val();		
+		var re_pwNum = userpass.search(/[0-9]/g); //숫자
+		var re_pwEng = userpass.search(/[a-z]/ig); //영문
+		var re_pwSpe = userpass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); //특문
+		var re_pwSpace = userpass.search(/[\s]/gi); //공백
+		if(userpass.length !=0){
+			if((userpass.length > 0 && userpass.length < 10)){ //길이 체크
+				$('#newPwLabel1').hide();
+				$('#newPwLabel').show();
+			} else if (re_pwSpace >=0) {	//공백 여부
+				$('#newPwLabel1').hide();
+				$('#newPwLabel').show();
+			} else if (re_pwNum < 0 || re_pwEng < 0 || re_pwSpe < 0) { //숫자, 영문, 특문 포함되어있는지
+				$('#newPwLabel1').hide();
+				$('#newPwLabel').show();
+			} else{	//모든 조건 적합할 때
+				$('#newPwLabel').hide();
+				$('#newPwLabel1').show();
+				pwResult = true;
+			}
+		}
+	});
+	$("#userpass_confirm").blur(function(){ //비밀번호 확인 옆에 일치 여부 표시
+		var userpass = $("#userpass").val();		
+		var userpass_confirm = $("#userpass_confirm").val();		
+		if(pwResult == true){	//비밀번호가 유효성조건에 적합할 때   
+			if(userpass == userpass_confirm){	//비밀번호가 서로 일치하면
+				$('#samePw').hide();
+				$('#samePw1').show();
+			} else {	//일치하지 않음
+				$('#samePw').show();
+				$('#samePw1').hide();
+			}
+		}else{	//비밀번호가 유효성조건 부적합할때 일치여부 숨김
+			$('#samePw').hide();
+			$('#samePw1').hide();
+		}
+	});
 	$('#joinBtn').click(function() { // 회원가입 버튼 클릭시
 		var userid = $("#userid").val(); // 아이디값 받아옴
 
