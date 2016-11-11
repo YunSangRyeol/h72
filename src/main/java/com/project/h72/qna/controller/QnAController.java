@@ -92,4 +92,8 @@ public String notice_delete(@RequestParam("qNo") String qNo, @RequestParam("qTit
 	return "redirect:/boader/qna_list";
 }	
 
+
+
+
+
 }

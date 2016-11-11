@@ -8,9 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>board list</title>
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <link href="/h72/resources/css/notice.css" type="text/css"
 	rel="stylesheet">
 </head>
+<script type="text/javascript">
+
+/* 	$(function(){
+				$('#noticeNo').val('${count }').prop(10, true);
+			}); */
+	
+</script>
 <body>
 
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
@@ -41,6 +49,7 @@
 				<span
 					class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 			</div>
+	
 			<div class="boardList">
 				<table border="1" summary="">
 					<caption>게시판 목록</caption>
@@ -53,6 +62,8 @@
 						<col style="width: 100px;" class="">
 
 					</colgroup>
+					
+					
 					<thead
 						class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 						<tr style="">
@@ -60,7 +71,6 @@
 							<th scope="col">제목</th>
 							<th scope="col" class="">작성일</th>
 
-						</tr>
 					</thead>
 					<tbody>
 					        
@@ -108,39 +118,70 @@
 			</div>
 		</div>
 
-		<div
+	<!-- 	<div
 			class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002">
-			<p>
-				<a href="?board_no=1&amp;page=1"><img
-					src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
-			</p>
-			<ol>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=1"
-					class="this">1</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=2"
-					class="other">2</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=3"
-					class="other">3</a></li>
-<!-- 				<li class="xans-record-"><a href="?board_no=1&amp;page=4"
-					class="other">4</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=5"
-					class="other">5</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=6"
-					class="other">6</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=7"
-					class="other">7</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=8"
-					class="other">8</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=9"
-					class="other">9</a></li>
-				<li class="xans-record-"><a href="?board_no=1&amp;page=10"
-					class="other">10</a></li> -->
-			</ol>
-			<p>
-				<a href="?board_no=1&amp;page=2"><img
-					src="/h72/resources/image/btn_page_next.png"  alt="다음 페이지"></a>
-			</p>
+			<p> -->
+			
+<!-- 			<div id="selectNumdDiv">
+		 	<select id="selectNum">
+				<option value="10"> 10</option>
+				<option value="20"> 20</option>
+				<option value="30">  30</option>
+			</select>
+	 	</div> -->
+			
+			<div id="notice_page_list">
+					<c:url var="goUserfirst" value="boader/notice" >
+					<c:param name="page" value="${1 }" />
+					<c:param name="count" value="${count }" />
+
+			</c:url>
+				 <a href="${goUserfirst }" >[처음으로]</a>
+			<c:url var="goUserMinus" value="boader/notice" >
+					<c:param name="page" value="${nowPage -1 }" />
+					<c:param name="count" value="${count }" />
+
+			</c:url>
+			
+			<c:if test="${nowPage eq 1 }">
+				[이전] 
+			</c:if>
+			<c:if test="${nowPage ne 1 }" >
+				 <a href="${goUserMinus }" >[이전]</a>
+			</c:if>
+			<c:forEach var="p" begin="1" end="${endPage }" >	
+				<c:url var="goUser" value="boader/notice" >
+					<c:param name="page" value="${p }" />
+					<c:param name="count" value="${count }" />
+				</c:url>
+				<c:if test="${p eq nowPage }">
+					<span style="font-size:20px; color:red;">[${p }]</span>
+				</c:if>
+				<c:if test="${p ne nowPage }">
+					<a href="${goUser }">[${p }]</a>
+				</c:if>
+			</c:forEach>
+			<c:url var="goUserPlus" value="boader/notice" >
+					<c:param name="page" value="${ nowPage + 1 }" />
+					<c:param name="count" value="${count }" />
+			</c:url>
+             <c:if test ="${nowPage eq endPage }">
+             	[다음]
+             </c:if>
+              <c:if test ="${nowPage ne endPage }">
+             	<a href="${goUserPlus }">[다음]</a>
+             </c:if>
 		</div>
+			<c:url var="goUserList" value="boader/notice" >
+					<c:param name="page" value="${endPage }" />
+					<c:param name="count" value="${count }" />
+
+			</c:url>
+				<a href="${goUserList }">[마지막으로]</a>
+		</div>
+			
+		
+		
 
 	<!-- 	<form id="boardSearchForm" name="" action="/board/free/list.html"
 			method="get" enctype="multipart/form-data">
@@ -171,8 +212,8 @@
 				</fieldset>
 			</div>
 		</form> -->
-	
-	</div>
+	<!-- 
+	</div> -->
 
 
 </body>

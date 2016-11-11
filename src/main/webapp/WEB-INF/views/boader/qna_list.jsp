@@ -67,9 +67,10 @@
 								<td class="qTitle"><a href="qna_detail_view?qNo=${list.qNo}">${list.qTitle}</a>
 								</td>
 								<%-- <td class="qWriter">${list.qWriter}</td> --%>
-								<td class="qDate">${list.qDate}</td>
+								<td class="qDate">${list.qDate}</td>			
 								<td class="answer">${list.answer}</td>
 							</tr>
+							
 						</c:forEach>
 						<%--             <c:if test="${count==0}">
                 <tr>

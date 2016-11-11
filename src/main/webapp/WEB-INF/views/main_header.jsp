@@ -71,7 +71,17 @@
 							class="main_title"> &nbsp;
 							<ul>
 								<li><a href="<c:url value="/boader/notice_list"/>">공지사항</a></li>
+									<c:url var="goUser" value="boader/notice" >
+								<c:param name="page" value="1" />
+								<c:param name="count" value="10" />
+
+							</c:url>
 								<li><a href="<c:url value="/boader/qna_list"/>">Q&A</a></li>
+									<c:url var="goUser" value="boader/notice" >
+								<c:param name="page" value="1" />
+								<c:param name="count" value="10" />
+
+							</c:url>
 								<li><a href="<c:url value="/boader/life_kit_detail"/>">생존키트란?</a></li>
 							</ul></li>
 					</ul>

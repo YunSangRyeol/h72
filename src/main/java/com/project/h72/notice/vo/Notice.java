@@ -9,6 +9,7 @@ public class Notice {
 	private String noticeContent; //글내용
 	private Date enrolldate; //날짜
 	
+	//paging 처리를 위한 변수들
 	
 
 	public Notice(String noticeTitle, String noticeContent) {
@@ -78,6 +79,7 @@ public class Notice {
 				+ ", enrolldate=" + enrolldate + "]";
 	}
 
+	
 
 
 }

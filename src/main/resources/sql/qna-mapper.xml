@@ -47,4 +47,7 @@
 		DELETE FROM QNA
 		WHERE Q_NO = #{qNo}
 		</delete>
+		
+	
+		
 </mapper>

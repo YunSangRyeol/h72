@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.h72.HomeController;
 import com.project.h72.admin.service.AdminService;
+import com.project.h72.admin.vo.Paging;
 import com.project.h72.member.vo.Member;
 import com.project.h72.notice.service.NoticeService;
 import com.project.h72.notice.vo.Notice;
@@ -100,5 +102,51 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		return "boader/life_kit_detail";
 	}
+	
+	@RequestMapping(value="boader/notice", method = RequestMethod.GET)
+	public String noticeCount(@RequestParam("page") int page,
+						       		@RequestParam("count") int count,	 Model model){
+		
+		System.out.println("시작!!" + page + ", " + count);
+		
+		int countAll = 0;
+		
+		List<Notice> list = noticeService.getNoticeList(page,count);
+
+		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
+		int endPage = (int)(countAll / (count + 0.9) + 1);		
+		
+		System.out.println("고!!" + countAll + ", " + endPage + ", "  + " page" + page);
+		model.addAttribute("list", list );
+		model.addAttribute("countAll", countAll); //총 회원수
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("nowPage", page);
+		model.addAttribute("count", count);
+		
+		return "boader/notice_list";
+	}
+	
+	
+	
+	/*
+	
+	@RequestMapping(params="key=list")//초기페이지
+
+    public String Noticelist(@ModelAttribute("notice")Notice sch,Model d){
+        //sch.setPageSize(no);
+        d.addAttribute("alllist", noticeService.Noticelist(sch));
+        return "board/notice_list";
+    }
+
+    @RequestMapping(params="key=sch")//그어떤 페이지이동이나 리스트변경이 있을시..
+
+    public String schBoard(@ModelAttribute("notice")Notice sch,Model d){
+        d.addAttribute("alllist", noticeService.Noticelist(sch));
+
+        return "board/notice_list";
+
+    }*/
+	
+	
 	
 }

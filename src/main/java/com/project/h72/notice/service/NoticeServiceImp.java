@@ -1,5 +1,6 @@
 package com.project.h72.notice.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,16 +35,6 @@ public class NoticeServiceImp implements NoticeService {
 		return dao.NoticeInsert(insertNoticeTitle,insertNoticeContent);
 	}
 
-
-/*	@Override
-	public int upnotice(String upNoticeTitle, String upNoticeContent) {
-		// TODO Auto-generated method stub
-		return dao.NoticeUp(upNoticeTitle,upNoticeContent);
-	}
-*/
-
-
-
 	@Override
 	public int upnotice(String noticeNo, String upNoticeTitle, String upNoticeContent) {
 		// TODO Auto-generated method stub
@@ -64,5 +55,12 @@ public class NoticeServiceImp implements NoticeService {
 		return dao.deletenotice(noticeNo,noticeTitle,noticeContent);
 	}
 
-	
+	@Override
+	public List<Notice> getNoticeList(int page, int count) {
+		// TODO Auto-generated method stub
+		List<Notice> list = dao.getNoticeList(page, count);
+		System.out.println("list"+ list);
+		return dao.getNoticeList(page, count);
+	}
+
 }

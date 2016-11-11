@@ -67,6 +67,14 @@
 											style="text-align: left; line-height: 1.8; padding: 40px;">
 											<p align="center">
 											${list.qContent}</p>
+											<br><br><br><br>
+
+
+											<c:if test="${!(list.answerContent eq null)}">
+											<p align="center">
+											${list.answerContent}</p>
+										
+											</c:if>
 
 										</div>
 									</td>

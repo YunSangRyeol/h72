@@ -42,4 +42,16 @@
 	
 	</delete>
 
+	<select id="getNoticeList2" resultType="Notice" parameterType="Map">
+		SELECT * 
+		FROM( SELECT T1.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTAL_CNT
+              FROM( SELECT *
+			        FROM NOTICE
+			        ORDER BY ENROLLDATE
+			         ) T1
+			    )
+		 WHERE RNUM BETWEEN ((#{page}-1) * #{count} + 1) AND ( ((#{page}-1) * #{count} + 1) + #{count} -1) 
+
+  </select>
+	
 </mapper>

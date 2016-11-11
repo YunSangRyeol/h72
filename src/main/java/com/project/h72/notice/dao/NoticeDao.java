@@ -1,6 +1,7 @@
 package com.project.h72.notice.dao;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +74,20 @@ public class NoticeDao {
 		notice.put( "noticeContent", noticeContent );
 		return sqlSession.update(NAMESPACE+"deletenotice",notice);
 	}
-	
+
+
+	public List<Notice> getNoticeList(int page, int count) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> pag = new HashMap<String, Integer>();
+		pag.put( "page", page);
+		pag.put( "count", count);
+		
+		List<Notice> list =sqlSession.selectList(NAMESPACE +"getNoticeList" , pag);
+		System.out.println("DAO List"+list);
+		return list;
+
+	}
+
 }
 
 
