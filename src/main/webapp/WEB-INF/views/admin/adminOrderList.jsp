@@ -109,7 +109,7 @@ $(function(){
 	<div id="adminSearchhow">
 	<select class="selectOption" >
 		<option value="date" selected>주문일자</option>
-		<option value="user">주 문 자</option>
+		<option value="user">주문자 ID</option>
 	</select>
 	</div>
 	<div id="searchDate">
@@ -125,7 +125,7 @@ $(function(){
 		</form>
 	</div><!-- searchDate -->    
     <div id="searchID"  style="display:none;">
-		<form method="post" action="/h72/orderASearchUserID.do">
+		<form method="GET" action="/h72/orderASearchUserID.do">
 			<input type="text" name="userid" size="30" class="searchInput"> &nbsp; <input type="submit" value="검색" class="admin_btn_min">
 		</form>
 	</div>
@@ -178,13 +178,16 @@ $(function(){
 				<c:forEach var="list" items="${list}" >				
 				<tr class="xans-record-"><!-- 내용 -->
 					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" class="orderCheck"></td>
-					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+					<td class="number"><p> ${list.enrollDate } <br>
+						<c:url var="goOrderDetail" value="/orderNoDetail.do">
+							<c:param name="orderNo" value="${list.orderNo }" />
+						</c:url>
+									<a href="${goOrderDetail }">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>					
-					<c:set var="resultAll" value="${list.totalPrice+resultAll}" />
-						<div class="displaynone"></div></td>
-					<td class="who"><a>${list.userId }</a></td>
+					<c:set var="resultAll" value="${list.totalPrice+resultAll}" />						
+					<td class="who">${list.userId }</td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state" style="display:none">${list.orderStatus}</td>
 					<td class="state">
@@ -689,7 +692,7 @@ $(function(){
 						<c:set var="resultpaid" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
 						<div class="displaynone"></div>
 					</td>
-					<td class="who"><a>${list.userId }</a></td>
+					<td class="who">${list.userId }</td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="change">
 						<select id="change${list.orderNo }" name="selectChangeOne${list.orderNo}3" class="selectOption">

@@ -45,15 +45,11 @@ public class AdminServiceImp implements AdminService{
 	}
 	
 	@Override
-	public int getMemberCountWID(String id) {
-		return dao.getMemberCountWID(id);
+	public int getMemberCountWIDnName(String what, String how) {
+		return dao.getMemberCountWIDnName(what, how);
 	}
 
 
-	@Override
-	public int getMemberCountWNAME(String name) {
-		return dao.getMemberCountWNAME(name);
-	}
 
 
 	@Override
@@ -155,6 +151,21 @@ public class AdminServiceImp implements AdminService{
 	public TotalOrder kit(String now) {
 		return dao.kit(now);
 	}
+
+
+	@Override
+	public Member whoUser(String id) {
+		return dao.whoUser(id);
+	}
+
+
+	@Override
+	public Order orderNoDetail(String orderNo) {
+		return dao.orderNoDetail(orderNo);
+	}
+
+
+
 
 
 

@@ -113,17 +113,19 @@ public class AdminController {
 			
 			if(wheres[0].equals("USER_ID")){
 				//아이디
-				countAll = adminService.getMemberCountWID(wheres[1]);
+				countAll = adminService.getMemberCountWIDnName(wheres[0], wheres[1]);
 				list = adminService.getMemberListWIDnName(new Paging(page * + 1, count, order, true, wheres[0], wheres[1]));
 			}else if(wheres[0].equals("NAME")){
 				//이름
-				countAll = adminService.getMemberCountWNAME(wheres[1]);
-				list = adminService.getMemberListWIDnName(new Paging(page * + 1, count, order, false, wheres[0], wheres[1]));
+				System.out.println("이ㅏ름으로 검색합니다.");
 				
+				countAll = adminService.getMemberCountWIDnName(wheres[0], wheres[1]);
+				System.out.println("카운트성공" + countAll);
+				list = adminService.getMemberListWIDnName(new Paging(page * + 1, count, order, false, wheres[0], wheres[1]));
 			}else if(wheres[0].equals("ENROLLDATE")){
 				//데이터 검색
 				countAll = adminService.getMemberCountWDATE(wheres[1], wheres[2]);		
-				list = adminService.getMemberListWDATE(new Paging(page * + 1, count, order, wheres[1], wheres[2]));
+				list = adminService.getMemberListWDATE(new Paging(page  + 1, count, order, wheres[1], wheres[2]));
 			}
 		}		
 		
@@ -186,8 +188,17 @@ public class AdminController {
 		
 		return "redirect:/admin/users";
 	}
-
 	
+	//회원관리 - 회원 상세 보기
+	@RequestMapping(value="whoUser.do", method = RequestMethod.GET)
+	public String whoUser(@RequestParam("userid") String id, Model model){
+		
+		
+		Member user = adminService.whoUser(id);
+		model.addAttribute("user", user);
+		
+		return "admin/userDetail";
+	}
 	
 	
 	
@@ -206,6 +217,19 @@ public class AdminController {
 		model.addAttribute("listContents", listContents );
 		
 		return "admin/adminOrderList";
+	}
+	
+	//주문상세보기
+	@RequestMapping(value="orderNoDetail.do", method = RequestMethod.GET)
+	public String orderNoDetail(@RequestParam("orderNo") String orderNo, Model model){
+
+		Order aa = adminService.orderNoDetail(orderNo);	
+		System.out.println("order ;alksdjfa;l" + aa);
+		model.addAttribute("order", aa );
+
+		
+		return "admin/orderDetail";
+		
 	}
 	
 	//주문페이지 전체 변경
@@ -260,7 +284,7 @@ public class AdminController {
 	}
 		
 	//회원관리 - ID검색
-		@RequestMapping(value="orderASearchUserID.do", method = RequestMethod.POST)
+		@RequestMapping(value="orderASearchUserID.do", method = RequestMethod.GET)
 		public String orderASearchUserID(@RequestParam("userid") String id, Model model){
 			
 			List<Order> list = adminService.orderASearchUserID(id);

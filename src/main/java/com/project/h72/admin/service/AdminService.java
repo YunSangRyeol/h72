@@ -29,9 +29,7 @@ public interface AdminService {
 
 	int getMemberCount();
 	
-	int getMemberCountWID(String id);
-
-	int getMemberCountWNAME(String name);
+	int getMemberCountWIDnName(String what, String how);
 
 	int getMemberCountWDATE(String start, String end);
 	
@@ -76,6 +74,10 @@ public interface AdminService {
 	TotalOrder category(String now);
 
 	TotalOrder kit(String now);
+
+	Member whoUser(String id);
+
+	Order orderNoDetail(String orderNo);
 
 
 

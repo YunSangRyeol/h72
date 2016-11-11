@@ -89,23 +89,21 @@
 		SELECT COUNT(*) FROM USERS WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
 	</select>
 				
-	<select id="getMemberCountWID" parameterType="String" resultType="java.lang.Integer">
+	<select id="getMemberCountWIDnName" parameterType="Map" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM USERS 
 		WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
-		 AND USER_ID LIKE '%' || #{id} || '%'
+		 AND ${what} LIKE '%' || #{how} || '%'
 	</select>
 	
-	<!-- 네임 오류!!!!! -->
-	<select id="getMemberCountWNAME" parameterType="String" resultType="java.lang.Integer">
-		SELECT COUNT(*) FROM USERS 
-		WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP'
-		 AND NAME LIKE '%' || #{name} || '%'
-	</select>	
 	
 	<select id="getMemberCountWDATE" parameterType="Map" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM USERS 
 		WHERE LEVEL_CODE != 'ADMIN' AND LEVEL_CODE != 'STEP' 
 		  AND ENROLLDATE BETWEEN TO_DATE(#{start}) AND TO_DATE(#{end})+1
+	</select>
+	
+	<select id="whoUser" parameterType="String" resultType="member">
+		SELECT * FROM USERS WHERE USER_ID = #{id}
 	</select>
 	
 	
@@ -171,6 +169,11 @@
 	<select id="getOrderList" resultType="order">
 		SELECT * FROM ORDER_LIST WHERE ENROLL_DATE between SYSDATE-3 and SYSDATE+1
 	</select>
+	
+	<select id="orderNoDetail" resultType="order" parameterType="String">
+		SELECT * FROM ORDER_LIST WHERE ORDER_NO = #{orderNo}
+	</select>
+	
 	
 	<select id="getOrderContentsList" resultType="OrderContents">
 		 SELECT ORDER_NO, ITEM_ID, ITEM_NAME, ITEM_OPTION_NAME, ITEM_DETAIL_ID, MAIN_IMG, QUANTITY, SAVING_POINT, COST, MESSAGE, KIT_YN

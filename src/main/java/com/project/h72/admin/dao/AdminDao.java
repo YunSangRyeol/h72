@@ -48,15 +48,16 @@ public class AdminDao {
 		return sqlSession.selectOne(NAMESPACE + "getMemberCount");
 	}
 	
-	public int getMemberCountWID(String id) {
-		System.out.println("id 검색 실행" + id);
-		return sqlSession.selectOne(NAMESPACE + "getMemberCountWID", id);
+	public int getMemberCountWIDnName(String what, String how) {
+		System.out.println( what + " 검색 실행" + how);
+		
+		Map<String, String> whatNhow = new HashMap<String, String>();
+		whatNhow.put( "what", what);
+		whatNhow.put( "how", how );
+		
+		return sqlSession.selectOne(NAMESPACE + "getMemberCountWIDnName", whatNhow);
 	}
 
-	public int getMemberCountWNAME(String name) {
-		System.out.println("이름 검색 실행" + name);
-		return sqlSession.selectOne(NAMESPACE + "getMemberCountWNAME" + name);
-	}
 
 	public int getMemberCountWDATE(String start, String end) {
 		System.out.println("날짜 검색 실행" + start + "부터 " + end);
@@ -176,6 +177,15 @@ public class AdminDao {
 	public TotalOrder kit(String now) {
 		return sqlSession.selectOne(NAMESPACE + "kit", now);
 	}
+
+	public Member whoUser(String id) {
+		return sqlSession.selectOne(NAMESPACE + "whoUser", id);
+	}
+
+	public Order orderNoDetail(String orderNo) {
+		return sqlSession.selectOne(NAMESPACE + "orderNoDetail", orderNo);
+	}
+
 
 
 

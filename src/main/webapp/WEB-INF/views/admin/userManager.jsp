@@ -166,8 +166,8 @@
 	</div>	
     </div>
       <ul id="admin_order_detail">
-	    <li>회원ID를 클릭하시면 회원정보를 모두 확인할수 있습니다. 회원 삭제는 해당창에서 삭제가능합니다.</li>
-	    <li>주문번호를 클릭하시면 해당 회원의 구매 상세내역을 확인할수 있습니다</li>
+	    <li>회원 이름를 클릭하시면 회원정보를 모두 확인할수 있습니다.</li>
+	    <li>회원ID를 클릭하시면 해당회원의 구매내역 페이지로 이동합니다.</li>
       </ul>
 	
 	<div id="countUsers">
@@ -228,7 +228,7 @@
 				<tr>
 					<th scope="col" class="checked"><input type="checkbox" id="allCheck" class="checkMargin"></th>
 					<th scope="col" class="levelcode">회원 등급</th>
-					<th scope="col" class="userid"><p>회원 ID</p></th>
+					<th scope="col" class="userid"><p>회원 ID</p></a></th>
 					<th scope="col" class="name">이름</th>
 					<th scope="col" class="birthdate">생년월일</th>
 					
@@ -243,9 +243,14 @@
 				<tr class="xans-record-">
 					<td><input type="checkbox" class="checkMargin" id="checkUser"></td>
 					<td class="levelcode">${list.levelcode }</td>
-					<td class="userid"><p><strong> ${list.userid } </strong></p></td>
-					
-					<td class="name">${list.name }</td>
+						<c:url var="goSearchUser" value="/orderASearchUserID.do">
+							<c:param name="userid" value="${list.userid }" />
+						</c:url>
+					<td class="userid"><a href="${goSearchUser }"><p><strong> ${list.userid } </strong></p></a></td>
+						<c:url var="goWhoUser" value="/whoUser.do">
+							<c:param name="userid" value="${list.userid }" />
+						</c:url>					
+					<td class="name"><a href="${goWhoUser }" target="_blank">${list.name }</a></td>
 					<td class="birthdate">${list.birthdate }</td>
 					<td class="enrollDate">${list.enrollDate }</td>
 					<td class="totalprice"><a href="">${list.totalprice }</a></td>
