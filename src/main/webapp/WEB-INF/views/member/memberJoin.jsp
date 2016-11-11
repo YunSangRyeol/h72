@@ -31,7 +31,7 @@
 				<p class="mjoin_required">
 					<span id="mjoin_red">*</span> 필수입력사항
 				</p>
-				<form action="../mJoin.do" method="post" class="mJoinForm">
+				<form action="../mJoin.do" method="post" class="mJoinForm" id="mJoinForm">
 					<div class="mjoin_boardWrite">
 						<table border="1" summary="">
 							<tbody>
@@ -41,13 +41,13 @@
 										value="" type="text"> <input type="button"
 										id="chkDupId" value="아이디 중복확인"
 										style="background: #fff; border: 1px soild #eee; color: black; font-zise: 11px; border-radius: 7px; height: 25px;">(영문자/숫자,
-										5~12자) <input type="hidden" id="chkYN" value="n"></td>
+										5~10자) <input type="hidden" id="chkYN" value=""></td>
 								</tr>
 								<tr>
 									<th scope="row">비밀번호 <span id="mjoin_red">*</span></th>
 									<td><input id="userpass" name="userpass"
 										autocomplete="off" maxlength="16" value="" type="password">
-										(영문 대소문자/숫자/특수문자, 10~16자)</td>
+										(영문 대소문자/숫자/특수문자, 10~20자)</td>
 								</tr>
 								<tr>
 									<th scope="row">비밀번호 확인 <span id="mjoin_red">*</span></th>
@@ -57,24 +57,23 @@
 								<tr>
 									<th scope="row">이름 <span id="mjoin_red">*</span></th>
 									<td><input id="name" name="name"
-										fw-filter="isFill&amp;isFill&amp;isMin[2]&amp;isMax[10]&amp;isIdentity"
-										fw-label="닉네임" fw-msg="" class="inputTypeText" value=""
-										type="text"> (한글/영문/숫자 2~10자, 특수문자 불가능)</td>
+										 class="inputTypeText" value=""
+										type="text"></td>
 								</tr>
 								<tr class="">
 									<th scope="row">생년월일 <span id="mjoin_red">*</span></th>
 									<td><input id="birthdate" name="birthdate"
-										fw-filter="isFill" fw-label="생년월일" fw-msg=""
+										 value="" 
 										class="inputTypeText" type="date"></span>&nbsp;ex)2000-01-01</td>
 								</tr>
 								<tr>
 									<th scope="row">주소 <span id="mjoin_red">*</span></th>
-									<td><input type="text" id="postnum" name="postnum"
-										placeholder="우편번호"> <input type="button"
+									<td><input type="text" id="postnum" value=""  name="postnum"
+										placeholder="우편번호" readonly> <input type="button"
 										id="postFindBtn" onclick="sample4_execDaumPostcode()"
 										value="우편번호 찾기"><br> <input type="text"
-										id="address" name="address" placeholder="주소" readonly><br>
-										<input type="text" id="addressdetail" name="addressdetail"
+										id="address" value=""  name="address" placeholder="주소" readonly><br>
+										<input type="text" id="addressdetail" value=""  name="addressdetail"
 										placeholder="상세주소"> <script>
 											function sample4_execDaumPostcode() {
 												new daum.Postcode(
@@ -149,44 +148,13 @@
 								<tr>
 									<th scope="row">휴대전화 <span id="mjoin_red">*</span></th>
 									<td><input id="phone" name="phone" maxlength="13"
-										fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
-										fw-msg="" value="" type="text">&nbsp;(-)하이픈 포함하고 입력 <!-- <select id="phone1" name="phone1"
-									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
-									fw-msg="">
-										<option value="010">010</option>
-										<option value="011">011</option>
-										<option value="016">016</option>
-										<option value="017">017</option>
-										<option value="018">018</option>
-										<option value="019">019</option>
-								</select>-<input id="phone2" name="phone2" maxlength="4"
-									fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N"
-									fw-msg="" value="" type="text">-<input id="phone3"
-									name="phone3" maxlength="4" fw-filter="isNumber&amp;isFill"
-									fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text"> --></td>
+										value="" type="text">&nbsp;(-)하이픈 포함하고 입력 </td>
 								</tr>
 
 								<tr>
 									<th scope="row">이메일 <span id="mjoin_red">*</span></th>
-									<td><input id="email" name="email" fw-filter="isFill"
-										fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text">
-										<!-- @<input
-									id="email2" name="email2" fw-filter="isFill" fw-label="이메일"
-									fw-alone="N" fw-msg="" readonly="readonly" value="" type="text"><select
-									id="email3" fw-filter="isFill" fw-label="이메일" fw-alone="N"
-									fw-msg=""> 
-										<option value="" selected="selected">- 이메일 선택 -</option>
-										<option value="naver.com">naver.com</option>
-										<option value="daum.net">daum.net</option>
-										<option value="nate.com">nate.com</option>
-										<option value="hotmail.com">hotmail.com</option>
-										<option value="yahoo.com">yahoo.com</option>
-										<option value="empas.com">empas.com</option>
-										<option value="korea.com">korea.com</option>
-										<option value="dreamwiz.com">dreamwiz.com</option>
-										<option value="gmail.com">gmail.com</option>
-										<option value="etc">직접입력</option>
-								</select>--></td>
+									<td><input id="email" name="email"value="" type="text">
+										* 비밀번호 분실 시 사용되므로 정확하게 입력해 주세요.</td>
 								</tr>
 
 							</tbody>
@@ -468,8 +436,7 @@
 						</div>
 						<p class="mjoin_check">
 							<span>이용약관에 동의하십니까?</span> <input id="agree_service_check0"
-								name="agree_service_check[]" fw-filter="/1/" fw-label="이용약관 동의"
-								fw-msg="이용약관에 동의 하세요" value="1" type="checkbox"><label
+								name="agree_service_check[]"  value="0" type="checkbox"><label
 								for="agree_service_check0">동의함</label>
 						</p>
 					</div>
@@ -498,12 +465,12 @@
 							<span>개인정보 수집 및 이용에 동의하십니까?</span> <input
 								id="agree_privacy_check0" name="agree_privacy_check[]"
 								fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침"
-								fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox"><label
+								fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="0" type="checkbox"><label
 								for="agree_privacy_check0">동의함</label>
 						</p>
 					</div>
 					<div align="center">
-						<input type="submit" class="mjoin_btnArea" value="회원가입"
+						<input type="button" class="mjoin_btnArea" value="회원가입" id="joinBtn"
 							style="cursor: pointer;">
 					</div>
 					<!-- <div class="mjoin_btnArea">
