@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,6 +86,15 @@ function dateToYYYYMMDD(date)
 					document.getElementById("startDate").value = dateToYYYYMMDD(preSixMonth);	
 					
 				}); 
+		
+		
+		$('#searchDate').click(
+ 	 			function(){
+ 	 					searchDateForm.submit();
+ 	 		});
+		
+		
+		
 	});
 	
 
@@ -121,9 +131,8 @@ function dateToYYYYMMDD(date)
 					</ul>
 				</div>
 
-				<form method="GET" id="OrderHistoryForm" name="OrderHistoryForm">
-					<div
-						class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
+				<form method="GET" id="searchDateForm" name="searchDateForm" action="/h72/searchOrder">
+					<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
 						<fieldset>
 							<span class="day_field"> 
 								<a href="#none" class="btnNormal" days="00"> 
@@ -137,18 +146,17 @@ function dateToYYYYMMDD(date)
 								class="btnNormal" days="180"> <span class="orderhis_day3">6개월</span></a>
 							</span> 
 							
-							<input type="date" name="history_start_date" class="fText" id="startDate"
-								value="2016-10-25"> &nbsp;&nbsp;~&nbsp;&nbsp; <input
-								type="date" name="history_end_date" class="fText" id="endDate"
-								value="2016-10-25"> <span class="order_term_search">조회</span>
+								<input type="date" name="start_date" class="fText" id="startDate" value="2016-10-25"> 
+								&nbsp;&nbsp;~&nbsp;&nbsp; 
+								<input type="date" name="end_date" class="fText" id="endDate" value="2016-10-25"> 
+								<span class="order_term_search" id="searchDate">조회</span>
+								<input type="hidden" name="page" value="${currentPage }"/>
 						</fieldset>
 						<ul>
 							<li>· 기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
 							<li>· 주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
 						</ul>
 					</div>
-					<input id="mode" name="mode" value="" type="hidden"> <input
-						id="term" name="term" value="" type="hidden">
 				</form>
 				
 				<div class="tabcontent" id="orderlist">
@@ -169,63 +177,88 @@ function dateToYYYYMMDD(date)
 								<th scope="col" class="quantity">수량</th>
 								<th scope="col" class="price">상품구매금액</th>
 								<th scope="col" class="state">주문처리상태</th>
-								<th scope="col" class="service">취소/교환/반품</th>
+								<th scope="col" class="service">주문처리</th>
 							</tr>
 						</thead>
+						<c:if test="${!(orderList eq null) }">
 						<c:forEach var="orderList" items="${orderList}">
 						<tbody class="">
 							<tr class="xans-record-">
 								<td rowspan="2" class="number ">${orderList.enrollDate }
 									<p>
-										<a
-											href="<c:url value="/order/order_detail"/>"
+										<a href="/h72/order/order_detail?orderNo=${orderList.orderNo }"
 											class="line">${orderList.orderNo }</a><br>
-										<!-- <a href="#none" class="displaynone" onclick="OrderHistory.orderCancel('20161023-0000828')">
-										<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_order_cancel.gif" alt="주문취소"></a>	 -->
-										<p class="order_cancle">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p>
 									</p>
 								</td>
 								<td class="thumb"><a
-									href="/product/detail.html?product_no=8049&amp;cate_no=32"><img
+									href="/h72/order/order_detail?orderNo=${orderList.orderNo }"><img
 										src="/h72/resources${orderList.mainImgN1 }" alt=""></a></td>
 								<td class="product"><a
-									href="/product/detail.html?product_no=8049&amp;cate_no=32"><strong>
-											${orderList.itemNameN1 }</strong></a>
-									<div class="option ">[옵션: ${orderList.itemOptionNameN1 }]</div>
+									href="/h72/order/order_detail?orderNo=${orderList.orderNo }"><strong>
+											${orderList.itemNameN1 } 외 ${orderList.kindsQuantity }개</strong></a>
+									<div class="option ">[대표옵션: ${orderList.itemOptionNameN1 }]</div>
 									</td>
 								<td class="quantity">${orderList.totalQuantity }</td>
-								<td class="price"><strong>${orderList.totalPrice }</strong></td>
+								<td class="price"><strong><fmt:formatNumber value="${orderList.totalPrice }" pattern="#,###"/>원</strong></td>
 								<td class="state">
 									<p>${orderList.orderStatus }</p>
 								</td>
 								<td class="service">
-									<p class="">${orderList.orderChange }</p>
+								<c:if test="${orderList.orderStatus eq '주문접수'}">
+									<a href="#none" onclick=" orderCancel(${orderList.orderNo})">
+									<p class="order_cancle">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
+								</c:if>
+								<c:if test="${orderList.orderStatus eq '결제완료'}">
+									<!-- <a href="#none" onclick=" orderCancel(${orderList.orderNo})">
+											 -->
+										<p class="order_cancle">반품요청&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p>
+								</c:if>		
 								</td>
 							</tr>
-
-
 						</tbody>
 						</c:forEach>
-						<tbody class="displaynone">
+						</c:if>
+						<c:if test="${orderList eq null}">
+						<tbody class="">
 							<tr>
 								<td colspan="7" class="empty">주문 내역이 없습니다</td>
 							</tr>
 						</tbody>
+						</c:if>
 					</table>
 				</div>
 
 
 				<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging">
+					<c:if test="${currentPage <= 1 }">
 					<p>
-						<a href="?page=1&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25">&lt;</a>
+						&lt;
 					</p>
+					</c:if>
+					<c:if test="${currentPage > 1 }">
+					<p>
+						<a href="#page" id="prePaging">&lt;</a>
+					</p>
+					</c:if>
 					<ol>
-						<li class="xans-record-"><a
-							href="?page=1&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25"
-							class="this">1</a></li>
+						<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+						<c:if test="${i==currentPage }">
+						<li class="xans-record-"><span class="this">${i}</span></li>
+						</c:if>
+						<c:if test="${i != currentPage }">
+						<li class="xans-record-"><span id="paging" >${i}</span>
+						<c:set value="${i}" var="searchPage"/>
+						</li>
+						</c:if>
+						</c:forEach>	
 					</ol>
 					<p>
-						<a href="?page=1&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25">&gt;</a>
+						<c:if test="${currentPage >= maxPage }">
+							&gt;
+						</c:if>
+						<c:if test="${currentPage < maxPage }">
+							<a href="#page" id="endPaging">&gt;</a>
+						</c:if>
 					</p>
 				</div>
 				</div>
@@ -252,55 +285,79 @@ function dateToYYYYMMDD(date)
 								<th scope="col" class="service">취소/교환/반품</th>
 							</tr>
 						</thead>
+						<c:if test="${!(orderList eq null) }">
+						<c:forEach var="orderList" items="${orderList}">
 						<tbody class="">
 							<tr class="xans-record-">
-								<td rowspan="2" class="number ">2016-10-23
+								<td rowspan="2" class="number ">${orderList.enrollDate}
 									<p>
 										<a
 											href="<c:url value="/order/order_detail"/>"
-											class="line">[20161023-0000828]</a>
+											class="line">[${orderList.orderNo}]</a>
 									</p>
 								</td>
 								<td class="thumb"><a
 									href="/product/detail.html?product_no=8049&amp;cate_no=32"><img
-										src="" alt=""></a></td>
+										src="/h72/resources${orderList.mainImgN1}" alt=""></a></td>
 								<td class="product"><a
 									href="/product/detail.html?product_no=8049&amp;cate_no=32"><strong>
-											재난대비 무선 라디오</strong></a>
-									<div class="option ">[옵션: ]</div>
-									<p class="free displaynone">무이자할부 상품</p></td>
-								<td class="quantity">2</td>
-								<td class="price"><strong>41,800원</strong></td>
+											${orderList.itemNameN1}</strong></a>
+									<div class="option ">[옵션: ${orderList.itemOptionNameN1}]</div></td>
+								<td class="quantity">${orderList.totalQuantity}</td>
+								<td class="price"><strong><fmt:formatNumber value="${orderList.totalPrice}" pattern="#,###"/>원</strong></td>
 								<td class="state">
-									<p>입금전</p>
+									<p>${orderList.orderStatus}</p>
 								</td>
 								<td class="service">
-									<p class="">-</p>
+									<p class="">${orderList.orderChange}</p>
 								</td>
 							</tr>
 
 
 						</tbody>
-						<tbody class="displaynone">
+						</c:forEach>
+						</c:if>
+						<c:if test="${ orderList eq null}">
+						<tbody class="">
 							<tr>
 								<td colspan="7" class="empty">주문 내역이 없습니다</td>
 							</tr>
 						</tbody>
+						</c:if>
 					</table>
 				</div>
 
 
 				<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging">
+					<c:if test="${currentPage <= 1 }">
 					<p>
-						<a href="?page=1&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25">&lt;</a>
+						&lt;
 					</p>
+					</c:if>
+					<c:if test="${currentPage > 1 }">
+					<p>
+						<a href="#page" id="prePaging">&lt;</a>
+					</p>
+					</c:if>
 					<ol>
-						<li class="xans-record-"><a
-							href="?page=1&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25"
-							class="this">1</a></li>
+						<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+						<c:if test="${i==currentPage }">
+						<li class="xans-record-"><span class="this">${i}</span></li>
+						</c:if>
+						<c:if test="${i != currentPage }">
+						<li class="xans-record-"><span id="paging" >${i}</span>
+						<c:set value="${i}" var="searchPage"/>
+						</li>
+						</c:if>
+						</c:forEach>	
 					</ol>
 					<p>
-						<a href="?page=1&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25">&gt;</a>
+						<c:if test="${currentPage >= maxPage }">
+							&gt;
+						</c:if>
+						<c:if test="${currentPage < maxPage }">
+							<a href="#page" id="endPaging">&gt;</a>
+						</c:if>
 					</p>
 				</div>
 				</div>
@@ -319,6 +376,37 @@ function dateToYYYYMMDD(date)
 
 		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
 	</div>
+	
+	<script>
+	$(function(){
+		$('#paging').click(
+ 	 			function(){
+ 	 				var endDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${searchPage}';
+ 	 				console.log(currentPage);
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate;
+ 	 		});
+		
+		$('#prePaging').click(
+ 	 			function(){
+ 	 				var endDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${currentPage-1}';
+ 	 				console.log(currentPage);
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate;
+ 	 		});
+		$('#endPaging').click(
+ 	 			function(){
+ 	 				var endDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${currentPage+1}';
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate;
+ 	 		});
+		
+	});
+	
+	</script>
 
 </body>
 </html>

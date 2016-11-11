@@ -56,9 +56,16 @@ public class OrderServiceImp implements OrderService {
 
 
 	@Override
-	public List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth) {
-		// TODO Auto-generated method stub
-		return oDao.selectOrderList(userId,currentDate,preThreeMonth);
+	public int getListCount(String userId, Date currentDate, Date preThreeMonth) {
+	
+		return oDao.getListCount(userId, currentDate, preThreeMonth);
 	}
+
+	@Override
+	public List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth, int currentPage,
+			int limit) {
+		return oDao.selectOrderList(userId,currentDate,preThreeMonth, currentPage, limit);
+	}
+
 
 }

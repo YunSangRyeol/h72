@@ -114,6 +114,7 @@ function paymentSubmit(){
 }
 
 function CallpaymentAPI(){
+	var sysdate = new date().getDate();
 	orderTitle = '${olist.get(0).getItemFullName()}'+'외 ${olist.size()}개';
 	totalPrice = $('#totalPrice').val();
 	orderName = $('#rname').val();

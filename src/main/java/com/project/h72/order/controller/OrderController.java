@@ -130,8 +130,11 @@ public class OrderController {
 		if(deliveryMessage==null || deliveryMessage ==""){
 			deliveryMessage ="-";
 		}
+		String orderStatus = "배송 준비중";
 		System.out.println("deliveryMessage : "+deliveryMessage);
-		String orderStatus = "주문접수";
+		if(paymethod.equals("가상계좌 입금")){
+			orderStatus = "입금전";
+		}
 		String orderChange = "-";
 		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
 		
@@ -186,7 +189,7 @@ public class OrderController {
 	
 	
 	@RequestMapping(value = "order/order_list", method = RequestMethod.GET)
-	public String orderListView(HttpSession session, Model model) {
+	public String orderListView(HttpSession session,HttpServletRequest request, Model model) {
 		
 		Member login = (Member) session.getAttribute("loginUser");
 		List<Order> listOrder = new ArrayList<Order>();
@@ -195,35 +198,125 @@ public class OrderController {
 			
 		 	return "member/loginPage";
 		}else{
+			
 			String userId = login.getUserid();
 			Date currentDate = new Date(new java.util.Date().getTime());
 			Calendar cal = Calendar.getInstance ( );//오늘 날짜를 기준으루..
 			cal.add ( cal.MONTH, -3 );
-			Date preThreeMonth = new Date(cal.getTime().getTime());
-			System.out.println(preThreeMonth+" , "+currentDate);
-			listOrder = os.selectOrderList(userId, currentDate, preThreeMonth);
+			Date preDate = new Date(cal.getTime().getTime());
+			System.out.println(preDate+" , "+currentDate);
+			
+			
+			//페이지 수 처리용 변수 
+			int currentPage = 1;
+			int limit = 5;	//한 페이지에 10개씩 출력
+			
+			//전달받은 페이지 값 추출
+			if(request.getParameter("page") != null)
+				currentPage = Integer.parseInt(request.getParameter("page"));
+			
+			//전체리스트 갯수
+			int listCount = os.getListCount(userId, currentDate, preDate);
+			//페이지 단위로 게시글 목록 조회용
+			listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit);
+			
+			//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			//현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
+			int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
+			//현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
+			int endPage = startPage + limit - 1;
+			if(maxPage < endPage)
+				endPage = maxPage;
+			
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("startPage", startPage);
+			
+			
+			if(listOrder.isEmpty()||listOrder==null){
+				listOrder = null;
+			}
 			
 		}
 		
 		model.addAttribute("orderList", listOrder);
+		
 		System.out.println(listOrder);
 		
 		return "order/order_list";
 	}
 	
+	
+	
+	@RequestMapping(value = "/searchOrder", method = RequestMethod.GET)
+	public String searchOrder(@RequestParam("page") String page, @RequestParam("start_date") Date startDate, @RequestParam("end_date") Date endDate, Model model,HttpSession session,HttpServletRequest request) {
+		Member login = (Member) session.getAttribute("loginUser");
+		List<Order> listOrder = new ArrayList<Order>();
+		
+		System.out.println("controller:"+page+","+startDate+","+endDate);
+		
+		int getPage = Integer.valueOf(page);
+		
+		String userId = login.getUserid();
+		Date currentDate = new Date(new java.util.Date().getTime());
+		Calendar cal = Calendar.getInstance ( );//오늘 날짜를 기준으루..
+		cal.add ( cal.MONTH, -3 );
+		Date preDate = new Date(cal.getTime().getTime());
+		System.out.println(preDate+" , "+currentDate);
+		
+		
+		//페이지 수 처리용 변수 
+		int currentPage = 1;
+		int limit = 5;	//한 페이지에 10개씩 출력
+		
+		//전달받은 페이지 값 추출
+		if(getPage>0)
+			currentPage = getPage;
+		if(startDate != null)
+			preDate = startDate;
+		if(endDate!= null)
+			currentDate = endDate;
+		
+		//전체리스트 갯수
+		int listCount = os.getListCount(userId, currentDate, preDate);
+		//페이지 단위로 게시글 목록 조회용
+		listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit);
+		
+		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		//현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
+		int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
+		//현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
+		int endPage = startPage + limit - 1;
+		if(maxPage < endPage)
+			endPage = maxPage;
+		
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("maxPage", maxPage);
+		model.addAttribute("endPage", endPage);
+		
+		if(listOrder.isEmpty()||listOrder==null){
+			listOrder = null;
+		}
+		model.addAttribute("orderList", listOrder);
+		System.out.println(listOrder);
+		
+		
+		
+		return "order/order_list";
+	}
+
+	
 	@RequestMapping(value = "order/order_detail", method = RequestMethod.GET)
-	public String orderDeitailView(Model model) {
+	public String orderDeitailView(@RequestParam("orderNo") String orderNo,Model model) {
 		
 		return "order/order_detail";
 	}
 	
 	
-	@RequestMapping(value = "/searchOrder", method = RequestMethod.GET)
-	public String searchOrder(Model model) {
-		
-		return null;
-	}
-
 	@RequestMapping(value = "/reorder", method = RequestMethod.GET)
 	public String searchReorder(Model model) {
 		

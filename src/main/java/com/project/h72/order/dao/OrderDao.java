@@ -41,12 +41,25 @@ public class OrderDao {
 		return sqlSession.insert(NAMESPACE+"deleteFinishCart", cartId);
 	}
 
-	public List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth) {
+	public List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth, int currentPage, int limit) {
+		int startRow = (currentPage - 1) * 5 + 1; // 읽기 시작할 row 번호.
+		int endRow = startRow + limit - 1; // 읽을 마지막 row 번호.
+
 		Map<String, Comparable> paramMap = new HashMap();
 		paramMap.put("userId", userId);
 		paramMap.put("currentDate", currentDate);
 		paramMap.put("preThreeMonth", preThreeMonth);
+		paramMap.put("startRow", startRow);
+		paramMap.put("endRow", endRow);
 		return sqlSession.selectList(NAMESPACE+"selectOrderList", paramMap);
+	}
+	
+	public int getListCount(String userId, Date currentDate, Date preThreeMonth) {
+		Map<String, Comparable> map = new HashMap();
+		map.put("userId", userId);
+		map.put("currentDate", currentDate);
+		map.put("preThreeMonth", preThreeMonth);
+		return sqlSession.selectOne(NAMESPACE+"getListCount", map);
 	}
 
 }
