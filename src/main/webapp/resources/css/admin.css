@@ -103,6 +103,7 @@ body {
 	padding-top: 5px;
 	padding-left: 30px;
 	text-align:left;
+	margin-bottom: 50px;
 }
 #totalPrice{
 	font-family: "Noto Sans KR", sans-serif;
@@ -113,12 +114,57 @@ body {
     padding: 20px 300px 20px 0px;
 }
 
-table {
+#centerLable{
+	margin-left: 30px;
+	margin-right: 20px;
+	font-family: "Noto Sans KR", sans-serif;
+    font-size: 15px;
+}
+
+#main_chart{
+	    border: 1px solid #ccc;
+} 
+
+#main_chart h2{
+	font-family: "Noto Sans KR", sans-serif;
+    font-size: 18px;
+    font-weight: 400px;
+}
+
+#main_chart #firstH2{
+	margin-top: 50px;
+}
+
+#main_chart table{
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 150px;
+	
+}
+table #usersList {
 	width: 100%;
 	border: 0;
 	border-spacing: 0;
 	border-collapse: collapse;
 	text-align:center;
+} 
+
+ .orderList {
+    width: 100%;
+    border: 0px;
+    border-collapse: collapse;
+}
+
+ .orderList thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    
+}
+
+ .orderList .checkMargin{
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 ul.tab {
@@ -166,6 +212,22 @@ ul.tab li {float: left;}
     font-size: 11px;
     background-color: #495164;
 }
+#excelBtnDiv {
+	text-align: right;
+	margin-right: 20px;
+}
+
+.excelBtn{
+	font-family: "Noto Sans KR", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 8px 8px 8px 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 
 /*탭 버튼 */
 ul.tab li a {
@@ -249,8 +311,24 @@ ul.tab li a:focus, .active {
 
 #usersTop div{
 	display: inline-block;	
+	
 }
 
+#countUsers{
+	align: center;
+	margin-top: 50px;
+	font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+ .countUserAll{
+	font-size: 28px;
+	color: red;
+	font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+}
 #optionBtn{	
 	width: 1254px;
 	padding-top: 8px;
@@ -281,7 +359,7 @@ ul.pages li{
 }
 
 #selectNum{
-	height: 30px;
+	height: 25px;
 }
 
 #selectNumdDiv{
@@ -292,7 +370,7 @@ ul.pages li{
 	padding-top:70px;
 }
 
-#orderList thead{
+.orderList thead{
 	background-color: #ccc;
 }
 
@@ -367,3 +445,18 @@ ul.accessibility {font-size: 1px;height: 1px; line-height: 1px; overflow: hidden
 
 /* < IE8  */
 div.label_ie {padding:0; margin:0;}
+
+
+
+
+.chartTable th{
+	 background-color: #e0e0e0;
+	 border-spacing: 0;
+	 padding: 10px 30px 10px 30px;
+}
+
+.chartTable td{
+	 border-spacing: 0;
+	 padding: 10px 10px 10px 0px;
+	 text-align: right;
+}

@@ -287,6 +287,7 @@ public class AdminController {
 				
 		now = rightNow.get(Calendar.YEAR) + "-" + rightNow.get(Calendar.MONTH) + "-" +  ( rightNow.get(Calendar.DATE) < 10 ? "0" + rightNow.get(Calendar.DATE) : rightNow.get(Calendar.DATE) );
 		
+		System.out.println("입력될 now???" + now);
 		String now0 = rightNow.get(Calendar.MONTH) + "/" + rightNow.get(Calendar.DATE);
 	
 		rightNow.add(Calendar.DATE, -1);		
@@ -317,14 +318,14 @@ public class AdminController {
 		model.addAttribute("now6", now6);	
 		
 		
-		System.out.println("now" + ", now0" + ", now1" + ", now2" + ", now3" + ", now4" + ", now5" + ", now6");
 		//오늘
 		TotalOrder today = adminService.chartToday(now);
 		model.addAttribute("today", today);
+		System.out.println("today" + today);
 		
 		//년도별
 		List nowYears = adminService.nowYears(now);
-		List lastYears = adminService.nowYears(now);
+		List lastYears = adminService.lastYears(now);
 		model.addAttribute("nowYears", nowYears);
 		model.addAttribute("lastYears", lastYears);
 		

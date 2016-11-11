@@ -37,14 +37,15 @@
  	
  	//전체선택 체크박스 클릭
  	$(function() {		
-		$("#allCheck").click(
+		$("[name=allCheck]").click(			
+				
 			function() {
-				if ($("#allCheck").prop("checked")) {
-					$("#orderList input[type=checkbox]").prop("checked", true);
+				if ($("[name=allCheck]").prop("checked")) {
+					$("#" + $(this).val() + " input[type=checkbox]").prop("checked", true);
 				} else {
-					$("#orderList input[type=checkbox]").prop("checked", false);
+					$("#" + $(this).val() + " input[type=checkbox]").prop("checked", false);
 				}
-				$("#orderList input[type=checkbox]").change();
+				$("#" + $(this).val() + " input[type=checkbox]").change();
 		})
 	})
  	
@@ -63,6 +64,8 @@
 		
 		} );
 	});
+ 	
+
 
  	//날짜 선택 버튼시 inputd의 날짜 변경
 	 	
@@ -183,17 +186,6 @@
 		});	
  	}
  	
- 	//상세 내역 조회
- 	var showNhide = false;
- 	function Contents(orderNo){
- 		
- 		if(!showNhide){
- 			$('.Contents' + orderNo).show();
- 			showNhide = true;
- 		}else{
- 			$('.Contents' + orderNo).hide();
- 			showNhide = false;
- 		}
- 	}
+ 
  	
  	 	

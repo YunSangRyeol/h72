@@ -12,11 +12,28 @@
 <script src="/h72/resources/js/adminOrderList.js"></script>
 <title>Admin Order List</title>
 <script type="text/javascript">
-//excel파일 다운로드
+
+	//상세 내역 조회
+ 	var showNhide = false;
+ 	function Contents(orderNo){ 	
+ 		alert("");
+ 		if(!showNhide){
+ 			alert("AAaa");
+ 			$('.Contents' + orderNo).show();
+ 			showNhide = true;
+ 		}else{
+ 			alert("wwww");
+ 			$('.Contents' + orderNo).hide();
+ 			showNhide = false;
+ 		}
+ 	}
+ 	
+ 	//excel파일 다운로드 	
 $(function(){
+	
     $("#btnExportAll").click(function () {
         $("#orderListAll").battatech_excelexport({
-            containerid: "orderList"
+            containerid: "orderListAll"
            , datatype: 'table'
         });
         $(this).attr('download', 'sample.xls').attr('href', uri);
@@ -24,7 +41,7 @@ $(function(){
     
     $("#btnExportOrder").click(function () {
         $("#orderListOrder").battatech_excelexport({
-            containerid: "orderList"
+            containerid: "orderListOrder"
            , datatype: 'table'
         });
         $(this).attr('download', 'sample.xls').attr('href', uri);
@@ -32,7 +49,7 @@ $(function(){
     
     $("#btnExportPurchased").click(function () {
         $("#orderListPurchased").battatech_excelexport({
-            containerid: "orderList"
+            containerid: "orderListPurchased"
            , datatype: 'table'
         });
         $(this).attr('download', 'sample.xls').attr('href', uri);
@@ -40,7 +57,7 @@ $(function(){
     
     $("#btnExportdelivery").click(function () {
         $("#orderListdelivery").battatech_excelexport({
-            containerid: "orderList"
+            containerid: "orderListdelivery"
            , datatype: 'table'
         });
         $(this).attr('download', 'sample.xls').attr('href', uri);
@@ -48,7 +65,7 @@ $(function(){
     
     $("#btnExportCancle").click(function () {
         $("#orderListCancle").battatech_excelexport({
-            containerid: "orderList"
+            containerid: "orderListCancle"
            , datatype: 'table'
         });
         $(this).attr('download', 'sample.xls').attr('href', uri);
@@ -56,7 +73,7 @@ $(function(){
     
     $("#btnExportChange").click(function () {
         $("#orderListChange").battatech_excelexport({
-            containerid: "orderList"
+            containerid: "orderListChange"
            , datatype: 'table'
         });
         $(this).attr('download', 'sample.xls').attr('href', uri);
@@ -64,12 +81,16 @@ $(function(){
     
     $("#btnExportBack").click(function () {
         $("#orderListBack").battatech_excelexport({
-            containerid: "orderList"
+            containerid: "orderListBack"
            , datatype: 'table'
         });
         $(this).attr('download', 'sample.xls').attr('href', uri);
     });
 });
+ 	
+ 	
+ 	
+ 	
 </script>
 </head>
 <body>
@@ -135,13 +156,15 @@ $(function(){
 
 <!-- ----------------------------------------모두보기----------------------------------------------------------- -->
 	<div id="all" class="tabcontent" style="display:block">
-    <input type="button" id="btnExportAll" value="모든 내역 엑셀로 다운로드" />
+	<div id="excelBtnDiv">
+    <input type="button" class="excelBtn" id="btnExportAll" value="모든 내역 엑셀로 다운로드" />
+    </div>
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderListAll" cellspacing='0' cellpadding='0'>
+    <table id="orderListAll" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListAll"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -163,6 +186,7 @@ $(function(){
 						<div class="displaynone"></div></td>
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
+					<td class="state" style="display:none">${list.orderStatus}</td>
 					<td class="state">
 						<select id="state${list.orderNo }" name="selectStatusOne${list.orderNo }0" class="selectOption">
 							<option value="결제완료">결제완료</option>
@@ -222,13 +246,15 @@ $(function(){
 	</div><!-- tab -->
 <!-- ------------------------------------주문접수---------------------------------------------------------- -->
 	<div id="order" class="tabcontent">
-    <input type="button" id="btnExportOrder" value="접수내역 엑셀로 다운로드" />
+	<div id="excelBtnDiv">
+    <input type="button" class="excelBtn" id="btnExportOrder" value="접수내역 엑셀로 다운로드" />
+    </div>
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderListOrder" cellspacing='0' cellpadding='0'>
+    <table id="orderListOrder" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListOrder"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -303,13 +329,15 @@ $(function(){
 
 <!-- -------------------------------------결제완료--------------------------------------------------------------------- -->
 	<div id="resultpaid" class="tabcontent">
-    <input type="button" id="btnExportPurchased" value="결제내역 엑셀로 다운로드" />
+	<div id="excelBtnDiv">
+    <input type="button" class="excelBtn" id="btnExportPurchased" value="결제내역 엑셀로 다운로드" />
+    </div>
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderListPurchased" cellspacing='0' cellpadding='0'>
+    <table id="orderListPurchased" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListPurchased"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -384,13 +412,15 @@ $(function(){
 
 <!-- -------------------------------------배송중--------------------------------------------------------------------- -->
 	<div id="move" class="tabcontent">
-    <input type="button" id="btnExportdelivery" value="배송내역 엑셀로 다운로드" />
+	<div id="excelBtnDiv">
+    <input type="button" class="excelBtn" id="btnExportdelivery" value="배송내역 엑셀로 다운로드" />
+	</div>   
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderListdelivery" cellspacing='0' cellpadding='0'>
+    <table id="orderListdelivery" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListdelivery"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -467,13 +497,15 @@ $(function(){
 	<div id="back" class="tabcontent">
 		<h3>취소내역</h3>
 		<div id="cancel">		
-    <input type="button" id="btnExportCancle" value="최소내역 엑셀로 다운로드" />
+	<div id="excelBtnDiv">
+    <input type="button" class="excelBtn" id="btnExportCancle" value="최소내역 엑셀로 다운로드" />
+    </div>
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderListCancle" cellspacing='0' cellpadding='0'>
+    <table id="orderListCancle" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListCancle"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -546,13 +578,15 @@ $(function(){
 		
 		<h3>교환내역</h3>
 		<div id="change">
-    <input type="button" id="btnExportChange" value="교환내역 엑셀로 다운로드" />
+	<div id="excelBtnDiv">
+    <input type="button" class="excelBtn" id="btnExportChange" value="교환내역 엑셀로 다운로드" />
+	</div>
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderListChange" cellspacing='0' cellpadding='0'>
+    <table id="orderListChange" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListChange"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -625,13 +659,15 @@ $(function(){
 		
 		<h3>반품내역</h3>
 		<div id="backing">
-    <input type="button" id="btnExportBack" value="반품내역 엑셀로 다운로드" />
+	<div id="excelBtnDiv">
+    <input type="button" class="excelBtn" id="btnExportBack" value="반품내역 엑셀로 다운로드" />
+	</div>
     <br />
     <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
-    <table id="orderListBack" cellspacing='0' cellpadding='0'>
+    <table id="orderListBack" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListBack"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>

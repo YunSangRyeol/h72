@@ -32,7 +32,7 @@
 	<div id="admin_order_search">
 	<div id="searchDate">
 		<form>
-		<lable> 기준 날짜 검색 : </lable><input type="date" name="now" id="now" class="searchDateInput">
+		<lable id="centerLable"> 기준 날짜 검색 : </lable><input type="date" name="now" id="now" class="searchDateInput">
 		 &nbsp; <input type="submit" value="검색" class="admin_btn_min"> 
 		</form>
 	</div><!-- searchDate -->   
@@ -40,25 +40,26 @@
     <ul id="admin_order_detail">
 	    <li>검색 버튼 미 사용시 현재 날짜 기준으로 조회됩니다.</li>
 	    <li>해당 차트에 마우스를 올리시면 해당 수치를 확인할 수 있습니다.</li>
+	    <li>모든 가격수치는 10,000원단위입니다.</li>
     </ul> 
  	
- 	<div id="main_chart" style="border: 1px solid #ccc;">
- 		<h2>일일 매출 내역</h2>
+ 	<div id="main_chart" class="chartTable" >
+ 		<h2 id="firstH2">일일 매출 내역</h2>
 	<div id="chart8"></div>
 	<script>
 		var options = {
 			'legend': {
-	            names: [ '결제건', '판매종류', '판매개수', '판매액(만원)'],
+	            names: [ '결제건', '판매개수', '판매액(만원)'],
 	            hrefs: []
 	        },
 	        'dataset': {
 	            title: 'today sale',
-	            values: ['${today.orderCount }', '${today.totalKind }', '${today.totalQuantity }', '${today.totalPrice }'],	
+	            values: ['${today.orderCount }', '${today.totalQuantity }', '${today.totalPrice }'],	
 	            colorset: ['#56b4e9']
 	        },
 	        'chartDiv': 'chart8',
 	        'chartType': 'column',
-	        'chartSize': { width: 700, height: 300 },
+	        'chartSize': { width: 700, height: 400 },
 	        'maxValue': 100,
 	        'increment': 10
 		};
@@ -67,9 +68,9 @@
 
 	</script>
  	
- 	<table id="today" class="chartTable" style="border:1px solid">
- 		<tr><th>결제건수</th><th>판매종류</th><th>판매개수</th><th>판매액(만원)</th></tr>
- 		<tr><td>${today.orderCount }</td><td>${today.totalKind }</td><td>${today.totalQuantity }</td><td>${today.totalPrice }</td></tr>
+ 	<table id="today" class="chartTable">
+ 		<tr><th>결제건수</th><th>판매개수</th><th>판매액(만원)</th></tr>
+ 		<tr><td>${today.orderCount }</td><td>${today.totalQuantity }</td><td>${today.totalPrice }</td></tr>
  	</table>
  	
  	<h2>주간 매출 내역</h2>
@@ -83,26 +84,27 @@
 					},
 			'dataset':{
 				title:'Playing time per day', 
-				values: [['${thisWeek.get(0)}', '${LastWeek.get(0)}'], ['${thisWeek.get(1)}', '${LastWeek.get(1)}'], 
-				         ['${thisWeek.get(2)}', '${LastWeek.get(2)}'], ['${thisWeek.get(3)}', '${LastWeek.get(3)}'], 
-				         ['${thisWeek.get(4)}', '${LastWeek.get(4)}'], ['${thisWeek.get(5)}', '${LastWeek.get(5)}'], 
-				         ['${thisWeek.get(6)}', '${LastWeek.get(6)}']],
+				values: [['${thisWeek.get(6)}', '${LastWeek.get(6)}'], ['${thisWeek.get(5)}', '${LastWeek.get(5)}'], 
+				         ['${thisWeek.get(4)}', '${LastWeek.get(4)}'], ['${thisWeek.get(3)}', '${LastWeek.get(3)}'], 
+				         ['${thisWeek.get(2)}', '${LastWeek.get(2)}'], ['${thisWeek.get(1)}', '${LastWeek.get(1)}'], 
+				         ['${thisWeek.get(0)}', '${LastWeek.get(0)}']],
 				colorset: ['#DC143C','#FF8C00'],
 				fields:['이번주', '지난주']
 			},
 			'chartDiv' : 'chartWeek',
 			'chartType' : 'line',
-			'leftOffsetValue': 50,
+			'leftOffsetValue': 40,
 			'bottomOffsetValue': 60,
 			'chartSize' : {width:700, height:300},
-			'minValue' : 40,
+			'minValue' : 1,
 			'maxValue' : 100,
-			'increment' : 10
+			'increment' : 10,
+			'isGuideLineNeeded' : true 
 		};
 
 		Nwagon.chart(options);
 	</script>	
-	<table id="week" class="chartTable" style="border:1px solid">
+	<table id="week" class="chartTable" >
  		<tr><th></th><th>6일전</th><th>5일전</th><th>4일전</th><th>3일전</th><th>2일전</th><th>1일전</th><th>오늘</th></tr>
  		<tr><th>이번주</td><td>${thisWeek.get(6)}</td><td>${thisWeek.get(5)}</td><td>${thisWeek.get(4)}</td><td>${thisWeek.get(3)}</td><td>${thisWeek.get(2)}</td><td>${thisWeek.get(1)}</td><td>${thisWeek.get(0)}</td></tr>
 		<tr><th>지난주</td><td>${LastWeek.get(6)}</td><td>${LastWeek.get(5)}</td><td>${LastWeek.get(4)}</td><td>${LastWeek.get(3)}</td><td>${LastWeek.get(2)}</td><td>${LastWeek.get(1)}</td><td>${LastWeek.get(0)}</td></tr> 	
@@ -114,7 +116,7 @@
 	<script>
 		var options = {
 			'legend':{
-				names: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+				names: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
 					},
 			'dataset':{
 				title:'Playing time per day', 
@@ -134,14 +136,14 @@
 			'bottomOffsetValue': 60,
 			'chartSize' : {width:700, height:300},
 			'minValue' :0,
-			'maxValue' : 100,
-			'increment' : 10,
+			'maxValue' : 1000,
+			'increment' : 100,
 			'isGuideLineNeeded' : true //default set to false
 		};
 
 		Nwagon.chart(options);
 	</script>	
-	<table id="year" class="chartTable" style="border:1px solid">
+	<table id="year" class="chartTable" >
  		<tr><th></th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th><th>6월</th><th>7월</th><th>8월</th><th>9월</th><th>10월</th><th>11월</th><th>12월</th></tr>
  		<tr><th>금년</th><td>${nowYears.get(0)}</td><td>${nowYears.get(1)}</td><td>${nowYears.get(2)}</td><td>${nowYears.get(3)}</td><td>${nowYears.get(4)}</td><td>${nowYears.get(5)}</td><td>${nowYears.get(6)}</td><td>${nowYears.get(7)}</td><td>${nowYears.get(8)}</td><td>${nowYears.get(9)}</td><td>${nowYears.get(10)}</td><td>${nowYears.get(11)}</td></tr>
  		<tr><th>작년</th><td>${lastYears.get(0)}</td><td>${lastYears.get(1)}</td><td>${lastYears.get(2)}</td><td>${lastYears.get(3)}</td><td>${lastYears.get(4)}</td><td>${lastYears.get(5)}</td><td>${lastYears.get(6)}</td><td>${lastYears.get(7)}</td><td>${lastYears.get(8)}</td><td>${lastYears.get(9)}</td><td>${lastYears.get(10)}</td><td>${lastYears.get(11)}</td></tr>
@@ -168,12 +170,12 @@
 			'core_circle_radius':0,
 			'chartDiv': 'chart',
 			'chartType': 'pie',
-			'chartSize': {width:900, height:300}
+			'chartSize': {width:900, height:400}
 		};
 
 		Nwagon.chart(options);
 	</script>
-	<table id="category" class="chartTable" style="border:1px solid">
+	<table id="category" class="chartTable" >
 	<tr><th>bag</th><th>tool</th><th>food</th><th>protect</th><th>etc</th></tr>
 	<tr><td>${category.bag }</td><td>${category.tool }</td><td>${category.food }</td><td>${category.protect }</td><td>${category.etc }</td></tr>
 	</table>
@@ -196,18 +198,17 @@
 			'core_circle_radius':60,
 			'chartDiv': 'chart_d',
 			'chartType': 'donut',
-			'chartSize': {width:900, height:300}
+			'chartSize': {width:900, height:400}
 		};
 
 		Nwagon.chart(options);
 	</script>
-	<table id="kit" class="chartTable" style="border:1px solid">
+	<table id="kit" class="chartTable" >
 	<tr><th>kit</th><th>not kit</th></tr>
 	<tr><td>${kit.kitYES }</td><td>${kit.kitNO }</td></tr>
 	</table>
 	
 	</div>
-	
 
 
 	</div><!-- admin_order_contents_wrap -->

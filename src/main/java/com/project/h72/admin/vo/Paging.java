@@ -5,6 +5,7 @@ public class Paging {
 	private int page;
 	private int count;
 	private String order;
+	private String whatIdNName;
 	private String idNname;
 	private String start;
 	private String end;
@@ -60,7 +61,6 @@ public class Paging {
 	public void setOrder(String order) {
 		this.order = order;
 	}
-
 	
 
 	public String getIdNname() {

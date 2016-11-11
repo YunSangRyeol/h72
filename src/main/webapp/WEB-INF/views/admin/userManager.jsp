@@ -170,8 +170,18 @@
 	    <li>주문번호를 클릭하시면 해당 회원의 구매 상세내역을 확인할수 있습니다</li>
       </ul>
 	
+	<div id="countUsers">
+	 		<c:if test="${where eq 'null' }">
+	 			현재 가입된 회원의 수는 모두 <span class="countUserAll"> ${countAll }</span>명 입니다. 
+	 		</c:if>
+	 		<c:if test="${where ne 'null' }">
+	 			검색된 회원의 수는 <span class="countUserAll"> ${countAll }</span>명입니다.
+	 		</c:if>
+	 	</div>
 	<div id="usersTop">
+	
 	 	<div id="orderbyDiv">
+	 		 		
 	 		<ul class="orderby">
 		 			<c:url var="goOrder" value="/admin/users" >
 						<c:param name="page" value="${nowPage }" />
@@ -190,14 +200,14 @@
 	 				<c:url var="goEnrollDate" value="/admin/users" >
 						<c:param name="page" value="${nowPage }" />
 						<c:param name="count" value="${count }" />
-						<c:param name="order" value="ENROLLDATE" />
+						<c:param name="order" value="ENROLLDATE DESC" />
 						<c:param name="where" value="${where }" />
 					</c:url>
 	 			<li><a href="${goEnrollDate }">가입일</a></li> &nbsp; ||  &nbsp; 
 	 				<c:url var="goPrice" value="/admin/users" >
 						<c:param name="page" value="${nowPage }" />
 						<c:param name="count" value="${count }" />
-						<c:param name="order" value="TOTAL_PRICE" />
+						<c:param name="order" value="TOTAL_PRICE DESC" />
 						<c:param name="where" value="${where }" />
 					</c:url>
 	 			<li><a href="${goPrice }" />구매금액</a></li>
@@ -213,10 +223,10 @@
  	</div>
  	
 	<div id="userContents" >
-		<table id="orderList" border="1" summary="">
+		<table id="usersList" border="1" summary="">
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck" class="checkMargin"></th>
 					<th scope="col" class="levelcode">회원 등급</th>
 					<th scope="col" class="userid"><p>회원 ID</p></th>
 					<th scope="col" class="name">이름</th>
@@ -231,7 +241,7 @@
 						
 				<c:forEach var="list" items="${list}" >
 				<tr class="xans-record-">
-					<td><input type="checkbox"></td>
+					<td><input type="checkbox" class="checkMargin"></td>
 					<td class="levelcode">${list.levelcode }</td>
 					<td class="userid"><p><strong> ${list.userid } </strong></p></td>
 					
@@ -245,6 +255,13 @@
 			</tbody>	
 		</table>		
 		<div id="admin_page_list">
+			<c:url var="goUserfirst" value="/admin/users" >
+					<c:param name="page" value="${1 }" />
+					<c:param name="count" value="${count }" />
+					<c:param name="order" value="${order }" />
+					<c:param name="where" value="${where }" />
+			</c:url>
+				 <a href="${goUserfirst }" >[처음으로]</a>
 			<c:url var="goUserMinus" value="/admin/users" >
 					<c:param name="page" value="${nowPage -1 }" />
 					<c:param name="count" value="${count }" />
@@ -283,6 +300,13 @@
               <c:if test ="${nowPage ne endPage }">
              	<a href="${goUserPlus }">[다음]</a>
              </c:if>
+             <c:url var="goUserList" value="/admin/users" >
+					<c:param name="page" value="${endPage }" />
+					<c:param name="count" value="${count }" />
+					<c:param name="order" value="${order }" />
+					<c:param name="where" value="${where }" />
+			</c:url>
+				<a href="${goUserList }">[마지막으로]</a>
 		</div><!-- pageList -->
   
 
