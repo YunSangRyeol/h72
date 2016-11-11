@@ -44,12 +44,24 @@ $(document).ready(function() {
 			if((userpass.length > 0 && userpass.length < 10)){ //길이 체크
 				$('#newPwLabel1').hide();
 				$('#newPwLabel').show();
+				$('#samePw').hide();
+				$('#samePw1').hide();
+				pwResult = false;
+
 			} else if (re_pwSpace >=0) {	//공백 여부
 				$('#newPwLabel1').hide();
 				$('#newPwLabel').show();
+				$('#samePw').hide();
+				$('#samePw1').hide();
+				pwResult = false;
+
 			} else if (re_pwNum < 0 || re_pwEng < 0 || re_pwSpe < 0) { //숫자, 영문, 특문 포함되어있는지
 				$('#newPwLabel1').hide();
 				$('#newPwLabel').show();
+				$('#samePw').hide();
+				$('#samePw1').hide();
+				pwResult = false;
+
 			} else{	//모든 조건 적합할 때
 				$('#newPwLabel').hide();
 				$('#newPwLabel1').show();
