@@ -18,4 +18,5 @@ public interface DetailService {
 	public int selectListNo();
 	public int insertReview(Review review);
 	public int deleteReview(ManageForm form);
+	public Review selectSingleReview(ManageForm form);
 }

@@ -60,6 +60,11 @@ public class DetailServiceImpl implements DetailService {
 		int result = dd.deleteReview(form);
 		return result;
 	}
+	@Override
+	public Review selectSingleReview(ManageForm form) {
+		Review review = dd.selectSingleReview(form);
+		return review;
+	}
 	
 	
 	

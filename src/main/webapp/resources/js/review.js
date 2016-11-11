@@ -150,32 +150,50 @@ function reviewing(reviewList){
 											reviewList[i].r_CONTENTS +
 				"						</a>" +
 				"					</div>" +
-				"					<ul class='images'>" +
+				"					<ul class='images'>";
+				
+									if(reviewList[i].r_IMG01 != null){
+										list_div += 
 				"						<li>" +
 				"							<a data-photo-review-popup-url='' class='photo-review-popup'>" +
 				"								<img class='review-image loaded' src='/h72/resources/uploadFiles/" + reviewList[i].r_IMG01 + "' style='width:74px; height:74px;'>" +
 				"							</a>" +
-				"						</li>" +
+				"						</li>";
+									}
+									if(reviewList[i].r_IMG02 != null){
+										list_div +=
 				"						<li>" +
 				"							<a data-photo-review-popup-url='' class='photo-review-popup'>" +
 				"								<img class='review-image loaded' src='/h72/resources/uploadFiles/" + reviewList[i].r_IMG02 + "' style='width:74px; height:74px;'>" +
 				"							</a>" +
-				"						</li>" +
+				"						</li>";
+									}
+									if(reviewList[i].r_IMG03 != null){
+										list_div +=
 				"						<li>" +
 				"							<a data-photo-review-popup-url='' class='photo-review-popup'>" +
 				"								<img class='review-image loaded' src='/h72/resources/uploadFiles/" + reviewList[i].r_IMG03 + "' style='width:74px; height:74px;'>" +
 				"							</a>" +
-				"						</li>" +
+				"						</li>";
+									}
+									if(reviewList[i].r_IMG04 != null){
+										list_div +=
 				"						<li>" +
 				"							<a data-photo-review-popup-url='' class='photo-review-popup'>" +
 				"								<img class='review-image loaded' src='/h72/resources/uploadFiles/" + reviewList[i].r_IMG04 + "' style='width:74px; height:74px;'>" +
 				"							</a>" +
-				"						</li>" +
+				"						</li>";
+									}
+									if(reviewList[i].r_IMG05 != null){
+										list_div +=
 				"						<li>" +
 				"							<a data-photo-review-popup-url='' class='photo-review-popup'>" +
 				"								<img class='review-image loaded' src='/h72/resources/uploadFiles/" + reviewList[i].r_IMG05 + "' style='width:74px; height:74px;'>" +
 				"							</a>" +
-				"						</li>" +
+				"						</li>";
+									}
+									
+									list_div +=
 				"					</ul>";
 				
 				

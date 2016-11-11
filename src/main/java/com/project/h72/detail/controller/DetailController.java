@@ -251,8 +251,8 @@ public class DetailController {
 				//1. 웹 컨테이너 내에 저장 위치를 지정할 경우
 				//String savePath = request.getSession().getServletContext().getRealPath("/uploadFiles/");
 				//2. 임의로 파일 저장 폴더를 만들고, 위치를 지정할 경우
-				String savePath = //"C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
-				"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
+				String savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+				//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
 				
 				/*"D:\\SEARCHSTUDY\\forgit\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\searchStudy\\uploadFiles";*/
 				
@@ -410,10 +410,54 @@ public class DetailController {
 	public Map<String, Object> deleteReview(@RequestBody ManageForm form, HttpServletRequest request, Model model){
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
 		System.out.println("deleteReview run...");
 		System.out.println(form);
-		//전달 받은 review번호(reviewNo) 와 userid(user)를 가지고 delete 
+		
+		//1. 디렉토리에 저장된 이미지파일 지워주기 위해 지워주려고하는 리뷰를 가져옴
+		Review review = ds.selectSingleReview(form);
+		System.out.println("delete review info : " + review);
+		
+		ArrayList<String> arr = new ArrayList<String>();
+		
+		String img01 = null;
+		String img02 = null;
+		String img03 = null;
+		String img04 = null;
+		String img05 = null;
+		
+		if(review.getR_IMG01() != null){
+			img01 = review.getR_IMG01();
+			arr.add(img01);
+		}
+		if(review.getR_IMG02() != null){
+			img02 = review.getR_IMG02();
+			arr.add(img02);
+		}
+		if(review.getR_IMG03() != null){
+			img03 = review.getR_IMG03();
+			arr.add(img03);
+		}
+		if(review.getR_IMG04() != null){
+			img04 = review.getR_IMG04();
+			arr.add(img04);
+		}
+		if(review.getR_IMG05() != null){
+			img05 = review.getR_IMG05();
+			arr.add(img05);
+		}
+		
+		System.out.println(img01 + ", " + img02 + ", " + img03 + ", " + img04 + ", " + img05 + ", arr size : " + arr.size());
+		
+		String savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+		//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
+		
+		for(int i = 0; i < arr.size(); i++){
+			File imgFile = new File(savePath + "\\" + arr.get(i));
+			imgFile.delete();
+		}
+		
+		
+		//2. 전달 받은 review번호(reviewNo) 와 userid(user)를 가지고 delete 
 		int result = ds.deleteReview(form);
 		
 		map.put("result", result);

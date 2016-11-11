@@ -170,4 +170,18 @@
 		AND R_WRITER = #{user} 
 	</delete>
 
+	<select id="selectSingleReview" parameterType="ManageForm" resultType="Review" resultMap="reviewResult">
+	<!-- REVIEW_ID ITEM_DETAIL_ID R_WRITER R_CONTENTS R_DATE R_IMG01 R_IMG02 R_IMG03 R_IMG04 R_IMG05 -->
+		SELECT *
+		FROM REVIEW
+		WHERE REVIEW_ID = #{reviewNo} 
+		AND ITEM_DETAIL_ID = #{itemDetailId} 
+		AND R_WRITER = #{user}
+	</select>
+
+
+
+
+
+
 </mapper>

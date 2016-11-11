@@ -61,23 +61,9 @@ function ResizeFrame(name)
 	<div id="detail_contents">
     	<div id="detail_in">
 		
-			<!--
-			    $category_page = /product/list.html
-			    $project_page = /product/project.html
-			    $jointbuy_page = /product/jointbuy.html
-			--> 
 			<!-- 상단 제품 정보  --> 
 
 			<div class="xans-element- xans-product xans-product-detail">
-			<script language="JavaScript">
-			<!--
-			function BookMarkNow(){
-			   var prdUrl = location.href;
-			   window.external.AddFavorite(prdUrl,"10대월드 - 2016ver. 데일리 MTM" );
-			} 
-			//-->
-			</script>
-			
 				<div class="detailArea">
 				
         	<!-- 이미지 영역 -->
@@ -360,6 +346,7 @@ function ResizeFrame(name)
 				document.getElementById("cartBtn").onmousedown = sendCart;
 			    function sendCart() {
 			    	var loginUser = '${loginUser.name }';
+			    	var loginUserId = '${loginUser.userid}';
 			    	var arrSelect = $(".option_mini.ui_optSelWrapper.position_top");//추가된 옵션 div 배열
 			    	var arrSelectNum = new Array();//추가된 옵션 div 배열에서 각각 id 끝자리에 있는 num을 담을 배열
 			    	//alert("arrSelect length : " + arrSelect.length);
@@ -367,7 +354,6 @@ function ResizeFrame(name)
 			    		arrSelectNum.push($(arrSelect[i]).attr("id").substring( $( arrSelect[i] ).attr( "id" ).length - 1 ) );// 추가된 옵션 div 마지막 num 뽑아내기
 			   			//$(a[0]).attr("id").substring($(a[0]).attr("id").length-1)
 			    	}
-			    	
 			    	var arrQuantity = "";
 			    	var arrCost = "";
 			    	var arrOpName = "";
@@ -376,12 +362,22 @@ function ResizeFrame(name)
 		    		//var arrCost = new Array(); //cost
 		    		//var arrOpName = new Array(); //itemOptionName
 		    		
+		    		//비회원일 시 장바구니 클릭 시 고유의 세션 아이디 가져옴
+		    		if(loginUserId == ""){
+		    			loginUserId = '<%= session.getId()%>';
+		    		}
+		    		
+		    		
+		    		
+		    		
 			    	if(op_count == 0){
 			    		alert("필수 옵션을 선택해주세요.");
 			    	}else{
 			    		
-			    		if(loginUser != ""){//로그인했을 때 장바구니 담기 기능 실행
+			    		//if(loginUser != ""){
+			    			//로그인했을 때 장바구니 담기 기능//로그인안했을 때는 컨트롤러에서 ip주소를 저장
 			    			
+			    			//배열로 보내는 방법이 잘 안되서 구분자를 이용해서 선택된 옵션들을 문자열합치기 하고 있음
 				    		for(var i = 0; i < op_count; i++){
 				    			if(i < (op_count - 1)){
 					    			arrQuantity += $( "#option_mini_wrap" + arrSelectNum[i] + "> ul > li #quantity" + arrSelectNum[i] ).val();
@@ -404,7 +400,7 @@ function ResizeFrame(name)
 					    				cost : arrCost ,
 					    				itemOptionName : arrOpName , 
 					    				op_count : op_count ,
-					    				userid : '${loginUser.userid }' ,
+					    				userid : loginUserId ,
 					    				itemFullName : '${itemDetailList.get(0).ITEM_NAME }' ,
 					    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID }' ,
 					    				mainImg : '${itemDetailList.get(0).MAIN_IMG }' ,
@@ -423,9 +419,9 @@ function ResizeFrame(name)
 					    		}
 					    	});
 			    	
-			    		}else{
-			    			alert("로그인 해주세요");
-			    		}
+			    		//}else{
+			    		//	alert("로그인 해주세요");
+			    		//}
 			    	}
 			    }
 

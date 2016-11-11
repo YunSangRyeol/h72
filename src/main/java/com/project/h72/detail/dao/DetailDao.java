@@ -105,4 +105,9 @@ public class DetailDao {
 		return result;
 	}
 
+	public Review selectSingleReview(ManageForm form) {
+		Review review = sqlSession.selectOne(NAMESPACE + "selectSingleReview", form);
+		return review;
+	}
+
 }
