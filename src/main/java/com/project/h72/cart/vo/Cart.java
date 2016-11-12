@@ -11,7 +11,6 @@ public class Cart {
 	private String mainImg;
 	private int quantity;
 	private int cost;
-	private String message;
 	private char KitYN;
 	private Date enrollDate;
 	private String itemOptionName;
@@ -22,7 +21,7 @@ public class Cart {
 	}
 
 	public Cart(String userid, String itemFullName, String itemDetailid, String mainImg, int quantity,
-			int cost, String message, char kitYN, String itemOptionName) {
+			int cost, char kitYN, String itemOptionName) {
 		super();
 		this.userid = userid;
 		this.itemFullName = itemFullName;
@@ -30,13 +29,12 @@ public class Cart {
 		this.mainImg = mainImg;
 		this.quantity = quantity;
 		this.cost = cost;
-		this.message = message;
 		this.KitYN = kitYN;
 		this.itemOptionName = itemOptionName;
 	}
 
 	public Cart(String cartid, String itemid, String userid, String itemFullName, String itemDetailid, String mainImg,
-			int quantity, int cost, String message, char kitYN, Date enrollDate,String itemOptionName) {
+			int quantity, int cost, char kitYN, Date enrollDate,String itemOptionName) {
 		super();
 		this.cartid = cartid;
 		this.itemid = itemid;
@@ -46,7 +44,6 @@ public class Cart {
 		this.mainImg = mainImg;
 		this.quantity = quantity;
 		this.cost = cost;
-		this.message = message;
 		this.KitYN = kitYN;
 		this.enrollDate = enrollDate;
 		this.itemOptionName=itemOptionName;
@@ -118,14 +115,6 @@ public class Cart {
 		this.cost = cost;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 	public char getKitYN() {
 		return KitYN;
 	}
@@ -158,7 +147,7 @@ public class Cart {
 	@Override
 	public String toString(){
 		return cartid+", "+itemid+", "+userid+", "+itemFullName+", "+itemDetailid+", "+mainImg+", "+
-				quantity+", "+cost+", "+ message+", "+String.valueOf(KitYN)+", "+enrollDate+", "+itemOptionName;
+				quantity+", "+cost+", "+ String.valueOf(KitYN)+", "+enrollDate+", "+itemOptionName;
 	}
 	
 	

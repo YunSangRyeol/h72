@@ -88,7 +88,7 @@ span.total_payment {
 									<tr>
 										<th scope="row">결제수단</th>
 										<td> <strong>${order.paymentMethod}</strong><br>
-											입금자 : ${bankInfo['vName']},&nbps;&nbps; 계좌번호 : ${bankInfo['vbankName']} ${bankInfo['vbankNum']}<br>
+											입금자 : ${bankInfo['vName']},&nbsp;&nbsp;계좌번호 : ${bankInfo['vbankName']} ${bankInfo['vbankNum']}<br>
 										</td>
 									</tr>
 								</tbody>

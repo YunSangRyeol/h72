@@ -62,9 +62,25 @@ public class OrderServiceImp implements OrderService {
 	}
 
 	@Override
-	public List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth, int currentPage,
+	public List<Order> selectOrderList(String userId, Date currentDate, Date preDate, int currentPage,
 			int limit) {
-		return oDao.selectOrderList(userId,currentDate,preThreeMonth, currentPage, limit);
+		return oDao.selectOrderList(userId,currentDate,preDate, currentPage, limit);
+	}
+
+	@Override
+	public int updateStatusCancle(String orderNo, String status) {
+		return oDao.updateStatusCancle(orderNo, status);
+	}
+
+	@Override
+	public int getClistCount(String userId, Date currentDate, Date preDate, String tab) {
+		return oDao.getClistCount(userId, currentDate, preDate, tab);
+	}
+
+	@Override
+	public List<Order> selectOrderClist(String userId, Date currentDate, Date preDate, int currentPage, int limit,
+			String tab) {
+		return oDao.selectOrderClist(userId, currentDate, preDate, currentPage, limit,tab);
 	}
 
 

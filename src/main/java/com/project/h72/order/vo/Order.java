@@ -24,6 +24,7 @@ public class Order {
 	private String orderStatus;
 	private String orderChange;
 	private Date enrollDate;
+	private String transportNo;
 	
 	
 
@@ -88,6 +89,37 @@ public class Order {
 		this.orderStatus = orderStatus;
 		this.orderChange = orderChange;
 		this.enrollDate = enrollDate;
+	}
+	
+
+	public Order(String orderNo, String userId, String deleveryName, String mainImgN1, String itemNameN1,
+			String itemOptionNameN1, int totalQuantity, int kindsQuantity, int totalPrice, String paymentMethod,
+			int paymentPoint, int totalSavingPoint, int deliveryPee, String phone, String postNum, String address,
+			String addressDetail, String deliveryMessage, String orderStatus, String orderChange, Date enrollDate,
+			String transportNo) {
+		super();
+		this.orderNo = orderNo;
+		this.userId = userId;
+		this.deleveryName = deleveryName;
+		this.mainImgN1 = mainImgN1;
+		this.itemNameN1 = itemNameN1;
+		this.itemOptionNameN1 = itemOptionNameN1;
+		this.totalQuantity = totalQuantity;
+		this.kindsQuantity = kindsQuantity;
+		this.totalPrice = totalPrice;
+		this.paymentMethod = paymentMethod;
+		this.paymentPoint = paymentPoint;
+		this.totalSavingPoint = totalSavingPoint;
+		this.deliveryPee = deliveryPee;
+		this.phone = phone;
+		this.postNum = postNum;
+		this.address = address;
+		this.addressDetail = addressDetail;
+		this.deliveryMessage = deliveryMessage;
+		this.orderStatus = orderStatus;
+		this.orderChange = orderChange;
+		this.enrollDate = enrollDate;
+		this.transportNo = transportNo;
 	}
 
 
@@ -342,6 +374,19 @@ public class Order {
 		this.enrollDate = enrollDate;
 	}
 
+	
+
+
+	public String getTransportNo() {
+		return transportNo;
+	}
+
+
+
+	public void setTransportNo(String transportNo) {
+		this.transportNo = transportNo;
+	}
+
 
 
 	@Override
@@ -349,7 +394,7 @@ public class Order {
 		return this.orderNo + ", " + this.userId + ", " +this.deleveryName + ", " + this.mainImgN1 + ", " + this.itemNameN1 + ", " + this.itemOptionNameN1  + ", " + this.totalQuantity
 				 +" , "+this.totalQuantity+ ", " + this.totalPrice + ", " + this.paymentMethod + ", " + this.paymentPoint + ", " + this.totalSavingPoint
 				 + ", " + this.deliveryPee + ", " + this.phone + ", " + this.postNum + ", " + this.address + ", " + this.addressDetail
-				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange + ", " + this.enrollDate;
+				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange + ", " + this.enrollDate+","+this.transportNo;
 	}
 	
 }

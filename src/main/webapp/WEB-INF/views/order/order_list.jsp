@@ -15,19 +15,49 @@
 <script type="text/javascript">
 
 //탭 변경	
-function openTab(evt, tabname) {
-	var i, tabcontent, tablinks;
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
+function openTab(tabname) {
+	if(tabname=="orderCategory"){
+	$.ajax({
+		type:'GET',
+		url: "/h72/order/order_list",
+		data :{"tab":tabname},
+		success: function(data) {
+			$('#orderCategoryTab').addClass("selected");
+			$('#orderListTab').removeClass("selected");
+			$('#orderlist').css("display","none");
+			$('#orderCategory').css("display","block");
+			$('#inputTab').val(tabname);
+			alert('성공');
+		},
+		error: function(data) {
+			alert("에러발생! 변경에 실패하였습니다.");
+		}			
+	});	
+	
+	}else{
+		$.ajax({
+			type:'GET',
+			url: "/h72/order/order_list",
+			data :{"tab":tabname},
+			success: function(data) {
+				$('#orderCategoryTab').removeClass("selected");
+				$('#orderListTab').addClass("selected");
+				$('#orderCategory').css("display","none");
+				$('#orderlist').css("display","block");
+				$('#inputTab').val(tabname);
+			},
+			error: function(data) {
+				alert("에러발생! 변경에 실패하였습니다.");
+			}			
+		});	
 	}
-	tablinks = document.getElementsByClassName("tablinks");
-	for (i = 0; i < tablinks.length; i++) {
-		tablinks[i].className = tablinks[i].className
-				.replace("selected", "");
+	
+}
+
+function orderChange(orderNo, status) {
+	if(confirm("주문을 취소하시겠습니까?") == true){
+	location.href="/h72/updateStatusCancle?orderNo="+orderNo+"&status="+status;
 	}
-	document.getElementById(tabname).style.display = "block";
-	evt.currentTarget.className += " selected";
 }
 
 
@@ -116,18 +146,14 @@ function dateToYYYYMMDD(date)
 
 				<div class="xans-element- xans-myshop xans-myshop-orderhistorytab ">
 					<ul>
-						<li><!-- <a
-							href="/myshop/order/list.html?history_start_date=2016-07-27&amp;history_end_date=2016-10-25">주문내역조회
-						</a> -->
-						<a href="javascript:void(0)" class="tablinks selected"
-						onclick="openTab(event, 'orderlist')" id="defaultOpen">주문내역조회</a>
+						<li>
+						<a href="javascript:void(0)" class="selected" 
+						onclick="openTab('orderlist')" id="orderListTab">주문내역조회</a>
 						
 						</li>
-						<li><!-- <a
-							href="/myshop/order/list.html?mode=cs&amp;history_start_date=2016-07-27&amp;history_end_date=2016-10-25">취소/반품/교환
-								내역 </a> -->
-						<a href="javascript:void(0)" class="tablinks"
-						onclick="openTab(event, 'orderCategory')">취소/반품/교환</a></li>
+						<li>
+						<a href="javascript:void(0)" class="" id="orderCategoryTab"
+						onclick="openTab('orderCategory')">취소/반품/교환</a></li>
 					</ul>
 				</div>
 
@@ -151,6 +177,7 @@ function dateToYYYYMMDD(date)
 								<input type="date" name="end_date" class="fText" id="endDate" value="2016-10-25"> 
 								<span class="order_term_search" id="searchDate">조회</span>
 								<input type="hidden" name="page" value="${currentPage }"/>
+								<input type="hidden" name="tab" id="inputTab" value="orderlist"/>
 						</fieldset>
 						<ul>
 							<li>· 기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
@@ -186,8 +213,8 @@ function dateToYYYYMMDD(date)
 							<tr class="xans-record-">
 								<td rowspan="2" class="number ">${orderList.enrollDate }
 									<p>
-										<a href="/h72/order/order_detail?orderNo=${orderList.orderNo }"
-											class="line">${orderList.orderNo }</a><br>
+										<a href="/h72/order/order_detail?orderNo=${orderList.orderNo }" class="line">
+										[ ${orderList.orderNo } ]</a><br>
 									</p>
 								</td>
 								<td class="thumb"><a
@@ -204,21 +231,20 @@ function dateToYYYYMMDD(date)
 									<p>${orderList.orderStatus }</p>
 								</td>
 								<td class="service">
-								<c:if test="${orderList.orderStatus eq '주문접수'}">
-									<a href="#none" onclick=" orderCancel(${orderList.orderNo})">
+								<c:if test="${orderList.orderStatus eq '결제완료' || orderList.orderStatus eq '입금전'}">
+									<a href="#none" onclick="orderChange('${orderList.orderNo}', '${orderList.orderStatus}');">
 									<p class="order_cancle">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
 								</c:if>
-								<c:if test="${orderList.orderStatus eq '결제완료'}">
-									<!-- <a href="#none" onclick=" orderCancel(${orderList.orderNo})">
-											 -->
-										<p class="order_cancle">반품요청&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p>
-								</c:if>		
+								<c:if test="${orderList.orderStatus eq '배송중'}">
+									<a href="우체국택배 http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${orderList.transportNo }">
+										<p class="order_cancle">배송조회&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
+								</c:if>	
 								</td>
 							</tr>
 						</tbody>
 						</c:forEach>
 						</c:if>
-						<c:if test="${orderList eq null}">
+						<c:if test="${orderList eq null || orderList==''}">
 						<tbody class="">
 							<tr>
 								<td colspan="7" class="empty">주문 내역이 없습니다</td>
@@ -285,31 +311,30 @@ function dateToYYYYMMDD(date)
 								<th scope="col" class="service">취소/교환/반품</th>
 							</tr>
 						</thead>
-						<c:if test="${!(orderList eq null) }">
-						<c:forEach var="orderList" items="${orderList}">
+						<c:if test="${!(reOrderList eq null) }">
+						<c:forEach var="orderList" items="${reOrderList}">
 						<tbody class="">
 							<tr class="xans-record-">
-								<td rowspan="2" class="number ">${orderList.enrollDate}
+								<td rowspan="2" class="number ">${reOrderList.enrollDate}
 									<p>
-										<a
-											href="<c:url value="/order/order_detail"/>"
-											class="line">[${orderList.orderNo}]</a>
+										<a href="/h72/order/order_detail?orderNo=${reOrderList.orderNo }" class="line">
+											class="line">[ ${reOrderList.orderNo} ]</a>
 									</p>
 								</td>
-								<td class="thumb"><a
-									href="/product/detail.html?product_no=8049&amp;cate_no=32"><img
-										src="/h72/resources${orderList.mainImgN1}" alt=""></a></td>
-								<td class="product"><a
-									href="/product/detail.html?product_no=8049&amp;cate_no=32"><strong>
-											${orderList.itemNameN1}</strong></a>
-									<div class="option ">[옵션: ${orderList.itemOptionNameN1}]</div></td>
-								<td class="quantity">${orderList.totalQuantity}</td>
-								<td class="price"><strong><fmt:formatNumber value="${orderList.totalPrice}" pattern="#,###"/>원</strong></td>
+								<td class="thumb">
+										<a href="/h72/order/order_detail?orderNo=${reOrderList.orderNo }" class="line"><img
+										src="/h72/resources${reOrderList.mainImgN1}" alt=""></a></td>
+								<td class="product">
+								<a href="/h72/order/order_detail?orderNo=${reOrderList.orderNo }" class="line"><strong>
+											${reOrderList.itemNameN1}</strong></a>
+									<div class="option ">[대표옵션: ${reOrderList.itemOptionNameN1}]</div></td>
+								<td class="quantity">${reOrderList.totalQuantity}</td>
+								<td class="price"><strong><fmt:formatNumber value="${reOrderList.totalPrice}" pattern="#,###"/>원</strong></td>
 								<td class="state">
-									<p>${orderList.orderStatus}</p>
+									<p>${reOrderList.orderStatus}</p>
 								</td>
 								<td class="service">
-									<p class="">${orderList.orderChange}</p>
+									<p class="">${reOrderList.orderChange}</p>
 								</td>
 							</tr>
 
@@ -317,10 +342,10 @@ function dateToYYYYMMDD(date)
 						</tbody>
 						</c:forEach>
 						</c:if>
-						<c:if test="${ orderList eq null}">
+						<c:if test="${reOrderList eq null || reOrderList==''}">
 						<tbody class="">
 							<tr>
-								<td colspan="7" class="empty">주문 내역이 없습니다</td>
+								<td colspan="7" class="empty">취소/교환/반품 내역이 없습니다</td>
 							</tr>
 						</tbody>
 						</c:if>
@@ -384,8 +409,9 @@ function dateToYYYYMMDD(date)
  	 				var endDate = document.getElementById("startDate").value;
  	 				var currentDate = document.getElementById("endDate").value;
  	 				var currentPage = '${searchPage}';
+ 	 				var tab = $('#inputTab').val();
  	 				console.log(currentPage);
- 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate;
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
  	 		});
 		
 		$('#prePaging').click(
@@ -393,15 +419,18 @@ function dateToYYYYMMDD(date)
  	 				var endDate = document.getElementById("startDate").value;
  	 				var currentDate = document.getElementById("endDate").value;
  	 				var currentPage = '${currentPage-1}';
+ 	 				var tab = $('#inputTab').val();
  	 				console.log(currentPage);
- 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate;
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
  	 		});
 		$('#endPaging').click(
  	 			function(){
  	 				var endDate = document.getElementById("startDate").value;
  	 				var currentDate = document.getElementById("endDate").value;
  	 				var currentPage = '${currentPage+1}';
- 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate;
+ 	 				var tab = $('#inputTab').val();
+ 	 				console.log(currentPage);
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
  	 		});
 		
 	});

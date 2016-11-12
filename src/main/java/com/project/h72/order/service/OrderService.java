@@ -20,8 +20,14 @@ public interface OrderService {
 
 	int deleteFinishCart(String[] cartId);
 
-	List<Order> selectOrderList(String userId, Date currentDate, Date preThreeMonth, int currentPage, int limit);
+	List<Order> selectOrderList(String userId, Date currentDate, Date preDate, int currentPage, int limit);
 
-	int getListCount(String userId, Date currentDate, Date preThreeMonth);
+	int getListCount(String userId, Date currentDate, Date preDate);
+
+	int updateStatusCancle(String orderNo, String status);
+
+	int getClistCount(String userId, Date currentDate, Date preDate, String tab);
+
+	List<Order> selectOrderClist(String userId, Date currentDate, Date preDate, int currentPage, int limit, String tab);
 
 }

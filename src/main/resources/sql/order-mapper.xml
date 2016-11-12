@@ -5,7 +5,7 @@
 <mapper namespace="orderMapper">
 
 	<select id="getCartOrder"  parameterType="String" resultType="Cart">
-	SELECT C.CART_ID, C.ITEM_ID, C.USER_ID, C.ITEM_FULL_NAME, C.ITEM_DETAIL_ID, C.MAIN_IMG, C.QUANTITY, C.COST, C.MESSAGE, C.KIT_YN, C.ENROLL_DATE, A.ITEM_OPTION_NAME
+	SELECT C.CART_ID, C.ITEM_ID, C.USER_ID, C.ITEM_FULL_NAME, C.ITEM_DETAIL_ID, C.MAIN_IMG, C.QUANTITY, C.COST, C.KIT_YN, C.ENROLL_DATE, A.ITEM_OPTION_NAME
 	FROM CART C, ITEM_ALL_VIEW A
 	WHERE C.ITEM_ID = A.ITEM_ID
 	AND CART_ID = #{cartAll}
@@ -17,7 +17,7 @@
 	</insert>
 	
 	<insert id="insertOrderInfo" parameterType="Order">
-	INSERT INTO ORDER_LIST VALUES(#{orderNo},#{userId},#{deleveryName},#{mainImgN1},#{itemNameN1},#{itemOptionNameN1},#{totalQuantity},#{kindsQuantity},#{totalPrice},#{paymentMethod},#{paymentPoint},#{totalSavingPoint},#{deliveryPee},#{phone},#{postNum},#{address},#{addressDetail},#{deliveryMessage},#{orderStatus},#{orderChange},SYSDATE)
+	INSERT INTO ORDER_LIST VALUES(#{orderNo},#{userId},#{deleveryName},#{mainImgN1},#{itemNameN1},#{itemOptionNameN1},#{totalQuantity},#{kindsQuantity},#{totalPrice},#{paymentMethod},#{paymentPoint},#{totalSavingPoint},#{deliveryPee},#{phone},#{postNum},#{address},#{addressDetail},#{deliveryMessage},#{orderStatus},#{orderChange},SYSDATE,null)
 	
 	</insert>
 	
@@ -31,15 +31,45 @@
 	</delete>
 		
 	<select id="selectOrderList" parameterType="java.util.HashMap" resultType="Order">
-	 SELECT * FROM (SELECT ROWNUM RNUM, ORDER_NO, USER_ID, DELEVERY_NAME,MAIN_IMG_N1, ITEM_NAME_N1, ITEM_OPTION_NAME_N1, TOTAL_QUANTITY, KINDS_QUANTITY, TOTAL_PRICE, PAYMENT_METHOD, PYMNET_POINT, TOTAL_SAVING_POINT, DELEVERY_PEE, PHONE, POST_NUM, ADDRESS, ADDRESS_DETAIL, DELIVERY_MESSAGE, ORDER_STATUS, ORDER_CHANGE, ENROLL_DATE
-	 FROM (SELECT * FROM ORDER_LIST 
-	 WHERE USER_ID=#{userId} AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1))
+	 SELECT * 
+	 FROM (SELECT ROWNUM RNUM, ORDER_NO, USER_ID, DELEVERY_NAME,MAIN_IMG_N1, ITEM_NAME_N1, ITEM_OPTION_NAME_N1, TOTAL_QUANTITY, KINDS_QUANTITY, TOTAL_PRICE, PAYMENT_METHOD, PYMNET_POINT, TOTAL_SAVING_POINT, DELEVERY_PEE, PHONE, POST_NUM, ADDRESS, ADDRESS_DETAIL, DELIVERY_MESSAGE, ORDER_STATUS, ORDER_CHANGE, ENROLL_DATE ,TRANSPORT_NUMBER
+	 		FROM (SELECT * 
+	 			  FROM ORDER_LIST 
+					 WHERE USER_ID=#{userId} 
+					 AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1
+	 				 AND REGEXP_LIKE(ORDER_STATUS,#{keyword})))
 	 WHERE RNUM >= #{startRow} AND RNUM <![CDATA[<]]>= #{endRow} 
 	</select>	
 	
 	<select id="getListCount" parameterType="java.util.HashMap" resultType="Integer">
 	 SELECT COUNT(*) FROM ORDER_LIST
-	 WHERE USER_ID=#{userId} AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1
+	 WHERE USER_ID=#{userId} 
+	 AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1
+	 AND REGEXP_LIKE(ORDER_STATUS,#{keyword})
 	</select>	
+	
+	<update id="updateStatusCancle" parameterType="java.util.HashMap">
+		UPDATE ORDER_LIST SET ORDER_STATUS = #{status} WHERE ORDER_NO = #{orderNo}
+	</update>
+	
+	<select id="getClistCount" parameterType="java.util.HashMap" resultType="Integer">
+	 SELECT COUNT(*) FROM ORDER_LIST
+	 WHERE USER_ID=#{userId} 
+	 AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1
+	 AND REGEXP_LIKE(ORDER_STATUS,#{keyword})
+	</select>	
+	
+	<select id="selectOrderClist" parameterType="java.util.HashMap" resultType="Order">
+	 SELECT * 
+	 FROM (SELECT ROWNUM RNUM, ORDER_NO, USER_ID, DELEVERY_NAME,MAIN_IMG_N1, ITEM_NAME_N1, ITEM_OPTION_NAME_N1, TOTAL_QUANTITY, KINDS_QUANTITY, TOTAL_PRICE, PAYMENT_METHOD, PYMNET_POINT, TOTAL_SAVING_POINT, DELEVERY_PEE, PHONE, POST_NUM, ADDRESS, ADDRESS_DETAIL, DELIVERY_MESSAGE, ORDER_STATUS, ORDER_CHANGE, ENROLL_DATE ,TRANSPORT_NUMBER
+	 		FROM (SELECT * 
+	 			  FROM ORDER_LIST 
+					 WHERE USER_ID=#{userId} 
+					 AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1
+	 				 AND REGEXP_LIKE(ORDER_STATUS,#{keyword})))
+	 WHERE RNUM >= #{startRow} AND RNUM <![CDATA[<]]>= #{endRow} 
+	</select>	
+	
+	
 	
 </mapper>

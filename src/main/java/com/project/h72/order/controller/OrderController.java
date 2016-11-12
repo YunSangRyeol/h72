@@ -52,7 +52,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/insertOrder", method = RequestMethod.POST)
 	public String insertOrderFinish(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
-		System.out.println("결제페이지 넘어옴!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		
 		Member login = (Member) session.getAttribute("loginUser");
 		/*
 		 
@@ -130,7 +130,7 @@ public class OrderController {
 		if(deliveryMessage==null || deliveryMessage ==""){
 			deliveryMessage ="-";
 		}
-		String orderStatus = "배송 준비중";
+		String orderStatus = "결제완료";
 		System.out.println("deliveryMessage : "+deliveryMessage);
 		if(paymethod.equals("가상계좌 입금")){
 			orderStatus = "입금전";
@@ -193,6 +193,7 @@ public class OrderController {
 		
 		Member login = (Member) session.getAttribute("loginUser");
 		List<Order> listOrder = new ArrayList<Order>();
+		List<Order> clistOrder = new ArrayList<Order>();
 		
 		if(login==null){
 			
@@ -214,11 +215,26 @@ public class OrderController {
 			//전달받은 페이지 값 추출
 			if(request.getParameter("page") != null)
 				currentPage = Integer.parseInt(request.getParameter("page"));
-			
 			//전체리스트 갯수
-			int listCount = os.getListCount(userId, currentDate, preDate);
-			//페이지 단위로 게시글 목록 조회용
-			listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit);
+			int listCount =0;
+			int clistCount =0;
+			String tab = "orderlist";
+			if(request.getParameter("tab") != null){
+				tab = request.getParameter("tab");
+				System.out.println(tab+"-------------------------");
+			}
+				
+			if(tab.equals("orderCategory")){
+				clistCount = os.getClistCount(userId, currentDate, preDate, tab);
+				//페이지 단위로 게시글 목록 조회용
+				clistOrder = os.selectOrderClist(userId, currentDate, preDate,currentPage,limit,tab);
+				System.out.println(listOrder+"===================");
+			}else{
+				listCount = os.getListCount(userId, currentDate, preDate);
+				//페이지 단위로 게시글 목록 조회용
+				listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit);
+				System.out.println(listOrder+"----------------------");
+			}
 			
 			//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 			int maxPage = (int)((double)listCount / limit + 0.9);
@@ -239,11 +255,16 @@ public class OrderController {
 				listOrder = null;
 			}
 			
+			if(clistOrder.isEmpty()||clistOrder==null){
+				clistOrder = null;
+			}
+			
 		}
 		
 		model.addAttribute("orderList", listOrder);
-		
-		System.out.println(listOrder);
+		model.addAttribute("reOrderList", clistOrder);
+		System.out.println("orderList"+clistOrder);
+		System.out.println("reOrderList"+listOrder);
 		
 		return "order/order_list";
 	}
@@ -251,9 +272,11 @@ public class OrderController {
 	
 	
 	@RequestMapping(value = "/searchOrder", method = RequestMethod.GET)
-	public String searchOrder(@RequestParam("page") String page, @RequestParam("start_date") Date startDate, @RequestParam("end_date") Date endDate, Model model,HttpSession session,HttpServletRequest request) {
+	public String searchOrder(@RequestParam("page") String page, @RequestParam("start_date") Date startDate, 
+			@RequestParam("end_date") Date endDate, @RequestParam("tab") String tab, Model model,HttpSession session,HttpServletRequest request) {
 		Member login = (Member) session.getAttribute("loginUser");
 		List<Order> listOrder = new ArrayList<Order>();
+		List<Order> clistOrder = new ArrayList<Order>();
 		
 		System.out.println("controller:"+page+","+startDate+","+endDate);
 		
@@ -279,10 +302,23 @@ public class OrderController {
 		if(endDate!= null)
 			currentDate = endDate;
 		
-		//전체리스트 갯수
-		int listCount = os.getListCount(userId, currentDate, preDate);
-		//페이지 단위로 게시글 목록 조회용
-		listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit);
+		//전체리스트
+		int listCount =0;
+		int clistCount =0;
+		
+		
+			
+		if(tab.equals("orderCategory")){
+			clistCount = os.getClistCount(userId, currentDate, preDate, tab);
+			//페이지 단위로 게시글 목록 조회용
+			clistOrder = os.selectOrderClist(userId, currentDate, preDate,currentPage,limit,tab);
+			System.out.println(listOrder+"===================");
+		}else{
+			listCount = os.getListCount(userId, currentDate, preDate);
+			//페이지 단위로 게시글 목록 조회용
+			listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit);
+			System.out.println(listOrder+"----------------------");
+		}
 		
 		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int maxPage = (int)((double)listCount / limit + 0.9);
@@ -298,14 +334,22 @@ public class OrderController {
 		model.addAttribute("maxPage", maxPage);
 		model.addAttribute("endPage", endPage);
 		
+
 		if(listOrder.isEmpty()||listOrder==null){
 			listOrder = null;
 		}
+		
+		if(clistOrder.isEmpty()||clistOrder==null){
+			clistOrder = null;
+		}
+		
+	
+	
 		model.addAttribute("orderList", listOrder);
-		System.out.println(listOrder);
-		
-		
-		
+		model.addAttribute("reOrderList", clistOrder);
+		System.out.println("orderList"+clistOrder);
+		System.out.println("reOrderList"+listOrder);
+	
 		return "order/order_list";
 	}
 
@@ -317,10 +361,24 @@ public class OrderController {
 	}
 	
 	
-	@RequestMapping(value = "/reorder", method = RequestMethod.GET)
-	public String searchReorder(Model model) {
+	@RequestMapping(value = "/updateStatusCancle", method = RequestMethod.GET)
+	public String searchReorder(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status, Model model) {
+		System.out.println("===="+orderNo+"====="+status);
+		int result =0;
+		if(status.equals("결제완료")){
+			status = "취소요청";
+			result=os.updateStatusCancle(orderNo, status);
+		}else{
+			status="입금전취소";
+			result=os.updateStatusCancle(orderNo, status);
+		}
 		
-		return null;
+		System.out.println("updateCancle:"+result);
+		
+		
+		
+		
+		return "order/order_list";
 	}
 
 	
