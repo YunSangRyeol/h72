@@ -13,6 +13,38 @@
 <title>Admin Order List</title>
 <script type="text/javascript">
 
+	//배송중일때만 배송조회 INPUTBOX 사용					
+	function chnageInputBox(orderNo){
+		var state= $('#state' + orderNo).val();								
+		if(state == "배송중"){
+			$('#transportNumber' + orderNo).css('border', '1px solid #E9DDDD');
+			$('#transportNumber' + orderNo).css('color', 'black');
+			$('#transportNumber' + orderNo).prop("readonly", false);
+		}else{		
+			$('#transportNumber' + orderNo).css('border', '0px');
+			$('#transportNumber' + orderNo).css('color', 'white');
+			$('#transportNumber' + orderNo).prop("readonly", true);
+		}
+	}
+	
+	//배송중 이거나 결제완료 일때만 배송조회 INPUTBOX 사용					
+	function chnageInputBox1(orderNo){
+		var state= $('#state' + orderNo).val();								
+		if(state == "배송중"){
+			$('#transportNumber' + orderNo).css('border', '1px solid #E9DDDD');
+			$('#transportNumber' + orderNo).css('color', 'black');
+			$('#transportNumber' + orderNo).prop("readonly", false);
+		}else if(state == "결제완료"){
+			$('#transportNumber' + orderNo).css('border', '1px solid #E9DDDD');
+			$('#transportNumber' + orderNo).css('color', 'black');
+			$('#transportNumber' + orderNo).prop("readonly", false);
+		}else{		
+			$('#transportNumber' + orderNo).css('border', '0px');
+			$('#transportNumber' + orderNo).css('color', 'white');
+			$('#transportNumber' + orderNo).prop("readonly", true);
+		}
+	}
+
 	//상세 내역 조회
  	var showNhide = false;
  	function Contents(orderNo){ 	
@@ -129,6 +161,7 @@ $(function(){
     </div>
   <ul id="admin_order_detail">
     <li>기본적으로 최근 3일간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
+    <li>여러개의 운송번호 등록은 결제완료 탭에서 가능합니다</li>
     <li>주문번호를 클릭하시면 해당 주문에 대한 배송정보를 확인하실 수 있습니다.</li>
     <li>상품정보를 클릭하시면 해당 주문의 대한 상세내역을 확인하실 수 있습니다.</li>
     <li>종류별 변경 후에 상단의 탭 이동시 새로고침을 해주셔야 재배열됩니다.</li>
@@ -188,7 +221,7 @@ $(function(){
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state" style="display:none">${list.orderStatus}</td>
 					<td class="state">
-						<select id="state${list.orderNo }" name="selectStatusOne${list.orderNo }0" class="selectOption">
+						<select id="state${list.orderNo }all" name="selectStatusOne${list.orderNo }0" class="selectOption">
 							<option value="결제완료">결제완료</option>
 							<option value="배송중">배송중</option>
 							<option value="주문접수">주문접수</option> 
@@ -198,12 +231,18 @@ $(function(){
 							<option value="반품요청">반품요청</option> 
 				<script>
 				$(function(){
-					$('#state${list.orderNo }').val('${list.orderStatus}').prop("selected", true);
+					$('#state${list.orderNo }all').val('${list.orderStatus}').prop("selected", true);
+					chnageInputBox('${list.orderNo }all');						
+
+					$('#state${list.orderNo }all').change(
+							function(){
+								chnageInputBox('${list.orderNo }all');
+							});		
 			
 				});
 				</script>
 						</select>&nbsp;&nbsp;&nbsp;
-						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }0" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
+						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }all" name="transportNumber${list.orderNo }0" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
 						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne0('${list.orderNo }')" value="변경">
 						</td>
 		<c:if test="${list.orderChange eq null }">
@@ -235,7 +274,6 @@ $(function(){
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
 				<option value="결제완료">결제완료</option>
-				<option value="배송중">배송중</option>
 				<option value="주문접수">주문접수</option> 
 				<option value="구매완료">구매완료</option> 
 				<option value="취소요청">취소요청</option> 
@@ -282,7 +320,7 @@ $(function(){
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="state${list.orderNo }" name="selectStatusOne${list.orderNo }1" class="selectOption">
+						<select id="state${list.orderNo }order" name="selectStatusOne${list.orderNo }1" class="selectOption">
 							<option value="결제완료">결제완료</option>
 							<option value="배송중">배송중</option>
 							<option value="주문접수" selected>주문접수</option> 
@@ -290,8 +328,20 @@ $(function(){
 							<option value="취소요청">취소요청</option> 
 							<option value="교환요청">교환요청</option> 
 							<option value="반품요청">반품요청</option> 
+				<script>
+				$(function(){
+					$('#state${list.orderNo }order').val('${list.orderStatus}').prop("selected", true);
+					chnageInputBox('${list.orderNo }order');						
+
+					$('#state${list.orderNo }order').change(
+							function(){
+								chnageInputBox('${list.orderNo }order');
+							});		
+			
+				});
+				</script>
 						</select>&nbsp;&nbsp;&nbsp;
-						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }1" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
+						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }order" name="transportNumber${list.orderNo }1" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
 						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne1('${list.orderNo }')" value="변경">
 						</td>
 				</tr>
@@ -318,7 +368,6 @@ $(function(){
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
 				<option value="결제완료">결제완료</option>
-				<option value="배송중">배송중</option>
 				<option value="주문접수" selected>주문접수</option> 
 				<option value="구매완료">구매완료</option> 
 				<option value="취소요청">취소요청</option> 
@@ -366,7 +415,7 @@ $(function(){
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="state" name="selectStatusOne${list.orderNo}2" class="selectOption">
+						<select id="state${list.orderNo}" name="selectStatusOne${list.orderNo}2" class="selectOption">
 							<option value="결제완료" selected>결제완료</option>
 							<option value="배송중">배송중</option>
 							<option value="주문접수">주문접수</option> 
@@ -374,6 +423,18 @@ $(function(){
 							<option value="취소요청">취소요청</option> 
 							<option value="교환요청">교환요청</option> 
 							<option value="반품요청">반품요청</option>  
+				<script>
+				$(function(){
+					$('#state${list.orderNo }').val('${list.orderStatus}').prop("selected", true);
+					chnageInputBox1('${list.orderNo }');						
+
+					$('#state${list.orderNo }').change(
+							function(){
+								chnageInputBox1('${list.orderNo }');
+							});		
+			
+				});
+				</script>
 						</select>&nbsp;&nbsp;&nbsp;
 						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }2" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
 						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne2('${list.orderNo }')" value="변경">
@@ -450,7 +511,7 @@ $(function(){
 					<td class="who"><a>${list.userId }</a></td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state">
-						<select id="state" name="selectStatusOne${list.orderNo}3" class="selectOption">
+						<select id="state${list.orderNo}deliver" name="selectStatusOne${list.orderNo}3" class="selectOption">
 							<option value="결제완료">결제완료</option>
 							<option value="배송중" selected>배송중</option>
 							<option value="주문접수">주문접수</option> 
@@ -458,8 +519,20 @@ $(function(){
 							<option value="취소요청">취소요청</option> 
 							<option value="교환요청">교환요청</option> 
 							<option value="반품요청">반품요청</option> 
-						</select>&nbsp;&nbsp;&nbsp;
-						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }3" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
+				<script>
+				$(function(){
+					$('#state${list.orderNo }deliver').val('${list.orderStatus}').prop("selected", true);
+					chnageInputBox('${list.orderNo }deliver');						
+
+					$('#state${list.orderNo }deliver').change(
+							function(){
+								chnageInputBox('${list.orderNo }deliver');
+							});		
+			
+				});
+				</script>
+					</select>&nbsp;&nbsp;&nbsp;
+						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }deliver" name="transportNumber${list.orderNo }3" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
 						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne3('${list.orderNo }')" value="변경">
 					</td>
 				</tr>
