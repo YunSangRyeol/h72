@@ -10,6 +10,7 @@ import com.project.h72.cart.vo.Cart;
 import com.project.h72.order.dao.OrderDao;
 import com.project.h72.order.vo.Order;
 import com.project.h72.order.vo.OrderContents;
+import com.project.h72.order.vo.Vbank;
 
 @Service
 public class OrderServiceImp implements OrderService {
@@ -28,9 +29,9 @@ public class OrderServiceImp implements OrderService {
 	}
 
 	@Override
-	public int insertBankInfo(Map<String, String> bankMap) {
+	public int insertBankInfo(Vbank bank) {
 		// TODO Auto-generated method stub
-		return oDao.inserBankInfo(bankMap);
+		return oDao.inserBankInfo(bank);
 	}
 
 	@Override
@@ -86,6 +87,21 @@ public class OrderServiceImp implements OrderService {
 	@Override
 	public int updateCartUserId(String sessionId, String userId) {
 		return oDao.updateCartUserId(sessionId, userId);
+	}
+
+	@Override
+	public Order selectOrderDetail(String orderNo) {
+		return oDao.selectOrderDetail(orderNo);
+	}
+
+	@Override
+	public List<OrderContents> selectOrderContens(String orderNo) {
+		return oDao.selectOrderContents(orderNo);
+	}
+
+	@Override
+	public Vbank selectVbank(String orderNo) {
+		return oDao.selectVbank(orderNo);
 	}
 
 

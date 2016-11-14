@@ -40,8 +40,8 @@ function openTab(tabname) {
 	}else{
 		$.ajax({
 			type:'GET',
-			url: "/h72/order/order_list",
-			data :{"tab":tabname},
+			url: "/h72/searchOrder",
+			data :{"tab":tabname, "page": "1","start_date": startDate,"end_date": endDate},
 			success: function(data) {
 				$('#orderCategoryTab').removeClass("selected");
 				$('#orderListTab').addClass("selected");
@@ -239,7 +239,7 @@ function dateToYYYYMMDD(date)
 									<p class="order_cancle">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
 								</c:if>
 								<c:if test="${orderList.orderStatus eq '배송중'}">
-									<a href="우체국택배 http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${orderList.transportNo }">
+									<a href="우체국택배 http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${orderList.transportNumber }">
 										<p class="order_cancle">배송조회&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
 								</c:if>	
 								</td>
@@ -314,14 +314,13 @@ function dateToYYYYMMDD(date)
 								<th scope="col" class="service">취소/교환/반품</th>
 							</tr>
 						</thead>
-						<c:if test="${!(reOrderList eq null) }">
 						<c:forEach var="reOrderList" items="${reOrderList}">
 						<tbody class="">
 							<tr class="xans-record-">
 								<td rowspan="2" class="number ">${reOrderList.enrollDate}
 									<p>
 										<a href="/h72/order/order_detail?orderNo=${reOrderList.orderNo }" class="line">
-											class="line">[ ${reOrderList.orderNo} ]</a>
+											[ ${reOrderList.orderNo} ]</a>
 									</p>
 								</td>
 								<td class="thumb">
@@ -344,7 +343,7 @@ function dateToYYYYMMDD(date)
 
 						</tbody>
 						</c:forEach>
-						</c:if>
+
 						<c:if test="${reOrderList eq null || reOrderList==''}">
 						<tbody class="">
 							<tr>

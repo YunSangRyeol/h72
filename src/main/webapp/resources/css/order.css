@@ -24,7 +24,7 @@ th, td {
     border: 2px solid #000;
     color: #000;
     line-height: 1.5;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .xans-order-dcinfo h3 {
@@ -34,7 +34,7 @@ th, td {
     width: 105px;
     height: 100%;
     color: #000;
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -73,7 +73,7 @@ th, td {
 .xans-order-form .controlInfo {
     padding: 10px 0 8px 10px;
     color: #a2a2a2;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.5;
     background: #fff;
 }
@@ -97,7 +97,7 @@ th, td {
 
 .xans-order-form .title {
     margin: 0px 0px 10px 0px;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .xans-order-form .title h3 {
@@ -133,7 +133,7 @@ th, td {
     border: 1px solid #e7e7e7;
     color: #353535;
     line-height: 1.5;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .xans-order-form .boardList table {
@@ -343,7 +343,7 @@ th, td {
     padding: 0 0 0 9px;
     border: 1px solid #e7e7e7;
     line-height: 22px;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 
@@ -362,7 +362,7 @@ th, td {
 }
 
 .xans-order-form #search_ozipcode{
-	padding: 5px 10px 5px 10px; line-height: 0px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 11px;
+	padding: 5px 10px 5px 10px; line-height: 0px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; font-size: 12px;
 }
 
 .xans-order-form #address, .xans-order-form #addressDetail, .xans-order-form #raddress, .xans-order-form #raddressDetail {
@@ -576,7 +576,7 @@ th, td {
     color: #353535;
     line-height: 1.5;
     background: url(http://img.echosting.cafe24.com/skin/base_ko_KR/order/bg_payment.gif) repeat-y 100% 0;
-    font-size: 11px;
+    font-size: 12px;
     
     text-align: left;
 }
@@ -783,7 +783,7 @@ th, td {
 
 .xans-myshop-orderhistorytab {
     line-height: 1.5;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .xans-myshop-orderhistorytab ul {
@@ -848,7 +848,7 @@ th, td {
     margin: 20px 0 0;
     padding: 23px 20px;
     border: 1px solid #e7e7e7;
-    font-size: 11px;
+    font-size: 12px;
     text-align: left;
 }
 
@@ -862,7 +862,7 @@ th, td {
     border: 1px solid #ffffff;
     border-radius: 5px 0px 0px 5px;
     padding: 3px 9px;
-    font-size: 11px;
+    font-size: 12px;
     background-color: #495164;
 }
 
@@ -871,7 +871,7 @@ th, td {
     border: 1px solid #ffffff;
     /* border-radius: 5px 0px 0px 5px; */
     padding: 3px 9px;
-    font-size: 11px;
+    font-size: 12px;
     background-color: #495164;
 
 }
@@ -881,7 +881,7 @@ th, td {
     border: 1px solid #ffffff;
     border-radius: 0px 5px 5px 0px;
     padding: 3px 9px;
-    font-size: 11px;
+    font-size: 12px;
     background-color: #495164;
 }
 
@@ -909,7 +909,7 @@ th, td {
     padding: 0 6px;
     border: 1px solid #d5d5d5;
     line-height: 22px;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 button {
@@ -931,7 +931,7 @@ button {
     margin: 10px 0 0;
     color: #939393;
     line-height: 1.5;
-    font-size: 11px;
+    font-size: 12px;
      text-align: left;
 }
 
@@ -958,7 +958,7 @@ button {
     border: 1px solid #e7e7e7;
     color: #353535;
     line-height: 1.5;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 
@@ -981,7 +981,7 @@ button {
     text-align: center;
     font-weight: bold;
     color: #757575;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 
@@ -1091,7 +1091,7 @@ font-weight:bold;font-size: 15px;color: #e04025;}
 
 .xans-myshop-orderhistorypaging li {
     margin: 0 4px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: normal;
 }
 
@@ -1120,9 +1120,8 @@ font-weight:bold;font-size: 15px;color: #e04025;}
 /* 주문정보  */
 .xans-myshop-orderhistorydetail .boardView {
     border: 1px solid #e7e7e7;
-    font-size: 11px;
+    font-size: 12px;
 } 
-
 .xans-myshop-orderhistorydetail .boardView table {
     table-layout: fixed;
     color: #353535;
@@ -1146,6 +1145,23 @@ font-weight:bold;font-size: 15px;color: #e04025;}
     text-align: left;
 }
 
+.xans-myshop-orderhistorydetail .boardView td .order_change{
+    font-size: 12px;
+    color: #000;
+    width: 72px;
+    background-color: #fbfafa;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.xans-myshop-orderhistorydetail .boardView td .order_change .order_change_arrow{
+font-weight: bold;
+    font-size: 15px;
+    color: #e04025;
+}
+
 .xans-myshop-orderhistorydetail .boardView tbody tr:first-child th, .xans-myshop-orderhistorydetail .boardView tbody tr:first-child td {
     border-top: 0;
 }
@@ -1158,7 +1174,7 @@ font-weight:bold;font-size: 15px;color: #e04025;}
 
 .xans-myshop-orderhistorydetail .boardTotal {
     border: 1px solid #e7e7e7;
-    font-size: 11px;
+    font-size: 12px;: 11px;
 }
 
 
@@ -1226,7 +1242,7 @@ font-weight:bold;font-size: 15px;color: #e04025;}
     border: 1px solid #e7e7e7;
     color: #353535;
     line-height: 1.5;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .xans-myshop-orderhistorydetail .boardList th {

@@ -19,6 +19,7 @@ import com.project.h72.member.vo.Member;
 import com.project.h72.order.service.OrderService;
 import com.project.h72.order.vo.Order;
 import com.project.h72.order.vo.OrderContents;
+import com.project.h72.order.vo.Vbank;
 
 @Controller
 public class OrderController {
@@ -140,11 +141,13 @@ public class OrderController {
 		String vbank_name = request.getParameter("vbank_name");
 		String buyer_name = request.getParameter("buyer_name");
 		System.out.println("vbank_num:"+vbank_num +"vbank_name"+vbank_name+"buyer_name:"+buyer_name);
-		Map<String, String> bankMap = new HashMap<String, String>();
+		Vbank bankInfo = new Vbank(orderNO, vbank_name, vbank_num, buyer_name);
+		
+		/*Map<String, String> bankMap = new HashMap<String, String>();
 		bankMap.put("orderNo", orderNO);
 		bankMap.put("vbankNum", vbank_num);
 		bankMap.put("vbankName", vbank_name);
-		bankMap.put("vName", buyer_name);
+		bankMap.put("vName", buyer_name);*/
 		
 		
 		int resultOrderContents =0;
@@ -159,7 +162,7 @@ public class OrderController {
 		
 		
 		int bankResult = 0;
-		bankResult = os.insertBankInfo(bankMap);
+		bankResult = os.insertBankInfo(bankInfo);
 		
 		int resultOrder = 0;
 		resultOrder = os.insertOrderInfo(order);
@@ -170,7 +173,7 @@ public class OrderController {
 			
 			if(resultCart>0){
 				model.addAttribute("order", order);
-				model.addAttribute("bankInfo", bankMap);
+				model.addAttribute("bankInfo", bankInfo);
 			}
 		}
 		
@@ -341,8 +344,9 @@ public class OrderController {
 	
 		model.addAttribute("orderList", listOrder);
 		model.addAttribute("reOrderList", clistOrder);
-		System.out.println("rederList"+clistOrder);
+		
 		System.out.println("orderList"+listOrder);
+		System.out.println("reOrderList"+clistOrder);
 	
 		return "order/order_list";
 	}
@@ -350,6 +354,15 @@ public class OrderController {
 	
 	@RequestMapping(value = "order/order_detail", method = RequestMethod.GET)
 	public String orderDeitailView(@RequestParam("orderNo") String orderNo,Model model) {
+		Order order = os.selectOrderDetail(orderNo);
+		List<OrderContents> oclist = new ArrayList<OrderContents>();
+		oclist = os.selectOrderContens(orderNo);
+		Vbank bank = os.selectVbank(orderNo);
+		
+		model.addAttribute("detailOrder", order);
+		model.addAttribute("orderContents", oclist);
+		model.addAttribute("bank", bank);
+		System.out.println("orderContents: "+oclist);
 		
 		return "order/order_detail";
 	}
@@ -372,7 +385,7 @@ public class OrderController {
 		
 		
 		
-		return "order/order_list";
+		return "redirect:order/order_list";
 	}
 
 	

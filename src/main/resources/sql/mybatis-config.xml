@@ -28,7 +28,7 @@
 		<typeAlias type="com.project.h72.kitDiy.vo.Order" alias="KitOrder" />
 		<typeAlias type="com.project.h72.detail.vo.Review" alias="Review" />
       	<typeAlias type="com.project.h72.detail.vo.ManageForm" alias="ManageForm" />
-		
+		<typeAlias type="com.project.h72.order.vo.Vbank" alias="Vbank" />
 	</typeAliases>	
 	
 	

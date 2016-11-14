@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.h72.cart.vo.Cart;
 import com.project.h72.order.vo.Order;
 import com.project.h72.order.vo.OrderContents;
+import com.project.h72.order.vo.Vbank;
 
 @Repository
 public class OrderDao {
@@ -23,9 +24,9 @@ public class OrderDao {
 		return sqlSession.selectOne(NAMESPACE+"getCartOrder", cartAll);
 	}
 
-	public int inserBankInfo(Map<String, String> bankMap) {
+	public int inserBankInfo(Vbank bank) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(NAMESPACE+"insertBankInfo", bankMap);
+		return sqlSession.insert(NAMESPACE+"insertBankInfo", bank);
 	}
 
 	public int insertOrderInfo(Order order) {
@@ -104,6 +105,19 @@ public class OrderDao {
 		map.put("sessionId", sessionId);
 		map.put("userId", userId);
 		return sqlSession.update(NAMESPACE+"updateCartUserId", map);
+	}
+
+	public Order selectOrderDetail(String orderNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"selectOrderDetail",orderNo);
+	}
+
+	public List<OrderContents> selectOrderContents(String orderNo) {
+		return sqlSession.selectList(NAMESPACE+"selectOrderContents", orderNo);
+	}
+
+	public Vbank selectVbank(String orderNo) {
+		return sqlSession.selectOne(NAMESPACE+"selectVbank",orderNo);
 	}
 
 }

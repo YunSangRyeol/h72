@@ -12,7 +12,7 @@
 	</select>
 	
 	<insert id="insertBankInfo" parameterType="java.util.HashMap">
-	INSERT INTO VBANK VALUES(#{orderNo},#{vbankName},#{vbankNum},#{vName})
+	INSERT INTO VBANK VALUES(#{orderNo},#{bank},#{accountNum},#{name})
 	
 	</insert>
 	
@@ -72,5 +72,15 @@
 		UPDATE CART SET  USER_ID = #{userId} WHERE USER_ID = #{sessionId}
 	</update>
 	
+	<select id="selectOrderDetail" parameterType="String" resultType="Order">
+		SELECT * FROM ORDER_LIST WHERE ORDER_NO = #{orderNo}
+	</select>
 	
+	<select id="selectOrderContents" parameterType="String" resultType="OrderContents">
+		SELECT * FROM ORDER_LIST_CONTENTS WHERE ORDER_NO = #{orderNo}
+	</select>
+	
+	<select id="selectVbank" parameterType="String" resultType="Vbank">
+		SELECT * FROM VBANK WHERE ORDER_NO = #{orderNo}
+	</select>
 </mapper>

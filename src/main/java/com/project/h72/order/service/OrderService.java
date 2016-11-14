@@ -7,12 +7,13 @@ import java.util.Map;
 import com.project.h72.cart.vo.Cart;
 import com.project.h72.order.vo.Order;
 import com.project.h72.order.vo.OrderContents;
+import com.project.h72.order.vo.Vbank;
 
 public interface OrderService {
 
 	List<Cart> getCartOrder(String[] cartAll);
 
-	int insertBankInfo(Map<String, String> bankMap);
+	int insertBankInfo(Vbank bankInfo);
 
 	int insertOrderInfo(Order order);
 
@@ -31,5 +32,11 @@ public interface OrderService {
 	List<Order> selectOrderClist(String userId, Date currentDate, Date preDate, int currentPage, int limit, String tab);
 
 	int updateCartUserId(String sessionId, String userId);
+
+	Order selectOrderDetail(String orderNo);
+
+	List<OrderContents> selectOrderContens(String orderNo);
+
+	Vbank selectVbank(String orderNo);
 
 }
