@@ -18,30 +18,64 @@
 	</resultMap>
 
 	<select id="getBagList" parameterType="Search" resultType="Search">
-		SELECT * FROM H72.ITEM_DETAIL_BAG
+		SELECT * 
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_BAG)
+		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}
 	</select>
 
 	<select id="getProtectList" parameterType="Search" resultType="Search">
-		SELECT * FROM H72.ITEM_DETAIL_PROTECT
+		SELECT * 
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_PROTECT)
+		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}	
 	</select>
 
 	<select id="getFoodList" parameterType="Search" resultType="Search">
-		SELECT * FROM H72.ITEM_DETAIL_FOOD
+		SELECT * 
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_FOOD)
+		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}	
 	</select>
 
 	<select id="getToolList" parameterType="Search" resultType="Search">
-		SELECT * FROM H72.ITEM_DETAIL_TOOL
+		SELECT * 
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_TOOL)
+		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}	
 	</select>
 
 	<select id="getEtcList" parameterType="Search" resultType="Search">
-		SELECT * FROM H72.ITEM_DETAIL_ETC
+		SELECT * 
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_ETC)
+		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}	
 	</select>
 
-	<select id="getSearchList" parameterType="String" resultType="Search">
-		SELECT * FROM ITEM_DETAIL_VIEW WHERE ITEM_NAME LIKE
-		'%'||#{itemName}||'%'
-
+	<select id="getSearchList" parameterType="Map" resultType="Search">
+		SELECT * 
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_VIEW WHERE ITEM_NAME LIKE '%'||#{itemName}||'%')
+		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}
 	</select>
-
+	
+	<select id="getListCount1" resultType="Integer">
+		SELECT COUNT(*) FROM H72.ITEM_DETAIL_BAG
+	</select>
+	
+	<select id="getListCount2" resultType="Integer">
+		SELECT COUNT(*) FROM H72.ITEM_DETAIL_PROTECT
+	</select>
+	
+	<select id="getListCount3" resultType="Integer">
+		SELECT COUNT(*) FROM H72.ITEM_DETAIL_FOOD
+	</select>
+	
+	<select id="getListCount4" resultType="Integer">
+		SELECT COUNT(*) FROM H72.ITEM_DETAIL_TOOL
+	</select>
+	
+	<select id="getListCount5" resultType="Integer">
+		SELECT COUNT(*) FROM H72.ITEM_DETAIL_ETC
+	</select>
+	
+	<select id="getListCount6" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM H72.ITEM_DETAIL_VIEW
+		WHERE ITEM_NAME LIKE '%'||#{itemName}||'%'
+	</select>
 
 </mapper>

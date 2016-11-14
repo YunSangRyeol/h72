@@ -89,7 +89,7 @@
 
 				<div class="main_search">
 					<form id="main_searchBarForm" action="<c:url value="/search" />">
-						<input id="main_keyword" name="keyword" fw-filter=""
+						<input id="main_keyword" name="itemName" fw-filter=""
 							fw-label="검색어" fw-msg="" class="main_inputTypeText" value=""
 							type="text" placeholder=" Search"> <input type="submit"
 							class="main_searchBtn" value=" " style="cursor: pointer;">
