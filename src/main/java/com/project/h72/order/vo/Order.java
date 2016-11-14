@@ -24,7 +24,7 @@ public class Order {
 	private String orderStatus;
 	private String orderChange;
 	private Date enrollDate;
-	private String transportNo;
+	private String transportNumber;
 	
 	
 
@@ -96,7 +96,7 @@ public class Order {
 			String itemOptionNameN1, int totalQuantity, int kindsQuantity, int totalPrice, String paymentMethod,
 			int paymentPoint, int totalSavingPoint, int deliveryPee, String phone, String postNum, String address,
 			String addressDetail, String deliveryMessage, String orderStatus, String orderChange, Date enrollDate,
-			String transportNo) {
+			String transportNumber) {
 		super();
 		this.orderNo = orderNo;
 		this.userId = userId;
@@ -119,7 +119,7 @@ public class Order {
 		this.orderStatus = orderStatus;
 		this.orderChange = orderChange;
 		this.enrollDate = enrollDate;
-		this.transportNo = transportNo;
+		this.transportNumber = transportNumber;
 	}
 
 
@@ -377,14 +377,14 @@ public class Order {
 	
 
 
-	public String getTransportNo() {
-		return transportNo;
+	public String getTransportNumber() {
+		return transportNumber;
 	}
 
 
 
-	public void setTransportNo(String transportNo) {
-		this.transportNo = transportNo;
+	public void setTransportNumber(String transportNumber) {
+		this.transportNumber = transportNumber;
 	}
 
 
@@ -394,7 +394,7 @@ public class Order {
 		return this.orderNo + ", " + this.userId + ", " +this.deleveryName + ", " + this.mainImgN1 + ", " + this.itemNameN1 + ", " + this.itemOptionNameN1  + ", " + this.totalQuantity
 				 +" , "+this.totalQuantity+ ", " + this.totalPrice + ", " + this.paymentMethod + ", " + this.paymentPoint + ", " + this.totalSavingPoint
 				 + ", " + this.deliveryPee + ", " + this.phone + ", " + this.postNum + ", " + this.address + ", " + this.addressDetail
-				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange + ", " + this.enrollDate+","+this.transportNo;
+				 + ", " + this.deliveryMessage + ", " + this.orderStatus + ", " + this.orderChange + ", " + this.enrollDate+","+this.transportNumber;
 	}
 	
 }

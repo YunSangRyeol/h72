@@ -36,8 +36,7 @@
 	 		FROM (SELECT * 
 	 			  FROM ORDER_LIST 
 					 WHERE USER_ID=#{userId} 
-					 AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1
-	 				 AND REGEXP_LIKE(ORDER_STATUS,#{keyword})))
+					 AND ENROLL_DATE BETWEEN TO_DATE(#{preDate}) AND TO_DATE(#{currentDate})+1))
 	 WHERE RNUM >= #{startRow} AND RNUM <![CDATA[<]]>= #{endRow} 
 	</select>	
 	
@@ -45,7 +44,6 @@
 	 SELECT COUNT(*) FROM ORDER_LIST
 	 WHERE USER_ID=#{userId} 
 	 AND ENROLL_DATE BETWEEN TO_DATE(#{preThreeMonth}) AND TO_DATE(#{currentDate})+1
-	 AND REGEXP_LIKE(ORDER_STATUS,#{keyword})
 	</select>	
 	
 	<update id="updateStatusCancle" parameterType="java.util.HashMap">

@@ -54,30 +54,6 @@ public class OrderController {
 	public String insertOrderFinish(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
 		
 		Member login = (Member) session.getAttribute("loginUser");
-		/*
-		 
-		ORDER_NO 
-		USER_ID
-		DELEVERY_NAME : rname
-		MAIN_IMG_N1 : item_img
-		ITEM_NAME_N1 : item_name
-		ITEM_OPTION_NAME_N1 : item_option
-		TOTAL_QUANTITY : item_quantity
-		KINDS_QUANTITY
-		TOTAL_PRICE : item_cost
-		PAYMENT_METHOD : payMethodName
-		PYMNET_POINT : input_mile
-		TOTAL_SAVING_POINT : item_mileage_all
-		DELEVERY_PEE : 2500
-		PHONE : rphone2
-		POST_NUM : rpostnum
-		ADDRESS :raddress
-		ADDRESS_DETAIL : raddressDetail
-		DELIVERY_MESSAGE : omessage
-		ORDER_STATUS : 주문접수
-		ORDER_CHANGE : null
-		ENROLL_DATE : sysdate
-		*/
 		
 		String[] cartId = request.getParameterValues("cartId");
 		String orderNO = request.getParameter("orderNo");
@@ -202,7 +178,7 @@ public class OrderController {
 			
 			String userId = login.getUserid();
 			Date currentDate = new Date(new java.util.Date().getTime());
-			Calendar cal = Calendar.getInstance ( );//오늘 날짜를 기준으루..
+			Calendar cal = Calendar.getInstance ( );//오늘 날짜
 			cal.add ( cal.MONTH, -3 );
 			Date preDate = new Date(cal.getTime().getTime());
 			System.out.println(preDate+" , "+currentDate);

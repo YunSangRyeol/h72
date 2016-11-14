@@ -49,7 +49,7 @@ public class OrderDao {
 		
 		paramMap.put("userId", userId);
 		paramMap.put("currentDate", currentDate);
-		paramMap.put("preThreeMonth", preDate);
+		paramMap.put("preDate", preDate);
 		paramMap.put("startRow", startRow);
 		paramMap.put("endRow", endRow);
 		return sqlSession.selectList(NAMESPACE+"selectOrderList", paramMap);
