@@ -70,13 +70,13 @@
 							src="/h72/resources/image/topmenu_board_title.png" alt="게시판"
 							class="main_title"> &nbsp;
 							<ul>
-							<c:url var="goNotice" value="boader/notice" >
+							<c:url var="goNotice" value="/boader/notice" >
 								<c:param name="page" value="1" />
 								<c:param name="count" value="10" />
 								</c:url>
 								<li><a href="${goNotice}">공지사항</a></li>
 
-								<c:url var="goQnA" value="boader/qna" >
+								<c:url var="goQnA" value="/boader/qna" >
 								<c:param name="page" value="1" />
 								<c:param name="count" value="10" />
 							</c:url>
