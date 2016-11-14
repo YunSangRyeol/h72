@@ -83,5 +83,10 @@ public class OrderServiceImp implements OrderService {
 		return oDao.selectOrderClist(userId, currentDate, preDate, currentPage, limit,tab);
 	}
 
+	@Override
+	public int updateCartUserId(String sessionId, String userId) {
+		return oDao.updateCartUserId(sessionId, userId);
+	}
+
 
 }

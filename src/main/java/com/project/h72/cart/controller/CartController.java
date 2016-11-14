@@ -124,7 +124,14 @@ public class CartController {
 			model.addAttribute("clist", clist);
 			
 		}else{
+			String nonUserId = session.getId();
+			System.out.println("sessionId : "+nonUserId);
+			List<Cart> clist = cs.getCartList(nonUserId);
+			if(clist.isEmpty()||clist==null){
+				clist = null;
+			}
 			
+			model.addAttribute("clist", clist);
 		}
 	}
 	

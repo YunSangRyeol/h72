@@ -19,7 +19,7 @@ function openTab(tabname) {
 	if(tabname=="orderCategory"){
 	$.ajax({
 		type:'GET',
-		url: "/h72/order/order_list",
+		url: "/h72/searchOrder",
 		data :{"tab":tabname},
 		success: function(data) {
 			$('#orderCategoryTab').addClass("selected");

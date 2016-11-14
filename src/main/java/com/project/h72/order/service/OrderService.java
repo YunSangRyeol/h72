@@ -30,4 +30,6 @@ public interface OrderService {
 
 	List<Order> selectOrderClist(String userId, Date currentDate, Date preDate, int currentPage, int limit, String tab);
 
+	int updateCartUserId(String sessionId, String userId);
+
 }

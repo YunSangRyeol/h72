@@ -1,5 +1,5 @@
 //전체선택 체크박스 클릭
-	$(function() {		
+	$(function() {
 	$("#allCheck").click(
 		function() {
 			if ($("#allCheck").prop("checked")) {
@@ -124,6 +124,7 @@ function orderAll(){
 
 //선택 상품 주문
 function orderSelectBasket(){
+	
 	var cartAll="";
 	$(".xans-record- input[name=basketItem_chk]:checked").each(function(){
 		if(cartAll=="")
@@ -133,6 +134,7 @@ function orderSelectBasket(){
 		
 	});
 	console.log(cartAll);
+	
 	location.href="/h72/orderAll?"+cartAll;
 	
 	

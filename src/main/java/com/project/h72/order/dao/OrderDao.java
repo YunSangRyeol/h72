@@ -99,4 +99,11 @@ public class OrderDao {
 		return sqlSession.selectList(NAMESPACE+"selectOrderClist", paramMap);
 	}
 
+	public int updateCartUserId(String sessionId, String userId) {
+		Map<String, Comparable> map = new HashMap();
+		map.put("sessionId", sessionId);
+		map.put("userId", userId);
+		return sqlSession.update(NAMESPACE+"updateCartUserId", map);
+	}
+
 }

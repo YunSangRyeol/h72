@@ -54,7 +54,7 @@
 								class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
 								<thead>
 									<tr>
-										<th scope="col" class="chk"><input type="checkbox" id="allCheck"></th>
+										<th scope="col" class="chk"><input type="checkbox" id="allCheck"  checked="checked"></th>
 										<th scope="col" class="thumb">이미지</th>
 										<th scope="col" class="product">상품정보</th>
 										<th scope="col" class="price">판매가</th>
@@ -77,7 +77,7 @@
 				
 									<c:forEach items="${clist}" var="cart" varStatus="cnt">
 									<tr class="xans-record-">
-										<td><input type="checkbox" name="basketItem_chk" id="basketItem_chk" value="${cart.cartid}"></td>
+										<td><input type="checkbox" name="basketItem_chk" id="basketItem_chk" value="${cart.cartid}" checked="checked"></td>
 										<td class="thumb"><a href="#"><img src="/h72/resources${cart.mainImg }" class="itemImg"/></a></td>
 										<td class="product"><a href="#"><strong>${cart.itemFullName}</strong> </a>
 											<ul

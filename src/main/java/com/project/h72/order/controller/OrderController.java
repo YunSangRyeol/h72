@@ -27,12 +27,26 @@ public class OrderController {
 	private OrderService os;
 	
 	@RequestMapping(value = "/orderAll", method = RequestMethod.GET)
-	public String orderForm(@RequestParam("cartAll") String[] cartAll, HttpSession session, Model model) {
+	public String orderForm(@RequestParam("cartAll") String[] cartAll, HttpSession session, Model model,HttpServletRequest request) {
 		Member login = (Member) session.getAttribute("loginUser");
 		if(!(login==null)){
 			List<Cart> orderlist = os.getCartOrder(cartAll);
 			model.addAttribute("olist", orderlist);
 			
+			int result = os.updateCartUserId(session.getId(), login.getUserid());
+			
+		}else{
+			String[] url = request.getRequestURI().split("/");
+			String forPage = url[url.length-1];
+			String forQueryString = request.getQueryString();
+		    request.getSession().setAttribute("forPage", forPage);
+		    request.getSession().setAttribute("forQueryString", forQueryString);
+
+			System.out.println("controller1: "+forPage+" : "+ forQueryString);
+
+			System.out.println(session.getAttribute("forPage")+"= session1");
+
+		    return "redirect:member/loginPage"; 
 		}
 		return "order/order";
 	}
@@ -172,8 +186,14 @@ public class OrderController {
 		List<Order> clistOrder = new ArrayList<Order>();
 		
 		if(login==null){
-			
-		 	return "member/loginPage";
+			String[] url = request.getRequestURI().split("/");
+			String forPage = "/"+url[url.length-2]+"/"+url[url.length-1];
+		    request.getSession().setAttribute("forPage", forPage);
+			System.out.println("controller2: "+forPage);
+			System.out.println(session.getAttribute("forPage")+"= session2");
+
+		    return "member/loginPage"; 
+		    
 		}else{
 			
 			String userId = login.getUserid();

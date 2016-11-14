@@ -47,12 +47,23 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(@RequestParam("userid") String id, @RequestParam("userpass") String pass, HttpSession session,
-			HttpServletResponse response) throws Exception {
+			HttpServletResponse response, HttpServletRequest request) throws Exception {
 		System.out.println(id + " @@ " + pass);
 		Member login = memberService.getUserInfo(new Member(id, pass));
 		System.out.println(login);
 		if (login != null) {
 			session.setAttribute("loginUser", login);
+			
+			if(session.getAttribute("forPage").equals("orderAll")){
+
+				System.out.println("member : "+session.getAttribute("forPage")+"?"+session.getAttribute("forQueryString"));
+				return "redirect:/"+session.getAttribute("forPage")+"?"+session.getAttribute("forQueryString");
+				
+			}else if(session.getAttribute("forPage").equals("/order/order_list")){
+				System.out.println("member : "+session.getAttribute("forPage"));
+				return "redirect:/order/order_list";
+			}
+			
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
@@ -60,8 +71,11 @@ public class MemberController {
 			writer.flush();
 			return "member/loginPage";
 		}
-		return "home";
+		
+		
+		return  "home";
 	}
+	
 
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession session) {

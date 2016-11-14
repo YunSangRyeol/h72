@@ -68,6 +68,9 @@
 	 WHERE RNUM >= #{startRow} AND RNUM <![CDATA[<]]>= #{endRow} 
 	</select>	
 	
+	<update id="updateCartUserId" parameterType="java.util.HashMap">
+		UPDATE CART SET  USER_ID = #{userId} WHERE USER_ID = #{sessionId}
+	</update>
 	
 	
 </mapper>
