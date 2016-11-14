@@ -481,3 +481,31 @@ div.label_ie {padding:0; margin:0;}
 	 text-align: right;
 	 border: 1px solid #ccc;
 }
+
+/*detail view*/
+#detail{
+	width: 600px;
+	overflow-X:hidden;
+}
+#detail div {
+	margin-left: 15px;	
+}
+.detail_title{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.detail_title h2{
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 20px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-align: left;
+	margin-left: 150px;
+	text-transform: uppercase;
+}
+
+.userDetail_form{
+	width: 500px;
+}
+

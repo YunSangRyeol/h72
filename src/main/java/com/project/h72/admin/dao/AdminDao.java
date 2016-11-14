@@ -86,13 +86,33 @@ public class AdminDao {
 	public int updateOrderStatus(String[] orderNos, String selectStatus) {		
 		int result = 0;
 		
-		for(int i = 0; i <orderNos.length; i++){
-			Map<String, String> noNstatus = new HashMap<String, String>();
-			noNstatus.put( "orderNo", orderNos[i]);
-			noNstatus.put( "status", selectStatus );
+		//취소/반품/교환시 '접수중'변경
+		if(selectStatus.equals("취소요청") || selectStatus.equals("반품요청") || selectStatus.equals("교환요청")){
+			System.out.println("반품/교환/취소");
 			
-			result += sqlSession.update(NAMESPACE +"updateOrderStatus", noNstatus);
+			for(int i = 0; i <orderNos.length; i++){
+				Map<String, String> noNstatus = new HashMap<String, String>();
+				noNstatus.put( "orderNo", orderNos[i]);
+				noNstatus.put( "status", selectStatus );
+				
+				result += sqlSession.update(NAMESPACE +"updateOrderStatusPlus", noNstatus);
+			}
+			
+		}else{
+			System.out.println("일반변경");
+			
+			for(int i = 0; i <orderNos.length; i++){
+				Map<String, String> noNstatus = new HashMap<String, String>();
+				noNstatus.put( "orderNo", orderNos[i]);
+				noNstatus.put( "status", selectStatus );
+				
+				result += sqlSession.update(NAMESPACE +"updateOrderStatus", noNstatus);
+			}
+			
+			
 		}
+		
+		
 		
 		return result;
 	}

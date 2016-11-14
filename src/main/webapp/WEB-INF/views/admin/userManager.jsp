@@ -250,7 +250,7 @@
 						<c:url var="goWhoUser" value="/whoUser.do">
 							<c:param name="userid" value="${list.userid }" />
 						</c:url>					
-					<td class="name"><a href="${goWhoUser }" target="_blank">${list.name }</a></td>
+					<td class="name"><a href="${goWhoUser }" onclick="window.open(this.href,'_blank','width=600,height=600, left=300, top=100, scrollbars=no');return false;">${list.name }</a></td>
 					<td class="birthdate">${list.birthdate }</td>
 					<td class="enrollDate">${list.enrollDate }</td>
 					<td class="totalprice"><a href="">${list.totalprice }</a></td>

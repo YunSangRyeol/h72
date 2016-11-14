@@ -182,11 +182,11 @@ $(function(){
 						<c:url var="goOrderDetail" value="/orderNoDetail.do">
 							<c:param name="orderNo" value="${list.orderNo }" />
 						</c:url>
-									<a href="${goOrderDetail }">[${list.orderNo }]</a> </p></td>
+							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=600, left=300, top=100, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>					
-					<c:set var="resultAll" value="${list.totalPrice+resultAll}" />						
+			<c:set var="resultAll" value="${list.totalPrice+resultAll + 0}" />						
 					<td class="who">${list.userId }</td>
 					<td class="how">${list.paymentMethod }</td>
 					<td class="state" style="display:none">${list.orderStatus}</td>
@@ -276,8 +276,7 @@ $(function(){
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
-						<c:set var="resultOrder" value="0"/>
-						<c:set var="resultOrder" value="${list.totalPrice+resultOrder}" />
+			<c:set var="resultOrder" value="${list.totalPrice+resultOrder+0}" />
 						<div class="displaynone"></div>
 					</td>
 					<td class="who"><a>${list.userId }</a></td>
@@ -312,7 +311,7 @@ $(function(){
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultOrder}" groupingUsed="true" pattern="0"/> 원</div>
+		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultOrder}" groupingUsed="true"/> 원</div>
 		<div id="optionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
@@ -358,9 +357,8 @@ $(function(){
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
-					<td class="price"><strong>${list.totalPrice }</strong>
-						<c:set var="resultpaid" value="0" />
-						<c:set var="resultpaid" value="${list.totalPrice+resultpaid}" />
+					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
+			<c:set var="resultpaid" value="${list.totalPrice+resultpaid+0}" />
 						<div class="displaynone"></div>
 					</td>
 					<td class="who"><a>${list.userId }</a></td>
@@ -384,7 +382,7 @@ $(function(){
 						<th scope="col" class="number"></th>
 						<th scope="col" class="product">${listContents.itemName } [ 옵션 : ${listContents.itemOptionName } ]</th>
 						<th scope="col" class="quantity">${listContents.quantity }</th>
-						<th scope="col" class="price">${listContents.cost }</th>
+						<th scope="col" class="price"><fmt:formatNumber value="${listContents.cost }" groupingUsed="true" /></th>
 						<th scope="col" class="who"></th>
 						<th scopt="col" class="how"></th>
 						<th scope="col" class="state"></th>
@@ -395,7 +393,7 @@ $(function(){
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${resultpaid} 원</div>
+		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultpaid }" groupingUsed="true" /> 원</div>
 		<div id="optionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
@@ -441,9 +439,8 @@ $(function(){
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
-					<td class="price"><strong>${list.totalPrice }</strong>
-						<c:set var="resultdelivery" value="0" />
-						<c:set var="resultdelivery" value="${list.totalPrice+resultdelivery}" />
+					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
+			<c:set var="resultdelivery" value="${list.totalPrice+resultdelivery +0}" />
 						<div class="displaynone"></div>
 					</td>
 					<td class="who"><a>${list.userId }</a></td>
@@ -467,7 +464,7 @@ $(function(){
 						<th scope="col" class="number"></th>
 						<th scope="col" class="product">${listContents.itemName } [ 옵션 : ${listContents.itemOptionName } ]</th>
 						<th scope="col" class="quantity">${listContents.quantity }</th>
-						<th scope="col" class="price">${listContents.cost }</th>
+						<th scope="col" class="price"><fmt:formatNumber value="${listContents.cost }" groupingUsed="true" /></th>
 						<th scope="col" class="who"></th>
 						<th scopt="col" class="how"></th>
 						<th scope="col" class="state"></th>
@@ -478,7 +475,7 @@ $(function(){
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${resultdelivery} 원</div>
+		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultdelivery }" groupingUsed="true" /> 원</div>
 		<div id="optionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
@@ -526,9 +523,8 @@ $(function(){
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
-					<td class="price"><strong>${list.totalPrice }</strong>
-						<c:set var="resultchange" value="0" /> 
-						<c:set var="resultchange" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
+					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
+		<c:set var="resultCancle" value="${list.totalPrice+resultCancle + 0}" />
 						<div class="displaynone"></div>
 					</td>
 					<td class="who"><a>${list.userId }</a></td>
@@ -553,7 +549,7 @@ $(function(){
 						<th scope="col" class="number"></th>
 						<th scope="col" class="product">${listContents.itemName } [ 옵션 : ${listContents.itemOptionName } ]</th>
 						<th scope="col" class="quantity">${listContents.quantity }</th>
-						<th scope="col" class="price">${listContents.cost }</th>
+						<th scope="col" class="price"><fmt:formatNumber value="${listContents.cost }" groupingUsed="true" /></th>
 						<th scope="col" class="who"></th>
 						<th scopt="col" class="how"></th>
 						<th scope="col" class="state"></th>
@@ -564,7 +560,7 @@ $(function(){
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${resultpaid} 원</div>
+		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultCancle }" groupingUsed="true" /> 원</div>
 		<div id="backsOptionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
@@ -607,8 +603,8 @@ $(function(){
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
-					<td class="price"><strong>${list.totalPrice }</strong>
-						<c:set var="resultpaid" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
+					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
+			<c:set var="resultChange" value="${list.totalPrice +resultChange + 0}" />
 						<div class="displaynone"></div>
 					</td>
 					<td class="who"><a>${list.userId }</a></td>
@@ -633,7 +629,7 @@ $(function(){
 						<th scope="col" class="number"></th>
 						<th scope="col" class="product">${listContents.itemName } [ 옵션 : ${listContents.itemOptionName } ]</th>
 						<th scope="col" class="quantity">${listContents.quantity }</th>
-						<th scope="col" class="price">${listContents.cost }</th>
+						<th scope="col" class="price"><fmt:formatNumber value="${listContents.cost }" groupingUsed="true" /></th>
 						<th scope="col" class="who"></th>
 						<th scopt="col" class="how"></th>
 						<th scope="col" class="state"></th>
@@ -644,7 +640,7 @@ $(function(){
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${resultpaid} 원</div>
+		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultChange }" groupingUsed="true" /> 원</div>
 		<div id="backsOptionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
@@ -688,8 +684,8 @@ $(function(){
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
-					<td class="price"><strong>${list.totalPrice }</strong>
-						<c:set var="resultpaid" value="${(list.totalQuantity*list.totalPrice)+resultpaid}" />
+					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
+			<c:set var="resultBack" value="${list.totalPrice+resultBack}" />
 						<div class="displaynone"></div>
 					</td>
 					<td class="who">${list.userId }</td>
@@ -714,7 +710,7 @@ $(function(){
 						<th scope="col" class="number"></th>
 						<th scope="col" class="product">${listContents.itemName } [ 옵션 : ${listContents.itemOptionName } ]</th>
 						<th scope="col" class="quantity">${listContents.quantity }</th>
-						<th scope="col" class="price">${listContents.cost }</th>
+						<th scope="col" class="price"><fmt:formatNumber value="${listContents.cost }" groupingUsed="true" /></th>
 						<th scope="col" class="who"></th>
 						<th scopt="col" class="how"></th>
 						<th scope="col" class="state"></th>
@@ -725,7 +721,7 @@ $(function(){
 				</c:forEach>				
 			</tbody>
 		</table>
-		<div id="totalPrice"> 총 금액 : ${resultpaid} 원</div>
+		<div id="totalPrice"> 총 금액 : <fmt:formatNumber value="${resultBack }" groupingUsed="true" /> 원</div>
 		<div id="backsOptionBtn">
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
