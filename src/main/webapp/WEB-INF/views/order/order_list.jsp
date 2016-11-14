@@ -16,11 +16,14 @@
 
 //탭 변경	
 function openTab(tabname) {
+	var startDate = $('#startDate').val();
+	var endDate = $('#endDate').val();
+	
 	if(tabname=="orderCategory"){
 	$.ajax({
 		type:'GET',
 		url: "/h72/searchOrder",
-		data :{"tab":tabname},
+		data :{"tab":tabname, "page": "1","start_date": startDate,"end_date": endDate},
 		success: function(data) {
 			$('#orderCategoryTab').addClass("selected");
 			$('#orderListTab').removeClass("selected");
@@ -312,7 +315,7 @@ function dateToYYYYMMDD(date)
 							</tr>
 						</thead>
 						<c:if test="${!(reOrderList eq null) }">
-						<c:forEach var="orderList" items="${reOrderList}">
+						<c:forEach var="reOrderList" items="${reOrderList}">
 						<tbody class="">
 							<tr class="xans-record-">
 								<td rowspan="2" class="number ">${reOrderList.enrollDate}
@@ -406,6 +409,64 @@ function dateToYYYYMMDD(date)
 	$(function(){
 		$('#paging').click(
  	 			function(){
+ 	 				var preDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${searchPage}';
+ 	 				var tab = $('#inputTab').val();
+ 	 				console.log(currentPage);
+ 	 				$.ajax({
+ 	 					type:'GET',
+ 	 					url: "/h72/searchOrder",
+ 	 					data :{"tab":tab, "page": currentPage,"start_date": preDate,"end_date": currentDate},
+ 	 					success: function(data) {
+ 	 						alert('성공');
+ 	 					},
+ 	 					error: function(data) {
+ 	 						alert("에러발생! 변경에 실패하였습니다.");
+ 	 					}			
+ 	 				});
+ 	 		});
+		
+		$('#prePaging').click(
+ 	 			function(){
+ 	 				var preDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${currentPage-1}';
+ 	 				var tab = $('#inputTab').val();
+ 	 				console.log(currentPage);
+ 	 				$.ajax({
+ 	 					type:'GET',
+ 	 					url: "/h72/searchOrder",
+ 	 					data :{"tab":tab, "page": currentPage,"start_date": preDate,"end_date": currentDate},
+ 	 					success: function(data) {
+ 	 						alert('성공');
+ 	 					},
+ 	 					error: function(data) {
+ 	 						alert("에러발생! 변경에 실패하였습니다.");
+ 	 					}			
+ 	 				});
+ 	 		});
+		$('#endPaging').click(
+ 	 			function(){
+ 	 				var preDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${currentPage+1}';
+ 	 				var tab = $('#inputTab').val();
+ 	 				console.log(currentPage);
+ 	 				$.ajax({
+ 	 					type:'GET',
+ 	 					url: "/h72/searchOrder",
+ 	 					data :{"tab":tab, "page": currentPage,"start_date": preDate,"end_date": currentDate},
+ 	 					success: function(data) {
+ 	 						alert('성공');
+ 	 					},
+ 	 					error: function(data) {
+ 	 						alert("에러발생! 변경에 실패하였습니다.");
+ 	 					}			
+ 	 				});
+ 	 		});
+	 	/* $('#paging').click(
+ 	 			function(){
  	 				var endDate = document.getElementById("startDate").value;
  	 				var currentDate = document.getElementById("endDate").value;
  	 				var currentPage = '${searchPage}';
@@ -431,8 +492,8 @@ function dateToYYYYMMDD(date)
  	 				var tab = $('#inputTab').val();
  	 				console.log(currentPage);
  	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
- 	 		});
-		
+ 	 		}); */
+	
 	});
 	
 	</script>

@@ -274,29 +274,27 @@ public class OrderController {
 		List<Order> listOrder = new ArrayList<Order>();
 		List<Order> clistOrder = new ArrayList<Order>();
 		
-		System.out.println("controller:"+page+","+startDate+","+endDate);
-		
-		int getPage = Integer.valueOf(page);
 		
 		String userId = login.getUserid();
 		Date currentDate = new Date(new java.util.Date().getTime());
 		Calendar cal = Calendar.getInstance ( );//오늘 날짜를 기준으루..
 		cal.add ( cal.MONTH, -3 );
 		Date preDate = new Date(cal.getTime().getTime());
-		System.out.println(preDate+" , "+currentDate);
-		
+	
 		
 		//페이지 수 처리용 변수 
 		int currentPage = 1;
-		int limit = 5;	//한 페이지에 10개씩 출력
+		int limit = 5;	//한 페이지에 5개씩 출력
 		
 		//전달받은 페이지 값 추출
-		if(getPage>0)
-			currentPage = getPage;
+		if(page != null)
+			currentPage = Integer.valueOf(page);
 		if(startDate != null)
 			preDate = startDate;
 		if(endDate!= null)
 			currentDate = endDate;
+		
+		System.out.println("controller:"+currentPage+","+preDate+","+currentDate);
 		
 		//전체리스트
 		int listCount =0;
@@ -308,7 +306,7 @@ public class OrderController {
 			clistCount = os.getClistCount(userId, currentDate, preDate, tab);
 			//페이지 단위로 게시글 목록 조회용
 			clistOrder = os.selectOrderClist(userId, currentDate, preDate,currentPage,limit,tab);
-			System.out.println(listOrder+"===================");
+			System.out.println(clistOrder+"===================");
 		}else{
 			listCount = os.getListCount(userId, currentDate, preDate);
 			//페이지 단위로 게시글 목록 조회용
@@ -343,8 +341,8 @@ public class OrderController {
 	
 		model.addAttribute("orderList", listOrder);
 		model.addAttribute("reOrderList", clistOrder);
-		System.out.println("orderList"+clistOrder);
-		System.out.println("reOrderList"+listOrder);
+		System.out.println("rederList"+clistOrder);
+		System.out.println("orderList"+listOrder);
 	
 		return "order/order_list";
 	}

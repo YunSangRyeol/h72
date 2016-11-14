@@ -54,6 +54,8 @@ public class MemberController {
 		if (login != null) {
 			session.setAttribute("loginUser", login);
 			
+			
+		if(session.getAttribute("forPage") != null){
 			if(session.getAttribute("forPage").equals("orderAll")){
 
 				System.out.println("member : "+session.getAttribute("forPage")+"?"+session.getAttribute("forQueryString"));
@@ -63,6 +65,7 @@ public class MemberController {
 				System.out.println("member : "+session.getAttribute("forPage"));
 				return "redirect:/order/order_list";
 			}
+		}
 			
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
