@@ -154,7 +154,7 @@ public class DetailController {
 				//@RequestParam("mainImg") String mainImg,
 				//@RequestParam(value = "quantity[]") String[] quantity)
 				//@RequestParam("cost") String[] cost,
-				//@RequestParam("message") String message,
+				//@RequestParam("message") String msrcImageArressage,
 				//@RequestParam("KitYN") String KitYN,
 				//@RequestParam("itemOptionName") String[] itemOptionName) 
 				throws Exception{
@@ -200,7 +200,7 @@ public class DetailController {
 			for(int i = 0; i < op_count; i++){
 				Cart cart = new Cart(userid, itemFullName, itemDetailid, mainImg, 
 							Integer.parseInt(arrQuantity[i]), Integer.parseInt(arrCost[i]), 
-							message, KitYN, arrItemOptionName[i]);
+							KitYN, arrItemOptionName[i]);
 				cartList.add(cart);				
 			}
 			for(Cart c : cartList)
@@ -481,7 +481,20 @@ public class DetailController {
 		return map;
 	}
 	
-	
+	@RequestMapping(value="/maskModify", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> maskModify(@RequestBody String[] srcImageArr, 
+										  HttpServletRequest request, Model model){
+		List<String> srcList = new ArrayList<String>();
+		//String fileImageArr = request.getParameter("fileImageArr");
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("maskModify run...");
+		System.out.println(srcImageArr);
+		for(String s : srcImageArr)
+			System.out.println(s);
+		
+		return map;
+	}
 	
 	
 }

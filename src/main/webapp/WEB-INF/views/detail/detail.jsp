@@ -150,6 +150,9 @@ function ResizeFrame(name)
 			</script>    
 			<script>
             $(document).ready(function(){
+            	//$("#span_mileage_text").text();            	
+            	var mileage = numberWithCommas(Math.floor(Number('${itemDetailList[0].SAIL_PRICE}')*Number('${loginUser.pointRate}')/100));
+            	$("#span_mileage_text").text(mileage + "원"); 
             	var price = Number($("#span_product_price_text").next().text());
             	var totalprice = 0;
             	var totalcount = 0;
@@ -480,7 +483,7 @@ function ResizeFrame(name)
                 <td class="td-color1">
                 	<ul class="mileage">
 					<li class="">
-						<span id="span_mileage_text">100</span> <span class="">(1.00%)</span>
+						<span id="span_mileage_text">${itemDetailList[0].SAIL_PRICE}*(${loginUser.pointRate}/100)</span> <span class="">(${loginUser.pointRate}%)</span>
 					</li>
                     <li class="displaynone">
 						<img src="" alt="무통장 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
@@ -760,64 +763,27 @@ function ResizeFrame(name)
 <jsp:include page='../main_footer.jsp' flush="false" />
 <!-- END --> 
     
-    
-    
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
+	<div id="mask">
+			<div id="maskInner">
+			
+			
+				<!-- <div class='preview-container' style='display:inline-flex'>
+					<div class='hidden mask preview_div'>
+						<img class='preview' id='maskpreview1' alt='preview' >
+						<div class='image_field__remove_preview mask remove-preview hoverable'>
+							<div class='remove'>삭제</div>
+						</div>
+					</div>
+					<div class='mask fileWrap'>
+						<input type='file' name='reviewPhoto1' id='maskupBtn1' class='maskinput-file hidden' accept='image/*' multiple='multiple' />
+					</div>
+				</div> -->
+			
+			
+			</div>
+	</div>
 	
 	
 	

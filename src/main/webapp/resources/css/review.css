@@ -260,7 +260,8 @@ body.products.reviews .image-fields-container .image-field,
 body.products.reviews .image-fields-container .wrap, 
 #review-edit-form .image-fields-container .wrap {
     position: relative;
-    background: #c8c8c8;
+    /* background: #c8c8c8; */
+    background: white;
     overflow: visible;
     width: 75px;
     height: 75px;
@@ -283,6 +284,7 @@ body.products.reviews .image-fields-container img.size-support,
     position: absolute;
     z-index: 1000;
 }
+
 .input-image-container {
     position: absolute;
     left: 0;
@@ -1121,3 +1123,6 @@ ul.reviews.reviews-product li.review ul.images li {
     cursor: pointer;
 }
 
+mask.image-fields-container .image_field__remove_preview.mask.remove-preview.hoverable {
+	margin-top: -20px;
+}

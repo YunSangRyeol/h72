@@ -14,8 +14,24 @@
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 <script src="<c:url value='/resources/js/review.js'/>"></script>
 <script>
+	var focus_review_div = null;
+	var focus_review_div_id = null;
+	var reviewText = null;
+	var reviewUser = null;
+	var reviewDate = null;
+	var imageLength = null;
+	var imageFormOrigin = null;
+	var delAndModiBtn_1 = null;
+	var delAndModiBtn_2 = null;
+	var textarea = null;
+	var imageForm = null;
+	var n = 1;
+	var num = 1;
+	var prefix = null;
+	
     $(document).ready(function(){
-    	console.log("11111111111");
+    	//console.log("11111111111");
+    	
     	init(1);
     	bindEvent();
     });
@@ -56,7 +72,6 @@
     					<input type="hidden" name="ItemDetailName" value="${itemDetailList[0].ITEM_NAME}" />
     					<input type="hidden" name="ItemPrice" value="${itemDetailList[0].PRICE}" />
     					<%-- <input type="hidden" name="loginUser" " value="${loginUser.levelcode}" /> --%>
-    					
     					
     					<div class="field-box message-field limit-count-container">
 
@@ -138,7 +153,7 @@
 								</ul>
 							</div>
 					
-								<!-- <div class="body review write" id="review_modify">
+								<!-- <div class="body review write" id="review_modify" style="display:none;">
 									<button type="button" class="border_radius soft" id="modifyGo">
 										리뷰 수정하기
 									</button>
