@@ -21,6 +21,10 @@ public interface QnAService {
 
 	int upqna(String qNo, String answerContent);
 
+	List<QnA> getQnAList2(int page, int count);
+
+	int getQnACount();
+
 
 
 }

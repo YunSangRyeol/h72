@@ -56,11 +56,19 @@ public class NoticeServiceImp implements NoticeService {
 	}
 
 	@Override
-	public List<Notice> getNoticeList(int page, int count) {
+	public List<Notice> getNoticeList2(int page, int count) {
 		// TODO Auto-generated method stub
-		List<Notice> list = dao.getNoticeList(page, count);
+		System.out.println("asef;qli3wje;rsfdpihgbopdfil");
+		List<Notice> list = dao.getNoticeList2(page, count);
 		System.out.println("list"+ list);
-		return dao.getNoticeList(page, count);
+		return list;
+	}
+
+
+	@Override
+	public int getNoticeCount() {
+		// TODO Auto-generated method stub
+		return dao.getNoticeCount();
 	}
 
 }

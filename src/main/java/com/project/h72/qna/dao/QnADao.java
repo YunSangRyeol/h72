@@ -73,5 +73,21 @@ public class QnADao {
 		return sqlSession.update(NAMESPACE+"upqna", nc);
 	}
 
+	public List<QnA> getQnAList2(int page, int count) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> pag = new HashMap<String, Integer>();
+		pag.put( "page", page);
+		pag.put( "count", count);
+		
+		List<QnA> list =sqlSession.selectList(NAMESPACE +"getQnAList2" , pag);
+		System.out.println("DAO List"+list);
+		return list;
+	}
+
+	public int getQnACount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE + "getQnACount");
+	}
+
 
 }

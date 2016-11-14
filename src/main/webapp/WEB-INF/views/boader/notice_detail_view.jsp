@@ -29,8 +29,17 @@
 						style="font-family: 'Helvetica', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">
 						<span
 							style="font-family: 'Helvetica', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">NOTICE</span>
-						<br> <a href="<c:url value="/boader/notice_list"/>">공지사항</a>
-						<a href="<c:url value="/boader/qna_list"/>">Q&A</a><br> <br>
+						<br> <c:url var="goNotice" value="/boader/notice" >
+								<c:param name="page" value="1" />
+								<c:param name="count" value="10" />
+								</c:url>
+						<a href="${goNotice}">공지사항</a>
+						
+							<c:url var="goQnA" value="/boader/qna" >
+								<c:param name="page" value="1" />
+								<c:param name="count" value="10" />
+							</c:url>
+						<a href="${goQnA} ">Q&A</a><br> <br>
 				</div>
 			</div>
 			<!-- 글 내용-->
@@ -96,10 +105,8 @@
 			</form>
 		</div>
 
-
 	</div>
 	
-
 	</div>
 </body>
 </html>

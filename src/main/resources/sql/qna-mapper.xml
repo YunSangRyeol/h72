@@ -17,7 +17,7 @@
 		<result property="qCode" column="Q_CODE" />
 
 	</resultMap>
-	<select id="getQnAList" resultType="QnA">
+ 	<select id="getQnAList" resultType="QnA">
 		SELECT * FROM QNA
 
 	</select>
@@ -48,6 +48,21 @@
 		WHERE Q_NO = #{qNo}
 		</delete>
 		
-	
+	<select id="getQnAList2" resultType="QnA" parameterType="Map">
+		SELECT * 
+		FROM( SELECT T1.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTAL_CNT
+              FROM( SELECT *
+			        FROM QNA
+			        ORDER BY Q_DATE
+			         ) T1
+			    )
+		 WHERE RNUM BETWEEN ((#{page}-1) * #{count} + 1) AND ( ((#{page}-1) * #{count} + 1) + #{count} -1) 
+
+  </select>
+  
+  
+    	<select id="getQnACount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM QNA
+	</select>
 		
 </mapper>

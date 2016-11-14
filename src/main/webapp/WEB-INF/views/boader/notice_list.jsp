@@ -13,10 +13,6 @@
 	rel="stylesheet">
 </head>
 <script type="text/javascript">
-
-/* 	$(function(){
-				$('#noticeNo').val('${count }').prop(10, true);
-			}); */
 	
 </script>
 <body>
@@ -36,8 +32,17 @@
 						<span
 							style="font-family: 'Helvetica', sans-serif; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">NOTICE</span>
 						<br> 
-						<a href="<c:url value="/boader/notice_list"/>">공지사항</a>
-						<a href="<c:url value="/boader/qna_list"/>">Q&A</a>
+						<c:url var="goNotice" value="/boader/notice" >
+								<c:param name="page" value="1" />
+								<c:param name="count" value="10" />
+								</c:url>
+						<a href="${goNotice}">공지사항</a>
+						
+							<c:url var="goQnA" value="/boader/qna" >
+								<c:param name="page" value="1" />
+								<c:param name="count" value="10" />
+							</c:url>
+						<a href="${goQnA} ">Q&A</a>
 				</div>
 
 <%-- 				<c:if test="${loginUser.id == 'ADMIN' }">
@@ -83,6 +88,7 @@
                     </td>
                     <td class="enrolldate">${list.enrolldate}</td>
                 </tr>
+                
             </c:forEach>
 <%--             <c:if test="${count==0}">
                 <tr>
@@ -105,17 +111,15 @@
 				class="xans-element- xans-board xans-board-empty-1002 xans-board-empty xans-board-1002 boardListEmpty displaynone ">
 				<p></p>
 			</div>
+			<c:if test="${loginUser.userid eq 'ADMIN' }">
 			<div
 				class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 ">
-				<c:if test="${loginUser.userid eq 'ADMIN' }">
+				
 					<a href="<c:url value="/boader/notice_insert"/>"type="button" class="btn btn-primary btn-block"
 						style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">공지사항 등록</a>
-				</c:if>
-				
-			<!-- 	
-				<a href="/board/free/write.html?board_no=1"
-					style="padding: 7px 22px 7px 22px; background: #000; border: 1px solid #000; color: #fff; letter-spacing: 1px; font-size: 11px;">글쓰기</a> -->
+						
 			</div>
+				</c:if>
 		</div>
 
 	<!-- 	<div
@@ -130,27 +134,29 @@
 			</select>
 	 	</div> -->
 			
-			<div id="notice_page_list">
-					<c:url var="goUserfirst" value="boader/notice" >
-					<c:param name="page" value="${1 }" />
+			<div id="notice_page_list"  align="center">
+					<c:url var="goNoticefirst" value="/boader/notice" >
+					<c:param name="page" value="1" />
 					<c:param name="count" value="${count }" />
 
 			</c:url>
-				 <a href="${goUserfirst }" >[처음으로]</a>
-			<c:url var="goUserMinus" value="boader/notice" >
-					<c:param name="page" value="${nowPage -1 }" />
-					<c:param name="count" value="${count }" />
-
-			</c:url>
+				 <a href="${goNoticefirst }" >[처음]</a>
 			
+			
+			<c:url var="goNoticeMinus" value="/boader/notice" >
+					<c:if test="${nowPage -1 ne 0}">
+					<c:param name="page" value="${nowPage -1 }" /></c:if>
+					<c:param name="count" value="${count }" />
+			</c:url>
+		
 			<c:if test="${nowPage eq 1 }">
 				[이전] 
 			</c:if>
 			<c:if test="${nowPage ne 1 }" >
-				 <a href="${goUserMinus }" >[이전]</a>
+				 <a href="${goNoticeMinus }" >[이전]</a>
 			</c:if>
 			<c:forEach var="p" begin="1" end="${endPage }" >	
-				<c:url var="goUser" value="boader/notice" >
+				<c:url var="goNotice" value="/boader/notice" >
 					<c:param name="page" value="${p }" />
 					<c:param name="count" value="${count }" />
 				</c:url>
@@ -158,10 +164,10 @@
 					<span style="font-size:20px; color:red;">[${p }]</span>
 				</c:if>
 				<c:if test="${p ne nowPage }">
-					<a href="${goUser }">[${p }]</a>
+					<a href="${goNotice }">[${p }]</a>
 				</c:if>
 			</c:forEach>
-			<c:url var="goUserPlus" value="boader/notice" >
+			<c:url var="goNoticePlus" value="/boader/notice" >
 					<c:param name="page" value="${ nowPage + 1 }" />
 					<c:param name="count" value="${count }" />
 			</c:url>
@@ -169,17 +175,17 @@
              	[다음]
              </c:if>
               <c:if test ="${nowPage ne endPage }">
-             	<a href="${goUserPlus }">[다음]</a>
+             	<a href="${goNoticePlus }">[다음]</a>
              </c:if>
-		</div>
-			<c:url var="goUserList" value="boader/notice" >
+		
+			<c:url var="goNoticeList" value="/boader/notice" >
 					<c:param name="page" value="${endPage }" />
 					<c:param name="count" value="${count }" />
 
 			</c:url>
-				<a href="${goUserList }">[마지막으로]</a>
+				<a href="${goNoticeList }">[끝]</a>
 		</div>
-			
+		</div>	
 		
 		
 

@@ -25,7 +25,9 @@ public interface NoticeService {
 	int deletenotice(String noticeNo, String noticeTitle, String noticeContent);
 
 
-	List<Notice> getNoticeList(int page, int count);
+	List<Notice> getNoticeList2(int page, int count);
+
+	int getNoticeCount();
 	
 	
 }

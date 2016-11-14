@@ -15,7 +15,7 @@
 	<select id="getNoticeList" resultType="Notice">
 		SELECT * FROM NOTICE
 
-	</select>
+	</select> 
 	<select id="getNoticeContent" parameterType="String" resultType="Notice">
 		SELECT * FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
 
@@ -53,5 +53,9 @@
 		 WHERE RNUM BETWEEN ((#{page}-1) * #{count} + 1) AND ( ((#{page}-1) * #{count} + 1) + #{count} -1) 
 
   </select>
+  
+  	<select id="getNoticeCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM NOTICE
+	</select>
 	
 </mapper>

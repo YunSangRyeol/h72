@@ -4,27 +4,21 @@ import java.sql.Date;
 
 public class Notice {
 	
-	private int noticeNo; //글번호
+	private String noticeNo; //글번호
 	private String noticeTitle; //글제목
 	private String noticeContent; //글내용
 	private Date enrolldate; //날짜
 	
-	//paging 처리를 위한 변수들
-	
-
+	public Notice() {
+		super();
+	}
 	public Notice(String noticeTitle, String noticeContent) {
 		super();
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
 	}
 
-
-	public Notice() {
-		super();
-	}
-
-
-	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date enrolldate) {
+	public Notice(String noticeNo, String noticeTitle, String noticeContent, Date enrolldate) {
 		super();
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
@@ -33,12 +27,14 @@ public class Notice {
 	}
 
 
-	public int getNoticeNo() {
+	
+
+	public String getNoticeNo() {
 		return noticeNo;
 	}
 
 
-	public void setNoticeNo(int noticeNo) {
+	public void setNoticeNo(String noticeNo) {
 		this.noticeNo = noticeNo;
 	}
 

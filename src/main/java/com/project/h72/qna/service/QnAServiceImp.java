@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.h72.notice.vo.Notice;
 import com.project.h72.qna.dao.QnADao;
 import com.project.h72.qna.vo.QnA;
 
@@ -67,5 +68,22 @@ public class QnAServiceImp implements QnAService{
 	public int upqna(String qNo, String answerContent) {
 		// TODO Auto-generated method stub
 		return dao.upqna(qNo, answerContent);
+	}
+
+
+	@Override
+	public List<QnA> getQnAList2(int page, int count) {
+		// TODO Auto-generated method stub
+		System.out.println("asef;qli3wje;rsfdpihgbopdfil");
+		List<QnA> list = dao.getQnAList2(page, count);
+		System.out.println("list"+ list);
+		return list;
+	}
+
+
+	@Override
+	public int getQnACount() {
+		// TODO Auto-generated method stub
+		return dao.getQnACount();
 	}
 }

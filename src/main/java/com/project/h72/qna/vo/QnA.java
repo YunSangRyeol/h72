@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class QnA {
 
-	private int qNo; // 글 번호
+	private String qNo; // 글 번호
 	private String qTitle; // 제목
 	private String qContent; // 내용
 	private Date qDate; // 작성일
@@ -27,7 +27,7 @@ public class QnA {
 		super();
 	}
 
-	public QnA(int qNo, String qTitle, String qContent, Date qDate, String qWriter, String answer, String answerContent,
+	public QnA(String qNo, String qTitle, String qContent, Date qDate, String qWriter, String answer, String answerContent,
 			Date aDate, String qName, String qCode) {
 		super();
 		this.qNo = qNo;
@@ -42,11 +42,11 @@ public class QnA {
 		this.qCode = qCode;
 	}
 
-	public int getqNo() {
+	public String getqNo() {
 		return qNo;
 	}
 
-	public void setqNo(int qNo) {
+	public void setqNo(String qNo) {
 		this.qNo = qNo;
 	}
 

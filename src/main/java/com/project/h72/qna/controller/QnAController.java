@@ -55,10 +55,26 @@ public String qna_insert2(@RequestParam("insertqTitle") String insertqTitle,
 	System.out.println("OK");
 	System.out.println("insertqTitle");
 	
+	int page=1;
+	int count=10;
+	
 	int result = 0;
 	result =  qnaService.insertq(insertqTitle, insertqContent);
 	
-	return "redirect:/boader/qna_list";
+	int countAll=0;
+	countAll = qnaService.getQnACount();
+	List<QnA> list = qnaService.getQnAList2(page,count);
+	int endPage = (int)(countAll / (count + 0.9) + 1);
+	
+	
+	System.out.println("고!!" + countAll + ", " + endPage + ", "  + " page" + page);
+	model.addAttribute("list", list );
+	model.addAttribute("countAll", countAll); 
+	model.addAttribute("endPage", endPage);
+	model.addAttribute("count", count);
+	model.addAttribute("page", page);
+	
+	return "redirect:/boader/qna";
 }	
 
 @RequestMapping(value = "boader/qna_answer", method = RequestMethod.GET)
@@ -75,23 +91,77 @@ public String qna_answer(@RequestParam("qNo") String qNo, Model model) {
 public String notice_up(@RequestParam("qNo") String qNo, 
 		@RequestParam("answerContent") String answerContent, Model model) {
 	
+	int page=1;
+	int count=10;
+	
 	System.out.println("qNo, upqTitle, upqContent,answerContent" + qNo +"/" +answerContent);
 	int result = 0;
 
 	result =  qnaService.upqna(qNo, answerContent );
+	
+	int countAll=0;
+	countAll = qnaService.getQnACount();
+	List<QnA> list = qnaService.getQnAList2(page,count);
+	int endPage = (int)(countAll / (count + 0.9) + 1);
+	
+		System.out.println("고!!" + countAll + ", " + endPage + ", "  + " page" + page);
+	model.addAttribute("list", list );
+	model.addAttribute("countAll", countAll); 
+	model.addAttribute("endPage", endPage);
+	model.addAttribute("count", count);
+	model.addAttribute("page", page);
+	
 	System.out.println("성공?????????????????" + result );
-	return "redirect:/boader/qna_list";
+	return "redirect:/boader/qna";
 }
 @RequestMapping(value = "/qna_delete.do", method = RequestMethod.GET)
 public String notice_delete(@RequestParam("qNo") String qNo, @RequestParam("qTitle") String qTitle,
 		@RequestParam("qContent") String qContent, Model model) {
 	
+	int page=1;
+	int count=10;		
+	
 	int result = 0;
 	result =  qnaService.deleteqna(qNo, qTitle, qContent);
 	
-	return "redirect:/boader/qna_list";
+	int countAll=0;
+	countAll = qnaService.getQnACount();
+	List<QnA> list = qnaService.getQnAList2(page,count);
+	int endPage = (int)(countAll / (count + 0.9) + 1);
+	
+	System.out.println("고!!" + countAll + ", " + endPage + ", "  + " page" + page);
+	model.addAttribute("list", list );
+	model.addAttribute("countAll", countAll); 
+	model.addAttribute("endPage", endPage);
+	model.addAttribute("count", count);
+	model.addAttribute("page", page);
+	
+	return "redirect:/boader/qna";
 }	
 
+@RequestMapping(value="boader/qna", method = RequestMethod.GET)
+public String qnaCount(@RequestParam("page") int page,
+					       		@RequestParam("count") int count,	 Model model){
+	
+	System.out.println("시작!!" + page + ", " + count);
+	
+	int countAll = 0;
+	
+	countAll = qnaService.getQnACount();
+	List<QnA> list = qnaService.getQnAList2(page,count);
+
+	//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
+	int endPage = (int)(countAll / (count + 0.9) + 1);		
+	
+	System.out.println("고!!" + countAll + ", " + endPage + ", "  + " page" + page);
+	model.addAttribute("list", list );
+	model.addAttribute("countAll", countAll); //총 회원수
+	model.addAttribute("endPage", endPage);
+	model.addAttribute("nowPage", page);
+	model.addAttribute("count", count);
+	
+	return "boader/qna_list";
+}
 
 
 

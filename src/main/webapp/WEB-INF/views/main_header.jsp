@@ -64,24 +64,24 @@
 							href="<c:url value="/kitDiy/kitDiyView"/>"><span>KIT</span></a></li>
 					</ul>
 				</div>
-				<div class="main_board">
+					<div class="main_board">
 					<ul>
 						<li class="main_has-sub"><img
 							src="/h72/resources/image/topmenu_board_title.png" alt="게시판"
 							class="main_title"> &nbsp;
 							<ul>
-								<li><a href="<c:url value="/boader/notice_list"/>">공지사항</a></li>
-									<c:url var="goUser" value="boader/notice" >
+							<c:url var="goNotice" value="boader/notice" >
 								<c:param name="page" value="1" />
 								<c:param name="count" value="10" />
+								</c:url>
+								<li><a href="${goNotice}">공지사항</a></li>
 
-							</c:url>
-								<li><a href="<c:url value="/boader/qna_list"/>">Q&A</a></li>
-									<c:url var="goUser" value="boader/notice" >
+								<c:url var="goQnA" value="boader/qna" >
 								<c:param name="page" value="1" />
 								<c:param name="count" value="10" />
-
 							</c:url>
+								<li><a href="${goQnA} ">Q&A</a></li>
+								
 								<li><a href="<c:url value="/boader/life_kit_detail"/>">생존키트란?</a></li>
 							</ul></li>
 					</ul>
