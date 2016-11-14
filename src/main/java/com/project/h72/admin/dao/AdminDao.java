@@ -206,6 +206,16 @@ public class AdminDao {
 		return sqlSession.selectOne(NAMESPACE + "orderNoDetail", orderNo);
 	}
 
+	public int updateStatusOneTransportNo(String orderNo, String status, String transportNo) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put( "orderNo", orderNo);
+		map.put( "transportNo", transportNo );
+		
+		int result = sqlSession.update(NAMESPACE + "updateStatusOneTransportNo", map);
+		System.out.println("왜안돼?");
+		return result;
+	}
+
 
 
 

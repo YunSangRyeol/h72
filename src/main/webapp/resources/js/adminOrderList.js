@@ -116,23 +116,47 @@
  	
  	//개별 버튼 변경
  	function updateStatusOne0(orderNo){
+ 		alert("Asdfasdf");
  		var status = $("[name=selectStatusOne"+ orderNo +"0] option:selected").val();
- 		goAjax1(orderNo, status);
+ 		alert(status);
+ 		if(status == "배송중"){
+ 			var transportNo =$("[name=transportNumber"+ orderNo +"0]" ).val();
+ 			goAjax3(orderNo, status, transportNo);
+ 		}else{
+ 			alert("aaaa");
+ 			goAjax1(orderNo, status);
+ 		}
 	}
  	
  	function updateStatusOne1(orderNo){
  		var status = $("[name=selectStatusOne"+ orderNo +"1] option:selected").val();
- 		goAjax1(orderNo, status);
+ 		if(status == "배송중"){
+ 			var transportNo =$("[name=transportNumber"+ orderNo +"1]" ).val();
+ 			goAjax3(orderNo, status, transportNo);
+ 		}else{
+ 			goAjax1(orderNo, status);
+ 		}
 	}
  	
  	function updateStatusOne2(orderNo){
  		var status = $("[name=selectStatusOne"+ orderNo +"2] option:selected").val();
- 		goAjax1(orderNo, status);
+ 		if(status == "배송중"){
+ 			var transportNo =$("[name=transportNumber"+ orderNo +"2]" ).val();
+ 			goAjax3(orderNo, status, transportNo);
+ 		}else{
+ 			goAjax1(orderNo, status);
+ 		}
 	}
  	
  	function updateStatusOne3(orderNo){
  		var status = $("[name=selectStatusOne"+ orderNo +"3] option:selected").val();
-		goAjax1(orderNo, status);
+ 		if(status == "배송중"){
+ 			var transportNo =$("[name=transportNumber"+ orderNo +"3]" ).val();
+ 			goAjax3(orderNo, status, transportNo);
+ 		}else{
+ 			
+ 			goAjax1(orderNo, status);
+ 		}
 	}
  	
  	//ajax
@@ -144,6 +168,22 @@
 			success: function(data) {
 				if(data.result > 0){
 					alert("주문번호 [" + orderNo + "]를 '" + status + "'(으)로 변경하였습니다.");			
+				}
+			},
+			error: function(data) {
+				alert("에러발생! 변경에 실패하였습니다.");
+			}			
+		});	
+ 	}
+ 	
+ 	function goAjax3(orderNo, status, transportNo){ 		
+		$.ajax({
+			type:'POST',
+			url: "/h72/updateStatusOne1.do",
+			data :{"orderNo":orderNo, "status":status, "transportNo":transportNo},
+			success: function(data) {
+				if(data.result > 0){
+					alert("주문번호 [" + orderNo + "]의 운송장번호 '" + transportNo + "번으로 입력하였습니다.");			
 				}
 			},
 			error: function(data) {

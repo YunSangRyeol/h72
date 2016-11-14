@@ -41,6 +41,7 @@
 		<result property="orderStatus" column="ORDER_STATUS" />
 		<result property="orderChange" column="ORDER_CHANGE" />
 		<result property="enrollDate" column="ENROLL_DATE" />
+		<result property="transportNumber" column="TRANSPORT_NUMBER" />
 	</resultMap>
 
 	<resultMap id="orderContentsResultMap" type="OrderContents">
@@ -187,6 +188,10 @@
 	
 	<update id="updateOrderStatusPlus" parameterType="Map">
 		UPDATE ORDER_LIST SET ORDER_STATUS = #{status}, ORDER_CHANGE = '접수중' WHERE ORDER_NO = #{orderNo}
+	</update>
+	
+	<update id="updateStatusOneTransportNo" parameterType="Map">
+		UPDATE ORDER_LIST SET ORDER_STATUS = '배송중', TRANSPORT_NUMBER = #{transportNo} WHERE ORDER_NO = #{orderNo}
 	</update>
 	
 	<update id="updateOrderChange" parameterType="Map">

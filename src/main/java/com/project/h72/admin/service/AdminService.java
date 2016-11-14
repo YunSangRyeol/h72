@@ -79,6 +79,8 @@ public interface AdminService {
 
 	Order orderNoDetail(String orderNo);
 
+	int updateStatusOneTransportNo(String orderNo, String status, String transportNo);
+
 
 
 

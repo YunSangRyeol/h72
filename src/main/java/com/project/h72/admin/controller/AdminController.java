@@ -241,6 +241,7 @@ public class AdminController {
 		
 		if(result != orderNos.length){
 			//오류 발생시...??
+			System.out.println("ASDFASDF");
 			return null;
 		}		
 
@@ -250,9 +251,22 @@ public class AdminController {
 	
 	//주문페이지 status 개별 변경
 	@RequestMapping(value="/updateStatusOne.do", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> updateStatusOne(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status){
-		
+	public @ResponseBody Map<String, Object> updateStatusOne(@RequestParam("orderNo") String orderNo, 
+										@RequestParam("status") String status){
 		int result= adminService.updateStatusOne(orderNo, status);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", result);
+		
+		return map;
+	}
+	//주문페이지 status 배송번호 개별 변경
+	@RequestMapping(value="/updateStatusOne1.do", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> updateStatusOneTransportNo(@RequestParam("orderNo") String orderNo, 
+										@RequestParam("status") String status, @RequestParam("transportNo") String transportNo){
+		System.out.println(transportNo + ", " + orderNo + "transportNotransportNo");
+		
+		int result= adminService.updateStatusOneTransportNo(orderNo, status, transportNo);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", result);

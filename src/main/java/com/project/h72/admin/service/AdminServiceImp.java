@@ -165,6 +165,12 @@ public class AdminServiceImp implements AdminService{
 	}
 
 
+	@Override
+	public int updateStatusOneTransportNo(String orderNo, String status, String transportNo) {
+		return dao.updateStatusOneTransportNo(orderNo, status, transportNo );
+	}
+
+
 
 
 

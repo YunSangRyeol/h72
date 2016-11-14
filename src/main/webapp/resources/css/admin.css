@@ -88,6 +88,14 @@ body {
     font-size: 13px;
 }
 
+.searchInput2{
+	position: relative;
+    width: 100px;
+    height: 27px;
+    border: 1px solid #E9DDDD;
+    font-size: 13px;
+}
+
 .orderCheck{
 	margin: 20px 15px 20px 15px;
 }

@@ -16,13 +16,10 @@
 	//상세 내역 조회
  	var showNhide = false;
  	function Contents(orderNo){ 	
- 		alert("");
  		if(!showNhide){
- 			alert("AAaa");
  			$('.Contents' + orderNo).show();
  			showNhide = true;
  		}else{
- 			alert("wwww");
  			$('.Contents' + orderNo).hide();
  			showNhide = false;
  		}
@@ -202,10 +199,13 @@ $(function(){
 				<script>
 				$(function(){
 					$('#state${list.orderNo }').val('${list.orderStatus}').prop("selected", true);
+			
 				});
 				</script>
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne0('${list.orderNo }')" value="변경">
-					</td>
+						</select>&nbsp;&nbsp;&nbsp;
+						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }0" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
+						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne0('${list.orderNo }')" value="변경">
+						</td>
 		<c:if test="${list.orderChange eq null }">
 		<th class="change"></th>
 		</c:if>
@@ -290,8 +290,10 @@ $(function(){
 							<option value="취소요청">취소요청</option> 
 							<option value="교환요청">교환요청</option> 
 							<option value="반품요청">반품요청</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne1('${list.orderNo }')" value="변경">
-					</td>
+						</select>&nbsp;&nbsp;&nbsp;
+						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }1" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
+						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne1('${list.orderNo }')" value="변경">
+						</td>
 				</tr>
 				<c:forEach var="listContents" items="${listContents}" >	
 				<c:if test="${listContents.orderNo eq list.orderNo }">
@@ -372,8 +374,10 @@ $(function(){
 							<option value="취소요청">취소요청</option> 
 							<option value="교환요청">교환요청</option> 
 							<option value="반품요청">반품요청</option>  
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne2('${list.orderNo }')" value="변경">
-					</td>
+						</select>&nbsp;&nbsp;&nbsp;
+						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }2" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
+						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne2('${list.orderNo }')" value="변경">
+						</td>
 				</tr>	
 				<c:forEach var="listContents" items="${listContents}" >	
 				<c:if test="${listContents.orderNo eq list.orderNo }">
@@ -428,7 +432,7 @@ $(function(){
 					<th scope="col" class="price">상품구매금액(원)</th>
 					<th scope="col" class="who">주문자</th>
 					<th scopt="col" class="how">주문 방법</th>
-					<th scope="col" class="state">주문처리상태</th>
+					<th scope="col" class="state">주문처리상태 / 배송번호</th>
 				</tr>
 			</thead>			
 			<tbody class="">				
@@ -454,7 +458,9 @@ $(function(){
 							<option value="취소요청">취소요청</option> 
 							<option value="교환요청">교환요청</option> 
 							<option value="반품요청">반품요청</option> 
-						</select>&nbsp;&nbsp;&nbsp;<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne3('${list.orderNo }')" value="변경">
+						</select>&nbsp;&nbsp;&nbsp;
+						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }3" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
+						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne3('${list.orderNo }')" value="변경">
 					</td>
 				</tr>
 				<c:forEach var="listContents" items="${listContents}" >	
