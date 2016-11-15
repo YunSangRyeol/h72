@@ -19,7 +19,7 @@
 	$(function(){
 		$('#submitBtn').click(
 				function(){
-					if( $("input:checkbox[name='changeListAll']").is(":checked")){
+					if( $("input:checkbox[name='orderListAll']").is(":checked")){
 						adminOrderListFormAll.submit();
 					}else{
 						alert("변경 내역을 선택해주세요");
@@ -27,7 +27,7 @@
 				});
 		$('#submitBtn1').click(				
 				function(){
-					if( $("input:checkbox[name='changeListOrder']").is(":checked")){
+					if( $("input:checkbox[name='orderListOrder']").is(":checked")){
 						adminOrderListFormOrder.submit();
 					}else{
 						alert("변경 내역을 선택해주세요");
@@ -102,20 +102,98 @@
 				});
 	}); 
  	
- 	//전체선택 체크박스 클릭
+ 	//전체선택 체크박스 클릭-결제완료
+ 	$(function() {		
+		$("[name=allCheck1]").click(						
+			function() {			
+				if ($("[name=allCheck1]").prop("checked")) {					
+					$("input[name=changeListPaid]").prop("checked", true);
+					$("input[name=transportNumberPaid]").attr("name", "transportNumberPaid"); 
+				}else {
+					$("input[name=changeListPaid]").prop("checked", false);
+					$("input[name=changeNot]").attr("name", "changeNot"); 
+				}
+				$("input[name=" + $(this).val() + "]").change();
+		})
+	});
+ 	
+ 	//전체선택 체크박스 클릭-배송중
+ 	$(function() {		
+		$("[name=allCheck2]").click(						
+			function() {			
+				if ($("[name=allCheck2]").prop("checked")) {					
+					$("input[name=changeListDeliver]").prop("checked", true);
+					$("input[name=transportNumberPaid]").attr("name", "transportNumberPaid"); 
+				}else {
+					$("input[name=changeListDeliver]").prop("checked", false);
+					$("input[name=changeNot]").attr("name", "changeNot"); 
+				}
+				$("input[name=" + $(this).val() + "]").change();
+		})
+	});
+ 	
+ 	//전체선택 체크박스 클릭 -all
  	$(function() {		
 		$("[name=allCheck]").click(						
-			function() {
+			function() {	
 				if ($("[name=allCheck]").prop("checked")) {
-					$("#" + $(this).val() + " input[type=checkbox]").prop("checked", true);
+					$("input[name=" + $("[name=allCheck]").val() + "]").prop("checked", true);
 				}else {
-					$("#" + $(this).val() + " input[type=checkbox]").prop("checked", false);
+					$("input[name=" + $("[name=allCheck]").val() + "]").prop("checked", false);
 				}
-//				$("#" + $(this).val() + " input[type=checkbox]").change($(this).val());
-				$("input[type=checkbox]").change();
+				$("input[name=" + $(this).val() + "]").change();
+		})
+	})
+	
+	$(function() {		//order
+		$("#allCheck").click(						
+			function() {	
+				if ($("#allCheck").prop("checked")) {
+					$("input[name=" + $(this).val() + "]").prop("checked", true);
+				}else {
+					$("input[name=" + $(this).val() + "]").prop("checked", false);
+				}
+				$("input[name=" + $(this).val() + "]").change();
+		})
+	})
+	
+	$(function() {		//취소
+		$("#allCheckA").click(						
+			function() {	
+				if ($("#allCheckA").prop("checked")) {
+					$("input[name=orderListCancle]").prop("checked", true);
+				}else {
+					$("input[name=" + $(this).val() + "]").prop("checked", false);
+				}
+				$("input[name=orderListCancle]").change();
+		})
+	})
+	
+	$(function() {		//교환
+		$("#allCheckB").click(						
+			function() {	
+				if ($("#allCheckB").prop("checked")) {
+					$("input[name=orderListChange]").prop("checked", true);
+				}else {
+					$("input[name=orderListChange]").prop("checked", false);
+				}
+				$("input[name=" + $(this).val() + "]").change();
+		})
+	})
+	
+	$(function() {		//반품
+		$("#allCheckC").click(						
+			function() {	
+				if ($("#allCheckC").prop("checked")) {
+					$("input[name=orderListBack]").prop("checked", true);
+				}else {
+					$("input[name=orderListBack]").prop("checked", false);
+				}
+				$("input[name=" + $(this).val() + "]").change();
 		})
 	})
  	
+	
 	//체크박스 선택시 tr 색 변경
 	$(function() {
 		$("input[type=checkbox]").change(function() {
@@ -123,8 +201,14 @@
 				$(this).closest("tr").find("td").each(function() {
 					$(this).css("background", "#f6f6f6");
 				});
+				$(this).closest("tr").find("input[type=text]").each(function() {
+					$(this).css("background", "#f6f6f6");
+				});
 			} else {
 				$(this).closest("tr").find("td").each(function() {
+					$(this).css("background", "white");
+				});
+				$(this).closest("tr").find("input[type=text]").each(function() {
 					$(this).css("background", "white");
 				});
 			}

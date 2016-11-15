@@ -207,7 +207,7 @@ $(function(){
 			<tbody class="">				
 				<c:forEach var="list" items="${list}" >				
 				<tr class="xans-record-"><!-- 내용 -->
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeListAll"  value="${list.orderNo }" class="orderCheck"></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="orderListAll"  value="${list.orderNo }" class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br>
 						<c:url var="goOrderDetail" value="/orderNoDetail.do">
 							<c:param name="orderNo" value="${list.orderNo }" />
@@ -295,7 +295,7 @@ $(function(){
     <table id="orderListOrder" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListOrder"  class="orderCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck" name="allCheck" value="orderListOrder"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -309,7 +309,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '주문접수' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="checkOrder${list.orderNo }" name="changeListOrder"  value="${list.orderNo }"  class="orderCheck" ></td>
+					<td><input type="checkbox" id="checkOrder${list.orderNo }" name="orderListOrder"  value="${list.orderNo }"  class="orderCheck" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -398,7 +398,7 @@ $(function(){
     <table id="orderListPurchased" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListPurchased"  class="orderCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck1" value="changeListPaid"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -501,7 +501,7 @@ $(function(){
     <table id="orderListdelivery" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck" value="orderListdelivery"  class="orderCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" name="allCheck2" value="changeListDeliver"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -610,7 +610,7 @@ $(function(){
     <table id="orderListCancle" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderList"  class="orderCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheckA"  value="orderListCancle"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -690,7 +690,7 @@ $(function(){
     <table id="orderListChange" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListChange"  class="orderCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheckB"  value="orderListChange"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -771,7 +771,7 @@ $(function(){
     <table id="orderListBack" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
-					<th scope="col" class="checked"><input type="checkbox" name="allCheck"  value="orderListBack"  class="orderCheck"></th>
+					<th scope="col" class="checked"><input type="checkbox" id="allCheckC"  value="orderListBack"  class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>

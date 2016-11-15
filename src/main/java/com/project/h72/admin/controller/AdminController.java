@@ -257,9 +257,9 @@ public class AdminController {
 		return "redirect:/admin/order";		
 	}
 	
-	//주문페이지 전체 변경
+	//주문페이지 전체 변경 -ahen
 	@RequestMapping(value="updateOrderStatusAll.do", method = RequestMethod.POST)
-	public String updateOrderStatusAll(@RequestParam("changeListAll") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
+	public String updateOrderStatusAll(@RequestParam("orderListAll") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
 		
 		int result = adminService.updateOrderStatus(orderNos, selectStatus);		
 
@@ -268,7 +268,7 @@ public class AdminController {
 	
 	//주문페이지 전체 변경
 		@RequestMapping(value="updateOrderStatusOrder.do", method = RequestMethod.POST)
-		public String updateOrderStatusOrder(@RequestParam("changeListOrder") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
+		public String updateOrderStatusOrder(@RequestParam("orderListOrder") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
 			
 			int result = adminService.updateOrderStatus(orderNos, selectStatus);		
 
@@ -278,7 +278,7 @@ public class AdminController {
 	//주문페이지 결제완료 -> 배송번호 입력 전체 변경
 	@RequestMapping(value="updateOrderStatusPaid.do", method = RequestMethod.POST)
 	public String updateOrderStatusPaid(@RequestParam("changeListPaid") String[] orderNos, @RequestParam("selectStatus") String selectStatus, 
-			@RequestParam("transportNumberPaid") String[] transportNumberPaid, @RequestParam("changeNot") String[] changeNot, Model model){
+			@RequestParam("transportNumberPaid") String[] transportNumberPaid, Model model){
 		System.out.println(orderNos.length + ",ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹ " +  transportNumberPaid.length);
 		if(selectStatus.equals("배송중")){
 			int result = adminService.updateTransportNumber(orderNos, selectStatus, transportNumberPaid);
@@ -291,7 +291,7 @@ public class AdminController {
 	//주문페이지 전체 변경
 	@RequestMapping(value="updateOrderStatusDeliver.do", method = RequestMethod.POST)
 	public String updateOrderStatusDeliver(@RequestParam("changeListDeliver") String[] orderNos, @RequestParam("selectStatus") String selectStatus, 
-			@RequestParam("transportNumberPaid") String[] transportNumberPaid, @RequestParam("changeNot") String[] changeNot, Model model){
+			@RequestParam("transportNumberPaid") String[] transportNumberPaid, Model model){
 		System.out.println(orderNos.length + ",ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹ " +  transportNumberPaid.length);
 		if(selectStatus.equals("배송중")){
 			int result = adminService.updateTransportNumber(orderNos, selectStatus, transportNumberPaid);
