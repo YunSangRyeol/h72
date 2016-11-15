@@ -1,4 +1,4 @@
---Ã¹¹øÂ° ÀÌÈÄ »èÁ¦ÇØÁÖ¼¼¿ä.
+--Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.
 DROP TABLE PURCHASED_CART;
 DROP VIEW PURCHASED_ORDER_LSIT_VIEW;
 DROP VIEW ORDER_LSIT_VIEW;
@@ -8,7 +8,7 @@ DROP TABLE PURCHASED_ORDER_LIST;
 DROP SEQUENCE SEQ_PURCHASED_ORDER_NO;
 DROP TABLE PURCHASED_ORDER_LIST_CONTENTS;
 
--- »èÁ¦
+-- ï¿½ï¿½ï¿½ï¿½
 DROP TABLE NOTICE;
 DROP TABLE QnA_CATEGORY CASCADE CONSTRAINTS;
 DROP TABLE QnA;
@@ -52,72 +52,72 @@ DROP SEQUENCE SEQ_PROVIDER_ID;
 
 
 
--- °øÁö»çÇ×
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE NOTICE (
 	"NOTICE_NO"       VARCHAR2(10)   PRIMARY KEY, -- NOTICE_NO
 	"NOTICE_TITLE"    VARCHAR2(1000) NOT NULL, -- NOTICE_TITLE
-	"NOTICE_CONTENTS" VARCHAR2(4000) NOT NULL, -- NOTICE_CONTENTS
+	"NOTICE_CONTENTS" VARCHAR2(2000) NOT NULL, -- NOTICE_CONTENTS
 	"ENROLLDATE"      DATE           NOT NULL  -- ENROLLDATE
 );
 
-COMMENT ON COLUMN "NOTICE"."NOTICE_NO" IS '±Û¹øÈ£';
-COMMENT ON COLUMN "NOTICE"."NOTICE_TITLE" IS 'Á¦¸ñ';
-COMMENT ON COLUMN "NOTICE"."NOTICE_CONTENTS" IS '³»¿ë';
-COMMENT ON COLUMN "NOTICE"."ENROLLDATE" IS 'ÀÛ¼ºÀÏ';
+COMMENT ON COLUMN "NOTICE"."NOTICE_NO" IS 'ï¿½Û¹ï¿½È£';
+COMMENT ON COLUMN "NOTICE"."NOTICE_TITLE" IS 'ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "NOTICE"."NOTICE_CONTENTS" IS 'ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "NOTICE"."ENROLLDATE" IS 'ï¿½Û¼ï¿½ï¿½ï¿½';
 
 
 
 
 
 
--- ¹®ÀÇ»çÇ× ºÐ·ù
+-- ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ ï¿½Ð·ï¿½
 
 CREATE TABLE QnA_CATEGORY (
 	"Q_CODE" VARCHAR2(10) PRIMARY KEY, -- Q_CODE
 	"Q_NAME" VARCHAR2(100) NOT NULL  -- Q_NAME
 );
 
-COMMENT ON COLUMN QnA_CATEGORY."Q_CODE" IS 'ºÐ·ùÄÚµå';
-COMMENT ON COLUMN QnA_CATEGORY."Q_NAME" IS 'ºÐ·ù¸í';
+COMMENT ON COLUMN QnA_CATEGORY."Q_CODE" IS 'ï¿½Ð·ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN QnA_CATEGORY."Q_NAME" IS 'ï¿½Ð·ï¿½ï¿½ï¿½';
 
 
-INSERT INTO QnA_CATEGORY VALUES('ITEM', '»óÇ°¹®ÀÇ');
-INSERT INTO QnA_CATEGORY VALUES('DELIVERY', '¹è¼Û¹®ÀÇ');
-INSERT INTO QnA_CATEGORY VALUES('USER', 'È¸¿øÁ¤º¸¹®ÀÇ');
-INSERT INTO QnA_CATEGORY VALUES('KIT', 'DIY KIT ±¸¼º ¹®ÀÇ');
-INSERT INTO QnA_CATEGORY VALUES('ETC', '±âÅ¸ ¹®ÀÇ');
+INSERT INTO QnA_CATEGORY VALUES('ITEM', 'ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO QnA_CATEGORY VALUES('DELIVERY', 'ï¿½ï¿½Û¹ï¿½ï¿½ï¿½');
+INSERT INTO QnA_CATEGORY VALUES('USER', 'È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO QnA_CATEGORY VALUES('KIT', 'DIY KIT ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO QnA_CATEGORY VALUES('ETC', 'ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½');
 
 
 
 
---¹®ÀÇ»çÇ×
+--ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½
 CREATE TABLE QnA (
 	Q_NO       VARCHAR2(10)   PRIMARY KEY, -- Q_NO
 	Q_CODE     VARCHAR2(10)   REFERENCES QnA_CATEGORY ( Q_CODE ), -- Q_CODE
 	Q_WRITER   VARCHAR2(10)   NULL, -- Q_WRITER
 	Q_TITLE    VARCHAR2(1000) NOT NULL, -- Q_TITLE
-	Q_CONTENTS VARCHAR2(4000) NOT NULL, -- Q_CONTENTS
+	Q_CONTENTS VARCHAR2(2000) NOT NULL, -- Q_CONTENTS
 	Q_DATE     DATE           NOT NULL, -- Q_DATE
 	ANSWER_YN  CHAR(1)        CHECK (ANSWER_YN IN ('Y', 'N')), -- ANSWER_YN
-	A_CONTENTS VARCHAR2(4000) NULL, -- A_CONTENTS
+	A_CONTENTS VARCHAR2(2000) NULL, -- A_CONTENTS
 	A_DATE     DATE           NULL  -- A_DATE
 );
 
 
-COMMENT ON COLUMN QnA.Q_NO IS '±Û¹øÈ£';
-COMMENT ON COLUMN QnA.Q_CODE IS 'ºÐ·ùÄÚµå';
-COMMENT ON COLUMN QnA.Q_WRITER IS 'ÀÛ¼ºÀÚ';
-COMMENT ON COLUMN QnA.Q_TITLE IS '±ÛÁ¦¸ñ';
-COMMENT ON COLUMN QnA.Q_CONTENTS IS '¹®ÀÇ ³»¿ë';
-COMMENT ON COLUMN QnA.Q_DATE IS 'Áú¹®ÀÏ';
-COMMENT ON COLUMN QnA.ANSWER_YN IS '´äº¯¿©ºÎ';
-COMMENT ON COLUMN QnA.A_CONTENTS IS '´äº¯³»¿ë';
-COMMENT ON COLUMN QnA.A_DATE IS '´äº¯ÀÏ';
+COMMENT ON COLUMN QnA.Q_NO IS 'ï¿½Û¹ï¿½È£';
+COMMENT ON COLUMN QnA.Q_CODE IS 'ï¿½Ð·ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN QnA.Q_WRITER IS 'ï¿½Û¼ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN QnA.Q_TITLE IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN QnA.Q_CONTENTS IS 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN QnA.Q_DATE IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN QnA.ANSWER_YN IS 'ï¿½äº¯ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN QnA.A_CONTENTS IS 'ï¿½äº¯ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN QnA.A_DATE IS 'ï¿½äº¯ï¿½ï¿½';
 
 
 
 
--- È¸¿øµî±Þ
+-- È¸ï¿½ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE USER_LEVEL (
 	"LEVEL_CODE"     VARCHAR2(10) PRIMARY KEY, -- LEVEL_CODE
 	"LEVEL_NAME"     VARCHAR2(50) NOT NULL, -- LEVEL_NAME
@@ -125,18 +125,18 @@ CREATE TABLE USER_LEVEL (
 	"STANDARD_PRICE" NUMBER       NOT NULL  -- STANDARD_PRICE
 );
 
-COMMENT ON COLUMN "USER_LEVEL"."LEVEL_CODE" IS 'µî±ÞÄÚµå';
-COMMENT ON COLUMN "USER_LEVEL"."LEVEL_NAME" IS 'µî±Þ¸í';
-COMMENT ON COLUMN "USER_LEVEL"."POINT_RATE" IS 'Àû¸³·ü';
-COMMENT ON COLUMN "USER_LEVEL"."STANDARD_PRICE" IS '±âÁØ ±Ý¾×';
+COMMENT ON COLUMN "USER_LEVEL"."LEVEL_CODE" IS 'ï¿½ï¿½ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN "USER_LEVEL"."LEVEL_NAME" IS 'ï¿½ï¿½Þ¸ï¿½';
+COMMENT ON COLUMN "USER_LEVEL"."POINT_RATE" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "USER_LEVEL"."STANDARD_PRICE" IS 'ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½';
 
-INSERT INTO USER_LEVEL VALUES('ADMIN', '¿î¿µÀÚ', '0',-1);
-INSERT INTO USER_LEVEL VALUES('STEP', '°ü¸®ÀÚ', '0', -1);
-INSERT INTO USER_LEVEL VALUES('DIAMOND', 'Æ¯º°È¸¿ø', '10', 10000000 );
-INSERT INTO USER_LEVEL VALUES('GOLD', '¿ì¼öÈ¸¿ø', '5', 5000000 );
-INSERT INTO USER_LEVEL VALUES('SILVER', 'ÀÏ¹ÝÈ¸¿ø', '3', 0);
+INSERT INTO USER_LEVEL VALUES('ADMIN', 'ï¿½î¿µï¿½ï¿½', '0',-1);
+INSERT INTO USER_LEVEL VALUES('STEP', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', '0', -1);
+INSERT INTO USER_LEVEL VALUES('DIAMOND', 'Æ¯ï¿½ï¿½È¸ï¿½ï¿½', '10', 10000000 );
+INSERT INTO USER_LEVEL VALUES('GOLD', 'ï¿½ï¿½ï¿½È¸ï¿½ï¿½', '5', 5000000 );
+INSERT INTO USER_LEVEL VALUES('SILVER', 'ï¿½Ï¹ï¿½È¸ï¿½ï¿½', '3', 0);
 
--- È¸¿ø
+-- È¸ï¿½ï¿½
 CREATE TABLE "USERS" (
 	"USER_ID"        VARCHAR2(100)   PRIMARY KEY, -- USER_ID
 	"LEVEL_CODE"     VARCHAR2(10)   DEFAULT 'SILVER' REFERENCES USER_LEVEL ( LEVEL_CODE ), -- LEVEL_CODE
@@ -153,45 +153,45 @@ CREATE TABLE "USERS" (
 	"TOTAL_PRICE"    NUMBER(10)     DEFAULT 0  -- TOTAL_PRICE
 );
 
-COMMENT ON COLUMN "USERS"."USER_ID" IS '¾ÆÀÌµð';
-COMMENT ON COLUMN "USERS"."LEVEL_CODE" IS 'È¸¿øµî±Þ';
-COMMENT ON COLUMN "USERS"."USER_PASS" IS 'ºñ¹Ð¹øÈ£';
-COMMENT ON COLUMN "USERS"."NAME" IS 'ÀÌ¸§';
-COMMENT ON COLUMN "USERS"."BIRTHDATE" IS '»ý³â¿ùÀÏ';
-COMMENT ON COLUMN "USERS"."EMAIL" IS 'ÀÌ¸ÞÀÏ';
-COMMENT ON COLUMN "USERS"."PHONE" IS 'ÀüÈ­¹øÈ£';
-COMMENT ON COLUMN "USERS"."POST_NUM" IS '¿ìÆí¹øÈ£';
-COMMENT ON COLUMN "USERS"."ADDRESS" IS 'ÁÖ¼Ò';
-COMMENT ON COLUMN "USERS"."ADDRESS_DETAIL" IS '»ó¼¼ÁÖ¼Ò';
-COMMENT ON COLUMN "USERS"."POINT" IS 'Àû¸³±Ý';
-COMMENT ON COLUMN "USERS"."ENROLLDATE" IS '°¡ÀÔÀÏ';
-COMMENT ON COLUMN "USERS"."TOTAL_PRICE" IS 'ÃÑ±¸¸Å±Ý¾×';
+COMMENT ON COLUMN "USERS"."USER_ID" IS 'ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "USERS"."LEVEL_CODE" IS 'È¸ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "USERS"."USER_PASS" IS 'ï¿½ï¿½Ð¹ï¿½È£';
+COMMENT ON COLUMN "USERS"."NAME" IS 'ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "USERS"."BIRTHDATE" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "USERS"."EMAIL" IS 'ï¿½Ì¸ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "USERS"."PHONE" IS 'ï¿½ï¿½È­ï¿½ï¿½È£';
+COMMENT ON COLUMN "USERS"."POST_NUM" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½È£';
+COMMENT ON COLUMN "USERS"."ADDRESS" IS 'ï¿½Ö¼ï¿½';
+COMMENT ON COLUMN "USERS"."ADDRESS_DETAIL" IS 'ï¿½ï¿½ï¿½Ö¼ï¿½';
+COMMENT ON COLUMN "USERS"."POINT" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "USERS"."ENROLLDATE" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "USERS"."TOTAL_PRICE" IS 'ï¿½Ñ±ï¿½ï¿½Å±Ý¾ï¿½';
 
 
 
 
 
 
--- »óÇ° Ä«Å×°í¸®
+-- ï¿½ï¿½Ç° Ä«ï¿½×°ï¿½
 CREATE TABLE "ITEM_CATEGORY" (
 	"CATEGORY_CODE" VARCHAR2(10)   PRIMARY KEY, -- CATEGORY_CODE
 	"CATEGORY_NAME" VARCHAR2(1000) NOT NULL  -- CATEGORY_NAME
 );
 
-COMMENT ON COLUMN "ITEM_CATEGORY"."CATEGORY_CODE" IS 'ºÐ·ùÄÚµå';
-COMMENT ON COLUMN "ITEM_CATEGORY"."CATEGORY_NAME" IS 'ºÐ·ù¸í';
+COMMENT ON COLUMN "ITEM_CATEGORY"."CATEGORY_CODE" IS 'ï¿½Ð·ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN "ITEM_CATEGORY"."CATEGORY_NAME" IS 'ï¿½Ð·ï¿½ï¿½ï¿½';
 
-INSERT INTO ITEM_CATEGORY VALUES('BAG', '°¡¹æ');
-INSERT INTO ITEM_CATEGORY VALUES('PROT', '¹æÇÑ');
-INSERT INTO ITEM_CATEGORY VALUES('FOOD', '½Ä·áÇ°');
-INSERT INTO ITEM_CATEGORY VALUES('TOOL', 'Àåºñ/µµ±¸');
-INSERT INTO ITEM_CATEGORY VALUES('ETC', '±âÅ¸');
-
-
+INSERT INTO ITEM_CATEGORY VALUES('BAG', 'ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO ITEM_CATEGORY VALUES('PROT', 'ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO ITEM_CATEGORY VALUES('FOOD', 'ï¿½Ä·ï¿½Ç°');
+INSERT INTO ITEM_CATEGORY VALUES('TOOL', 'ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO ITEM_CATEGORY VALUES('ETC', 'ï¿½ï¿½Å¸');
 
 
 
--- °ø±Þ¾÷Ã¼
+
+
+-- ï¿½ï¿½ï¿½Þ¾ï¿½Ã¼
 CREATE TABLE "PROVIDER" (
 	"PROVIDER_CODE" VARCHAR2(10)   PRIMARY KEY, -- PROVIDER_CODE
 	"PROVIDER_NAME" VARCHAR2(1000) NOT NULL, -- PROVIDER_NAME
@@ -203,55 +203,55 @@ CREATE TABLE "PROVIDER" (
 );
 
 
-COMMENT ON COLUMN "PROVIDER"."PROVIDER_CODE" IS '¾÷Ã¼ÄÚµå';
-COMMENT ON COLUMN "PROVIDER"."PROVIDER_NAME" IS '¾÷Ã¼¸í';
-COMMENT ON COLUMN "PROVIDER"."P_STEPNAME" IS '´ã´çÀÚ¸í';
-COMMENT ON COLUMN "PROVIDER"."P_PHONE" IS '¿¬¶ôÃ³';
-COMMENT ON COLUMN "PROVIDER"."P_TELL" IS 'ÀüÈ­¹øÈ£';
-COMMENT ON COLUMN "PROVIDER"."P_ADERESS" IS 'ÁÖ¼Ò';
-COMMENT ON COLUMN "PROVIDER"."ETC" IS 'ºñ°í';
+COMMENT ON COLUMN "PROVIDER"."PROVIDER_CODE" IS 'ï¿½ï¿½Ã¼ï¿½Úµï¿½';
+COMMENT ON COLUMN "PROVIDER"."PROVIDER_NAME" IS 'ï¿½ï¿½Ã¼ï¿½ï¿½';
+COMMENT ON COLUMN "PROVIDER"."P_STEPNAME" IS 'ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½';
+COMMENT ON COLUMN "PROVIDER"."P_PHONE" IS 'ï¿½ï¿½ï¿½ï¿½Ã³';
+COMMENT ON COLUMN "PROVIDER"."P_TELL" IS 'ï¿½ï¿½È­ï¿½ï¿½È£';
+COMMENT ON COLUMN "PROVIDER"."P_ADERESS" IS 'ï¿½Ö¼ï¿½';
+COMMENT ON COLUMN "PROVIDER"."ETC" IS 'ï¿½ï¿½ï¿½';
 
 
 
 
 
--------------------------½Ä·áÇ°-------------------------------------------------
+-------------------------ï¿½Ä·ï¿½Ç°-------------------------------------------------
 
 
 
--- »óÇ° ¼³¸í_½Ä·áÇ°
+-- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½_ï¿½Ä·ï¿½Ç°
 CREATE TABLE "ITEM_DETAIL_FOOD" (
-	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- »óÇ° »ó¼¼ÆäÀÌÁö ID
-	"CATEGORY_CODE"  VARCHAR2(10)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ºÐ·ùÄÚµå
-	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ÆÇ¸Å»óÈ²
-	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- »óÇ°ÀÌ¸§
-	"MIN_PRICE"      NUMBER         NOT NULL, -- ÃÖ¼Ò ÆÇ¸Å°¡
-	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ÃÖ¼Ò ÇÒÀÎ°¡
-	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ½æ³×ÀÏ
-	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- »ó¼¼ÀÌ¹ÌÁö
+	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
+	"CATEGORY_CODE"  VARCHAR2(10)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ï¿½Ð·ï¿½ï¿½Úµï¿½
+	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ï¿½Ç¸Å»ï¿½È²
+	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- ï¿½ï¿½Ç°ï¿½Ì¸ï¿½
+	"MIN_PRICE"      NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½
+	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½
+	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½
+	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 	"DETAIL_IMG02"   VARCHAR2(200)  NULL,     -- DETAIL_IMG02
-	"ETC"            VARCHAR2(1000) NULL      -- ºñ°í
+	"ETC"            VARCHAR2(1000) NULL      -- ï¿½ï¿½ï¿½
 );
 
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."CATEGORY_CODE" IS 'ºÐ·ùÄÚµå';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."ITEM_STATUS" IS 'ÆÇ¸Å»óÈ²';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."ITEM_NAME" IS '»óÇ°ÀÌ¸§';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."MIN_PRICE" IS 'ÃÖ¼Ò ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."MIN_SAIL_PRICE" IS 'ÃÖ¼Ò ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."MAIN_IMG" IS '½æ³×ÀÏ';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."DETAIL_IMG01" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."DETAIL_IMG02" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."ETC" IS 'ºñ°í';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."CATEGORY_CODE" IS 'ï¿½Ð·ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."ITEM_STATUS" IS 'ï¿½Ç¸Å»ï¿½È²';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."ITEM_NAME" IS 'ï¿½ï¿½Ç°ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."MIN_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."MIN_SAIL_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."MAIN_IMG" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."DETAIL_IMG01" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."DETAIL_IMG02" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_FOOD"."ETC" IS 'ï¿½ï¿½ï¿½';
 
 
 
 
--- »óÇ°¿É¼Ç ½Ä·áÇ°
+-- ï¿½ï¿½Ç°ï¿½É¼ï¿½ ï¿½Ä·ï¿½Ç°
 CREATE TABLE "ITEM_FOOD" (
 	"ITEM_ID"          VARCHAR2(100)   PRIMARY KEY, -- ITEM_ID
 	"PROVIDER_CODE"    VARCHAR2(10)   REFERENCES PROVIDER ( PROVIDER_CODE ),     -- PROVIDER_CODE
-	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_FOOD ( ITEM_DETAIL_ID ), -- »óÇ° »ó¼¼ÆäÀÌÁö ID
+	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_FOOD ( ITEM_DETAIL_ID ), -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
 	"ITEM_OPTION_NAME" VARCHAR2(1000) NOT NULL, -- ITEM_OPTION_NAME
 	"COST"             NUMBER         NOT NULL, -- COST
 	"PRICE"            NUMBER         NOT NULL, -- PRICE
@@ -259,55 +259,55 @@ CREATE TABLE "ITEM_FOOD" (
 	"STOCK"            NUMBER         NOT NULL  -- STOCK
 );
 
-COMMENT ON COLUMN "ITEM_FOOD"."ITEM_ID" IS '»óÇ° ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_FOOD"."PROVIDER_CODE" IS '°Å·¡¾÷Ã¼';
-COMMENT ON COLUMN "ITEM_FOOD"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ID';
-COMMENT ON COLUMN "ITEM_FOOD"."ITEM_OPTION_NAME" IS '»óÇ° ÀüÃ¼ ÀÌ¸§ (¿É¼Ç Æ÷ÇÔ)';
-COMMENT ON COLUMN "ITEM_FOOD"."COST" IS '¸ÅÀÔ°¡';
-COMMENT ON COLUMN "ITEM_FOOD"."PRICE" IS 'ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_FOOD"."SAIL_PRICE" IS 'ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_FOOD"."STOCK" IS 'Àç°í¼ö·®';
+COMMENT ON COLUMN "ITEM_FOOD"."ITEM_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_FOOD"."PROVIDER_CODE" IS 'ï¿½Å·ï¿½ï¿½ï¿½Ã¼';
+COMMENT ON COLUMN "ITEM_FOOD"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ID';
+COMMENT ON COLUMN "ITEM_FOOD"."ITEM_OPTION_NAME" IS 'ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ ï¿½Ì¸ï¿½ (ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½)';
+COMMENT ON COLUMN "ITEM_FOOD"."COST" IS 'ï¿½ï¿½ï¿½Ô°ï¿½';
+COMMENT ON COLUMN "ITEM_FOOD"."PRICE" IS 'ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_FOOD"."SAIL_PRICE" IS 'ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_FOOD"."STOCK" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 
 
 
 
 
--------------------------µµ±¸-------------------------------------------------
+-------------------------ï¿½ï¿½ï¿½ï¿½-------------------------------------------------
 
 
 
--- »óÇ° ¼³¸í_µµ±¸
+-- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE "ITEM_DETAIL_TOOL" (
-	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- »óÇ° »ó¼¼ÆäÀÌÁö ID
-	"CATEGORY_CODE"  VARCHAR2(10)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ºÐ·ùÄÚµå
-	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ÆÇ¸Å»óÈ²
-	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- »óÇ°ÀÌ¸§
-	"MIN_PRICE"      NUMBER         NOT NULL, -- ÃÖ¼Ò ÆÇ¸Å°¡
-	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ÃÖ¼Ò ÇÒÀÎ°¡
-	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ½æ³×ÀÏ
-	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- »ó¼¼ÀÌ¹ÌÁö
+	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
+	"CATEGORY_CODE"  VARCHAR2(10)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ï¿½Ð·ï¿½ï¿½Úµï¿½
+	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ï¿½Ç¸Å»ï¿½È²
+	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- ï¿½ï¿½Ç°ï¿½Ì¸ï¿½
+	"MIN_PRICE"      NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½
+	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½
+	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½
+	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 	"DETAIL_IMG02"   VARCHAR2(200)  NULL,     -- DETAIL_IMG02
-	"ETC"            VARCHAR2(1000) NULL      -- ºñ°í
+	"ETC"            VARCHAR2(1000) NULL      -- ï¿½ï¿½ï¿½
 );
 
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."CATEGORY_CODE" IS 'ºÐ·ùÄÚµå';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."ITEM_STATUS" IS 'ÆÇ¸Å»óÈ²';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."ITEM_NAME" IS '»óÇ°ÀÌ¸§';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."MIN_PRICE" IS 'ÃÖ¼Ò ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."MIN_SAIL_PRICE" IS 'ÃÖ¼Ò ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."MAIN_IMG" IS '½æ³×ÀÏ';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."DETAIL_IMG01" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."DETAIL_IMG02" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."ETC" IS 'ºñ°í';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."CATEGORY_CODE" IS 'ï¿½Ð·ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."ITEM_STATUS" IS 'ï¿½Ç¸Å»ï¿½È²';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."ITEM_NAME" IS 'ï¿½ï¿½Ç°ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."MIN_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."MIN_SAIL_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."MAIN_IMG" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."DETAIL_IMG01" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."DETAIL_IMG02" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_TOOL"."ETC" IS 'ï¿½ï¿½ï¿½';
 
 
--- »óÇ°¿É¼Ç µµ±¸
+-- ï¿½ï¿½Ç°ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE "ITEM_TOOL" (
 	"ITEM_ID"          VARCHAR2(100)   PRIMARY KEY, -- ITEM_ID
 	"PROVIDER_CODE"    VARCHAR2(10)   REFERENCES PROVIDER ( PROVIDER_CODE ),     -- PROVIDER_CODE
-	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_TOOL ( ITEM_DETAIL_ID ), -- »óÇ° »ó¼¼ÆäÀÌÁö ID
+	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_TOOL ( ITEM_DETAIL_ID ), -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
 	"ITEM_OPTION_NAME" VARCHAR2(1000) NOT NULL, -- ITEM_OPTION_NAME
 	"COST"             NUMBER         NOT NULL, -- COST
 	"PRICE"            NUMBER         NOT NULL, -- PRICE
@@ -315,56 +315,56 @@ CREATE TABLE "ITEM_TOOL" (
 	"STOCK"            NUMBER         NOT NULL  -- STOCK
 );
 
-COMMENT ON COLUMN "ITEM_TOOL"."ITEM_ID" IS '»óÇ° ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_TOOL"."PROVIDER_CODE" IS '°Å·¡¾÷Ã¼';
-COMMENT ON COLUMN "ITEM_TOOL"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_TOOL"."ITEM_OPTION_NAME" IS '»óÇ° ÀüÃ¼ ÀÌ¸§ (¿É¼Ç Æ÷ÇÔ)';
-COMMENT ON COLUMN "ITEM_TOOL"."COST" IS '¸ÅÀÔ°¡';
-COMMENT ON COLUMN "ITEM_TOOL"."PRICE" IS 'ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_TOOL"."SAIL_PRICE" IS 'ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_TOOL"."STOCK" IS 'Àç°í¼ö·®';
+COMMENT ON COLUMN "ITEM_TOOL"."ITEM_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_TOOL"."PROVIDER_CODE" IS 'ï¿½Å·ï¿½ï¿½ï¿½Ã¼';
+COMMENT ON COLUMN "ITEM_TOOL"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_TOOL"."ITEM_OPTION_NAME" IS 'ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ ï¿½Ì¸ï¿½ (ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½)';
+COMMENT ON COLUMN "ITEM_TOOL"."COST" IS 'ï¿½ï¿½ï¿½Ô°ï¿½';
+COMMENT ON COLUMN "ITEM_TOOL"."PRICE" IS 'ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_TOOL"."SAIL_PRICE" IS 'ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_TOOL"."STOCK" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 
 
 
 
--------------------------¹æÇÑ-------------------------------------------------
+-------------------------ï¿½ï¿½ï¿½ï¿½-------------------------------------------------
 
 
 
--- »óÇ° ¼³¸í_¹æÇÑ
+-- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE "ITEM_DETAIL_PROTECT" (
-	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- »óÇ° »ó¼¼ÆäÀÌÁö ID
-	"CATEGORY_CODE"  VARCHAR2(20)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ºÐ·ùÄÚµå
-	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ÆÇ¸Å»óÈ²
-	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- »óÇ°ÀÌ¸§
-	"MIN_PRICE"      NUMBER         NOT NULL, -- ÃÖ¼Ò ÆÇ¸Å°¡
-	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ÃÖ¼Ò ÇÒÀÎ°¡
-	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ½æ³×ÀÏ
-	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- »ó¼¼ÀÌ¹ÌÁö
+	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
+	"CATEGORY_CODE"  VARCHAR2(20)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ï¿½Ð·ï¿½ï¿½Úµï¿½
+	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ï¿½Ç¸Å»ï¿½È²
+	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- ï¿½ï¿½Ç°ï¿½Ì¸ï¿½
+	"MIN_PRICE"      NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½
+	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½
+	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½
+	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 	"DETAIL_IMG02"   VARCHAR2(200)  NULL,     -- DETAIL_IMG02
-	"ETC"            VARCHAR2(1000) NULL      -- ºñ°í
+	"ETC"            VARCHAR2(1000) NULL      -- ï¿½ï¿½ï¿½
 );
 
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."CATEGORY_CODE" IS 'ºÐ·ùÄÚµå';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."ITEM_STATUS" IS 'ÆÇ¸Å»óÈ²';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."ITEM_NAME" IS '»óÇ°ÀÌ¸§';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."MIN_PRICE" IS 'ÃÖ¼Ò ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."MIN_SAIL_PRICE" IS 'ÃÖ¼Ò ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."MAIN_IMG" IS '½æ³×ÀÏ';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."DETAIL_IMG01" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."DETAIL_IMG02" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."ETC" IS 'ºñ°í';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."CATEGORY_CODE" IS 'ï¿½Ð·ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."ITEM_STATUS" IS 'ï¿½Ç¸Å»ï¿½È²';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."ITEM_NAME" IS 'ï¿½ï¿½Ç°ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."MIN_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."MIN_SAIL_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."MAIN_IMG" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."DETAIL_IMG01" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."DETAIL_IMG02" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_PROTECT"."ETC" IS 'ï¿½ï¿½ï¿½';
 
 
 
 
--- »óÇ°¿É¼Ç ¹æÇÑ
+-- ï¿½ï¿½Ç°ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE "ITEM_PROTECT" (
 	"ITEM_ID"          VARCHAR2(100)   PRIMARY KEY, -- ITEM_ID
 	"PROVIDER_CODE"    VARCHAR2(20)   REFERENCES PROVIDER ( PROVIDER_CODE ),     -- PROVIDER_CODE
-	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_PROTECT ( ITEM_DETAIL_ID ), -- »óÇ° »ó¼¼ÆäÀÌÁö ID
+	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_PROTECT ( ITEM_DETAIL_ID ), -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
 	"ITEM_OPTION_NAME" VARCHAR2(1000) NOT NULL, -- ITEM_OPTION_NAME
 	"COST"             NUMBER         NOT NULL, -- COST
 	"PRICE"            NUMBER         NOT NULL, -- PRICE
@@ -372,56 +372,56 @@ CREATE TABLE "ITEM_PROTECT" (
 	"STOCK"            NUMBER         NOT NULL  -- STOCK
 );
 
-COMMENT ON COLUMN "ITEM_PROTECT"."ITEM_ID" IS '»óÇ° ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_PROTECT"."PROVIDER_CODE" IS '°Å·¡¾÷Ã¼';
-COMMENT ON COLUMN "ITEM_PROTECT"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_PROTECT"."ITEM_OPTION_NAME" IS '»óÇ° ÀüÃ¼ ÀÌ¸§ (¿É¼Ç Æ÷ÇÔ)';
-COMMENT ON COLUMN "ITEM_PROTECT"."COST" IS '¸ÅÀÔ°¡';
-COMMENT ON COLUMN "ITEM_PROTECT"."PRICE" IS 'ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_PROTECT"."SAIL_PRICE" IS 'ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_PROTECT"."STOCK" IS 'Àç°í¼ö·®';
+COMMENT ON COLUMN "ITEM_PROTECT"."ITEM_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_PROTECT"."PROVIDER_CODE" IS 'ï¿½Å·ï¿½ï¿½ï¿½Ã¼';
+COMMENT ON COLUMN "ITEM_PROTECT"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_PROTECT"."ITEM_OPTION_NAME" IS 'ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ ï¿½Ì¸ï¿½ (ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½)';
+COMMENT ON COLUMN "ITEM_PROTECT"."COST" IS 'ï¿½ï¿½ï¿½Ô°ï¿½';
+COMMENT ON COLUMN "ITEM_PROTECT"."PRICE" IS 'ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_PROTECT"."SAIL_PRICE" IS 'ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_PROTECT"."STOCK" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 
 
 
 
 
--------------------------¹è³¶-------------------------------------------------
+-------------------------ï¿½è³¶-------------------------------------------------
 
 
--- »óÇ° ¼³¸í_¹è³¶
+-- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½_ï¿½è³¶
 CREATE TABLE "ITEM_DETAIL_BAG" (
-	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- »óÇ° »ó¼¼ÆäÀÌÁö ID
-	"CATEGORY_CODE"  VARCHAR2(10)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ºÐ·ùÄÚµå
-	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ÆÇ¸Å»óÈ²
-	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- »óÇ°ÀÌ¸§
-	"MIN_PRICE"      NUMBER         NOT NULL, -- ÃÖ¼Ò ÆÇ¸Å°¡
-	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ÃÖ¼Ò ÇÒÀÎ°¡
-	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ½æ³×ÀÏ
-	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- »ó¼¼ÀÌ¹ÌÁö
+	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
+	"CATEGORY_CODE"  VARCHAR2(10)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ï¿½Ð·ï¿½ï¿½Úµï¿½
+	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ï¿½Ç¸Å»ï¿½È²
+	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- ï¿½ï¿½Ç°ï¿½Ì¸ï¿½
+	"MIN_PRICE"      NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½
+	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½
+	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½
+	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 	"DETAIL_IMG02"   VARCHAR2(200)  NULL,     -- DETAIL_IMG02
-	"ETC"            VARCHAR2(1000) NULL      -- ºñ°í
+	"ETC"            VARCHAR2(1000) NULL      -- ï¿½ï¿½ï¿½
 );
 
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."CATEGORY_CODE" IS 'ºÐ·ùÄÚµå';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."ITEM_STATUS" IS 'ÆÇ¸Å»óÈ²';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."ITEM_NAME" IS '»óÇ°ÀÌ¸§';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."MIN_PRICE" IS 'ÃÖ¼Ò ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."MIN_SAIL_PRICE" IS 'ÃÖ¼Ò ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."MAIN_IMG" IS '½æ³×ÀÏ';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."DETAIL_IMG01" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."DETAIL_IMG02" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_BAG"."ETC" IS 'ºñ°í';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."CATEGORY_CODE" IS 'ï¿½Ð·ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."ITEM_STATUS" IS 'ï¿½Ç¸Å»ï¿½È²';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."ITEM_NAME" IS 'ï¿½ï¿½Ç°ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."MIN_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."MIN_SAIL_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."MAIN_IMG" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."DETAIL_IMG01" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."DETAIL_IMG02" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_BAG"."ETC" IS 'ï¿½ï¿½ï¿½';
 
 
 
 
--- »óÇ°¿É¼Ç ¹è³¶
+-- ï¿½ï¿½Ç°ï¿½É¼ï¿½ ï¿½è³¶
 CREATE TABLE "ITEM_BAG" (
 	"ITEM_ID"          VARCHAR2(100)   PRIMARY KEY, -- ITEM_ID
 	"PROVIDER_CODE"    VARCHAR2(10)   REFERENCES PROVIDER ( PROVIDER_CODE ),     -- PROVIDER_CODE
-	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_BAG ( ITEM_DETAIL_ID ), -- »óÇ° »ó¼¼ÆäÀÌÁö ID
+	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_BAG ( ITEM_DETAIL_ID ), -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
 	"ITEM_OPTION_NAME" VARCHAR2(1000) NOT NULL, -- ITEM_OPTION_NAME
 	"COST"             NUMBER         NOT NULL, -- COST
 	"PRICE"            NUMBER         NOT NULL, -- PRICE
@@ -429,55 +429,55 @@ CREATE TABLE "ITEM_BAG" (
 	"STOCK"            NUMBER         NOT NULL  -- STOCK
 );
 
-COMMENT ON COLUMN "ITEM_BAG"."ITEM_ID" IS '»óÇ° ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_BAG"."PROVIDER_CODE" IS '°Å·¡¾÷Ã¼';
-COMMENT ON COLUMN "ITEM_BAG"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_BAG"."ITEM_OPTION_NAME" IS '»óÇ° ÀüÃ¼ ÀÌ¸§ (¿É¼Ç Æ÷ÇÔ)';
-COMMENT ON COLUMN "ITEM_BAG"."COST" IS '¸ÅÀÔ°¡';
-COMMENT ON COLUMN "ITEM_BAG"."PRICE" IS 'ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_BAG"."SAIL_PRICE" IS 'ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_BAG"."STOCK" IS 'Àç°í¼ö·®';
+COMMENT ON COLUMN "ITEM_BAG"."ITEM_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_BAG"."PROVIDER_CODE" IS 'ï¿½Å·ï¿½ï¿½ï¿½Ã¼';
+COMMENT ON COLUMN "ITEM_BAG"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_BAG"."ITEM_OPTION_NAME" IS 'ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ ï¿½Ì¸ï¿½ (ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½)';
+COMMENT ON COLUMN "ITEM_BAG"."COST" IS 'ï¿½ï¿½ï¿½Ô°ï¿½';
+COMMENT ON COLUMN "ITEM_BAG"."PRICE" IS 'ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_BAG"."SAIL_PRICE" IS 'ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_BAG"."STOCK" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 
 
 
--------------------------±âÅ¸-------------------------------------------------
+-------------------------ï¿½ï¿½Å¸-------------------------------------------------
 
 
 
--- »óÇ° ¼³¸í_±âÅ¸
+-- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½Å¸
 CREATE TABLE "ITEM_DETAIL_ETC" (
-	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- »óÇ° »ó¼¼ÆäÀÌÁö ID
-	"CATEGORY_CODE"  VARCHAR2(10)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ºÐ·ùÄÚµå
-	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ÆÇ¸Å»óÈ²
-	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- »óÇ°ÀÌ¸§
-	"MIN_PRICE"      NUMBER         NOT NULL, -- ÃÖ¼Ò ÆÇ¸Å°¡
-	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ÃÖ¼Ò ÇÒÀÎ°¡
-	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ½æ³×ÀÏ
-	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- »ó¼¼ÀÌ¹ÌÁö
+	"ITEM_DETAIL_ID" VARCHAR2(20)   PRIMARY KEY, -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
+	"CATEGORY_CODE"  VARCHAR2(10)   REFERENCES ITEM_CATEGORY ( CATEGORY_CODE ), -- ï¿½Ð·ï¿½ï¿½Úµï¿½
+	"ITEM_STATUS"    VARCHAR2(20)   NOT NULL, -- ï¿½Ç¸Å»ï¿½È²
+	"ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- ï¿½ï¿½Ç°ï¿½Ì¸ï¿½
+	"MIN_PRICE"      NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½
+	"MIN_SAIL_PRICE" NUMBER         NOT NULL, -- ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½
+	"MAIN_IMG"       VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½
+	"DETAIL_IMG01"   VARCHAR2(200)  NOT NULL, -- ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 	"DETAIL_IMG02"   VARCHAR2(200)  NULL,     -- DETAIL_IMG02
-	"ETC"            VARCHAR2(1000) NULL      -- ºñ°í
+	"ETC"            VARCHAR2(1000) NULL      -- ï¿½ï¿½ï¿½
 );
 
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."CATEGORY_CODE" IS 'ºÐ·ùÄÚµå';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."ITEM_STATUS" IS 'ÆÇ¸Å»óÈ²';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."ITEM_NAME" IS '»óÇ°ÀÌ¸§';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."MIN_PRICE" IS 'ÃÖ¼Ò ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."MIN_SAIL_PRICE" IS 'ÃÖ¼Ò ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."MAIN_IMG" IS '½æ³×ÀÏ';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."DETAIL_IMG01" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."DETAIL_IMG02" IS '»ó¼¼ÀÌ¹ÌÁö';
-COMMENT ON COLUMN "ITEM_DETAIL_ETC"."ETC" IS 'ºñ°í';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."CATEGORY_CODE" IS 'ï¿½Ð·ï¿½ï¿½Úµï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."ITEM_STATUS" IS 'ï¿½Ç¸Å»ï¿½È²';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."ITEM_NAME" IS 'ï¿½ï¿½Ç°ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."MIN_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."MIN_SAIL_PRICE" IS 'ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."MAIN_IMG" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."DETAIL_IMG01" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."DETAIL_IMG02" IS 'ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ITEM_DETAIL_ETC"."ETC" IS 'ï¿½ï¿½ï¿½';
 
 
 
 
--- »óÇ°¿É¼Ç ±âÅ¸
+-- ï¿½ï¿½Ç°ï¿½É¼ï¿½ ï¿½ï¿½Å¸
 CREATE TABLE "ITEM_ETC" (
 	"ITEM_ID"          VARCHAR2(100)   PRIMARY KEY, -- ITEM_ID
 	"PROVIDER_CODE"    VARCHAR2(10)   REFERENCES PROVIDER ( PROVIDER_CODE ),     -- PROVIDER_CODE
-	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_ETC ( ITEM_DETAIL_ID ), -- »óÇ° »ó¼¼ÆäÀÌÁö ID
+	"ITEM_DETAIL_ID"   VARCHAR2(20)   REFERENCES ITEM_DETAIL_ETC ( ITEM_DETAIL_ID ), -- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
 	"ITEM_OPTION_NAME" VARCHAR2(1000) NOT NULL, --ITEM_OPTION_NAME
 	"COST"             NUMBER         NOT NULL, -- COST
 	"PRICE"            NUMBER         NOT NULL, -- PRICE
@@ -485,24 +485,24 @@ CREATE TABLE "ITEM_ETC" (
 	"STOCK"            NUMBER         NOT NULL  -- STOCK
 );
 
-COMMENT ON COLUMN "ITEM_ETC"."ITEM_ID" IS '»óÇ° ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_ETC"."PROVIDER_CODE" IS '°Å·¡¾÷Ã¼';
-COMMENT ON COLUMN "ITEM_ETC"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ITEM_ETC"."ITEM_OPTION_NAME" IS '»óÇ° ÀüÃ¼ ÀÌ¸§ (¿É¼Ç Æ÷ÇÔ)';
-COMMENT ON COLUMN "ITEM_ETC"."COST" IS '¸ÅÀÔ°¡';
-COMMENT ON COLUMN "ITEM_ETC"."PRICE" IS 'ÆÇ¸Å°¡';
-COMMENT ON COLUMN "ITEM_ETC"."SAIL_PRICE" IS 'ÇÒÀÎ°¡';
-COMMENT ON COLUMN "ITEM_ETC"."STOCK" IS 'Àç°í¼ö·®';
+COMMENT ON COLUMN "ITEM_ETC"."ITEM_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_ETC"."PROVIDER_CODE" IS 'ï¿½Å·ï¿½ï¿½ï¿½Ã¼';
+COMMENT ON COLUMN "ITEM_ETC"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ITEM_ETC"."ITEM_OPTION_NAME" IS 'ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ ï¿½Ì¸ï¿½ (ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½)';
+COMMENT ON COLUMN "ITEM_ETC"."COST" IS 'ï¿½ï¿½ï¿½Ô°ï¿½';
+COMMENT ON COLUMN "ITEM_ETC"."PRICE" IS 'ï¿½Ç¸Å°ï¿½';
+COMMENT ON COLUMN "ITEM_ETC"."SAIL_PRICE" IS 'ï¿½ï¿½ï¿½Î°ï¿½';
+COMMENT ON COLUMN "ITEM_ETC"."STOCK" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 
 
 
 
 
 
---°¢ Ä«Å×°í¸®º° ºä--
+--ï¿½ï¿½ Ä«ï¿½×°ï¿½ï¿½ï¿½ ï¿½ï¿½--
 
 
---½Ä·áÇ° ºä
+--ï¿½Ä·ï¿½Ç° ï¿½ï¿½
 
 CREATE VIEW ITEM_FOOD_VIEW
 AS( 
@@ -516,7 +516,7 @@ JOIN ITEM_DETAIL_FOOD USING(ITEM_DETAIL_ID)
 
 
 
---µµ±¸ ºä
+--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 CREATE VIEW ITEM_TOOL_VIEW
 AS( 
@@ -527,7 +527,7 @@ JOIN ITEM_DETAIL_TOOL USING(ITEM_DETAIL_ID)
 );
 
 
---¹æÇÑ ºä
+--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 CREATE VIEW ITEM_PROTECT_VIEW
 AS( 
@@ -538,7 +538,7 @@ JOIN ITEM_DETAIL_PROTECT USING(ITEM_DETAIL_ID)
 );
 
 
--- °¡¹æ ºä
+-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 CREATE VIEW ITEM_BAG_VIEW
 AS( 
@@ -551,7 +551,7 @@ JOIN ITEM_DETAIL_BAG USING(ITEM_DETAIL_ID)
 
 
 
---±âÅ¸ ºä
+--ï¿½ï¿½Å¸ ï¿½ï¿½
 
 CREATE VIEW ITEM_ETC_VIEW
 AS( 
@@ -562,7 +562,7 @@ JOIN ITEM_DETAIL_ETC USING(ITEM_DETAIL_ID)
 );
 
 
---¼­Ä¡¿ë µðÅ×ÀÏ ¿Ã ºä
+--ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 
 CREATE VIEW ITEM_DETAIL_VIEW
 AS(
@@ -578,7 +578,7 @@ AS(
 );
 
 
---ÀüÃ¼ ºä
+--ï¿½ï¿½Ã¼ ï¿½ï¿½
 
 CREATE VIEW ITEM_ALL_VIEW
 AS(
@@ -596,7 +596,7 @@ AS(
 
 
 
--- ¸®ºä
+-- ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE "REVIEW" (
 	"REVIEW_ID"  NUMBER(10)   PRIMARY KEY, -- REVIEW_ID
 	"ITEM_DETAIL_ID" VARCHAR2(20)   NOT NULL,
@@ -610,16 +610,16 @@ CREATE TABLE "REVIEW" (
 	"R_IMG05"    VARCHAR2(200)  NULL      -- R_IMG05
 );
 
-COMMENT ON COLUMN "REVIEW"."REVIEW_ID" IS '¸®ºä ¾ÆÀÌµð';
-COMMENT ON COLUMN "REVIEW"."ITEM_DETAIL_ID" IS '»óÇ° ¾ÆÀÌµð';
-COMMENT ON COLUMN "REVIEW"."R_WRITER" IS 'ÀÛ¼ºÀÚ';
-COMMENT ON COLUMN "REVIEW"."R_CONTENTS" IS '³»¿ë';
-COMMENT ON COLUMN "REVIEW"."R_DATE" IS 'ÀÛ¼ºÀÏ';
-COMMENT ON COLUMN "REVIEW"."R_IMG01" IS 'ÀÌ¹ÌÁö1';
-COMMENT ON COLUMN "REVIEW"."R_IMG02" IS 'ÀÌ¹ÌÁö2';
-COMMENT ON COLUMN "REVIEW"."R_IMG03" IS 'ÀÌ¹ÌÁö3';
-COMMENT ON COLUMN "REVIEW"."R_IMG04" IS 'ÀÌ¹ÌÁö4';
-COMMENT ON COLUMN "REVIEW"."R_IMG05" IS 'ÀÌ¹ÌÁö5';
+COMMENT ON COLUMN "REVIEW"."REVIEW_ID" IS 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "REVIEW"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "REVIEW"."R_WRITER" IS 'ï¿½Û¼ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "REVIEW"."R_CONTENTS" IS 'ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "REVIEW"."R_DATE" IS 'ï¿½Û¼ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "REVIEW"."R_IMG01" IS 'ï¿½Ì¹ï¿½ï¿½ï¿½1';
+COMMENT ON COLUMN "REVIEW"."R_IMG02" IS 'ï¿½Ì¹ï¿½ï¿½ï¿½2';
+COMMENT ON COLUMN "REVIEW"."R_IMG03" IS 'ï¿½Ì¹ï¿½ï¿½ï¿½3';
+COMMENT ON COLUMN "REVIEW"."R_IMG04" IS 'ï¿½Ì¹ï¿½ï¿½ï¿½4';
+COMMENT ON COLUMN "REVIEW"."R_IMG05" IS 'ï¿½Ì¹ï¿½ï¿½ï¿½5';
 
 
 
@@ -636,23 +636,23 @@ CREATE TABLE "CART" (
 	"ENROLL_DATE"      DATE           DEFAULT SYSDATE -- ENROLL_DATE
 );
 
-COMMENT ON COLUMN "CART"."CART_ID" IS 'Ä«Æ® ¾ÆÀÌµð';
-COMMENT ON COLUMN "CART"."ITEM_ID" IS '»óÇ° ¾ÆÀÌµð';
-COMMENT ON COLUMN "CART"."USER_ID" IS 'À¯Àú ¾ÆÀÌµð';
-COMMENT ON COLUMN "CART"."ITEM_FULL_NAME" IS '»óÇ° ÀüÃ¼ ÀÌ¸§';
-COMMENT ON COLUMN "CART"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "CART"."MAIN_IMG" IS '½æ³×ÀÏ';
-COMMENT ON COLUMN "CART"."QUANTITY" IS '»óÇ° °¹¼ö';
-COMMENT ON COLUMN "CART"."COST" IS '»óÇ° °¡°Ý';
-COMMENT ON COLUMN "CART"."KIT_YN" IS 'KIT ¿©ºÎ';
-COMMENT ON COLUMN "CART"."ENROLL_DATE" IS 'µî·Ï ³¯Â¥';
+COMMENT ON COLUMN "CART"."CART_ID" IS 'Ä«Æ® ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "CART"."ITEM_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "CART"."USER_ID" IS 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "CART"."ITEM_FULL_NAME" IS 'ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "CART"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "CART"."MAIN_IMG" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "CART"."QUANTITY" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "CART"."COST" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "CART"."KIT_YN" IS 'KIT ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "CART"."ENROLL_DATE" IS 'ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥';
 
 
 
 
 
 
--- °¡»ó°èÁÂ 
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 CREATE TABLE "VBANK" (
   "ORDER_NO"  VARCHAR2(30) PRIMARY KEY, 
 	"BANK"      VARCHAR2(30) NOT NULL,  -- BANK
@@ -660,24 +660,24 @@ CREATE TABLE "VBANK" (
 	"NAME"        VARCHAR2(30) NOT NULL  -- NAME
 );
 
-COMMENT ON COLUMN "VBANK"."ORDER_NO" IS 'ÁÖ¹®¹øÈ£';
-COMMENT ON COLUMN "VBANK"."BANK" IS 'ÀºÇà¸í';
-COMMENT ON COLUMN "VBANK"."ACCOUNT_NUM" IS '°èÁÂ¹øÈ£';
-COMMENT ON COLUMN "VBANK"."NAME" IS 'ÀÔ±ÝÀÚ¸í';
+COMMENT ON COLUMN "VBANK"."ORDER_NO" IS 'ï¿½Ö¹ï¿½ï¿½ï¿½È£';
+COMMENT ON COLUMN "VBANK"."BANK" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "VBANK"."ACCOUNT_NUM" IS 'ï¿½ï¿½ï¿½Â¹ï¿½È£';
+COMMENT ON COLUMN "VBANK"."NAME" IS 'ï¿½Ô±ï¿½ï¿½Ú¸ï¿½';
 
 
 
 ---------------------------------------------------------------------------------------------
--- ÁÖ¹®³»¿ª --
+-- ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ --
 CREATE TABLE "ORDER_LIST" (
 	"ORDER_NO"         VARCHAR2(100)  PRIMARY KEY, -- ORDER_NO  
 	"USER_ID"          VARCHAR2(100)  NOT NULL, -- USER_ID
-  "DELEVERY_NAME"          VARCHAR2(15)  NOT NULL, -- ¹Þ´Â»ç¶÷
+  "DELEVERY_NAME"          VARCHAR2(15)  NOT NULL, -- ï¿½Þ´Â»ï¿½ï¿½
   "MAIN_IMG_N1"         VARCHAR2(200)  NOT NULL, -- MAIN_IMG 
-  "ITEM_NAME_N1"      VARCHAR2(1000) NOT NULL, -- »óÇ°ÀÌ¸§
+  "ITEM_NAME_N1"      VARCHAR2(1000) NOT NULL, -- ï¿½ï¿½Ç°ï¿½Ì¸ï¿½
 	"ITEM_OPTION_NAME_N1" VARCHAR2(1000) NOT NULL, -- ITEM_OPTION_NAME
   "TOTAL_QUANTITY"   NUMBER         NOT NULL, -- TOTAL_QUANTITY
-  "KINDS_QUANTITY"   NUMBER         NOT NULL, -- Á¾·ù¼ö
+  "KINDS_QUANTITY"   NUMBER         NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	"TOTAL_PRICE"      NUMBER(10)     NOT NULL, -- TOTAL_PRICE
 	"PAYMENT_METHOD"   VARCHAR2(50)   NOT NULL, -- PAYMENT_METHOD
 	"PYMNET_POINT"     NUMBER         NOT NULL, -- PYMNET_POINT
@@ -694,36 +694,36 @@ CREATE TABLE "ORDER_LIST" (
   "TRANSPORT_NUMBER" VARCHAR2(100) 
 );
 
-COMMENT ON COLUMN "ORDER_LIST"."DELEVERY_NAME" IS '¹è¼Û¹Þ´ÂºÐ';
-COMMENT ON COLUMN "ORDER_LIST"."ORDER_NO" IS 'ÁÖ¹® ¹øÈ£';
-COMMENT ON COLUMN "ORDER_LIST"."MAIN_IMG_N1" IS '´ëÇ¥ ½æ³×ÀÏ';
-COMMENT ON COLUMN "ORDER_LIST"."ITEM_NAME_N1" IS '´ëÇ¥ »óÇ° ÀÌ¸§';
-COMMENT ON COLUMN "ORDER_LIST"."ITEM_OPTION_NAME_N1" IS '´ëÇ¥ »óÇ° ¿É¼Ç ÀÌ¸§';
-COMMENT ON COLUMN "ORDER_LIST"."USER_ID" IS 'À¯Àú ¾ÆÀÌµð';
-COMMENT ON COLUMN "ORDER_LIST"."TOTAL_QUANTITY" IS 'ÃÑ ÁÖ¹® ¼ö·®';
-COMMENT ON COLUMN "ORDER_LIST"."KINDS_QUANTITY" IS 'ÁÖ¹® Á¾·ù ¼ö·®';
-COMMENT ON COLUMN "ORDER_LIST"."TOTAL_PRICE" IS 'ÃÑ °áÁ¦ ±Ý¾×(¹è¼Ûºñ Æ÷ÇÔ)';
-COMMENT ON COLUMN "ORDER_LIST"."PAYMENT_METHOD" IS '°áÁ¦À¯Çü';
-COMMENT ON COLUMN "ORDER_LIST"."PYMNET_POINT" IS '»ç¿ë Àû¸³±Ý';
-COMMENT ON COLUMN "ORDER_LIST"."TOTAL_SAVING_POINT" IS 'ÃÑ Àû¸³ ¿¹Á¤ Æ÷ÀÎÆ®';
-COMMENT ON COLUMN "ORDER_LIST"."DELEVERY_PEE" IS '¹è¼Ûºñ ±Ý¾×';
-COMMENT ON COLUMN "ORDER_LIST"."PHONE" IS 'ÀüÈ­¹øÈ£';
-COMMENT ON COLUMN "ORDER_LIST"."POST_NUM" IS '¿ìÆí¹øÈ£';
-COMMENT ON COLUMN "ORDER_LIST"."ADDRESS" IS 'ÁÖ¼Ò';
-COMMENT ON COLUMN "ORDER_LIST"."ADDRESS_DETAIL" IS '»ó¼¼ÁÖ¼Ò';
-COMMENT ON COLUMN "ORDER_LIST"."DELIVERY_MESSAGE" IS '¹è¼Û½Ã ¿äÃ»»çÇ×';
-COMMENT ON COLUMN "ORDER_LIST"."ORDER_STATUS" IS 'ÁÖ¹®»óÅÂ';
-COMMENT ON COLUMN "ORDER_LIST"."ORDER_CHANGE" IS 'Ãë¼Ò/±³È¯/¹ÝÇ°';
-COMMENT ON COLUMN "ORDER_LIST"."ENROLL_DATE" IS 'µî·Ï ³¯Â¥';
-COMMENT ON COLUMN "ORDER_LIST"."TRANSPORT_NUMBER" IS '¿î¼ÛÀå¹øÈ£';
+COMMENT ON COLUMN "ORDER_LIST"."DELEVERY_NAME" IS 'ï¿½ï¿½Û¹Þ´Âºï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."ORDER_NO" IS 'ï¿½Ö¹ï¿½ ï¿½ï¿½È£';
+COMMENT ON COLUMN "ORDER_LIST"."MAIN_IMG_N1" IS 'ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."ITEM_NAME_N1" IS 'ï¿½ï¿½Ç¥ ï¿½ï¿½Ç° ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."ITEM_OPTION_NAME_N1" IS 'ï¿½ï¿½Ç¥ ï¿½ï¿½Ç° ï¿½É¼ï¿½ ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."USER_ID" IS 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."TOTAL_QUANTITY" IS 'ï¿½ï¿½ ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."KINDS_QUANTITY" IS 'ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."TOTAL_PRICE" IS 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½(ï¿½ï¿½Ûºï¿½ ï¿½ï¿½ï¿½ï¿½)';
+COMMENT ON COLUMN "ORDER_LIST"."PAYMENT_METHOD" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."PYMNET_POINT" IS 'ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."TOTAL_SAVING_POINT" IS 'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®';
+COMMENT ON COLUMN "ORDER_LIST"."DELEVERY_PEE" IS 'ï¿½ï¿½Ûºï¿½ ï¿½Ý¾ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."PHONE" IS 'ï¿½ï¿½È­ï¿½ï¿½È£';
+COMMENT ON COLUMN "ORDER_LIST"."POST_NUM" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½È£';
+COMMENT ON COLUMN "ORDER_LIST"."ADDRESS" IS 'ï¿½Ö¼ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."ADDRESS_DETAIL" IS 'ï¿½ï¿½ï¿½Ö¼ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."DELIVERY_MESSAGE" IS 'ï¿½ï¿½Û½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."ORDER_STATUS" IS 'ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST"."ORDER_CHANGE" IS 'ï¿½ï¿½ï¿½/ï¿½ï¿½È¯/ï¿½ï¿½Ç°';
+COMMENT ON COLUMN "ORDER_LIST"."ENROLL_DATE" IS 'ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥';
+COMMENT ON COLUMN "ORDER_LIST"."TRANSPORT_NUMBER" IS 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£';
 
 
 
---ÁÖ¹® ³»¿ë--ÁÖ¹® Ä«Æ®ÀÇ ³»¿ë
+--ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½--ï¿½Ö¹ï¿½ Ä«Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE ORDER_LIST_CONTENTS (
   "ORDER_NO"         VARCHAR2(100)  NOT NULL, -- ORDER_NO 
 	"ITEM_ID"          VARCHAR2(100)   NOT NULL, -- ITEM_ID
-  "ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- »óÇ°ÀÌ¸§
+  "ITEM_NAME"      VARCHAR2(1000) NOT NULL, -- ï¿½ï¿½Ç°ï¿½Ì¸ï¿½
 	"ITEM_OPTION_NAME" VARCHAR2(1000) NOT NULL, -- ITEM_OPTION_NAME
 	"ITEM_DETAIL_ID"   VARCHAR2(20)   NOT NULL, -- ITEM_CODE
 	"MAIN_IMG"         VARCHAR2(200)  NOT NULL, -- MAIN_IMG 
@@ -734,17 +734,17 @@ CREATE TABLE ORDER_LIST_CONTENTS (
 	"KIT_YN"           CHAR(3)        CHECK (KIT_YN IN ('Y', 'N')) -- KIT_YN
 );
 
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ORDER_NO" IS 'ÁÖ¹® ¹øÈ£';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ITEM_ID" IS '»óÇ° ¾ÆÀÌµð';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ITEM_NAME" IS '»óÇ°ÀÌ¸§';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ITEM_OPTION_NAME" IS '»óÇ° ¿É¼Ç ÀÌ¸§';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ITEM_DETAIL_ID" IS '»óÇ° ¼³¸í ¾ÆÀÌµð';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."MAIN_IMG" IS '¸ÞÀÎ »çÁø';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."SAVING_POINT" IS 'Àû¸³ ¿¹Á¤ Æ÷ÀÎÆ®';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."QUANTITY" IS '¼ö·®';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."COST" IS '°¡°Ý';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."MESSAGE" IS 'ÁÖ¹® ¸Þ¼¼Áö';
-COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."KIT_YN" IS 'Kiy¿©ºÎ';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ORDER_NO" IS 'ï¿½Ö¹ï¿½ ï¿½ï¿½È£';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ITEM_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ITEM_NAME" IS 'ï¿½ï¿½Ç°ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ITEM_OPTION_NAME" IS 'ï¿½ï¿½Ç° ï¿½É¼ï¿½ ï¿½Ì¸ï¿½';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."ITEM_DETAIL_ID" IS 'ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."MAIN_IMG" IS 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."SAVING_POINT" IS 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."QUANTITY" IS 'ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."COST" IS 'ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."MESSAGE" IS 'ï¿½Ö¹ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN "ORDER_LIST_CONTENTS"."KIT_YN" IS 'Kiyï¿½ï¿½ï¿½ï¿½';
 
 
 
