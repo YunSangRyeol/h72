@@ -228,6 +228,18 @@ public class AdminDao {
 		return result;
 	}
 
+	public int updateOrderChangeAll(String[] orderNos, String selectStatus) {
+		int result= 0;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put( "change", selectStatus);
+		
+			for(int i = 0; i <orderNos.length; i++){
+				map.put( "orderNo", orderNos[i] );
+				result += sqlSession.update(NAMESPACE + "updateOrderChange", map);
+			}
+		return result;
+	}
+
 
 
 

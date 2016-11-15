@@ -230,6 +230,32 @@ public class AdminController {
 		return "admin/orderDetail";
 		
 	}
+	//주문페이지 전체 변경 -취소
+		@RequestMapping(value="updateOrderStatusCancle.do", method = RequestMethod.POST)
+		public String updateOrderStatusCancle(@RequestParam("orderListCancle") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
+			
+			int result = adminService.updateOrderChangeAll(orderNos, selectStatus);		
+
+			return "redirect:/admin/order";		
+		}
+		
+	//주문페이지 전체 변경 -변경
+			@RequestMapping(value="updateOrderStatusChange.do", method = RequestMethod.POST)
+			public String updateOrderStatusChange(@RequestParam("orderListChange") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
+				
+				int result = adminService.updateOrderChangeAll(orderNos, selectStatus);		
+
+				return "redirect:/admin/order";		
+			}
+			
+	//주문페이지 전체 변경 -반품
+	@RequestMapping(value="updateOrderStatusBack.do", method = RequestMethod.POST)
+	public String updateOrderStatusBack(@RequestParam("orderListBack") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
+		
+		int result = adminService.updateOrderChangeAll(orderNos, selectStatus);		
+
+		return "redirect:/admin/order";		
+	}
 	
 	//주문페이지 전체 변경
 	@RequestMapping(value="updateOrderStatusAll.do", method = RequestMethod.POST)
@@ -264,11 +290,16 @@ public class AdminController {
 	}
 	//주문페이지 전체 변경
 	@RequestMapping(value="updateOrderStatusDeliver.do", method = RequestMethod.POST)
-	public String updateOrderStatusDeliver(@RequestParam("changeListDeliver") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
-		
-		int result = adminService.updateOrderStatus(orderNos, selectStatus);		
+	public String updateOrderStatusDeliver(@RequestParam("changeListDeliver") String[] orderNos, @RequestParam("selectStatus") String selectStatus, 
+			@RequestParam("transportNumberPaid") String[] transportNumberPaid, @RequestParam("changeNot") String[] changeNot, Model model){
+		System.out.println(orderNos.length + ",ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹ " +  transportNumberPaid.length);
+		if(selectStatus.equals("배송중")){
+			int result = adminService.updateTransportNumber(orderNos, selectStatus, transportNumberPaid);
+		}else{
+			int result = adminService.updateOrderStatus(orderNos, selectStatus);		
+		}
 
-		return "redirect:/admin/order";		
+		return "redirect:/admin/order";	
 	}
 	
 	//주문페이지 status 개별 변경

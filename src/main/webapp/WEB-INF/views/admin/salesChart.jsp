@@ -96,9 +96,9 @@
 			'leftOffsetValue': 40,
 			'bottomOffsetValue': 60,
 			'chartSize' : {width:700, height:300},
-			'minValue' : 1,
-			'maxValue' : 100,
-			'increment' : 10,
+			'minValue' : 0,
+			'maxValue' : 200,
+			'increment' : 20,
 			'isGuideLineNeeded' : true 
 		};
 

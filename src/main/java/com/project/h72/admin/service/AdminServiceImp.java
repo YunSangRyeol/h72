@@ -177,6 +177,12 @@ public class AdminServiceImp implements AdminService{
 	}
 
 
+	@Override
+	public int updateOrderChangeAll(String[] orderNos, String selectStatus) {
+		return dao.updateOrderChangeAll(orderNos, selectStatus);
+	}
+
+
 
 
 

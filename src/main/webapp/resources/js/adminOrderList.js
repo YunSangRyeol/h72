@@ -49,9 +49,10 @@
 						alert("변경 내역을 선택해주세요");
 					}
 				});
+		
 		$('#CancleBtn').click(				
 				function(){
-					if( $("input:checkbox[name='changeListCancle']").is(":checked")){
+					if( $("input:checkbox[name='orderListCancle']").is(":checked")){
 						adminOrderListForm1.submit();
 					}else{
 						alert("변경 내역을 선택해주세요");
@@ -59,7 +60,7 @@
 				});
 		$('#ChnageBtn').click(				
 				function(){
-					if( $("input:checkbox[name='changeListChange']").is(":checked")){
+					if( $("input:checkbox[name='orderListChange']").is(":checked")){
 						adminOrderListForm2.submit();
 					}else{
 						alert("변경 내역을 선택해주세요");
@@ -67,7 +68,7 @@
 				});
 		$('#BackBtn').click(				
 				function(){
-					if( $("input:checkbox[name='changeListBack']").is(":checked")){
+					if( $("input:checkbox[name='orderListBack']").is(":checked")){
 						adminOrderListForm3.submit();
 					}else{
 						alert("변경 내역을 선택해주세요");
