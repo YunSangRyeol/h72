@@ -168,7 +168,7 @@
 
 	<!-- Order -->
 	<update id="getEnd">
-		UPDATE ORDER_LIST SET ORDER_STATUS = '구매완료' WHERE ENROLL_DATE <![CDATA[<]]> SYSDATE-14 AND ORDER_STATUS != '구매완료'
+		UPDATE ORDER_LIST SET ORDER_STATUS = '구매완료' WHERE ENROLL_DATE <![CDATA[<]]> SYSDATE-14 AND ORDER_STATUS != '구매완료' AND ORDER_CHANGE = '처리완료'
 	</update>
 	<select id="getOrderList" resultType="order">
 		SELECT * FROM ORDER_LIST WHERE ENROLL_DATE between SYSDATE-3 and SYSDATE+1

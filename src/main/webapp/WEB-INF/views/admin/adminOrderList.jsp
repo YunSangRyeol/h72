@@ -219,7 +219,7 @@ $(function(){
 						<c:url var="goOrderDetail" value="/orderNoDetail.do">
 							<c:param name="orderNo" value="${list.orderNo }" />
 						</c:url>
-							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=600, left=300, top=100, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
+							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=790, left=300, top=0, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>					
@@ -317,7 +317,11 @@ $(function(){
 				<c:if test="${list.orderStatus eq '주문접수' }">			
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="checkOrder${list.orderNo }" name="orderListOrder"  value="${list.orderNo }"  class="orderCheck" ></td>
-					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+										<td class="number"><p> ${list.enrollDate } <br>
+						<c:url var="goOrderDetail" value="/orderNoDetail.do">
+							<c:param name="orderNo" value="${list.orderNo }" />
+						</c:url>
+							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=790, left=300, top=0, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
@@ -420,7 +424,11 @@ $(function(){
 				<c:if test="${list.orderStatus eq '결제완료' }">			
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="checkme${list.orderNo }" name="changeListPaid"  value="${list.orderNo }"   class="orderCheck"></td>
-					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+										<td class="number"><p> ${list.enrollDate } <br>
+						<c:url var="goOrderDetail" value="/orderNoDetail.do">
+							<c:param name="orderNo" value="${list.orderNo }" />
+						</c:url>
+							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=790, left=300, top=0, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
@@ -523,7 +531,11 @@ $(function(){
 				<c:if test="${list.orderStatus eq '배송중' }">			
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="checkall${list.orderNo }"  name="changeListDeliver"  value="${list.orderNo }"  class="orderCheck"></td>
-					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+										<td class="number"><p> ${list.enrollDate } <br>
+						<c:url var="goOrderDetail" value="/orderNoDetail.do">
+							<c:param name="orderNo" value="${list.orderNo }" />
+						</c:url>
+							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=790, left=300, top=0, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
@@ -632,7 +644,11 @@ $(function(){
 				<c:if test="${list.orderStatus eq '취소요청' }">			
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="orderListCancle"  value="${list.orderNo }"  class="orderCheck"></td>
-					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+										<td class="number"><p> ${list.enrollDate } <br>
+						<c:url var="goOrderDetail" value="/orderNoDetail.do">
+							<c:param name="orderNo" value="${list.orderNo }" />
+						</c:url>
+							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=790, left=300, top=0, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
@@ -712,7 +728,11 @@ $(function(){
 				<c:if test="${list.orderStatus eq '교환요청' }">			
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="orderListChange"  value="${list.orderNo }"  class="orderCheck"></td>
-					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+										<td class="number"><p> ${list.enrollDate } <br>
+						<c:url var="goOrderDetail" value="/orderNoDetail.do">
+							<c:param name="orderNo" value="${list.orderNo }" />
+						</c:url>
+							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=790, left=300, top=0, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
@@ -793,7 +813,11 @@ $(function(){
 				<c:if test="${list.orderStatus eq '반품요청' }">			
 				<tr class="xans-record-">
 					<td><input type="checkbox" id="check${list.orderNo }" name="orderListBack"  value="${list.orderNo }"  class="orderCheck"></td>
-					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
+										<td class="number"><p> ${list.enrollDate } <br>
+						<c:url var="goOrderDetail" value="/orderNoDetail.do">
+							<c:param name="orderNo" value="${list.orderNo }" />
+						</c:url>
+							<a href="${goOrderDetail }" onclick="window.open(this.href,'_blank','width=600, height=790, left=300, top=0, scrollbars=no');return false;">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
 					<td class="price"><strong><fmt:formatNumber value="${list.totalPrice }" groupingUsed="true" /></strong>
