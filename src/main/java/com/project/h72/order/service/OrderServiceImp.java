@@ -57,15 +57,15 @@ public class OrderServiceImp implements OrderService {
 
 
 	@Override
-	public int getListCount(String userId, Date currentDate, Date preThreeMonth) {
+	public int getListCount(String userId, Date currentDate, Date preThreeMonth, String tab) {
 	
-		return oDao.getListCount(userId, currentDate, preThreeMonth);
+		return oDao.getListCount(userId, currentDate, preThreeMonth,tab);
 	}
 
 	@Override
 	public List<Order> selectOrderList(String userId, Date currentDate, Date preDate, int currentPage,
-			int limit) {
-		return oDao.selectOrderList(userId,currentDate,preDate, currentPage, limit);
+			int limit, String tab) {
+		return oDao.selectOrderList(userId,currentDate,preDate, currentPage, limit,tab);
 	}
 
 	@Override
@@ -102,6 +102,21 @@ public class OrderServiceImp implements OrderService {
 	@Override
 	public Vbank selectVbank(String orderNo) {
 		return oDao.selectVbank(orderNo);
+	}
+
+	@Override
+	public int updateOrderConfirm(String orderNo) {
+		return oDao.updateOrderConfirm(orderNo);
+	}
+
+	@Override
+	public int updateUserPoint(String userId, int addPoint){
+		return oDao.updateUserPoint(userId, addPoint);
+	}
+
+	@Override
+	public int updateOrderPoint(int usePoint, String userId) {
+		return oDao.updateOrderPoint(userId, usePoint);
 	}
 
 

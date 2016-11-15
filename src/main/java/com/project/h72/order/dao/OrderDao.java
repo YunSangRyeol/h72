@@ -42,12 +42,12 @@ public class OrderDao {
 		return sqlSession.insert(NAMESPACE+"deleteFinishCart", cartId);
 	}
 
-	public List<Order> selectOrderList(String userId, Date currentDate, Date preDate, int currentPage, int limit) {
+	public List<Order> selectOrderList(String userId, Date currentDate, Date preDate, int currentPage, int limit, String tab) {
 		int startRow = (currentPage - 1) * 5 + 1; // 읽기 시작할 row 번호.
 		int endRow = startRow + limit - 1; // 읽을 마지막 row 번호.
 
 		Map<String, Comparable> paramMap = new HashMap();
-		
+		paramMap.put("keyword", "취소요청|교환요청|반품요청|입금전취소");
 		paramMap.put("userId", userId);
 		paramMap.put("currentDate", currentDate);
 		paramMap.put("preDate", preDate);
@@ -56,11 +56,12 @@ public class OrderDao {
 		return sqlSession.selectList(NAMESPACE+"selectOrderList", paramMap);
 	}
 	
-	public int getListCount(String userId, Date currentDate, Date preDate) {
+	public int getListCount(String userId, Date currentDate, Date preDate, String tab) {
 		Map<String, Comparable> map = new HashMap();
+		map.put("keyword", "취소요청|교환요청|반품요청|입금전취소");
 		map.put("userId", userId);
 		map.put("currentDate", currentDate);
-		map.put("preThreeMonth", preDate);
+		map.put("preDate", preDate);
 		return sqlSession.selectOne(NAMESPACE+"getListCount", map);
 	}
 
@@ -108,7 +109,6 @@ public class OrderDao {
 	}
 
 	public Order selectOrderDetail(String orderNo) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"selectOrderDetail",orderNo);
 	}
 
@@ -118,6 +118,25 @@ public class OrderDao {
 
 	public Vbank selectVbank(String orderNo) {
 		return sqlSession.selectOne(NAMESPACE+"selectVbank",orderNo);
+	}
+
+	public int updateOrderConfirm(String orderNo) {
+	
+		return sqlSession.update(NAMESPACE+"updateOrderConfirm", orderNo);
+	}
+
+	public int updateUserPoint(String userId, int addPoint) {
+		Map<String, Comparable> map = new HashMap();
+		map.put("userId", userId);
+		map.put("addPoint", addPoint);
+		return sqlSession.update(NAMESPACE+"updateUserPoint", map);
+	}
+
+	public int updateOrderPoint(String userId, int usePoint) {
+		Map<String, Comparable> map = new HashMap();
+		map.put("userId", userId);
+		map.put("usePoint", usePoint);
+		return sqlSession.update(NAMESPACE+"updateOrderPoint", map);
 	}
 
 }

@@ -21,9 +21,9 @@ public interface OrderService {
 
 	int deleteFinishCart(String[] cartId);
 
-	List<Order> selectOrderList(String userId, Date currentDate, Date preDate, int currentPage, int limit);
+	List<Order> selectOrderList(String userId, Date currentDate, Date preDate, int currentPage, int limit, String tab);
 
-	int getListCount(String userId, Date currentDate, Date preDate);
+	int getListCount(String userId, Date currentDate, Date preDate, String tab);
 
 	int updateStatusCancle(String orderNo, String status);
 
@@ -38,5 +38,11 @@ public interface OrderService {
 	List<OrderContents> selectOrderContens(String orderNo);
 
 	Vbank selectVbank(String orderNo);
+
+	int updateOrderConfirm(String orderNo);
+
+	int updateUserPoint(String userId, int addPoint);
+
+	int updateOrderPoint(int usePoint, String userId);
 
 }

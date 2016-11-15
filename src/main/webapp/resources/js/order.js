@@ -101,6 +101,7 @@ function sample5_execDaumPostcode() {
 							.getElementById('postnum').value = data.zonecode; //5자리 새우편번호 사용
 					document
 							.getElementById('address').value = fullRoadAddr;
+					document.getElementById('addressDetail').value = '';
 
 					// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
 					if (data.autoRoadAddress) {
@@ -170,6 +171,7 @@ function sample6_execDaumPostcode() {
 							.getElementById('rpostnum').value = data.zonecode; //5자리 새우편번호 사용
 					document
 							.getElementById('raddress').value = fullRoadAddr;
+					document.getElementById('raddressDetail').value = '';
 
 					// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
 					if (data.autoRoadAddress) {

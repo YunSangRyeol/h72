@@ -11,127 +11,18 @@
 <link href="/h72/resources/css/order.css" type="text/css"
 	rel="stylesheet">
 	<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="/h72/resources/js/orderList.js"></script>
 <title>Order List</title>
-<script type="text/javascript">
-
-//탭 변경	
-function openTab(tabname) {
-	var startDate = $('#startDate').val();
-	var endDate = $('#endDate').val();
-	
-	if(tabname=="orderCategory"){
-	$.ajax({
-		type:'GET',
-		url: "/h72/searchOrder",
-		data :{"tab":tabname, "page": "1","start_date": startDate,"end_date": endDate},
-		success: function(data) {
-			$('#orderCategoryTab').addClass("selected");
-			$('#orderListTab').removeClass("selected");
-			$('#orderlist').css("display","none");
-			$('#orderCategory').css("display","block");
-			$('#inputTab').val(tabname);
-			alert('성공');
-		},
-		error: function(data) {
-			alert("에러발생! 변경에 실패하였습니다.");
-		}			
-	});	
-	
+<script>
+$(function(){
+	if('${tab}'=='orderCategory'){
+		$('#orderCategory').css("display","block");
+		$('#orderlist').css("display","none");
 	}else{
-		$.ajax({
-			type:'GET',
-			url: "/h72/searchOrder",
-			data :{"tab":tabname, "page": "1","start_date": startDate,"end_date": endDate},
-			success: function(data) {
-				$('#orderCategoryTab').removeClass("selected");
-				$('#orderListTab').addClass("selected");
-				$('#orderCategory').css("display","none");
-				$('#orderlist').css("display","block");
-				$('#inputTab').val(tabname);
-			},
-			error: function(data) {
-				alert("에러발생! 변경에 실패하였습니다.");
-			}			
-		});	
+		$('#orderlist').css("display","block");
+		$('#orderCategory').css("display","none");
 	}
-	
-}
-
-function orderChange(orderNo, status) {
-	if(confirm("주문을 취소하시겠습니까?") == true){
-	location.href="/h72/updateStatusCancle?orderNo="+orderNo+"&status="+status;
-	}
-}
-
-
-// 날짜포맷 지정하는 함수
-function dateToYYYYMMDD(date)
-{
-    function pad(num) {
-        num = num + '';
-        return num.length < 2 ? '0' + num : num;
-    }
-    return date.getFullYear() + '-' + pad(date.getMonth()+1) + '-' + pad(date.getDate());
-}
-
-
-//날짜 선택 버튼시 inputd의 날짜 변경
-	$(function(){
-		
-		var currDate = new Date(); // 현재 날짜
-		var startDate = new Date(new Date().setMonth(new Date().getMonth()-3)); // 한달전 날짜
-		
-		// YYYY-MM-DD로 형식변환
-		var prevMon = dateToYYYYMMDD(startDate);
-		var currMon = dateToYYYYMMDD(currDate);
-		
-		document.getElementById("startDate").value = prevMon;
-		document.getElementById("endDate").value = currMon;
-		
-		
-		$('a[days=00]').click(
-		function(){
-			document.getElementById("startDate").value = dateToYYYYMMDD(currDate);	
-		});
-		
-		
-		$('a[days=07]').click(
-				function(){
-					var preSeven = new Date(new Date().setDate(new Date().getDate()-7));
-					document.getElementById("startDate").value = dateToYYYYMMDD(preSeven);	
-						
-				});
-		
-		$('a[days=30]').click(
-				function(){
-					var preOneMonth = new Date(new Date().setMonth(new Date().getMonth()-1));
-					document.getElementById("startDate").value = dateToYYYYMMDD(preOneMonth);	
-				});
-		$('a[days=90]').click(
-				function(){
-					var preThreeMonth = new Date(new Date().setMonth(new Date().getMonth()-3));
-					document.getElementById("startDate").value = dateToYYYYMMDD(preThreeMonth);	
-					
-				});
-		$('a[days=180]').click(
-				function(){
-					var preSixMonth = new Date(new Date().setMonth(new Date().getMonth()-6));
-					document.getElementById("startDate").value = dateToYYYYMMDD(preSixMonth);	
-					
-				}); 
-		
-		
-		$('#searchDate').click(
- 	 			function(){
- 	 					searchDateForm.submit();
- 	 		});
-		
-		
-		
-	});
-	
-
-	
+});
 
 </script>
 </head>
@@ -149,6 +40,7 @@ function dateToYYYYMMDD(date)
 
 				<div class="xans-element- xans-myshop xans-myshop-orderhistorytab ">
 					<ul>
+						<c:if test ="${tab == 'orderlist' }">
 						<li>
 						<a href="javascript:void(0)" class="selected" 
 						onclick="openTab('orderlist')" id="orderListTab">주문내역조회</a>
@@ -157,6 +49,17 @@ function dateToYYYYMMDD(date)
 						<li>
 						<a href="javascript:void(0)" class="" id="orderCategoryTab"
 						onclick="openTab('orderCategory')">취소/반품/교환</a></li>
+						</c:if>
+						<c:if test ="${tab == 'orderCategory' }">
+						<li>
+						<a href="javascript:void(0)" class="" 
+						onclick="openTab('orderlist')" id="orderListTab">주문내역조회</a>
+						
+						</li>
+						<li>
+						<a href="javascript:void(0)" class="selected" id="orderCategoryTab"
+						onclick="openTab('orderCategory')">취소/반품/교환</a></li>
+						</c:if>
 					</ul>
 				</div>
 
@@ -175,16 +78,22 @@ function dateToYYYYMMDD(date)
 								class="btnNormal" days="180"> <span class="orderhis_day3">6개월</span></a>
 							</span> 
 							
-								<input type="date" name="start_date" class="fText" id="startDate" value="2016-10-25"> 
+								<input type="date" name="start_date" class="fText" id="startDate" value="${startDate }"> 
 								&nbsp;&nbsp;~&nbsp;&nbsp; 
-								<input type="date" name="end_date" class="fText" id="endDate" value="2016-10-25"> 
+								<input type="date" name="end_date" class="fText" id="endDate" value="${endDate }"> 
 								<span class="order_term_search" id="searchDate">조회</span>
 								<input type="hidden" name="page" value="${currentPage }"/>
+								<c:if test ="${tab == 'orderlist' }">
 								<input type="hidden" name="tab" id="inputTab" value="orderlist"/>
+								</c:if>
+								<c:if test ="${tab == 'orderCategory' }">
+								<input type="hidden" name="tab" id="inputTab" value="orderCategory"/>
+								</c:if>
 						</fieldset>
 						<ul>
 							<li>· 기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
 							<li>· 주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+							<li>· 구매확정시 결제금액의 예정 적립금을 드립니다.</li>
 						</ul>
 					</div>
 				</form>
@@ -224,7 +133,7 @@ function dateToYYYYMMDD(date)
 									href="/h72/order/order_detail?orderNo=${orderList.orderNo }"><img
 										src="/h72/resources${orderList.mainImgN1 }" alt=""></a></td>
 								<td class="product"><a
-									href="/h72/order/order_detail?orderNo=${orderList.orderNo }"><strong>
+									href="/h72/order/order_detail?orderNo=${orderList.orderNo }" class="line"><strong>
 											${orderList.itemNameN1 } 외 ${orderList.kindsQuantity }개</strong></a>
 									<div class="option ">[대표옵션: ${orderList.itemOptionNameN1 }]</div>
 									</td>
@@ -235,13 +144,20 @@ function dateToYYYYMMDD(date)
 								</td>
 								<td class="service">
 								<c:if test="${orderList.orderStatus eq '결제완료' || orderList.orderStatus eq '입금전'}">
-									<a href="#none" onclick="orderChange('${orderList.orderNo}', '${orderList.orderStatus}');">
+									<a href="#none" onclick="orderChange('${orderList.orderNo}', '${orderList.orderStatus}','list');">
 									<p class="order_cancle">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
 								</c:if>
 								<c:if test="${orderList.orderStatus eq '배송중'}">
-									<a href="우체국택배 http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${orderList.transportNumber }">
+									<a href="http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${orderList.transportNumber }" target="_blank">
 										<p class="order_cancle">배송조회&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
-								</c:if>	
+										<a href="#none" onclick="orderFinish('${orderList.orderNo}','${orderList.totalSavingPoint }','list');">
+									<p class="order_cancle">구매확정&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
+								</c:if>
+								<c:if test="${orderList.orderStatus eq '구매완료'}">
+								<a href="http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${orderList.transportNumber }" target="_blank">
+										<p class="order_cancle">배송조회&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
+								</c:if>
+								
 								</td>
 							</tr>
 						</tbody>
@@ -293,7 +209,7 @@ function dateToYYYYMMDD(date)
 				</div>
 				
 				
-				<div class="tabcontent" id="orderCategory" style="display:none;">
+				<div class="tabcontent" id="orderCategory">
 				<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem ">
 					<!--
         $login_url = /member/login.html
@@ -314,6 +230,7 @@ function dateToYYYYMMDD(date)
 								<th scope="col" class="service">취소/교환/반품</th>
 							</tr>
 						</thead>
+						<c:if test="${!(reOrderList eq null)}">
 						<c:forEach var="reOrderList" items="${reOrderList}">
 						<tbody class="">
 							<tr class="xans-record-">
@@ -339,10 +256,9 @@ function dateToYYYYMMDD(date)
 									<p class="">${reOrderList.orderChange}</p>
 								</td>
 							</tr>
-
-
 						</tbody>
 						</c:forEach>
+						</c:if>
 
 						<c:if test="${reOrderList eq null || reOrderList==''}">
 						<tbody class="">
@@ -363,16 +279,16 @@ function dateToYYYYMMDD(date)
 					</c:if>
 					<c:if test="${currentPage > 1 }">
 					<p>
-						<a href="#page" id="prePaging">&lt;</a>
+						<a href="#page" id="cprePaging">&lt;</a>
 					</p>
 					</c:if>
 					<ol>
 						<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-						<c:if test="${i==currentPage }">
+						<c:if test="${i == currentPage}">
 						<li class="xans-record-"><span class="this">${i}</span></li>
 						</c:if>
 						<c:if test="${i != currentPage }">
-						<li class="xans-record-"><span id="paging" >${i}</span>
+						<li class="xans-record-"><span id="cpaging" >${i}</span>
 						<c:set value="${i}" var="searchPage"/>
 						</li>
 						</c:if>
@@ -383,7 +299,7 @@ function dateToYYYYMMDD(date)
 							&gt;
 						</c:if>
 						<c:if test="${currentPage < maxPage }">
-							<a href="#page" id="endPaging">&gt;</a>
+							<a href="#page" id="cendPaging">&gt;</a>
 						</c:if>
 					</p>
 				</div>
@@ -406,93 +322,36 @@ function dateToYYYYMMDD(date)
 	
 	<script>
 	$(function(){
-		$('#paging').click(
- 	 			function(){
- 	 				var preDate = document.getElementById("startDate").value;
- 	 				var currentDate = document.getElementById("endDate").value;
- 	 				var currentPage = '${searchPage}';
- 	 				var tab = $('#inputTab').val();
- 	 				console.log(currentPage);
- 	 				$.ajax({
- 	 					type:'GET',
- 	 					url: "/h72/searchOrder",
- 	 					data :{"tab":tab, "page": currentPage,"start_date": preDate,"end_date": currentDate},
- 	 					success: function(data) {
- 	 						alert('성공');
- 	 					},
- 	 					error: function(data) {
- 	 						alert("에러발생! 변경에 실패하였습니다.");
- 	 					}			
- 	 				});
- 	 		});
-		
-		$('#prePaging').click(
- 	 			function(){
- 	 				var preDate = document.getElementById("startDate").value;
- 	 				var currentDate = document.getElementById("endDate").value;
- 	 				var currentPage = '${currentPage-1}';
- 	 				var tab = $('#inputTab').val();
- 	 				console.log(currentPage);
- 	 				$.ajax({
- 	 					type:'GET',
- 	 					url: "/h72/searchOrder",
- 	 					data :{"tab":tab, "page": currentPage,"start_date": preDate,"end_date": currentDate},
- 	 					success: function(data) {
- 	 						alert('성공');
- 	 					},
- 	 					error: function(data) {
- 	 						alert("에러발생! 변경에 실패하였습니다.");
- 	 					}			
- 	 				});
- 	 		});
-		$('#endPaging').click(
- 	 			function(){
- 	 				var preDate = document.getElementById("startDate").value;
- 	 				var currentDate = document.getElementById("endDate").value;
- 	 				var currentPage = '${currentPage+1}';
- 	 				var tab = $('#inputTab').val();
- 	 				console.log(currentPage);
- 	 				$.ajax({
- 	 					type:'GET',
- 	 					url: "/h72/searchOrder",
- 	 					data :{"tab":tab, "page": currentPage,"start_date": preDate,"end_date": currentDate},
- 	 					success: function(data) {
- 	 						alert('성공');
- 	 					},
- 	 					error: function(data) {
- 	 						alert("에러발생! 변경에 실패하였습니다.");
- 	 					}			
- 	 				});
- 	 		});
-	 	/* $('#paging').click(
- 	 			function(){
- 	 				var endDate = document.getElementById("startDate").value;
- 	 				var currentDate = document.getElementById("endDate").value;
- 	 				var currentPage = '${searchPage}';
- 	 				var tab = $('#inputTab').val();
- 	 				console.log(currentPage);
- 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
- 	 		});
-		
-		$('#prePaging').click(
- 	 			function(){
- 	 				var endDate = document.getElementById("startDate").value;
- 	 				var currentDate = document.getElementById("endDate").value;
- 	 				var currentPage = '${currentPage-1}';
- 	 				var tab = $('#inputTab').val();
- 	 				console.log(currentPage);
- 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
- 	 		});
-		$('#endPaging').click(
- 	 			function(){
- 	 				var endDate = document.getElementById("startDate").value;
- 	 				var currentDate = document.getElementById("endDate").value;
- 	 				var currentPage = '${currentPage+1}';
- 	 				var tab = $('#inputTab').val();
- 	 				console.log(currentPage);
- 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
- 	 		}); */
 	
+	 	 $('#paging, #cpaging').click(
+ 	 			function(){
+ 	 				var endDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${searchPage}';
+ 	 				var tab = $('#inputTab').val();
+ 	 				console.log(currentPage);
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
+ 	 		});
+		
+		$('#prePaging, #cprePaging').click(
+ 	 			function(){
+ 	 				var endDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${currentPage-1}';
+ 	 				var tab = $('#inputTab').val();
+ 	 				console.log(currentPage);
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
+ 	 		});
+		$('#endPaging ,#cendPaging').click(
+ 	 			function(){
+ 	 				var endDate = document.getElementById("startDate").value;
+ 	 				var currentDate = document.getElementById("endDate").value;
+ 	 				var currentPage = '${currentPage+1}';
+ 	 				var tab = $('#inputTab').val();
+ 	 				console.log(currentPage);
+ 	 				location.href ="/h72/searchOrder?page="+currentPage+"&start_date="+endDate+"&end_date="+currentDate+"&tab="+tab;
+ 	 		}); 
+		
 	});
 	
 	</script>
