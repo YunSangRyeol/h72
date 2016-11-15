@@ -5,7 +5,10 @@
 <html>
 <head>
 <title>main_header</title>
-<link href="/h72/resources/css/main_header.css" type="text/css" rel="stylesheet">	
+<link href="/h72/resources/css/main_header.css" type="text/css" rel="stylesheet">
+<script type="text/javascript"
+	src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+	
 </head>
 <body>
 	<div id="main_header">
@@ -86,17 +89,25 @@
 							</ul></li>
 					</ul>
 				</div>
+<script type="text/javascript">
+	$(function() {
 
+		$('.main_searchBtn').click(function() {
+			var keyword = $("#main_keyword").val();
+			if (keyword == "" || keyword == " " ) {
+				alert("검색어를 입력하세요");
+			} else {
+				main_searchBarForm.submit();
+			}
+		});
+	});
+</script>
 				<div class="main_search">
 					<form id="main_searchBarForm" action="<c:url value="/search" />">
-						<input id="main_keyword" name="itemName" fw-filter=""
-							fw-label="검색어" fw-msg="" class="main_inputTypeText" value=""
-							type="text" placeholder=" Search"> <input type="submit"
+						<input id="main_keyword" name="itemName" class="main_inputTypeText" value=""
+							type="text" placeholder=" Search"> <input type="button"
 							class="main_searchBtn" value=" " style="cursor: pointer;">
-						<!-- <img
-								src="/h72/resources/image/topmenu_search.png" alt="검색"
-								onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"
-								style="float: right; margin-right: 5px; cursor: pointer;"> -->
+					
 						&nbsp;
 					</form>
 				</div>

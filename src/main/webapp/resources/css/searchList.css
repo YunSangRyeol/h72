@@ -34,17 +34,15 @@ a {
 	margin: 0 auto;
 }
 
-
 .searchList_titleArea h2 {
 	padding-top: 124px;
 	font-family: "Noto Sans KR", sans-serif;
-	font-size: 25px;
+	font-size: 18px;
 	font-weight: 780;
 	letter-spacing: 2px;
 	text-align: center;
-/* 	text-transform: uppercase; */	
+	/* 	text-transform: uppercase; */
 	padding-bottom: 40px;
-
 }
 
 .searchList_productList {
@@ -69,8 +67,10 @@ a {
 	margin: 10px 0;
 	color: #757575;
 	vertical-align: top;
-	margin-right:30px;
-	
+	margin-right: 30px;
+	float: left;
+	position: relative;
+	left: 100px;
 }
 
 .searchList_productList ul.column5 li.item .box {
@@ -83,7 +83,6 @@ a {
 	font-size: 12px;
 	line-height: 18px;
 }
-
 
 .searchList_productList ul.prdList .name {
 	text-align: center;
@@ -121,8 +120,7 @@ a {
 	margin-right: -3px;
 }
 
-.searchList_paging p, .searchList_paging ol,
-	.searchList_paging li {
+.searchList_paging p, .searchList_paging ol, .searchList_paging li {
 	display: inline;
 }
 
@@ -134,4 +132,48 @@ a {
 	margin: 0 4px;
 	font-size: 11px;
 	font-weight: normal;
+}
+
+#inner_searchForm {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	padding: 15px 0px;
+	margin-bottom: 10px;
+}
+
+#inner_searchBtn {
+	cursor: pointer;
+	height: 27px;
+	background: #000;
+	color: #fff;
+	padding: 5px 5px;
+	position: relative;
+	top: 1px;
+	margin-left: 5px;
+}
+
+#inner_searchInput {
+	width: 200px;
+	height: 25px;
+	border: 1px solid #ccc;
+}
+
+#inner_itemName {
+	letter-spacing: -1px;
+	text-align: left;
+	border-bottom: 1px solid #e7e7e7;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+#inner_itemPrice {
+	font-family: 'Lato', sans-serif;
+	font-size: 14px;
+	padding: 0;
+	text-align: left;
+	line-height: 20px;
+	/* text-decoration: line-through; */
+	color: #333;
+	font-weight: 300;
 }
