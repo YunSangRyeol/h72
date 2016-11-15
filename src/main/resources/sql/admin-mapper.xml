@@ -183,11 +183,11 @@
 	</select>
 	
 	<update id="updateOrderStatus" parameterType="Map">
-		UPDATE ORDER_LIST SET ORDER_STATUS = #{status}, ORDER_CHANGE = NULL WHERE ORDER_NO = #{orderNo}
+		UPDATE ORDER_LIST SET ORDER_STATUS = #{status}, ORDER_CHANGE = NULL, TRANSPORT_NUMBER = NULL WHERE ORDER_NO = #{orderNo}
 	</update>
 	
 	<update id="updateOrderStatusPlus" parameterType="Map">
-		UPDATE ORDER_LIST SET ORDER_STATUS = #{status}, ORDER_CHANGE = '접수중' WHERE ORDER_NO = #{orderNo}
+		UPDATE ORDER_LIST SET ORDER_STATUS = #{status}, ORDER_CHANGE = '접수중', TRANSPORT_NUMBER = NULL WHERE ORDER_NO = #{orderNo}
 	</update>
 	
 	<update id="updateStatusOneTransportNo" parameterType="Map">

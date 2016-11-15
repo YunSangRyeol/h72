@@ -81,6 +81,8 @@ public interface AdminService {
 
 	int updateStatusOneTransportNo(String orderNo, String status, String transportNo);
 
+	int updateTransportNumber(String[] orderNos, String selectStatus, String[] transportNumberPaid);
+
 
 
 

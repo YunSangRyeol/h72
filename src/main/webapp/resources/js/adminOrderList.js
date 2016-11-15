@@ -10,6 +10,72 @@
 		
 	}); */
 
+	//
+	
+	
+	
+	
+	//form 유효성 검사
+	$(function(){
+		$('#submitBtn').click(
+				function(){
+					if( $("input:checkbox[name='changeListAll']").is(":checked")){
+						adminOrderListFormAll.submit();
+					}else{
+						alert("변경 내역을 선택해주세요");
+					}
+				});
+		$('#submitBtn1').click(				
+				function(){
+					if( $("input:checkbox[name='changeListOrder']").is(":checked")){
+						adminOrderListFormOrder.submit();
+					}else{
+						alert("변경 내역을 선택해주세요");
+					}
+				});
+		$('#submitBtn2').click(				
+				function(){
+					if( $("input:checkbox[name='changeListPaid']").is(":checked")){
+						adminOrderListFormPaid.submit();
+					}else{
+						alert("변경 내역을 선택해주세요");
+					}
+				});
+		$('#submitBtn3').click(				
+				function(){
+					if( $("input:checkbox[name='changeListDeliver']").is(":checked")){
+						adminOrderListFormDeliver.submit();
+					}else{
+						alert("변경 내역을 선택해주세요");
+					}
+				});
+		$('#CancleBtn').click(				
+				function(){
+					if( $("input:checkbox[name='changeListCancle']").is(":checked")){
+						adminOrderListForm1.submit();
+					}else{
+						alert("변경 내역을 선택해주세요");
+					}
+				});
+		$('#ChnageBtn').click(				
+				function(){
+					if( $("input:checkbox[name='changeListChange']").is(":checked")){
+						adminOrderListForm2.submit();
+					}else{
+						alert("변경 내역을 선택해주세요");
+					}
+				});
+		$('#BackBtn').click(				
+				function(){
+					if( $("input:checkbox[name='changeListBack']").is(":checked")){
+						adminOrderListForm3.submit();
+					}else{
+						alert("변경 내역을 선택해주세요");
+					}
+				});
+		
+	});
+
 	//탭 변경	
 	function openTab(evt, tabname) {
 		var i, tabcontent, tablinks;
@@ -37,12 +103,11 @@
  	
  	//전체선택 체크박스 클릭
  	$(function() {		
-		$("[name=allCheck]").click(			
-				
+		$("[name=allCheck]").click(						
 			function() {
 				if ($("[name=allCheck]").prop("checked")) {
 					$("#" + $(this).val() + " input[type=checkbox]").prop("checked", true);
-				} else {
+				}else {
 					$("#" + $(this).val() + " input[type=checkbox]").prop("checked", false);
 				}
 //				$("#" + $(this).val() + " input[type=checkbox]").change($(this).val());

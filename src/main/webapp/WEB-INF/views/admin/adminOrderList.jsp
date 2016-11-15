@@ -190,7 +190,7 @@ $(function(){
     <input type="button" class="excelBtn" id="btnExportAll" value="모든 내역 엑셀로 다운로드" />
     </div>
     <br />
-    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <form id="adminOrderListFormAll" action="/h72/updateOrderStatusAll.do" method="post" >
     <table id="orderListAll" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
@@ -207,7 +207,7 @@ $(function(){
 			<tbody class="">				
 				<c:forEach var="list" items="${list}" >				
 				<tr class="xans-record-"><!-- 내용 -->
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }" class="orderCheck"></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeListAll"  value="${list.orderNo }" class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br>
 						<c:url var="goOrderDetail" value="/orderNoDetail.do">
 							<c:param name="orderNo" value="${list.orderNo }" />
@@ -281,7 +281,7 @@ $(function(){
 				<option value="반품요청">반품요청</option> 
 			</select>
 			로 변경합니다. &nbsp;
-			<input type="submit" class="admin_btn" value="변경하기">
+			<input type="button" id="submitBtn" class="admin_btn" value="변경하기">
 		</div>
 		</form>
 	</div><!-- tab -->
@@ -291,7 +291,7 @@ $(function(){
     <input type="button" class="excelBtn" id="btnExportOrder" value="접수내역 엑셀로 다운로드" />
     </div>
     <br />
-    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <form id="adminOrderListFormOrder" action="/h72/updateOrderStatusOrder.do" method="post" >
     <table id="orderListOrder" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
@@ -309,7 +309,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '주문접수' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck" ></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeListOrder"  value="${list.orderNo }"  class="orderCheck" ></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -375,7 +375,7 @@ $(function(){
 				<option value="반품요청">반품요청</option> 
 			</select>
 			로 변경합니다. &nbsp;
-			<input type="submit" class="admin_btn" value="변경하기">
+			<input type="button" id="submitBtn1" class="admin_btn" value="변경하기">
 		</div>
 		</form>
 	</div><!-- tab -->
@@ -386,7 +386,7 @@ $(function(){
     <input type="button" class="excelBtn" id="btnExportPurchased" value="결제내역 엑셀로 다운로드" />
     </div>
     <br />
-    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <form id="adminOrderListFormPaid" action="/h72/updateOrderStatusPaid.do" method="post" >
     <table id="orderListPurchased" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
@@ -404,7 +404,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '결제완료' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"   class="orderCheck"></td>
+					<td><input type="checkbox" id="checkme${list.orderNo }" name="changeListPaid"  value="${list.orderNo }"   class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -432,11 +432,18 @@ $(function(){
 							function(){
 								chnageInputBox1('${list.orderNo }');
 							});		
-			
+					$('#checkme${list.orderNo}').change(
+							function(){
+								if($('#checkme${list.orderNo}').is(":checked")){
+									$("#transportNumber${list.orderNo }").attr("name", "transportNumberPaid"); 
+								}else{
+									$("#transportNumber${list.orderNo }").attr("name", "changeNot"); 
+								}
+							});			
 				});
 				</script>
 						</select>&nbsp;&nbsp;&nbsp;
-						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="transportNumber${list.orderNo }2" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
+						<input type="text" class="searchInput2" id="transportNumber${list.orderNo }" name="changeNot" value="${list.transportNumber }">&nbsp;&nbsp;&nbsp;
 						<input type="button" class="admin_btn_min" id="" onclick="updateStatusOne2('${list.orderNo }')" value="변경">
 						</td>
 				</tr>	
@@ -471,7 +478,7 @@ $(function(){
 				<option value="반품요청">반품요청</option> 
 			</select>
 			로 변경합니다. &nbsp;
-			<input type="submit" class="admin_btn" value="변경하기">
+			<input type="button" id="submitBtn2" class="admin_btn" value="변경하기">
 		</div>
 		</form>
 	</div><!-- tab -->
@@ -482,7 +489,7 @@ $(function(){
     <input type="button" class="excelBtn" id="btnExportdelivery" value="배송내역 엑셀로 다운로드" />
 	</div>   
     <br />
-    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <form id="adminOrderListFormDeliver" action="/h72/updateOrderStatusDeliver.do" method="post" >
     <table id="orderListdelivery" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
@@ -500,7 +507,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '배송중' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck"></td>
+					<td><input type="checkbox" id="check${list.orderNo }"  name="changeListDeliver"  value="${list.orderNo }"  class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -528,6 +535,8 @@ $(function(){
 							function(){
 								chnageInputBox('${list.orderNo }deliver');
 							});		
+					
+					
 			
 				});
 				</script>
@@ -567,7 +576,7 @@ $(function(){
 				<option value="반품요청">반품요청</option> 
 			</select>
 			로 변경합니다. &nbsp;
-			<input type="submit" class="admin_btn" value="변경하기">
+			<input type="button" id="submitBtn3" class="admin_btn" value="변경하기">
 		</div>
 		</form>
 	</div><!-- tab -->
@@ -577,10 +586,10 @@ $(function(){
 		<h3>취소내역</h3>
 		<div id="cancel">		
 	<div id="excelBtnDiv">
-    <input type="button" class="excelBtn" id="btnExportCancle" value="최소내역 엑셀로 다운로드" />
+    <input type="button" class="excelBtn" id="btnExportCancle" value="취소내역 엑셀로 다운로드" />
     </div>
     <br />
-    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <form id="adminOrderListForm1" action="/h72/updateOrderStatus.do">
     <table id="orderListCancle" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
@@ -598,7 +607,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '취소요청' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck"></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeListCancle"  value="${list.orderNo }"  class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -648,7 +657,7 @@ $(function(){
 				<option value="처리완료">처리완료</option>
 			</select>
 			로 변경합니다. &nbsp;
-			<input type="submit" class="admin_btn" value="변경하기">
+			<input type="button" name="CancleBtn"  class="admin_btn" value="변경하기">
 		</div>
 		</form>
 		</div>
@@ -660,7 +669,7 @@ $(function(){
     <input type="button" class="excelBtn" id="btnExportChange" value="교환내역 엑셀로 다운로드" />
 	</div>
     <br />
-    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <form id="adminOrderListForm2" action="/h72/updateOrderStatus.do">
     <table id="orderListChange" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
@@ -678,7 +687,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '교환요청' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck"></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeListChange"  value="${list.orderNo }"  class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -728,7 +737,7 @@ $(function(){
 				<option value="처리완료">처리완료</option>
 			</select>
 			로 변경합니다. &nbsp;
-			<input type="submit" class="admin_btn" value="변경하기">
+			<input type="button" name="ChnageBtn"  class="admin_btn" value="변경하기">
 		</div>
 		</form>
 		</div>
@@ -741,7 +750,7 @@ $(function(){
     <input type="button" class="excelBtn" id="btnExportBack" value="반품내역 엑셀로 다운로드" />
 	</div>
     <br />
-    <form id="adminOrderListForm" action="/h72/updateOrderStatus.do">
+    <form id="adminOrderListForm3" action="/h72/updateOrderStatus.do">
     <table id="orderListBack" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
 				<tr>
@@ -759,7 +768,7 @@ $(function(){
 				<c:forEach var="list" items="${list}" >	
 				<c:if test="${list.orderStatus eq '반품요청' }">			
 				<tr class="xans-record-">
-					<td><input type="checkbox" id="check${list.orderNo }" name="changeList"  value="${list.orderNo }"  class="orderCheck"></td>
+					<td><input type="checkbox" id="check${list.orderNo }" name="changeListBack"  value="${list.orderNo }"  class="orderCheck"></td>
 					<td class="number"><p> ${list.enrollDate } <br><a href="">[${list.orderNo }]</a> </p></td>
 					<td class="product"><a herf="#none" style="cursor: pointer;" onclick="Contents('${list.orderNo}')">${list.itemNameN1 } [ 옵션 : ${list.itemOptionNameN1 } ] 외 ${list.kindsQuantity -1 }종류 </a></td>
 					<td class="quantity">${list.totalQuantity }</td>
@@ -809,7 +818,7 @@ $(function(){
 				<option value="처리완료">처리완료</option>
 			</select>
 			로 변경합니다. &nbsp;
-			<input type="submit" class="admin_btn" value="변경하기">
+			<input type="button" name="BackBtn" class="admin_btn" value="변경하기">
 		</div>
 		</form>		
 		</div>		

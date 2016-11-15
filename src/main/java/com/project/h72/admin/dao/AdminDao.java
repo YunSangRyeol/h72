@@ -212,7 +212,19 @@ public class AdminDao {
 		map.put( "transportNo", transportNo );
 		
 		int result = sqlSession.update(NAMESPACE + "updateStatusOneTransportNo", map);
-		System.out.println("왜안돼?");
+		return result;
+	}
+
+	public int updateTransportNumber(String[] orderNos, String selectStatus, String[] transportNumberPaid) {
+		int result = 0;
+		
+		for(int i = 0; i< orderNos.length; i++){
+			Map<String, String> map = new HashMap<String, String>();
+			map.put( "orderNo", orderNos[i]);
+			map.put( "transportNo", transportNumberPaid[i] );
+			
+			result += sqlSession.update(NAMESPACE + "updateStatusOneTransportNo", map);
+		}
 		return result;
 	}
 

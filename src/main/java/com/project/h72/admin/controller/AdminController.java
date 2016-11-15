@@ -224,7 +224,6 @@ public class AdminController {
 	public String orderNoDetail(@RequestParam("orderNo") String orderNo, Model model){
 
 		Order aa = adminService.orderNoDetail(orderNo);	
-		System.out.println("order ;alksdjfa;l" + aa);
 		model.addAttribute("order", aa );
 
 		
@@ -233,20 +232,43 @@ public class AdminController {
 	}
 	
 	//주문페이지 전체 변경
-	@RequestMapping(value="updateOrderStatus.do", method = RequestMethod.GET)
-	public String updateOrderStatus(@RequestParam("changeList") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
+	@RequestMapping(value="updateOrderStatusAll.do", method = RequestMethod.POST)
+	public String updateOrderStatusAll(@RequestParam("changeListAll") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
 		
-		System.out.println(selectStatus);
-		int result = adminService.updateOrderStatus(orderNos, selectStatus);
-		
-		if(result != orderNos.length){
-			//오류 발생시...??
-			System.out.println("ASDFASDF");
-			return null;
-		}		
+		int result = adminService.updateOrderStatus(orderNos, selectStatus);		
 
-		return "redirect:/admin/order";
+		return "redirect:/admin/order";		
+	}
+	
+	//주문페이지 전체 변경
+		@RequestMapping(value="updateOrderStatusOrder.do", method = RequestMethod.POST)
+		public String updateOrderStatusOrder(@RequestParam("changeListOrder") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
+			
+			int result = adminService.updateOrderStatus(orderNos, selectStatus);		
+
+			return "redirect:/admin/order";		
+	}
+	
+	//주문페이지 결제완료 -> 배송번호 입력 전체 변경
+	@RequestMapping(value="updateOrderStatusPaid.do", method = RequestMethod.POST)
+	public String updateOrderStatusPaid(@RequestParam("changeListPaid") String[] orderNos, @RequestParam("selectStatus") String selectStatus, 
+			@RequestParam("transportNumberPaid") String[] transportNumberPaid, @RequestParam("changeNot") String[] changeNot, Model model){
+		System.out.println(orderNos.length + ",ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹ " +  transportNumberPaid.length);
+		if(selectStatus.equals("배송중")){
+			int result = adminService.updateTransportNumber(orderNos, selectStatus, transportNumberPaid);
+		}else{
+			int result = adminService.updateOrderStatus(orderNos, selectStatus);		
+		}
+
+		return "redirect:/admin/order";		
+	}
+	//주문페이지 전체 변경
+	@RequestMapping(value="updateOrderStatusDeliver.do", method = RequestMethod.POST)
+	public String updateOrderStatusDeliver(@RequestParam("changeListDeliver") String[] orderNos, @RequestParam("selectStatus") String selectStatus, Model model){
 		
+		int result = adminService.updateOrderStatus(orderNos, selectStatus);		
+
+		return "redirect:/admin/order";		
 	}
 	
 	//주문페이지 status 개별 변경
