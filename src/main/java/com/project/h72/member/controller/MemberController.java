@@ -1,6 +1,5 @@
 package com.project.h72.member.controller;
 
-import java.text.DateFormat;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -53,20 +52,22 @@ public class MemberController {
 		System.out.println(login);
 		if (login != null) {
 			session.setAttribute("loginUser", login);
-			
-			
-		if(session.getAttribute("forPage") != null){
-			if(session.getAttribute("forPage").equals("orderAll") || session.getAttribute("forPage").equals("directOrder")){
 
-				System.out.println("member : "+session.getAttribute("forPage")+"?"+session.getAttribute("forQueryString"));
-				return "redirect:/"+session.getAttribute("forPage")+"?"+session.getAttribute("forQueryString");
-				
-			}else if(session.getAttribute("forPage").equals("/order/order_list")){
-				System.out.println("member : "+session.getAttribute("forPage"));
-				return "redirect:/order/order_list";
+			if (session.getAttribute("forPage") != null) {
+				if (session.getAttribute("forPage").equals("orderAll")
+						|| session.getAttribute("forPage").equals("directOrder")) {
+
+					System.out.println("member : " + session.getAttribute("forPage") + "?"
+							+ session.getAttribute("forQueryString"));
+					return "redirect:/" + session.getAttribute("forPage") + "?"
+							+ session.getAttribute("forQueryString");
+
+				} else if (session.getAttribute("forPage").equals("/order/order_list")) {
+					System.out.println("member : " + session.getAttribute("forPage"));
+					return "redirect:/order/order_list";
+				}
 			}
-		}
-			
+
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
@@ -74,11 +75,9 @@ public class MemberController {
 			writer.flush();
 			return "member/loginPage";
 		}
-		
-		
-		return  "home";
+
+		return "home";
 	}
-	
 
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession session) {
@@ -99,10 +98,11 @@ public class MemberController {
 			@RequestParam("userpass_confirm") String pass_confirm, @RequestParam("name") String name,
 			@RequestParam("birthdate") Date birthdate, @RequestParam("postnum") String postnum,
 			@RequestParam("address") String address, @RequestParam("addressdetail") String addressDetail,
-			@RequestParam("phone") String phone, @RequestParam("email") String email, Model model, HttpServletResponse response) throws IOException {
+			@RequestParam("phone") String phone, @RequestParam("email") String email, Model model,
+			HttpServletResponse response) throws IOException {
 		int mJoin = 0;
 		System.out.println(id + ", " + pass + ", " + name + ", " + birthdate + ", " + email + ", " + phone + ", "
-				+ postnum + ", " + address + ", " + addressDetail);		
+				+ postnum + ", " + address + ", " + addressDetail);
 		mJoin = memberService
 				.insertMember(new Member(id, pass, name, birthdate, email, phone, postnum, address, addressDetail));
 		System.out.println(mJoin + "@@@@Controller");
@@ -135,15 +135,24 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/searchId.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public String mSearchID(@RequestParam("name") String name, @RequestParam("birthdate") Date birthdate, Model user)
-			throws Exception {
+	public String mSearchID(@RequestParam("name") String name, @RequestParam("birthdate") Date birthdate, Model user,
+			HttpServletResponse response) throws Exception {
 		/* 아이디찾기 */
 		System.out.println(name + "%%%%" + birthdate);
-		Member searchId = memberService.getSearchId(new Member(name, birthdate));
-		user.addAttribute("user", searchId);
-		if(searchId == null){
-			user.addAttribute("user", "-1");
+
+		try {
+			Member searchId = memberService.getSearchId(new Member(name, birthdate));
+
+			user.addAttribute("user", searchId);
+			if (searchId == null) {
+				System.out.println("@!@$!@$@!$@!$!@");
+				response.setCharacterEncoding("utf-8");
+				response.getWriter()
+						.print("<script type='text/javascript'>alert('일치하는 정보가 없습니다.'); history.back();</script>");
+			}
+		} catch (Exception e) {
 		}
+
 		System.out.println(user);
 
 		return "member/idFindResult";
@@ -157,14 +166,18 @@ public class MemberController {
 
 	@RequestMapping(value = "/searchPw.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String mSearchPW(@RequestParam("userid") String userid, @RequestParam("name") String name,
-			@RequestParam("email") String email, Model user) throws Exception {
-		/* 아이디찾기 */
+			@RequestParam("email") String email, Model user, HttpServletResponse response) throws Exception {
+		/* 비밀번호찾기 */
 		Member searchPw = memberService.getSearchPw(new Member(userid, name, email));
 
 		user.addAttribute("user", searchPw);
-		
+		if (searchPw == null) {
+			response.setCharacterEncoding("utf-8");
+			response.getWriter()
+					.print("<script type='text/javascript'>alert('일치하는 정보가 없습니다.'); history.back();</script>");
+		}
 		System.out.println(user);
-		
+
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom("h72shop@gmail.com");
 		msg.setTo(new String[] { email });
@@ -176,7 +189,6 @@ public class MemberController {
 		} catch (MailException ex) {
 			// 적절히 처리
 		}
-		
 
 		return "member/pwdFindResult";
 	}
@@ -191,11 +203,11 @@ public class MemberController {
 
 			result = memberService.chkDupId(userid);
 			System.out.println(result);
-			//response.getWriter().print("result");
+			// response.getWriter().print("result");
 
 		} catch (Exception e) {
 			System.out.println("아이디 사용가능");
-		} 
+		}
 		return result;
 
 	}

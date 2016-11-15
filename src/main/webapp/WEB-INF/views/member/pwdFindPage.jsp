@@ -13,27 +13,23 @@
 <script>
 	$(function() {
 
-		$('#FindsearchBtn')
-				.click(
-						function() {
+		$('#FindsearchBtn').click(function() {
 							var userid = $(".findId").val();
-							var username = $(".findName").val();
-							var useremail = $(".findEmail").val();
-							var yn = ${"#hiddenOk"}.val();
+							var name = $(".findName").val();
+							var email = $(".findEmail").val();
 							var re_mail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*[\w-]{0,66})\.([a-zA-Z]{2,6}(?:\.[a-zA-Z]{2})?)$/; // 이메일검사식
 
-							if (userid == "" || username == ""
-									|| useremail == "") {
+							if (userid == "" || name == "" || email == "") {
 								alert("아이디, 이름, 이메일을 정확하게 입력하세요");
 								return false;
-							} else if (!re_mail.test(useremail)) {
+							} else if (!re_mail.test(email)) {
 								alert('이메일 주소가 유효하지 않습니다');
 								return false;
-							} else if (yn == null || yn=="") {
-								alert('일치하는 정보가 존재하지 않습니다.');
 							} else {
 								findPwd.submit();
+
 							}
+
 						});
 	});
 </script>
@@ -49,7 +45,6 @@
 			<div class="mSearch_input">
 				<form id="findPwd" class="findPwd" action="../searchPw.do"
 					method="post">
-					<input type="hidden" id="hiddenOk" value="${user }">
 					<p id="mSearch_name_view" class="userid">
 						<strong id="userid_lable">아이디</strong> <input id="userid"
 							name="userid" class="findId" type="text">

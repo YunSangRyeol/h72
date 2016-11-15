@@ -22,7 +22,6 @@
 					<li><strong><u>${user.name }</u></strong>님의 비밀번호 찾기 결과</li>
 					<li><strong><u>${user.email }</u></strong></li>
 					<li><label>해당 메일로 보내드렸습니다.</label><br></li>
-					<li>${user.userpass }</li>
 
 				</ul>
 			</div>
