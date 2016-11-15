@@ -27,6 +27,7 @@
 
 			</div>
 			<div class="mjoin_form">
+			<input type="hidden" id="mjoinResult" value="${mjoinResult }">
 				<h3>기본정보</h3>
 				<p class="mjoin_required">
 					<span id="mjoin_red">*</span> 필수입력사항
