@@ -44,7 +44,7 @@
 							</c:url>
 						<a href="${goQnA} ">Q&A</a>
 				</div>
-
+c
 <%-- 				<c:if test="${loginUser.id == 'ADMIN' }">
 					<a href="new" type="button" class="btn btn-primary btn-block"
 						style="margin-bottom: 20px">공지사항 등록</a>
@@ -185,6 +185,7 @@
 			</c:url>
 				<a href="${goNoticeList }">[끝]</a>
 		</div>
+		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
 		</div>	
 		
 		

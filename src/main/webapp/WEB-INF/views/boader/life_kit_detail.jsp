@@ -11,12 +11,12 @@
 </head>
 <body>
 		<jsp:include page="/WEB-INF/views/main_header.jsp" />
-	<br><br><br>
+	<br><br><br><br><br><br><br>
 	
-	<img src = "/h72/resources/image/kit1.jpg"><p>
-	<img src = "/h72/resources/image/kit2.jpg"><p>
-	<img src = "/h72/resources/image/kit3.jpg"><p>
+	<img src = "/h72/resources/image/kit1.jpg" width="1048px" height="648px"><p><br>
+	<img src = "/h72/resources/image/kit2.jpg" width="1048px" height="648px"><p><br>
+	<img src = "/h72/resources/image/kit3.jpg" width="1048px" height="648px"><p>
 	
-	
+	<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
 </body>
 </html>

@@ -179,7 +179,7 @@
 
 		</div>
  -->
-
+<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
 	</div>
 </body>
 </html>
