@@ -56,7 +56,7 @@ public class MemberController {
 			
 			
 		if(session.getAttribute("forPage") != null){
-			if(session.getAttribute("forPage").equals("orderAll")){
+			if(session.getAttribute("forPage").equals("orderAll") || session.getAttribute("forPage").equals("directOrder")){
 
 				System.out.println("member : "+session.getAttribute("forPage")+"?"+session.getAttribute("forQueryString"));
 				return "redirect:/"+session.getAttribute("forPage")+"?"+session.getAttribute("forQueryString");
@@ -141,6 +141,9 @@ public class MemberController {
 		System.out.println(name + "%%%%" + birthdate);
 		Member searchId = memberService.getSearchId(new Member(name, birthdate));
 		user.addAttribute("user", searchId);
+		if(searchId == null){
+			user.addAttribute("user", "-1");
+		}
 		System.out.println(user);
 
 		return "member/idFindResult";
@@ -158,6 +161,10 @@ public class MemberController {
 		/* 아이디찾기 */
 		Member searchPw = memberService.getSearchPw(new Member(userid, name, email));
 
+		user.addAttribute("user", searchPw);
+		
+		System.out.println(user);
+		
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom("h72shop@gmail.com");
 		msg.setTo(new String[] { email });
@@ -169,8 +176,7 @@ public class MemberController {
 		} catch (MailException ex) {
 			// 적절히 처리
 		}
-		user.addAttribute("user", searchPw);
-		System.out.println(user);
+		
 
 		return "member/pwdFindResult";
 	}

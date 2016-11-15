@@ -66,7 +66,7 @@
 								회원만의 <br>특별한 혜택을 받으실 수 있습니다.
 							</span>
 							<div class="mjoinBtn">
-								<a href="memberJoin">회원가입</a>
+								<a href="<c:url value="/member/memberJoin" />">회원가입</a>
 							</div>
 						</div>
 					</div>
