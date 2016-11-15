@@ -62,16 +62,18 @@ $(function(){
 						<tr>
 								<tr>
 									<th scope="row">제목</th>
-									<td>RE:<input type="text" name="upqTitle" id="upqTitle"></td>
+									<td><input type="text" name="upqTitle" id="upqTitle"></td>
 									</tr>
 						<tr>
 							<td>내용</td>
-							<td><textarea cols="50" rows="7" name="upqContent" id="upqContent"></textarea></td>
+							<td><textarea cols="50" rows="7" name="upqContent" id="upqContent">${list.qContent }</textarea></td>
 						</tr>
 						
 						<tr>
 							<td>답변</td>
-							<td><textarea cols="50" rows="7" name="answerContent" id="answerContent"></textarea></td>
+							<td><textarea cols="50" rows="7" name="answerContent" id="answerContent">
+							====================================================<br><br>
+							</textarea></td>
 						</tr>
 
 					</table>

@@ -15,12 +15,7 @@
 		SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENTS, ENROLLDATE FROM NOTICE
 	</select> 
 	
-	<select id="AAA" resultType="String">
-		SELECT * FROM NOTICE WHERE NOTICE_NO = '1'
-	</select>
-	
-	
-	<select id="getNoticeContent" parameterType="String" resultType="Notice">
+	<select id="getNoticeContent" parameterType="String" resultType="Notice" resultMap="noticeResultMap">
 		SELECT * FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
 
 	</select>
@@ -29,7 +24,7 @@
 		(SEQ_NOTICE_NO.NEXTVAL, #{insertNoticeTitle}, #{insertNoticeContent}, sysdate
 		)
 	</insert>
-	<update id="NoticeUp" parameterType="Map">
+	<update id="NoticeUp" parameterType="Map" >
 		UPDATE NOTICE SET NOTICE_TITLE = #{upNoticeTitle}, 
 		NOTICE_CONTENTS = #{upNoticeContent}
 		WHERE NOTICE_NO = #{noticeNo}

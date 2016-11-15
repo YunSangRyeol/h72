@@ -17,12 +17,12 @@
 		<result property="qCode" column="Q_CODE" />
 
 	</resultMap>
- 	<select id="getQnAList" resultType="QnA">
-		SELECT * FROM QNA
+ 	<select id="getQnAList" resultType="QnA" resultMap="qnaResultMap">
+		SELECT  Q_NO, Q_CODE, Q_WRITER, Q_TITLE, Q_CONTENTS, Q_DATE, ANSWER_YN, A_CONTENTS, A_DATE
 
 	</select>
 
-	<select id="getQnAContent" parameterType="String" resultType="QnA">
+	<select id="getQnAContent" parameterType="String" resultType="QnA" resultMap="qnaResultMap">
 		SELECT * FROM QNA WHERE Q_NO = #{qNo}
 	</select>
     <insert id = "QnAInsert" parameterType="Map">
@@ -31,11 +31,11 @@
 	)
 	</insert>
 
-	<select id="updateqna" parameterType="String" resultType="QnA">
+	<select id="updateqna" parameterType="String" resultType="QnA" resultMap="qnaResultMap">
 		SELECT * FROM QNA WHERE Q_NO = #{qNo}
 	</select>
 	
-	 <update id="upqna" parameterType="Map">
+	 <update id="upqna" parameterType="Map" >
 	UPDATE QNA SET ANSWER_YN = 'Y', 
 	A_CONTENTS = #{answerContent} ,
 	A_DATE = sysdate
@@ -48,7 +48,7 @@
 		WHERE Q_NO = #{qNo}
 		</delete>
 		
-	<select id="getQnAList2" resultType="QnA" parameterType="Map">
+	<select id="getQnAList2" resultType="QnA" parameterType="Map" resultMap="qnaResultMap">
 		SELECT * 
 		FROM( SELECT T1.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTAL_CNT
               FROM( SELECT *
