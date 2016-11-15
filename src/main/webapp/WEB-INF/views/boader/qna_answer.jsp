@@ -61,24 +61,27 @@ $(function(){
 
 						<tr>
 								<tr>
-									<th scope="row">제목</th>
-									<td><input type="text" name="upqTitle" id="upqTitle"></td>
+									<th>제목</th>
+									<td><input type="text" name="upqTitle" id="upqTitle" style="width:100%;"></td>
 									</tr>
 						<tr>
-							<td>내용</td>
-							<td><textarea cols="50" rows="7" name="upqContent" id="upqContent">${list.qContent }</textarea></td>
+							<td>&nbsp; 내용</td>
+							<td><textarea cols="50" rows="7" name="upqContent" id="upqContent"  disabled style="width:100%;">${list.qContent }
+					
+							
+							</textarea></td>
 						</tr>
 						
 						<tr>
-							<td>답변</td>
-							<td><textarea cols="50" rows="7" name="answerContent" id="answerContent">
-							====================================================<br><br>
+							<td>&nbsp; 답변</td>
+							<td><textarea cols="100" rows="7" name="answerContent" id="answerContent" style="width:100%;">
+							
 							</textarea></td>
 						</tr>
 
 					</table>
 				</div>
-				<div class="btnArea">
+				<div class="btnArea" align="center">
 					<input type="submit" value="저장" class="btn btn-primary"
 						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;" />&nbsp;&nbsp;
 					<span><a href="<c:url value="/boader/qna_list"/>"

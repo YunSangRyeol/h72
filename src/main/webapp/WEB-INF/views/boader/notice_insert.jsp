@@ -52,17 +52,17 @@
 
 						<tr>
 							<td>제목</td>
-							<td><input type="text" name="insertNoticeTitle"></td>
+							<td><input type="text" name="insertNoticeTitle" style="width:100%;"></td>
 						</tr>
 						<tr>
 							<td>내용</td>
-							<td><textarea cols="50" rows="7" name="insertNoticeContent"></textarea></td>
+							<td><textarea cols="50" rows="7" name="insertNoticeContent" style="width:100%;"></textarea></td>
 						</tr>
 
 					</table>
 				</div>
-				<div class="btnArea">
-					<input type="submit" value="등록" class="btn btn-primary"
+				<div class="btnArea" align="center">
+					<input type="submit" value="등록" class="btn btn-primary" 
 						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;" />&nbsp;&nbsp;
 					<span><a href="<c:url value="/boader/notice_list"/>"
 						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e 7; color: #000; letter-spacing: 1px; font-size: 11px;">뒤로</a></span>

@@ -50,16 +50,16 @@
 
 						<tr>
 							<td>제목</td>
-							<td><input type="text" name="insertqTitle"></td>
+							<td><input type="text" name="insertqTitle" style="width:100%;"></td>
 						</tr>
 						<tr>
 							<td>내용</td>
-							<td><textarea cols="50" rows="7" name="insertqContent"></textarea></td>
+							<td><textarea cols="50" rows="7" name="insertqContent" style="width:100%;"></textarea></td>
 						</tr>
 
 					</table>
 				</div>
-				<div class="btnArea">
+				<div class="btnArea" align="center">
 					<input type="submit" value="등록" class="btn btn-primary"
 						style="padding: 7px 22px 7px 22px; background: #f7f7f7; border: 1px solid #e7e7e7; color: #000; letter-spacing: 1px; font-size: 11px;" />&nbsp;&nbsp;
 					<span><a href="<c:url value="/boader/qna_list"/>"
