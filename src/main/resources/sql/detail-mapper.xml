@@ -55,26 +55,6 @@
 	WHERE ITEM_DETAIL_ID LIKE #{ItemDetailId, jdbcType=VARCHAR}
 	</select>
 	
-	<!-- 
-	<insert id="insertCart" parameterType="java.util.ArrayList">
-		<foreach collection="list" item="element" index="index" >
-		INSERT INTO CART(
-		CART_ID, ITEM_ID, USER_ID, ITEM_FULL_NAME, ITEM_DETAIL_ID, MAIN_IMG, QUANTITY, COST, MESSAGE, KIT_YN, ENROLL_DATE)
-		VALUES(
-			SEQ_CART_ID.NEXTVAL,
-			(SELECT ITEM_ID FROM ITEM_ALL_VIEW WHERE ITEM_DETAIL_ID LIKE (#{element.itemDetailid}) AND ITEM_OPTION_NAME LIKE (#{element.itemOptionName}),
-			#{element.userid},
-			#{element.itemFullName},
-			#{element.itemDetailid},
-			#{element.mainImg},
-			#{element.quantity},
-			#{element.cost},
-			#{element.message},
-			#{element.KitYN},
-			SYSDATE)
-		</foreach>
-	</insert>
-	-->
 	<insert id="insertCart" parameterType="com.project.h72.cart.vo.Cart">
 		INSERT INTO CART(
 		CART_ID, ITEM_ID, USER_ID, ITEM_FULL_NAME, ITEM_DETAIL_ID, MAIN_IMG, QUANTITY, COST, KIT_YN, ENROLL_DATE)
