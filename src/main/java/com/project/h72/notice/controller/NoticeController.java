@@ -88,7 +88,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 
 	@RequestMapping(value = "boader/notice_update_view", method = RequestMethod.GET)
 	public String notice_update(@RequestParam("noticeNo") String noticeNo, Model model) {
-		
+			
 		System.out.println("OK!!"+ noticeNo);
 		
 		Notice list = noticeService.updatenotice(noticeNo);

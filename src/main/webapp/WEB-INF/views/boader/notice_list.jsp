@@ -185,6 +185,7 @@
 			</c:url>
 				<a href="${goNoticeList }">[끝]</a>
 		</div>
+		<jsp:include page="/WEB-INF/views/main_footer.jsp" flush="false" />
 		</div>	
 		
 		
