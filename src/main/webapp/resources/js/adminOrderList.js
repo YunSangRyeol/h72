@@ -233,7 +233,7 @@
 	//날짜 선택 버튼시 inputd의 날짜 변경
 		$(function(){		
 			var currDate = new Date(); // 현재 날짜
-			var startDate = new Date(new Date().setMonth(new Date().getDate()-3)); // 한달전 날짜
+			var startDate = new Date(new Date().setDate(new Date().getDate()-3)); // 3일전 날짜
 			
 			// YYYY-MM-DD로 형식변환
 			var prevMon = dateToYYYYMMDD(startDate);
@@ -247,7 +247,7 @@
 			});		
 			$('a[days=03]').click(
 					function(){
-						var preOneMonth = new Date(new Date().setMonth(new Date().getDate()-3));
+						var preOneMonth = new Date(new Date().setDate(new Date().getDate()-3));
 						document.getElementById("startDate").value = dateToYYYYMMDD(preOneMonth);	
 					});
 			$('a[days=07]').click(
@@ -258,7 +258,7 @@
 			
 			$('a[days=14]').click(
 					function(){
-						var preThreeMonth = new Date(new Date().setMonth(new Date().getDate()-14));
+						var preThreeMonth = new Date(new Date().setDate(new Date().getDate()-14));
 						document.getElementById("startDate").value = dateToYYYYMMDD(preThreeMonth);						
 					});
 	});
