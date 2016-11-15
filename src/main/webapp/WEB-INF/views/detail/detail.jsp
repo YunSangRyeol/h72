@@ -768,7 +768,7 @@ function ResizeFrame(name)
 	
 	<!-- detail 상품 수정 : admin -->
 
-	<form action="productEnrollUpdate" method="POST" id="product_updateForm">
+	<form action="productEnrollUpdateView" method="POST" id="product_updateForm">
 	   <div id="product_UpdateWrap">
 	      <div id="product_Update">수정하기</div>
 	   </div>
