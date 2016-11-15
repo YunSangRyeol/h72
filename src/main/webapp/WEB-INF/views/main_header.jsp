@@ -26,7 +26,7 @@
 							<li><a href="<c:url value="/order/order_list"/>">ORDER</a></li>
 						</c:if>
 						<c:if test="${!(loginUser eq null) }">
-							<li style="color: #fff;"><strong> ${loginUser.name }</strong>
+							<li style="color: #fff; font-weight:bold;">${loginUser.name }
 								님</li>
 							<li><a href="<c:url value="/logout.do" />">LOGOUT</a></li>
 							<c:if test="${!(loginUser.levelcode eq 'ADMIN') && !(loginUser.levelcode eq 'STEP') }">
