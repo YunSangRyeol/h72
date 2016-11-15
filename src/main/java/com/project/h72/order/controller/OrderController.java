@@ -37,6 +37,27 @@ public class OrderController {
 			int result = os.updateCartUserId(session.getId(), login.getUserid());
 			
 		}else{
+			String[] url = request.getRequestURI().split("/"); // /root/test.jsp 까지 얻어온다.
+			String forPage = url[url.length-1]; // root빼고 원하는 페이지까지만 선택
+			String forQueryString = request.getQueryString(); 
+		    request.getSession().setAttribute("forPage", forPage);
+		    request.getSession().setAttribute("forQueryString", forQueryString);
+
+
+		    return "redirect:member/loginPage"; 
+		}
+		return "order/order";
+	}
+	
+	
+	@RequestMapping(value = "/directOrder", method = RequestMethod.GET)
+	public String directOrderForm(@RequestParam("cartAll") String[] cartAll, HttpSession session, Model model,HttpServletRequest request) {
+		Member login = (Member) session.getAttribute("loginUser");
+		if(!(login==null)){
+			List<Cart> orderlist = os.getCartOrder(cartAll);
+			model.addAttribute("olist", orderlist);
+			
+		}else{
 			String[] url = request.getRequestURI().split("/");
 			String forPage = url[url.length-1];
 			String forQueryString = request.getQueryString();
@@ -48,19 +69,9 @@ public class OrderController {
 			System.out.println(session.getAttribute("forPage")+"= session1");
 
 		    return "redirect:member/loginPage"; 
-		}
-		return "order/order";
-	}
-	
-	
-	@RequestMapping(value = "/directOrder", method = RequestMethod.GET)
-	public String directOrderForm(@RequestParam("cartAll") String[] cartAll, HttpSession session, Model model) {
-		Member login = (Member) session.getAttribute("loginUser");
-		if(!(login==null)){
-			List<Cart> orderlist = os.getCartOrder(cartAll);
-			model.addAttribute("olist", orderlist);
 			
 		}
+		
 		return "order/order";
 	}
 	
@@ -160,6 +171,9 @@ public class OrderController {
 			resultOrderContents = os.insertOrderContents(orderContents);
 		}
 		
+		int resultPoint =0; 
+		int usePoint = login.getPoint() - Integer.valueOf(inputMile);
+		resultPoint = os.updateOrderPoint(usePoint, userId);
 		
 		int bankResult = 0;
 		bankResult = os.insertBankInfo(bankInfo);
@@ -167,7 +181,7 @@ public class OrderController {
 		int resultOrder = 0;
 		resultOrder = os.insertOrderInfo(order);
 		
-		if(bankResult>0 && resultOrder>0 && resultOrderContents>0){
+		if(bankResult>0 && resultOrder>0 && resultOrderContents>0 && resultPoint>0){
 			
 			int resultCart = os.deleteFinishCart(cartId);
 			
@@ -192,9 +206,7 @@ public class OrderController {
 			String[] url = request.getRequestURI().split("/");
 			String forPage = "/"+url[url.length-2]+"/"+url[url.length-1];
 		    request.getSession().setAttribute("forPage", forPage);
-			System.out.println("controller2: "+forPage);
-			System.out.println(session.getAttribute("forPage")+"= session2");
-
+		    
 		    return "member/loginPage"; 
 		    
 		}else{
@@ -223,20 +235,22 @@ public class OrderController {
 				System.out.println(tab+"-------------------------");
 			}
 				
+			//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
+			int maxPage =0;
+				
 			if(tab.equals("orderCategory")){
 				clistCount = os.getClistCount(userId, currentDate, preDate, tab);
 				//페이지 단위로 게시글 목록 조회용
 				clistOrder = os.selectOrderClist(userId, currentDate, preDate,currentPage,limit,tab);
-				System.out.println(listOrder+"===================");
+				maxPage = (int)((double)clistCount / limit + 0.9);
+				
 			}else{
-				listCount = os.getListCount(userId, currentDate, preDate);
+				listCount = os.getListCount(userId, currentDate, preDate, tab);
 				//페이지 단위로 게시글 목록 조회용
-				listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit);
-				System.out.println(listOrder+"----------------------");
+				listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit, tab);
+				 maxPage = (int)((double)listCount / limit + 0.9);
 			}
 			
-			//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
-			int maxPage = (int)((double)listCount / limit + 0.9);
 			//현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
 			int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
 			//현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
@@ -248,7 +262,9 @@ public class OrderController {
 			model.addAttribute("maxPage", maxPage);
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("startPage", startPage);
-			
+			model.addAttribute("tab",tab);
+			model.addAttribute("startDate", preDate);
+			model.addAttribute("endDate", currentDate);
 			
 			if(listOrder.isEmpty()||listOrder==null){
 				listOrder = null;
@@ -262,6 +278,7 @@ public class OrderController {
 		
 		model.addAttribute("orderList", listOrder);
 		model.addAttribute("reOrderList", clistOrder);
+		
 		System.out.println("orderList"+clistOrder);
 		System.out.println("reOrderList"+listOrder);
 		
@@ -271,7 +288,7 @@ public class OrderController {
 	
 	
 	@RequestMapping(value = "/searchOrder", method = RequestMethod.GET)
-	public String searchOrder(@RequestParam("page") String page, @RequestParam("start_date") Date startDate, 
+	public String searchOrder(@RequestParam("page") int page, @RequestParam("start_date") Date startDate, 
 			@RequestParam("end_date") Date endDate, @RequestParam("tab") String tab, Model model,HttpSession session,HttpServletRequest request) {
 		Member login = (Member) session.getAttribute("loginUser");
 		List<Order> listOrder = new ArrayList<Order>();
@@ -290,8 +307,8 @@ public class OrderController {
 		int limit = 5;	//한 페이지에 5개씩 출력
 		
 		//전달받은 페이지 값 추출
-		if(page != null)
-			currentPage = Integer.valueOf(page);
+		if(page >0)
+			currentPage = page;
 		if(startDate != null)
 			preDate = startDate;
 		if(endDate!= null)
@@ -303,25 +320,25 @@ public class OrderController {
 		int listCount =0;
 		int clistCount =0;
 		
-		
+		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
+		int maxPage =0;
 			
 		if(tab.equals("orderCategory")){
 			clistCount = os.getClistCount(userId, currentDate, preDate, tab);
 			//페이지 단위로 게시글 목록 조회용
 			clistOrder = os.selectOrderClist(userId, currentDate, preDate,currentPage,limit,tab);
-			System.out.println(clistOrder+"===================");
+			maxPage = (int)((double)clistCount / limit + 0.9);
+			
 		}else{
-			listCount = os.getListCount(userId, currentDate, preDate);
+			listCount = os.getListCount(userId, currentDate, preDate, tab);
 			//페이지 단위로 게시글 목록 조회용
-			listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit);
-			System.out.println(listOrder+"----------------------");
+			listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit, tab);
+			 maxPage = (int)((double)listCount / limit + 0.9);
 		}
 		
-		//총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
-		int maxPage = (int)((double)listCount / limit + 0.9);
-		//현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
+		//현재 페이지에 보여줄 시작 페이지 수 (1, 6, 11, .....)
 		int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
-		//현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
+		//현재 페이지에 보여줄 마지막 페이지 수 (5, 10, 15, .....)
 		int endPage = startPage + limit - 1;
 		if(maxPage < endPage)
 			endPage = maxPage;
@@ -330,8 +347,11 @@ public class OrderController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("maxPage", maxPage);
 		model.addAttribute("endPage", endPage);
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
 		
-
+		
+		System.out.println("controller page:"+startPage+", "+endPage+", "+maxPage);
 		if(listOrder.isEmpty()||listOrder==null){
 			listOrder = null;
 		}
@@ -344,6 +364,7 @@ public class OrderController {
 	
 		model.addAttribute("orderList", listOrder);
 		model.addAttribute("reOrderList", clistOrder);
+		model.addAttribute("tab",tab);
 		
 		System.out.println("orderList"+listOrder);
 		System.out.println("reOrderList"+clistOrder);
@@ -369,7 +390,7 @@ public class OrderController {
 	
 	
 	@RequestMapping(value = "/updateStatusCancle", method = RequestMethod.GET)
-	public String searchReorder(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status, Model model) {
+	public String updateStatusCancle(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status, @RequestParam("page") String page,Model model) {
 		System.out.println("===="+orderNo+"====="+status);
 		int result =0;
 		if(status.equals("결제완료")){
@@ -382,12 +403,36 @@ public class OrderController {
 		
 		System.out.println("updateCancle:"+result);
 		
+		if(page.equals("detail")){
+			return "redirect:order/order_detail?orderNo="+orderNo;
+		}
 		
 		
 		
 		return "redirect:order/order_list";
 	}
-
+	
+	
+	@RequestMapping(value = "/orderConfirm", method = RequestMethod.GET)
+	public String updateOrderConfirm(@RequestParam("point") int point,@RequestParam("orderNo") String orderNo, @RequestParam("page") String page,HttpSession session, Model model) {
+		
+		Member login = (Member) session.getAttribute("loginUser");
+		String userId = login.getUserid();
+		int resultStatus =0;
+		int resultUser =0;
+		int addPoint = login.getPoint() + point;
+		resultStatus=os.updateOrderConfirm(orderNo);
+		resultUser=os.updateUserPoint(userId, addPoint);	
+	
+		if(resultStatus>0 && resultUser>0){
+			System.out.println("구매확정 성공!, 적립금 얻기 성공!");
+		}
+		if(page.equals("detail")){
+			return "redirect:order/order_detail?orderNo="+orderNo;
+		}
+		
+		return "redirect:order/order_list";
+	}
 	
 
 }

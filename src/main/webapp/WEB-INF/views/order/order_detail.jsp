@@ -11,14 +11,8 @@
 	rel="stylesheet">
 <link href="/h72/resources/css/order.css" type="text/css"
 	rel="stylesheet">
-<script>
-
-function orderChange(orderNo, status) {
-	if(confirm("주문을 취소하시겠습니까?") == true){
-	location.href="/h72/updateStatusCancle?orderNo="+orderNo+"&status="+status;
-	}
-}
-</script>
+<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="/h72/resources/js/orderList.js"></script>	
 
 </head>
 <body id="main">
@@ -60,19 +54,22 @@ function orderChange(orderNo, status) {
 									</tr>
 									<tr>
 										<th scope="row">주문처리상태</th>
-										<td>${detailOrder.orderStatus } <c:if test="${detailOrder.orderStatus eq '결제완료' || detailOrder.orderStatus eq '입금전'}">
-									<a href="#none" onclick="orderChange('${detailOrder.orderNo}', '${detailOrder.orderStatus}');">
-									<p class="order_change">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
+										<td>${detailOrder.orderStatus }&nbsp;&nbsp;<c:if test="${detailOrder.orderStatus eq '결제완료' || detailOrder.orderStatus eq '입금전'}">
+									<a href="#none" onclick="orderChange('${detailOrder.orderNo}', '${detailOrder.orderStatus}','detail');">
+									<span class="order_change">주문취소&nbsp;&nbsp;<span class="order_change_arrow">&gt;</span></span></a>
 								</c:if>
 								<c:if test="${detailOrder.orderStatus eq '배송중'}">
-									<a href="우체국택배 http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${orderList.transportNumber }">&nbsp;&nbsp;
+									<a href="우체국택배 http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${detailOrder.transportNumber }">&nbsp;&nbsp;
 										<span class="order_change">배송조회&nbsp;&nbsp;<span class="order_change_arrow">&gt;</span></span></a> &nbsp;&nbsp;
-									<a href="#none" onclick="orderFinish('${detailOrder.orderNo}');">
+									<a href="#none" onclick="orderFinish('${detailOrder.orderNo}','${detailOrder.totalSavingPoint }','detail');">
 									<span class="order_change">구매확정&nbsp;&nbsp;<span class="order_change_arrow">&gt;</span></span></a>	&nbsp;&nbsp;
-									<a href="#none" onclick="orderRefund('${detailOrder.orderNo}');">
-									<span class="order_change">반품요청&nbsp;&nbsp;<span class="order_change_arrow">&gt;</span></span></a>&nbsp;&nbsp;
+									<%-- <a href="#none" onclick="orderRefund('${detailOrder.orderNo}');">
+									<span class="order_change">반품요청&nbsp;&nbsp;<span class="order_change_arrow">&gt;</span></span></a>&nbsp;&nbsp; --%>
 								</c:if>
-										
+								<c:if test="${detailOrder.orderStatus eq '구매완료'}">
+									<a href="우체국택배 http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${detailOrder.transportNumber }">&nbsp;&nbsp;
+										<span class="order_change">배송조회&nbsp;&nbsp;<span class="order_change_arrow">&gt;</span></span></a>
+								</c:if>
 										</td>
 									</tr>
 								</tbody>
@@ -139,16 +136,16 @@ function orderChange(orderNo, status) {
 										+ 배송비 2,500 +
 										</c:if>
 										  = 합계 : <strong
-										class="total"><span>${detailOrder.totalPrice }원</span></strong> </td>
+										class="total"><span><fmt:formatNumber value="${detailOrder.totalPrice }" pattern="#,###" />원</span></strong> </td>
 								</tr>
 							</tfoot>
 							<tbody class="xans-element- xans-myshop xans-myshop-orderhistorydetailbasic">
 								<c:forEach items="${orderContents }" var ="oclist">
 								<tr class="xans-record-">
-									<td class="thumb"><a href="#"><img
+									<td class="thumb"><a href="/h72/detail/selectItem?ItemDetailId=${oclist.itemDetailID }"><img
 										src="/h72/resources${oclist.mainImg }" alt=""></a></td>
 									<td class="product"><a
-										href="/product/detail.html?product_no=8761&amp;cate_no=27"><strong>
+										href="/h72/detail/selectItem?ItemDetailId=${oclist.itemDetailID }"><strong>
 												${oclist.itemName } </strong></a>
 										<div class="option ">[옵션: ${oclist.itemOptionName }]</div>
 										
@@ -162,17 +159,7 @@ function orderChange(orderNo, status) {
 										<p>${detailOrder.orderStatus }</p>
 									</td>
 									<td class="service">
-										<c:if test="${detailOrder.orderStatus eq '결제완료' || detailOrder.orderStatus eq '입금전'}">
-									<a href="#none" onclick="orderChange('${detailOrder.orderNo}', '${detailOrder.orderStatus}');">
-									<p class="order_cancle">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
-								</c:if>
-								<c:if test="${detailOrder.orderStatus eq '배송중'}">
-									<a href="우체국택배 http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=${orderList.transportNo }">
-										<p class="order_cancle">배송조회&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
-								</c:if>
-								<c:if test="${detailOrder.orderStatus eq '입금전취소'}">
 								<p>-</p>
-								</c:if>
 									</td>
 								</tr>
 								</c:forEach>

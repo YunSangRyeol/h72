@@ -24,32 +24,6 @@
 }
 </style>
 <script type="text/javascript">
-$(function(){
-	//결제 부분
-	/* $("input[name=addr_paymethod]:checked").each(function(){
-		$("#payment_input_tcash").each(function() {
-			$(this).css('display', 'none');
-		});
-	}); */
-	
-	
-/* $("input[name=addr_paymethod]").change(function(){
-	var radioValue = $(this).val();
-	var paylabel = $(this).next("label").text();
-	console.log(paylabel);
-	
-	if (radioValue == "cash") {
-		hideExclude('payment_input_cash', paylabel);
-	} else if (radioValue == "cell") {
-		hideExclude('pg_paymethod_info_pg', paylabel);
-	} else if (radioValue == "tcash") {
-		hideExclude('payment_input_tcash', paylabel);
-	}	else if (radioValue == "card") {
-			hideExclude('pg_paymethod_info_pg', paylabel);
-	}	
-}); */
-	
-});
 
 function hideExclude(excludeId) {
 	$("#payment_input_cash").each(function() {
@@ -120,6 +94,7 @@ function CallpaymentAPI(){
 	orderAddress = $('#raddress').val()+$('#raddressDetail').val();
 	orderPost = $('#rpostnum').val();
 	orderPhone = $('rphone2_1').val()+$('rphone2_2').val()+$('rphone2_3').val();
+	orderEmail = '${loginUser.email}';
 	console.log(orderPhone);
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp29445119'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -132,6 +107,7 @@ function CallpaymentAPI(){
 	    amount : totalPrice,
 	    buyer_name : orderName,
 	    buyer_tel : orderPhone,
+	    buyer_email :orderEmail,
 	    buyer_addr : orderAddress,
 	    buyer_postcode : orderPost,
 	}, function(rsp) {
@@ -217,7 +193,7 @@ function CallpaymentAPI(){
 								</p>
 							</div>
 							<div class="mileage">
-								<span>가용적립금 : <strong>${loginUser.point }원</strong></span>
+								<span>가용적립금 : <strong><fmt:formatNumber value="${loginUser.point }" pattern="#,###" />원</strong></span>
 							</div>
 						</div>
 					</div>
