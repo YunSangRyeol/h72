@@ -183,6 +183,12 @@ public class AdminServiceImp implements AdminService{
 	}
 
 
+	@Override
+	public int getEnd() {
+		return dao.getEnd();
+	}
+
+
 
 
 

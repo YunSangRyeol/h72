@@ -207,6 +207,11 @@ public class AdminController {
 	@RequestMapping(value="admin/order", method = RequestMethod.GET)
 	public String adminOrderView(Model model){
 		
+		//14일 지난 쿼리문 결제 완료 변경
+		int resultEnd = adminService.getEnd();
+		
+		model.addAttribute("resultEnd", resultEnd );
+		
 		List<Order> list = adminService.getOrderList();
 		List<OrderContents> listContents = adminService.getOrderContentsList();
 		

@@ -85,6 +85,8 @@ public interface AdminService {
 
 	int updateOrderChangeAll(String[] orderNos, String selectStatus);
 
+	int getEnd();
+
 
 
 

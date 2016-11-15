@@ -240,6 +240,10 @@ public class AdminDao {
 		return result;
 	}
 
+	public int getEnd() {
+		return sqlSession.update(NAMESPACE + "getEnd");
+	}
+
 
 
 

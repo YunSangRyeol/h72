@@ -13,6 +13,13 @@
 <title>Admin Order List</title>
 <script type="text/javascript">
 
+	//14일 이전 내용 구매완료 처리 ->처리후 변경시에만 변경확인
+	$(function(){
+		if('${resultEnd}' != 0 ){
+			alert('${resultEnd}' +"개의 구매건이 구매완료처리되었습니다.");
+		}		
+	});
+	
 	//배송중일때만 배송조회 INPUTBOX 사용					
 	function chnageInputBox(orderNo){
 		var state= $('#state' + orderNo).val();								
