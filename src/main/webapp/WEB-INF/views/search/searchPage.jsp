@@ -93,16 +93,18 @@
 							class="item xans-record-">
 
 							<div class="box">
-								<a href="#" name="anchorBoxName_8025"><img
-									src="/h72/resources${list.mainImg }" alt="" class="thumb"
-									style="width: 250px; height: 250px;"></a>
+								<%-- <c:url var="url" value="selectItem">
+									<c:param name="ItemDetailId" value="${category.get(list).itemDetailId }" />
+								</c:url> --%>
+								<a href="<c:url value="/detail/selectItem?ItemDetailId=${list.itemDetailId }" />" 
+								name="anchorBoxName_8025"> 
+								<img src="/h72/resources${list.mainImg }" alt="" class="thumb"
+										style="width: 250px; height: 250px;"></a>
 								<p class="name"></p>
 								<p id="inner_itemName">
-									<a href="#"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+									<a href="<c:url value="/detail/selectItem?ItemDetailId=${list.itemDetailId }" />"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
 								</p>
-								<p class="price" id="inner_itemPrice">
-									\ ${list.minPrice}
-								</p>
+								<p class="price" id="inner_itemPrice">\ ${list.minPrice}</p>
 							</div>
 						</li>
 					</c:forEach>

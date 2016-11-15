@@ -19,37 +19,37 @@
 
 	<select id="getBagList" parameterType="Search" resultType="Search">
 		SELECT * 
-		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_BAG)
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG, ITEM_DETAIL_ID FROM H72.ITEM_DETAIL_BAG)
 		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}
 	</select>
 
 	<select id="getProtectList" parameterType="Search" resultType="Search">
 		SELECT * 
-		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_PROTECT)
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG, ITEM_DETAIL_ID FROM H72.ITEM_DETAIL_PROTECT)
 		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}	
 	</select>
 
 	<select id="getFoodList" parameterType="Search" resultType="Search">
 		SELECT * 
-		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_FOOD)
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG, ITEM_DETAIL_ID FROM H72.ITEM_DETAIL_FOOD)
 		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}	
 	</select>
 
 	<select id="getToolList" parameterType="Search" resultType="Search">
 		SELECT * 
-		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_TOOL)
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG, ITEM_DETAIL_ID FROM H72.ITEM_DETAIL_TOOL)
 		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}	
 	</select>
 
 	<select id="getEtcList" parameterType="Search" resultType="Search">
 		SELECT * 
-		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_ETC)
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG, ITEM_DETAIL_ID FROM H72.ITEM_DETAIL_ETC)
 		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}	
 	</select>
 
 	<select id="getSearchList" parameterType="Map" resultType="Search">
 		SELECT * 
-		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG FROM H72.ITEM_DETAIL_VIEW WHERE ITEM_NAME LIKE '%'||#{itemName}||'%')
+		FROM(SELECT ROWNUM RNUM, ITEM_NAME, MIN_PRICE, MAIN_IMG, ITEM_DETAIL_ID FROM H72.ITEM_DETAIL_VIEW WHERE ITEM_NAME LIKE '%'||#{itemName}||'%')
 		WHERE RNUM >= #{startRow} and RNUM  <![CDATA[<]]>= #{endRow}
 	</select>
 	
