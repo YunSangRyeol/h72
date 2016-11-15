@@ -67,13 +67,15 @@ public class Notice {
 	public void setEnrolldate(Date enrolldate) {
 		this.enrolldate = enrolldate;
 	}
-
-
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
 				+ ", enrolldate=" + enrolldate + "]";
 	}
+
 
 	
 

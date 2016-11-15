@@ -22,8 +22,9 @@ public class NoticeDao {
 
 	
 	public List<Notice> getNoticeList() {
-		List<Notice> list = sqlSession.selectList(NAMESPACE + "getNoticeList");
-		System.out.println("DAO List" + list);
+//		String asd = sqlSession.selectOne(NAMESPACE + "AAA");
+//		System.out.println("DAO List" + asd);
+		System.out.println("ASDFALSKDJFLHQ34KWJHF[PO");
 		return sqlSession.selectList(NAMESPACE + "getNoticeList");
 	}
 
