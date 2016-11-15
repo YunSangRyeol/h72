@@ -210,14 +210,14 @@ function reviewing(reviewList){
 					"				</a>" +
 					"				<div class='inline edit-review-container-line'></div>" +
 					"			</div>" +
-					"			<div class='inline edit-review-container 2' id='reviewModify' style='display:none;'>" +
+					/*"			<div class='inline edit-review-container 2' id='reviewModify' style='display:none;'>" +
 					"				<a id='cancle'>" +
 					"					<span class='delete-review hoverable'>취소</span>" +
 					"				</a>" +
 					"				<a id='modifyFine'>" +
 					"					<span class='edit-review hoverable'>수정완료</span>" +
 					"				</a>" +
-					"			</div>" +
+					"			</div>" +*/
 					"		</div>" +
 					"	</div>" +
 					"</div>";
@@ -256,39 +256,64 @@ function reviewing(reviewList){
 
 
 function bindEvent(){
+	
+	$(document).on("click", "#subBtn", function(){
+		alert();
+		console.log($("input[name='reviewPhoto'").length + '개');
+		var formData = new FormData();
+		formData.append()
+	});
+	
+	
 	$(document).on("click", "#modifyFine", function(){
+		
+		/*$(document).on("click", "#subBtn", function(){
+			alert();
+		});*/
+		/*
 		//원래 있던 이미지는 IMG src에 이미지경로 삽입하여 같은 번호에 해당하는 input file은 공백이 입력됨.
 		var srcImageArr = new Array();//컨트롤러로 src 전송
-		var fileImageArr = new Array();//컨트롤러로 file.val() 전송 후 rename
-		//var totalImageArr = new Array();//Array to Controller
+		var totalImageArr = new Array();//Array to Controller
 		
 		for(var i = 0; i < $(".hidden.mask").length; i++){
-			
 			var fileImage = $("#maskupBtn" + ( i + 1 ) ).val();
 			var srcImage = $("#maskpreview" + ( i + 1 )).attr("src");
 			console.log(srcImage);
+			
 			if(fileImage == "" && srcImage != ""){//input file 공백이면 원래 이미지(srcImageArr), 값이 있으면 컨트롤러에서 이름변경해줘야함(fileImageArr).
-				srcImageArr.push(srcImage);//원래 있던 이미지
-			}else if(fileImage != ""){
-				fileImageArr.push(fileImage);//input file에 선택된 이미지
+				if(srcImage.length < 50){
+					console.log("이미지 이름 길이가 50보다 작습니다. 저장합니다.");
+					srcImageArr.push(srcImage);//원래 있던 이미지
+					totalImageArr.push(srcImage);
+				}
 			}
 		}
 		
-		var params = {
-				srcImageArr : srcImageArr ,
-				fileImageArr : fileImageArr
-		};
+		console.log(tempArray);
+		
+		//controller 로 보낼 array에 input file에 입력된 파일이름을 담은 tempArray값을 담아준다.
+		for(var i = 0; i < tempArray.length; i++){
+			totalImageArr.push(tempArray[i]);
+		}
+		
+		totalImageArr.push(reviewText);//reviewText;
+		totalImageArr.push(reviewUser);//reviewUser;
+		totalImageArr.push(tempItemDetailId);//detailId
+		totalImageArr.push(focus_review_div_id);//해당 리뷰 번호
 		
 		console.log("원래 있던 이미지 수 : " + srcImageArr.length);
 		console.log(srcImageArr);
 		console.log("새로 추가된 이미지 수 : " + fileImageArr.length);
 		console.log(fileImageArr);
+		console.log("전체 이미지 수 : " + totalImageArr.length);
+		console.log(totalImageArr);
+		
 		
 		$.ajax({
 			url : '/h72/detail/maskModify' ,
 			type : 'post' ,
 			contentType : 'application/json' ,
-			data : {"srcImageArr" : srcImageArr} ,
+			data : JSON.stringify(totalImageArr) ,
 			dataType : 'json' ,
 			success : function(data){
 				
@@ -297,7 +322,7 @@ function bindEvent(){
 				
 			}
 		});
-		
+		*/
 	});
 	
 	
@@ -350,7 +375,8 @@ function bindEvent(){
 		
 		//image 변환
 		$("#maskInner").html(
-				"<div class='mask page'>" +
+			"<div class='mask page'>" +
+				"<form id='ajaxform' action='/saveFileTest.do' method='post' enctype='multipart/form-data'>" +
 					"<ul class='reviews reviews-product'>" +
 						"<li class='review product-review product_review__container' id='3'>" +
 							"<div class='product_review__info_container'>" +
@@ -378,20 +404,20 @@ function bindEvent(){
 										"<ul class='mask image-fields-container'>" +
 							    			"<li class='mask image-field'>" +
 							  					"<div class='wrap'>" +
-							  					
-							  					
-							  					
-							  					
-							  						"<div class='mask fileWrap'>" +
+											
+							  					"<div id='mask_wrap' style='display:inline-flex;'>" +
+							  						/*
+							  						"<div id='maskFile' class='mask fileWrap'>" +
 							  							"<input type='file' name='reviewPhoto1' id='maskupBtn1' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
 							  							"<input type='file' name='reviewPhoto2' id='maskupBtn2' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
 							  							"<input type='file' name='reviewPhoto3' id='maskupBtn3' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
 							  							"<input type='file' name='reviewPhoto4' id='maskupBtn4' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
 							  							"<input type='file' name='reviewPhoto5' id='maskupBtn5' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
 							  						"</div>" +
-							  						
-							  						"<div class='maskpreview-container' style='display:inline-flex'>" +
-							  							"<div class='hidden mask preview_div_1'>" +
+							  						*/
+							  					
+							  						"<div id='maskPreview' class='maskpreview-container' style='display:inline-flex'>" +
+							  							/*"<div class='hidden mask preview_div_1'>" +
 							  								"<img class='preview' id='maskpreview1' alt='preview' src=''>" +
 							  								"<div class='image_field__remove_preview mask remove-preview hoverable' style='width:74px;height:74px;'>" +
 							  									"<div class='remove' style='margin-top:-20px;'>삭제</div>" +
@@ -432,12 +458,19 @@ function bindEvent(){
 						  										"<span class='sprites-icon-camera inline'></span>" +
 						  										"<div class='add-image-caption' style='margin-top:-25px;'>사진추가</div>" +
 						  									"</div>" +
-						  								"</div>" +
+						  								"</div>" +*/
+							  						"</div>" +
+						  							
 							  						
-						  							"</div>" +
+						  							"<div class='mask image-inline-photo-add' style='display: block'>" +
+					  									"<img class='size-support hidden' src='//assets2.cre.ma/m/widgets/transparent.png' alt='Transparent'>" +
+					  									"<div class='input-image-container on-list'>" +
+					  										"<span class='sprites-icon-camera inline'></span>" +
+					  										"<div class='add-image-caption' style='margin-top:-25px;'>사진추가</div>" +
+					  									"</div>" +
+					  								"</div>" +
 						  							
-						  							
-						  							
+					  							"</div>" +
 						  							
 						  							
 						  							
@@ -452,9 +485,10 @@ function bindEvent(){
 														"<a id='cancle'>" +
 															"<span class='delete-review hoverable'>취소</span>" +
 														"</a>" +
-														"<a id='modifyFine'>" +
-															"<span class='edit-review hoverable'>수정완료</span>" +
-														"</a>" +
+														/*"<a id='modifyFine'>" +*/
+															"<input type='button' id='subBtn' value='수정완료'>" + 
+															/*"<span class='edit-review hoverable'>수정완료</span>" +*/
+														/*"</a>" +*/
 													"</div>" +
 												"</div>" +
 											"</div>" +
@@ -465,17 +499,71 @@ function bindEvent(){
 							"</div>" +
 						"</li>" +
 					"</ul>" +
-				"</div>");
+				"</form>" +
+			"</div>");
 		
 		e.preventDefault();
 		wrapWindowByMask();
 		//console.log(image[0]);
-		for(var i = 0; i < imageLength; i++){
+		
+		if(imageLength != 0){
+				for(var i = 0; i < imageLength; i++){
+					$("#maskPreview").append(
+						"<div id='maskPreviewInner" + superNum + "' class='maskPreviewInner' style=''>" +
+							"<div class='hidden mask preview_div_" + superNum + "'>" +
+								"<img class='preview' id='maskpreview" + superNum + "' alt='preview' src=''>" +
+								"<div class='image_field__remove_preview mask remove-preview hoverable' style='width:74px;height:74px;'>" +
+									"<div class='remove' style='margin-top:-20px;'>삭제</div>" +
+								"</div>" +
+							"</div>" +
+							"<input type='file' name='reviewPhoto' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
+						"</div>"
+					);
+					
+					$("#maskpreview" + superNum ).attr("src", image[i]);
+					$("#maskpreview" + superNum ).css("width", "74px");
+					$("#maskpreview" + superNum ).css("height", "74px");
+					$(".hidden.mask.preview_div_" + superNum ).css("display", "block");
+					superNum++;
+				}
+				
+				
+				
+				$("#maskPreview").append(
+						"<div id='maskPreviewInner" + superNum + "' class='maskPreviewInner' style=''>" +
+							"<div class='hidden mask preview_div_" + superNum + "'>" +
+								"<img class='preview' id='maskpreview" + superNum + "' alt='preview' src=''>" +
+								"<div class='image_field__remove_preview mask remove-preview hoverable' style='width:74px;height:74px;'>" +
+									"<div class='remove' style='margin-top:-20px;'>삭제</div>" +
+								"</div>" +
+							"</div>" +
+							"<input type='file' name='reviewPhoto' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
+						"</div>"
+					);
+					
+					$("#maskpreview" + superNum ).attr("src", "");
+					$("#maskpreview" + superNum ).css("width", "74px");
+					$("#maskpreview" + superNum ).css("height", "74px");
+					//$(".hidden.mask.preview_div_" + superNum ).css("display", "block");
+					superNum++;
+				
+			}
+
+			/*for(var i = 0; i < 5 - imageLength; i++){
+				$("#maskFile").append(
+						"<input type='file' name='reviewPhoto" + superNum + "' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />"
+				);
+				superNum++;
+			}*/
+		
+		
+		
+		/*for(var i = 0; i < imageLength; i++){
 			$("#maskpreview" + ( i + 1 ) ).attr("src", image[i]);
 			$("#maskpreview" + ( i + 1 ) ).css("width", "74px");
 			$("#maskpreview" + ( i + 1 ) ).css("height", "74px");
 			$(".hidden.mask.preview_div_" + ( i + 1 ) ).css("display", "block");
-		}
+		}*/
 		
 		//취소, 수정완료 눌렀을 때는 1로 초기화.
 		n = imageLength + 1;
@@ -508,12 +596,16 @@ function bindEvent(){
 		$("#maskInner").html("");
 		disable(textarea, imageForm);
 		prefix = null;
+		tempArray = new Array();
 		n = 1;
 		num = 1;
+		superNum = 1;
+		superNumFlow = 1;
 	});
 	
 	$(document).on("click", "#delete", function(){
 		console.log("rrrr");
+		
 		var focus_review_div_id = $(this).parent().parent().parent().parent().parent().parent().parent().parent().attr("id");
 		var focus_div_user = $(this).parent().parent().parent().parent().parent().parent().parent().parent().children().first().children().children().first().children().last().text();
 		var currentPageNo = $(".product_reviews__footer > #pager > .page-list > .pagination > li.ajaxPageC.active").text();
@@ -655,25 +747,70 @@ function uploadPhoto(){
 			prefix = '';
 		}
 		
-		baseSelector = "#" + prefix + "upBtn";
+		if(prefix == 'mask'){
+			if(imageLength < 6){
+				$("#maskupBtn" + (superNum - 1)).click();
+				//$(baseSelector + n).click();
+			}else{
+				alert("사진은 최대 5장까지만 업로드할 수 있습니다.")
+			}
+		}else{
+			baseSelector = "#" + prefix + "upBtn";
+			
+			if(n < 6){
+				//버튼(input type=file)클릭 강제 이벤트
+				$(baseSelector + n).click();
+				//$(baseSelector + n).trigger("click")
+				//$("input:file").val().toLowerCase();
+			}else{
+				alert("사진은 최대 5장까지만 업로드할 수 있습니다.")
+			}
+			
+		}
 		
-   		if(n < 6){
-   			//버튼(input type=file)클릭 강제 이벤트
-   			$(baseSelector + n).click();
-   			//$(baseSelector + n).trigger("click")
-   			//$("input:file").val().toLowerCase();
-   		}else{
-   			alert("사진은 최대 5장까지만 업로드할 수 있습니다.")
-   		}
+		
+		
+		
    	});
      	
    	//input file 선택했을 때
 	$(document).on("change", "input[type='file']", function(){
-		if(prefix != "mask")
-			$(".image-inline-photo-add").css("display", "block");
+		maskThumnailId = $(this).siblings().children().first().attr('id');
+		var ext = null;
 		
-		var ext = $(baseSelector + n).val().split(".").pop();
+		if(prefix != "mask"){
+			$(".image-inline-photo-add").css("display", "block");
+			
+			tempArray.push($(baseSelector + n).val());
+			console.log("tempArray : " + tempArray);
+			
+			ext = $(baseSelector + n).val().split(".").pop();
+			
+		}else if(prefix == 'mask'){
+			$("#maskPreview").append(
+				"<div id='maskPreviewInner" + superNum + "' class='maskPreviewInner' style=''>" +
+					"<div class='hidden mask preview_div_" + superNum + "'>" +
+						"<img class='preview' id='maskpreview" + superNum + "' alt='preview' src=''>" +
+						"<div class='image_field__remove_preview mask remove-preview hoverable' style='width:74px;height:74px;'>" +
+							"<div class='remove' style='margin-top:-20px;'>삭제</div>" +
+						"</div>" +
+					"</div>" +
+					"<input type='file' name='reviewPhoto' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
+				"</div>"
+			);
+				
+			$("#maskpreview" + superNum ).attr("src", "");
+			$("#maskpreview" + superNum ).css("width", "74px");
+			$("#maskpreview" + superNum ).css("height", "74px");
+			//$(".hidden.mask.preview_div_" + superNum ).css("display", "block");
+			superNum++;
+				
+			ext = $(this).val().split(".").pop();
+		}
+		
+		
 		ext = ext.toLowerCase();
+		
 		
 		if(ext.length > 0){
 			if($.inArray(ext,['gif','png','jpg','jpeg']) == -1) { 
@@ -681,35 +818,55 @@ function uploadPhoto(){
 				this.value = "";
 				return false;  
 			} else {
-				readURL(this);	
+				readURL(this);
+				
 				if(num != 6){	
 					$(this).css("display", "none");
 				}
 		 		
 				var thum = null;
+				
 				if(prefix == "mask"){
-					thum = $("." + prefix + ".preview_div_" + n).attr("class");
+					thum = $(this).siblings().attr('class');
+					//thum = $("." + prefix + ".preview_div_" + superNumFlow).attr("class");
 				}else if(prefix == ""){
 					thum = $(".preview_div_" + n).attr("class");
 				}
 				
+				//thum = $(".preview_div_" + n).attr("class");
 				thum = thum.replace( /\s/g, ".");
 				$("." + thum).css("display", "block");//숨겨진 섬네일 show
 			}
 		}
 		n++;
+		//superNumFlow++;
+		//imageLength = $(".hidden.mask").length;
 	});
 	
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
+				
 				var thumnailId = prefix + "preview"+ num;
+				
 				console.log(thumnailId);
 				$('#'+thumnailId).css("width","74px");
 				$('#'+thumnailId).css("height","74px");
 				$('#'+thumnailId).attr("src", e.target.result);
 				num++;
+				
+				if(prefix == 'mask'){
+					console.log(maskThumnailId);
+					$('#'+maskThumnailId).css("width","74px");
+					$('#'+maskThumnailId).css("height","74px");
+					$('#'+maskThumnailId).attr("src", e.target.result);
+					
+					maskThumnailId = null;//초기화
+					imageLength = $(".hidden.mask").length;
+					//파일 선택했을 때!!! mask input file 생성하니까... 여기서는 할 필요 없게씨
+					
+				}
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
@@ -724,234 +881,358 @@ function uploadPhoto(){
 		var this_preview_class = $( this ).parent().attr( "class" );//클릭한 섬네일 div
 		this_preview_class = this_preview_class.replace( /\s/g, "." );//공백 '.' 치환 
 		var preview_num = this_preview_class.substring( this_preview_class.length - 1);
-		  
-		n--;	// 6 -> 5
-		num--;	// 6 -> 5
 
- 		  	//alert( "선택된 사진 class(from parent)  : " + this_preview_class + "\n선택된 사진 번호 : " + preview_num + "\nn: " + n +"\nnum: " + num + "\n총 사진갯수 : " + num);
-		if(num == 5){
-			//사진 5장 선택됐을 때
-			if(preview_num == 5){//5번 사진 삭제시
-  		  		//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
-    			var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
-    			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-    			$("#" + prefix + "upBtn" + preview_num).val('');
-    			
-    			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
-    			var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-    			preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
-    			$( "." + preview_src_parent_5 ).css( "display", "none" );
-  		  	}
-		  
-			if(preview_num == 4){//4번 사진 삭제시( 4 <- 5 )
-				//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
-				var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
-				$( "#" + prefix + "preview" + num ).attr( "src", "" );
-				$("#" + prefix + "upBtn" + preview_num).val('');
+		
+		if(prefix == 'mask'){
+			$(this).parent().parent().remove();
+			
+			/*pre_imageLength = $(".hidden.mask").length - 1;
+			sum = pre_imageLength + $(".maskinput-file.hidden").length;
+			myslefNum = $(this).parent().attr('class').substring($(this).parent().attr('class').length - 1);
+			
+			if(sum == 5){
+				$("#maskupBtn" + myslefNum).remove();
+				$("#maskFile").append(
+						"<input type='file' name='reviewPhoto" + superNum + "' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />"
+				);
+			}else{
+				var temp = 5 - sum;
 				
-				//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
-				var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-				preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
-				$( "." + preview_src_parent_5 ).css( "display", "none" );
-				
-				//3. 5번사진 src 4번 사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
-	  		}
-  		  
-			if(preview_num == 3){//3번 사진 삭제시( 3 <- 4 <- 5 )
-	  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
-	  			var preview_src_4 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
-	  			var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
-	  			var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_5 ).css( "display", "none" );
-	  			
-	  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
-				$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
-			}	
-  		  
-			if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 <- 4 <- 5 )
-	  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
-	  			var preview_src_3 = $( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src" );
-	  			var preview_src_4 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
-	  			var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
-	  			var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_5 ).css( "display", "none" );
-	  			
-	  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
-				$( "#" + prefix + "preview" + ( num - 3 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
 			}
-  		  
-			if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 <- 3 <- 4 <- 5 )
-	  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
-	  			var preview_src_2 = $( "#" + prefix + "preview" + ( num - 3 ) ).attr( "src" );
-	  			var preview_src_3 = $( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src" );
-	  			var preview_src_4 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
-	  			var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
-	  			var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_5 ).css( "display", "none" );
-	  			
-	  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
-				$( "#" + prefix + "preview" + ( num - 4 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기		  
-				$( "#" + prefix + "preview" + ( num - 3 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
-			}
-	 	}
-		
-		if(num == 4){//사진 4장 선택됐을 때
-			if(preview_num == 4){//4번 사진 삭제시
-	    		//1. 4번사진 부모 class값 가져오고 display: none
-	    		var preview_src_parent_4 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	    		preview_src_parent_4 = preview_src_parent_4.replace( /\s/g, ".");
-	    		$( "." + preview_src_parent_4 ).css( "display", "none" );
-	    		$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	    		$("#" + prefix + "upBtn" + preview_num).val('');
-			}
-			  
-			if(preview_num == 3){//3번 사진 삭제시( 3 <- 4 )
-	  			//1. 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
-	  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
-	  			var preview_src_4 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			var preview_src_parent_4 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_4 ).css( "display", "none" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//3. 4번사진 src 3번 사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//5번사진 src --> 4번사진 src 넣기		  
-			}
-	  		  
-			if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 <- 4 )
-	  			//1. 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
-	  			var preview_src_3 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
-	  			var preview_src_4 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
-	  			var preview_src_parent_4 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_4 ).css( "display", "none" );
-	  			
-	  			//3. 3번사진 src 2번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
-				$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기		  
-			}
-	  		  
-			if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 <- 3 <- 4 )
-	  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
-	  			var preview_src_2 = $( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src" );
-	  			var preview_src_3 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
-	  			var preview_src_4 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
-	  			var preview_src_parent_4 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_4 ).css( "display", "none" );
-	  			
-	  			//3. 2번사진 src 1번 사진 src으로 넣기 / 3번사진 src 2번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
-				$( "#" + prefix + "preview" + ( num - 3 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기		  
-			}
+			
+			$("#maskFile").append(
+					"<input type='file' name='reviewPhoto" + superNum + "' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />"
+			);
+			
+			superNum++;
+			superNumFlow++;*/
+			imageLength = $(".hidden.mask").length;
 		}
 		
-		if(num == 3){//사진 3장 선택됐을 때
-			if(preview_num == 3){//3번 사진 삭제시
-	    		//1. 3번사진 부모 class값 가져오고 display: none
-	    		var preview_src_parent_3 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	    		preview_src_parent_3 = preview_src_parent_3.replace( /\s/g, ".");
-	    		$( "." + preview_src_parent_3 ).css( "display", "none" );
-	    		$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	    		$("#" + prefix + "upBtn" + preview_num).val('');
-			}
+		
+		
+		
+		
+		
+		if(prefix != 'mask'){
+		
+			n--;	// 6 -> 5
+			num--;	// 6 -> 5
+	
+	 		  	//alert( "선택된 사진 class(from parent)  : " + this_preview_class + "\n선택된 사진 번호 : " + preview_num + "\nn: " + n +"\nnum: " + num + "\n총 사진갯수 : " + num);
+			if(num == 5){
+				//사진 5장 선택됐을 때
+				if(preview_num == 5){//5번 사진 삭제시
+	  		  		//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+	    			var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
+	    			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+	    			
+	    			//rename 처리하려면 기존에 있던 img src와 change 하면서 입력된 input file의 파일 이름이 필요. 
+	    			//입력된 input file의 이름을 저장한 tempArray
+	    			//img를 지워줄 때. tempArray 에 저장된 이름을 지워주는 코드****
+	    			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+	    				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+	    			}
+	    			$("#" + prefix + "upBtn" + preview_num).val('');
+	    			console.log("삭제후 tempArray : " + tempArray);
+	    			
+	    			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+	    			var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+	    			preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
+	    			$( "." + preview_src_parent_5 ).css( "display", "none" );
+	  		  	}
 			  
-			if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 )
-	  			//1. 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
-	  			//2. 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
-	  			var preview_src_3 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			var preview_src_parent_3 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_3 = preview_src_parent_3.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_3 ).css( "display", "none" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//3. 3번사진 src 2번 사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기		  
-			}
+				if(preview_num == 4){//4번 사진 삭제시( 4 <- 5 )
+					//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+					var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
+					$( "#" + prefix + "preview" + num ).attr( "src", "" );
+					if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+						tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+					}
+					$("#" + prefix + "upBtn" + preview_num).val('');
+					console.log("삭제후 tempArray : " + tempArray);
+					
+					//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+					var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+					preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
+					$( "." + preview_src_parent_5 ).css( "display", "none" );
+					
+					//3. 5번사진 src 4번 사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
+		  		}
 	  		  
-			if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 <- 3 )
-	  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
-	  			var preview_src_2 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
-	  			var preview_src_3 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//2. 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
-	  			var preview_src_parent_3 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_3 = preview_src_parent_3.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_3 ).css( "display", "none" );
-	  			
-	  			//3. 2번사진 src 1번 사진 src으로 넣기 / 3번사진 src 2번 사진 src으로 넣기
-				$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기		  
+				if(preview_num == 3){//3번 사진 삭제시( 3 <- 4 <- 5 )
+		  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+		  			var preview_src_4 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
+		  			var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		  			}
+		  			
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			
+		  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+		  			var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_5 ).css( "display", "none" );
+		  			
+		  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+					$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
+				}	
+	  		  
+				if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 <- 4 <- 5 )
+		  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+		  			var preview_src_3 = $( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src" );
+		  			var preview_src_4 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
+		  			var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		  			}
+		  			
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			
+		  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+		  			var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_5 ).css( "display", "none" );
+		  			
+		  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+					$( "#" + prefix + "preview" + ( num - 3 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
+				}
+	  		  
+				if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 <- 3 <- 4 <- 5 )
+		  			//1. 5번사진 src 담기(5번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+		  			var preview_src_2 = $( "#" + prefix + "preview" + ( num - 3 ) ).attr( "src" );
+		  			var preview_src_3 = $( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src" );
+		  			var preview_src_4 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
+		  			var preview_src_5 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		  			}
+		  			
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			
+		  			//2. 5번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+		  			var preview_src_parent_5 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_5 = preview_src_parent_5.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_5 ).css( "display", "none" );
+		  			
+		  			//3. 5번사진 src 4번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+					$( "#" + prefix + "preview" + ( num - 4 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기		  
+					$( "#" + prefix + "preview" + ( num - 3 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_5 );//5번사진 src --> 4번사진 src 넣기		  
+				}
+		 	}
+			
+			if(num == 4){//사진 4장 선택됐을 때
+				if(preview_num == 4){//4번 사진 삭제시
+		    		//1. 4번사진 부모 class값 가져오고 display: none
+		    		var preview_src_parent_4 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		    		preview_src_parent_4 = preview_src_parent_4.replace( /\s/g, ".");
+		    		$( "." + preview_src_parent_4 ).css( "display", "none" );
+		    		$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		    		
+		    		if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		    			tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		    		}
+		    		
+		    		$("#" + prefix + "upBtn" + preview_num).val('');
+		    		console.log("삭제후 tempArray : " + tempArray);
+				}
+				  
+				if(preview_num == 3){//3번 사진 삭제시( 3 <- 4 )
+		  			//1. 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
+		  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+		  			var preview_src_4 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			var preview_src_parent_4 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_4 ).css( "display", "none" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+	 	  			}
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			
+		  			//3. 4번사진 src 3번 사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//5번사진 src --> 4번사진 src 넣기		  
+				}
+		  		  
+				if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 <- 4 )
+		  			//1. 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+		  			var preview_src_3 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
+		  			var preview_src_4 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		  			}
+		  			
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			
+		  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+		  			var preview_src_parent_4 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_4 ).css( "display", "none" );
+		  			
+		  			//3. 3번사진 src 2번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+					$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기		  
+				}
+		  		  
+				if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 <- 3 <- 4 )
+		  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 4번사진 src 담기(4번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+		  			var preview_src_2 = $( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src" );
+		  			var preview_src_3 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
+		  			var preview_src_4 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		  			}
+		  			
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			
+		  			//2. 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 4번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) / 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+		  			var preview_src_parent_4 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_4 = preview_src_parent_4.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_4 ).css( "display", "none" );
+		  			
+		  			//3. 2번사진 src 1번 사진 src으로 넣기 / 3번사진 src 2번 사진 src으로 넣기 / 4번사진 src 3번 사진 src으로 넣기
+					$( "#" + prefix + "preview" + ( num - 3 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_4 );//4번사진 src --> 3번사진 src 넣기		  
+				}
 			}
-		}
-		
-		if(num == 2){//사진 2장 선택했을 때
-			if(preview_num == 2){//2번 사진 삭제시
-	    		//1. 2번사진 부모 class값 가져오고 display: none
-	    		var preview_src_parent_2 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	    		preview_src_parent_2 = preview_src_parent_2.replace( /\s/g, ".");
-	    		$( "." + preview_src_parent_2 ).css( "display", "none" );
-	    		$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	    		$("#" + prefix + "upBtn" + preview_num).val('');
+			
+			if(num == 3){//사진 3장 선택됐을 때
+				if(preview_num == 3){//3번 사진 삭제시
+		    		//1. 3번사진 부모 class값 가져오고 display: none
+		    		var preview_src_parent_3 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		    		preview_src_parent_3 = preview_src_parent_3.replace( /\s/g, ".");
+		    		$( "." + preview_src_parent_3 ).css( "display", "none" );
+		    		$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		    		
+		    		if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		    			tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		    		}
+		    		
+		    		$("#" + prefix + "upBtn" + preview_num).val('');
+		    		console.log("삭제후 tempArray : " + tempArray);
+				}
+				  
+				if(preview_num == 2){//2번 사진 삭제시( 2 <- 3 )
+		  			//1. 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
+		  			//2. 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+		  			var preview_src_3 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			var preview_src_parent_3 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_3 = preview_src_parent_3.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_3 ).css( "display", "none" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		  			}
+		  			
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			
+		  			//3. 3번사진 src 2번 사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기		  
+				}
+		  		  
+				if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 <- 3 )
+		  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐.) / 3번사진 src 담기(3번사진 src 삭제 안해도 추가할 때 덧입혀짐.)
+		  			var preview_src_2 = $( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src" );
+		  			var preview_src_3 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		  			}
+		  			
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			
+		  			//2. 3번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none) 
+		  			var preview_src_parent_3 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_3 = preview_src_parent_3.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_3 ).css( "display", "none" );
+		  			
+		  			//3. 2번사진 src 1번 사진 src으로 넣기 / 3번사진 src 2번 사진 src으로 넣기
+					$( "#" + prefix + "preview" + ( num - 2 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_3 );//3번사진 src --> 2번사진 src 넣기		  
+				}
 			}
-			  
-			if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 )
-	  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
-	  			//2. 2번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
-	  			var preview_src_2 = $( "#" + prefix + "preview" + num ).attr( "src" );
-	  			var preview_src_parent_2 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	  			preview_src_parent_2 = preview_src_parent_2.replace( /\s/g, ".");
-	  			$( "." + preview_src_parent_2 ).css( "display", "none" );
-	  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	  			$("#" + prefix + "upBtn" + preview_num).val('');
-	  			
-	  			//3. 2번사진 src 1번 사진 src 넣기
-				$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기		  
+			
+			if(num == 2){//사진 2장 선택했을 때
+				if(preview_num == 2){//2번 사진 삭제시
+		    		//1. 2번사진 부모 class값 가져오고 display: none
+		    		var preview_src_parent_2 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		    		preview_src_parent_2 = preview_src_parent_2.replace( /\s/g, ".");
+		    		$( "." + preview_src_parent_2 ).css( "display", "none" );
+		    		$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		    		
+		    		if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		    			tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		    		}
+		    		
+		    		$("#" + prefix + "upBtn" + preview_num).val('');
+		    		console.log("삭제후 tempArray : " + tempArray);
+				}
+				  
+				if(preview_num == 1){//1번 사진 삭제시( 1 <- 2 )
+		  			//1. 2번사진 src 담기(2번사진 src 삭제 안해도 추가할 때 덧입혀짐 )
+		  			//2. 2번사진 부모 class값 가져오기(class 값에 공백을 '.'로 치환 --> display: none)
+		  			var preview_src_2 = $( "#" + prefix + "preview" + num ).attr( "src" );
+		  			var preview_src_parent_2 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		  			preview_src_parent_2 = preview_src_parent_2.replace( /\s/g, ".");
+		  			$( "." + preview_src_parent_2 ).css( "display", "none" );
+		  			$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		  			
+		  			if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		  				tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		  			}
+		  			
+		  			$("#" + prefix + "upBtn" + preview_num).val('');
+		  			console.log("삭제후 tempArray : " + tempArray);
+		  			
+		  			//3. 2번사진 src 1번 사진 src 넣기
+					$( "#" + prefix + "preview" + ( num - 1 ) ).attr( "src", preview_src_2 );//2번사진 src --> 1번사진 src 넣기		  
+				}
 			}
-		}
-		
-		if(num == 1){
-			if(preview_num == 1){//1번 사진 삭제시
-	    		//1. 1번사진 부모 class값 가져오고 display: none
-	    		var preview_src_parent_1 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
-	    		preview_src_parent_1 = preview_src_parent_1.replace( /\s/g, ".");
-	    		$( "." + preview_src_parent_1 ).css( "display", "none" );
-	    		$( "#" + prefix + "preview" + num ).attr( "src", "" );
-	    		$("#" + prefix + "upBtn" + preview_num).val('');
+			
+			if(num == 1){
+				if(preview_num == 1){//1번 사진 삭제시
+		    		//1. 1번사진 부모 class값 가져오고 display: none
+		    		var preview_src_parent_1 = $( "#" + prefix + "preview" + num ).parent().attr( "class" );
+		    		preview_src_parent_1 = preview_src_parent_1.replace( /\s/g, ".");
+		    		$( "." + preview_src_parent_1 ).css( "display", "none" );
+		    		$( "#" + prefix + "preview" + num ).attr( "src", "" );
+		    		
+		    		if(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()) >= 0){
+		    			tempArray.splice(tempArray.indexOf($("#" + prefix + "upBtn" + preview_num).val()), 1);
+		    		}
+		    		
+		    		$("#" + prefix + "upBtn" + preview_num).val('');
+		    		console.log("삭제후 tempArray : " + tempArray);
+				}
 			}
 		}
 	});

@@ -28,6 +28,13 @@
 	var n = 1;
 	var num = 1;
 	var prefix = null;
+	var tempArray = new Array();//mask 이미지 추가 삭제시 input file에 입력되는 파일명 저장하는 변수
+	var tempItemDetailId = '${itemDetailId}';
+	var superNum = 1;//input file
+	var superNumFlow = 1;//thumnail
+	var sum = 0;
+	var maskThumnailId = null;
+	
 	
     $(document).ready(function(){
     	//console.log("11111111111");
@@ -206,6 +213,7 @@
 				      <input type="hidden" value="24" name="review[review_source]" id="review_review_source">
 				      <input type="hidden" name="review[sub_order_id]" id="review_sub_order_id">
 				      <input type="hidden" name="review[position]" id="review_position">
+				      
 				      <button class="submit hoverable" type="submit" data-disable-with="저장 중...">
 				        <div class="title">
 				          <span class="fa fa-check-circle-o"></span>

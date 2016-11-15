@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -229,8 +230,9 @@ public class SearchController {
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String searchList(HttpServletRequest request, @RequestParam("itemName") String itemName, Model title,
+	public String searchList(HttpServletRequest request, HttpServletResponse response, @RequestParam("itemName") String itemName, Model title,
 			Model list) throws Exception {
+		
 		// 페이지 수 처리용 변수
 		int currentPage = 1;
 		int limit = 8; // 한 페이지에 8개씩 출력
@@ -259,6 +261,7 @@ public class SearchController {
 		
 		if (searchList.isEmpty()) {
 			searchList = null;
+			System.out.println("검색결과 + " +searchList);
 		}
 		title.addAttribute("listTitle", itemName);
 		list.addAttribute("startPage", startPage);

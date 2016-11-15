@@ -99,14 +99,14 @@ public class MemberController {
 			@RequestParam("userpass_confirm") String pass_confirm, @RequestParam("name") String name,
 			@RequestParam("birthdate") Date birthdate, @RequestParam("postnum") String postnum,
 			@RequestParam("address") String address, @RequestParam("addressdetail") String addressDetail,
-			@RequestParam("phone") String phone, @RequestParam("email") String email, HttpServletResponse response) throws IOException {
+			@RequestParam("phone") String phone, @RequestParam("email") String email, Model model, HttpServletResponse response) throws IOException {
 		int mJoin = 0;
 		System.out.println(id + ", " + pass + ", " + name + ", " + birthdate + ", " + email + ", " + phone + ", "
 				+ postnum + ", " + address + ", " + addressDetail);		
 		mJoin = memberService
 				.insertMember(new Member(id, pass, name, birthdate, email, phone, postnum, address, addressDetail));
 		System.out.println(mJoin + "@@@@Controller");
-		
+		model.addAttribute("joinResult", mJoin);
 		return "home";
 	}
 

@@ -2,6 +2,7 @@ package com.project.h72.detail.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
@@ -57,8 +58,9 @@ public class DetailController {
 		//System.out.println("ItemDetailId(request) : " + request.getParameter("ItemDetailIddd"));
 		
 		//클릭했을 때 Item_detail_id 필수
-		System.out.println("ItemDetailId(param name) : " + ItemDetailId);
+		System.out.println("ItemDetailId : " + ItemDetailId);
 		List<DetailDIVO> itemDetailList = ds.selectDetailItem(ItemDetailId);
+		System.out.println("왜???????????????????????????????????/ : " + itemDetailList.get(0).getITEM_NAME());
 		model.addAttribute("itemDetailList", itemDetailList);
 		model.addAttribute("itemDetailId", ItemDetailId);
 		
@@ -243,7 +245,7 @@ public class DetailController {
 		request.getParameter("reviewList");
 		System.out.println("insertReview run...");
 		
-		//전송 파일에 용량 제한을 두고 싶으면 정함 : 10 메가바이트로 할 경우
+				//전송 파일에 용량 제한을 두고 싶으면 정함 : 10 메가바이트로 할 경우
 				int sizeLimit = 1024 * 1024 * 10;
 				
 				//전송 방식에 multipart 설정을 했는지 검사
@@ -464,6 +466,7 @@ public class DetailController {
 		}
 		
 		
+		
 		//2. 전달 받은 review번호(reviewNo) 와 userid(user)를 가지고 delete 
 		int result = ds.deleteReview(form);
 		
@@ -483,15 +486,196 @@ public class DetailController {
 	
 	@RequestMapping(value="/maskModify", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> maskModify(@RequestBody String[] srcImageArr, 
-										  HttpServletRequest request, Model model){
-		List<String> srcList = new ArrayList<String>();
-		//String fileImageArr = request.getParameter("fileImageArr");
+	public Map<String, Object> maskModify(@RequestBody ArrayList<String> totalImageArr, 
+										  HttpServletRequest request, Model model) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("maskModify run...");
-		System.out.println(srcImageArr);
-		for(String s : srcImageArr)
+		System.out.println("초기 사이즈 : " + totalImageArr.size());
+		for(String s : totalImageArr)
 			System.out.println(s);
+		int reviewId = Integer.parseInt(totalImageArr.get( totalImageArr.size() - 1 ));
+		String itemDetailId = totalImageArr.get( totalImageArr.size() - 2 );
+		String reviewUser = totalImageArr.get( totalImageArr.size() - 3 );
+		String reviewText = totalImageArr.get( totalImageArr.size() - 4 );
+		totalImageArr.remove(totalImageArr.size() - 1);//마지막 인덱스에 있는 리뷰번호 삭제하여 이미지 list로만 만든다.
+		totalImageArr.remove(totalImageArr.size() - 1);//마지막에서 두번째에 있는 인덱스인 itemDetailid 를 삭제하여 이미지 list로만 만든다.
+		totalImageArr.remove(totalImageArr.size() - 1);//마지막에서 세번째에 있는 인덱스인 reviewUser 를 삭제하여 이미지 list로만 만든다.
+		totalImageArr.remove(totalImageArr.size() - 1);//마지막에서 네번째에 있는 인덱스인 reviewText 를 삭제하여 이미지 list로만 만든다.
+		
+		ArrayList<String> customImageArr = new ArrayList<String>();
+		
+		System.out.println("maskModify run...");
+		System.out.println("이미지 총 갯수(size) : " + totalImageArr.size()); //totalImageArr 마지막 인덱스에는 리뷰번호가 있기 떄문에 -1
+		System.out.println("review 번호 : " + reviewId + " 번");
+		System.out.println("itemDetailId : : " + itemDetailId);
+		System.out.println("reviewUser : : " + reviewUser);
+		System.out.println("reviewText : : " + reviewText);
+		
+		ManageForm form = new ManageForm(String.valueOf(reviewId), reviewUser, itemDetailId);
+		System.out.println("--------------imageList after customizing----------------");
+		for(int i = 0; i < totalImageArr.size(); i++){
+			if(totalImageArr.get(i).indexOf("/") >= 0){//해당 문자열 포함하면
+				System.out.println(totalImageArr.get(i).substring(totalImageArr.get(i).lastIndexOf("/") + 1, totalImageArr.get(i).length()));
+				customImageArr.add(totalImageArr.get(i).substring(totalImageArr.get(i).lastIndexOf("/") + 1, totalImageArr.get(i).length()));
+				
+			}else if(totalImageArr.get(i).indexOf("\\") >= 0){
+				System.out.println(totalImageArr.get(i).substring(totalImageArr.get(i).lastIndexOf("\\") + 1, totalImageArr.get(i).length()));
+				customImageArr.add(totalImageArr.get(i).substring(totalImageArr.get(i).lastIndexOf("\\") + 1, totalImageArr.get(i).length()));
+			}
+		}
+		
+		
+		
+		//해당하는 리뷰번호, user, itemDetailId 를 통해 해당 review를 가져와서 file 삭제 후 이미지 새로 생성해주고, db에선 modify
+		Review review = ds.selectSingleReview(form);
+		System.out.println("가져온 review : ");
+		System.out.println(review);
+		
+		//가져온 리뷰에서 해당하는 uploadFiles 삭제
+		ArrayList<String> arr = new ArrayList<String>();
+		
+		String img01 = null;
+		String img02 = null;
+		String img03 = null;
+		String img04 = null;
+		String img05 = null;
+		
+		if(review.getR_IMG01() != null){
+			img01 = review.getR_IMG01();
+			arr.add(img01);
+		}
+		if(review.getR_IMG02() != null){
+			img02 = review.getR_IMG02();
+			arr.add(img02);
+		}
+		if(review.getR_IMG03() != null){
+			img03 = review.getR_IMG03();
+			arr.add(img03);
+		}
+		if(review.getR_IMG04() != null){
+			img04 = review.getR_IMG04();
+			arr.add(img04);
+		}
+		if(review.getR_IMG05() != null){
+			img05 = review.getR_IMG05();
+			arr.add(img05);
+		}
+		
+		System.out.println(img01 + ", " + img02 + ", " + img03 + ", " + img04 + ", " + img05 + ", arr size : " + arr.size());
+		
+		String savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+		//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
+		
+		for(int i = 0; i < arr.size(); i++){
+			File imgFile = new File(savePath + "\\" + arr.get(i));
+			imgFile.delete();
+		}
+		////////////////////////////////////////////////////////////
+		
+		//rename후 review 객체에 담고 update
+		int result = 0;
+		int listNo = 0;
+		savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+		//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
+		ArrayList<String> renameFileNames = new ArrayList<String>();
+		
+		
+		if(customImageArr.size() > 0){
+			//Collections.reverse(totalImageArr);
+			
+			listNo = reviewId;
+			
+			System.out.println("listNo : " + listNo);
+		
+			
+			//바꿀 파일명 만들기
+			int index = 1;
+			System.out.println("index : " + index);
+			
+			for(int i = 0; i < customImageArr.size(); i++){
+				System.out.println("자.... 리네임을 시작합니다. 먼저!!!!!!!!! \noriginalFileNames.size() : " + customImageArr.size());
+				if(customImageArr != null){
+					StringBuilder sb = new StringBuilder();
+					System.out.println("customImageArr.get(" + i + ") : " + customImageArr.get(i));
+					
+					String renameFileName = sb.append(itemDetailId + "_review_" + listNo + "_" + String.valueOf(index) + "."
+								+ customImageArr.get(i).substring(customImageArr.get(i).lastIndexOf(".") + 1)).toString();
+					System.out.println("after");
+					System.out.println("리네임 :");
+					System.out.println(renameFileName);
+					System.out.println("------------------------------------");
+					System.out.println("savePath : " + savePath);
+					renameFileNames.add(renameFileName);
+					System.out.println("renameFileNames : ");
+					System.out.println(renameFileNames);
+					
+					File saveFiles = new File(savePath + "\\" + customImageArr.get(i));
+					//File saveFile = new File(customImageArr.get(i));//savePath가 이미 src명에 있기 떄문에
+					File newFiles = new File(savePath + "\\" + renameFileNames.get(i));
+					
+					//java.lang.IndexOutOfBoundsException: Index: 3, Size: 1
+					if(!saveFiles.renameTo(newFiles)){
+						//파일 읽기용 변수
+						int read = 0;
+						//한번에 읽을 크기와 값 담을 배열 지정
+						byte[] buf = new byte[1024];
+						
+						//파일 입력용 스트림
+						FileInputStream fin = new FileInputStream(saveFiles);
+						FileOutputStream fout = new FileOutputStream(newFiles);
+						
+						while((read = fin.read(buf, 0, buf.length)) != -1){
+							fout.write(buf);
+						}
+						
+						fin.close();
+						fout.close();
+						saveFiles.delete();  //원본 삭제함
+					}
+					index++;
+				}
+			}
+		}
+		
+		if(renameFileNames.size() == 0){
+			review = new Review(itemDetailId, reviewUser, reviewText);
+		}else if(renameFileNames.size() == 1){ // 사진 1장 업로드
+			review = new Review(itemDetailId, reviewUser, reviewText, renameFileNames.get(0));
+		}else if(renameFileNames.size() == 2){ // 사진 2장 업로드
+			review = new Review(itemDetailId, reviewUser, reviewText, renameFileNames.get(0), renameFileNames.get(1));
+		}else if(renameFileNames.size() == 3){ // 사진 3장 업로드
+			review = new Review(itemDetailId, reviewUser, reviewText, renameFileNames.get(0), renameFileNames.get(1), renameFileNames.get(2));
+		}else if(renameFileNames.size() == 4){ // 사진 4장 업로드
+			review = new Review(itemDetailId, reviewUser, reviewText, renameFileNames.get(0), renameFileNames.get(1), renameFileNames.get(2), renameFileNames.get(3));
+		}else if(renameFileNames.size() == 5){ // 사진 5장 업로드
+			review = new Review(itemDetailId, reviewUser, reviewText, renameFileNames.get(0), renameFileNames.get(1), renameFileNames.get(2), renameFileNames.get(3), renameFileNames.get(4));
+		}
+		
+		System.out.println("새로 수정된 리뷰!!!!");
+		System.out.println(review);
+		//result = ds.insertReview(review);
+		
+		//String rWriter = multi.getParameter("R_WRITER");
+		//String itemDetailId = multi.getParameter("ITEM_DETAIL_ID");
+		//String rContents = multi.getParameter("R_CONTENTS");
+		//String itemDetailName = multi.getParameter("ItemDetailName");
+		//String itemPrice = multi.getParameter("ItemPrice");
+		
+		//String url = "redirect:http://localhost:8888/h72/detail/selectItem?ItemDetailId="+itemDetailId+"&ItemDetailName="+itemDetailName+"&ItemPrice="+itemDetailName;
+		//String url = "selectItem?ItemDetailId=" + itemDetailId + "&ItemDetailName=" + itemDetailName + "&ItemPrice=" + itemPrice;
+		String url = "selectItem?ItemDetailId=" + itemDetailId;
+		ModelAndView mav = new ModelAndView();
+		
+		
+		if(result > 0){
+			//mav.addObject(url);
+			mav.setView(new RedirectView(url));
+		}
+		System.out.println("result !!!!!!!!\n" + result);
+		
+		
+		
+		
+		
 		
 		return map;
 	}

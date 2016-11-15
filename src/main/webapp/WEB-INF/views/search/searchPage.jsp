@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +36,7 @@
 					</c:when>
 					<c:otherwise>
 						<h2>[${listTitle }] 검색결과</h2>
+
 					</c:otherwise>
 				</c:choose>
 
@@ -65,57 +67,50 @@
 
 						</c:otherwise>
 					</c:choose>
+					<script type="text/javascript">
+	$(function() {
+
+		$('#inner_searchBtn').click(function() {
+			var keyword = $("#inner_searchInput").val();
+			if (keyword == "" || keyword == " " ) {
+				alert("검색어를 입력하세요");
+			} else {
+				searchBarForm.submit();
+			}
+		});
+	});
+</script>
+					<div id="inner_searchForm">
+						<form id="searchBarForm" action="<c:url value="/search" />">
+							상품명 <input type="text" name="itemName" id="inner_searchInput">
+							<input type="button" value="상품검색" id="inner_searchBtn">
+						</form>
+					</div>
 
 					<c:forEach items="${category }" var="list">
 
 						<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
 							class="item xans-record-">
+
 							<div class="box">
-								<a href="#" name="anchorBoxName_8025"><img
-									src="/h72/resources${list.mainImg }" alt="" class="thumb"
-									style="width: 250px; height: 250px;"></a>
+								<%-- <c:url var="url" value="selectItem">
+									<c:param name="ItemDetailId" value="${category.get(list).itemDetailId }" />
+								</c:url> --%>
+								<a href="<c:url value="/detail/selectItem?ItemDetailId=${list.itemDetailId }" />" 
+								name="anchorBoxName_8025"> 
+								<img src="/h72/resources${list.mainImg }" alt="" class="thumb"
+										style="width: 250px; height: 250px;"></a>
 								<p class="name"></p>
-								<p
-									style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
-									<a href="#"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
+								<p id="inner_itemName">
+									<a href="<c:url value="/detail/selectItem?ItemDetailId=${list.itemDetailId }" />"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
 								</p>
-								<p class="price"
-									style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
-									<span
-										style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
-									\ ${list.minPrice}
-								</p>
+								<p class="price" id="inner_itemPrice">\ ${list.minPrice}</p>
 							</div>
 						</li>
 					</c:forEach>
-
-					<%-- <c:otherwise>
-
-							<c:forEach items="${keywordList}" var="list">
-								<li id="anchorBoxId_8025" style="margin-bottom: 20px;"
-									class="item xans-record-">
-									<div class="box">
-										<a href="#" name="anchorBoxName_8025"><img
-											src="/h72/resources${list.mainImg }" alt="" class="thumb"
-											style="width: 250px; height: 250px;"></a>
-										<p class="name"></p>
-										<p
-											style="letter-spacing: -1px; text-align: left; border-bottom: 1px solid #e7e7e7; padding-bottom: 5px; margin-bottom: 5px;">
-											<a href="#"><span
-												style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
-										</p>
-										<p class="price"
-											style="font-family: 'Lato', sans-serif; font-weight: 400; color: #333; font-size: 14px; padding: 0; text-align: left; line-height: 20px;">
-											<span
-												style="text-decoration: line-through; color: #a2a2a2; font-family: 'Lato', sans-serif; font-weight: 300;"></span>
-											\ ${list.minPrice}
-										</p>
-									</div>
-								</li>
-							</c:forEach>
-
-						</c:otherwise>
-					</c:choose> --%>
+					<c:if test="${category eq null }">
+						<p style="font-size: 12px; margin-top: 50px;">등록된 상품이 없습니다.</p>
+					</c:if>
 				</ul>
 			</div>
 			<div class="searchList_paging">

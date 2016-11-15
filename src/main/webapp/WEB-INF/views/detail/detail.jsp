@@ -150,6 +150,11 @@ function ResizeFrame(name)
 			</script>    
 			<script>
             $(document).ready(function(){
+            	alert();
+            	var itemFullNameTrim = '${itemDetailList.get(0).ITEM_NAME}';
+    			console.log("111 : " + itemFullNameTrim);
+    			itemFullNameTrim = itemFullNameTrim.trim();
+    			console.log("222 : " + itemFullNameTrim);
             	//$("#span_mileage_text").text();            	
             	var mileage = numberWithCommas(Math.floor(Number('${itemDetailList[0].SAIL_PRICE}')*Number('${loginUser.pointRate}')/100));
             	$("#span_mileage_text").text(mileage + "원"); 
@@ -399,6 +404,8 @@ function ResizeFrame(name)
 				    			}
 				    		}
 				    		
+			    			
+			    			
 					    	$.ajax({
 					    		url : '/h72/detail/insertCart' ,
 					    		type : 'post' , 
@@ -407,9 +414,9 @@ function ResizeFrame(name)
 					    				itemOptionName : arrOpName , 
 					    				op_count : op_count ,
 					    				userid : loginUserId ,
-					    				itemFullName : '${itemDetailList.get(0).ITEM_NAME }' ,
-					    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID }' ,
-					    				mainImg : '${itemDetailList.get(0).MAIN_IMG }' ,
+					    				itemFullName : '${itemDetailList.get(0).ITEM_NAME}' , //155번 low 참조
+					    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID}' ,
+					    				mainImg : '${itemDetailList.get(0).MAIN_IMG}' ,
 					    				message : null ,
 					    				KitYN : 'N' ,
 					    				kinds : kinds},
@@ -759,6 +766,25 @@ function ResizeFrame(name)
 
 	</div>
 	
+	<!-- detail 상품 수정 : admin -->
+
+	<form action="productEnrollUpdateView" method="POST" id="product_updateForm">
+	   <div id="product_UpdateWrap">
+	      <div id="product_Update">수정하기</div>
+	   </div>
+	   <c:forEach items="${itemDetailList }" varStatus="i">
+	      <input type="hidden" name="itemId${i.count}" value="${itemDetailList[i.index].ITEM_ID }">
+	   </c:forEach>
+	</form>
+	   
+	   <script>
+	      $(document).ready(function(){
+	         $("#product_UpdateWrap").click(function(){
+	            $('#product_updateForm').submit();
+	         });
+	      });
+	   </script>
+	
 	
 <jsp:include page='../main_footer.jsp' flush="false" />
 <!-- END --> 
@@ -767,26 +793,8 @@ function ResizeFrame(name)
 
 	<div id="mask">
 			<div id="maskInner">
-			
-			
-				<!-- <div class='preview-container' style='display:inline-flex'>
-					<div class='hidden mask preview_div'>
-						<img class='preview' id='maskpreview1' alt='preview' >
-						<div class='image_field__remove_preview mask remove-preview hoverable'>
-							<div class='remove'>삭제</div>
-						</div>
-					</div>
-					<div class='mask fileWrap'>
-						<input type='file' name='reviewPhoto1' id='maskupBtn1' class='maskinput-file hidden' accept='image/*' multiple='multiple' />
-					</div>
-				</div> -->
-			
-			
 			</div>
 	</div>
-	
-	
-	
 
 
 </body>

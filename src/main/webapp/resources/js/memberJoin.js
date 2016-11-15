@@ -108,6 +108,7 @@ $(document).ready(function() {
 		var re_mail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;  // 이메일검사식
 		var re_birth = /^([0-9]{4,4})-([0-9]{2,2})-([0-9]{2,2})$/; //생년월일
 		var re_tel = /^([0-9]{3,3})-([0-9]{4,4})-([0-9]{4,4})$/; // 전화번호 검사식
+		var mjoinResult = $("#mjoinResult").val();
 		
 		if (userid == "") {
 			alert('아이디를 입력하세요.');
@@ -161,7 +162,12 @@ $(document).ready(function() {
         	alert('이용약관 및 정보수집 활용동의에 모두 동의해 주세요.');
             return false;
 		}else {
+			if(mjoinResult != 1){
+				alert('정보가 제대로 입력되지 않았습니다');
+				return false;
+			}else{
 			mJoinForm.submit();
+			}
 		}
 		
 	});
