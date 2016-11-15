@@ -136,7 +136,7 @@
 						<c:set value="etc?" var="cate"></c:set>
 					</c:when>
 					<c:otherwise>
-						<c:set value="search?" var="cate"></c:set>
+						<c:set value="search?itemName=${listTitle }&" var="cate"></c:set>
 					</c:otherwise>
 				</c:choose>
 				<c:if test="${currentPage <= 1 }">
