@@ -766,6 +766,25 @@ function ResizeFrame(name)
 
 	</div>
 	
+	<!-- detail 상품 수정 : admin -->
+
+	<form action="productEnrollUpdate" method="POST" id="product_updateForm">
+	   <div id="product_UpdateWrap">
+	      <div id="product_Update">수정하기</div>
+	   </div>
+	   <c:forEach items="${itemDetailList }" varStatus="i">
+	      <input type="hidden" name="itemId${i.count}" value="${itemDetailList[i.index].ITEM_ID }">
+	   </c:forEach>
+	</form>
+	   
+	   <script>
+	      $(document).ready(function(){
+	         $("#product_UpdateWrap").click(function(){
+	            $('#product_updateForm').submit();
+	         });
+	      });
+	   </script>
+	
 	
 <jsp:include page='../main_footer.jsp' flush="false" />
 <!-- END --> 
@@ -776,37 +795,6 @@ function ResizeFrame(name)
 			<div id="maskInner">
 			</div>
 	</div>
-	
-	
-
-
-
-<!-- detail 상품 수정 : admin -->
-
-<form action="" method="POST" id="product_updateForm">
-   <div id="product_UpdateWrap">
-      <div id="product_Update">수정하기</div>
-   </div>
-   <c:forEach items="${itemDetailList }" varStatus="i">
-      <input type="hidden" name="itemId${i.count}" value="${itemDetailList[i.index].ITEM_ID }">
-   </c:forEach>
-</form>
-   
-   <script>
-      $(document).ready(function(){
-         $("#product_UpdateWrap").click(function(){
-            $('#product_updateForm').submit();
-         });
-      });
-   </script>
-	
-	
-	
-	
-	
-	
-	
-	
 
 
 </body>
