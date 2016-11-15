@@ -34,6 +34,14 @@ public class Order {
 
 	
 
+	public Order(String userId, int totalSavingPoint) {
+		super();
+		this.userId = userId;
+		this.totalSavingPoint = totalSavingPoint;
+	}
+
+
+
 	public Order(String orderNo, String userId, String mainImgN1, String itemNameN1, String itemOptionNameN1,
 			int totalQuantity, int kindsQuantity, int totalPrice, String paymentMethod, int paymentPoint,
 			int totalSavingPoint, int deliveryPee, String phone, String postNum, String address, String addressDetail,

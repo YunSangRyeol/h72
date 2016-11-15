@@ -185,6 +185,9 @@
    		 WHERE ENROLL_DATE between SYSDATE-3 and SYSDATE+1
 	</select>
 	
+	
+	
+	
 	<update id="updateOrderStatus" parameterType="Map">
 		UPDATE ORDER_LIST SET ORDER_STATUS = #{status}, ORDER_CHANGE = NULL, TRANSPORT_NUMBER = NULL WHERE ORDER_NO = #{orderNo}
 	</update>
@@ -200,6 +203,11 @@
 	<update id="updateOrderChange" parameterType="Map">
 		UPDATE ORDER_LIST SET ORDER_CHANGE = #{change} WHERE ORDER_NO = #{orderNo}
 	</update>
+
+
+
+
+
 
 	<select id="orderASearchDate" parameterType="Map" resultType="order">
 		SELECT * FROM ORDER_LIST WHERE ENROLL_DATE between TO_DATE(#{start})  and TO_DATE(#{end})+1

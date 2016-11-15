@@ -301,8 +301,8 @@ $(function(){
     <form id="adminOrderListFormOrder" action="/h72/updateOrderStatusOrder.do" method="post" >
     <table id="orderListOrder" class="orderList" cellspacing='0' cellpadding='0'>
 			<thead>
-				<tr>
-					<th scope="col" class="checked"><input type="checkbox" id="allCheck" name="allCheck" value="orderListOrder"  class="orderCheck"></th>
+				<tr style="height:53px;">
+					<th scope="col" class="checked"><input type="checkbox" id="allCheck" name="allCheck" value="orderListOrder" class="orderCheck"></th>
 					<th scope="col" class="number"><p>주문일자<br>[주문번호]</p></th>
 					<th scope="col" class="product">상품정보</th>
 					<th scope="col" class="quantity">총 수량</th>
@@ -604,7 +604,7 @@ $(function(){
 			선택한 주문건을 
 			<select id="modifyWhat" name="selectStatus" class="selectOption">
 				<option value="결제완료">결제완료</option>
-				<option value="배송중" selected>배송중</option>
+				<option value="배송중" selected>새 번호</option>
 				<option value="주문접수">주문접수</option> 
 				<option value="구매완료">구매완료</option> 
 				<option value="취소요청">취소요청</option> 
