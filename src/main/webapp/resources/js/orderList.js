@@ -12,6 +12,7 @@ function openTab(tabname) {
 		location.href="/h72/searchOrder?tab="+tabname+"&start_date="+startDate+"&end_date="+endDate+"&page=1";
 	}
 	
+	
 }
 
 //주문취소

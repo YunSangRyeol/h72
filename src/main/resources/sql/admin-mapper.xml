@@ -206,11 +206,8 @@
 
 
 
-
-
-
 	<select id="orderASearchDate" parameterType="Map" resultType="order">
-		SELECT * FROM ORDER_LIST WHERE ENROLL_DATE between TO_DATE(#{start})  and TO_DATE(#{end})+1
+		SELECT * FROM ORDER_LIST WHERE ORDER_STATUS = '결제완료' AND ENROLL_DATE between TO_DATE(#{start}) and TO_DATE(#{end})+1
 	</select>
 	
 	<select id="orderASearchUserID" parameterType="String" resultType="order">
