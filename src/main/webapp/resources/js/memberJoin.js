@@ -37,11 +37,11 @@ $(document).ready(function() {
 	$("#userpass").blur(function(){ //비밀번호 입력칸 옆에 사용가능여부 표시
 		var userpass = $("#userpass").val();		
 		var re_pwNum = userpass.search(/[0-9]/g); //숫자
-		var re_pwEng = userpass.search(/[a-z]/ig); //영문
+		var re_pwEng = userpass.search(/[a-zA-Z]/ig); //영문
 		var re_pwSpe = userpass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); //특문
 		var re_pwSpace = userpass.search(/[\s]/gi); //공백
 		if(userpass.length !=0){
-			if((userpass.length > 0 && userpass.length < 10)){ //길이 체크
+			if((userpass.length > 0 && userpass.length < 8)){ //길이 체크
 				$('#newPwLabel1').hide();
 				$('#newPwLabel').show();
 				$('#samePw').hide();
@@ -76,7 +76,8 @@ $(document).ready(function() {
 			if(userpass == userpass_confirm){	//비밀번호가 서로 일치하면
 				$('#samePw').hide();
 				$('#samePw1').show();
-			} else {	//일치하지 않음
+			
+			}else {	//일치하지 않음
 				$('#samePw').show();
 				$('#samePw1').hide();
 			}
@@ -119,8 +120,8 @@ $(document).ready(function() {
         }else if (userpass == "" || userpass_confirm =="") {
     		alert('비밀번호 또는 비밀번호 확인을 입력해 주세요');
     		return false;
-		}else if (userpass.length < 10 || userpass.length > 20) {
-			alert('비밀번호는 10~20자로 입력하세요.');
+		}else if (userpass.length < 8 || userpass.length > 20) {
+			alert('비밀번호는 8~20자로 입력하세요.');
 			return false;
 		}else if(userpass != userpass_confirm){
 			alert('비밀번호 확인이 일치하지 않습니다.');
