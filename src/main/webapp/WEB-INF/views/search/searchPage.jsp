@@ -104,14 +104,22 @@
 								<p id="inner_itemName">
 									<a href="<c:url value="/detail/selectItem?ItemDetailId=${list.itemDetailId }" />"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
 								</p>
+								<p class="price" id="inner_itemPrice">
 								<c:if test="${list.minPrice == list.minSailPrice }">
-								<p class="price" id="inner_itemPrice">￦ ${list.minPrice}</p>
+									￦ ${list.minPrice}&nbsp;&nbsp;
 								</c:if>
-								<c:if test="${list.minPrice != list.minSailPrice }"><p  class="price" id="inner_itemPrice"><span>￦</span>
-								<span style="text-decoration:line-through; color:#a2a2a2;"> ${list.minPrice}&nbsp;</span>
-								<span > ${list.minSailPrice}</span>&nbsp;&nbsp;<span style="box-shadow: 3px 3px 2px #ddd;
-								color:red; border:1px solid red; padding:0px 7px; ">SALE</span></p>
-								</c:if>
+								<c:if test="${list.minPrice != list.minSailPrice }">
+										<span>￦</span>
+										<span style="text-decoration:line-through;color:red;"><span style="color:#a2a2a2;"> ${list.minPrice}</span>&nbsp;</span>
+										<span> ${list.minSailPrice}&nbsp;&nbsp;</span>
+										<span id="inner_saleItem"
+											style="box-shadow: 3px 3px 2px #ddd; color: red; border: 1px solid red; padding: 0 6px;">SALE</span>
+									</c:if>
+								<c:if test="${list.minPrice % 3 == 0}">
+										<span id="inner_bestItem"
+											style="box-shadow: 3px 3px 2px #ddd; color: blue; border: 1px solid blue; padding: 0 6px;">BEST</span>
+									</c:if>
+								</p>
 							</div>
 						</li>
 					</c:forEach>
