@@ -118,7 +118,11 @@
 								<c:if test="${list.minPrice % 3 == 0}">
 										<span id="inner_bestItem"
 											style="box-shadow: 3px 3px 2px #ddd; color: blue; border: 1px solid blue; padding: 0 6px;">BEST</span>
-									</c:if>
+								</c:if>
+								<c:if test="${(list.minPrice % 3 != 0) && (list.minPrice %  7== 3) }">
+										<span id="inner_bestItem"
+											style="box-shadow: 3px 3px 2px #ddd; color: #00ff30; border: 1px solid #00ff30; padding: 0 6px;">NEW</span>
+								</c:if>
 								</p>
 							</div>
 						</li>
