@@ -8,7 +8,13 @@
 		SELECT *
 		FROM  H72.PROVIDER
 	</select>
-
+	
+	<select id="itemSelect" resultType="ProductItem">
+		SELECT *
+		FROM  H72.ITEM_ALL_VIEW
+		WHERE ITEM_ID = #{itemId}
+	</select>
+	
 	<select id="productEnrollCount" parameterType="String" resultType="int">
 		SELECT COUNT(DISTINCT ITEM_DETAIL_ID) 
 		FROM ITEM_DETAIL_VIEW
@@ -104,4 +110,49 @@
                 </otherwise>
             </choose>
 	</insert>
+	
+	<update id="productEnrollDetailUpdate" parameterType="ProductItem">
+		<choose>
+                <when test="itemDetailId.substring(0,3) eq 'BAG'.toString()">
+				UPDATE H72.ITEM_BAG SET
+					PROVIDER_CODE = #{providerCode},
+					ITEM_DETAIL_ID = #{itemDetailId},
+					PRICE = #{price},
+					SAIL_PRICE = #{sailPrice}, 
+					STOCK = #{stock}
+					WHERE ITEM_ID = #{itemId}
+				</when>
+                <when test="itemDetailId.substring(0,7) eq 'PROTECT'.toString()">
+				UPDATE H72.ITEM_PROTECT VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+                <when test="itemDetailId.substring(0,4) eq 'FOOD'.toString()">
+				UPDATE H72.ITEM_FOOD VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+                <when test="itemDetailId.substring(0,4) eq 'TOOL'.toString()">
+				UPDATE H72.ITEM_TOOL VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+                <when test="itemDetailId.substring(0,3) eq 'ETC'.toString()">
+				UPDATE H72.ITEM_ETC VALUES
+					(#{itemId}, #{providerCode}, 
+					#{itemDetailId}, #{itemOptionName}, 
+					#{cost}, #{price},
+					#{sailPrice}, #{stock})
+				</when>
+				<otherwise>
+                    
+                </otherwise>
+            </choose>
+	</update>
 </mapper>

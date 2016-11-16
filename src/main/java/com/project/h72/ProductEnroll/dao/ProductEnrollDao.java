@@ -35,5 +35,15 @@ public class ProductEnrollDao {
 		return sqlSession.selectList(NAMESPACE + "productProviderSelect");
 	}
 
+	public ProductItem itemSelect(String itemId) {
+		System.out.println("itemId :" + itemId);
+		return sqlSession.selectOne(NAMESPACE + "itemSelect", itemId);
+	}
+
+	public int productEnrollDetailUpdate(Product product) {
+		/*return sqlSession.update(NAMESPACE + "productEnrollDetailUpdate",product);*/
+		return 1;
+	}
+
 	
 }
