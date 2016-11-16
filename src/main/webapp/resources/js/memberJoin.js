@@ -163,12 +163,9 @@ $(document).ready(function() {
         	alert('이용약관 및 정보수집 활용동의에 모두 동의해 주세요.');
             return false;
 		}else {
-			if(mjoinResult != 1){
-				alert('정보가 제대로 입력되지 않았습니다');
-				return false;
-			}else{
+			
 			mJoinForm.submit();
-			}
+			
 		}
 		
 	});
