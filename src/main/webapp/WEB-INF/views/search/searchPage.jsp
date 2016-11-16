@@ -104,7 +104,14 @@
 								<p id="inner_itemName">
 									<a href="<c:url value="/detail/selectItem?ItemDetailId=${list.itemDetailId }" />"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
 								</p>
-								<p class="price" id="inner_itemPrice">\ ${list.minPrice}</p>
+								<c:if test="${list.minPrice == list.minSailPrice }">
+								<p class="price" id="inner_itemPrice">￦ ${list.minPrice}</p>
+								</c:if>
+								<c:if test="${list.minPrice != list.minSailPrice }"><p  class="price" id="inner_itemPrice"><span>￦</span>
+								<span style="text-decoration:line-through; color:#a2a2a2;"> ${list.minPrice}&nbsp;</span>
+								<span > ${list.minSailPrice}</span>&nbsp;&nbsp;<span style="box-shadow: 3px 3px 2px #ddd;
+								color:red; border:1px solid red; padding:0px 7px; ">SALE</span></p>
+								</c:if>
 							</div>
 						</li>
 					</c:forEach>
