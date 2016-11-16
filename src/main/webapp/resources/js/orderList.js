@@ -17,7 +17,9 @@ function openTab(tabname) {
 //주문취소
 function orderChange(orderNo, status, page) {
 	if(confirm("주문을 취소하시겠습니까?") == true){
-	location.href="/h72/updateStatusCancle?orderNo="+orderNo+"&status="+status+"&page="+page;
+
+		location.href="/h72/updateStatusCancle?orderNo="+orderNo+"&status="+status+"&page="+page;
+	
 	}
 }
 //구매확정

@@ -48,7 +48,7 @@
 							</c:forEach>
 							<c:if test="${result<80000}">
 								<c:set var="result" value="${result+2500}" />
-								<c:set var="delevery" value="2,500원"/>
+								<c:set var="delevery" value="2,500"/>
 							</c:if>
 							<table border="1" summary=""
 								class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
