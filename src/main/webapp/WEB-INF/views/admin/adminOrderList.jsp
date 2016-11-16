@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link href="/h72/resources/css/admin.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
-<script src="/h72/resources/js/jquery.battatech.excelexport.js"></script>
+<!-- <script src="/h72/resources/js/jquery.battatech.excelexport.js"></script> -->
 <script src="/h72/resources/js/adminOrderList.js"></script>
 <title>Admin Order List</title>
 <script type="text/javascript">
@@ -64,11 +64,10 @@
  		}
  	}
  	
- 	//excel파일 다운로드 	
+ 	/* //excel파일 다운로드 	
 $(function(){
 	
     $("#btnExportAll").click(function () {
-    	alert("Asdfasd");
         $("#orderListAll").battatech_excelexport({
             containerid: "orderListAll"
            , datatype: 'table'
@@ -123,8 +122,7 @@ $(function(){
         });
         $(this).attr('download', 'sample.xls').attr('href', uri);
     });
-});
- 	
+}); */
  	
  	
  	
@@ -193,6 +191,39 @@ $(function(){
 	
 
 <!-- ----------------------------------------모두보기----------------------------------------------------------- -->
+ 	   <script>
+        $(document).ready(function(){ 
+            function itoStr($num){
+                $num < 10 ? $num = '0'+$num : $num;
+                return $num.toString();
+            } 
+            var btn = $('#btnExportAll');
+            var tbl = 'orderListAll';
+ 
+            btn.click(function(e){ 
+                var dt = new Date();
+                var year =  itoStr( dt.getFullYear() );
+                var month = itoStr( dt.getMonth() + 1 );
+                var day =   itoStr( dt.getDate() );
+                var hour =  itoStr( dt.getHours() );
+                var mins =  itoStr( dt.getMinutes() );
+ 
+                var postfix = year + month + day + "_" + hour + mins;
+                var fileName = "orderListAll_"+ postfix + ".xls";
+ 
+                var a = document.createElement('a');
+                var data_type = 'data:application/vnd.ms-excel';
+                var table_div = document.getElementById( tbl );
+                var table_html = table_div.outerHTML.replace(/ /g, '%20');
+ 
+                a.href = data_type + ', ' + table_html;
+                a.download = fileName;
+                a.click();
+ 
+                e.preventDefault();
+            });
+        });
+    </script>
 	<div id="all" class="tabcontent" style="display:block">
 	<div id="excelBtnDiv">
     <input type="button" class="excelBtn" id="btnExportAll" value="모든 내역 엑셀로 다운로드" />
@@ -294,6 +325,39 @@ $(function(){
 		</form>
 	</div><!-- tab -->
 <!-- ------------------------------------주문접수---------------------------------------------------------- -->
+ 	   <script>
+        $(document).ready(function(){ 
+            function itoStr($num){
+                $num < 10 ? $num = '0'+$num : $num;
+                return $num.toString();
+            } 
+            var btn = $('#btnExportOrder');
+            var tbl = 'orderListOrder';
+ 
+            btn.click(function(e){ 
+                var dt = new Date();
+                var year =  itoStr( dt.getFullYear() );
+                var month = itoStr( dt.getMonth() + 1 );
+                var day =   itoStr( dt.getDate() );
+                var hour =  itoStr( dt.getHours() );
+                var mins =  itoStr( dt.getMinutes() );
+ 
+                var postfix = year + month + day + "_" + hour + mins;
+                var fileName = "orderListOrder_"+ postfix + ".xls";
+ 
+                var a = document.createElement('a');
+                var data_type = 'data:application/vnd.ms-excel';
+                var table_div = document.getElementById( tbl );
+                var table_html = table_div.outerHTML.replace(/ /g, '%20');
+ 
+                a.href = data_type + ', ' + table_html;
+                a.download = fileName;
+                a.click();
+ 
+                e.preventDefault();
+            });
+        });
+    </script>
 	<div id="order" class="tabcontent">
 	<div id="excelBtnDiv">
     <input type="button" class="excelBtn" id="btnExportOrder" value="접수내역 엑셀로 다운로드" />
@@ -401,6 +465,39 @@ $(function(){
 	</div><!-- tab -->
 
 <!-- -------------------------------------결제완료--------------------------------------------------------------------- -->
+ 	   <script>
+        $(document).ready(function(){ 
+            function itoStr($num){
+                $num < 10 ? $num = '0'+$num : $num;
+                return $num.toString();
+            } 
+            var btn = $('#btnExportPurchased');
+            var tbl = 'orderListPurchased';
+ 
+            btn.click(function(e){ 
+                var dt = new Date();
+                var year =  itoStr( dt.getFullYear() );
+                var month = itoStr( dt.getMonth() + 1 );
+                var day =   itoStr( dt.getDate() );
+                var hour =  itoStr( dt.getHours() );
+                var mins =  itoStr( dt.getMinutes() );
+ 
+                var postfix = year + month + day + "_" + hour + mins;
+                var fileName = "orderListPurchased_"+ postfix + ".xls";
+ 
+                var a = document.createElement('a');
+                var data_type = 'data:application/vnd.ms-excel';
+                var table_div = document.getElementById( tbl );
+                var table_html = table_div.outerHTML.replace(/ /g, '%20');
+ 
+                a.href = data_type + ', ' + table_html;
+                a.download = fileName;
+                a.click();
+ 
+                e.preventDefault();
+            });
+        });
+    </script>
 	<div id="resultpaid" class="tabcontent">
 	<div id="excelBtnDiv">
     <input type="button" class="excelBtn" id="btnExportPurchased" value="결제내역 엑셀로 다운로드" />
@@ -508,6 +605,39 @@ $(function(){
 	</div><!-- tab -->
 
 <!-- -------------------------------------배송중--------------------------------------------------------------------- -->
+ 	   <script>
+        $(document).ready(function(){ 
+            function itoStr($num){
+                $num < 10 ? $num = '0'+$num : $num;
+                return $num.toString();
+            } 
+            var btn = $('#btnExportdelivery');
+            var tbl = 'orderListdelivery';
+ 
+            btn.click(function(e){ 
+                var dt = new Date();
+                var year =  itoStr( dt.getFullYear() );
+                var month = itoStr( dt.getMonth() + 1 );
+                var day =   itoStr( dt.getDate() );
+                var hour =  itoStr( dt.getHours() );
+                var mins =  itoStr( dt.getMinutes() );
+ 
+                var postfix = year + month + day + "_" + hour + mins;
+                var fileName = "orderListdelivery_"+ postfix + ".xls";
+ 
+                var a = document.createElement('a');
+                var data_type = 'data:application/vnd.ms-excel';
+                var table_div = document.getElementById( tbl );
+                var table_html = table_div.outerHTML.replace(/ /g, '%20');
+ 
+                a.href = data_type + ', ' + table_html;
+                a.download = fileName;
+                a.click();
+ 
+                e.preventDefault();
+            });
+        });
+    </script>
 	<div id="move" class="tabcontent">
 	<div id="excelBtnDiv">
     <input type="button" class="excelBtn" id="btnExportdelivery" value="배송내역 엑셀로 다운로드" />
@@ -564,7 +694,6 @@ $(function(){
 								chnageInputBox('${list.orderNo }deliver');
 							});		
 					
-					
 					$('#checkall${list.orderNo}').change(
 							function(){
 								if($('#checkall${list.orderNo}').is(":checked")){
@@ -620,6 +749,39 @@ $(function(){
 	</div><!-- tab -->
 
 <!-- ---------------------------------------------취소내역-------------------------------------------------------------- -->
+ 	   <script>
+        $(document).ready(function(){ 
+            function itoStr($num){
+                $num < 10 ? $num = '0'+$num : $num;
+                return $num.toString();
+            } 
+            var btn = $('#btnExportCancle');
+            var tbl = 'orderListCancle';
+ 
+            btn.click(function(e){ 
+                var dt = new Date();
+                var year =  itoStr( dt.getFullYear() );
+                var month = itoStr( dt.getMonth() + 1 );
+                var day =   itoStr( dt.getDate() );
+                var hour =  itoStr( dt.getHours() );
+                var mins =  itoStr( dt.getMinutes() );
+ 
+                var postfix = year + month + day + "_" + hour + mins;
+                var fileName = "orderListCancle_"+ postfix + ".xls";
+ 
+                var a = document.createElement('a');
+                var data_type = 'data:application/vnd.ms-excel';
+                var table_div = document.getElementById( tbl );
+                var table_html = table_div.outerHTML.replace(/ /g, '%20');
+ 
+                a.href = data_type + ', ' + table_html;
+                a.download = fileName;
+                a.click();
+ 
+                e.preventDefault();
+            });
+        });
+    </script>
 	<div id="back" class="tabcontent">
 		<h3>취소내역</h3>
 		<div id="cancel">		
@@ -705,6 +867,39 @@ $(function(){
 		</div>
 		<hr>
 		
+		<script>
+        $(document).ready(function(){ 
+            function itoStr($num){
+                $num < 10 ? $num = '0'+$num : $num;
+                return $num.toString();
+            } 
+            var btn = $('#btnExportChange');
+            var tbl = 'orderListChange';
+ 
+            btn.click(function(e){ 
+                var dt = new Date();
+                var year =  itoStr( dt.getFullYear() );
+                var month = itoStr( dt.getMonth() + 1 );
+                var day =   itoStr( dt.getDate() );
+                var hour =  itoStr( dt.getHours() );
+                var mins =  itoStr( dt.getMinutes() );
+ 
+                var postfix = year + month + day + "_" + hour + mins;
+                var fileName = "orderListChange_"+ postfix + ".xls";
+ 
+                var a = document.createElement('a');
+                var data_type = 'data:application/vnd.ms-excel';
+                var table_div = document.getElementById( tbl );
+                var table_html = table_div.outerHTML.replace(/ /g, '%20');
+ 
+                a.href = data_type + ', ' + table_html;
+                a.download = fileName;
+                a.click();
+ 
+                e.preventDefault();
+            });
+        });
+    </script>		
 		<h3>교환내역</h3>
 		<div id="change">
 	<div id="excelBtnDiv">
@@ -790,6 +985,40 @@ $(function(){
 
 		<hr>
 		
+		
+		<script>
+        $(document).ready(function(){ 
+            function itoStr($num){
+                $num < 10 ? $num = '0'+$num : $num;
+                return $num.toString();
+            } 
+            var btn = $('#btnExportBack');
+            var tbl = 'orderListBack';
+ 
+            btn.click(function(e){ 
+                var dt = new Date();
+                var year =  itoStr( dt.getFullYear() );
+                var month = itoStr( dt.getMonth() + 1 );
+                var day =   itoStr( dt.getDate() );
+                var hour =  itoStr( dt.getHours() );
+                var mins =  itoStr( dt.getMinutes() );
+ 
+                var postfix = year + month + day + "_" + hour + mins;
+                var fileName = "orderListBack_"+ postfix + ".xls";
+ 
+                var a = document.createElement('a');
+                var data_type = 'data:application/vnd.ms-excel';
+                var table_div = document.getElementById( tbl );
+                var table_html = table_div.outerHTML.replace(/ /g, '%20');
+ 
+                a.href = data_type + ', ' + table_html;
+                a.download = fileName;
+                a.click();
+ 
+                e.preventDefault();
+            });
+        });
+    </script>
 		<h3>반품내역</h3>
 		<div id="backing">
 	<div id="excelBtnDiv">

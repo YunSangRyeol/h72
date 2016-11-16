@@ -1,4 +1,4 @@
-/*
+﻿/*
  * jQuery Client Side Excel Export Plugin Library
  * http://www.battatech.com/
  *
@@ -7,19 +7,25 @@
  */
 
 (function ($) {
+
+    $datatype = {
+        Table: 1
+        , Json: 2
+        , Xml: 3
+        , JqGrid: 4
+    }
+
     var $defaults = {
         containerid: null
-        , datatype: 'table'
+        , datatype: $datatype.Table
         , dataset: null
         , columns: null
         , returnUri: false
-        , worksheetName: "My Worksheet"
-        , encoding: "utf-8"
     };
 
     var $settings = $defaults;
 
-    $.fn.battatech_excelexport = function (options) {
+    $.fn.btechco_excelexport = function (options) {
         $settings = $.extend({}, $defaults, options);
 
         var gridData = [];
@@ -28,21 +34,19 @@
         return Initialize();
 
         function Initialize() {
-            var type = $settings.datatype.toLowerCase();
-
-            BuildDataStructure(type);
-
-            switch (type) {
-                case 'table':
+            BuildDataStructure();
+            
+            switch ($settings.datatype) {
+                case 1:
                     excelData = Export(ConvertFromTable());
                     break;
-                case 'json':
+                case 2:
                     excelData = Export(ConvertDataStructureToTable());
                     break;
-                case 'xml':
+                case 3:
                     excelData = Export(ConvertDataStructureToTable());
                     break;
-                case 'jqgrid':
+                case 4:
                     excelData = Export(ConvertDataStructureToTable());
                     break;
             }
@@ -55,14 +59,14 @@
             }
         }
 
-        function BuildDataStructure(type) {
-            switch (type) {
-                case 'table':
+        function BuildDataStructure() {
+            switch ($settings.datatype) {
+                case 1:
                     break;
-                case 'json':
+                case 2:
                     gridData = $settings.dataset;
                     break;
-                case 'xml':
+                case 3:
                     $($settings.dataset).find("row").each(function (key, value) {
                         var item = {};
 
@@ -75,7 +79,7 @@
                         }
                     });
                     break;
-                case 'jqgrid':
+                case 4:
                     $($settings.dataset).find("rows > row").each(function (key, value) {
                         var item = {};
 
@@ -92,7 +96,7 @@
         }
 
         function ConvertFromTable() {
-            var result = $('<div>').append($('#' + $settings.containerid).clone()).html();
+            var result = $('<div>').append($('#' + $settings.containerid ).clone()).html();
             return result;
         }
 
@@ -140,7 +144,6 @@
         function Export(htmltable) {
             var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
             excelFile += "<head>";
-            excelFile += '<meta http-equiv="Content-type" content="text/html;charset=' + $defaults.encoding + '" />';
             excelFile += "<!--[if gte mso 9]>";
             excelFile += "<xml>";
             excelFile += "<x:ExcelWorkbook>";
@@ -164,9 +167,9 @@
             excelFile += "</html>";
 
             var uri = "data:application/vnd.ms-excel;base64,";
-            var ctx = { worksheet: $settings.worksheetName, table: htmltable };
+            var ctx = { worksheet: name || 'Worksheet', table: htmltable };
 
-            return (uri + base64(format(excelFile, ctx)));
+            return (uri + base64(format(excelFile, ctx)));           
         }
 
         function base64(s) {
