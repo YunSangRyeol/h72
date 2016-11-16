@@ -135,7 +135,7 @@ public class OrderController {
 		String orderStatus = "결제완료";
 		System.out.println("deliveryMessage : "+deliveryMessage);
 		if(paymethod.equals("가상계좌 입금")){
-			orderStatus = "입금전";
+			orderStatus = "주문접수";
 		}
 		String orderChange = "-";
 		java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
@@ -391,6 +391,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/updateStatusCancle", method = RequestMethod.GET)
 	public String updateStatusCancle(@RequestParam("orderNo") String orderNo, @RequestParam("status") String status, @RequestParam("page") String page,Model model) {
+		
 		System.out.println("===="+orderNo+"====="+status);
 		int result =0;
 		if(status.equals("결제완료")){
@@ -434,5 +435,18 @@ public class OrderController {
 		return "redirect:order/order_list";
 	}
 	
+	
+	
+	@RequestMapping(value = "/payments/cancel", method = RequestMethod.GET)
+	public String getMessage(Model model) {
+		
+		String test_already_cancelled_imp_uid = "imp_448280090638";
+		/*CancelData cancel_data = new CancelData(test_already_cancelled_imp_uid, true); //imp_uid를 통한 전액취소
+		IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
+		
+		assertNull(payment_response.getResponse());*/ // 이미 취소된 거래는 response가 null이다
+		
+		return "redirect:order/order_list";
+	}
 
 }
