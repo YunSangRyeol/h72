@@ -47,11 +47,11 @@
 								<tr>
 									<th scope="row">비밀번호 <span id="mjoin_red">*</span></th>
 									<td><input id="userpass" name="userpass"
-										autocomplete="off" maxlength="16" value="" type="password">
+										autocomplete="off" maxlength="20" value="" type="password">
 										<label id="newPwLabel" style="color:red; font-weight:bold; display:none;">사용불가</label>
 										<label id="newPwLabel1" style="color:#04ec0f; font-weight:bold; display:none;">사용가능</label>
 										
-										(영문 대소문자/숫자/특수문자, 10~20자)</td>
+										(영문 대소문자/숫자/특수문자, 8~20자)</td>
 								</tr>
 								<tr>
 									<th scope="row">비밀번호 확인 <span id="mjoin_red">*</span></th>
