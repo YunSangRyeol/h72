@@ -30,7 +30,7 @@
 				<div class="xans-element- xans-order xans-order-basketpackage ">
 				
 					<!-- 장바구니 비어있을 때 -->
-					<c:if test="${clist eq null}">
+					<c:if test="${clist eq null || clist eq ''}">
 						<div class="xans-element- xans-order xans-order-empty ">
 							<p>장바구니가 비어 있습니다.</p>
 						</div>

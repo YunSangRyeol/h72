@@ -97,8 +97,20 @@ function deleteBasketChk(){
 
 // 장바구니 비우기
 function emptyBasket(){
-	if(confirm("장바구니를 비우시겠습니까?")){
-	location.href="/h72/emptyBasket";}
+	
+		$("#allCheck").prop("checked", true);
+		$(".xans-record- input[name=basketItem_chk]").prop("checked", true);
+		
+		var cartAll="";
+		$(".xans-record- input[name=basketItem_chk]:checked").each(function(){
+			if(cartAll=="")
+				cartAll = "cartAll="+$(this).val();
+			else
+				cartAll = cartAll+"&cartAll="+$(this).val();
+		});
+		console.log(cartAll);
+	location.href="/h72/emptyBasket?"+cartAll;
+	
 }
 
 //전체상품주문

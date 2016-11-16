@@ -28,12 +28,7 @@ public class CartDao {
 		
 		return sqlSession.update(NAMESPACE+"updateQuantity", paramMap);
 	}
-	
-	public int deleteEmptyBasket(String userid) {
-		int result =0;
-		result =sqlSession.delete(NAMESPACE +"deleteEmptyBasket", userid);
-		return result;
-	}
+
 	
 	
 	public int deleteBasketItem(String cartid) {
@@ -50,6 +45,22 @@ public class CartDao {
 			result += sqlSession.update(NAMESPACE +"deleteBasketChk", cartmap);
 		}
 		return result;
+	}
+
+	public int updateCartUserId(String nonUserId, String userId) {
+		Map<String, Comparable> paramMap = new HashMap();
+		paramMap.put("nonUserId", nonUserId);
+		paramMap.put("userId", userId);
+		
+		return sqlSession.update(NAMESPACE+"updateCartUserId", paramMap);
+	}
+
+	public int deleteOverItem(String itemId, String nonUserId) {
+		Map<String, Comparable> paramMap = new HashMap();
+		paramMap.put("itemId", itemId);
+		paramMap.put("nonUserId", nonUserId);
+		
+		return sqlSession.delete(NAMESPACE+"deleteOverItem", paramMap);
 	}
 
 }

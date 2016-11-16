@@ -24,11 +24,6 @@ public class CartServiceImp implements CartService{
 	}
 
 	@Override
-	public int deleteEmptyBasket(String userid) {
-		return cDao.deleteEmptyBasket(userid);
-	}
-
-	@Override
 	public int deleteBasketItem(String cartid) {
 		return cDao.deleteBasketItem(cartid);
 	}
@@ -37,6 +32,17 @@ public class CartServiceImp implements CartService{
 	public int deleteBasketChk(String[] cart) {
 		// TODO Auto-generated method stub
 		return cDao.deleteBasketChk(cart);
+	}
+
+	@Override
+	public int updateCartUserId(String nonUserId, String userId) {
+		
+		return cDao.updateCartUserId(nonUserId, userId);
+	}
+
+	@Override
+	public int deleteOverItem(String itemId, String nonUserId) {
+		return cDao.deleteOverItem(itemId, nonUserId);
 	}
 
 }

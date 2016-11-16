@@ -437,7 +437,7 @@ public class OrderController {
 	
 	
 	
-	@RequestMapping(value = "/payments/cancel", method = RequestMethod.GET)
+	@RequestMapping(value = "/payments/cancel", method = RequestMethod.POST)
 	public String getMessage(Model model) {
 		
 		String test_already_cancelled_imp_uid = "imp_448280090638";

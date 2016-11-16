@@ -46,6 +46,19 @@
  		DELETE FROM CART
 		WHERE  CART_ID= #{cart}
  	</delete>
+ 	
+ 	
+ 	<update id="updateCartUserId" parameterType="java.util.HashMap">
+		UPDATE cart
+		SET
+			USER_ID = #{userId}
+		WHERE USER_ID = #{nonUserId}
+	</update>
+	
+	<delete id="deleteOverItem" parameterType="java.util.HashMap">
+ 		DELETE FROM CART
+		WHERE  USER_ID= #{nonUserId} AND ITEM_ID=#{itemId}
+ 	</delete>
 
 
 </mapper>

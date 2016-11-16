@@ -30,7 +30,7 @@
 								님</li>
 							<li><a href="<c:url value="/logout.do" />">LOGOUT</a></li>
 							<c:if test="${!(loginUser.levelcode eq 'ADMIN') && !(loginUser.levelcode eq 'STEP') }">
-								<li><a href="<c:url value="/member/memberUpdate" />">MyInfo</a></li>
+								<li><a href="<c:url value="/member/memberUpdate" />">MYPAGE</a></li>
 								<li><a href="<c:url value="/order/shopping_cart"/>">CART</a></li>
 								<li><a href="<c:url value="/order/order_list"/>">ORDER</a></li>
 							</c:if>
