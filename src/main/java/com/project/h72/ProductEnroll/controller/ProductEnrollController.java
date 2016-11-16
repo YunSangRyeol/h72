@@ -51,6 +51,12 @@ public class ProductEnrollController {
 		}
 	}
 	
+	@RequestMapping(value = "/productEnrollgo", method = RequestMethod.GET)
+	public String productEnrollgo(Locale locale, Model model) {
+		System.out.println("asdfas;dfljasd;lkfj");
+		
+			return "admin/productEnroll";
+		}	
 	
 
 }

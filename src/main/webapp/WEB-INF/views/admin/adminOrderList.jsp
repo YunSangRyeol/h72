@@ -68,6 +68,7 @@
 $(function(){
 	
     $("#btnExportAll").click(function () {
+    	alert("Asdfasd");
         $("#orderListAll").battatech_excelexport({
             containerid: "orderListAll"
            , datatype: 'table'
@@ -562,6 +563,7 @@ $(function(){
 							function(){
 								chnageInputBox('${list.orderNo }deliver');
 							});		
+					
 					
 					$('#checkall${list.orderNo}').change(
 							function(){

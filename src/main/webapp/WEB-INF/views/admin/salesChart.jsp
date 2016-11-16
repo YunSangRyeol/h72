@@ -178,37 +178,8 @@
 	<table id="category" class="chartTable" >
 	<tr><th>bag</th><th>tool</th><th>food</th><th>protect</th><th>etc</th></tr>
 	<tr><td>${category.bag }</td><td>${category.tool }</td><td>${category.food }</td><td>${category.protect }</td><td>${category.etc }</td></tr>
-	</table>
-	
-	
-	<h2>KIT DIY 매출현황</h2>
-	<div id="chart_d"></div>
-	<script>
-		var yes =${kit.kitYES };
-		var no = ${kit.kitNO };
-		
-		var options = {
-			'dataset': {
-				title: 'Web accessibility status',
-				values:[yes, no],
-				colorset: ['#2BC8C9', '#FF8C00'],
-				fields: ['kit', 'not kit'] 
-			},
-			'donut_width' : 80, 
-			'core_circle_radius':60,
-			'chartDiv': 'chart_d',
-			'chartType': 'donut',
-			'chartSize': {width:900, height:400}
-		};
+	</table>	
 
-		Nwagon.chart(options);
-	</script>
-	<table id="kit" class="chartTable" >
-	<tr><th>kit</th><th>not kit</th></tr>
-	<tr><td>${kit.kitYES }</td><td>${kit.kitNO }</td></tr>
-	</table>
-	
-	</div>
 
 
 	</div><!-- admin_order_contents_wrap -->

@@ -182,6 +182,10 @@ body {
     border-collapse: collapse;
 }
 
+.orderList .product{
+	width: 500px;
+}
+
  .orderList .checkMargin{
 	margin-top: 15px;
 	margin-bottom: 15px;
