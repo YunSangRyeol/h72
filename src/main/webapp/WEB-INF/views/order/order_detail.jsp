@@ -54,7 +54,7 @@
 									</tr>
 									<tr>
 										<th scope="row">주문처리상태</th>
-										<td>${detailOrder.orderStatus }&nbsp;&nbsp;<c:if test="${detailOrder.orderStatus eq '결제완료' || detailOrder.orderStatus eq '입금전'}">
+										<td>${detailOrder.orderStatus }&nbsp;&nbsp;<c:if test="${detailOrder.orderStatus eq '결제완료' || detailOrder.orderStatus eq '주문접수'}">
 									<a href="#none" onclick="orderChange('${detailOrder.orderNo}', '${detailOrder.orderStatus}','detail');">
 									<span class="order_change">주문취소&nbsp;&nbsp;<span class="order_change_arrow">&gt;</span></span></a>
 								</c:if>

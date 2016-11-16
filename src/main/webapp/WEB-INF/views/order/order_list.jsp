@@ -10,6 +10,7 @@
 	rel="stylesheet">
 <link href="/h72/resources/css/order.css" type="text/css"
 	rel="stylesheet">
+	<script type="text/javascript" src="/h72/resources/js/iamport.payment-1.1.1.js"></script>
 	<script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="/h72/resources/js/orderList.js"></script>
 <title>Order List</title>
@@ -143,7 +144,7 @@ $(function(){
 									<p>${orderList.orderStatus }</p>
 								</td>
 								<td class="service">
-								<c:if test="${orderList.orderStatus eq '결제완료' || orderList.orderStatus eq '입금전'}">
+								<c:if test="${orderList.orderStatus eq '결제완료' || orderList.orderStatus eq '주문접수'}">
 									<a href="#none" onclick="orderChange('${orderList.orderNo}', '${orderList.orderStatus}','list');">
 									<p class="order_cancle">주문취소&nbsp;&nbsp;<span class="order_cancle_arrow">&gt;</span></p></a>
 								</c:if>
