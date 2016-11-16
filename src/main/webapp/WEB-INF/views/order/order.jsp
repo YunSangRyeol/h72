@@ -137,6 +137,13 @@ function CallpaymentAPI(){
 	        $("#orderForm").append(input);
 	        
 	        
+	        var input = document.createElement("input");
+	        input.type = "hidden";
+	        input.name = 'buyer_email';
+	        input.value = rsp.buyer_email;
+	        $("#orderForm").append(input);
+	        
+	        
 	    	$("#orderForm").submit();
 	        var msg = '결제가 완료되었습니다.';
 	        msg += '고유ID : ' + rsp.imp_uid;

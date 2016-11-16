@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,10 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService os;
+	
+	@Autowired
+	private JavaMailSender mailSender;
+
 	
 	@RequestMapping(value = "/orderAll", method = RequestMethod.GET)
 	public String orderForm(@RequestParam("cartAll") String[] cartAll, HttpSession session, Model model,HttpServletRequest request) {
@@ -190,6 +197,22 @@ public class OrderController {
 				model.addAttribute("bankInfo", bankInfo);
 			}
 		}
+		
+		
+		String buyer_email = request.getParameter("buyer_email");
+		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setFrom("h72shop@gmail.com");
+		msg.setTo(new String[] { buyer_email });
+		msg.setSubject("재난대비 용품점 h72, 귀하의 결제정보입니다.");
+		msg.setText(buyer_name+ "님, 항상 이용해 주셔서 감사합니다! ^-^ <br> 결제금액: "+totalPrice);
+
+		try {
+			mailSender.send(msg);
+		} catch (MailException ex) {
+			// 적절히 처리
+		}
+		
 		
 		return "order/order_finish";
 	}
