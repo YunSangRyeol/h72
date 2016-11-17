@@ -135,7 +135,9 @@ $(function(){
 										src="/h72/resources${orderList.mainImgN1 }" alt=""></a></td>
 								<td class="product"><a
 									href="/h72/order/order_detail?orderNo=${orderList.orderNo }" class="line"><strong>
-											${orderList.itemNameN1 } 외 ${orderList.kindsQuantity }개</strong></a>
+											${orderList.itemNameN1 } 
+											<c:if test="${orderList.kindsQuantity >1 }">
+											외 ${orderList.kindsQuantity }개</c:if></strong></a>
 									<div class="option ">[대표옵션: ${orderList.itemOptionNameN1 }]</div>
 									</td>
 								<td class="quantity">${orderList.totalQuantity }</td>
@@ -188,10 +190,10 @@ $(function(){
 					</c:if>
 					<ol>
 						<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-						<c:if test="${i==currentPage }">
+						<c:if test="${i==currentPage}">
 						<li class="xans-record-"><span class="this">${i}</span></li>
 						</c:if>
-						<c:if test="${i != currentPage }">
+						<c:if test="${i != currentPage}">
 						<li class="xans-record-"><span id="paging" >${i}</span>
 						<c:set value="${i}" var="searchPage"/>
 						</li>
@@ -285,15 +287,16 @@ $(function(){
 					</c:if>
 					<ol>
 						<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-						<c:if test="${i == currentPage}">
+					<c:if test="${i==currentPage}">
 						<li class="xans-record-"><span class="this">${i}</span></li>
 						</c:if>
-						<c:if test="${i != currentPage }">
+						<c:if test="${i != currentPage}">
 						<li class="xans-record-"><span id="cpaging" >${i}</span>
 						<c:set value="${i}" var="searchPage"/>
 						</li>
 						</c:if>
-						</c:forEach>	
+						</c:forEach>
+						
 					</ol>
 					<p>
 						<c:if test="${currentPage >= maxPage }">
