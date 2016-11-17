@@ -276,9 +276,9 @@ public class OrderController {
 				 if(maxPage==0){maxPage=1;}
 			}
 			
-			//현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
+			//현재 페이지에 보여줄 시작 페이지 수 (1, 6, 11, .....)
 			int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
-			//현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
+			//현재 페이지에 보여줄 마지막 페이지 수 (5, 10, 15, .....)
 			int endPage = startPage + limit - 1;
 			if(maxPage < endPage)
 				endPage = maxPage;
