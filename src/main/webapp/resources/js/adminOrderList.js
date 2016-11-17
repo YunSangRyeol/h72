@@ -265,7 +265,6 @@
  	
  	//개별 버튼 변경
  	function updateStatusOne0(orderNo){
- 		alert("Asdfasdf");
  		var status = $("[name=selectStatusOne"+ orderNo +"0] option:selected").val();
  		alert(status);
  		if(status == "배송중"){
