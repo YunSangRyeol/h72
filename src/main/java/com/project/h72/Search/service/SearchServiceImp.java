@@ -54,16 +54,16 @@ public class SearchServiceImp implements SearchService {
 	}
 
 	@Override
-	public int getListCount(int currentPage, int limit, String cate) {
+	public int getListCount(String cate) {
 		// TODO Auto-generated method stub
-		return dao.getSearchList(currentPage, limit, cate);
+		return dao.getSearchList(cate);
 	}
 	@Override
-	public int getListCount(int currentPage, int limit, String cate, String itemName) {
+	public int getListCount(String cate, String itemName) {
 		// TODO Auto-generated method stub
-		System.out.println("서비스 카운트 + " + dao.getSearchList(currentPage, limit, cate, itemName));
+		System.out.println("서비스 카운트 + " + dao.getSearchList(cate, itemName));
 
-		return dao.getSearchList(currentPage, limit, cate, itemName);
+		return dao.getSearchList(cate, itemName);
 	}
 
 

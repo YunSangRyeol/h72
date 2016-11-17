@@ -46,14 +46,14 @@ public class SearchController {
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 
-		int listCount = ss.getListCount(currentPage, limit, cate);
+		int listCount = ss.getListCount(cate);
 		List<Search> bagList = ss.getBagList(currentPage, limit);
 		System.out.println(bagList + "서비스에서 받아옴");
 
 		// 총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int maxPage = (int) ((double) listCount / limit + 0.9);
 		// 현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
-		int startPage = 1;/*(((int) ((double) currentPage +1 / limit + 0.9)) - 1) * limit + 1;*/
+		int startPage = (((int)((double)(currentPage+1)/ limit + 0.9)) - 1) * limit + 1;
 		// 현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
 		int endPage = startPage + limit - 1;
 		if (maxPage < endPage)
@@ -87,14 +87,14 @@ public class SearchController {
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 
-		int listCount = ss.getListCount(currentPage, limit, cate);
+		int listCount = ss.getListCount(cate);
 		List<Search> protectList = ss.getProtectList(currentPage, limit);
 		System.out.println(protectList + "서비스에서 받아옴");
 
 		// 총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int maxPage = (int) ((double) listCount / limit + 0.99);
 		// 현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
-		int startPage = 1;/*(((int) ((double) currentPage +1 / limit + 0.9)) - 1) * limit + 1;*/
+		int startPage = (((int)((double)(currentPage+1)/ limit + 0.9)) - 1) * limit + 1;
 		
 		// 현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
 		int endPage = startPage + limit - 1;
@@ -128,14 +128,14 @@ public class SearchController {
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 
-		int listCount = ss.getListCount(currentPage, limit, cate);
+		int listCount = ss.getListCount(cate);
 		List<Search> foodList = ss.getFoodList(currentPage, limit);
 		System.out.println(foodList + "서비스에서 받아옴");
 
 		// 총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int maxPage = (int) ((double) listCount / limit + 0.9);
 		// 현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
-		int startPage = 1;/*(((int) ((double) currentPage +1 / limit + 0.9)) - 1) * limit + 1;*/
+		int startPage = (((int)((double)(currentPage+1)/ limit + 0.9)) - 1) * limit + 1;
 		// 현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
 		int endPage = startPage + limit - 1;
 		if (maxPage < endPage)
@@ -166,14 +166,14 @@ public class SearchController {
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 
-		int listCount = ss.getListCount(currentPage, limit, cate);
+		int listCount = ss.getListCount(cate);
 		List<Search> toolList = ss.getToolList(currentPage, limit);
 		System.out.println(toolList + "서비스에서 받아옴");
 
 		// 총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int maxPage = (int) ((double) listCount / limit + 0.9);
 		// 현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
-		int startPage = 1;/*(((int) ((double) currentPage +1 / limit + 0.9)) - 1) * limit + 1;*/
+		int startPage = (((int)((double)(currentPage+1)/ limit + 0.9)) - 1) * limit + 1;
 		// 현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
 		int endPage = startPage + limit - 1;
 		if (maxPage < endPage)
@@ -204,14 +204,14 @@ public class SearchController {
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 
-		int listCount = ss.getListCount(currentPage, limit, cate);
+		int listCount = ss.getListCount(cate);
 		List<Search> etcList = ss.getEtcList(currentPage, limit);
 		System.out.println(etcList + "서비스에서 받아옴");
 
 		// 총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int maxPage = (int) ((double) listCount / limit + 0.9);
 		// 현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
-		int startPage = 1;/*(((int) ((double) currentPage +1 / limit + 0.9)) - 1) * limit + 1;*/
+		int startPage = (((int)((double)(currentPage+1)/ limit + 0.9)) - 1) * limit + 1;
 		// 현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
 		int endPage = startPage + limit - 1;
 		if (maxPage < endPage)
@@ -244,7 +244,7 @@ public class SearchController {
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 
-		int listCount = ss.getListCount(currentPage, limit, cate, itemName);
+		int listCount = ss.getListCount(cate, itemName);
 		System.out.println("컨트롤러 카운트 + " + listCount);
 
 		List<Search> searchList = ss.getSearchList(itemName, currentPage, limit);
@@ -253,7 +253,7 @@ public class SearchController {
 		// 총 페이지수 계산 : 목록이 최소 1개일 때, 1 page 로 처리하기 위해 0.9 더함
 		int maxPage = (int) ((double) listCount / limit + 0.9);
 		// 현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
-		int startPage = 1;/*(((int) ((double) currentPage +1 / limit + 0.9)) - 1) * limit + 1;*/
+		int startPage = (((int)((double)(currentPage+1)/ limit + 0.9)) - 1) * limit + 1;
 		// 현재 페이지에 보여줄 마지막 페이지 수 (10, 20, 30, .....)
 		int endPage = startPage + limit - 1;
 		if (maxPage < endPage)

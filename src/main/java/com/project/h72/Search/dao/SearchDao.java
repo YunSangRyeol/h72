@@ -88,7 +88,7 @@ public class SearchDao {
 		return sqlSession.selectList(NAMESPACE + "getSearchList", paramMap);
 	}
 
-	public int getSearchList(int currentPage, int limit, String cate) {
+	public int getSearchList(String cate) {
 		if (cate.equals("bag")) {
 			return sqlSession.selectOne(NAMESPACE + "getListCount1");
 		} else if (cate.equals("protect")) {
@@ -103,7 +103,7 @@ public class SearchDao {
 		return 0;
 	}
 
-	public int getSearchList(int currentPage, int limit, String cate, String itemName) {
+	public int getSearchList(String cate, String itemName) {
 		return sqlSession.selectOne(NAMESPACE + "getListCount6", itemName);
 	}
 

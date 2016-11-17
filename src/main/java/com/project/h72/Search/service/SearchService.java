@@ -19,9 +19,9 @@ public interface SearchService {
 
 	public List<Search> getSearchList(String itemName, int currentPage, int limit)throws Exception;
 
-	public int getListCount(int currentPage, int limit, String cate);
+	public int getListCount(String cate);
 
-	public int getListCount(int currentPage, int limit, String cate, String itemName);
+	public int getListCount(String cate, String itemName);
 
 
 
