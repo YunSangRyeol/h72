@@ -4,7 +4,7 @@
 
 function init(pageNo){
 	//alert("init 실행");
-	getReviewList(pageNo);
+	getReviewList(pageNo);//초기값으로 1 넘겨줌
 }
 
 function getReviewList(pageNo_pa){
@@ -210,14 +210,6 @@ function reviewing(reviewList){
 					"				</a>" +
 					"				<div class='inline edit-review-container-line'></div>" +
 					"			</div>" +
-					/*"			<div class='inline edit-review-container 2' id='reviewModify' style='display:none;'>" +
-					"				<a id='cancle'>" +
-					"					<span class='delete-review hoverable'>취소</span>" +
-					"				</a>" +
-					"				<a id='modifyFine'>" +
-					"					<span class='edit-review hoverable'>수정완료</span>" +
-					"				</a>" +
-					"			</div>" +*/
 					"		</div>" +
 					"	</div>" +
 					"</div>";
@@ -257,75 +249,6 @@ function reviewing(reviewList){
 
 function bindEvent(){
 	
-	$(document).on("click", "#subBtn", function(){
-		alert();
-		console.log($("input[name='reviewPhoto'").length + '개');
-		var formData = new FormData();
-		formData.append()
-	});
-	
-	
-	$(document).on("click", "#modifyFine", function(){
-		
-		/*$(document).on("click", "#subBtn", function(){
-			alert();
-		});*/
-		/*
-		//원래 있던 이미지는 IMG src에 이미지경로 삽입하여 같은 번호에 해당하는 input file은 공백이 입력됨.
-		var srcImageArr = new Array();//컨트롤러로 src 전송
-		var totalImageArr = new Array();//Array to Controller
-		
-		for(var i = 0; i < $(".hidden.mask").length; i++){
-			var fileImage = $("#maskupBtn" + ( i + 1 ) ).val();
-			var srcImage = $("#maskpreview" + ( i + 1 )).attr("src");
-			console.log(srcImage);
-			
-			if(fileImage == "" && srcImage != ""){//input file 공백이면 원래 이미지(srcImageArr), 값이 있으면 컨트롤러에서 이름변경해줘야함(fileImageArr).
-				if(srcImage.length < 50){
-					console.log("이미지 이름 길이가 50보다 작습니다. 저장합니다.");
-					srcImageArr.push(srcImage);//원래 있던 이미지
-					totalImageArr.push(srcImage);
-				}
-			}
-		}
-		
-		console.log(tempArray);
-		
-		//controller 로 보낼 array에 input file에 입력된 파일이름을 담은 tempArray값을 담아준다.
-		for(var i = 0; i < tempArray.length; i++){
-			totalImageArr.push(tempArray[i]);
-		}
-		
-		totalImageArr.push(reviewText);//reviewText;
-		totalImageArr.push(reviewUser);//reviewUser;
-		totalImageArr.push(tempItemDetailId);//detailId
-		totalImageArr.push(focus_review_div_id);//해당 리뷰 번호
-		
-		console.log("원래 있던 이미지 수 : " + srcImageArr.length);
-		console.log(srcImageArr);
-		console.log("새로 추가된 이미지 수 : " + fileImageArr.length);
-		console.log(fileImageArr);
-		console.log("전체 이미지 수 : " + totalImageArr.length);
-		console.log(totalImageArr);
-		
-		
-		$.ajax({
-			url : '/h72/detail/maskModify' ,
-			type : 'post' ,
-			contentType : 'application/json' ,
-			data : JSON.stringify(totalImageArr) ,
-			dataType : 'json' ,
-			success : function(data){
-				
-			}
-			,error : function(data){
-				
-			}
-		});
-		*/
-	});
-	
-	
 	$(document).on("click", "#modify", function(e){
 		console.log('수정 중');
 		focus_review = $(this).parent().parent().parent().parent().parent().parent().parent().parent();
@@ -346,8 +269,12 @@ function bindEvent(){
 		
 		//이미지 소스
 		var image = new Array();
-		
-		if(imageLength == 1){
+		/*imageLength
+		image[i]*/
+		identity = new Array();
+		if(imageLength == 0){
+			image.push("/h72/resources/uploadFiles/" + tempItemDetailId + "_temp-14_1.gif");
+		}if(imageLength == 1){
 			image.push($(this).parent().parent().parent().parent().parent().parent().parent().parent().children().last().children().children().children().eq(1).children().eq(0).children().children().attr('src'));
 		}else if(imageLength == 2){
 			image.push($(this).parent().parent().parent().parent().parent().parent().parent().parent().children().last().children().children().children().eq(1).children().eq(0).children().children().attr('src'));
@@ -369,6 +296,13 @@ function bindEvent(){
 			image.push($(this).parent().parent().parent().parent().parent().parent().parent().parent().children().last().children().children().children().eq(1).children().eq(4).children().children().attr('src'));
 		}
 		
+		for(var i = 0; i < image.length; i++){
+			var iden = image[i].substring(image[i].lastIndexOf('/') + 1, image[i].length - 4);
+			//--> ex) iden : "BAG0001_review-1_1"
+			identity.push(iden);
+			//console.log(i + " : " + iden);
+		}
+		
 		
 		//textarea 변환
 		active(textarea);
@@ -376,7 +310,13 @@ function bindEvent(){
 		//image 변환
 		$("#maskInner").html(
 			"<div class='mask page'>" +
-				"<form id='ajaxform' action='/saveFileTest.do' method='post' enctype='multipart/form-data'>" +
+				"<form id='ajaxModifyForm' action='maskModify' autocomplete='off' id='form-new-product-review' data-login-required='true' enctype='multipart/form-data' data-remote='true' method='post'>" +
+				
+				"<input type='hidden' name='ITEM_DETAIL_ID' value='" + tempItemDetailId + "' />" +
+				"<input type='hidden' name='reviewId' value='" + focus_review_div_id + "' />" +
+				"<input type='hidden' name='reviewUser' value='" + reviewUser + "' />" +
+				
+				
 					"<ul class='reviews reviews-product'>" +
 						"<li class='review product-review product_review__container' id='3'>" +
 							"<div class='product_review__info_container'>" +
@@ -397,7 +337,7 @@ function bindEvent(){
 									"<div class='review-content-inner review-content-collapsed'>" +
 										"<div class='panel-body no-border'>" +
 											"<a class='message link-expand'>" +
-												"<textarea style='overflow:hidden;width:900px;height:300px;font-size:12px;font-weight:bold;'>" + reviewText + "</textarea>" +
+												"<textarea name='reviewText' style='overflow:hidden;width:900px;height:300px;font-size:12px;font-weight:bold;'>" + reviewText + "</textarea>" +
 											"</a>" +
 										"</div>" +
 										
@@ -486,7 +426,7 @@ function bindEvent(){
 															"<span class='delete-review hoverable'>취소</span>" +
 														"</a>" +
 														/*"<a id='modifyFine'>" +*/
-															"<input type='button' id='subBtn' value='수정완료'>" + 
+															"<input type='submit' id='subBtn' value='수정완료'>" + 
 															/*"<span class='edit-review hoverable'>수정완료</span>" +*/
 														/*"</a>" +*/
 													"</div>" +
@@ -505,7 +445,9 @@ function bindEvent(){
 		e.preventDefault();
 		wrapWindowByMask();
 		//console.log(image[0]);
-		
+		console.log("image[0] : " + image[0]);
+		console.log("identity[0] : " + identity[0]);
+		//console.log(identity[0].substring(identity[0].lastIndexOf('-') + 1));
 		if(imageLength != 0){
 				for(var i = 0; i < imageLength; i++){
 					$("#maskPreview").append(
@@ -517,7 +459,8 @@ function bindEvent(){
 								"</div>" +
 							"</div>" +
 							"<input type='file' name='reviewPhoto' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
-						"</div>"
+							"<input type='hidden' name='fileId[]' value='" + identity[i].substring(identity[i].lastIndexOf('-') + 1) + "' />" +
+						"</div>"																					/*	'_' --> '-' */
 					);
 					
 					$("#maskpreview" + superNum ).attr("src", image[i]);
@@ -526,9 +469,23 @@ function bindEvent(){
 					$(".hidden.mask.preview_div_" + superNum ).css("display", "block");
 					superNum++;
 				}
+																				/*	'_' --> '-' */
 				
+				console.log("identity[superNum - 2] : " + identity[superNum - 2]);
 				
+				nextVal = ""+identity[superNum - 2];
+				nextVal = nextVal.substring(nextVal.indexOf('-') + 1); /*1_1 추출*/
+				nextNum = Number(nextVal.substring(nextVal.lastIndexOf('_') + 1)); /*_ 다음의 번호 추출*/
 				
+				nextVal = nextVal.substring(0, nextVal.lastIndexOf('_') + 1);/*1_ 추출*/
+				nextVal += nextNum + 1;
+				
+				console.log("nextVal : " + nextVal); /*'1_' + '2' = 1_2*/
+					
+				if(nextVal != null){
+				}else{
+					//nextVal = "temp_review_" + focus_review_div_id + "_" + superNum;
+				}
 				$("#maskPreview").append(
 						"<div id='maskPreviewInner" + superNum + "' class='maskPreviewInner' style=''>" +
 							"<div class='hidden mask preview_div_" + superNum + "'>" +
@@ -538,7 +495,13 @@ function bindEvent(){
 								"</div>" +
 							"</div>" +
 							"<input type='file' name='reviewPhoto' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
-						"</div>"
+							"<input type='hidden' name='fileId[]' value='" + nextVal + "' />" +
+						"</div>"/*identity[superNum - 1].substring(temp.lastIndexOf('_') + 1)에다가 + 1 한 값을
+						 		  identity[superNum - 1].substring(identity[superNum - 1].indexOf('-') + 1, identity[superNum - 1].lastIndexOf('_') + 1) 여기에 더해준 값을 다음 value값으로... */
+							/*
+							 * nextVal = identity[superNum - 1].substring(identity[superNum - 1].indexOf('-') + 1, identity[superNum - 1].lastIndexOf('_') + 1)
+							 * + Number(identity[superNum - 1].substring(temp.lastIndexOf('_') + 1)) + 1
+							 * */
 					);
 					
 					$("#maskpreview" + superNum ).attr("src", "");
@@ -546,7 +509,32 @@ function bindEvent(){
 					$("#maskpreview" + superNum ).css("height", "74px");
 					//$(".hidden.mask.preview_div_" + superNum ).css("display", "block");
 					superNum++;
-				
+					imageLength = $(".hidden.mask").length;
+			}else{
+				$("#maskPreview").append(
+						"<div id='maskPreviewInner" + superNum + "' class='maskPreviewInner' style=''>" +
+							"<div class='hidden mask preview_div_" + superNum + "'>" +
+								"<img class='preview' id='maskpreview" + superNum + "' alt='preview' src=''>" +
+								"<div class='image_field__remove_preview mask remove-preview hoverable' style='width:74px;height:74px;'>" +
+									"<div class='remove' style='margin-top:-20px;'>삭제</div>" +
+								"</div>" +
+							"</div>" +
+							"<input type='file' name='reviewPhoto' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
+							"<input type='hidden' name='fileId[]' value='" + focus_review_div_id + "_" + superNum + "' />" +
+						"</div>"/*identity[superNum - 1].substring(temp.lastIndexOf('_') + 1)에다가 + 1 한 값을
+						 		  identity[superNum - 1].substring(identity[superNum - 1].indexOf('-') + 1, identity[superNum - 1].lastIndexOf('_') + 1) 여기에 더해준 값을 다음 value값으로... */
+							/*
+							 * nextVal = identity[superNum - 1].substring(identity[superNum - 1].indexOf('-') + 1, identity[superNum - 1].lastIndexOf('_') + 1)
+							 * + Number(identity[superNum - 1].substring(temp.lastIndexOf('_') + 1)) + 1
+							 * */
+					);
+					
+					$("#maskpreview" + superNum ).attr("src", "");
+					$("#maskpreview" + superNum ).css("width", "74px");
+					$("#maskpreview" + superNum ).css("height", "74px");
+					//$(".hidden.mask.preview_div_" + superNum ).css("display", "block");
+					superNum++;
+					imageLength = $(".hidden.mask").length;
 			}
 
 			/*for(var i = 0; i < 5 - imageLength; i++){
@@ -601,6 +589,7 @@ function bindEvent(){
 		num = 1;
 		superNum = 1;
 		superNumFlow = 1;
+		nextVal = null;
 	});
 	
 	$(document).on("click", "#delete", function(){
@@ -617,10 +606,6 @@ function bindEvent(){
 			itemDetailId : itemDetailId ,
 		};
 		
-		/*var params2 = {
-			pageNo : currentPageNo ,
-			itemDetailId : itemDetailId
-		};*/
 		
 		$.ajax({
 			url : '/h72/detail/deleteReview' ,
@@ -636,18 +621,12 @@ function bindEvent(){
 				if(result > 0){
 					alert("result : " + data.result + ": 삭제 성공");
 					
+					//삭제 후 다시 뿌려주는 ajax 호출 
 					if(reviewListCount%limit == 0){
 						getReviewList(currentPageNo - 1);
 					}else{
 						getReviewList(currentPageNo);
 					}
-					//삭제 후 다시 뿌려주는 ajax 호출 
-					/*if(currentPageNo == ""){
-						console.log("currentPageNo : " + currentPageNo);
-						alert("currentPageNo : null");
-						getReviewList(1);
-					}*/
-					/*getReviewList(currentPageNo);*/
 				}
 				
 				/*paging(data);
@@ -662,7 +641,7 @@ function bindEvent(){
 	
 	$(document).on("click", ".ajaxPageC", function(){
    		var pageNo = $(this).text();
-   		alert("pageNo : " + pageNo);
+   		//alert("pageNo : " + pageNo);
    		getReviewList(pageNo);
    	});
 	
@@ -770,7 +749,7 @@ function uploadPhoto(){
 		
 		
 		
-		
+		imageLength = $(".hidden.mask").length;
    	});
      	
    	//input file 선택했을 때
@@ -787,6 +766,25 @@ function uploadPhoto(){
 			ext = $(baseSelector + n).val().split(".").pop();
 			
 		}else if(prefix == 'mask'){
+			console.log("사진추가됨");													/* '_' -->	'-' */
+			
+			//nextVal = ""+identity[superNum - 1]; 지금의 nextVal은 위에서 저장돼있음 1_2. 즉 1_3 으로 다음에 저장되게 문자열 처리
+			console.log("nextVal : " + nextVal);
+			nextNum = Number(nextVal.substring(nextVal.lastIndexOf('_') + 1)); /*_ 다음의 번호 추출*/
+			console.log("22 : " + nextNum);
+			nextVal = nextVal.substring(0, nextVal.lastIndexOf('_') + 1);/*1_ 추출*/
+			console.log("11 : " + nextVal);
+			nextVal += nextNum + 1;
+			console.log("nextVal : " + nextVal);
+			
+			if(nextVal != null){
+			}else{
+				//nextVal = "temp_review_" + focus_review_div_id + "_" + superNum;
+			}
+			/*nextVal = identity[superNum - 1];
+			nextVal = nextVal.substring(nextVal.indexOf('-') + 1, nextVal.lastIndexOf('_') + 1)
+			  + Number(nextVal.substring(nextVal.lastIndexOf('_') + 1)) + 1;*/
+			
 			$("#maskPreview").append(
 				"<div id='maskPreviewInner" + superNum + "' class='maskPreviewInner' style=''>" +
 					"<div class='hidden mask preview_div_" + superNum + "'>" +
@@ -796,6 +794,7 @@ function uploadPhoto(){
 						"</div>" +
 					"</div>" +
 					"<input type='file' name='reviewPhoto' id='maskupBtn" + superNum + "' class='maskinput-file hidden' accept='image/*' multiple='multiple' />" +
+					"<input type='hidden' name='fileId[]' value='" + nextVal + "' />" +
 				"</div>"
 			);
 				
@@ -820,27 +819,24 @@ function uploadPhoto(){
 			} else {
 				readURL(this);
 				
+				var thum = null;
+				
 				if(num != 6){	
 					$(this).css("display", "none");
 				}
-		 		
-				var thum = null;
-				
 				if(prefix == "mask"){
 					thum = $(this).siblings().attr('class');
-					//thum = $("." + prefix + ".preview_div_" + superNumFlow).attr("class");
 				}else if(prefix == ""){
 					thum = $(".preview_div_" + n).attr("class");
 				}
 				
-				//thum = $(".preview_div_" + n).attr("class");
 				thum = thum.replace( /\s/g, ".");
 				$("." + thum).css("display", "block");//숨겨진 섬네일 show
 			}
 		}
 		n++;
 		//superNumFlow++;
-		//imageLength = $(".hidden.mask").length;
+		imageLength = $(".hidden.mask").length;
 	});
 	
 	function readURL(input) {
@@ -885,6 +881,8 @@ function uploadPhoto(){
 		
 		if(prefix == 'mask'){
 			$(this).parent().parent().remove();
+			//$(this).parent().next().val("")
+			//$(this).parent().parent().css("display", "none");
 			
 			/*pre_imageLength = $(".hidden.mask").length - 1;
 			sum = pre_imageLength + $(".maskinput-file.hidden").length;

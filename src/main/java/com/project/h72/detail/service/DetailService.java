@@ -20,4 +20,7 @@ public interface DetailService {
 	public int deleteReview(ManageForm form);
 	public Review selectSingleReview(ManageForm form);
 	public List<String> selectCartId(ArrayList<Cart> cartList);
+	public int updateReviewImage(List<String> deleteList, String reviewId);
+	public int insertReviewImage(List<String> insertReviewImage, String reviewId);
+	public String selectMaxIndex(ManageForm form);
 }
