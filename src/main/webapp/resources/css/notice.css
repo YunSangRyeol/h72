@@ -3322,3 +3322,7 @@ div.layerProgress {
 		no-repeat 0 50%;
 	background-size: 27px 35px;
 }
+
+.main_searchBtn {
+    border: none;
+}
