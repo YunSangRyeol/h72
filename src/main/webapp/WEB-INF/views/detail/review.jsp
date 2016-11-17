@@ -37,6 +37,12 @@
 	var maskThumnailId = null;
 	var nextVal = null;
 	var identity = null;
+	
+	// To Image slide show
+	var imgArray = [];
+	var imgLength = null;
+	var curIndex = null;
+	
     $(document).ready(function(){
     	//console.log("11111111111");
     	

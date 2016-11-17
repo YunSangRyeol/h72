@@ -442,7 +442,7 @@ function bindEvent(){
 															"<span class='delete-review hoverable'>취소</span>" +
 														"</a>" +
 														/*"<a id='modifyFine'>" +*/
-															"<input type='submit' id='subBtn' value='수정완료' style='font-size:2pt;'>" + 
+															"<input type='submit' id='subBtn' value='수정완료' style='font-size:11px;'>" + 
 															/*"<span class='edit-review hoverable'>수정완료</span>" +*/
 														/*"</a>" +*/
 													"</div>" +
@@ -700,7 +700,53 @@ function bindEvent(){
 	    $('.window').hide();
 	});*/
 	
+	$(document).on("click", ".images > li", function () {
+		imgArray = [];
+		imgLength = $(this).parent().children().length;
+		
+		for(var i = 0; i < imgLength; i++){
+			imgArray[i] = $(this).parent().children().children().children().eq(i).attr('src');
+		}
+		
+		curIndex = imgArray.indexOf($(this).children().children().eq(0).attr('src'));
+		
+//		var tempImg = $(this).children().children().first().attr('src');
+		//tempImage = tempImage.substring(tempImage.lastIndexOf('/') + 1 );
+		wrapWindowByMask();
+		$('#mask').append('<div id=layerWrapper>' +
+							'<img id="cancel" src="/h72/resources/image/cancel.png">' +
+							'<img class="arrow" id="leftArrow" src="/h72/resources/image/arrow-left.png"></img>' +
+							'<img id="layerImage"></img>' +
+							'<img class="arrow" id="rightArrow" src="/h72/resources/image/arrow-right.png"></img>' +
+						  '</div>');
+		$('#layerImage').attr('src', imgArray[curIndex]);
+	});
 	
+	$(document).on("click", ".arrow", function () {
+		if ( $(this).attr('id') == "leftArrow" ) {
+			if ( curIndex-1 < 0 ) {
+				curIndex = imgArray.length-1;
+			} else {
+				curIndex--;
+			}
+			//$(this).next().animate({opacity:"0.1", right: "+=400"},1000,{width:0});
+			//$(this).next().animate({width:'toggle'},350);
+		} else {
+			if ( curIndex + 1 >= imgArray.length ) {
+				curIndex = 0;
+			} else {
+				curIndex++;
+			}
+		}
+		
+		$('#layerImage').attr('src', imgArray[curIndex]);
+		
+	});
+	
+	$(document).on("click", "#cancel", function () {
+		$('#mask').html("");
+		$('#mask').hide();
+	});
 	
 	uploadPhoto();
 	
