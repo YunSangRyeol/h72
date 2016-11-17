@@ -266,14 +266,12 @@ public class OrderController {
 				//페이지 단위로 게시글 목록 조회용
 				clistOrder = os.selectOrderClist(userId, currentDate, preDate,currentPage,limit,tab);
 				maxPage = (int)((double)clistCount / limit + 0.9);
-				 if(maxPage==0){maxPage=1;}
 				
 			}else{
 				listCount = os.getListCount(userId, currentDate, preDate, tab);
 				//페이지 단위로 게시글 목록 조회용
 				listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit, tab);
 				 maxPage = (int)((double)listCount / limit + 0.9);
-				 if(maxPage==0){maxPage=1;}
 			}
 			
 			//현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, .....)
@@ -353,14 +351,12 @@ public class OrderController {
 			//페이지 단위로 게시글 목록 조회용
 			clistOrder = os.selectOrderClist(userId, currentDate, preDate,currentPage,limit,tab);
 			maxPage = (int)((double)clistCount / limit + 0.9);
-			 if(maxPage==0){maxPage=1;}
 			
 		}else{
 			listCount = os.getListCount(userId, currentDate, preDate, tab);
 			//페이지 단위로 게시글 목록 조회용
 			listOrder = os.selectOrderList(userId, currentDate, preDate,currentPage,limit, tab);
 			 maxPage = (int)((double)listCount / limit + 0.9);
-			 if(maxPage==0){maxPage=1;}
 		}
 		
 		//현재 페이지에 보여줄 시작 페이지 수 (1, 6, 11, .....)
