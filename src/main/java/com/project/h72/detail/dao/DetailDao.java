@@ -124,4 +124,111 @@ public class DetailDao {
 		return cartId;
 	}
 
+
+	public int updateReviewImage(List<String> deleteList, String reviewId) {
+		int result = 0;
+		String[] rImageColum = {"R_IMG01", "R_IMG02", "R_IMG03", "R_IMG04", "R_IMG05"};
+		
+		Map<String, String> map = new HashMap<String, String>(); 
+		
+		map.put("reviewId", reviewId);
+		//map.put("rImage", rImage);
+	
+		for(int i = 0; i < deleteList.size(); i++){
+			for(int j = 0; j < rImageColum.length; j++){
+				map.put("rImageColum", rImageColum[j]);
+				map.put("deleteList", deleteList.get(i));
+				result += sqlSession.update(NAMESPACE + "updateReviewImage", map);
+			}
+		}
+		
+		
+		return result;
+	}
+
+	public String selectMaxIndex(ManageForm form) {
+		Review review = sqlSession.selectOne(NAMESPACE + "selectSingleReview", form);
+		
+		ArrayList<String> indexList = new ArrayList<String>();
+		
+		String img01 = null;
+		String img02 = null;
+		String img03 = null;
+		String img04 = null;
+		String img05 = null;
+		
+		if(review.getR_IMG01() != null){
+			img01 = review.getR_IMG01();
+			/*System.out.println("before : " + img01);
+			System.out.println("after : " + img01.substring(img01.lastIndexOf("-") + 1, img01.length() - 4));*/
+			img01 = img01.substring(img01.lastIndexOf("-") + 1, img01.length() - 4);
+			img01 = img01.substring(img01.length() - 1);
+			indexList.add(img01);
+		}
+		if(review.getR_IMG02() != null){
+			img02 = review.getR_IMG02();
+			img02 = img02.substring(img02.lastIndexOf("-") + 1, img02.length() - 4);
+			img02 = img02.substring(img02.length() - 1);
+			indexList.add(img02);
+		}
+		if(review.getR_IMG03() != null){
+			img03 = review.getR_IMG03();
+			img03 = img03.substring(img03.lastIndexOf("-") + 1, img03.length() - 4);
+			img03 = img03.substring(img03.length() - 1);
+			indexList.add(img03);
+		}
+		if(review.getR_IMG04() != null){
+			img04 = review.getR_IMG04();
+			img04 = img04.substring(img04.lastIndexOf("-") + 1, img04.length() - 4);
+			img04 = img04.substring(img04.length() - 1);
+			indexList.add(img04);
+		}
+		if(review.getR_IMG05() != null){
+			img05 = review.getR_IMG05();
+			img05 = img05.substring(img05.lastIndexOf("-") + 1, img05.length() - 4);
+			img05 = img05.substring(img05.length() - 1);
+			indexList.add(img05);
+		}
+		
+		String maxIndex = Collections.max(indexList);
+		
+		return maxIndex;
+	}
+
+	public int insertReviewImage(List<String> insertReviewImage, String reviewId) {
+		int result = 0;
+		
+		String[] rImageColum = {"R_IMG01", "R_IMG02", "R_IMG03", "R_IMG04", "R_IMG05"};
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("reviewId", reviewId);
+		
+		for(int i = 0; i < insertReviewImage.size(); i++){
+			for(int j = 0; j < rImageColum.length; j++){
+				map.put("rImageColum", rImageColum[j]);
+				map.put("insertReviewImage", insertReviewImage.get(i));
+				int semiResult = sqlSession.update(NAMESPACE + "insertReviewImage", map);
+				if(semiResult > 0){
+					result += semiResult;
+					break;
+				}
+			}
+			System.out.println(i);
+		}
+		
+		
+		return result;
+	}
+
+	public int selectImageNullCount(String reviewId) {
+		int nullCount = sqlSession.selectOne(NAMESPACE + "selectImageNullCount", reviewId); 
+		System.out.println("nullCount : " + nullCount + "개");
+		return nullCount;
+	}
+
+	public int updateReviewContent(Map<String, String> map) {
+		int updateTextResult = sqlSession.update(NAMESPACE + "updateReviewContent", map);
+		return updateTextResult;
+	}
+
 }

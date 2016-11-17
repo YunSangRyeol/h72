@@ -70,8 +70,33 @@ public class DetailServiceImpl implements DetailService {
 		List<String> cartId = dd.selectCartId(cartList);
 		return cartId;
 	}
-	
-	
+
+	@Override
+	public int updateReviewImage(List<String> deleteList, String reviewId) {
+		int result = dd.updateReviewImage(deleteList, reviewId);
+		return result;
+	}
+	@Override
+	public int insertReviewImage(List<String> insertReviewImage, String reviewId) {
+		int result = dd.insertReviewImage(insertReviewImage, reviewId);
+		return result;
+	}
+	@Override
+	public String selectMaxIndex(ManageForm form) {
+		String maxIndex = dd.selectMaxIndex(form);
+		return maxIndex;
+	}
+	@Override
+	public int selectImageNullCount(String reviewId) {
+		int nullCount = dd.selectImageNullCount(reviewId);
+		return nullCount;
+	}
+	@Override
+	public int updateReviewContent(Map<String, String> map) {
+		int updateTextResult = dd.updateReviewContent(map);
+		return updateTextResult;
+	}
+
 	
 
 }
