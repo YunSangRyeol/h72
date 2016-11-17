@@ -76,9 +76,7 @@ public class DetailController {
 	@RequestMapping(value="/ajaxPage", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> transPage(@RequestBody PageForm form, HttpServletRequest request, Model model){
-		System.out.println("wowowowowowowowowowowowowowo");
-		System.out.println("form : " + form);
-		///////////////////////////////////////////////////////////////////////
+		//System.out.println("form : " + form);
 		//페이지 수 처리용 변수 
 		String itemDetailId = form.getItemDetailId();
 		int pageNo = form.getPageNo();
@@ -112,13 +110,13 @@ public class DetailController {
 		int maxPage = (int)((double)reviewListCount / limit + 0.9);
 		//현재 페이지에 보여줄 시작 페이지 수 (1, 10, 20, .....)
 		int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
-		System.out.println("11111111111 : " + startPage);
+		System.out.println("startPage : " + startPage);
 		//현재 페이지에 보여줄 마지막 페이지 수 (9, 19, 29, .....)
 		int endPage = startPage + limit - 1;
 		if(maxPage < endPage)
 			endPage = maxPage;
 		
-		System.out.println("maxPage : " + maxPage + ", startPage : " + startPage + ", endPage : " + endPage);
+		//System.out.println("maxPage : " + maxPage + ", startPage : " + startPage + ", endPage : " + endPage);
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("maxPage", maxPage);
@@ -128,16 +126,16 @@ public class DetailController {
 		
 		//페이징 처리 데이터
 		if(reviewListCount == 0){
-			System.out.println("list가 null일 경우");
-			System.out.println(reviewList);
+			//System.out.println("list가 null일 경우");
+			//System.out.println(reviewList);
 		}else{
 			result.put("reviewList", reviewList);
-			System.out.println("list가 null이 아닐 경우");
-			System.out.println(reviewList);
+			//System.out.println("list가 null이 아닐 경우");
+			//System.out.println(reviewList);
 		}
 		result.put("reviewListCount", reviewListCount);
 		
-		System.out.println("ajax list : " + reviewList);
+		//System.out.println("ajax list : " + reviewList);
 		
 		///////////////////////////////////////////////////////////////////////
 		
@@ -174,7 +172,7 @@ public class DetailController {
 		String kinds = request.getParameter("kinds");
 		
 		int result = 0;
-		
+		/*
 		System.out.println("-----------------------------------------------");
 		System.out.println("quantity : " + quantity + ", arrQuantity : " + arrQuantity.length +"개, "+arrQuantity.toString());
 		System.out.println("cost : " + cost);
@@ -188,7 +186,7 @@ public class DetailController {
 		System.out.println("KitYN : " + KitYN);
 		System.out.println("kinds : " + kinds);
 		System.out.println("-----------------------------------------------");
-		
+		*/
 		ArrayList<Cart> cartList = new ArrayList<Cart>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -210,7 +208,7 @@ public class DetailController {
 			int tOf = 0;
 			tOf = ds.selectCart(cartList);//장바구니에 추가하려는 상품이 장바구니에 들어있는지 확인//0이면 카트에 이미 있다는 말이고, 0 보다 크면 카트에 그 수만큼 상품 등록됐다는 의미
 			int count = tOf;
-			System.out.println("count : " + count);
+			//System.out.println("count : " + count);
 			//System.out.println("sssssssssssssssssssssssssssssssss " + tOf.get(0));
 			
 			if(count == 0){//카트에 상품이 추가된 수가 0이라는 의미. 이미 있다!
@@ -223,9 +221,9 @@ public class DetailController {
 				
 			//카트에 담긴 카트아이디[]를 가져옴
 			List<String> cartId = ds.selectCartId(cartList);
-			System.out.println("carId 시퀀스");
+			//System.out.println("carId 시퀀스");
 			for(String s : cartId)
-				System.out.println(s);
+				//System.out.println(s);
 			map.put("cartId", cartId);
 			map.put("count", count);
 		}
@@ -249,13 +247,13 @@ public class DetailController {
 		String rContents = request.getParameter("R_CONTENTS");
 		String itemDetailName = request.getParameter("ItemDetailName");
 		String itemPrice = request.getParameter("ItemPrice");
-		
+		/*
 		System.out.println("writer : " + rWriter);
 		System.out.println("id : " + itemDetailId);
 		System.out.println("R_CONTENTS : " + rContents);
 		System.out.println("ItemDetailName : " + itemDetailName);
 		System.out.println("itemPrice : " + itemPrice);
-		
+		*/
 		//전송 파일에 용량 제한을 두고 싶으면 정함 : 10 메가바이트로 할 경우
 		int sizeLimit = 1024 * 1024 * 10;
 	
@@ -263,8 +261,8 @@ public class DetailController {
 		ArrayList<String> renameFileNames = new ArrayList<String>();
 		ArrayList<MultipartFile> newFlist = new ArrayList<MultipartFile>();
 		
-		String savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
-		//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
+		String savePath = //"C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+		"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
 		
 		MultipartFile mpf1 = multipartRequest.getFile("reviewPhoto1");
 		MultipartFile mpf2 = multipartRequest.getFile("reviewPhoto2");
@@ -293,7 +291,7 @@ public class DetailController {
 			newFlist.add(mpf5);
 		}
 		
-		System.out.println(originalFileNames.size() + "개");
+		//System.out.println(originalFileNames.size() + "개");
 		int result = 0;
 		int listNo = 0;
 		
@@ -302,24 +300,24 @@ public class DetailController {
 			
 			listNo = ds.selectListNo();
 			
-			System.out.println("listNo : " + listNo);
+			//System.out.println("listNo : " + listNo);
 		
 			//바꿀 파일명 만들기
 			int index = 1;
-			System.out.println("index : " + index);
+			//System.out.println("index : " + index);
 			
 			for(int i = 0; i < originalFileNames.size(); i++){
-				System.out.println("자.... 리네임을 시작합니다. 먼저!!!!!!!!! \noriginalFileNames.size() : " + originalFileNames.size());
+				//System.out.println("자.... 리네임을 시작합니다. 먼저!!!!!!!!! \noriginalFileNames.size() : " + originalFileNames.size());
 				if(originalFileNames != null){
 					StringBuilder sb = new StringBuilder();
-					System.out.println("originalFileNames.get(i) : " + originalFileNames.get(i));
+					//System.out.println("originalFileNames.get(i) : " + originalFileNames.get(i));
 					
 					String renameFileName = sb.append(itemDetailId + "_review-" + listNo + "_" + String.valueOf(index) + "."
 								+ originalFileNames.get(i).substring(originalFileNames.get(i).lastIndexOf(".") + 1)).toString();
-					System.out.println("after");
-					System.out.println("리네임 :");
-					System.out.println(renameFileName);
-					System.out.println("------------------------------------");
+					//System.out.println("after");
+					//System.out.println("리네임 :");
+					//System.out.println(renameFileName);
+					//System.out.println("------------------------------------");
 					
 					renameFileNames.add(renameFileName);
 					index++;
@@ -349,8 +347,8 @@ public class DetailController {
 				review = new Review(itemDetailId, rWriter, rContents, renameFileNames.get(0), renameFileNames.get(1), renameFileNames.get(2), renameFileNames.get(3), renameFileNames.get(4));
 			}
 			
-			System.out.println("11111111111111111");
-			System.out.println(review);
+			//System.out.println("11111111111111111");
+			//System.out.println(review);
 			result = ds.insertReview(review);
 		
 		
@@ -362,7 +360,7 @@ public class DetailController {
 				//mav.addObject(url);
 				mav.setView(new RedirectView(url));
 			}
-			System.out.println("result !!!!!!!!\n" + result);
+			//System.out.println("result !!!!!!!!\n" + result);
 		
  				
  		return mav;//ajax사용 출력
@@ -384,7 +382,7 @@ public class DetailController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println("deleteReview run...");
-		System.out.println(form);
+		//System.out.println(form);
 		
 		//1. 디렉토리에 저장된 이미지파일 지워주기 위해 지워주려고하는 리뷰를 가져옴
 		Review review = ds.selectSingleReview(form);
@@ -419,10 +417,10 @@ public class DetailController {
 			arr.add(img05);
 		}
 		
-		System.out.println(img01 + ", " + img02 + ", " + img03 + ", " + img04 + ", " + img05 + ", arr size : " + arr.size());
+		//System.out.println(img01 + ", " + img02 + ", " + img03 + ", " + img04 + ", " + img05 + ", arr size : " + arr.size());
 		
-		String savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
-		//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
+		String savePath = //"C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+		"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
 		
 		for(int i = 0; i < arr.size(); i++){
 			File imgFile = new File(savePath + "\\" + arr.get(i));
@@ -437,13 +435,13 @@ public class DetailController {
 		map.put("result", result);
 		
 		if(result > 0){
-			System.out.println(form.getReviewNo() + "번 리뷰가 삭제되었습니다.");
+			System.out.println(form.getReviewNo() + " 번 리뷰가 삭제되었습니다.");
 			int reviewListCount = ds.selectReviewListCount(form.getItemDetailId());
 			map.put("reviewListCount", reviewListCount);
 		}else{
-			System.out.println(form.getReviewNo() + "번 리뷰 삭제 실패");
+			System.out.println(form.getReviewNo() + " 번 리뷰 삭제 실패");
 		}
-		System.out.println("result : " + result);
+		//System.out.println("result : " + result);
 		
 		return map;
 	}
@@ -492,7 +490,7 @@ public class DetailController {
 		
 		
 		
-		int index = 1;
+		/*int index = 1;
 		System.out.println("index : " + index);
 		
 		//이미지가 있을 떄 maxIndex 구하고 이미지가 없을 때는 그냥 index
@@ -505,10 +503,10 @@ public class DetailController {
 			if(maxIndex != null){
 				index = Integer.parseInt(maxIndex) + 1;
 			}
-		}
+		}*/
 		
-		String savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
-		//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
+		String savePath = //"C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+		"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
 		
 		
 		//들어온 파일(공백 포함) 이름
@@ -527,28 +525,6 @@ public class DetailController {
 				newFlist.add(flist.get(i));
 			}
 		}
-		for(int i = 0; i < originalFileNames.size(); i++){
-			StringBuilder sb = new StringBuilder();
-			renameFileName = sb.append(itemDetailId + "_review-" + reviewId + "_" + String.valueOf(index) + "."
-					+ originalFileNames.get(i).substring(originalFileNames.get(i).lastIndexOf(".") + 1)).toString();
-			renameFileNames.add(renameFileName);
-			index++;
-		}
-		System.out.println("***********************");
-		System.out.println("들어온 file 갯수(공백 제거): " + originalFileNames.size() + "개");
-		
-		for(String s : originalFileNames){
-			System.out.println(s);
-		}
-		System.out.println("***********************");
-		System.out.println("리네임 후");
-		for(String s : renameFileNames){
-			System.out.println("reviewPhoto : " + s);
-		}
-		System.out.println("***********************");
-		
-		
-		
 		
 		//기존 리뷰 이미지 불러와서 고유 번호 문자열만 뽑아내서 list에 저장
 		Review review = ds.selectSingleReview(form);
@@ -613,6 +589,7 @@ public class DetailController {
 		//String fileId = request.getParameter("fileId");
 		System.out.println("***********************");
 		
+		
 		List<String> insertList = new ArrayList(isNew);
 		List<String> deleteList = new ArrayList(isHaved);
 		
@@ -631,9 +608,6 @@ public class DetailController {
 			System.out.println(s);
 		
 		List<String> delFile = new ArrayList<String>();//삭제할 파일
-		String savePath1 = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
-		//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
-		
 		
 		for(String s : deleteList){
 			delFile.add(itemDetailId + "_review-" + s + ".jpg");
@@ -659,33 +633,55 @@ public class DetailController {
 		
 		
 		
-		/*insertList*/
+		/* insertList */
 		//들어온 file 총 갯수(공백포함, 마지막에 딸려온 빈 요소 제거){flist.size() - 1} 갯수만큼 반복하면서 isHaved 각요소들이 isNew 에 포함되는지 검사 후 포함되면 해당 요소 제거
 		//isNew list에서 원래 있던 list와 중복되는 요소를 제거해주면 추가해줘야하는 요소만 남게 된다.
 		
 		insertList.removeAll(isHaved);
 		
+		/*
 		ArrayList<String> insertReviewImage = new ArrayList<String>();
-		
 		for(int i = 0; i < insertList.size(); i++){
 			for(int j = 0; j < renameFileNames.size(); j++){
 				if(renameFileNames.get(j).indexOf(insertList.get(i)) >= 0){
 					insertReviewImage.add(renameFileNames.get(j));
 				}
 			}
-		}
+		}*/
 		
+		
+		if(insertList != null){//추가해야하는 고유 번호
+			
+		/************************ 리네임 *****************************/
+			for(int i = 0; i < originalFileNames.size(); i++){
+				StringBuilder sb = new StringBuilder();
+				renameFileName = sb.append(itemDetailId + "_review-" + insertList.get(i) + "."
+						+ originalFileNames.get(i).substring(originalFileNames.get(i).lastIndexOf(".") + 1)).toString();
+				renameFileNames.add(renameFileName);
+			}
+		}
+		System.out.println("***********************");
+		System.out.println("들어온 file 갯수(공백 제거): " + originalFileNames.size() + "개");
+		
+		for(String s : originalFileNames){
+			System.out.println(s);
+		}
+		System.out.println("***********************");
+		System.out.println("리네임 후");
+		for(String s : renameFileNames){
+			System.out.println("reviewPhoto : " + s);
+		}
+		System.out.println("***********************");
+		
+		/************************************************/
 		System.out.println("****** 추가 리스트 ******");
 		for(String s : insertList)
-			System.out.println(s);
-		System.out.println("------------------");
-		for(String s : insertReviewImage)
 			System.out.println(s);
 		System.out.println("*****************");
 		
 		if(insertList != null){
 			//DB insert 코드
-			int result = ds.insertReviewImage(insertReviewImage, reviewId);
+			int result = ds.insertReviewImage(renameFileNames, reviewId);
 			System.out.println("이미지 " + result + "개 insert 수정 완료");
 		}
 		

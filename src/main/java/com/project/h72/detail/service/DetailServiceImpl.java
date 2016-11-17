@@ -77,8 +77,8 @@ public class DetailServiceImpl implements DetailService {
 		return result;
 	}
 	@Override
-	public int insertReviewImage(List<String> insertReviewImage, String reviewId) {
-		int result = dd.insertReviewImage(insertReviewImage, reviewId);
+	public int insertReviewImage(List<String> renameFileNames, String reviewId) {
+		int result = dd.insertReviewImage(renameFileNames, reviewId);
 		return result;
 	}
 	@Override

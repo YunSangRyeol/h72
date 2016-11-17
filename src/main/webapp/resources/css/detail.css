@@ -97,8 +97,8 @@ img, fieldset {
 #cssmenu1 {
     float: right;
     position: absolute;
-    top: 40px;
-    right: 130px;
+    top: 0;
+    right: 435px;
     background: none;
     width: auto;
     font-size: 11px;
@@ -260,7 +260,7 @@ strong, b {
 }
 .xans-product-detail .infoArea .mem_lv_wrap {
     position: relative;
-    z-index: 200;
+    z-index: 1;
 }
 ul, menu, dir {
 	

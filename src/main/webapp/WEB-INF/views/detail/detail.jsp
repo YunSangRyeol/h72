@@ -120,19 +120,24 @@ function ResizeFrame(name)
         	<!-- 상세정보 내역 -->
         <div class="infoArea">   
         
-        <h3 class="resize">${itemDetailList[0].ITEM_NAME}<span class="bookmark mouse_on"> 
+        <h3 class="resize">${itemDetailList[0].ITEM_NAME}
+        <span class="bookmark mouse_on"> 
             <div id="cssmenu1">
-            <ul>
-			<li class="has-sub" style="padding:3px 10px 3px 10px; float:right; font-size:11px;">
-				<a href="http://10world.co.kr/board/free/read.html?no=559012&amp;board_no=1"><img src="/h72/resources/image/icon_detailtop1.png" style="margin:-1px 5px 0 0;">회원등급별혜택보기</a>
-            	<ul>
-                <li><a href=""><span class="title">SILVER</span>구매금액의 <span class="blue">3%</span> 적립</a></li> 
-                <li><a href=""><span class="title">GOLD</span>구매금액의 <span class="blue">5%</span> 적립</a></li>
-                <li class="last"><a href=""><span class="title">DIAMOND</span>구매금액의 <span class="red">10%</span> 적립</a></li>
-                </ul>
-			</li> 
-            </ul>
+	            <ul>
+					<li class="has-sub" style="padding:3px 10px 3px 10px; float:right; font-size:11px;">
+						<a href="#">
+							<img src="/h72/resources/image/icon_detailtop1.png" style="margin:-1px 5px 0 0;">회원등급별혜택보기
+						</a>
+		            	<ul>
+			                <li><a href="#"><span class="title">SILVER</span>구매금액의 <span class="blue">3%</span> 적립</a></li> 
+			                <li><a href="#"><span class="title">GOLD</span>구매금액의 <span class="blue">5%</span> 적립</a></li>
+			                <li class="last"><a href="#"><span class="title">DIAMOND</span>구매금액의 <span class="red">10%</span> 적립</a></li>
+		                </ul>
+					</li> 
+	            </ul>
 			</div>
+		</span>
+		
 			<script>
 			var _itemDetailId = "${itemDetailId}";
 			
@@ -150,6 +155,8 @@ function ResizeFrame(name)
 			</script>    
 			<script>
             $(document).ready(function(){
+            	var mileage = numberWithCommas(Math.floor(Number('${itemDetailList[0].SAIL_PRICE}')*Number('${loginUser.pointRate}')/100));
+            	$("#span_mileage_text").text(mileage + "원"); 
             	var price = Number($("#span_product_price_text").next().text());
             	var totalprice = 0;
             	var totalcount = 0;
@@ -414,16 +421,23 @@ function ResizeFrame(name)
 					    		dataType : 'json' ,
 					    		success : function(data) {
 					    			if(kinds == 'cart'){
-						    			alert("return : " + data.result + "\ncount(추가된 상품 수) : " + data.count);
-						    			if(data.result > 0) {alert(data.result + "개 insert 성공!"); $("#confirmLayer").css("display", "block");}
-						    			if(data.result == 0) {alert("insert 실패!");}
-						    			if(data.result == -1) {alert("해당 상품이 카트에 이미 있습니다."); $("#confirmLayer").css("display", "block");}
+						    			//alert("return : " + data.result + "\ncount(추가된 상품 수) : " + data.count);
+						    			if(data.result > 0) {
+						    				//alert(data.result + "개 insert 성공!"); 
+						    				$("#confirmLayer").css("display", "block");
+						    			}
+						    			if(data.result == 0) {
+						    				alert("insert 실패!");
+						    			}
+						    			if(data.result == -1) {//alert("해당 상품이 카트에 이미 있습니다."); 
+						    				$("#confirmLayer").css("display", "block");
+						    			}
 					    			}else if(kinds == 'purchase'){
 					    				purchase(data.cartId);
 					    			}
 					    		} ,
 					    		error : function(){
-					    			alert("error : 추가옵션을 선택하세요");
+					    			alert("error");
 					    		}
 					    	});
 			    	}
@@ -445,7 +459,7 @@ function ResizeFrame(name)
             }
           	
           	function purchase(cartId){
-				alert("구매합니다.");
+				alert("상품을 구매합니다.");
           		location.href = "/h72/directOrder?cartAll=" + cartId; 
           	}
           	
@@ -468,7 +482,7 @@ function ResizeFrame(name)
 				<th scope="row" class="resize">판매가</th>
 				
                 <td class="td-color2 mem_lv_wrap">
-                	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;">9,900원</strong><label style="display: none">${itemDetailList[0].SAIL_PRICE }</label>
+                	<strong id="span_product_price_text" class="ProductPrice" style="color:#ef4141;"></strong><label style="display: none">${itemDetailList[0].SAIL_PRICE }</label>
                     <a href="#none" class="displaynone" sms_restock_login_display="1" name="btn_restock" id="btn_restock" onclick="alert('');"><img src="http://img.echosting.cafe24.com/design/skin/default/product/btn_sms.gif" alt="재입고 알림 SMS"></a>
                     <!-- input hidden ITEM_PRICE -->
                     
@@ -480,7 +494,7 @@ function ResizeFrame(name)
                 <td class="td-color1">
                 	<ul class="mileage">
 					<li class="">
-						<span id="span_mileage_text">100</span> <span class="">(1.00%)</span>
+						<span id="span_mileage_text"></span> <span class="">(${loginUser.pointRate}%)</span>
 					</li>
                     <li class="displaynone">
 						<img src="" alt="무통장 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
@@ -640,17 +654,12 @@ function ResizeFrame(name)
 	<div id="prdDetail"> 
 		<div class="cont"> 
 			<center>
-			
-			<p><img src="/h72/resources${itemDetailList.get(0).DETAIL_IMG01 }"></p>
-			
-			<c:if test="${not empty itemDetailList.get(0).DETAIL_IMG02}">
-				<p><img src="/h72/resources/${itemDetailList.get(0).DETAIL_IMG02 }"></p>
-			</c:if>
-			<c:if test="${empty itemDetailList.get(0).DETAIL_IMG02}">
-			</c:if>
-			
-			
-			</center> 
+				<p><img src="/h72/resources${itemDetailList.get(0).DETAIL_IMG01 }"></p>
+				
+				<c:if test="${not empty itemDetailList.get(0).DETAIL_IMG02}">
+					<p><img src="/h72/resources${itemDetailList.get(0).DETAIL_IMG02 }"></p>
+				</c:if>
+			</center>
 		</div>
 	</div>
 	

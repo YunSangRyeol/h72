@@ -22,7 +22,7 @@ public interface DetailService {
 	public List<String> selectCartId(ArrayList<Cart> cartList);
 
 	public int updateReviewImage(List<String> deleteList, String reviewId);
-	public int insertReviewImage(List<String> insertReviewImage, String reviewId);
+	public int insertReviewImage(List<String> renameFileNames, String reviewId);
 	public String selectMaxIndex(ManageForm form);
 	public int selectImageNullCount(String reviewId);
 	public int updateReviewContent(Map<String, String> map);

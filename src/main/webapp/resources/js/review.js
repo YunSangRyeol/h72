@@ -144,7 +144,7 @@ function reviewing(reviewList){
 				"				<div class='review-content-inner review-content-collapsed'>" +
 				"					<div class='panel-body no-border'>" +
 				"						<a class='message link-expand'>" +
-				"							<textarea disabled spellcheck='true' style='overflow:hidden;width:900px;height:auto;font-size:12px;font-weight:bold;'>"+reviewList[i].r_CONTENTS+"</textarea>" +
+				"							<textarea disabled spellcheck='true' style='overflow:hidden;width:900px;height:100px;font-size:12px;font-weight:bold;'>"+reviewList[i].r_CONTENTS+"</textarea>" +
 				"						</a>" +
 				"					</div>" +
 				"					<ul class='images'>";
@@ -248,6 +248,21 @@ function reviewing(reviewList){
 
 
 function bindEvent(){
+	
+	$("#subBtn").hover(function(){
+		$("#subBtn").css({'background-color':'white', 'color':'#515151'});
+	},function(){
+			$("#subBtn").css({'background-color':'#515151', 'color':'white'});
+	});
+	
+	$(document).on("submit", "#form-new-product-review", function(e){
+		var review_text = $("#review_message").val();
+		if(review_text == ""){
+			alert("내용을 작성하세요.");
+			return false;
+		}
+	});
+	
 	
 	$(document).on("click", "#modify", function(e){
 		console.log('수정 중');
@@ -427,7 +442,7 @@ function bindEvent(){
 															"<span class='delete-review hoverable'>취소</span>" +
 														"</a>" +
 														/*"<a id='modifyFine'>" +*/
-															"<input type='submit' id='subBtn' value='수정완료'>" + 
+															"<input type='submit' id='subBtn' value='수정완료' style='font-size:2pt;'>" + 
 															/*"<span class='edit-review hoverable'>수정완료</span>" +*/
 														/*"</a>" +*/
 													"</div>" +
@@ -614,48 +629,51 @@ function bindEvent(){
 	});
 	
 	$(document).on("click", "#delete", function(){
-		console.log("rrrr");
+		//console.log("rrrr");
+		var yOn = window.confirm("정말 삭제하시겠습니까?");
 		
-		var focus_review_div_id = $(this).parent().parent().parent().parent().parent().parent().parent().parent().attr("id");
-		var focus_div_user = $(this).parent().parent().parent().parent().parent().parent().parent().parent().children().first().children().children().first().children().last().text();
-		var currentPageNo = $(".product_reviews__footer > #pager > .page-list > .pagination > li.ajaxPageC.active").text();
-		var itemDetailId = _itemDetailId;
+		if( yOn == 1 ){
 		
-		var params = {
-			reviewNo : focus_review_div_id ,
-			user : focus_div_user ,
-			itemDetailId : itemDetailId ,
-		};
-		
-		
-		$.ajax({
-			url : '/h72/detail/deleteReview' ,
-			type : 'post' ,
-			contentType : "application/json" ,
-			data : JSON.stringify(params) ,
-			dataType : 'json' ,
-			success : function(data){
-				var result = data.result;
-				var reviewListCount = data.reviewListCount;
-				var limit = 5;
-				
-				if(result > 0){
-					alert("result : " + data.result + ": 삭제 성공");
+			var focus_review_div_id = $(this).parent().parent().parent().parent().parent().parent().parent().parent().attr("id");
+			var focus_div_user = $(this).parent().parent().parent().parent().parent().parent().parent().parent().children().first().children().children().first().children().last().text();
+			var currentPageNo = $(".product_reviews__footer > #pager > .page-list > .pagination > li.ajaxPageC.active").text();
+			var itemDetailId = _itemDetailId;
+			
+			var params = {
+				reviewNo : focus_review_div_id ,
+				user : focus_div_user ,
+				itemDetailId : itemDetailId ,
+			};
+			
+			
+			$.ajax({
+				url : '/h72/detail/deleteReview' ,
+				type : 'post' ,
+				contentType : "application/json" ,
+				data : JSON.stringify(params) ,
+				dataType : 'json' ,
+				success : function(data){
+					var result = data.result;
+					var reviewListCount = data.reviewListCount;
+					var limit = 5;
 					
-					//삭제 후 다시 뿌려주는 ajax 호출 
-					if(reviewListCount%limit == 0){
-						getReviewList(currentPageNo - 1);
-					}else{
-						getReviewList(currentPageNo);
+					if(result > 0){
+						//alert("result : " + data.result + ": 삭제 성공");
+						
+						//삭제 후 다시 뿌려주는 ajax 호출 
+						if(reviewListCount%limit == 0){
+							getReviewList(currentPageNo - 1);
+						}else{
+							getReviewList(currentPageNo);
+						}
 					}
-				}
-				
-				/*paging(data);
-				reviewing(data.reviewList);*/
-			} 
-			,error : function(data){}
-		});
+					/*paging(data);
+					reviewing(data.reviewList);*/
+				} 
+				,error : function(data){}
+			});
 		
+		}
 	});
 	
 	

@@ -1091,9 +1091,11 @@ a {
 	border:0px transparent solid;
 	border-color: #515151;
 	margin-left: 10px;
-	margin-top: -12px;
-	height: 30px;
-	font-size: 10px;
+	margin-top: -8px;
+	height: 25px;
+	cursor: pointer;
+	/* font-size: 2pt; */
+	/* font-family: '돋움',Dotum,AppleGothic,sans-serif; */
 	
 	text-rendering: auto;
     /* color: initial; */

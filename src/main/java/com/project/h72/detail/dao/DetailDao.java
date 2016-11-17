@@ -195,7 +195,7 @@ public class DetailDao {
 		return maxIndex;
 	}
 
-	public int insertReviewImage(List<String> insertReviewImage, String reviewId) {
+	public int insertReviewImage(List<String> renameFileNames, String reviewId) {
 		int result = 0;
 		
 		String[] rImageColum = {"R_IMG01", "R_IMG02", "R_IMG03", "R_IMG04", "R_IMG05"};
@@ -203,10 +203,10 @@ public class DetailDao {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("reviewId", reviewId);
 		
-		for(int i = 0; i < insertReviewImage.size(); i++){
+		for(int i = 0; i < renameFileNames.size(); i++){
 			for(int j = 0; j < rImageColum.length; j++){
 				map.put("rImageColum", rImageColum[j]);
-				map.put("insertReviewImage", insertReviewImage.get(i));
+				map.put("insertReviewImage", renameFileNames.get(i));
 				int semiResult = sqlSession.update(NAMESPACE + "insertReviewImage", map);
 				if(semiResult > 0){
 					result += semiResult;
