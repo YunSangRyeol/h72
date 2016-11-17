@@ -27,7 +27,7 @@ $(document).ready(function(){
 			 $.ajax({
 	   		url : 'kitDiyCart' ,
 	   		type : 'post' , 
-	   		data : params,
+	   		data : params, 
 	   		// 리턴 받는 dataType이 json이면 dataType을 json으로 변경
 	   		dataType : 'json' ,
 	   		  success: function(data) {
@@ -91,7 +91,7 @@ $(document).ready(function(){
 					</div>
 					<div id="kitDiy_menuAndPicture">
 						<div id="kitDiy_product" >
-						<input type="hidden" name="userId" value="${loginUser.userid }"/>
+						<input type="hidden" name="userId" value="<%= session.getId()%>"/>
 						<% for(int menuNum=1;  menuNum<6; menuNum++){%>
 							<div id="select_product<%=menuNum %>" class="kitDiy_productList" >
 								<ul id="kitDiy_mainList<%=menuNum %>">

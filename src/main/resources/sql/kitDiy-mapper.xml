@@ -36,8 +36,7 @@
 			SEQ_CART_ID.NEXTVAL,#{itemId},
 			#{userId},#{itemFullName},
 			#{itemDetailId},#{mainImg},
-			#{quantity},#{cost},
-			#{message},#{kit_yn},sysdate)
+			#{quantity},#{cost},'Y',sysdate)
 	</insert>
 	<select id="kitDiyOrder" resultType="KitOrder">
 		SELECT *

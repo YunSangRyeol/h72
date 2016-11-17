@@ -63,7 +63,9 @@ public class KitDiyController {
 		String[] mainImg = request.getParameterValues("mainImg");
 		String[] quantity = request.getParameterValues("quantity");
 		String[] cost = request.getParameterValues("cost");
-		String userId = request.getParameter("userId");
+		
+		String userId = request.getParameter("userId");		
+		
 		int checkCart=0;
  		int result =0;
  		int preItemNum = 1;
