@@ -150,6 +150,14 @@ function ResizeFrame(name)
 			</script>    
 			<script>
             $(document).ready(function(){
+            	alert();
+            	var itemFullNameTrim = '${itemDetailList.get(0).ITEM_NAME}';
+    			console.log("111 : " + itemFullNameTrim);
+    			itemFullNameTrim = itemFullNameTrim.trim();
+    			console.log("222 : " + itemFullNameTrim);
+            	//$("#span_mileage_text").text();            	
+            	var mileage = numberWithCommas(Math.floor(Number('${itemDetailList[0].SAIL_PRICE}')*Number('${loginUser.pointRate}')/100));
+            	$("#span_mileage_text").text(mileage + "원"); 
             	var price = Number($("#span_product_price_text").next().text());
             	var totalprice = 0;
             	var totalcount = 0;
@@ -396,6 +404,8 @@ function ResizeFrame(name)
 				    			}
 				    		}
 				    		
+			    			
+			    			
 					    	$.ajax({
 					    		url : '/h72/detail/insertCart' ,
 					    		type : 'post' , 
@@ -404,9 +414,9 @@ function ResizeFrame(name)
 					    				itemOptionName : arrOpName , 
 					    				op_count : op_count ,
 					    				userid : loginUserId ,
-					    				itemFullName : '${itemDetailList.get(0).ITEM_NAME }' ,
-					    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID }' ,
-					    				mainImg : '${itemDetailList.get(0).MAIN_IMG }' ,
+					    				itemFullName : '${itemDetailList.get(0).ITEM_NAME}' , //155번 low 참조
+					    				itemDetailid : '${itemDetailList.get(0).ITEM_DETAIL_ID}' ,
+					    				mainImg : '${itemDetailList.get(0).MAIN_IMG}' ,
 					    				message : null ,
 					    				KitYN : 'N' ,
 					    				kinds : kinds},
@@ -480,7 +490,7 @@ function ResizeFrame(name)
                 <td class="td-color1">
                 	<ul class="mileage">
 					<li class="">
-						<span id="span_mileage_text">100</span> <span class="">(1.00%)</span>
+						<span id="span_mileage_text">${itemDetailList[0].SAIL_PRICE}*(${loginUser.pointRate}/100)</span> <span class="">(${loginUser.pointRate}%)</span>
 					</li>
                     <li class="displaynone">
 						<img src="" alt="무통장 결제시 적립금"> 0 원<span class="displaynone">( %)</span>
@@ -755,26 +765,37 @@ function ResizeFrame(name)
 		</div>
 
 	</div>
-	<c:if test="${loginUser.userid == 'ADMIN'}">
-		<form action="/h72/productEnroll/productEnrollView" method="POST" id="product_updateForm">
-		<div id="product_UpdateWrap" >
-			<div id="product_Update" >수정하기</div>
-		</div>
-		<c:forEach items="${itemDetailList }" varStatus="i">
-			<input type="hidden" name="itemId" value="${itemDetailList[i.index].ITEM_ID }">
-		</c:forEach>
-		</form>
-		<script>
-			$(document).ready(function(){
-				$("#product_UpdateWrap").click(function(){
-					$('#product_updateForm').submit();
-				});
-			});
-		</script>
-	</c:if>
+	
+	<!-- detail 상품 수정 : admin -->
+
+	<form action="productEnrollUpdateView" method="POST" id="product_updateForm">
+	   <div id="product_UpdateWrap">
+	      <div id="product_Update">수정하기</div>
+	   </div>
+	   <c:forEach items="${itemDetailList }" varStatus="i">
+	      <input type="hidden" name="itemId${i.count}" value="${itemDetailList[i.index].ITEM_ID }">
+	   </c:forEach>
+	</form>
+	   
+	   <script>
+	      $(document).ready(function(){
+	         $("#product_UpdateWrap").click(function(){
+	            $('#product_updateForm').submit();
+	         });
+	      });
+	   </script>
+	
+	
 <jsp:include page='../main_footer.jsp' flush="false" />
 <!-- END --> 
-	
+    
+
+
+	<div id="mask">
+			<div id="maskInner">
+			</div>
+	</div>
+
 
 </body>
 </html>

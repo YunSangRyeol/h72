@@ -65,48 +65,6 @@ $(document).ready(function(){
 		
 		$( "form" ).submit();
 	});
-	$("#productEnroll_updateBtn").click(function(){
-		/*	alert($("#itemName").val());*/
-		if($("#itemName").val()== ""){
-			$("#itemName").focus();
-			return;
-		}
-		if($("#productEnroll_option").val()== ""){
-			$("#productEnroll_option").focus();
-			return;
-		}
-		if($("#productEnroll_optionId").val()== ""){
-			$("#productEnroll_optionId").focus();
-			return;
-		}
-		if($("#productEnroll_option").val()== ""){
-			$("#productEnroll_option").focus();
-			return;
-		}
-		if($("#cost").val()== ""){
-			$("#cost").focus();
-			return;
-		}
-		if($("#price").val()== ""){
-			$("#price").focus();
-			return;
-		}
-		if($("#sailPrice").val()== ""){
-			$("#sailPrice").focus();
-			return;
-		}
-	/*	if($("#upBtn1").val()== ""){
-			alert("Title 사진을 선택해주세요");
-			return;
-		}
-		if($("#upBtn2").val()== ""){
-			alert("상세 사진을 선택해주세요");
-			return;
-		}*/
-		
-		$( "form" ).attr("action", "/h72/productEnroll/productEnrollUpdate");
-		$( "form" ).submit();
-	});
 	
 	
 });

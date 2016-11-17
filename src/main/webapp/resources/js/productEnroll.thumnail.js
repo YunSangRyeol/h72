@@ -50,7 +50,6 @@ $(document).ready(function() {
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	
 	/*thumbnail 이미지 삭제*/
 	$(document).on('click', ".productEnroll_thumDelete", function() {
 		/*img div감싸고 있는거*/
@@ -87,13 +86,6 @@ $(document).ready(function() {
 		
 	});
 	
-
-	/*updateThumbnail 이미지 삭제*/
-	$(document).on('click', ".updateImgDelete", function() {
-		$("#itemPhotoUpdate").remove();
-		
-	});
-
 });
 
 // 리뷰쓰기 사진 올리기 버튼

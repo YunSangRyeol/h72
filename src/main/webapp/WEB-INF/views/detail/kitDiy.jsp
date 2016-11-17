@@ -162,7 +162,7 @@ $(document).ready(function(){
 					</ul>
 				</div>
 				<%-- <c:forEach begin="1" end="5" var="j" step="1"> --%>
-				<div style="width: 1200px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab1">
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab1">
 					<div class="xans-element- xans-product xans-product-listnormal ">
 						<ul class="prdList column5">
 							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
@@ -201,9 +201,21 @@ $(document).ready(function(){
 							</c:forEach>
 						</ul>
 					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
+					</div>
 				</div>
 				
-				<div style="width: 1200px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab2">
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab2">
 					<div class="xans-element- xans-product xans-product-listnormal ">
 						<ul class="prdList column5">
 							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
@@ -245,8 +257,20 @@ $(document).ready(function(){
 							</c:forEach>
 						</ul>
 					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
+					</div>
 				</div>
-				<div style="width: 1200px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab3">
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab3">
 					<div class="xans-element- xans-product xans-product-listnormal ">
 						<ul class="prdList column5">
 							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
@@ -287,8 +311,20 @@ $(document).ready(function(){
 							</c:forEach>
 						</ul>
 					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
+					</div>
 				</div>
-				<div style="width: 1200px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab4">
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab4">
 					<div class="xans-element- xans-product xans-product-listnormal ">
 						<ul class="prdList column5">
 							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
@@ -329,8 +365,20 @@ $(document).ready(function(){
 							</c:forEach>
 						</ul>
 					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
+					</div>
 				</div>
-				<div style="width: 1200px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab5">
+				<div style="width: 1270px; padding-top:10px;" class="xans-element- xans-product xans-product-normalpackage tab5">
 					<div class="xans-element- xans-product xans-product-listnormal ">
 						<ul class="prdList column5">
 							<c:forEach var="item" items="${itemDetailView }" varStatus="i">
@@ -370,6 +418,18 @@ $(document).ready(function(){
 							</c:if>
 							</c:forEach>
 						</ul>
+					</div>
+					<div class="xans-element- xans-product xans-product-normalpaging">
+						<p>
+							<a href="#none"><img src="/h72/resources/image/btn_page_prev.png" alt="이전 페이지"></a>
+						</p>
+						<ol>
+							<li class="xans-record-"><a href="?cate_no=169&amp;page=1"
+								class="this">1</a></li>
+						</ol>
+						<p>
+						<a href="#none"><img src="/h72/resources/image/btn_page_next.png" alt="다음 페이지"></a>
+						</p>
 					</div>
 				</div>
 				

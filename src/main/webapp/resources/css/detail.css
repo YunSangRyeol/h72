@@ -9,7 +9,7 @@
 
 /* sunny_wrap */
 body, code {
-    font-family: �룍��,'Doutm',sans-serif;
+    font-family: 돋움,'Doutm',sans-serif;
     font-size: 11px;
     color: #000;
 }
@@ -89,7 +89,7 @@ img, fieldset {
     padding: 40px 30px 0 40px;
 }
 
-/* �쉶�썝�벑湲됰퀎 �삙�깮蹂닿린 */
+/* 회원등급별 혜택보기 */
 .xans-product-detail .infoArea h3 span {
     font-weight: normal;
     font-size: 12px;
@@ -281,7 +281,7 @@ th, td, img {
 .xans-product-detail .infoArea td .mileage li {
     line-height: 1.7em;
 }
-/* �닔�웾 */
+/* 수량 */
 .xans-product-detail .infoArea td .quantity {
     position: relative;
     display: block;
@@ -309,10 +309,10 @@ th, td, img {
 }
 
 
-/* select �깭洹� */
+/* select 태그 */
 input, select, textarea {
     font-size: 100%;
-    font-family: "�룍��",Dotum;
+    font-family: "돋움",Dotum;
     color: #353535;
     vertical-align: middle;
 }
@@ -345,7 +345,7 @@ select {
     padding-right: 3px;
 }
 
-/* 由щ럭 */
+/* 리뷰 */
 iframe[name=reviewBoard] {
     border-width: 2px;
     border-style: inset;
@@ -397,7 +397,7 @@ iframe[Attributes Style] {
     border-top: 0;
 }
 
-/* �샃�뀡 �꽑�깮�떆 異붽�*/
+/* 옵션 선택시 추가*/
 
 .option_mini {
     float: left;
@@ -476,7 +476,7 @@ em, address {
     border: 1px solid #dadada;
     border-left: 0 none;
     border-right: 0 none;
-    font: 12px/1.2 Tahoma,'留묒� 怨좊뵓',Malgun Gothic,dotum,sans-serif;
+    font: 12px/1.2 Tahoma,'맑은 고딕',Malgun Gothic,dotum,sans-serif;
     text-align: center;
     vertical-align: top;
 }
@@ -570,18 +570,18 @@ div.prdc_total .total_price .total_pr {
     color: #333;
 }
 div.prdc_total .total_price .total_pr strong {
-    font: bold 28px/1.2 Tahoma,'留묒� 怨좊뵓',Malgun Gothic,dotum,sans-serif;
+    font: bold 28px/1.2 Tahoma,'맑은 고딕',Malgun Gothic,dotum,sans-serif;
     color: #f43142;
 }
 
-/* 硫붿씤�씠誘몄� */
+/* 메인이미지 */
 .keyImg > img {
 	width: 640px;
 	height: 470px;
 	border: 1.111px;
 }
 
-/* �긽�꽭�씠誘몄� */
+/* 상세이미지 */
 #prdDetail > .cont > center > p > img {
 	margin-top: 100px;
     border-top: 1px solid #dadada;
@@ -595,7 +595,7 @@ div.prdc_total .total_price .total_pr strong {
 
 /* //sunny_footer */
 
-/* �옣諛붽뎄�땲 �떞湲� div */
+/* 장바구니 담기 div */
 title {
 	display: none;
 }
@@ -697,7 +697,7 @@ position: fixed;
    
 }
 #product_Update {
-   margin-left:900px;
+   margin-left:540px;
    width: 150px;
     height: 20px;
     color: #fff;
@@ -712,7 +712,7 @@ position: fixed;
 }
 
 #product_Update:hover {
-   	margin-left:900px;
+   margin-left: 540px;
     width: 150px;
     height: 20px;
     color: black;

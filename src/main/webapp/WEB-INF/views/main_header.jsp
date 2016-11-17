@@ -37,7 +37,7 @@
 						</c:if>
 						<c:if
 							test="${loginUser.levelcode eq 'ADMIN' || loginUser.levelcode eq 'STEP' }">
-							<c:url var="goUser111" value="/productEnroll/productEnroll" >
+							<c:url var="goUser111" value="/productEnrollgo" >
 							</c:url>
 							<li><a href="${goUser111 }">상품등록</a></li>
 							<c:url var="goUser" value="/admin/users" >
