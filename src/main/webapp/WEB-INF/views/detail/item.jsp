@@ -51,19 +51,18 @@ a {
 	
 	<c:if test="${itemList != null}">
 	
-		<c:forEach var="i" begin="0" end="${itemList.size() - 1}" step="1">
-		
-			<c:url var="url" value="selectItem"><!-- h72/detail/selectItem -->
-				<c:param name="ItemDetailId" value="${itemList.get(i).ITEM_DETAIL_ID }" />
-			</c:url>
-			
-			<div style="display: inline" >
-				<a href="${url }" style="color: green">${itemList.get(i).ITEM_DETAIL_ID }</a>${itemList.get(i).ITEM_NAME }
-			</div>
-			
-			<br>
-		
-		</c:forEach>
+	<c:forEach var="i" begin="0" end="${itemList.size() - 1}" step="1">
+	
+	<c:url var="url" value="selectItem"><!-- h72/detail/selectItem -->
+	<c:param name="ItemDetailId" value="${itemList.get(i).ITEM_DETAIL_ID }" />
+	</c:url>
+	
+	<div style="display: inline" >
+		<a href="${url }" style="color: green">${itemList.get(i).ITEM_DETAIL_ID }</a>${itemList.get(i).ITEM_NAME }
+	</div>
+	<br>
+	
+	</c:forEach>
 	
 	</c:if>
 	

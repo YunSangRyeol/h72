@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/review_custom.css'/>" />
 
 <script type="text/javascript" src="/h72/resources/js/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="/h72/resources/js/jquery.form.js"></script>
 <script src="<c:url value='/resources/js/review.js'/>"></script>
 <script>
 	var focus_review_div = null;
@@ -35,8 +34,8 @@
 	var superNumFlow = 1;//thumnail
 	var sum = 0;
 	var maskThumnailId = null;
-	var nextVal = null;
-	var identity = null;
+	
+	
     $(document).ready(function(){
     	//console.log("11111111111");
     	

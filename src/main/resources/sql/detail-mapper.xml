@@ -164,24 +164,8 @@
 		AND R_WRITER = #{user}
 	</select>
 
-	<update id="updateReviewImage" parameterType="hashmap">
-	
-		UPDATE REVIEW
-		SET ${rImageColum} = NULL
-	    WHERE ${rImageColum} = (SELECT ${rImageColum}
-	                     FROM REVIEW
-	                     WHERE (select SUBSTR(SUBSTR(${rImageColum}, INSTR(${rImageColum}, '-') + 1), 1, LENGTH(SUBSTR(${rImageColum}, INSTR(${rImageColum}, '-') + 1)) -4)
-	                     		FROM review
-	                     		WHERE review_id = #{reviewId}) = #{deleteList}
-	                     		AND REVIEW_ID = #{reviewId})
-	</update>
-	
-	<update id="insertReviewImage" parameterType="hashmap">
-		UPDATE REVIEW
-		SET ${rImageColum} = #{insertReviewImage}
-		WHERE ${rImageColum} is NULL 
-		AND REVIEW_ID = #{reviewId}
-	</update>
+
+
 
 
 
