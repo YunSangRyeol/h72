@@ -93,13 +93,11 @@
 							class="item xans-record-">
 
 							<div class="box">
-								<%-- <c:url var="url" value="selectItem">
-									<c:param name="ItemDetailId" value="${category.get(list).itemDetailId }" />
-								</c:url> --%>
+								
 								<a href="<c:url value="/detail/selectItem?ItemDetailId=${list.itemDetailId }" />" 
 								name="anchorBoxName_8025"> 
 								<img src="/h72/resources${list.mainImg }" alt="" class="thumb"
-										style="width: 250px; height: 250px;"></a>
+										style="width: 238px; height: 238px;"></a>
 								<p class="name"></p>
 								<p id="inner_itemName">
 									<a href="<c:url value="/detail/selectItem?ItemDetailId=${list.itemDetailId }" />"><span style="font-size: 11px; color: #000000;">${list.itemName}</span></a>
@@ -165,7 +163,7 @@
 					<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 						<c:if test="${i==currentPage }">
 							<li class="xans-record-"><span class="this"
-								style="font-weight: bold; text-decoration: underline;">${i}</span></li>
+								style="font-weight: bold; color:red;">${i}</span></li>
 						</c:if>
 						<c:if test="${i != currentPage }">
 							<li class="xans-record-"><a href="/h72/${cate }page=${i }"><span

@@ -59,6 +59,7 @@ a {
 
 .searchList_productList ul.column5 li.item {
 	width: 238px;
+	height:350px;
 	margin-right: 15px;
 }
 
@@ -75,6 +76,7 @@ a {
 
 .searchList_productList ul.column5 li.item .box {
 	width: 238px;
+	height:350px;
 	padding-bottom: 25px;
 }
 
@@ -165,6 +167,8 @@ a {
 	border-bottom: 1px solid #e7e7e7;
 	padding-bottom: 5px;
 	margin-bottom: 5px;
+	height:35px;
+	vertical-align:middle;
 }
 
 #inner_itemPrice {

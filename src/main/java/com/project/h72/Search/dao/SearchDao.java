@@ -19,7 +19,7 @@ public class SearchDao {
 	private SqlSession sqlSession;
 
 	public List<Search> getBagList(int currentPage, int limit) throws Exception {
-		int startRow = (currentPage - 1) * 12 + 1; // 읽기 시작할 row 번호.
+		int startRow = (currentPage - 1) * 8 + 1; // 읽기 시작할 row 번호.
 		int endRow = startRow + limit - 1; // 읽을 마지막 row 번호.
 
 		Map<String, Comparable> paramMap = new HashMap();
@@ -31,7 +31,7 @@ public class SearchDao {
 	}
 
 	public List<Search> getProtectList(int currentPage, int limit) throws Exception {
-		int startRow = (currentPage - 1) * 12 + 1; // 읽기 시작할 row 번호.
+		int startRow = (currentPage - 1) * 8 + 1; // 읽기 시작할 row 번호.
 		int endRow = startRow + limit - 1; // 읽을 마지막 row 번호.
 
 		Map<String, Comparable> paramMap = new HashMap();
@@ -42,7 +42,7 @@ public class SearchDao {
 	}
 
 	public List<Search> getFoodList(int currentPage, int limit) throws Exception {
-		int startRow = (currentPage - 1) * 12 + 1; // 읽기 시작할 row 번호.
+		int startRow = (currentPage - 1) * 8 + 1; // 읽기 시작할 row 번호.
 		int endRow = startRow + limit - 1; // 읽을 마지막 row 번호.
 
 		Map<String, Comparable> paramMap = new HashMap();
@@ -53,7 +53,7 @@ public class SearchDao {
 	}
 
 	public List<Search> getToolList(int currentPage, int limit) throws Exception {
-		int startRow = (currentPage - 1) * 12 + 1; // 읽기 시작할 row 번호.
+		int startRow = (currentPage - 1) * 8 + 1; // 읽기 시작할 row 번호.
 		int endRow = startRow + limit - 1; // 읽을 마지막 row 번호.
 
 		Map<String, Comparable> paramMap = new HashMap();
@@ -64,7 +64,7 @@ public class SearchDao {
 	}
 
 	public List<Search> getEtcList(int currentPage, int limit) throws Exception {
-		int startRow = (currentPage - 1) * 12 + 1; // 읽기 시작할 row 번호.
+		int startRow = (currentPage - 1) * 8 + 1; // 읽기 시작할 row 번호.
 		int endRow = startRow + limit - 1; // 읽을 마지막 row 번호.
 
 		Map<String, Comparable> paramMap = new HashMap();
@@ -75,7 +75,7 @@ public class SearchDao {
 	}
 
 	public List<Search> getSearchList(String itemName, int currentPage, int limit) throws Exception {
-		int startRow = (currentPage - 1) * 12 + 1; // 읽기 시작할 row 번호.
+		int startRow = (currentPage - 1) * 8 + 1; // 읽기 시작할 row 번호.
 		int endRow = startRow + limit - 1; // 읽을 마지막 row 번호.
 
 		Map<String, Comparable> paramMap = new HashMap<String, Comparable>();
