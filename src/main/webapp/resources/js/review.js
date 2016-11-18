@@ -713,7 +713,7 @@ function bindEvent(){
 //		var tempImg = $(this).children().children().first().attr('src');
 		//tempImage = tempImage.substring(tempImage.lastIndexOf('/') + 1 );
 		wrapWindowByMask();
-		$('#mask').append('<div id=layerWrapper>' +
+		$('#maskInner').append('<div id=layerWrapper>' +
 							'<img id="cancel" src="/h72/resources/image/cancel.png">' +
 							'<img class="arrow" id="leftArrow" src="/h72/resources/image/arrow-left.png"></img>' +
 							'<img id="layerImage"></img>' +
@@ -744,8 +744,8 @@ function bindEvent(){
 	});
 	
 	$(document).on("click", "#cancel", function () {
-		$('#mask').html("");
 		$('#mask').hide();
+		$('#maskInner').html("");
 	});
 	
 	uploadPhoto();
