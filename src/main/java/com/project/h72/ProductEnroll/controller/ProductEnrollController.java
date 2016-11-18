@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.project.h72.ProductEnroll.service.ProductEnrollService;
 import com.project.h72.ProductEnroll.vo.Product;
@@ -40,10 +42,11 @@ public class ProductEnrollController {
 	}
 	
 	@RequestMapping(value = "/productEnrollInsert", method = RequestMethod.POST)
-	public String productEnrollInsert(@ModelAttribute @Valid Product product, HttpServletRequest request
-									)throws ServletException, IOException {
+	public String productEnrollInsert(@ModelAttribute @Valid Product product,
+			MultipartRequest multipartRequest, HttpServletResponse respone,
+			HttpServletRequest	request	)throws ServletException, IOException {
 
-		int result = service.productEnrollInsert(product, request);
+		int result = service.productEnrollInsert(product,respone, request, multipartRequest);
 		if(result > 0) {
 			return "admin/productEnroll";
 		} else {

@@ -28,11 +28,10 @@ ul, menu, dir {
 }
 Inherited from body#main
 body, code {
-    font-family: µ∏øÚ,'Doutm',sans-serif;
+    font-family: ÎèãÏõÄ,'Doutm',sans-serif;
     font-size: 11px;
     color: #000;
 }
-
 img, fieldset {
     border: none;
     vertical-align: top;
@@ -186,7 +185,6 @@ li{
     position: relative;
     padding-left: 5px;
     color: #fff;
-    background: #920021!important;
     border: 0;
 }
 #productEnroll_deleteBtn{
@@ -238,11 +236,14 @@ li{
 #productEnroll .textareaBoxWrap .textareaBox{
 	overflow-y: auto;
     resize: none;
-    width: 480px;
-    height: 84px;
+    width: 460px;
+    height: 64px;
     border: 0px solid #e6e6e6;
     margin-left:5px;
     border-radius:8px;
+    font-family: "Noto Sans KR", sans-serif;
+	font-size:9pt;
+	padding:10px;
 }
 #productEnroll #review_text_state{
     width: 480px;
@@ -402,6 +403,21 @@ li{
    	cursor:pointer;
 	
 }
+#productEnroll #productEnroll_photoUpdate{
+    float:left;
+    width: 74px;
+    height: 74px;
+    margin: 5px;
+    border: 0px solid #e6e6e6;
+    color: black;
+    background: aliceblue;
+    text-align: center;
+    vertical-align: middle;
+	font-size:15pt;
+    border-radius:8px;
+   	cursor:pointer;
+	
+}
 
 #productEnroll .file_input_hidden {
     /* font-size: 45px; */
@@ -441,13 +457,33 @@ li{
    	border-radius:8px;
     
 }
+#productEnroll #thumnailAreaUpdate{
+    width: 330px;
+    height: 74px;
+    background: aliceblue;
+    vertical-align: baseline; 
+    float:left;
+   	text-align:left;
+   	margin:5px;
+   	border-radius:8px;
+    
+}
 #productEnroll #thumnailArea img{
    	margin-left:20px;
    	margin-top:3px;
    	border-radius:8px;
 }
+#productEnroll #thumnailAreaUpdate img{
+   	margin-left:20px;
+   	margin-top:3px;
+   	border-radius:8px;
+}
+
 
 #productEnroll #itemPhoto{
+	margin: 5px 0 5px 12px;
+}
+#productEnroll #iitemPhotoUpdate{
 	margin: 5px 0 5px 12px;
 }
 
@@ -462,19 +498,78 @@ li{
 #thumnailArea{
 	float:left;
 }
+#thumnailAreaUpdate{
+	float:left;
+}
 #thumnailArea span{
-	float: right;
-	weight:2px;
-	font-weight:900;
-	color:red;
-	cursor:pointer;
+   	 float: right;
+    width: 2px;
+    font-weight: 900;
+    color: red;
+    cursor: pointer;
+    position: relative;
+    top: -75px;
+    left: 5px;
 	display:none;
 }
+
 #thumnailExplane{
 	float:left;
 	width:130px;
 	margin:8px;
 	color:red;
+}
+
+/*****************updateImg*********************/
+#updateImgWrap1{
+	width:85px;
+	float:left;
+	margin-top:5px;
+}
+#updateImgWrap2{
+	width:85px;
+	float:left;
+	margin-left:5px;
+	margin-top:5px;
+}
+#updateImgWrap3{
+	width:85px;
+	float:left;
+	margin-left:5px;
+	margin-top:5px;
+}
+#updateImg1{
+	width:60px;
+	height:60px;
+}
+#updateImg2{
+	width:60px;
+	height:60px;
+}
+#updateImg3{
+	width:60px;
+	height:60px;
+}
+#updateDelete {
+	width:40px;
+	float:left;
+	margin-left:10px;
+	cursor:pointer;
+	 
+}
+#updateDelete p{
+	background: lightgray;
+	width:60px;
+	text-align:center;
+	border-radius:5px;
+}
+#updateDelete p:hover{
+	background: red;
+	color:white;
+	width:60px;
+	text-align:center;
+	border-radius:5px;
+	border:0px;
 }
 
 /*************productEnroll_enrollBtnWrap************/
@@ -491,7 +586,16 @@ li{
     width:100%;
     height: 100%;
     color: #fff;
-    border: 1px solid #c91b3c;
+    background: #333232;
+    border-radius: 3px;
+    font-weight:bold;
+    cursor:pointer;
+    border:0px;
+}
+#productEnroll #productEnroll_updateBtn{
+    width:100%;
+    height: 100%;
+    color: #fff;
     background: #333232;
     border-radius: 3px;
     font-weight:bold;
@@ -535,7 +639,7 @@ input[type=radio]+ label:before {
 }
 input[type=radio]:checked + label:before { 
 
-    content: "";  /* √º≈©∏æÁ */
+    content: "";  
     font-size: 18px; 
     font-weight:800; 
     color: #fff;  
@@ -550,4 +654,8 @@ input[type=radio]:checked + label:before {
 #productEnroll_footer{
 	margin-top: 250px;
 	
+}
+
+.main_searchBtn{
+	border:0px;
 }
