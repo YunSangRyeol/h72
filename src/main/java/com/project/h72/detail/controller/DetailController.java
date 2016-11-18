@@ -261,8 +261,8 @@ public class DetailController {
 		ArrayList<String> renameFileNames = new ArrayList<String>();
 		ArrayList<MultipartFile> newFlist = new ArrayList<MultipartFile>();
 		
-		String savePath = "C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
-		//"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
+		String savePath = //"C:\\Users\\0MyeongJun\\git\\h72\\src\\main\\webapp\\resources\\uploadFiles";
+		"C:\\h72\\workspace\\h72_local\\src\\main\\webapp\\resources\\uploadFiles";
 		
 		MultipartFile mpf1 = multipartRequest.getFile("reviewPhoto1");
 		MultipartFile mpf2 = multipartRequest.getFile("reviewPhoto2");
